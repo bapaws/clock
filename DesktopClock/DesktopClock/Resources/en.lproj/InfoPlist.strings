@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  DesktopClock
+
+  Created by 张敏超 on 2023/12/25.
+  
+*/
+
+"CFBundleDisplayName" = "Pure Clock";
+"CFBundleName" = "Pure Clock";
+"UILaunchStoryboardName" = "LaunchScreen";

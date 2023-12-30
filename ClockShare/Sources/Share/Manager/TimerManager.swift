@@ -1,0 +1,70 @@
+//
+//  TimerManager.swift
+//
+//
+//  Created by 张敏超 on 2023/12/22.
+//
+
+import Combine
+import Dependencies
+import Foundation
+import SwiftUI
+
+public class TimerManager: ObservableObject {
+    public static let shared = TimerManager()
+
+    @Published public private(set) var time: Time = .zero
+    @Published public private(set) var isStarted: Bool = false
+    @Published public private(set) var isPaused: Bool = false
+
+    @Dependency(\.date.now) var now
+
+    private var timer: Timer?
+
+    public init(time: Time = .zero, timer: Timer? = nil) {
+        self.time = time
+        self.timer = timer
+    }
+}
+
+// MARK: - Timer
+
+public extension TimerManager {
+    func start() {
+        stop()
+
+        timer = Timer(timeInterval: 0.1, repeats: true, block: { [weak self] _ in
+            self?.time++
+        })
+        RunLoop.main.add(timer!, forMode: .common)
+
+        isStarted = true
+        isPaused = false
+    }
+
+    func pause() {
+        if isPaused { return }
+        isPaused = true
+
+        time.pause()
+        timer?.fireDate = .distantFuture
+    }
+
+    func resume() {
+        guard isStarted, isPaused else { return }
+        isPaused = false
+
+        time.resume()
+        timer?.fireDate = now
+    }
+
+    func stop() {
+        timer?.invalidate()
+        timer = nil
+
+        time = .zero
+
+        isStarted = false
+        isPaused = false
+    }
+}

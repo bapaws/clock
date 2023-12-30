@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  DesktopClock
+
+  Created by 张敏超 on 2023/12/25.
+  
+*/
+
+"AppName" = "Desktop Clock";
+
+// MARK: - Main
+
+"Pomodoro" = "Pomodoro";
+"Clock" = "Clock";
+"Timer" = "Timer";
+
+// MARK: - Settings
+
+"Settings" = "Settings";
+
+// MARK: Appearance
+
+"Appearance" = "Appearance";
+"ModeAuto" = "Use Device Setting";
+
+"IconType" = "Icon Type";
+"Text" = "Text";
+
+"ColorThemes" = "Color Themes";
+"Default" = "Default";
+"White" = "White";
+"Pink" = "Pink";
+"Purple" = "Purple";
+
+"DarkMode" = "Dark Mode";
+"LightMode" = "Light Mode";
+"Dark" = "Dark";
+"Light" = "Light";
+
+"LandspaceMode" = "Landspace Mode";
+"PortraitMode" = "Portrait Mode";
+"Portrait" = "Portrait";
+"Landspace" = "Landspace";
+
+// MARK: Other
+
+"Other" = "Other";
+"Rate" = "Rate Our App";
+"Upgrade" = "Upgrade";
+"About" = "About";
+
+// MARK: Clock
+
+"TimeFormat" = "Time Format";
+"ShowSecond" = "Show Second";
+
+// MARK: Pomodoro
+
+"FocusDuration" = "Focus Duration";
+"ShortBreakDuration" = "Break";
+"LongBreakDuration" = "Long Break Duration";
+
+// MARK: About
+
+"Privacy" = "Privacy Policy";
+"And" = " and ";
+"Terms" = "Terms of Service";
+
+// MARK: Paywall
+
+"ProMembership" = "Pro Membership";
+"ProInfo1" = "Better focus timer";
+"ProInfo2" = "Emoji icon styles";
+"ProInfo3" = "More custom fonts";
+"ProInfo4" = "More app icons";
+"ProInfo5" = "All new features in future";
+"GetPro" = "Get Pro";
+"Restore" = "Restore";
+"Sale" = "SALE";
+"freeTrial.days" = "  %@-day free trial  ";
+"subscriptionWarning" = "After confirming the purchase, your Apple account will be charged, and the subscription will be automatically renewed if you purchase a monthly or yearly subscription, your Apple account will be charged 24 hours before the expiration date, and the subscription cycle will be postponed to the next subscription cycle after the successful deduction of the charge.
+If you want to cancel the automatic subscription, please turn off the auto-renewal function 24 hours before the end of the current subscription cycle. You can cancel your subscription by going to \"Settings\" --> click \"Apple ID\", click \"Subscribe\" and select \"Desktop Clock\" to unsubscribe.
+If the recharge does not arrive, please send your Apple ID and debit voucher to dev@bapaws.com.
+Pro member ad-free service temporarily includes the removal of app opening screen ads, banner ads.
+Pro member service is an online commodity and virtual commodity, once opened can not be refunded, thank you for your understanding and support.";

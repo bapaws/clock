@@ -1,0 +1,892 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		887464932B3718D4004416B8 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 887464922B3718D4004416B8 /* SwiftUIPager */; };
+		887464962B3718E2004416B8 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 887464952B3718E2004416B8 /* Pow */; };
+		887464992B37190A004416B8 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 887464982B37190A004416B8 /* Neumorphic */; };
+		8874649C2B37191D004416B8 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 8874649B2B37191D004416B8 /* RevenueCat */; };
+		8874649E2B37191D004416B8 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8874649D2B37191D004416B8 /* RevenueCatUI */; };
+		887464A12B371935004416B8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 887464A02B371935004416B8 /* RswiftLibrary */; };
+		88A8D7212B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A8D6DC2B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard */; };
+		88A8D7222B3D78F300983E0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A8D6DD2B3D78F300983E0E /* LaunchScreen.storyboard */; };
+		88A8D7232B3D78F300983E0E /* LaunchScreen_zh-Hant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A8D6DE2B3D78F300983E0E /* LaunchScreen_zh-Hant.storyboard */; };
+		88A8D7242B3D78F400983E0E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88A8D6DF2B3D78F300983E0E /* Localizable.strings */; };
+		88A8D7252B3D78F400983E0E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88A8D6E12B3D78F300983E0E /* InfoPlist.strings */; };
+		88A8D7262B3D78F400983E0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A8D6E62B3D78F300983E0E /* Assets.xcassets */; };
+		88A8D7272B3D78F400983E0E /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6EA2B3D78F300983E0E /* DarkMode.swift */; };
+		88A8D7282B3D78F400983E0E /* UIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6EB2B3D78F300983E0E /* UIManager.swift */; };
+		88A8D7292B3D78F400983E0E /* LandspaceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6EC2B3D78F300983E0E /* LandspaceMode.swift */; };
+		88A8D72A2B3D78F400983E0E /* IconStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6ED2B3D78F300983E0E /* IconStyle.swift */; };
+		88A8D72B2B3D78F400983E0E /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6EF2B3D78F300983E0E /* SafariView.swift */; };
+		88A8D72C2B3D78F400983E0E /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F02B3D78F300983E0E /* PageControl.swift */; };
+		88A8D72D2B3D78F400983E0E /* DesktopClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F12B3D78F300983E0E /* DesktopClockApp.swift */; };
+		88A8D72E2B3D78F400983E0E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F22B3D78F300983E0E /* MainView.swift */; };
+		88A8D72F2B3D78F400983E0E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F52B3D78F300983E0E /* SettingsView.swift */; };
+		88A8D7302B3D78F400983E0E /* SettingsProCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F62B3D78F300983E0E /* SettingsProCell.swift */; };
+		88A8D7312B3D78F400983E0E /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F72B3D78F300983E0E /* SettingsCell.swift */; };
+		88A8D7322B3D78F400983E0E /* SettingsAppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F92B3D78F300983E0E /* SettingsAppearanceSection.swift */; };
+		88A8D7332B3D78F400983E0E /* SettingsLandspaceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FA2B3D78F300983E0E /* SettingsLandspaceModeView.swift */; };
+		88A8D7342B3D78F400983E0E /* SettingsDarkModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FB2B3D78F300983E0E /* SettingsDarkModeView.swift */; };
+		88A8D7352B3D78F400983E0E /* SettingsUIContentsModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FC2B3D78F300983E0E /* SettingsUIContentsModeView.swift */; };
+		88A8D7362B3D78F400983E0E /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FD2B3D78F300983E0E /* SettingsSection.swift */; };
+		88A8D7372B3D78F400983E0E /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FE2B3D78F300983E0E /* SettingsItem.swift */; };
+		88A8D7382B3D78F400983E0E /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7002B3D78F300983E0E /* AboutView.swift */; };
+		88A8D7392B3D78F400983E0E /* SettingsFocusMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7022B3D78F300983E0E /* SettingsFocusMinutesView.swift */; };
+		88A8D73A2B3D78F400983E0E /* SettingsPomodoroSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7032B3D78F300983E0E /* SettingsPomodoroSection.swift */; };
+		88A8D73B2B3D78F400983E0E /* SettingsLongBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7042B3D78F300983E0E /* SettingsLongBreakMinutesView.swift */; };
+		88A8D73C2B3D78F400983E0E /* SettingsShortBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7052B3D78F300983E0E /* SettingsShortBreakMinutesView.swift */; };
+		88A8D73D2B3D78F400983E0E /* SettingsTimeFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7072B3D78F300983E0E /* SettingsTimeFormatView.swift */; };
+		88A8D73E2B3D78F400983E0E /* SettingsClockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7082B3D78F300983E0E /* SettingsClockSection.swift */; };
+		88A8D73F2B3D78F400983E0E /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D70A2B3D78F300983E0E /* SplashView.swift */; };
+		88A8D7402B3D78F400983E0E /* NeumorphicLandspaceColon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D70C2B3D78F300983E0E /* NeumorphicLandspaceColon.swift */; };
+		88A8D7412B3D78F400983E0E /* NeumorphicPortraitColon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D70D2B3D78F300983E0E /* NeumorphicPortraitColon.swift */; };
+		88A8D7432B3D78F400983E0E /* NeumorphicDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D70F2B3D78F300983E0E /* NeumorphicDigit.swift */; };
+		88A8D7442B3D78F400983E0E /* NeumorphicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7102B3D78F300983E0E /* NeumorphicStyle.swift */; };
+		88A8D7452B3D78F400983E0E /* NeumorphicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7112B3D78F300983E0E /* NeumorphicButton.swift */; };
+		88A8D7472B3D78F400983E0E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7142B3D78F300983E0E /* TimerView.swift */; };
+		88A8D7482B3D78F400983E0E /* TimerPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7152B3D78F300983E0E /* TimerPortraitView.swift */; };
+		88A8D7492B3D78F400983E0E /* TimerLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7162B3D78F300983E0E /* TimerLandspaceView.swift */; };
+		88A8D74A2B3D78F400983E0E /* PomodoroPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7182B3D78F300983E0E /* PomodoroPortraitView.swift */; };
+		88A8D74B2B3D78F400983E0E /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7192B3D78F300983E0E /* PomodoroView.swift */; };
+		88A8D74C2B3D78F400983E0E /* PomodoroLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D71A2B3D78F300983E0E /* PomodoroLandspaceView.swift */; };
+		88A8D74D2B3D78F400983E0E /* ClockPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D71C2B3D78F300983E0E /* ClockPortraitView.swift */; };
+		88A8D74E2B3D78F400983E0E /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D71D2B3D78F300983E0E /* ClockView.swift */; };
+		88A8D74F2B3D78F400983E0E /* ClockLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D71E2B3D78F300983E0E /* ClockLandspaceView.swift */; };
+		88A8D7502B3D78F400983E0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A8D7202B3D78F300983E0E /* Preview Assets.xcassets */; };
+		88A8D7542B3D7B9E00983E0E /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88A8D7532B3D7B9E00983E0E /* ClockShare */; };
+		88A8D75E2B3DAE3200983E0E /* ProManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D75D2B3DAE3200983E0E /* ProManager.swift */; };
+		88A8D7622B3DB1EC00983E0E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88A8D7612B3DB1EC00983E0E /* KeychainSwift */; };
+		88A8D7682B3E696B00983E0E /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7672B3E696B00983E0E /* PaywallView.swift */; };
+		88ABA21E2B3AB4BF0035DDDB /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 88ABA21D2B3AB4BF0035DDDB /* PopupView */; };
+		88CE4D6F2B3F0B050035BAE9 /* HoldOnNeumorphicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D6E2B3F0B050035BAE9 /* HoldOnNeumorphicButton.swift */; };
+		88CE4D742B3FC3AB0035BAE9 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */; };
+		88CE4D762B3FF6A60035BAE9 /* SettingsColorStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D752B3FF6A60035BAE9 /* SettingsColorStyleView.swift */; };
+		88CE4D7B2B401DAE0035BAE9 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 88CE4D7A2B401DAE0035BAE9 /* SwiftUIIntrospect */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8874645D2B37184E004416B8 /* DesktopClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A8D6DC2B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hans.storyboard"; sourceTree = "<group>"; };
+		88A8D6DD2B3D78F300983E0E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88A8D6DE2B3D78F300983E0E /* LaunchScreen_zh-Hant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hant.storyboard"; sourceTree = "<group>"; };
+		88A8D6E02B3D78F300983E0E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88A8D6E22B3D78F300983E0E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		88A8D6E32B3D78F300983E0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88A8D6E42B3D78F300983E0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88A8D6E52B3D78F300983E0E /* DesktopClock.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = DesktopClock.entitlements; sourceTree = "<group>"; };
+		88A8D6E62B3D78F300983E0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88A8D6EA2B3D78F300983E0E /* DarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
+		88A8D6EB2B3D78F300983E0E /* UIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIManager.swift; sourceTree = "<group>"; };
+		88A8D6EC2B3D78F300983E0E /* LandspaceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandspaceMode.swift; sourceTree = "<group>"; };
+		88A8D6ED2B3D78F300983E0E /* IconStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconStyle.swift; sourceTree = "<group>"; };
+		88A8D6EF2B3D78F300983E0E /* SafariView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		88A8D6F02B3D78F300983E0E /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		88A8D6F12B3D78F300983E0E /* DesktopClockApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesktopClockApp.swift; sourceTree = "<group>"; };
+		88A8D6F22B3D78F300983E0E /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		88A8D6F52B3D78F300983E0E /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		88A8D6F62B3D78F300983E0E /* SettingsProCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsProCell.swift; sourceTree = "<group>"; };
+		88A8D6F72B3D78F300983E0E /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		88A8D6F92B3D78F300983E0E /* SettingsAppearanceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSection.swift; sourceTree = "<group>"; };
+		88A8D6FA2B3D78F300983E0E /* SettingsLandspaceModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLandspaceModeView.swift; sourceTree = "<group>"; };
+		88A8D6FB2B3D78F300983E0E /* SettingsDarkModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDarkModeView.swift; sourceTree = "<group>"; };
+		88A8D6FC2B3D78F300983E0E /* SettingsUIContentsModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsUIContentsModeView.swift; sourceTree = "<group>"; };
+		88A8D6FD2B3D78F300983E0E /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
+		88A8D6FE2B3D78F300983E0E /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
+		88A8D7002B3D78F300983E0E /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		88A8D7022B3D78F300983E0E /* SettingsFocusMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFocusMinutesView.swift; sourceTree = "<group>"; };
+		88A8D7032B3D78F300983E0E /* SettingsPomodoroSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPomodoroSection.swift; sourceTree = "<group>"; };
+		88A8D7042B3D78F300983E0E /* SettingsLongBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLongBreakMinutesView.swift; sourceTree = "<group>"; };
+		88A8D7052B3D78F300983E0E /* SettingsShortBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsShortBreakMinutesView.swift; sourceTree = "<group>"; };
+		88A8D7072B3D78F300983E0E /* SettingsTimeFormatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTimeFormatView.swift; sourceTree = "<group>"; };
+		88A8D7082B3D78F300983E0E /* SettingsClockSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClockSection.swift; sourceTree = "<group>"; };
+		88A8D70A2B3D78F300983E0E /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		88A8D70C2B3D78F300983E0E /* NeumorphicLandspaceColon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicLandspaceColon.swift; sourceTree = "<group>"; };
+		88A8D70D2B3D78F300983E0E /* NeumorphicPortraitColon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicPortraitColon.swift; sourceTree = "<group>"; };
+		88A8D70F2B3D78F300983E0E /* NeumorphicDigit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicDigit.swift; sourceTree = "<group>"; };
+		88A8D7102B3D78F300983E0E /* NeumorphicStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicStyle.swift; sourceTree = "<group>"; };
+		88A8D7112B3D78F300983E0E /* NeumorphicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicButton.swift; sourceTree = "<group>"; };
+		88A8D7142B3D78F300983E0E /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		88A8D7152B3D78F300983E0E /* TimerPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPortraitView.swift; sourceTree = "<group>"; };
+		88A8D7162B3D78F300983E0E /* TimerLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLandspaceView.swift; sourceTree = "<group>"; };
+		88A8D7182B3D78F300983E0E /* PomodoroPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroPortraitView.swift; sourceTree = "<group>"; };
+		88A8D7192B3D78F300983E0E /* PomodoroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
+		88A8D71A2B3D78F300983E0E /* PomodoroLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroLandspaceView.swift; sourceTree = "<group>"; };
+		88A8D71C2B3D78F300983E0E /* ClockPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockPortraitView.swift; sourceTree = "<group>"; };
+		88A8D71D2B3D78F300983E0E /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		88A8D71E2B3D78F300983E0E /* ClockLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockLandspaceView.swift; sourceTree = "<group>"; };
+		88A8D7202B3D78F300983E0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		88A8D75D2B3DAE3200983E0E /* ProManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProManager.swift; sourceTree = "<group>"; };
+		88A8D7672B3E696B00983E0E /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		88CE4D6E2B3F0B050035BAE9 /* HoldOnNeumorphicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldOnNeumorphicButton.swift; sourceTree = "<group>"; };
+		88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
+		88CE4D752B3FF6A60035BAE9 /* SettingsColorStyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsColorStyleView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8874645A2B37184E004416B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A8D7622B3DB1EC00983E0E /* KeychainSwift in Frameworks */,
+				88ABA21E2B3AB4BF0035DDDB /* PopupView in Frameworks */,
+				88A8D7542B3D7B9E00983E0E /* ClockShare in Frameworks */,
+				88CE4D7B2B401DAE0035BAE9 /* SwiftUIIntrospect in Frameworks */,
+				8874649C2B37191D004416B8 /* RevenueCat in Frameworks */,
+				887464932B3718D4004416B8 /* SwiftUIPager in Frameworks */,
+				887464962B3718E2004416B8 /* Pow in Frameworks */,
+				8874649E2B37191D004416B8 /* RevenueCatUI in Frameworks */,
+				887464992B37190A004416B8 /* Neumorphic in Frameworks */,
+				887464A12B371935004416B8 /* RswiftLibrary in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		887464542B37184E004416B8 = {
+			isa = PBXGroup;
+			children = (
+				88A8D6D92B3D78F300983E0E /* DesktopClock */,
+				8874645E2B37184E004416B8 /* Products */,
+				887464A32B37195D004416B8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8874645E2B37184E004416B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8874645D2B37184E004416B8 /* DesktopClock.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		887464A32B37195D004416B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88A8D6D92B3D78F300983E0E /* DesktopClock */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6DA2B3D78F300983E0E /* Resources */,
+				88A8D6E72B3D78F300983E0E /* Source */,
+				88A8D71F2B3D78F300983E0E /* Preview Content */,
+			);
+			path = DesktopClock;
+			sourceTree = "<group>";
+		};
+		88A8D6DA2B3D78F300983E0E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6DB2B3D78F300983E0E /* LaunchScreen */,
+				88A8D6DF2B3D78F300983E0E /* Localizable.strings */,
+				88A8D6E12B3D78F300983E0E /* InfoPlist.strings */,
+				88A8D6E52B3D78F300983E0E /* DesktopClock.entitlements */,
+				88A8D6E62B3D78F300983E0E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88A8D6DB2B3D78F300983E0E /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6DC2B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard */,
+				88A8D6DD2B3D78F300983E0E /* LaunchScreen.storyboard */,
+				88A8D6DE2B3D78F300983E0E /* LaunchScreen_zh-Hant.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		88A8D6E72B3D78F300983E0E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6E82B3D78F300983E0E /* Core */,
+				88A8D6F32B3D78F300983E0E /* Modules */,
+				88A8D6F22B3D78F300983E0E /* MainView.swift */,
+				88A8D6F12B3D78F300983E0E /* DesktopClockApp.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		88A8D6E82B3D78F300983E0E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D75D2B3DAE3200983E0E /* ProManager.swift */,
+				88A8D6E92B3D78F300983E0E /* Settings */,
+				88A8D6EE2B3D78F300983E0E /* Views */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		88A8D6E92B3D78F300983E0E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6EA2B3D78F300983E0E /* DarkMode.swift */,
+				88A8D6ED2B3D78F300983E0E /* IconStyle.swift */,
+				88A8D6EC2B3D78F300983E0E /* LandspaceMode.swift */,
+				88A8D6EB2B3D78F300983E0E /* UIManager.swift */,
+				88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		88A8D6EE2B3D78F300983E0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6EF2B3D78F300983E0E /* SafariView.swift */,
+				88A8D6F02B3D78F300983E0E /* PageControl.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		88A8D6F32B3D78F300983E0E /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D7652B3E694600983E0E /* Paywall */,
+				88A8D6FF2B3D78F300983E0E /* About */,
+				88A8D6F42B3D78F300983E0E /* Settings */,
+				88A8D7092B3D78F300983E0E /* Splash */,
+				88A8D70B2B3D78F300983E0E /* Neumorphic */,
+				88A8D7132B3D78F300983E0E /* Timer */,
+				88A8D7172B3D78F300983E0E /* Pomodoro */,
+				88A8D71B2B3D78F300983E0E /* Clock */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		88A8D6F42B3D78F300983E0E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6F82B3D78F300983E0E /* Appearance */,
+				88A8D7062B3D78F300983E0E /* Clock */,
+				88A8D7012B3D78F300983E0E /* Pomodoro */,
+				88A8D6F72B3D78F300983E0E /* SettingsCell.swift */,
+				88A8D6FE2B3D78F300983E0E /* SettingsItem.swift */,
+				88A8D6F62B3D78F300983E0E /* SettingsProCell.swift */,
+				88A8D6FD2B3D78F300983E0E /* SettingsSection.swift */,
+				88A8D6F52B3D78F300983E0E /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		88A8D6F82B3D78F300983E0E /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D6F92B3D78F300983E0E /* SettingsAppearanceSection.swift */,
+				88A8D6FA2B3D78F300983E0E /* SettingsLandspaceModeView.swift */,
+				88A8D6FB2B3D78F300983E0E /* SettingsDarkModeView.swift */,
+				88A8D6FC2B3D78F300983E0E /* SettingsUIContentsModeView.swift */,
+				88CE4D752B3FF6A60035BAE9 /* SettingsColorStyleView.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		88A8D6FF2B3D78F300983E0E /* About */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D7002B3D78F300983E0E /* AboutView.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		88A8D7012B3D78F300983E0E /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D7022B3D78F300983E0E /* SettingsFocusMinutesView.swift */,
+				88A8D7032B3D78F300983E0E /* SettingsPomodoroSection.swift */,
+				88A8D7042B3D78F300983E0E /* SettingsLongBreakMinutesView.swift */,
+				88A8D7052B3D78F300983E0E /* SettingsShortBreakMinutesView.swift */,
+			);
+			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		88A8D7062B3D78F300983E0E /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D7072B3D78F300983E0E /* SettingsTimeFormatView.swift */,
+				88A8D7082B3D78F300983E0E /* SettingsClockSection.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		88A8D7092B3D78F300983E0E /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D70A2B3D78F300983E0E /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		88A8D70B2B3D78F300983E0E /* Neumorphic */ = {
+			isa = PBXGroup;
+			children = (
+				88CE4D6E2B3F0B050035BAE9 /* HoldOnNeumorphicButton.swift */,
+				88A8D7112B3D78F300983E0E /* NeumorphicButton.swift */,
+				88A8D70F2B3D78F300983E0E /* NeumorphicDigit.swift */,
+				88A8D70C2B3D78F300983E0E /* NeumorphicLandspaceColon.swift */,
+				88A8D70D2B3D78F300983E0E /* NeumorphicPortraitColon.swift */,
+				88A8D7102B3D78F300983E0E /* NeumorphicStyle.swift */,
+			);
+			path = Neumorphic;
+			sourceTree = "<group>";
+		};
+		88A8D7132B3D78F300983E0E /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D7162B3D78F300983E0E /* TimerLandspaceView.swift */,
+				88A8D7152B3D78F300983E0E /* TimerPortraitView.swift */,
+				88A8D7142B3D78F300983E0E /* TimerView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		88A8D7172B3D78F300983E0E /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D71A2B3D78F300983E0E /* PomodoroLandspaceView.swift */,
+				88A8D7182B3D78F300983E0E /* PomodoroPortraitView.swift */,
+				88A8D7192B3D78F300983E0E /* PomodoroView.swift */,
+			);
+			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		88A8D71B2B3D78F300983E0E /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D71E2B3D78F300983E0E /* ClockLandspaceView.swift */,
+				88A8D71C2B3D78F300983E0E /* ClockPortraitView.swift */,
+				88A8D71D2B3D78F300983E0E /* ClockView.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		88A8D71F2B3D78F300983E0E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D7202B3D78F300983E0E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		88A8D7652B3E694600983E0E /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				88A8D7672B3E696B00983E0E /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8874645C2B37184E004416B8 /* DesktopClock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8874646B2B37184E004416B8 /* Build configuration list for PBXNativeTarget "DesktopClock" */;
+			buildPhases = (
+				887464592B37184E004416B8 /* Sources */,
+				8874645A2B37184E004416B8 /* Frameworks */,
+				8874645B2B37184E004416B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				887464A72B37196A004416B8 /* PBXTargetDependency */,
+			);
+			name = DesktopClock;
+			packageProductDependencies = (
+				887464922B3718D4004416B8 /* SwiftUIPager */,
+				887464952B3718E2004416B8 /* Pow */,
+				887464982B37190A004416B8 /* Neumorphic */,
+				8874649B2B37191D004416B8 /* RevenueCat */,
+				8874649D2B37191D004416B8 /* RevenueCatUI */,
+				887464A02B371935004416B8 /* RswiftLibrary */,
+				88ABA21D2B3AB4BF0035DDDB /* PopupView */,
+				88A8D7532B3D7B9E00983E0E /* ClockShare */,
+				88A8D7612B3DB1EC00983E0E /* KeychainSwift */,
+				88CE4D7A2B401DAE0035BAE9 /* SwiftUIIntrospect */,
+			);
+			productName = PureClock;
+			productReference = 8874645D2B37184E004416B8 /* DesktopClock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		887464552B37184E004416B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					8874645C2B37184E004416B8 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+				};
+			};
+			buildConfigurationList = 887464582B37184E004416B8 /* Build configuration list for PBXProject "DesktopClock" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 887464542B37184E004416B8;
+			packageReferences = (
+				887464912B3718D4004416B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				887464942B3718E2004416B8 /* XCRemoteSwiftPackageReference "Pow" */,
+				887464972B37190A004416B8 /* XCRemoteSwiftPackageReference "neumorphic" */,
+				8874649A2B37191D004416B8 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */,
+				88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */,
+				88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				88CE4D792B401DAE0035BAE9 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
+			);
+			productRefGroup = 8874645E2B37184E004416B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8874645C2B37184E004416B8 /* DesktopClock */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8874645B2B37184E004416B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A8D7222B3D78F300983E0E /* LaunchScreen.storyboard in Resources */,
+				88A8D7252B3D78F400983E0E /* InfoPlist.strings in Resources */,
+				88A8D7242B3D78F400983E0E /* Localizable.strings in Resources */,
+				88A8D7212B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard in Resources */,
+				88A8D7262B3D78F400983E0E /* Assets.xcassets in Resources */,
+				88A8D7502B3D78F400983E0E /* Preview Assets.xcassets in Resources */,
+				88A8D7232B3D78F300983E0E /* LaunchScreen_zh-Hant.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		887464592B37184E004416B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A8D7332B3D78F400983E0E /* SettingsLandspaceModeView.swift in Sources */,
+				88CE4D742B3FC3AB0035BAE9 /* ColorStyle.swift in Sources */,
+				88A8D7442B3D78F400983E0E /* NeumorphicStyle.swift in Sources */,
+				88A8D73C2B3D78F400983E0E /* SettingsShortBreakMinutesView.swift in Sources */,
+				88A8D7272B3D78F400983E0E /* DarkMode.swift in Sources */,
+				88A8D7482B3D78F400983E0E /* TimerPortraitView.swift in Sources */,
+				88A8D74B2B3D78F400983E0E /* PomodoroView.swift in Sources */,
+				88A8D7402B3D78F400983E0E /* NeumorphicLandspaceColon.swift in Sources */,
+				88A8D73E2B3D78F400983E0E /* SettingsClockSection.swift in Sources */,
+				88A8D7492B3D78F400983E0E /* TimerLandspaceView.swift in Sources */,
+				88CE4D6F2B3F0B050035BAE9 /* HoldOnNeumorphicButton.swift in Sources */,
+				88A8D73B2B3D78F400983E0E /* SettingsLongBreakMinutesView.swift in Sources */,
+				88A8D7352B3D78F400983E0E /* SettingsUIContentsModeView.swift in Sources */,
+				88A8D72F2B3D78F400983E0E /* SettingsView.swift in Sources */,
+				88A8D73F2B3D78F400983E0E /* SplashView.swift in Sources */,
+				88A8D7472B3D78F400983E0E /* TimerView.swift in Sources */,
+				88A8D73D2B3D78F400983E0E /* SettingsTimeFormatView.swift in Sources */,
+				88A8D75E2B3DAE3200983E0E /* ProManager.swift in Sources */,
+				88A8D74A2B3D78F400983E0E /* PomodoroPortraitView.swift in Sources */,
+				88A8D7382B3D78F400983E0E /* AboutView.swift in Sources */,
+				88A8D74F2B3D78F400983E0E /* ClockLandspaceView.swift in Sources */,
+				88A8D7312B3D78F400983E0E /* SettingsCell.swift in Sources */,
+				88A8D74C2B3D78F400983E0E /* PomodoroLandspaceView.swift in Sources */,
+				88A8D7302B3D78F400983E0E /* SettingsProCell.swift in Sources */,
+				88A8D72C2B3D78F400983E0E /* PageControl.swift in Sources */,
+				88A8D7292B3D78F400983E0E /* LandspaceMode.swift in Sources */,
+				88A8D7322B3D78F400983E0E /* SettingsAppearanceSection.swift in Sources */,
+				88A8D73A2B3D78F400983E0E /* SettingsPomodoroSection.swift in Sources */,
+				88A8D7392B3D78F400983E0E /* SettingsFocusMinutesView.swift in Sources */,
+				88A8D72E2B3D78F400983E0E /* MainView.swift in Sources */,
+				88CE4D762B3FF6A60035BAE9 /* SettingsColorStyleView.swift in Sources */,
+				88A8D7432B3D78F400983E0E /* NeumorphicDigit.swift in Sources */,
+				88A8D74E2B3D78F400983E0E /* ClockView.swift in Sources */,
+				88A8D74D2B3D78F400983E0E /* ClockPortraitView.swift in Sources */,
+				88A8D72B2B3D78F400983E0E /* SafariView.swift in Sources */,
+				88A8D7412B3D78F400983E0E /* NeumorphicPortraitColon.swift in Sources */,
+				88A8D72D2B3D78F400983E0E /* DesktopClockApp.swift in Sources */,
+				88A8D7342B3D78F400983E0E /* SettingsDarkModeView.swift in Sources */,
+				88A8D7362B3D78F400983E0E /* SettingsSection.swift in Sources */,
+				88A8D7372B3D78F400983E0E /* SettingsItem.swift in Sources */,
+				88A8D7282B3D78F400983E0E /* UIManager.swift in Sources */,
+				88A8D7682B3E696B00983E0E /* PaywallView.swift in Sources */,
+				88A8D72A2B3D78F400983E0E /* IconStyle.swift in Sources */,
+				88A8D7452B3D78F400983E0E /* NeumorphicButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		887464A72B37196A004416B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 887464A62B37196A004416B8 /* RswiftGenerateInternalResources */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88A8D6DF2B3D78F300983E0E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88A8D6E02B3D78F300983E0E /* zh-Hans */,
+				88A8D6E32B3D78F300983E0E /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		88A8D6E12B3D78F300983E0E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88A8D6E22B3D78F300983E0E /* zh-Hans */,
+				88A8D6E42B3D78F300983E0E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		887464692B37184E004416B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8874646A2B37184E004416B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8874646C2B37184E004416B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DesktopClock/Resources/DesktopClock.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DesktopClock/Preview Content\"";
+				DEVELOPMENT_TEAM = GM4766U38W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8874646D2B37184E004416B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DesktopClock/Resources/DesktopClock.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DesktopClock/Preview Content\"";
+				DEVELOPMENT_TEAM = GM4766U38W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		887464582B37184E004416B8 /* Build configuration list for PBXProject "DesktopClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				887464692B37184E004416B8 /* Debug */,
+				8874646A2B37184E004416B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8874646B2B37184E004416B8 /* Build configuration list for PBXNativeTarget "DesktopClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8874646C2B37184E004416B8 /* Debug */,
+				8874646D2B37184E004416B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		887464912B3718D4004416B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
+		887464942B3718E2004416B8 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		887464972B37190A004416B8 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/costachung/neumorphic/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		8874649A2B37191D004416B8 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.31.6;
+			};
+		};
+		8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.4.0;
+			};
+		};
+		88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
+		88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
+		88CE4D792B401DAE0035BAE9 /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/swiftui-introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		887464922B3718D4004416B8 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 887464912B3718D4004416B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
+		887464952B3718E2004416B8 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 887464942B3718E2004416B8 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+		887464982B37190A004416B8 /* Neumorphic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 887464972B37190A004416B8 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
+		};
+		8874649B2B37191D004416B8 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8874649A2B37191D004416B8 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+		8874649D2B37191D004416B8 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8874649A2B37191D004416B8 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCatUI;
+		};
+		887464A02B371935004416B8 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		887464A62B37196A004416B8 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		88A8D7532B3D7B9E00983E0E /* ClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClockShare;
+		};
+		88A8D7612B3DB1EC00983E0E /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		88ABA21D2B3AB4BF0035DDDB /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+		88CE4D7A2B401DAE0035BAE9 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88CE4D792B401DAE0035BAE9 /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
+			productName = SwiftUIIntrospect;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 887464552B37184E004416B8 /* Project object */;
+}
