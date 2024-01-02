@@ -1,5 +1,5 @@
 //
-//  SettingsColorStyleView.swift
+//  SettingsColorsView.swift
 //  DesktopClock
 //
 //  Created by 张敏超 on 2023/12/30.
@@ -7,24 +7,28 @@
 
 import SwiftUI
 
-struct SettingsColorStyleView: View {
+struct SettingsColorsView: View {
     @Binding var isPresented: Bool
+    @Binding var isPaywallPresented: Bool
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        SettingsSection(
-            title: ColorType.title,
-            items: ColorType.allCases.map { mode in
-                SettingsItem(type: .check(mode.value, ui.colorType == mode)) {
-                    ui.colorType = mode
-                    isPresented = false
+        SettingsSection(            title: ColorType.title) {
+            ForEach(ColorType.allCases, id: \.self) { mode in
+                SettingsCheckCell(title: mode.value, isPro: mode.isPro, isChecked: ui.colorType == mode) {
+                    if mode.isPro, !ProManager.default.pro {
+                        isPaywallPresented = true
+                    } else {
+                        ui.colorType = mode
+                        isPresented = false
+                    }
                 }
             }
-        )
+        }
     }
 }
 
 #Preview {
-    SettingsColorStyleView(isPresented: Binding<Bool>.constant(false))
+    SettingsColorsView(isPresented: Binding<Bool>.constant(false), isPaywallPresented: Binding<Bool>.constant(false))
         .environmentObject(UIManager.shared)
 }

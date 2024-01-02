@@ -15,11 +15,22 @@ struct SettingsProCell: View {
 
     var body: some View {
         Button(action: action) {
-            Text("Pro")
-                .frame(.greedy)
-                .height(SettingsCell.height * 2)
+            HStack {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(R.string.localizable.proMembership())
+                        .font(.title2)
+                        .foregroundColor(Color.white)
+                    Text(R.string.localizable.unlockPro())
+                        .font(.subheadline)
+                        .foregroundColor(Color.white)
+                }
+                Spacer()
+                Text(R.string.localizable.tryFree())
+                    .font(.headline)
+                    .foregroundColor(Color.white)
+            }
         }
-        .softButtonStyle(RoundedRectangle(cornerRadius: 16), mainColor: ui.color.background, textColor: ui.color.secondaryLabel, darkShadowColor: ui.color.darkShadow, lightShadowColor: ui.color.lightShadow)
+        .softButtonStyle(RoundedRectangle(cornerRadius: 16), mainColor: UIManager.shared.colors.secondary, pressedEffect: .flat)
         .padding(.horizontal)
         .padding(.horizontal, .small)
         .padding(.vertical)
@@ -28,5 +39,4 @@ struct SettingsProCell: View {
 
 #Preview {
     SettingsProCell(action: {})
-        .environmentObject(UIManager.shared)
 }

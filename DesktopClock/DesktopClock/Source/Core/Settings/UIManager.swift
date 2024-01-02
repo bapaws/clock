@@ -28,10 +28,17 @@ public protocol IconStyle {
 public class UIManager: ObservableObject {
     public static let shared = UIManager()
 
+    @AppStorage(Storage.Key.appIcon, store: Storage.default.store)
+    public var appIcon: AppIconType = .lightClassic {
+        didSet { changeAppIcon(to: appIcon) }
+    }
+
     @AppStorage(Storage.Key.darkMode, store: Storage.default.store)
     public var darkMode: DarkMode = .system {
         didSet {
             setupDarkMode()
+            // 暗黑模式切换需要更换颜色
+            setupColors()
         }
     }
 
@@ -49,14 +56,10 @@ public class UIManager: ObservableObject {
         didSet { icon = iconType.style }
     }
 
-    @Published public private(set) var color: ColorStyle = NeumorphicLightColors()
-
+    @Published public private(set) var colors: Colors = ColorType.classic.colors
     @AppStorage(Storage.Key.colorType, store: Storage.default.store)
-    public var colorType: ColorType = .light {
-        didSet {
-            color = colorType.style
-            setupNavigationBar()
-        }
+    public var colorType: ColorType = .classic {
+        didSet { setupColors() }
     }
 
     private init() {}
@@ -67,17 +70,17 @@ public class UIManager: ObservableObject {
 extension UIManager {
     func setupUI() {
         icon = iconType.style
-        color = colorType.style
-
         setupNavigationBar()
 
         setupDarkMode()
         setupLandspaceMode()
+
+        setupColors()
     }
 
     func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
-        let backgroundColor = color.background.toUIColor()
-        let foregroundColor = color.secondaryLabel.toUIColor()
+        let backgroundColor = Color.Neumorphic.main.toUIColor()
+        let foregroundColor = Color.Neumorphic.secondary.toUIColor()
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
@@ -110,7 +113,7 @@ extension UIManager {
             window.overrideUserInterfaceStyle = darkMode.style
         }
         // 刷新小組件的樣式
-//            WidgetCenter.shared.reloadAllTimelines()
+        // WidgetCenter.shared.reloadAllTimelines()
     }
 
     func setupLandspaceMode() {
@@ -132,4 +135,31 @@ extension UIManager {
             UIViewController.attemptRotationToDeviceOrientation()
         }
     }
+
+    func setupColors(scheme: ColorScheme? = nil) {
+        colors = colorType.colors
+        colors.scheme = darkMode.current.raw ?? scheme ?? .light
+    }
+}
+
+// MARK: App Icon
+
+extension UIManager {
+    func changeAppIcon(to icon: AppIconType) {
+        UIApplication.shared.setAlternateIconName(icon.imageName) { error in
+            if let error = error {
+                print("Error setting alternate icon \(error.localizedDescription)")
+            }
+        }
+    }
+}
+
+// MARK: - Color
+
+public extension UIManager {
+    var primary: Color { colors.primary }
+    var secondary: Color { colors.secondary }
+    var background: Color { colors.background }
+    var darkShadow: Color { colors.darkShadow }
+    var lightShadow: Color { colors.lightShadow }
 }

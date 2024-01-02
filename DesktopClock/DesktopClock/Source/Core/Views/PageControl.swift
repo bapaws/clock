@@ -27,7 +27,7 @@ struct PageControl: View {
                     Color.clear
                         .frame(width: itemWidth, height: itemHeight)
                 })
-                .softButtonStyle(Capsule(), padding: 0, mainColor: ui.color.background, textColor: ui.color.secondaryLabel, darkShadowColor: ui.color.darkShadow, lightShadowColor: ui.color.lightShadow)
+                .softButtonStyle(Capsule(), padding: 0, mainColor: ui.colors.background, textColor: ui.colors.primary, darkShadowColor: ui.colors.darkShadow, lightShadowColor: ui.colors.lightShadow)
                 .offset(x: itemWidth * CGFloat(index) + offsetX * itemWidth)
 
                 HStack(spacing: 0) {
@@ -70,13 +70,13 @@ struct PageControl: View {
 #Preview {
     VStack {
         PageControl(index: Binding<Int>.constant(0), offsetX: Binding<CGFloat>.constant(0))
-            .background(UIManager.shared.color.background)
+            .background(UIManager.shared.colors.background)
             .frame(width: 240, height: 54)
         PageControl(index: Binding<Int>.constant(1), offsetX: Binding<CGFloat>.constant(0))
-            .background(UIManager.shared.color.background)
+            .background(UIManager.shared.colors.background)
             .frame(width: 240, height: 54)
         PageControl(index: Binding<Int>.constant(1), offsetX: Binding<CGFloat>.constant(0))
-            .background(UIManager.shared.color.background)
+            .background(UIManager.shared.colors.background)
             .frame(width: 240, height: 54)
     }
     .environmentObject(UIManager.shared)

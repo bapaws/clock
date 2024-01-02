@@ -5,8 +5,8 @@
 //  Created by 张敏超 on 2023/12/27.
 //
 
-import SwiftUI
 import ClockShare
+import SwiftUI
 
 struct SettingsShortBreakMinutesView: View {
     @Binding var isPresented: Bool
@@ -16,15 +16,15 @@ struct SettingsShortBreakMinutesView: View {
     }
 
     var body: some View {
-        SettingsSection(
-            title: R.string.localizable.shortBreakDuration(),
-            items: pomodoro.shortBreakMinuteOptions.map { option in
-                SettingsItem(type: .check("\(option) mins", pomodoro.shortBreakMinutes == option)) {
+        let options = pomodoro.shortBreakMinuteOptions
+        SettingsSection(title: R.string.localizable.shortBreakDuration(), itemCount: options.count, scrollToID: pomodoro.shortBreakMinutes) {
+            ForEach(options, id: \.self) { option in
+                SettingsCheckCell(title: "\(option) mins", isChecked: pomodoro.shortBreakMinutes == option) {
                     pomodoro.shortBreakMinutes = option
                     isPresented = false
                 }
             }
-        )
+        }
     }
 }
 

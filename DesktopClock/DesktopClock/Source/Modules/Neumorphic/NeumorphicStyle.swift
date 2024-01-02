@@ -12,23 +12,32 @@ import SwiftUI
 // MARK: Setting Navigate Cell
 
 private struct SettingsNavigateCellButtonStyle: ButtonStyle {
+    var mainColor: Color
+    var textColor: Color
+    var darkShadowColor: Color
+    var lightShadowColor: Color
     var padding: EdgeInsets
-    var color: ColorStyle
 
-    public init(padding: EdgeInsets = EdgeInsets(), color: ColorStyle) {
+    public init(mainColor: Color, textColor: Color, darkShadowColor: Color, lightShadowColor: Color, padding: EdgeInsets = EdgeInsets()) {
+        self.mainColor = mainColor
+        self.textColor = textColor
+        self.darkShadowColor = darkShadowColor
+        self.lightShadowColor = lightShadowColor
         self.padding = padding
-        self.color = color
     }
 
     public func makeBody(configuration: Self.Configuration) -> some View {
-        SoftDynamicButton(configuration: configuration, padding: padding, color: color)
+        SoftDynamicButton(configuration: configuration, mainColor: mainColor, textColor: textColor, darkShadowColor: darkShadowColor, lightShadowColor: lightShadowColor, padding: padding)
     }
 
     struct SoftDynamicButton: View {
         let configuration: ButtonStyle.Configuration
 
+        var mainColor: Color
+        var textColor: Color
+        var darkShadowColor: Color
+        var lightShadowColor: Color
         var padding: EdgeInsets
-        var color: ColorStyle
 
         @Environment(\.isEnabled) private var isEnabled: Bool
 
@@ -38,9 +47,9 @@ private struct SettingsNavigateCellButtonStyle: ButtonStyle {
 
                 if configuration.isPressed {
                     Circle()
-                        .fill(color.background)
+                        .fill(mainColor)
                         .scaleEffect(configuration.isPressed ? 0.97 : 1)
-                        .softInnerShadow(Circle(), darkShadow: color.darkShadow, lightShadow: color.lightShadow)
+                        .softInnerShadow(Circle())
                         .overlay {
                             Image(systemName: "chevron.forward")
                                 .font(.footnote)
@@ -48,9 +57,9 @@ private struct SettingsNavigateCellButtonStyle: ButtonStyle {
                         .frame(width: 36, height: 36)
                 } else {
                     Circle()
-                        .fill(color.background)
+                        .fill(mainColor)
                         .scaleEffect(configuration.isPressed ? 0.97 : 1)
-                        .softOuterShadow(darkShadow: color.darkShadow, lightShadow: color.lightShadow)
+                        .softOuterShadow()
                         .overlay {
                             Image(systemName: "chevron.forward")
                                 .font(.footnote)
@@ -59,24 +68,29 @@ private struct SettingsNavigateCellButtonStyle: ButtonStyle {
                 }
             }
             .contentShape(Rectangle())
-            .foregroundColor(isEnabled ? color.secondaryLabel : color.darkShadow)
+            .foregroundColor(isEnabled ? textColor : darkShadowColor)
             .padding(padding)
         }
     }
 }
 
 public extension Button {
-    func softNavigateCellButtonStyle(padding: EdgeInsets = EdgeInsets(), color: ColorStyle) -> some View {
-        buttonStyle(SettingsNavigateCellButtonStyle(padding: padding, color: color))
+    func softNavigateCellButtonStyle(padding: EdgeInsets = EdgeInsets(), mainColor: Color = Color.Neumorphic.main, textColor: Color = Color.Neumorphic.secondary, darkShadowColor: Color = Color.Neumorphic.darkShadow, lightShadowColor: Color = Color.Neumorphic.lightShadow) -> some View {
+        buttonStyle(SettingsNavigateCellButtonStyle(mainColor: mainColor, textColor: textColor, darkShadowColor: darkShadowColor, lightShadowColor: lightShadowColor, padding: padding))
     }
 }
 
 // MARK: Toggle
 
 private struct SoftSettingsSwitchToggleStyle: ToggleStyle {
-    var hideLabel: Bool
+    var tintColor: Color
+    var offTintColor: Color
 
-    var color: ColorStyle
+    var mainColor: Color
+    var darkShadowColor: Color
+    var lightShadowColor: Color
+
+    var hideLabel: Bool
 
     public func makeBody(configuration: Self.Configuration) -> some View {
         return HStack {
@@ -87,18 +101,18 @@ private struct SoftSettingsSwitchToggleStyle: ToggleStyle {
             }
             ZStack {
                 Capsule()
-                    .fill(color.background)
-                    .softOuterShadow(darkShadow: color.darkShadow, lightShadow: color.lightShadow)
+                    .fill(mainColor)
+                    .softOuterShadow()
                     .frame(width: 55, height: 35)
 
                 Capsule()
-                    .fill(configuration.isOn ? color.primary : color.background)
-                    .softInnerShadow(Capsule(), darkShadow: configuration.isOn ? color.primary : color.darkShadow, lightShadow: configuration.isOn ? color.primary : color.lightShadow, spread: 0.35, radius: 3)
+                    .fill(configuration.isOn ? tintColor : offTintColor)
+                    .softInnerShadow(Capsule(), darkShadow: configuration.isOn ? tintColor : darkShadowColor, lightShadow: configuration.isOn ? tintColor : lightShadowColor, spread: 0.35, radius: 3)
                     .frame(width: 50, height: 30)
 
                 Circle()
-                    .fill(color.background)
-                    .softOuterShadow(darkShadow: color.darkShadow, lightShadow: color.lightShadow, offset: configuration.isOn ? 0 : 2, radius: 1)
+                    .fill(mainColor)
+                    .softOuterShadow(darkShadow: darkShadowColor, lightShadow: lightShadowColor, offset: configuration.isOn ? 0 : 2, radius: 1)
                     .frame(width: 22, height: 22)
                     .offset(x: configuration.isOn ? 11 : -11)
                     .animation(.easeInOut(duration: 0.2), value: configuration.isOn)
@@ -113,7 +127,7 @@ private struct SoftSettingsSwitchToggleStyle: ToggleStyle {
 }
 
 public extension Toggle {
-    func softSettingsSwitchToggleStyle(labelsHidden: Bool = false, color: ColorStyle) -> some View {
-        return toggleStyle(SoftSettingsSwitchToggleStyle(hideLabel: labelsHidden, color: color))
+    func softSettingsSwitchToggleStyle(tint: Color = .green, offTint: Color = Color.Neumorphic.main, mainColor: Color = Color.Neumorphic.main, darkShadowColor: Color = Color.Neumorphic.darkShadow, lightShadowColor: Color = Color.Neumorphic.lightShadow, labelsHidden: Bool = false) -> some View {
+        return toggleStyle(SoftSettingsSwitchToggleStyle(tintColor: tint, offTintColor: offTint, mainColor: mainColor, darkShadowColor: darkShadowColor, lightShadowColor: lightShadowColor, hideLabel: labelsHidden))
     }
 }

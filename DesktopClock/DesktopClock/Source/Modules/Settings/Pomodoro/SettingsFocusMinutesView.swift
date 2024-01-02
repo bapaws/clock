@@ -5,8 +5,8 @@
 //  Created by 张敏超 on 2023/12/27.
 //
 
-import SwiftUI
 import ClockShare
+import SwiftUI
 
 struct SettingsFocusMinutesView: View {
     @Binding var isPresented: Bool
@@ -16,15 +16,15 @@ struct SettingsFocusMinutesView: View {
     }
 
     var body: some View {
-        SettingsSection(
-            title: R.string.localizable.focusDuration(),
-            items: pomodoro.focusMinutesOptions.map { option in
-                SettingsItem(type: .check("\(option) mins", pomodoro.focusMinutes == option)) {
+        let options = pomodoro.focusMinutesOptions
+        SettingsSection(title: R.string.localizable.focusDuration(), itemCount: options.count, scrollToID: pomodoro.focusMinutes) {
+            ForEach(options, id: \.self) { option in
+                SettingsCheckCell(title: "\(option) mins", isChecked: pomodoro.focusMinutes == option) {
                     pomodoro.focusMinutes = option
                     isPresented = false
                 }
             }
-        )
+        }
     }
 }
 

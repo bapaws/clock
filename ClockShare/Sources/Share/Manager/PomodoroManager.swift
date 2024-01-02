@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2023/12/22.
 //
 
+import AVFoundation
 import Combine
 import Foundation
 import SwiftUI
@@ -74,17 +75,30 @@ public extension PomodoroManager {
     var focusMinutesOptions: [Int] {
         var options = [Int]()
         var option = 5
-        while option <= 150 {
+        while option <= 60 {
             options.append(option)
             option += 5
         }
+        option = 60
+        while option <= 100 {
+            options.append(option)
+            option += 10
+        }
+        options.append(120)
+        options.append(150)
+        options.append(180)
         return options
     }
 
     var shortBreakMinuteOptions: [Int] {
         var options = [Int]()
-        for index in 1 ... 20 {
+        for index in 1 ... 5 {
             options.append(index)
+        }
+        var option = 10
+        while option <= 60 {
+            options.append(option)
+            option += 5
         }
         return options
     }

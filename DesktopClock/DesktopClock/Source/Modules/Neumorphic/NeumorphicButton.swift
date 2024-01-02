@@ -28,7 +28,7 @@ struct NeumorphicButton<Content: View>: View {
         Button(action: action, label: {
             label().frame(width: 24, height: 24)
         })
-        .softButtonStyle(Circle(), mainColor: ui.color.background, textColor: ui.color.secondaryLabel, darkShadowColor: ui.color.darkShadow, lightShadowColor: ui.color.lightShadow)
+        .softButtonStyle(Circle(), mainColor: ui.colors.background, textColor: ui.colors.primary, darkShadowColor: ui.colors.darkShadow, lightShadowColor: ui.colors.lightShadow)
         .frame(neumorphicButtonSize)
     }
 }

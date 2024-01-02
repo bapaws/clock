@@ -9,32 +9,31 @@ import Neumorphic
 import SwiftUI
 
 struct NeumorphicPortraitColon: View {
-    var outer: Bool = true
-
-    @EnvironmentObject var ui: UIManager
+    let outer: Bool
+    let color: Colors
 
     var body: some View {
         HStack(spacing: 24) {
             if outer {
                 Circle()
-                    .fill(ui.color.background)
-                    .softOuterShadow(darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softOuterShadow(darkShadow: color.darkShadow, lightShadow: color.lightShadow)
                 Circle()
-                    .fill(ui.color.background)
-                    .softOuterShadow(darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softOuterShadow(darkShadow: color.darkShadow, lightShadow: color.lightShadow)
             } else {
                 Circle()
-                    .fill(ui.color.background)
-                    .softInnerShadow(Circle(), darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softInnerShadow(Circle(), darkShadow: color.darkShadow, lightShadow: color.lightShadow)
                 Circle()
-                    .fill(ui.color.background)
-                    .softInnerShadow(Circle(), darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softInnerShadow(Circle(), darkShadow: color.darkShadow, lightShadow: color.lightShadow)
             }
         }
     }
 }
 
 #Preview {
-    NeumorphicPortraitColon()
+    NeumorphicPortraitColon(outer: true, color: ColorType.classic.colors)
         .environmentObject(UIManager.shared)
 }

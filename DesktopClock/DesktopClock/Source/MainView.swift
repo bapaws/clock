@@ -13,32 +13,40 @@ import SwiftUIPager
 import SwiftUIX
 
 struct MainView: View {
+    // MARK: Pager
+
     @State var offsetX: CGFloat = 0
     @State private var currentIndex = 1
     @StateObject var page: Page = .withIndex(1)
+
+    // MARK: UI
 
     @State private var isTabHidden = false
 
     @State private var isSettingsPresented = false
 
-    @EnvironmentObject var ui: UIManager
+    @Environment(\.colorScheme) var colorScheme
 
-    var icon: IconStyle {
-        UIManager.shared.icon
-    }
+    // MARK: Manager
+
+    @StateObject var clock = ClockManager.shared
+    @StateObject var pomodoro = PomodoroManager.shared
+    @StateObject var timer = TimerManager.shared
+
+    @EnvironmentObject var ui: UIManager
 
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .top) {
-                UIManager.shared.color.background.ignoresSafeArea()
+                color.background.ignoresSafeArea()
                 VStack(spacing: 0) {
-                    UIManager.shared.color.background.frame(height: proxy.safeAreaInsets.top + 8)
+                    color.background.frame(height: proxy.safeAreaInsets.top + 8)
                     if !isTabHidden {
                         HStack {
                             PageControl(index: $currentIndex, offsetX: $offsetX)
                                 .frame(width: min(icon.tabItemWidth * 3, ceil(proxy.size.width / 4 * 3)), height: icon.tabItemHeight)
-                                .foregroundColor(ui.color.secondaryLabel)
-                                .background(ui.color.background)
+                                .foregroundColor(ui.colors.primary)
+                                .background(ui.colors.background)
                                 .onChange(of: currentIndex) { newIndex in
                                     withAnimation {
                                         page.update(.new(index: newIndex))
@@ -53,7 +61,7 @@ struct MainView: View {
                 }
             }
             .contentShape(Rectangle())
-            .background(ui.color.background)
+            .background(ui.colors.background)
             .ignoresSafeArea()
             .onTapGesture {
                 withAnimation {
@@ -61,10 +69,27 @@ struct MainView: View {
                 }
             }
         }
+        .statusBar(hidden: isTabHidden)
+        .foregroundColor(ui.colors.primary)
+
+        // MARK: Present
+
         .sheet(isPresented: $isSettingsPresented) {
+//            #if DEBUG
+//            CaptureView()
+//            #else
             SettingsView(isPresented: $isSettingsPresented)
+//            #endif
+        }
+
+        // MARK: Listen
+
+        .onChange(of: colorScheme) { newValue in
+            ui.setupColors(scheme: newValue)
         }
     }
+
+    // MARK: - Pager
 
     @ViewBuilder func pager(with safeAreaInsets: EdgeInsets) -> some View {
         Pager(page: page, data: ClockType.allCases, id: \.self) { index in
@@ -77,33 +102,38 @@ struct MainView: View {
             }
         }
         .onDraggingChanged { value in
-            print(value)
             offsetX = value
         }
         .onDraggingEnded {
-            print("========\(offsetX)")
             withAnimation {
                 offsetX = 0
             }
         }
         .onPageWillChange { index in
-            print(index)
+            SoundManager.shared.stop()
             withAnimation {
                 currentIndex = index
             }
         }
     }
 
+    // MARK: - Content
+
     @ViewBuilder func pageContent(at index: ClockType) -> some View {
         switch index {
         case .pomodoro:
             PomodoroView()
+                .environmentObject(pomodoro)
         case .clock:
             ClockView()
+                .environmentObject(clock)
         case .timer:
             TimerView()
+                .environmentObject(timer)
         }
     }
+
+    // MARK: - Toolbar
 
     @ViewBuilder func toolbar(with safeAreaInsets: EdgeInsets) -> some View {
         HStack {
@@ -116,10 +146,25 @@ struct MainView: View {
             })
         }
         .font(icon.font)
-        .foregroundColor(UIManager.shared.color.secondaryLabel)
+        .foregroundColor(color.primary)
         .padding(.top, safeAreaInsets.top)
         .padding(.bottom, safeAreaInsets.bottom + 8)
         .padding(.trailing, safeAreaInsets.trailing)
+    }
+}
+
+// MARK: Getter
+
+extension MainView {
+    var icon: IconStyle { ui.icon }
+    var color: Colors { ui.colors }
+}
+
+// MARK: Sound
+
+extension MainView {
+    func stop() {
+        
     }
 }
 

@@ -17,32 +17,22 @@ struct SettingsPomodoroSection: View {
     @EnvironmentObject var pomodoro: PomodoroManager
 
     var body: some View {
-        SettingsSection(
-            title: R.string.localizable.pomodoro(),
-            items: [
-                SettingsItem(type: .popup(R.string.localizable.focusDuration(), "\(pomodoro.focusMinutes) mins"), isPro: true) {
-                    if ProManager.default.pro {
-                        isFocusPresented = true
-                    } else {
-                        isPaywallPresented = true
-                    }
-                },
-                SettingsItem(type: .popup(R.string.localizable.shortBreakDuration(), "\(pomodoro.shortBreakMinutes) mins"), isPro: true) {
-                    if ProManager.default.pro {
-                        isShortBreakPresented = true
-                    } else {
-                        isPaywallPresented = true
-                    }
-                },
-//                SettingsItem(type: .popup(R.string.localizable.longBreakDuration(), "\(pomodoro.longBreakMinutes) mins"), isPro: true) {
-//                    if ProManager.default.pro {
-//                        isLongBreakPresented = true
-//                    } else {
-//                        isPaywallPresented = true
-//                    }
-//                },
-            ]
-        )
+        SettingsSection(title: R.string.localizable.pomodoro()) {
+            SettingsNavigateCell(title: R.string.localizable.focusDuration(), value: "\(pomodoro.focusMinutes) mins", isPro: true) {
+                if ProManager.default.pro {
+                    isFocusPresented = true
+                } else {
+                    isPaywallPresented = true
+                }
+            }
+            SettingsNavigateCell(title: R.string.localizable.shortBreakDuration(), value: "\(pomodoro.shortBreakMinutes) mins", isPro: true) {
+                if ProManager.default.pro {
+                    isShortBreakPresented = true
+                } else {
+                    isPaywallPresented = true
+                }
+            }
+        }
     }
 }
 

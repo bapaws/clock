@@ -13,23 +13,19 @@ struct SettingsClockSection: View {
     @Binding var isTimeFormatPresented: Bool
 
     @EnvironmentObject var clock: ClockManager
-    
+
+    @State var isHidden: Bool = false
+
     var body: some View {
-        SettingsSection(
-            title: R.string.localizable.clock(),
-            items: [
-                SettingsItem(type: .popup(R.string.localizable.timeFormat(), "\(clock.timeFormat.rawValue)"), action: {
-                    isTimeFormatPresented = true
-                }),
-                SettingsItem(type: .toggle(R.string.localizable.showSecond(), clock.secondStyle != .none), action: {
-                    if clock.secondStyle == .none {
-                        clock.secondStyle = .small
-                    } else {
-                        clock.secondStyle = .none
-                    }
-                }),
-            ]
-        )
+        SettingsSection(title: R.string.localizable.clock()) {
+            SettingsNavigateCell(title: R.string.localizable.timeFormat(), value: "\(clock.timeFormat.rawValue)") {
+                isTimeFormatPresented = true
+            }
+            SettingsToggleCell(title: R.string.localizable.showSecond(), isOn: $isHidden)
+                .onChange(of: isHidden) { isHidden in
+                    clock.secondStyle = isHidden ? .none : .small
+                }
+        }
     }
 }
 

@@ -19,7 +19,7 @@ struct TimerView: View {
         GeometryReader { proxy in
             if proxy.size.width > proxy.size.height {
                 HStack(spacing: 16) {
-                    TimerLandspaceView(time: manager.time)
+                    TimerLandspaceView(time: manager.time, color: ui.colors)
                     VStack(spacing: 32) {
                         buttons
                     }
@@ -27,7 +27,7 @@ struct TimerView: View {
                 }
             } else {
                 VStack(spacing: 16) {
-                    TimerPortraitView(time: manager.time)
+                    TimerPortraitView(time: manager.time, color: ui.colors)
                     HStack(spacing: 32) {
                         buttons
                     }
@@ -35,6 +35,9 @@ struct TimerView: View {
             }
         }
         .padding()
+        .onChange(of: manager.time.seconds) { _ in
+            SoundManager.shared.play()
+        }
     }
 
     @ViewBuilder var buttons: some View {
@@ -76,5 +79,5 @@ struct TimerView: View {
 
 #Preview {
     TimerView()
-        .background(UIManager.shared.color.background)
+        .background(UIManager.shared.colors.background)
 }

@@ -10,25 +10,24 @@ import SwiftUI
 
 struct NeumorphicLandspaceColon: View {
     let outer: Bool
-
-    @EnvironmentObject var ui: UIManager
+    let color: Colors
 
     var body: some View {
         VStack(spacing: 24) {
             if outer {
                 Circle()
-                    .fill(ui.color.background)
-                    .softOuterShadow(darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softOuterShadow(darkShadow: color.darkShadow, lightShadow: color.lightShadow)
                 Circle()
-                    .fill(ui.color.background)
-                    .softOuterShadow(darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softOuterShadow(darkShadow: color.darkShadow, lightShadow: color.lightShadow)
             } else {
                 Circle()
-                    .fill(ui.color.background)
-                    .softInnerShadow(Circle(), darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softInnerShadow(Circle(), darkShadow: color.darkShadow, lightShadow: color.lightShadow)
                 Circle()
-                    .fill(ui.color.background)
-                    .softInnerShadow(Circle(), darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
+                    .fill(color.background)
+                    .softInnerShadow(Circle(), darkShadow: color.darkShadow, lightShadow: color.lightShadow)
             }
         }
     }
@@ -36,8 +35,7 @@ struct NeumorphicLandspaceColon: View {
 
 #Preview {
     HStack {
-        NeumorphicLandspaceColon(outer: true)
-        NeumorphicLandspaceColon(outer: false)
+        NeumorphicLandspaceColon(outer: true, color: ColorType.classic.colors)
+        NeumorphicLandspaceColon(outer: false, color: ColorType.classic.colors)
     }
-    .environmentObject(UIManager.shared)
 }

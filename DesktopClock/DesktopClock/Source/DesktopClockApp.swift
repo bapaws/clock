@@ -6,8 +6,8 @@
 //
 
 import ClockShare
-import SwiftUI
 import RevenueCat
+import SwiftUI
 
 @main
 struct DesktopClockApp: App {
@@ -23,19 +23,19 @@ struct DesktopClockApp: App {
     @ViewBuilder var group: some View {
         if didFinishLoad {
             MainView()
-                .foregroundColor(UIManager.shared.color.secondaryLabel)
                 .environmentObject(AppManager.shared)
                 .environmentObject(UIManager.shared)
+                .transition(AnyTransition.opacity)
         } else {
             SplashView(didFinishLoad: $didFinishLoad)
-                .transition(.move(edge: .bottom))
         }
     }
 }
 
 // MARK: - AppDelegate
+
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         DispatchQueue.main.async {
             UIManager.shared.setupUI()
         }

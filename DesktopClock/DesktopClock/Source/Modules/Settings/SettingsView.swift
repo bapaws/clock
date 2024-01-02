@@ -26,7 +26,8 @@ struct SettingsView: View {
     @State var isDarkModePresented: Bool = false
     @State var isLandspaceModePresented: Bool = false
     @State var isContentsModePresented: Bool = false
-    @State var isColorStylePresented: Bool = false
+    @State var isColorsPresented: Bool = false
+    @State var isAppIconPresented: Bool = false
 
     // MARK: Clock
 
@@ -64,11 +65,14 @@ struct SettingsView: View {
             SettingsLandspaceModeView(isPresented: $isLandspaceModePresented)
         }, customize: customize)
         .popup(isPresented: $isContentsModePresented, view: {
-            SettingsUIContentsModeView(isPresented: $isContentsModePresented)
+            SettingsUIContentsModeView(isPresented: $isContentsModePresented, isPaywallPresented: $isPaywallPresented)
         }, customize: customize)
-        .popup(isPresented: $isColorStylePresented, view: {
-            SettingsColorStyleView(isPresented: $isColorStylePresented)
+        .popup(isPresented: $isColorsPresented, view: {
+            SettingsColorsView(isPresented: $isColorsPresented, isPaywallPresented: $isPaywallPresented)
         }, customize: customize)
+        .sheet(isPresented: $isAppIconPresented) {
+            SettingsAppIconView(isPresented: $isAppIconPresented)
+        }
 
         // MARK: Clock
 
@@ -111,19 +115,16 @@ struct SettingsView: View {
                 SettingsProCell(action: {
                     isPaywallPresented = true
                 })
-                SettingsAppearanceSection(
-                    isPaywallPresented: $isPaywallPresented,
-                    isDarkModePresented: $isDarkModePresented,
-                    isLandspaceModePresented: $isLandspaceModePresented,
-                    isContentsModePresented: $isContentsModePresented,
-                    isColorStylePresented: $isColorStylePresented
-                )
+
+                // MARK: Clock
 
                 SettingsClockSection(
                     isPaywallPresented: $isPaywallPresented,
                     isTimeFormatPresented: $isTimeFormatPresented
                 )
                 .environmentObject(ClockManager.shared)
+
+                // MARK: Pomodoro
 
                 SettingsPomodoroSection(
                     isPaywallPresented: $isPaywallPresented,
@@ -133,15 +134,25 @@ struct SettingsView: View {
                 )
                 .environmentObject(PomodoroManager.shared)
 
-                SettingsSection(
-                    title: R.string.localizable.other(),
-                    items: [
-                        SettingsItem(type: .popup(R.string.localizable.rate(), nil), action: goToRate),
-                        SettingsItem(type: .popup(R.string.localizable.about(), nil), action: {
-                            isAboutPresented = true
-                        })
-                    ]
+                // MARK: Appearance
+
+                SettingsAppearanceSection(
+                    isPaywallPresented: $isPaywallPresented,
+                    isDarkModePresented: $isDarkModePresented,
+                    isLandspaceModePresented: $isLandspaceModePresented,
+                    isContentsModePresented: $isContentsModePresented,
+                    isColorsPresented: $isColorsPresented,
+                    isAppIconPresented: $isAppIconPresented
                 )
+
+                // MARK: Other
+
+                SettingsSection(title: R.string.localizable.other()) {
+                    SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
+                    SettingsNavigateCell(title: R.string.localizable.about()) {
+                        isAboutPresented = true
+                    }
+                }
 
                 Color.clear
                     .height(proxy.safeAreaInsets.bottom)
@@ -150,14 +161,15 @@ struct SettingsView: View {
             .font(.headline)
             .edgesIgnoringSafeArea(.bottom)
         }
-        .background(UIManager.shared.color.background)
+        .background(Color.Neumorphic.main)
         .navigationTitle(R.string.localizable.settings())
         .navigationBarItems(leading: Button(action: {
             isPresented = false
         }, label: {
             Image(systemName: "xmark")
                 .font(.subheadline)
-        }).tintColor(UIManager.shared.color.secondaryLabel))
+                .foregroundColor(Color.Neumorphic.secondary)
+        }))
     }
 
     func customize<PopupContent: View>(parameters: Popup<PopupContent>.PopupParameters) -> Popup<PopupContent>.PopupParameters {
@@ -165,7 +177,7 @@ struct SettingsView: View {
             .type(.floater(verticalPadding: 0, horizontalPadding: 0, useSafeAreaInset: true))
             .position(.bottom)
             .appearFrom(.bottom)
-            .dragToDismiss(true)
+//            .dragToDismiss(true)
             .closeOnTapOutside(true)
             .backgroundColor(Color.black.opacity(0.35))
             .animation(.spring(duration: 0.3))

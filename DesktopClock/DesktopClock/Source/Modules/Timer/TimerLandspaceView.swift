@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TimerLandspaceView: View {
     let time: Time
+    let color: Colors
     let padding: CGFloat = 32
     let spacing: CGFloat = 16
     let colonWidth: CGFloat = 32
@@ -20,15 +21,15 @@ struct TimerLandspaceView: View {
             let secondWidth = floor(digitWidth / 3.5)
             ZStack(alignment: .bottomTrailing) {
                 HStack(alignment: .center, spacing: spacing) {
-                    NeumorphicDigit(tens: time.hourTens, ones: time.hourOnes)
+                    NeumorphicDigit(tens: time.hourTens, ones: time.hourOnes, color: color)
                         .frame(width: digitWidth, height: digitWidth)
-                    NeumorphicLandspaceColon(outer: time.seconds % 2 == 0)
+                    NeumorphicLandspaceColon(outer: time.seconds % 2 == 0, color: color)
                         .frame(width: colonWidth, height: proxy.size.height)
-                    NeumorphicDigit(tens: time.minuteTens, ones: time.minuteOnes)
+                    NeumorphicDigit(tens: time.minuteTens, ones: time.minuteOnes, color: color)
                         .frame(width: digitWidth, height: digitWidth)
                 }
 
-                NeumorphicDigit(tens: time.secondTens, ones: time.secondOnes)
+                NeumorphicDigit(tens: time.secondTens, ones: time.secondOnes, color: color)
                     .frame(width: secondWidth, height: secondWidth)
                     .font(.system(size: floor(secondWidth / 2), design: .rounded), weight: .bold)
                     .offset(x: 0, y: -(proxy.size.height - digitWidth) / 2)
@@ -36,10 +37,10 @@ struct TimerLandspaceView: View {
             .font(.system(size: digitWidth * 0.6, design: .rounded), weight: .bold)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         }
-        .background(UIManager.shared.color.background)
+        .background(UIManager.shared.colors.background)
     }
 }
 
 #Preview {
-    TimerLandspaceView(time: TimerManager.shared.time)
+    TimerLandspaceView(time: TimerManager.shared.time, color: ColorType.classic.colors)
 }

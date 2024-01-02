@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		883AA6CA2B43A7F3003A6C11 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883AA6C92B43A7F3003A6C11 /* AppManager.swift */; };
 		887464932B3718D4004416B8 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 887464922B3718D4004416B8 /* SwiftUIPager */; };
 		887464962B3718E2004416B8 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 887464952B3718E2004416B8 /* Pow */; };
 		887464992B37190A004416B8 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 887464982B37190A004416B8 /* Neumorphic */; };
@@ -29,13 +30,11 @@
 		88A8D72E2B3D78F400983E0E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F22B3D78F300983E0E /* MainView.swift */; };
 		88A8D72F2B3D78F400983E0E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F52B3D78F300983E0E /* SettingsView.swift */; };
 		88A8D7302B3D78F400983E0E /* SettingsProCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F62B3D78F300983E0E /* SettingsProCell.swift */; };
-		88A8D7312B3D78F400983E0E /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F72B3D78F300983E0E /* SettingsCell.swift */; };
 		88A8D7322B3D78F400983E0E /* SettingsAppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F92B3D78F300983E0E /* SettingsAppearanceSection.swift */; };
 		88A8D7332B3D78F400983E0E /* SettingsLandspaceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FA2B3D78F300983E0E /* SettingsLandspaceModeView.swift */; };
 		88A8D7342B3D78F400983E0E /* SettingsDarkModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FB2B3D78F300983E0E /* SettingsDarkModeView.swift */; };
 		88A8D7352B3D78F400983E0E /* SettingsUIContentsModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FC2B3D78F300983E0E /* SettingsUIContentsModeView.swift */; };
 		88A8D7362B3D78F400983E0E /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FD2B3D78F300983E0E /* SettingsSection.swift */; };
-		88A8D7372B3D78F400983E0E /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6FE2B3D78F300983E0E /* SettingsItem.swift */; };
 		88A8D7382B3D78F400983E0E /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7002B3D78F300983E0E /* AboutView.swift */; };
 		88A8D7392B3D78F400983E0E /* SettingsFocusMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7022B3D78F300983E0E /* SettingsFocusMinutesView.swift */; };
 		88A8D73A2B3D78F400983E0E /* SettingsPomodoroSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D7032B3D78F300983E0E /* SettingsPomodoroSection.swift */; };
@@ -68,9 +67,27 @@
 		88CE4D742B3FC3AB0035BAE9 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */; };
 		88CE4D762B3FF6A60035BAE9 /* SettingsColorStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D752B3FF6A60035BAE9 /* SettingsColorStyleView.swift */; };
 		88CE4D7B2B401DAE0035BAE9 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 88CE4D7A2B401DAE0035BAE9 /* SwiftUIIntrospect */; };
+		88CE4D832B40FF8D0035BAE9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D822B40FF8D0035BAE9 /* Colors.swift */; };
+		88CE4D8A2B41A06B0035BAE9 /* water.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D892B41A06B0035BAE9 /* water.wav */; };
+		88CE4D8E2B41AFFF0035BAE9 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88CE4D8D2B41AFFF0035BAE9 /* AudioKit */; };
+		88CE4D982B41B1180035BAE9 /* sound_drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D912B41B1170035BAE9 /* sound_drip.wav */; };
+		88CE4D992B41B1180035BAE9 /* sound_muyu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D922B41B1170035BAE9 /* sound_muyu.wav */; };
+		88CE4D9A2B41B1180035BAE9 /* sound_switch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D932B41B1180035BAE9 /* sound_switch.wav */; };
+		88CE4D9B2B41B1180035BAE9 /* sound_tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D942B41B1180035BAE9 /* sound_tick.wav */; };
+		88CE4D9C2B41B1180035BAE9 /* sound_card.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D952B41B1180035BAE9 /* sound_card.wav */; };
+		88CE4D9D2B41B1180035BAE9 /* sound_second_hand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D962B41B1180035BAE9 /* sound_second_hand.wav */; };
+		88CE4D9E2B41B1180035BAE9 /* sound_pendulum.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D972B41B1180035BAE9 /* sound_pendulum.wav */; };
+		88CE4DA02B41B15C0035BAE9 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D9F2B41B15C0035BAE9 /* SoundManager.swift */; };
+		88CE4DA32B424A1C0035BAE9 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DA22B424A1C0035BAE9 /* CaptureView.swift */; };
+		88CE4DAA2B4269210035BAE9 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DA92B4269210035BAE9 /* AppIcons.swift */; };
+		88CE4DC82B4276800035BAE9 /* SettingsAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DC72B4276800035BAE9 /* SettingsAppIconView.swift */; };
+		88CE4DCE2B42B9B50035BAE9 /* SettingsToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DCD2B42B9B50035BAE9 /* SettingsToggleCell.swift */; };
+		88CE4DD12B42BA940035BAE9 /* SettingsCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DD02B42BA940035BAE9 /* SettingsCheckCell.swift */; };
+		88CE4DD42B42BB5F0035BAE9 /* SettingsNavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DD32B42BB5F0035BAE9 /* SettingsNavigateCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		883AA6C92B43A7F3003A6C11 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		8874645D2B37184E004416B8 /* DesktopClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A8D6DC2B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hans.storyboard"; sourceTree = "<group>"; };
 		88A8D6DD2B3D78F300983E0E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,13 +108,11 @@
 		88A8D6F22B3D78F300983E0E /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		88A8D6F52B3D78F300983E0E /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		88A8D6F62B3D78F300983E0E /* SettingsProCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsProCell.swift; sourceTree = "<group>"; };
-		88A8D6F72B3D78F300983E0E /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		88A8D6F92B3D78F300983E0E /* SettingsAppearanceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSection.swift; sourceTree = "<group>"; };
 		88A8D6FA2B3D78F300983E0E /* SettingsLandspaceModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLandspaceModeView.swift; sourceTree = "<group>"; };
 		88A8D6FB2B3D78F300983E0E /* SettingsDarkModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDarkModeView.swift; sourceTree = "<group>"; };
 		88A8D6FC2B3D78F300983E0E /* SettingsUIContentsModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsUIContentsModeView.swift; sourceTree = "<group>"; };
 		88A8D6FD2B3D78F300983E0E /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
-		88A8D6FE2B3D78F300983E0E /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		88A8D7002B3D78F300983E0E /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		88A8D7022B3D78F300983E0E /* SettingsFocusMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFocusMinutesView.swift; sourceTree = "<group>"; };
 		88A8D7032B3D78F300983E0E /* SettingsPomodoroSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPomodoroSection.swift; sourceTree = "<group>"; };
@@ -126,6 +141,22 @@
 		88CE4D6E2B3F0B050035BAE9 /* HoldOnNeumorphicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldOnNeumorphicButton.swift; sourceTree = "<group>"; };
 		88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
 		88CE4D752B3FF6A60035BAE9 /* SettingsColorStyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsColorStyleView.swift; sourceTree = "<group>"; };
+		88CE4D822B40FF8D0035BAE9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		88CE4D892B41A06B0035BAE9 /* water.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = water.wav; sourceTree = "<group>"; };
+		88CE4D912B41B1170035BAE9 /* sound_drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_drip.wav; sourceTree = "<group>"; };
+		88CE4D922B41B1170035BAE9 /* sound_muyu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_muyu.wav; sourceTree = "<group>"; };
+		88CE4D932B41B1180035BAE9 /* sound_switch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_switch.wav; sourceTree = "<group>"; };
+		88CE4D942B41B1180035BAE9 /* sound_tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_tick.wav; sourceTree = "<group>"; };
+		88CE4D952B41B1180035BAE9 /* sound_card.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_card.wav; sourceTree = "<group>"; };
+		88CE4D962B41B1180035BAE9 /* sound_second_hand.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_second_hand.wav; sourceTree = "<group>"; };
+		88CE4D972B41B1180035BAE9 /* sound_pendulum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_pendulum.wav; sourceTree = "<group>"; };
+		88CE4D9F2B41B15C0035BAE9 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		88CE4DA22B424A1C0035BAE9 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		88CE4DA92B4269210035BAE9 /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
+		88CE4DC72B4276800035BAE9 /* SettingsAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppIconView.swift; sourceTree = "<group>"; };
+		88CE4DCD2B42B9B50035BAE9 /* SettingsToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleCell.swift; sourceTree = "<group>"; };
+		88CE4DD02B42BA940035BAE9 /* SettingsCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCheckCell.swift; sourceTree = "<group>"; };
+		88CE4DD32B42BB5F0035BAE9 /* SettingsNavigateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigateCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,12 +174,23 @@
 				8874649E2B37191D004416B8 /* RevenueCatUI in Frameworks */,
 				887464992B37190A004416B8 /* Neumorphic in Frameworks */,
 				887464A12B371935004416B8 /* RswiftLibrary in Frameworks */,
+				88CE4D8E2B41AFFF0035BAE9 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		883AA6CC2B43A7FC003A6C11 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				883AA6C92B43A7F3003A6C11 /* AppManager.swift */,
+				88A8D75D2B3DAE3200983E0E /* ProManager.swift */,
+				88CE4D9F2B41B15C0035BAE9 /* SoundManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		887464542B37184E004416B8 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +233,7 @@
 				88A8D6E12B3D78F300983E0E /* InfoPlist.strings */,
 				88A8D6E52B3D78F300983E0E /* DesktopClock.entitlements */,
 				88A8D6E62B3D78F300983E0E /* Assets.xcassets */,
+				88CE4D902B41B1050035BAE9 /* Sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -219,7 +262,7 @@
 		88A8D6E82B3D78F300983E0E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				88A8D75D2B3DAE3200983E0E /* ProManager.swift */,
+				883AA6CC2B43A7FC003A6C11 /* Manager */,
 				88A8D6E92B3D78F300983E0E /* Settings */,
 				88A8D6EE2B3D78F300983E0E /* Views */,
 			);
@@ -233,7 +276,9 @@
 				88A8D6ED2B3D78F300983E0E /* IconStyle.swift */,
 				88A8D6EC2B3D78F300983E0E /* LandspaceMode.swift */,
 				88A8D6EB2B3D78F300983E0E /* UIManager.swift */,
+				88CE4DA92B4269210035BAE9 /* AppIcons.swift */,
 				88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */,
+				88CE4D822B40FF8D0035BAE9 /* Colors.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -241,6 +286,7 @@
 		88A8D6EE2B3D78F300983E0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				88CE4DA22B424A1C0035BAE9 /* CaptureView.swift */,
 				88A8D6EF2B3D78F300983E0E /* SafariView.swift */,
 				88A8D6F02B3D78F300983E0E /* PageControl.swift */,
 			);
@@ -265,11 +311,11 @@
 		88A8D6F42B3D78F300983E0E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				88CE4DCC2B42B9A10035BAE9 /* Cells */,
+				88CE4DCA2B428B810035BAE9 /* AppIcon */,
 				88A8D6F82B3D78F300983E0E /* Appearance */,
 				88A8D7062B3D78F300983E0E /* Clock */,
 				88A8D7012B3D78F300983E0E /* Pomodoro */,
-				88A8D6F72B3D78F300983E0E /* SettingsCell.swift */,
-				88A8D6FE2B3D78F300983E0E /* SettingsItem.swift */,
 				88A8D6F62B3D78F300983E0E /* SettingsProCell.swift */,
 				88A8D6FD2B3D78F300983E0E /* SettingsSection.swift */,
 				88A8D6F52B3D78F300983E0E /* SettingsView.swift */,
@@ -384,6 +430,39 @@
 			path = Paywall;
 			sourceTree = "<group>";
 		};
+		88CE4D902B41B1050035BAE9 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				88CE4D892B41A06B0035BAE9 /* water.wav */,
+				88CE4D952B41B1180035BAE9 /* sound_card.wav */,
+				88CE4D912B41B1170035BAE9 /* sound_drip.wav */,
+				88CE4D922B41B1170035BAE9 /* sound_muyu.wav */,
+				88CE4D972B41B1180035BAE9 /* sound_pendulum.wav */,
+				88CE4D962B41B1180035BAE9 /* sound_second_hand.wav */,
+				88CE4D932B41B1180035BAE9 /* sound_switch.wav */,
+				88CE4D942B41B1180035BAE9 /* sound_tick.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		88CE4DCA2B428B810035BAE9 /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				88CE4DC72B4276800035BAE9 /* SettingsAppIconView.swift */,
+			);
+			path = AppIcon;
+			sourceTree = "<group>";
+		};
+		88CE4DCC2B42B9A10035BAE9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				88CE4DCD2B42B9B50035BAE9 /* SettingsToggleCell.swift */,
+				88CE4DD02B42BA940035BAE9 /* SettingsCheckCell.swift */,
+				88CE4DD32B42BB5F0035BAE9 /* SettingsNavigateCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -412,6 +491,7 @@
 				88A8D7532B3D7B9E00983E0E /* ClockShare */,
 				88A8D7612B3DB1EC00983E0E /* KeychainSwift */,
 				88CE4D7A2B401DAE0035BAE9 /* SwiftUIIntrospect */,
+				88CE4D8D2B41AFFF0035BAE9 /* AudioKit */,
 			);
 			productName = PureClock;
 			productReference = 8874645D2B37184E004416B8 /* DesktopClock.app */;
@@ -451,6 +531,7 @@
 				88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */,
 				88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				88CE4D792B401DAE0035BAE9 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
+				88CE4D8C2B41AFFF0035BAE9 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = 8874645E2B37184E004416B8 /* Products */;
 			projectDirPath = "";
@@ -466,13 +547,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88CE4D9B2B41B1180035BAE9 /* sound_tick.wav in Resources */,
+				88CE4D8A2B41A06B0035BAE9 /* water.wav in Resources */,
 				88A8D7222B3D78F300983E0E /* LaunchScreen.storyboard in Resources */,
 				88A8D7252B3D78F400983E0E /* InfoPlist.strings in Resources */,
+				88CE4D992B41B1180035BAE9 /* sound_muyu.wav in Resources */,
+				88CE4D9E2B41B1180035BAE9 /* sound_pendulum.wav in Resources */,
+				88CE4D982B41B1180035BAE9 /* sound_drip.wav in Resources */,
 				88A8D7242B3D78F400983E0E /* Localizable.strings in Resources */,
 				88A8D7212B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard in Resources */,
 				88A8D7262B3D78F400983E0E /* Assets.xcassets in Resources */,
 				88A8D7502B3D78F400983E0E /* Preview Assets.xcassets in Resources */,
 				88A8D7232B3D78F300983E0E /* LaunchScreen_zh-Hant.storyboard in Resources */,
+				88CE4D9A2B41B1180035BAE9 /* sound_switch.wav in Resources */,
+				88CE4D9D2B41B1180035BAE9 /* sound_second_hand.wav in Resources */,
+				88CE4D9C2B41B1180035BAE9 /* sound_card.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +573,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				88A8D7332B3D78F400983E0E /* SettingsLandspaceModeView.swift in Sources */,
+				88CE4DD42B42BB5F0035BAE9 /* SettingsNavigateCell.swift in Sources */,
+				88CE4D832B40FF8D0035BAE9 /* Colors.swift in Sources */,
+				88CE4DA32B424A1C0035BAE9 /* CaptureView.swift in Sources */,
 				88CE4D742B3FC3AB0035BAE9 /* ColorStyle.swift in Sources */,
 				88A8D7442B3D78F400983E0E /* NeumorphicStyle.swift in Sources */,
 				88A8D73C2B3D78F400983E0E /* SettingsShortBreakMinutesView.swift in Sources */,
@@ -495,16 +587,18 @@
 				88A8D7492B3D78F400983E0E /* TimerLandspaceView.swift in Sources */,
 				88CE4D6F2B3F0B050035BAE9 /* HoldOnNeumorphicButton.swift in Sources */,
 				88A8D73B2B3D78F400983E0E /* SettingsLongBreakMinutesView.swift in Sources */,
+				88CE4DA02B41B15C0035BAE9 /* SoundManager.swift in Sources */,
 				88A8D7352B3D78F400983E0E /* SettingsUIContentsModeView.swift in Sources */,
 				88A8D72F2B3D78F400983E0E /* SettingsView.swift in Sources */,
 				88A8D73F2B3D78F400983E0E /* SplashView.swift in Sources */,
 				88A8D7472B3D78F400983E0E /* TimerView.swift in Sources */,
 				88A8D73D2B3D78F400983E0E /* SettingsTimeFormatView.swift in Sources */,
+				88CE4DD12B42BA940035BAE9 /* SettingsCheckCell.swift in Sources */,
 				88A8D75E2B3DAE3200983E0E /* ProManager.swift in Sources */,
 				88A8D74A2B3D78F400983E0E /* PomodoroPortraitView.swift in Sources */,
+				88CE4DAA2B4269210035BAE9 /* AppIcons.swift in Sources */,
 				88A8D7382B3D78F400983E0E /* AboutView.swift in Sources */,
 				88A8D74F2B3D78F400983E0E /* ClockLandspaceView.swift in Sources */,
-				88A8D7312B3D78F400983E0E /* SettingsCell.swift in Sources */,
 				88A8D74C2B3D78F400983E0E /* PomodoroLandspaceView.swift in Sources */,
 				88A8D7302B3D78F400983E0E /* SettingsProCell.swift in Sources */,
 				88A8D72C2B3D78F400983E0E /* PageControl.swift in Sources */,
@@ -512,17 +606,19 @@
 				88A8D7322B3D78F400983E0E /* SettingsAppearanceSection.swift in Sources */,
 				88A8D73A2B3D78F400983E0E /* SettingsPomodoroSection.swift in Sources */,
 				88A8D7392B3D78F400983E0E /* SettingsFocusMinutesView.swift in Sources */,
+				88CE4DC82B4276800035BAE9 /* SettingsAppIconView.swift in Sources */,
 				88A8D72E2B3D78F400983E0E /* MainView.swift in Sources */,
 				88CE4D762B3FF6A60035BAE9 /* SettingsColorStyleView.swift in Sources */,
 				88A8D7432B3D78F400983E0E /* NeumorphicDigit.swift in Sources */,
 				88A8D74E2B3D78F400983E0E /* ClockView.swift in Sources */,
+				88CE4DCE2B42B9B50035BAE9 /* SettingsToggleCell.swift in Sources */,
 				88A8D74D2B3D78F400983E0E /* ClockPortraitView.swift in Sources */,
 				88A8D72B2B3D78F400983E0E /* SafariView.swift in Sources */,
 				88A8D7412B3D78F400983E0E /* NeumorphicPortraitColon.swift in Sources */,
 				88A8D72D2B3D78F400983E0E /* DesktopClockApp.swift in Sources */,
 				88A8D7342B3D78F400983E0E /* SettingsDarkModeView.swift in Sources */,
+				883AA6CA2B43A7F3003A6C11 /* AppManager.swift in Sources */,
 				88A8D7362B3D78F400983E0E /* SettingsSection.swift in Sources */,
-				88A8D7372B3D78F400983E0E /* SettingsItem.swift in Sources */,
 				88A8D7282B3D78F400983E0E /* UIManager.swift in Sources */,
 				88A8D7682B3E696B00983E0E /* PaywallView.swift in Sources */,
 				88A8D72A2B3D78F400983E0E /* IconStyle.swift in Sources */,
@@ -685,6 +781,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DesktopClock/Resources/DesktopClock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -702,7 +799,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -716,6 +813,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DesktopClock/Resources/DesktopClock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -733,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -830,6 +928,14 @@
 				minimumVersion = 1.1.1;
 			};
 		};
+		88CE4D8C2B41AFFF0035BAE9 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -885,6 +991,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88CE4D792B401DAE0035BAE9 /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
 			productName = SwiftUIIntrospect;
+		};
+		88CE4D8D2B41AFFF0035BAE9 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88CE4D8C2B41AFFF0035BAE9 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

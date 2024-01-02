@@ -33,6 +33,10 @@ public enum IconType: String, CaseIterable {
             EmojiIconStyle()
         }
     }
+
+    public var isPro: Bool {
+        self != .text
+    }
 }
 
 public struct EmojiIconStyle: IconStyle {

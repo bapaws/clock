@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftUIX
 
 struct HoldOnNeumorphicButton<Label: View>: View {
-    var color: ColorStyle
+    var color: Colors
     var action: () -> Void
     var label: () -> Label
 
@@ -20,7 +20,7 @@ struct HoldOnNeumorphicButton<Label: View>: View {
     var body: some View {
         label()
             .frame(width: 24, height: 24)
-            .foregroundColor(color.secondaryLabel)
+            .foregroundColor(color.primary)
             .padding(16)
             .scaleEffect(isPressed ? 0.97 : 1)
             .background(
@@ -38,7 +38,7 @@ struct HoldOnNeumorphicButton<Label: View>: View {
                 Circle()
                     .trim(from: 0, to: isPressed ? 1 : .leastNonzeroMagnitude)
                     .stroke(style: StrokeStyle(lineWidth: 8, lineCap: .round))
-                    .foregroundStyle(Color.systemGreen.opacity(0.8))
+                    .foregroundStyle(color.primary)
                     .rotationEffect(.degrees(-90))
             }
             .onLongPressGesture(minimumDuration: minimumDuration, perform: action) { isPressed in
@@ -51,7 +51,7 @@ struct HoldOnNeumorphicButton<Label: View>: View {
 }
 
 #Preview {
-    HoldOnNeumorphicButton(color: NeumorphicWhiteColors(), action: {}) {
+    HoldOnNeumorphicButton(color: ColorType.classic.colors, action: {}) {
         Image(systemName: "stop")
     }
 }

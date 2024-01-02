@@ -16,15 +16,14 @@ struct SettingsLongBreakMinutesView: View {
     }
 
     var body: some View {
-        SettingsSection(
-            title: R.string.localizable.longBreakDuration(),
-            items: pomodoro.longBreakMinuteOptions.map { option in
-                SettingsItem(type: .check("\(option) mins", pomodoro.longBreakMinutes == option)) {
+        SettingsSection(title: R.string.localizable.longBreakDuration()) {
+            ForEach(pomodoro.longBreakMinuteOptions, id: \.self) { option in
+                SettingsCheckCell(title: "\(option) mins", isChecked: pomodoro.longBreakMinutes == option) {
                     pomodoro.longBreakMinutes = option
                     isPresented = false
                 }
             }
-        )
+        }
     }
 }
 

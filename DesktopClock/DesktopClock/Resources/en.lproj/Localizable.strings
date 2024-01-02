@@ -26,11 +26,22 @@
 "IconType" = "Icon Type";
 "Text" = "Text";
 
+"AppIcon" = "App Icon";
+"LightClassic" = "Classic Light";
+"LightPink" = "Pink";
+"LightPurple" = "Purple";
+"LightOrange" = "Orange";
+"DarkClassic" = "Classic Dark";
+"DarkPink" = "Pink";
+"DarkPurple" = "Purple";
+"DarkOrange" = "Orange";
+
 "ColorThemes" = "Color Themes";
 "Default" = "Default";
-"White" = "White";
+"Classic" = "Classic";
 "Pink" = "Pink";
 "Purple" = "Purple";
+"Orange" = "Orange";
 
 "DarkMode" = "Dark Mode";
 "LightMode" = "Light Mode";
@@ -69,6 +80,8 @@
 // MARK: Paywall
 
 "ProMembership" = "Pro Membership";
+"UnlockPro" = "Unlock all premium features.";
+"TryFree" = "Try Free";
 "ProInfo1" = "Better focus timer";
 "ProInfo2" = "Emoji icon styles";
 "ProInfo3" = "More custom fonts";

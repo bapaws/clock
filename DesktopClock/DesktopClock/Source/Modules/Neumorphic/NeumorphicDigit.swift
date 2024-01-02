@@ -5,18 +5,20 @@
 //  Created by 张敏超 on 2023/12/24.
 //
 
+import ClockShare
 import SwiftUI
 import SwiftUIX
 
 struct NeumorphicDigit: View {
     let tens: Int
     let ones: Int
+    let color: Colors
 
     var fontSize: CGFloat = 120
     var spacing: CGFloat = 16
-    let cornerRadius: CGFloat = 25.0
-
-    @EnvironmentObject var ui: UIManager
+    var cornerRadius: CGFloat = 25.0
+    var spread: CGFloat = 0.1
+    var radius: CGFloat = 10
 
     var body: some View {
         GeometryReader { proxy in
@@ -35,12 +37,11 @@ struct NeumorphicDigit: View {
                 Color.clear.frame(width: spacing, height: 1)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-            .softInnerShadow(RoundedRectangle(cornerRadius: cornerRadius), darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow, spread: 0.1, radius: 5)
+            .softInnerShadow(RoundedRectangle(cornerRadius: cornerRadius), darkShadow: color.darkShadow, lightShadow: color.lightShadow, spread: spread, radius: radius)
         }
     }
 }
 
 #Preview {
-    NeumorphicDigit(tens: 2, ones: 5)
-        .environmentObject(UIManager.shared)
+    NeumorphicDigit(tens: 2, ones: 5, color: ColorType.classic.colors)
 }

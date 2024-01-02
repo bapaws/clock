@@ -23,14 +23,25 @@
 "Appearance" = "外观";
 "ModeAuto" = "跟随系统";
 
-"IconType" = "图标类型";
+"IconType" = "Emoji 按钮";
 "Text" = "文本";
 
-"ColorThemes" = "颜色主题";
+"AppIcon" = "彩色图标";
+"LightClassic" = "经典白";
+"LightPink" = "粉红";
+"LightPurple" = "紫";
+"LightOrange" = "橙";
+"DarkClassic" = "经典黑";
+"DarkPink" = "粉红";
+"DarkPurple" = "紫";
+"DarkOrange" = "橙";
+
+"ColorThemes" = "彩色主题";
 "Default" = "默认";
-"White" = "白色";
-"Pink" = "粉红色";
-"Purple" = "紫色";
+"Classic" = "经典";
+"Pink" = "粉红";
+"Purple" = "紫";
+"Orange" = "橙";
 
 "DarkMode" = "深色模式";
 "LightMode" = "浅色模式";
@@ -69,6 +80,8 @@
 // MARK: Paywall
 
 "ProMembership" = "Pro 会员";
+"UnlockPro" = "解锁全部高级功能";
+"TryFree" = "免费试用";
 "ProInfo1" = "更好用的番茄钟";
 "ProInfo2" = "Emoji 图标样式";
 "ProInfo3" = "更多定制化的字体";

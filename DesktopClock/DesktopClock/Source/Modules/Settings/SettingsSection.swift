@@ -8,13 +8,13 @@
 import SwiftUI
 import SwiftUIX
 
-struct SettingsSection: View {
+struct SettingsSection<Cell: View, ID: Hashable>: View {
     let title: String
-    let items: [SettingsItem]
-
+    var itemCount: Int?
+    var scrollToID: ID?
     var maxScollItemCount: Int = 4
 
-    @EnvironmentObject var ui: UIManager
+    @ViewBuilder var content: () -> Cell
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,35 +23,31 @@ struct SettingsSection: View {
                 .padding(horizontal: .regular, vertical: .extraSmall)
 
             ZStack {
-                let height = CGFloat(min(items.count, maxScollItemCount)) * SettingsCell.height
-                RoundedRectangle(cornerRadius: 16.0)
-                    .fill(ui.color.background)
-                    .softOuterShadow(darkShadow: ui.color.darkShadow, lightShadow: ui.color.lightShadow)
-                    .height(height)
+                let stack = VStack(spacing: 0, content: content)
 
-                let stack = VStack(spacing: 0) {
-                    // 这里会根据 id 进行刷新，如果不设置默认本身
-                    // Settings 页面中，item 本身不变就导致不刷新
-                    ForEach(items) { SettingsCell(item: $0).id($0.id) }
-                }
-                if items.count > maxScollItemCount {
+                if let itemCount = itemCount, itemCount > maxScollItemCount {
                     ScrollViewReader { reader in
                         ScrollView(showsIndicators: false) {
-                            stack.onAppear {
-                                guard let first = items.first(where: { item in
-                                    if case .check(_, let bool) = item.type, bool {
-                                        return true
-                                    } else {
-                                        return false
-                                    }
-                                }) else { return }
-                                reader.scrollTo(first.id, anchor: .center)
-                            }
+                            stack
+                                .onAppear {
+                                    guard let id = scrollToID else { return }
+                                    reader.scrollTo(id, anchor: .center)
+                                }
                         }
-                        .height(height)
+                        .frame(minHeight: 0, maxHeight: CGFloat(maxScollItemCount) * cellHeight, alignment: .center)
+                        .background {
+                            RoundedRectangle(cornerRadius: 16.0)
+                                .fill(Color.Neumorphic.main)
+                                .softOuterShadow()
+                        }
                     }
                 } else {
                     stack
+                        .background {
+                            RoundedRectangle(cornerRadius: 16.0)
+                                .fill(Color.Neumorphic.main)
+                                .softOuterShadow()
+                        }
                 }
             }
         }
@@ -59,12 +55,35 @@ struct SettingsSection: View {
         .padding(.vertical)
         .padding(.horizontal)
         .padding(.horizontal, .small)
-        .foregroundColor(ui.color.secondaryLabel)
-        .background(ui.color.background)
+        .foregroundColor(Color.Neumorphic.secondary)
+        .background(Color.Neumorphic.main)
+    }
+}
+
+extension SettingsSection where ID == Int {
+    init(title: String, @ViewBuilder content: @escaping () -> Cell) {
+        self.title = title
+        self.content = content
+    }
+}
+
+extension SettingsSection {
+    init(title: String, itemCount: Int?, scrollToID: ID?, @ViewBuilder content: @escaping () -> Cell) {
+        self.title = title
+        self.content = content
+        self.itemCount = itemCount
+        self.scrollToID = scrollToID
     }
 }
 
 #Preview {
-    SettingsSection(title: R.string.localizable.appearance(), items: [SettingsItem(type: .popup("标题", "Value"), action: {})])
-        .environmentObject(UIManager.shared)
+    SettingsSection(title: R.string.localizable.appearance()) {
+        SettingsToggleCell(title: "Title", isOn: Binding<Bool>.constant(true))
+        SettingsToggleCell(title: "Title", isOn: Binding<Bool>.constant(false))
+        SettingsCheckCell(title: "Title", isPro: true, isChecked: false, action: {})
+        SettingsCheckCell(title: "Title", isPro: true, isChecked: true, action: {})
+        SettingsNavigateCell(title: "Title", value: nil, isPro: true, action: {})
+        SettingsNavigateCell(title: "Title", value: "value", isPro: false, action: {})
+    }
+    .environmentObject(UIManager.shared)
 }

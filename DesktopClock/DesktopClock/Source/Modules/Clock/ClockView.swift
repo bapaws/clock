@@ -9,12 +9,13 @@ import ClockShare
 import Combine
 import Pow
 import SwiftUI
+import SwiftUIX
 
 struct ClockView: View {
     @StateObject var manager: ClockManager = .shared
 
     @EnvironmentObject var ui: UIManager
-    
+
     var body: some View {
         GeometryReader { proxy in
             if proxy.size.width > proxy.size.height {
@@ -25,7 +26,7 @@ struct ClockView: View {
                     Color.clear
                         .frame(width: width, height: width)
                     VStack {
-                        ClockLandspaceView()
+                        ClockLandspaceView(color: ui.colors)
                             .environmentObject(manager)
                     }
 
@@ -34,7 +35,7 @@ struct ClockView: View {
                 }
             } else {
                 VStack(spacing: 16) {
-                    ClockPortraitView()
+                    ClockPortraitView(color: ui.colors)
                         .environmentObject(manager)
                     Color.clear
                         .frame(neumorphicButtonSize)
@@ -42,10 +43,13 @@ struct ClockView: View {
             }
         }
         .padding()
+        .onChange(of: manager.time.seconds) { _ in
+            SoundManager.shared.play()
+        }
     }
 }
 
 #Preview {
     ClockView()
-        .background(UIManager.shared.color.background)
+        .background(UIManager.shared.colors.background)
 }

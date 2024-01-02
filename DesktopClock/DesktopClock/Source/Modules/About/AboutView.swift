@@ -15,8 +15,6 @@ struct AboutView: View {
     @State var showSafari = false
     @State var urlString = "https://duckduckgo.com"
 
-    @EnvironmentObject var ui: UIManager
-
     var body: some View {
         NavigationView {
             VStack {
@@ -29,7 +27,7 @@ struct AboutView: View {
                         .scaledToFit()
                         .frame(width: 200, height: 200)
                 }
-                .softButtonStyle(RoundedRectangle(cornerRadius: 25), mainColor: ui.color.background, textColor: ui.color.secondaryLabel, darkShadowColor: ui.color.darkShadow, lightShadowColor: ui.color.lightShadow)
+                .softButtonStyle(RoundedRectangle(cornerRadius: 25))
 
                 Color.clear
                     .height(32)
@@ -72,14 +70,15 @@ struct AboutView: View {
                 }
             }
             .frame(.greedy)
-            .background(UIManager.shared.color.background)
+            .background(Color.Neumorphic.main)
             .navigationTitle(R.string.localizable.about())
             .navigationBarItems(leading: Button(action: {
                 isPresented = false
             }, label: {
                 Image(systemName: "xmark")
                     .font(.subheadline)
-            }).tintColor(UIManager.shared.color.secondaryLabel))
+                    .foregroundColor(Color.Neumorphic.secondary)
+            }))
         }
         .sheet(isPresented: $showSafari) {
             SafariView(url: URL(string: self.urlString)!)
@@ -89,6 +88,5 @@ struct AboutView: View {
 
 #Preview {
     AboutView(isPresented: Binding<Bool>.constant(true))
-        .background(UIManager.shared.color.background)
-        .environmentObject(UIManager.shared)
+        .background(Color.Neumorphic.main)
 }

@@ -19,17 +19,20 @@ struct PomodoroView: View {
         GeometryReader { proxy in
             if proxy.size.width > proxy.size.height {
                 HStack(spacing: 16) {
-                    PomodoroLandspaceView(time: PomodoroManager.shared.time)
+                    PomodoroLandspaceView(time: PomodoroManager.shared.time, color: ui.colors)
                     button
                 }
             } else {
                 VStack(spacing: 16) {
-                    PomodoroPortraitView(time: PomodoroManager.shared.time)
+                    PomodoroPortraitView(time: PomodoroManager.shared.time, color: ui.colors)
                     button
                 }
             }
         }
         .padding()
+        .onChange(of: manager.time.seconds) { _ in
+            SoundManager.shared.play()
+        }
     }
 
     @ViewBuilder var button: some View {
@@ -47,7 +50,7 @@ struct PomodoroView: View {
     }
 
     var stopButton: some View {
-        HoldOnNeumorphicButton(color: ui.color, action: manager.stop) {
+        HoldOnNeumorphicButton(color: ui.colors, action: manager.stop) {
             Image(systemName: "stop")
         }
     }
@@ -61,5 +64,5 @@ struct PomodoroView: View {
 
 #Preview {
     PomodoroView()
-        .background(UIManager.shared.color.background)
+        .background(UIManager.shared.colors.background)
 }

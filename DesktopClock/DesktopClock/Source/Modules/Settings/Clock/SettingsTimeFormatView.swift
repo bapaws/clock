@@ -14,15 +14,14 @@ struct SettingsTimeFormatView: View {
     @EnvironmentObject var clock: ClockManager
 
     var body: some View {
-        SettingsSection(
-            title: R.string.localizable.timeFormat(),
-            items: TimeFormat.allCases.map { option in
-                SettingsItem(type: .check("\(option.rawValue)", clock.timeFormat == option)) {
+        SettingsSection(title: R.string.localizable.timeFormat()) {
+            ForEach(TimeFormat.allCases, id: \.self) { option in
+                SettingsCheckCell(title: "\(option.rawValue)", isChecked: clock.timeFormat == option) {
                     clock.timeFormat = option
                     isPresented = false
                 }
             }
-        )
+        }
     }
 }
 

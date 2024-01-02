@@ -17,20 +17,27 @@ struct SplashView: View {
         GeometryReader { _ in
             VStack {
                 Spacer()
-                HStack {
+                HStack(spacing: 0) {
                     Spacer()
                     Image("LaunchImage")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 64, height: 64)
-                    Text("Colorful Clock")
-                        .font(.system(size: 25, weight: .thin))
+                        .frame(width: 52, height: 52)
+                    Text(R.string.localizable.appName())
+                        .foregroundColor(.secondaryLabel)
+                        .font(.system(size: 20, weight: .thin))
                     Spacer()
                 }
+                .height(52)
             }
+            .padding(.bottom, 16)
+            .background(Color(R.color.backgroundColor))
+            .background(Color.Neumorphic.main)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    didFinishLoad = true
+                    withAnimation {
+                        didFinishLoad = true
+                    }
                 }
             }
         }

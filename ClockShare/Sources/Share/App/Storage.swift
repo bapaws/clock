@@ -12,12 +12,24 @@ public class Storage {
     public static let `default` = Storage()
 
     public enum Key {
+        // MARK: Purchase
+
         public static let purchasedProduct = "com.bapaws.iap.purchasedProduct"
+
+        // MARK: App
+
         public static let launchedCount = "com.bapaws.launchedCount"
+        public static let soundType = "soundType"
+
+        // MARK: Clock
 
         public static let secondStyle = "secondStyle"
         public static let timeFormat = "timeFormat"
         public static let dateStyle = "dateStyle"
+
+        // MARK: UI
+
+        public static let appIcon = "appIcon"
 
         public static let darkMode = "darkMode"
         public static let landspaceMode = "landspaceMode"

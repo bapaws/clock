@@ -13,7 +13,6 @@ import SwiftUIX
 
 struct PaywallView: View {
     @Binding var isPresented: Bool
-    @EnvironmentObject var ui: UIManager
 
     @State var packages: [Package] = ProManager.default.availablePackages
 
@@ -26,6 +25,8 @@ struct PaywallView: View {
         R.string.localizable.proInfo4(),
         R.string.localizable.proInfo5(),
     ]
+
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         NavigationView {
@@ -47,36 +48,37 @@ struct PaywallView: View {
                                 .frame(width: .greedy)
                             Text(R.string.localizable.sale())
                                 .font(.footnote)
-                                .foregroundColor(.tertiaryLabel)
+                                .foregroundColor(UIManager.shared.colors.secondary)
                         }
                     }
-                    .softButtonStyle(RoundedRectangle(cornerRadius: 16), padding: 8, mainColor: ui.color.background, textColor: ui.color.secondaryLabel, darkShadowColor: ui.color.darkShadow, lightShadowColor: ui.color.lightShadow)
+                    .softButtonStyle(RoundedRectangle(cornerRadius: 16), padding: 8)
                     .frame(width: .greedy, height: 54)
                     .padding(.horizontal, .large)
                     .padding(.top, .small)
 
                     Button(action: restore) {
                         Text(R.string.localizable.restore())
+                            .foregroundColor(.tertiaryLabel)
                             .frame(width: .greedy, height: 32)
                             .font(.caption)
                     }
                     .padding(.horizontal, .large)
                     Color.clear
-                        .height(proxy.safeAreaInsets.bottom - 8)
+                        .height(proxy.safeAreaInsets.bottom + 8)
                 }
-                .background(UIManager.shared.color.background)
+                .background(Color.Neumorphic.main)
                 .edgesIgnoringSafeArea(.bottom)
                 .frame(.greedy)
             }
-            .background(UIManager.shared.color.background)
+            .background(Color.Neumorphic.main)
             .navigationTitle(R.string.localizable.proMembership())
-            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: Button(action: {
                 isPresented = false
             }, label: {
                 Image(systemName: "xmark")
                     .font(.subheadline)
-            }).tintColor(UIManager.shared.color.secondaryLabel))
+                    .foregroundColor(Color.Neumorphic.secondary)
+            }))
         }
         .onAppear {
             guard selectedPackage == nil else { return }
@@ -92,7 +94,7 @@ struct PaywallView: View {
     @ViewBuilder var scrollView: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .center) {
-                ClockLandspaceView(colonWidth: 16)
+                ClockLandspaceView(color: Colors.classic(scheme: colorScheme), colonWidth: 16)
                     .environmentObject(ClockManager.shared)
                     .frame(width: 280, height: 130)
                     .padding(.vertical, .large)
@@ -101,7 +103,7 @@ struct PaywallView: View {
                 ForEach(infos, id: \.self) { info in
                     HStack {
                         Image(systemName: "checkmark.circle")
-                            .foregroundColor(Color.systemGreen)
+                            .foregroundColor(UIManager.shared.colors.secondary)
                             .font(.callout)
                         Text(info)
                             .font(.subheadline)
@@ -120,7 +122,7 @@ struct PaywallView: View {
                                 HStack {
                                     if selectedPackage == package {
                                         Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(Color.systemGreen)
+                                            .foregroundColor(UIManager.shared.colors.secondary)
                                             .font(.headline)
                                     } else {
                                         Image(systemName: "circle")
@@ -143,7 +145,7 @@ struct PaywallView: View {
                             }
                         }
                     }
-                    .softButtonStyle(RoundedRectangle(cornerRadius: 16), mainColor: ui.color.background, textColor: ui.color.secondaryLabel, darkShadowColor: ui.color.darkShadow, lightShadowColor: ui.color.lightShadow)
+                    .softButtonStyle(RoundedRectangle(cornerRadius: 16))
                 }
                 .padding(.top, .regular)
 
@@ -153,7 +155,7 @@ struct PaywallView: View {
             }
             .padding(.horizontal, .large)
         }
-        .foregroundColor(UIManager.shared.color.secondaryLabel)
+        .foregroundColor(Color.Neumorphic.secondary)
         .font(.body)
     }
 

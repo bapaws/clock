@@ -6,6 +6,6 @@
   
 */
 
-"CFBundleDisplayName" = "Pure Clock";
-"CFBundleName" = "Pure Clock";
+"CFBundleDisplayName" = "Desktop Clock";
+"CFBundleName" = "Desktop Clock";
 "UILaunchStoryboardName" = "LaunchScreen";
