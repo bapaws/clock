@@ -10,9 +10,8 @@ import Combine
 import SwiftUI
 
 struct TimerView: View {
+    @Binding var isTabHidden: Bool
     @StateObject var manager = TimerManager.shared
-
-
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
@@ -59,7 +58,12 @@ struct TimerView: View {
     }
 
     var startButton: some View {
-        NeumorphicButton(action: manager.start) {
+        NeumorphicButton(action: {
+            withAnimation {
+                isTabHidden = true
+            }
+            manager.start()
+        }) {
             Image(systemName: "play")
         }
     }
@@ -78,6 +82,6 @@ struct TimerView: View {
 }
 
 #Preview {
-    TimerView()
+    TimerView(isTabHidden: Binding<Bool>.constant(true))
         .background(UIManager.shared.colors.background)
 }

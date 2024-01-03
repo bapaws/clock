@@ -11,23 +11,34 @@ import Foundation
 import SwiftUI
 
 public enum SoundType: String, CaseIterable {
-    case tick, pendulum, card, drip, muyu, `switch`
+//    case tick, pendulum, card, drip, muyu, `switch`
+    case tick, second, drip
 
     public var value: String {
         switch self {
-        case .card:
-            R.string.localizable.card()
-        case .drip:
-            R.string.localizable.drip()
-        case .muyu:
-            R.string.localizable.muyu()
-        case .pendulum:
-            R.string.localizable.pendulum()
-        case .switch:
-            R.string.localizable.switch()
         case .tick:
             R.string.localizable.tick()
+
+        case .second:
+            R.string.localizable.secondHand()
+        case .drip:
+
+            R.string.localizable.drip()
         }
+//        switch self {
+//        case .card:
+//            R.string.localizable.card()
+//        case .drip:
+//            R.string.localizable.drip()
+//        case .muyu:
+//            R.string.localizable.muyu()
+//        case .pendulum:
+//            R.string.localizable.pendulum()
+//        case .switch:
+//            R.string.localizable.switch()
+//        case .tick:
+//            R.string.localizable.tick()
+//        }
     }
 }
 
@@ -130,7 +141,7 @@ public extension AppManager {
 
 public extension AppManager {
     private func prepareAudioPlayer() {
-        guard let bundle = Bundle.main.path(forResource: "sound_\(soundType.rawValue)", ofType: "wav") else { return }
+        guard let bundle = Bundle.main.path(forResource: "\(soundType.rawValue)", ofType: "wav") else { return }
         let backgroundMusic = URL(fileURLWithPath: bundle)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: backgroundMusic as URL)

@@ -11,8 +11,8 @@ import Neumorphic
 import SwiftUI
 
 struct PomodoroView: View {
+    @Binding var isTabHidden: Bool
     @StateObject var manager = PomodoroManager.shared
-
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
@@ -20,18 +20,14 @@ struct PomodoroView: View {
             if proxy.size.width > proxy.size.height {
                 HStack(spacing: 16) {
                     PomodoroLandspaceView(time: PomodoroManager.shared.time, color: ui.colors)
-                    VStack(spacing: 32) {
-                        button
-                    }
-                    .animation(.easeIn, value: manager.state)
+                    button
+                        .animation(.easeIn, value: manager.state)
                 }
             } else {
                 VStack(spacing: 16) {
                     PomodoroPortraitView(time: PomodoroManager.shared.time, color: ui.colors)
-                    HStack(spacing: 32) {
-                        button
-                    }
-                    .animation(.easeIn, value: manager.state)
+                    button
+                        .animation(.easeIn, value: manager.state)
                 }
             }
         }
@@ -45,7 +41,6 @@ struct PomodoroView: View {
         if manager.state == .none {
             startButton
         } else if manager.state == .focusCompleted {
-            restartButton
             shortBreakButton
         } else {
             stopButton
@@ -59,7 +54,12 @@ struct PomodoroView: View {
     }
 
     var startButton: some View {
-        NeumorphicButton(action: manager.startFocus) {
+        NeumorphicButton(action: {
+            withAnimation {
+                isTabHidden = true
+            }
+            manager.startFocus()
+        }) {
             Image(systemName: "play")
         }
     }
@@ -71,13 +71,18 @@ struct PomodoroView: View {
     }
 
     var shortBreakButton: some View {
-        NeumorphicButton(action: manager.startShortBreak) {
-            Image(systemName: "gamecontroller")
+        NeumorphicButton(action: {
+            withAnimation {
+                isTabHidden = true
+            }
+            manager.startShortBreak()
+        }) {
+            Image(systemName: "cup.and.saucer")
         }
     }
 }
 
 #Preview {
-    PomodoroView()
+    PomodoroView(isTabHidden: Binding<Bool>.constant(true))
         .background(UIManager.shared.colors.background)
 }

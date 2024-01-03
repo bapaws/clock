@@ -1,5 +1,5 @@
 //
-//  SettingsUIContentsModeView.swift
+//  SettingsIconStyleView.swift
 //  DesktopClock
 //
 //  Created by 张敏超 on 2023/12/27.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingsUIContentsModeView: View {
+struct SettingsIconStyleView: View {
     @Binding var isPresented: Bool
     @Binding var isPaywallPresented: Bool
     @EnvironmentObject var ui: UIManager
@@ -29,6 +29,6 @@ struct SettingsUIContentsModeView: View {
 }
 
 #Preview {
-    SettingsUIContentsModeView(isPresented: Binding<Bool>.constant(false), isPaywallPresented: Binding<Bool>.constant(false))
+    SettingsIconStyleView(isPresented: Binding<Bool>.constant(false), isPaywallPresented: Binding<Bool>.constant(false))
         .environmentObject(UIManager.shared)
 }

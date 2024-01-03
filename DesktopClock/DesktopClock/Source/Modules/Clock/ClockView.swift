@@ -13,7 +13,6 @@ import SwiftUIX
 
 struct ClockView: View {
     @StateObject var manager: ClockManager = .shared
-
     @EnvironmentObject var ui: UIManager
 
     var body: some View {

@@ -9,9 +9,7 @@ import ClockShare
 import Neumorphic
 import PopupView
 import RevenueCat
-import RevenueCatUI
 import SwiftUI
-import SwiftUIIntrospect
 import SwiftUIX
 
 struct SettingsView: View {
@@ -68,7 +66,7 @@ struct SettingsView: View {
             SettingsLandspaceModeView(isPresented: $isLandspaceModePresented)
         }, customize: customize)
         .popup(isPresented: $isContentsModePresented, view: {
-            SettingsUIContentsModeView(isPresented: $isContentsModePresented, isPaywallPresented: $isPaywallPresented)
+            SettingsIconStyleView(isPresented: $isContentsModePresented, isPaywallPresented: $isPaywallPresented)
         }, customize: customize)
         .popup(isPresented: $isColorsPresented, view: {
             SettingsColorsView(isPresented: $isColorsPresented, isPaywallPresented: $isPaywallPresented)
@@ -115,57 +113,55 @@ struct SettingsView: View {
     var scrollView: some View {
         GeometryReader { proxy in
             ScrollView {
-                LazyVStack {
-                    SettingsProCell(action: {
-                        isPaywallPresented = true
-                    })
+                SettingsProCell(action: {
+                    isPaywallPresented = true
+                })
 
-                    // MARK: Clock
+                // MARK: Clock
 
-                    SettingsClockSection(
-                        isPaywallPresented: $isPaywallPresented,
-                        isTimeFormatPresented: $isTimeFormatPresented
-                    )
-                    .environmentObject(ClockManager.shared)
+                SettingsClockSection(
+                    isPaywallPresented: $isPaywallPresented,
+                    isTimeFormatPresented: $isTimeFormatPresented
+                )
+                .environmentObject(ClockManager.shared)
 
-                    // MARK: Pomodoro
+                // MARK: Pomodoro
 
-                    SettingsPomodoroSection(
-                        isPaywallPresented: $isPaywallPresented,
-                        isFocusPresented: $isFocusPresented,
-                        isShortBreakPresented: $isShortBreakPresented,
-                        isLongBreakPresented: $isLongBreakPresented
-                    )
-                    .environmentObject(PomodoroManager.shared)
+                SettingsPomodoroSection(
+                    isPaywallPresented: $isPaywallPresented,
+                    isFocusPresented: $isFocusPresented,
+                    isShortBreakPresented: $isShortBreakPresented,
+                    isLongBreakPresented: $isLongBreakPresented
+                )
+                .environmentObject(PomodoroManager.shared)
 
-                    // MARK: Sound
+                // MARK: Sound
 
-                    SettingsSoundSection(isSoundTypePresented: $isSoundTypePresented)
+                SettingsSoundSection(isSoundTypePresented: $isSoundTypePresented)
 
-                    // MARK: Appearance
+                // MARK: Appearance
 
-                    SettingsAppearanceSection(
-                        isPaywallPresented: $isPaywallPresented,
-                        isDarkModePresented: $isDarkModePresented,
-                        isLandspaceModePresented: $isLandspaceModePresented,
-                        isContentsModePresented: $isContentsModePresented,
-                        isColorsPresented: $isColorsPresented,
-                        isAppIconPresented: $isAppIconPresented
-                    )
+                SettingsAppearanceSection(
+                    isPaywallPresented: $isPaywallPresented,
+                    isDarkModePresented: $isDarkModePresented,
+                    isLandspaceModePresented: $isLandspaceModePresented,
+                    isContentsModePresented: $isContentsModePresented,
+                    isColorsPresented: $isColorsPresented,
+                    isAppIconPresented: $isAppIconPresented
+                )
 
-                    // MARK: Other
+                // MARK: Other
 
-                    SettingsSection(title: R.string.localizable.other()) {
-                        SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
-                        SettingsNavigateCell(title: R.string.localizable.about()) {
-                            isAboutPresented = true
-                        }
+                SettingsSection(title: R.string.localizable.other()) {
+                    SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
+                    SettingsNavigateCell(title: R.string.localizable.about()) {
+                        isAboutPresented = true
                     }
-
-                    Color.clear
-                        .height(proxy.safeAreaInsets.bottom)
-                        .padding(.vertical, .large)
                 }
+
+                Color.clear
+                    .height(proxy.safeAreaInsets.bottom)
+                    .padding(.vertical, .large)
             }
             .font(.headline)
             .edgesIgnoringSafeArea(.bottom)

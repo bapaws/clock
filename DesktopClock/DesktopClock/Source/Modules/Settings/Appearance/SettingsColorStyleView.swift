@@ -13,7 +13,7 @@ struct SettingsColorsView: View {
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        SettingsSection(            title: ColorType.title) {
+        SettingsSection(title: ColorType.title) {
             ForEach(ColorType.allCases, id: \.self) { mode in
                 SettingsCheckCell(title: mode.value, isPro: mode.isPro, isChecked: ui.colorType == mode) {
                     if mode.isPro, !ProManager.default.pro {

@@ -36,7 +36,7 @@ struct MainView: View {
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        GeometryReader { proxy in
+        let body = GeometryReader { proxy in
             ZStack(alignment: .top) {
                 color.background.ignoresSafeArea()
                 VStack(spacing: 0) {
@@ -99,6 +99,12 @@ struct MainView: View {
         .onChange(of: colorScheme) { newValue in
             ui.setupColors(scheme: newValue)
         }
+
+        if #available(iOS 16.0, *) {
+            body.persistentSystemOverlays(isTabHidden ? .hidden : .automatic)
+        } else {
+            body
+        }
     }
 
     // MARK: - Pager
@@ -108,6 +114,7 @@ struct MainView: View {
             pageContent(at: index)
                 .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))
         }
+        .allowsDragging(!isTabHidden)
         .onDraggingChanged { value in
             offsetX = value
         }
@@ -132,13 +139,13 @@ struct MainView: View {
     @ViewBuilder func pageContent(at index: ClockType) -> some View {
         switch index {
         case .pomodoro:
-            PomodoroView()
+            PomodoroView(isTabHidden: $isTabHidden)
                 .environmentObject(pomodoro)
         case .clock:
             ClockView()
                 .environmentObject(clock)
         case .timer:
-            TimerView()
+            TimerView(isTabHidden: $isTabHidden)
                 .environmentObject(timer)
         }
     }

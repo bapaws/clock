@@ -27,7 +27,7 @@ struct SettingsAppearanceSection: View {
             SettingsNavigateCell(title: LandspaceMode.title, value: ui.landspaceMode.value) {
                 isLandspaceModePresented = true
             }
-            SettingsNavigateCell(title: AppIconType.title, value: ui.colorType.value) {
+            SettingsNavigateCell(title: AppIconType.title, value: ui.appIcon.value) {
                 isAppIconPresented = true
             }
             SettingsNavigateCell(title: ColorType.title, value: ui.colorType.value, isPro: true) {

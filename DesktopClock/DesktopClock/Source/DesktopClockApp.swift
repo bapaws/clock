@@ -12,11 +12,23 @@ import SwiftUI
 @main
 struct DesktopClockApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) var scenePhase
+
     @State var didFinishLoad: Bool = false
 
     var body: some Scene {
         WindowGroup {
             group
+        }
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case .active:
+                // In iOS 13+, idle timer needs to be set in scene to override default
+                UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
+            case .inactive: break
+            case .background: break
+            @unknown default: print("ScenePhase: unexpected state")
+            }
         }
     }
 
@@ -42,6 +54,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         ProManager.setup()
 
+        // MARK: -
+
+        UIApplication.shared.addObserver(self, forKeyPath: "idleTimerDisabled", options: .new, context: nil)
+
         return true
     }
 
@@ -54,5 +70,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        let idleTimerDisabled = AppManager.shared.idleTimerDisabled
+        if let newValue = change?[.newKey] as? Bool, newValue != idleTimerDisabled {
+            UIApplication.shared.isIdleTimerDisabled = idleTimerDisabled
+        }
     }
 }

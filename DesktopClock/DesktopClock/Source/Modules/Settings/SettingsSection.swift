@@ -22,8 +22,6 @@ struct SettingsSection<Cell: View, ID: Hashable>: View {
                 .font(.caption)
                 .padding(horizontal: .regular, vertical: .extraSmall)
 
-            let stack = VStack(spacing: 0, content: content)
-
             if let itemCount = itemCount, itemCount > maxScollItemCount {
                 ScrollViewReader { reader in
                     ScrollView(showsIndicators: false) {

@@ -23,8 +23,16 @@
 "Appearance" = "Appearance";
 "ModeAuto" = "Use Device Setting";
 
+// MARK: Icon Style
 "IconType" = "Icon Type";
 "Text" = "Text";
+"Start" = "Start";
+"Stop" = "Stop";
+"Pause" = "Pause";
+"Resume" = "Resume";
+"Restart" = "Restart";
+
+// MARK: App Icon
 
 "AppIcon" = "App Icon";
 "LightClassic" = "Classic Light";
@@ -82,6 +90,7 @@
 "Switch" = "Switch";
 "Seconds" = "Seconds";
 "Muyu" = "Mokugyo";
+"SecondHand" = "Second Hand";
 "BackgroundSound" = "Background Sound";
 
 // MARK: About

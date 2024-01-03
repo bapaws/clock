@@ -7,6 +7,7 @@
 
 import AVFoundation
 import Combine
+import CoreHaptics
 import Foundation
 import SwiftUI
 
@@ -17,8 +18,8 @@ public enum PomodoroState {
 public class PomodoroManager: ObservableObject {
     public static let shared = PomodoroManager()
 
-//    @AppStorage(Storage.Key.Pomodoro.focusMinutes, store: Storage.default.store)
-    public var focusMinutes: Int = 1 {
+    @AppStorage(Storage.Key.Pomodoro.focusMinutes, store: Storage.default.store)
+    public var focusMinutes: Int = 25 {
         didSet {
             guard state == .none else { return }
             time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
@@ -42,11 +43,11 @@ public class PomodoroManager: ObservableObject {
             #if DEBUG
             switch state {
             case .focusCompleted, .shortBreak:
-                time = Time(hour: 0, minute: 0, second: 10)
+                time = Time(hour: 0, minute: 0, second: 3)
             case .longBreak:
-                time = Time(hour: 0, minute: 0, second: 25)
+                time = Time(hour: 0, minute: 0, second: 6)
             default:
-                time = Time(hour: 0, minute: 0, second: 45)
+                time = Time(hour: 0, minute: 0, second: 9)
             }
             #else
             switch state {
@@ -60,6 +61,8 @@ public class PomodoroManager: ObservableObject {
             #endif
         }
     }
+
+    private var engine: CHHapticEngine?
 
     public var timeInterval: TimeInterval = 1.0
     @Published public private(set) var time: Time = .focus
@@ -138,6 +141,8 @@ public extension PomodoroManager {
             if self.time.seconds <= 0 {
                 self.focusCount += 1
                 self.state = .focusCompleted
+
+                self.playFeedback()
             }
         })
         RunLoop.main.add(timer, forMode: .common)
@@ -204,5 +209,24 @@ public extension PomodoroManager {
         guard let timer = timer else { return }
         time--
         timer.fireDate = Date()
+    }
+}
+
+// MARK: Feedback
+
+public extension PomodoroManager {
+    func playFeedback() {
+        let soundID = SystemSoundID(kSystemSoundID_Vibrate)
+        AudioServicesPlaySystemSound(soundID)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(soundID)
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(soundID)
+        }
     }
 }

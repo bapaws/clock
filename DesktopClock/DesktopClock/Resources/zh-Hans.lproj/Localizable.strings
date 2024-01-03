@@ -23,8 +23,17 @@
 "Appearance" = "外观";
 "ModeAuto" = "跟随系统";
 
+// MARK: Icon Style
+
 "IconType" = "Emoji 按钮";
 "Text" = "文本";
+"Start" = "开始";
+"Stop" = "结束";
+"Pause" = "暂停";
+"Resume" = "继续";
+"Restart" = "重置";
+
+// MARK: App Icon
 
 "AppIcon" = "彩色图标";
 "LightClassic" = "经典白";
@@ -80,8 +89,8 @@
 "Card" = "翻牌";
 "Drip" = "水滴";
 "Switch" = "开关";
-"Seconds" = "秒针";
 "Muyu" = "木鱼";
+"SecondHand" = "秒针";
 "BackgroundSound" = "背景音";
 
 // MARK: About
