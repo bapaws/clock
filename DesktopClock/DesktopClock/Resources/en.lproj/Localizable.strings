@@ -71,6 +71,19 @@
 "ShortBreakDuration" = "Break";
 "LongBreakDuration" = "Long Break Duration";
 
+// MARK: Sound
+
+"Sound" = "Sound";
+"Mute" = "Mute";
+"Tick" = "Tick";
+"Pendulum" = "Pendulum";
+"Card" = "Card";
+"Drip" = "Drip";
+"Switch" = "Switch";
+"Seconds" = "Seconds";
+"Muyu" = "Mokugyo";
+"BackgroundSound" = "Background Sound";
+
 // MARK: About
 
 "Privacy" = "Privacy Policy";

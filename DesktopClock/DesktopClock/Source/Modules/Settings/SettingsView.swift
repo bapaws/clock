@@ -39,6 +39,9 @@ struct SettingsView: View {
     @State var isShortBreakPresented: Bool = false
     @State var isLongBreakPresented: Bool = false
 
+    // MAKR: Sound
+    @State var isSoundTypePresented: Bool = false
+
     // MARK: Other
 
     @State var isAboutPresented = false
@@ -96,67 +99,73 @@ struct SettingsView: View {
                 .environmentObject(PomodoroManager.shared)
         }, customize: customize)
 
+        // MARK: Sound
+
+        .popup(isPresented: $isSoundTypePresented, view: {
+            SettingsSoundTypeView(isPresented: $isSoundTypePresented)
+        }, customize: customize)
+
         // MARK: About
 
         .sheet(isPresented: $isAboutPresented) {
             AboutView(isPresented: $isAboutPresented)
-        }
-
-        .navigationViewStyle(.stack)
-        .introspect(.navigationView(style: .stack), on: .iOS(.v13, .v14, .v15, .v16, .v17)) {
-            print(type(of: $0)) // UINavigationController
-            ui.setupNavigationBar($0.navigationBar)
         }
     }
 
     var scrollView: some View {
         GeometryReader { proxy in
             ScrollView {
-                SettingsProCell(action: {
-                    isPaywallPresented = true
-                })
+                LazyVStack {
+                    SettingsProCell(action: {
+                        isPaywallPresented = true
+                    })
 
-                // MARK: Clock
+                    // MARK: Clock
 
-                SettingsClockSection(
-                    isPaywallPresented: $isPaywallPresented,
-                    isTimeFormatPresented: $isTimeFormatPresented
-                )
-                .environmentObject(ClockManager.shared)
+                    SettingsClockSection(
+                        isPaywallPresented: $isPaywallPresented,
+                        isTimeFormatPresented: $isTimeFormatPresented
+                    )
+                    .environmentObject(ClockManager.shared)
 
-                // MARK: Pomodoro
+                    // MARK: Pomodoro
 
-                SettingsPomodoroSection(
-                    isPaywallPresented: $isPaywallPresented,
-                    isFocusPresented: $isFocusPresented,
-                    isShortBreakPresented: $isShortBreakPresented,
-                    isLongBreakPresented: $isLongBreakPresented
-                )
-                .environmentObject(PomodoroManager.shared)
+                    SettingsPomodoroSection(
+                        isPaywallPresented: $isPaywallPresented,
+                        isFocusPresented: $isFocusPresented,
+                        isShortBreakPresented: $isShortBreakPresented,
+                        isLongBreakPresented: $isLongBreakPresented
+                    )
+                    .environmentObject(PomodoroManager.shared)
 
-                // MARK: Appearance
+                    // MARK: Sound
 
-                SettingsAppearanceSection(
-                    isPaywallPresented: $isPaywallPresented,
-                    isDarkModePresented: $isDarkModePresented,
-                    isLandspaceModePresented: $isLandspaceModePresented,
-                    isContentsModePresented: $isContentsModePresented,
-                    isColorsPresented: $isColorsPresented,
-                    isAppIconPresented: $isAppIconPresented
-                )
+                    SettingsSoundSection(isSoundTypePresented: $isSoundTypePresented)
 
-                // MARK: Other
+                    // MARK: Appearance
 
-                SettingsSection(title: R.string.localizable.other()) {
-                    SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
-                    SettingsNavigateCell(title: R.string.localizable.about()) {
-                        isAboutPresented = true
+                    SettingsAppearanceSection(
+                        isPaywallPresented: $isPaywallPresented,
+                        isDarkModePresented: $isDarkModePresented,
+                        isLandspaceModePresented: $isLandspaceModePresented,
+                        isContentsModePresented: $isContentsModePresented,
+                        isColorsPresented: $isColorsPresented,
+                        isAppIconPresented: $isAppIconPresented
+                    )
+
+                    // MARK: Other
+
+                    SettingsSection(title: R.string.localizable.other()) {
+                        SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
+                        SettingsNavigateCell(title: R.string.localizable.about()) {
+                            isAboutPresented = true
+                        }
                     }
-                }
 
-                Color.clear
-                    .height(proxy.safeAreaInsets.bottom)
-                    .padding(.vertical, .large)
+                    Color.clear
+                        .height(proxy.safeAreaInsets.bottom)
+                        .padding(.vertical, .large)
+                }
             }
             .font(.headline)
             .edgesIgnoringSafeArea(.bottom)
@@ -177,7 +186,6 @@ struct SettingsView: View {
             .type(.floater(verticalPadding: 0, horizontalPadding: 0, useSafeAreaInset: true))
             .position(.bottom)
             .appearFrom(.bottom)
-//            .dragToDismiss(true)
             .closeOnTapOutside(true)
             .backgroundColor(Color.black.opacity(0.35))
             .animation(.spring(duration: 0.3))

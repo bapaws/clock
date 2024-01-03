@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2024/1/1.
 //
 
+import Neumorphic
 import ClockShare
 import SwiftUI
 
@@ -26,9 +27,10 @@ struct SettingsToggleCell: View {
                     .foregroundColor(ui.colors.secondary)
             }
             Spacer()
-            Toggle(title, isOn: $isOn)
-                .softSettingsSwitchToggleStyle(tint: ui.colors.secondary, labelsHidden: true)
+            Toggle("", isOn: $isOn)
+                .tint(ui.colors.secondary)
                 .frame(width: 64, height: 32)
+                .softOuterShadow()
         }
         .padding(horizontal: .regular, vertical: .small)
         .height(cellHeight)

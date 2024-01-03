@@ -16,7 +16,7 @@ public extension View {
         let format = UIGraphicsImageRendererFormat()
         if let size = size {
             view.bounds = CGRect(origin: .zero, size: size)
-            format.scale = 1
+            format.scale = UIScreen.main.scale
         } else {
             view.bounds = UIScreen.main.bounds
             format.scale = UIScreen.main.scale

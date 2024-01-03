@@ -95,7 +95,7 @@ extension UIManager {
             .foregroundColor: foregroundColor ?? UIColor.label
         ]
         let navigationBar = navigationBar ?? UINavigationBar.appearance()
-        navigationBar.prefersLargeTitles = true
+        navigationBar.prefersLargeTitles = false
         navigationBar.tintColor = foregroundColor
         navigationBar.barTintColor = foregroundColor
         navigationBar.standardAppearance = appearance

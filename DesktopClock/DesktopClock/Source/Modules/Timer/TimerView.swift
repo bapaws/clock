@@ -36,7 +36,7 @@ struct TimerView: View {
         }
         .padding()
         .onChange(of: manager.time.seconds) { _ in
-            SoundManager.shared.play()
+            AppManager.shared.playTimer()
         }
     }
 

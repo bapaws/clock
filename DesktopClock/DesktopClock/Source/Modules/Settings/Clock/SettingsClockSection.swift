@@ -14,16 +14,16 @@ struct SettingsClockSection: View {
 
     @EnvironmentObject var clock: ClockManager
 
-    @State var isHidden: Bool = false
+    @State var isShowed: Bool = ClockManager.shared.secondStyle != .none
 
     var body: some View {
         SettingsSection(title: R.string.localizable.clock()) {
             SettingsNavigateCell(title: R.string.localizable.timeFormat(), value: "\(clock.timeFormat.rawValue)") {
                 isTimeFormatPresented = true
             }
-            SettingsToggleCell(title: R.string.localizable.showSecond(), isOn: $isHidden)
-                .onChange(of: isHidden) { isHidden in
-                    clock.secondStyle = isHidden ? .none : .small
+            SettingsToggleCell(title: R.string.localizable.showSecond(), isOn: $isShowed)
+                .onChange(of: isShowed) { isShowed in
+                    clock.secondStyle = isShowed ? .small : .none
                 }
         }
     }

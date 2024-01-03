@@ -51,4 +51,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> UIInterfaceOrientationMask {
         UIManager.shared.landspaceMode.support
     }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
+    }
 }

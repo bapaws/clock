@@ -20,6 +20,8 @@ public class Storage {
 
         public static let launchedCount = "com.bapaws.launchedCount"
         public static let soundType = "soundType"
+        public static let isMute = "isMute"
+        public static let idleTimerDisabled = "idleTimerDisabled"
 
         // MARK: Clock
 

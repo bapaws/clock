@@ -59,14 +59,21 @@ public class ClockManager: ObservableObject {
 
 public extension ClockManager {
     func start() {
-        timer?.invalidate()
-        timer = nil
-
         let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             self?.time.toDate()
         })
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
+    }
+
+    func suspendTimer() {
+        timer?.fireDate = .distantFuture
+    }
+
+    func resumeTimer() {
+        guard let timer = timer else { return }
+        time.toDate()
+        timer.fireDate = Date()
     }
 }
 
@@ -91,4 +98,3 @@ public extension ClockManager {
         }
     }
 }
-

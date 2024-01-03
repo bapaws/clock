@@ -81,6 +81,18 @@ struct MainView: View {
             SettingsView(isPresented: $isSettingsPresented)
 //            #endif
         }
+        .onChange(of: isSettingsPresented) { isPresented in
+            if isPresented {
+                AppManager.shared.suspend()
+            } else {
+                AppManager.shared.resume()
+            }
+        }
+        .onChange(of: currentIndex) { index in
+            DispatchQueue.main.async {
+                AppManager.shared.onPageWillChange(index: index)
+            }
+        }
 
         // MARK: Listen
 
@@ -96,11 +108,6 @@ struct MainView: View {
             pageContent(at: index)
                 .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))
         }
-        .onDraggingBegan {
-            withAnimation {
-                isTabHidden = false
-            }
-        }
         .onDraggingChanged { value in
             offsetX = value
         }
@@ -110,11 +117,14 @@ struct MainView: View {
             }
         }
         .onPageWillChange { index in
-            SoundManager.shared.stop()
+//            AppManager.shared.onPageWillChange(index: index)
             withAnimation {
                 currentIndex = index
             }
         }
+//        .onPageChanged { index in
+//            AppManager.shared.onPageChanged(index: index)
+//        }
     }
 
     // MARK: - Content
@@ -158,14 +168,6 @@ struct MainView: View {
 extension MainView {
     var icon: IconStyle { ui.icon }
     var color: Colors { ui.colors }
-}
-
-// MARK: Sound
-
-extension MainView {
-    func stop() {
-        
-    }
 }
 
 #Preview {

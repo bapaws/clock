@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2023/12/22.
 //
 
+import AVFoundation
 import Combine
 import Dependencies
 import Foundation
@@ -19,6 +20,7 @@ public class TimerManager: ObservableObject {
 
     @Dependency(\.date.now) var now
 
+    public var timeInterval: TimeInterval = 0.25
     private var timer: Timer?
 
     public init(time: Time = .zero, timer: Timer? = nil) {
@@ -33,7 +35,7 @@ public extension TimerManager {
     func start() {
         stop()
 
-        timer = Timer(timeInterval: 0.1, repeats: true, block: { [weak self] _ in
+        timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             self?.time++
         })
         RunLoop.main.add(timer!, forMode: .common)
@@ -66,5 +68,19 @@ public extension TimerManager {
 
         isStarted = false
         isPaused = false
+    }
+}
+
+// MARK: -
+
+public extension TimerManager {
+    func suspendTimer() {
+        timer?.fireDate = .distantFuture
+    }
+
+    func resumeTimer() {
+        guard let timer = timer else { return }
+        time++
+        timer.fireDate = Date()
     }
 }

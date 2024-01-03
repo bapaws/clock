@@ -20,32 +20,35 @@ struct PomodoroView: View {
             if proxy.size.width > proxy.size.height {
                 HStack(spacing: 16) {
                     PomodoroLandspaceView(time: PomodoroManager.shared.time, color: ui.colors)
-                    button
+                    VStack(spacing: 32) {
+                        button
+                    }
+                    .animation(.easeIn, value: manager.state)
                 }
             } else {
                 VStack(spacing: 16) {
                     PomodoroPortraitView(time: PomodoroManager.shared.time, color: ui.colors)
-                    button
+                    HStack(spacing: 32) {
+                        button
+                    }
+                    .animation(.easeIn, value: manager.state)
                 }
             }
         }
         .padding()
         .onChange(of: manager.time.seconds) { _ in
-            SoundManager.shared.play()
+            AppManager.shared.playPomodoro()
         }
     }
 
     @ViewBuilder var button: some View {
-        if manager.state != .none {
-            stopButton
-                .transition(.movingParts.iris(
-                    blurRadius: 50
-                ))
-        } else {
+        if manager.state == .none {
             startButton
-                .transition(.movingParts.iris(
-                    blurRadius: 50
-                ))
+        } else if manager.state == .focusCompleted {
+            restartButton
+            shortBreakButton
+        } else {
+            stopButton
         }
     }
 
@@ -58,6 +61,18 @@ struct PomodoroView: View {
     var startButton: some View {
         NeumorphicButton(action: manager.startFocus) {
             Image(systemName: "play")
+        }
+    }
+
+    var restartButton: some View {
+        NeumorphicButton(action: manager.restartFocusTimer) {
+            Image(systemName: "goforward")
+        }
+    }
+
+    var shortBreakButton: some View {
+        NeumorphicButton(action: manager.startShortBreak) {
+            Image(systemName: "gamecontroller")
         }
     }
 }

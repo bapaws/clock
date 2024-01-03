@@ -11,14 +11,14 @@ import Foundation
 import SwiftUI
 
 public enum PomodoroState {
-    case none, focus, shortBreak, longBreak
+    case none, focus, focusCompleted, shortBreak, longBreak
 }
 
 public class PomodoroManager: ObservableObject {
     public static let shared = PomodoroManager()
 
-    @AppStorage(Storage.Key.Pomodoro.focusMinutes, store: Storage.default.store)
-    public var focusMinutes: Int = 25 {
+//    @AppStorage(Storage.Key.Pomodoro.focusMinutes, store: Storage.default.store)
+    public var focusMinutes: Int = 1 {
         didSet {
             guard state == .none else { return }
             time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
@@ -39,28 +39,36 @@ public class PomodoroManager: ObservableObject {
             timer?.invalidate()
             timer = nil
 
+            #if DEBUG
             switch state {
-            case .shortBreak:
+            case .focusCompleted, .shortBreak:
+                time = Time(hour: 0, minute: 0, second: 10)
+            case .longBreak:
+                time = Time(hour: 0, minute: 0, second: 25)
+            default:
+                time = Time(hour: 0, minute: 0, second: 45)
+            }
+            #else
+            switch state {
+            case .focusCompleted, .shortBreak:
                 time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
             case .longBreak:
                 time = Time(hour: longBreakMinutes / 60, minute: longBreakMinutes % 60, second: 0)
             default:
                 time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
             }
+            #endif
         }
     }
 
-    @Published public private(set) var time: Time
+    public var timeInterval: TimeInterval = 1.0
+    @Published public private(set) var time: Time = .focus
     private var timer: Timer?
 
     private init() {
         state = .none
 
-        if let focusMinutes = Storage.default.store?.object(forKey: Storage.Key.Pomodoro.focusMinutes) as? Int {
-            time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
-        } else {
-            time = .focus
-        }
+        setup()
     }
 
     public func setup() {
@@ -79,7 +87,7 @@ public extension PomodoroManager {
             options.append(option)
             option += 5
         }
-        option = 60
+        option = 70
         while option <= 100 {
             options.append(option)
             option += 10
@@ -114,57 +122,87 @@ public extension PomodoroManager {
     }
 }
 
-// MARK: - Timer
+// MARK: Focus
 
 public extension PomodoroManager {
     func startFocus() {
         state = .focus
-        let timer = Timer(timeInterval: 1.0, repeats: true, block: { [weak self] _ in
+        restartFocusTimer()
+    }
+
+    func restartFocusTimer() {
+        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             guard let self = self else { return }
             self.time--
 
             if self.time.seconds <= 0 {
                 self.focusCount += 1
-                if self.focusCount == self.focusLoopCount {
-                    self.startLongBreak()
-                } else {
-                    self.startShortBreak()
-                }
+                self.state = .focusCompleted
             }
         })
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
     }
+}
 
+// MARK: Short Break
+
+public extension PomodoroManager {
     func startShortBreak() {
         state = .shortBreak
-        let timer = Timer(timeInterval: 1.0, repeats: true, block: { [weak self] _ in
+        restartShortBreak()
+    }
+
+    func restartShortBreak() {
+        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             guard let self = self else { return }
             self.time--
 
             if self.time.seconds <= 0 {
-                self.startFocus()
+                self.state = .none
             }
         })
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
     }
+}
 
+// MARK: Long Break
+
+public extension PomodoroManager {
     func startLongBreak() {
         state = .longBreak
-        let timer = Timer(timeInterval: 1.0, repeats: true, block: { [weak self] _ in
+        restartLongBreak()
+    }
+
+    func restartLongBreak() {
+        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             guard let self = self else { return }
             self.time--
 
             if self.time.seconds <= 0 {
-                self.startFocus()
+                self.state = .focus
             }
         })
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
     }
+}
 
+// MARK: - Timer
+
+public extension PomodoroManager {
     func stop() {
         state = .none
+    }
+
+    func suspendTimer() {
+        timer?.fireDate = .distantFuture
+    }
+
+    func resumeTimer() {
+        guard let timer = timer else { return }
+        time--
+        timer.fireDate = Date()
     }
 }

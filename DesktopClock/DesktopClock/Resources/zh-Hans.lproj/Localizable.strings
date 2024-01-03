@@ -55,7 +55,7 @@
 
 // MARK: Other
 
-"Other" = "Other";
+"Other" = "其他";
 "Rate" = "鼓励一下";
 "Upgrade" = "检查更新";
 "About" = "关于";
@@ -70,6 +70,19 @@
 "FocusDuration" = "专注时长";
 "ShortBreakDuration" = "休息";
 "LongBreakDuration" = "长休息";
+
+// MARK: Sound
+
+"Sound" = "声音";
+"Mute" = "静音";
+"Tick" = "嘀嗒";
+"Pendulum" = "钟摆";
+"Card" = "翻牌";
+"Drip" = "水滴";
+"Switch" = "开关";
+"Seconds" = "秒针";
+"Muyu" = "木鱼";
+"BackgroundSound" = "背景音";
 
 // MARK: About
 

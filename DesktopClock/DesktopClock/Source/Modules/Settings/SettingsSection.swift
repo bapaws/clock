@@ -22,39 +22,31 @@ struct SettingsSection<Cell: View, ID: Hashable>: View {
                 .font(.caption)
                 .padding(horizontal: .regular, vertical: .extraSmall)
 
-            ZStack {
-                let stack = VStack(spacing: 0, content: content)
+            let stack = VStack(spacing: 0, content: content)
 
-                if let itemCount = itemCount, itemCount > maxScollItemCount {
-                    ScrollViewReader { reader in
-                        ScrollView(showsIndicators: false) {
-                            stack
-                                .onAppear {
-                                    guard let id = scrollToID else { return }
-                                    reader.scrollTo(id, anchor: .center)
-                                }
-                        }
-                        .frame(minHeight: 0, maxHeight: CGFloat(maxScollItemCount) * cellHeight, alignment: .center)
-                        .background {
-                            RoundedRectangle(cornerRadius: 16.0)
-                                .fill(Color.Neumorphic.main)
-                                .softOuterShadow()
-                        }
+            if let itemCount = itemCount, itemCount > maxScollItemCount {
+                ScrollViewReader { reader in
+                    ScrollView(showsIndicators: false) {
+                        LazyVStack(spacing: 0, content: content)
+                            .onAppear {
+                                guard let id = scrollToID else { return }
+                                reader.scrollTo(id, anchor: .center)
+                            }
                     }
-                } else {
-                    stack
-                        .background {
-                            RoundedRectangle(cornerRadius: 16.0)
-                                .fill(Color.Neumorphic.main)
-                                .softOuterShadow()
-                        }
+                    .frame(minHeight: 0, maxHeight: CGFloat(maxScollItemCount) * cellHeight, alignment: .center)
+                    .background {
+                        RoundedRectangle(cornerRadius: 16.0)
+                            .fill(Color.Neumorphic.main)
+                            .softOuterShadow()
+                    }
                 }
+            } else {
+                content()
             }
         }
         .contentShape(Rectangle())
         .padding(.vertical)
         .padding(.horizontal)
-        .padding(.horizontal, .small)
         .foregroundColor(Color.Neumorphic.secondary)
         .background(Color.Neumorphic.main)
     }
