@@ -31,7 +31,7 @@ struct SettingsAppearanceSection: View {
                 isAppIconPresented = true
             }
             SettingsNavigateCell(title: ColorType.title, value: ui.colorType.value, isPro: true) {
-                if ProManager.default.pro {
+                if ProManager.default.isPro {
                     isColorsPresented = true
                 } else {
                     isPaywallPresented = true

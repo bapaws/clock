@@ -19,14 +19,14 @@ struct SettingsPomodoroSection: View {
     var body: some View {
         SettingsSection(title: R.string.localizable.pomodoro()) {
             SettingsNavigateCell(title: R.string.localizable.focusDuration(), value: "\(pomodoro.focusMinutes) mins", isPro: true) {
-                if ProManager.default.pro {
+                if ProManager.default.isPro {
                     isFocusPresented = true
                 } else {
                     isPaywallPresented = true
                 }
             }
             SettingsNavigateCell(title: R.string.localizable.shortBreakDuration(), value: "\(pomodoro.shortBreakMinutes) mins", isPro: true) {
-                if ProManager.default.pro {
+                if ProManager.default.isPro {
                     isShortBreakPresented = true
                 } else {
                     isPaywallPresented = true

@@ -66,13 +66,6 @@
 		88CE4D742B3FC3AB0035BAE9 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */; };
 		88CE4D762B3FF6A60035BAE9 /* SettingsColorStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D752B3FF6A60035BAE9 /* SettingsColorStyleView.swift */; };
 		88CE4D832B40FF8D0035BAE9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4D822B40FF8D0035BAE9 /* Colors.swift */; };
-		88CE4D982B41B1180035BAE9 /* sound_drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D912B41B1170035BAE9 /* sound_drip.wav */; };
-		88CE4D992B41B1180035BAE9 /* sound_muyu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D922B41B1170035BAE9 /* sound_muyu.wav */; };
-		88CE4D9A2B41B1180035BAE9 /* sound_switch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D932B41B1180035BAE9 /* sound_switch.wav */; };
-		88CE4D9B2B41B1180035BAE9 /* sound_tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D942B41B1180035BAE9 /* sound_tick.wav */; };
-		88CE4D9C2B41B1180035BAE9 /* sound_card.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D952B41B1180035BAE9 /* sound_card.wav */; };
-		88CE4D9D2B41B1180035BAE9 /* sound_second_hand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D962B41B1180035BAE9 /* sound_second_hand.wav */; };
-		88CE4D9E2B41B1180035BAE9 /* sound_pendulum.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88CE4D972B41B1180035BAE9 /* sound_pendulum.wav */; };
 		88CE4DA32B424A1C0035BAE9 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DA22B424A1C0035BAE9 /* CaptureView.swift */; };
 		88CE4DAA2B4269210035BAE9 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DA92B4269210035BAE9 /* AppIcons.swift */; };
 		88CE4DC82B4276800035BAE9 /* SettingsAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DC72B4276800035BAE9 /* SettingsAppIconView.swift */; };
@@ -83,6 +76,8 @@
 		88DF1A1F2B45943100D0A709 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88DF1A1E2B45943100D0A709 /* drip.wav */; };
 		88DF1A212B459C4B00D0A709 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88DF1A202B459C4B00D0A709 /* tick.wav */; };
 		88DF1A242B45A0BF00D0A709 /* second.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88DF1A232B45A0BF00D0A709 /* second.wav */; };
+		88F8102D2B46689300EFB3D2 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 88F8102C2B46689300EFB3D2 /* MBProgressHUD */; };
+		88F810352B46C50D00EFB3D2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 88F810342B46C50D00EFB3D2 /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,13 +137,6 @@
 		88CE4D732B3FC3AB0035BAE9 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
 		88CE4D752B3FF6A60035BAE9 /* SettingsColorStyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsColorStyleView.swift; sourceTree = "<group>"; };
 		88CE4D822B40FF8D0035BAE9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		88CE4D912B41B1170035BAE9 /* sound_drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_drip.wav; sourceTree = "<group>"; };
-		88CE4D922B41B1170035BAE9 /* sound_muyu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_muyu.wav; sourceTree = "<group>"; };
-		88CE4D932B41B1180035BAE9 /* sound_switch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_switch.wav; sourceTree = "<group>"; };
-		88CE4D942B41B1180035BAE9 /* sound_tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_tick.wav; sourceTree = "<group>"; };
-		88CE4D952B41B1180035BAE9 /* sound_card.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_card.wav; sourceTree = "<group>"; };
-		88CE4D962B41B1180035BAE9 /* sound_second_hand.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_second_hand.wav; sourceTree = "<group>"; };
-		88CE4D972B41B1180035BAE9 /* sound_pendulum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_pendulum.wav; sourceTree = "<group>"; };
 		88CE4DA22B424A1C0035BAE9 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 		88CE4DA92B4269210035BAE9 /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
 		88CE4DC72B4276800035BAE9 /* SettingsAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppIconView.swift; sourceTree = "<group>"; };
@@ -159,6 +147,8 @@
 		88DF1A1E2B45943100D0A709 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
 		88DF1A202B459C4B00D0A709 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 		88DF1A232B45A0BF00D0A709 /* second.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = second.wav; sourceTree = "<group>"; };
+		88F810292B46549900EFB3D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F810302B467E8E00EFB3D2 /* DesktopClock.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DesktopClock.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,8 +156,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88F810352B46C50D00EFB3D2 /* SwiftUIX in Frameworks */,
 				88A8D7622B3DB1EC00983E0E /* KeychainSwift in Frameworks */,
 				88ABA21E2B3AB4BF0035DDDB /* PopupView in Frameworks */,
+				88F8102D2B46689300EFB3D2 /* MBProgressHUD in Frameworks */,
 				88A8D7542B3D7B9E00983E0E /* ClockShare in Frameworks */,
 				8874649C2B37191D004416B8 /* RevenueCat in Frameworks */,
 				887464932B3718D4004416B8 /* SwiftUIPager in Frameworks */,
@@ -234,12 +226,14 @@
 		88A8D6DA2B3D78F300983E0E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88F810292B46549900EFB3D2 /* Info.plist */,
 				88A8D6DB2B3D78F300983E0E /* LaunchScreen */,
 				88A8D6DF2B3D78F300983E0E /* Localizable.strings */,
 				88A8D6E12B3D78F300983E0E /* InfoPlist.strings */,
 				88A8D6E52B3D78F300983E0E /* DesktopClock.entitlements */,
 				88A8D6E62B3D78F300983E0E /* Assets.xcassets */,
 				88CE4D902B41B1050035BAE9 /* Sounds */,
+				88F810302B467E8E00EFB3D2 /* DesktopClock.storekit */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -443,13 +437,6 @@
 				88DF1A202B459C4B00D0A709 /* tick.wav */,
 				88DF1A1E2B45943100D0A709 /* drip.wav */,
 				88DF1A232B45A0BF00D0A709 /* second.wav */,
-				88CE4D952B41B1180035BAE9 /* sound_card.wav */,
-				88CE4D912B41B1170035BAE9 /* sound_drip.wav */,
-				88CE4D922B41B1170035BAE9 /* sound_muyu.wav */,
-				88CE4D972B41B1180035BAE9 /* sound_pendulum.wav */,
-				88CE4D962B41B1180035BAE9 /* sound_second_hand.wav */,
-				88CE4D932B41B1180035BAE9 /* sound_switch.wav */,
-				88CE4D942B41B1180035BAE9 /* sound_tick.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -497,6 +484,8 @@
 				88ABA21D2B3AB4BF0035DDDB /* PopupView */,
 				88A8D7532B3D7B9E00983E0E /* ClockShare */,
 				88A8D7612B3DB1EC00983E0E /* KeychainSwift */,
+				88F8102C2B46689300EFB3D2 /* MBProgressHUD */,
+				88F810342B46C50D00EFB3D2 /* SwiftUIX */,
 			);
 			productName = PureClock;
 			productReference = 8874645D2B37184E004416B8 /* DesktopClock.app */;
@@ -534,6 +523,8 @@
 				8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */,
 				88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */,
 				88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				88F8102B2B46689300EFB3D2 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+				88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 8874645E2B37184E004416B8 /* Products */;
 			projectDirPath = "";
@@ -549,13 +540,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88CE4D9B2B41B1180035BAE9 /* sound_tick.wav in Resources */,
 				88A8D7222B3D78F300983E0E /* LaunchScreen.storyboard in Resources */,
 				88DF1A1F2B45943100D0A709 /* drip.wav in Resources */,
 				88A8D7252B3D78F400983E0E /* InfoPlist.strings in Resources */,
-				88CE4D992B41B1180035BAE9 /* sound_muyu.wav in Resources */,
-				88CE4D9E2B41B1180035BAE9 /* sound_pendulum.wav in Resources */,
-				88CE4D982B41B1180035BAE9 /* sound_drip.wav in Resources */,
 				88A8D7242B3D78F400983E0E /* Localizable.strings in Resources */,
 				88DF1A242B45A0BF00D0A709 /* second.wav in Resources */,
 				88A8D7212B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard in Resources */,
@@ -563,9 +550,6 @@
 				88A8D7502B3D78F400983E0E /* Preview Assets.xcassets in Resources */,
 				88DF1A212B459C4B00D0A709 /* tick.wav in Resources */,
 				88A8D7232B3D78F300983E0E /* LaunchScreen_zh-Hant.storyboard in Resources */,
-				88CE4D9A2B41B1180035BAE9 /* sound_switch.wav in Resources */,
-				88CE4D9D2B41B1180035BAE9 /* sound_second_hand.wav in Resources */,
-				88CE4D9C2B41B1180035BAE9 /* sound_card.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +778,7 @@
 				DEVELOPMENT_TEAM = GM4766U38W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DesktopClock/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -826,6 +811,7 @@
 				DEVELOPMENT_TEAM = GM4766U38W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DesktopClock/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -917,6 +903,22 @@
 				minimumVersion = 2.8.3;
 			};
 		};
+		88F8102B2B46689300EFB3D2 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.9;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -957,6 +959,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = PopupView;
+		};
+		88F8102C2B46689300EFB3D2 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F8102B2B46689300EFB3D2 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		88F810342B46C50D00EFB3D2 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

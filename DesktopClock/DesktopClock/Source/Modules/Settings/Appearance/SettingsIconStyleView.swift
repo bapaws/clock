@@ -16,7 +16,7 @@ struct SettingsIconStyleView: View {
         SettingsSection(title: IconType.title) {
             ForEach(IconType.allCases, id: \.self) { mode in
                 SettingsCheckCell(title: mode.value, isPro: mode.isPro, isChecked: ui.iconType == mode) {
-                    if mode.isPro, !ProManager.default.pro {
+                    if mode.isPro, !ProManager.default.isPro {
                         isPaywallPresented = true
                     } else {
                         ui.iconType = mode

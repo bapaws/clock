@@ -7,6 +7,9 @@
 */
 
 "AppName" = "Desktop Clock";
+"Slogan" = "Let time hold more value.";
+"Cancel" = "Cancel";
+"Congratulations" = "🎉Congratulations🎉";
 
 // MARK: - Main
 

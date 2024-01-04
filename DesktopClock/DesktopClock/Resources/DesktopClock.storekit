@@ -1,0 +1,128 @@
+{
+  "identifier" : "4E09364D",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "6475088580",
+      "localizations" : [
+        {
+          "description" : "一次付费，永久解锁",
+          "displayName" : "永久会员",
+          "locale" : "zh_CN"
+        },
+        {
+          "description" : "Pay once, permanently unlocks all",
+          "displayName" : "Lifetime",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.bapaws.desktopclock.lifetime",
+      "referenceName" : "永久会员",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6474898768",
+    "_developerTeamID" : "GM4766U38W",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 726040209.83050704,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21427923",
+      "localizations" : [
+
+      ],
+      "name" : "all",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6475088239",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Best Value: Go premium for a year",
+              "displayName" : "Yearly",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "最划算，一整年会员",
+              "displayName" : "包年会员",
+              "locale" : "zh_CN"
+            }
+          ],
+          "productID" : "com.bapaws.desktopclock.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "包年会员",
+          "subscriptionGroupID" : "21427923",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

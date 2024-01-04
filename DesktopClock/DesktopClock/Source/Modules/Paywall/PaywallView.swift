@@ -81,13 +81,20 @@ struct PaywallView: View {
             }))
         }
         .onAppear {
-            guard selectedPackage == nil else { return }
+            ClockManager.shared.resumeTimer()
 
+            guard selectedPackage == nil else { return }
+            HUD.show()
             ProManager.default.getOfferings { error in
+                HUD.hide()
+
                 guard error == nil else { return }
                 selectedPackage = ProManager.default.availablePackages.first
                 packages = ProManager.default.availablePackages
             }
+        }
+        .onDisappear {
+            ClockManager.shared.suspendTimer()
         }
     }
 
@@ -174,26 +181,29 @@ struct PaywallView: View {
 
     func purchase() {
         guard let package = selectedPackage else { return }
+
+        HUD.show()
         ProManager.default.purchase(package: package) { error in
+            HUD.hide()
             if let error = error {
                 print(error)
-//                                self?.view.makeToast(error.localizedDescription)
+                Toast.show(error.localizedDescription)
             } else {
-//                                self?.purchasedSuccessful()
+                Toast.show(R.string.localizable.congratulations())
             }
         }
     }
 
     func restore() {
-//        HUD.show(timeout: 120)
-        ProManager.default.restorePurchases {  error in
+        HUD.show()
+        ProManager.default.restorePurchases { error in
+            HUD.hide()
             if let error = error {
                 print(error)
-//                self?.view.makeToast(error.localizedDescription)
+                Toast.show(error.localizedDescription)
             } else {
-//                self?.purchasedSuccessful()
+                Toast.show(R.string.localizable.congratulations())
             }
-//            HUD.hide()
         }
     }
 }

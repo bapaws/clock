@@ -12,22 +12,30 @@ struct SettingsProCell: View {
     let action: () -> Void
 
     @EnvironmentObject var ui: UIManager
+    @EnvironmentObject var pro: ProManager
 
     var body: some View {
         Button(action: action) {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(R.string.localizable.proMembership())
+                    Text(pro.purchasedProduct?.localizedTitle ?? R.string.localizable.proMembership())
                         .font(.title2)
                         .foregroundColor(Color.white)
-                    Text(R.string.localizable.unlockPro())
+                    let subTitle = pro.isPro ? R.string.localizable.slogan() : R.string.localizable.unlockPro()
+                    Text(subTitle)
                         .font(.subheadline)
                         .foregroundColor(Color.white)
                 }
                 Spacer()
-                Text(R.string.localizable.tryFree())
-                    .font(.headline)
-                    .foregroundColor(Color.white)
+                if pro.isPro {
+                    Image(systemName: "crown")
+                        .font(.title)
+                        .foregroundColor(Color.white)
+                } else {
+                    Text(R.string.localizable.tryFree())
+                        .font(.headline)
+                        .foregroundColor(Color.white)
+                }
             }
         }
         .softButtonStyle(RoundedRectangle(cornerRadius: 16), mainColor: UIManager.shared.colors.secondary, pressedEffect: .flat)

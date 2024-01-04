@@ -7,6 +7,9 @@
 */
 
 "AppName" = "桌面时钟";
+"Slogan" = "让时间更有价值";
+"Cancel" = "取消";
+"Congratulations" = "🎉恭喜解锁 Pro 会员🎉";
 
 // MARK: - Main
 

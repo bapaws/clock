@@ -20,7 +20,7 @@ struct SettingsAppIconView: View {
                 LazyVStack {
                     ForEach(AppIconType.allCases, id: \.self) { icon in
                         Button {
-                            if icon.isPro, !ProManager.default.pro {
+                            if icon.isPro, !ProManager.default.isPro {
                                 isPaywallPresented = true
                             } else {
                                 ui.appIcon = icon

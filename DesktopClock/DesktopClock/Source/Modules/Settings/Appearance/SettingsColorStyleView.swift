@@ -16,7 +16,7 @@ struct SettingsColorsView: View {
         SettingsSection(title: ColorType.title) {
             ForEach(ColorType.allCases, id: \.self) { mode in
                 SettingsCheckCell(title: mode.value, isPro: mode.isPro, isChecked: ui.colorType == mode) {
-                    if mode.isPro, !ProManager.default.pro {
+                    if mode.isPro, !ProManager.default.isPro {
                         isPaywallPresented = true
                     } else {
                         ui.colorType = mode

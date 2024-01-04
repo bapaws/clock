@@ -79,6 +79,7 @@ struct MainView: View {
 //            CaptureView()
 //            #else
             SettingsView(isPresented: $isSettingsPresented)
+                .environmentObject(ProManager.default)
 //            #endif
         }
         .onChange(of: isSettingsPresented) { isPresented in
@@ -124,14 +125,10 @@ struct MainView: View {
             }
         }
         .onPageWillChange { index in
-//            AppManager.shared.onPageWillChange(index: index)
             withAnimation {
                 currentIndex = index
             }
         }
-//        .onPageChanged { index in
-//            AppManager.shared.onPageChanged(index: index)
-//        }
     }
 
     // MARK: - Content

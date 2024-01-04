@@ -11,7 +11,7 @@ import RevenueCat
 
 typealias ProCompletionHandler = (PublicError?) -> Void
 
-class ProManager: ClockShare.ProManager {
+class ProManager: ClockShare.ProManager, ObservableObject {
     private static let shared = ProManager()
     override class var `default`: ProManager { shared }
 
