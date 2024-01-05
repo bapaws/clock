@@ -43,7 +43,7 @@ public class PomodoroManager: ObservableObject {
             #if DEBUG
             switch state {
             case .focusCompleted, .shortBreak:
-                time = Time(hour: 0, minute: 0, second: 3)
+                time = Time(hour: 0, minute: 5, second: 0)
             case .longBreak:
                 time = Time(hour: 0, minute: 0, second: 6)
             default:

@@ -19,23 +19,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKK-Dc-u76">
-                                <rect key="frame" x="108.66666666666667" y="750" width="175.66666666666663" height="52"/>
+                                <rect key="frame" x="98.666666666666671" y="730" width="195.66666666666663" height="72"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="cEM-So-l3F">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cEM-So-l3F" secondAttribute="height" id="v2w-uc-HN7"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desktop Clock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfp-sr-rJW">
-                                        <rect key="frame" x="51.999999999999979" y="0.0" width="123.66666666666669" height="52"/>
+                                        <rect key="frame" x="71.999999999999972" y="0.0" width="123.66666666666666" height="72"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="UY8-i2-aDV"/>
+                                    <constraint firstAttribute="height" constant="72" id="UY8-i2-aDV"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -53,7 +53,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="LaunchImage" width="72" height="72"/>
         <namedColor name="BackgroundColor">
             <color red="0.92500001192092896" green="0.94099998474121094" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

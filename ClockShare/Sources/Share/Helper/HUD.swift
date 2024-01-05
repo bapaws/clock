@@ -44,7 +44,6 @@ public class Toast {
         guard let msg = message, let keyWindow = UIApplication.shared.keyWindow else { return }
         let hudView = MBProgressHUD.showAdded(to: keyWindow, animated: true)
         hudView.mode = .text
-        hudView.
         hudView.label.text = msg
         hudView.margin = 16
         hudView.hide(animated: true, afterDelay: 3)
