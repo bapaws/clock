@@ -8,7 +8,7 @@
 import Foundation
 
 public enum AppIconType: String, CaseIterable {
-    case lightClassic, darkClassic
+    case darkClassic, lightClassic
     case lightPink, lightOrange, lightPurple
     case darkPink, darkOrange, darkPurple
 

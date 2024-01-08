@@ -11,6 +11,8 @@ struct SettingsSoundSection: View {
     @Binding var isSoundTypePresented: Bool
     @State var isMute: Bool = AppManager.shared.isMute
 
+    @EnvironmentObject var app: AppManager
+
     var body: some View {
         SettingsSection(title: R.string.localizable.sound()) {
             SettingsToggleCell(title: R.string.localizable.mute(), isOn: $isMute)
@@ -18,7 +20,7 @@ struct SettingsSoundSection: View {
                     AppManager.shared.isMute = isMute
                 }
 
-            SettingsNavigateCell(title: R.string.localizable.backgroundSound(), value: AppManager.shared.soundType.value) {
+            SettingsNavigateCell(title: R.string.localizable.backgroundSound(), value: app.soundType.value) {
                 isSoundTypePresented = true
             }
         }

@@ -50,7 +50,7 @@ public class AppManager: ObservableObject {
     public static let shared = AppManager()
 
     @AppStorage(Storage.Key.isMute)
-    public var isMute: Bool = false
+    public var isMute: Bool = true
 
     @AppStorage(Storage.Key.soundType)
     public var soundType: SoundType = .tick {

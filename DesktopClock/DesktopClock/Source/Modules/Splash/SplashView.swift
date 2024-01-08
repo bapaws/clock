@@ -28,7 +28,8 @@ struct SplashView: View {
                         .font(.system(size: 20, weight: .thin))
                     Spacer()
                 }
-                .height(52)
+                .height(72)
+                .offset(x: -12)
             }
             .padding(.bottom, 16)
             .background(Color(R.color.backgroundColor))

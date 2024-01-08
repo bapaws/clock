@@ -34,6 +34,8 @@ struct AboutView: View {
                 let infoDictionary = Bundle.main.infoDictionary
                 if let displayName = infoDictionary?["CFBundleDisplayName"] as? String {
                     Text(displayName)
+                } else {
+                    Text(R.string.localizable.appName())
                 }
                 if let majorVersion = infoDictionary?["CFBundleShortVersionString"] as? String,
                    let minorVersion = infoDictionary?["CFBundleVersion"] as? String
@@ -49,7 +51,7 @@ struct AboutView: View {
                 Spacer()
                 HStack {
                     Button {
-                        urlString = "https://privacy.bapaws.com/calendar/terms.html"
+                        urlString = "https://privacy.bapaws.com/desktopclock/terms.html"
                         showSafari = true
                     } label: {
                         Text(R.string.localizable.terms())
@@ -60,15 +62,16 @@ struct AboutView: View {
                         .font(.caption)
                         .foregroundColor(.quaternaryLabel)
                     Button {
-                        urlString = "https://privacy.bapaws.com/calendar/privacy.html"
+                        urlString = "https://privacy.bapaws.com/desktopclock/privacy.html"
                         showSafari = true
                     } label: {
-                        Text(R.string.localizable.terms())
+                        Text(R.string.localizable.privacy())
                             .font(.caption)
                             .foregroundColor(.quaternaryLabel)
                     }
                 }
             }
+            .padding()
             .frame(.greedy)
             .background(Color.Neumorphic.main)
             .navigationTitle(R.string.localizable.about())

@@ -156,7 +156,7 @@ struct MainView: View {
                 isSettingsPresented = true
             }, label: {
                 Text(icon.settings)
-                    .frame(width: icon.tabItemHeight + 16, height: icon.tabItemHeight + 16)
+                    .frame(height: icon.tabItemHeight + 16)
             })
         }
         .font(icon.font)
@@ -164,6 +164,7 @@ struct MainView: View {
         .padding(.top, safeAreaInsets.top)
         .padding(.bottom, safeAreaInsets.bottom + 8)
         .padding(.trailing, safeAreaInsets.trailing)
+        .padding(.trailing)
     }
 }
 

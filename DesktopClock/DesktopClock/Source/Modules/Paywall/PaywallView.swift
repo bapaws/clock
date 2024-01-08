@@ -143,11 +143,14 @@ struct PaywallView: View {
                                     .font(.footnote)
                             }
                             Spacer()
-                            VStack(alignment: .trailing) {
+                            VStack(alignment: .trailing, spacing: 8) {
                                 Text(package.localizedPriceString)
                                     .font(.title2)
                                 if let days = freeTrialDays(package: package) {
                                     Text(R.string.localizable.freeTrialDays("\(days)"))
+                                        .background(UIManager.shared.colors.secondary)
+                                        .foregroundColor(Color.white)
+                                        .font(.footnote)
                                 }
                             }
                         }
@@ -189,6 +192,7 @@ struct PaywallView: View {
                 print(error)
                 Toast.show(error.localizedDescription)
             } else {
+                isPresented = false
                 Toast.show(R.string.localizable.congratulations())
             }
         }
@@ -202,6 +206,7 @@ struct PaywallView: View {
                 print(error)
                 Toast.show(error.localizedDescription)
             } else {
+                isPresented = false
                 Toast.show(R.string.localizable.congratulations())
             }
         }

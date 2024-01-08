@@ -24,8 +24,12 @@ struct SettingsAppearanceSection: View {
             SettingsNavigateCell(title: DarkMode.title, value: ui.darkMode.value) {
                 isDarkModePresented = true
             }
-            SettingsNavigateCell(title: LandspaceMode.title, value: ui.landspaceMode.value) {
-                isLandspaceModePresented = true
+
+            // pad 下横竖屏切换无效
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                SettingsNavigateCell(title: LandspaceMode.title, value: ui.landspaceMode.value) {
+                    isLandspaceModePresented = true
+                }
             }
             SettingsNavigateCell(title: AppIconType.title, value: ui.appIcon.value) {
                 isAppIconPresented = true
@@ -39,6 +43,11 @@ struct SettingsAppearanceSection: View {
             }
             SettingsToggleCell(title: IconType.title, isPro: true, isOn: $isEmoji)
                 .onChange(of: isEmoji) { isEmoji in
+                    guard ProManager.default.isPro else {
+                        isPaywallPresented = true
+                        self.isEmoji = false
+                        return
+                    }
                     if isEmoji {
                         ui.iconType = .emoji
                     } else {

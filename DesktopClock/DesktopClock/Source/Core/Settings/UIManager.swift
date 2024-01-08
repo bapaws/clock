@@ -29,7 +29,7 @@ public class UIManager: ObservableObject {
     public static let shared = UIManager()
 
     @AppStorage(Storage.Key.appIcon, store: Storage.default.store)
-    public var appIcon: AppIconType = .lightClassic {
+    public var appIcon: AppIconType = .darkClassic {
         didSet { changeAppIcon(to: appIcon) }
     }
 
@@ -73,7 +73,10 @@ extension UIManager {
         setupNavigationBar()
 
         setupDarkMode()
-        setupLandspaceMode()
+        // pad 下横竖屏切换无效
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            setupLandspaceMode()
+        }
 
         setupColors()
     }
@@ -127,7 +130,7 @@ extension UIManager {
                 windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: preferred))
 
                 for window in windowScene.windows {
-                    window.rootViewController?.setNeedsUpdateOfSupportedInterfaceOrientations()
+                    window.rootViewController?.frontViewController?.setNeedsUpdateOfSupportedInterfaceOrientations()
                 }
             }
         } else {
