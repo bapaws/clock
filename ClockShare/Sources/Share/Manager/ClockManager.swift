@@ -37,13 +37,13 @@ public class ClockManager: ObservableObject {
 
     @Published public private(set) var time: Time = .init()
 
-    @AppStorage(Storage.Key.secondStyle)
+    @AppStorage(Storage.Key.secondStyle, store: Storage.default.store)
     public var secondStyle: SecondStyle = .small
 
-    @AppStorage(Storage.Key.timeFormat)
+    @AppStorage(Storage.Key.timeFormat, store: Storage.default.store)
     public var timeFormat: TimeFormat = .h24
 
-    @AppStorage(Storage.Key.dateStyle)
+    @AppStorage(Storage.Key.dateStyle, store: Storage.default.store)
     public var dateStyle: DateStyle = .none
 
     public var timeInterval: TimeInterval = 0.5

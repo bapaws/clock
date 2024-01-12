@@ -30,7 +30,7 @@ class ProManager: ClockShare.ProManager, ObservableObject {
 
     public static func setup() {
         #if DEBUG
-        Purchases.logLevel = .debug
+        Purchases.logLevel = .error
         #endif
         Purchases.configure(
             withAPIKey: "appl_sgCmJGKWPQGNeTsZLKcZPihgddB",

@@ -8,10 +8,11 @@
 import ClockShare
 import RevenueCat
 import SwiftUI
+import WidgetKit
 
 @main
 struct DesktopClockApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     @Environment(\.scenePhase) var scenePhase
 
     @State var didFinishLoad: Bool = false
@@ -23,6 +24,12 @@ struct DesktopClockApp: App {
         .onChange(of: scenePhase) { phase in
             switch phase {
             case .active:
+                if #available(iOS 16.0, *) {
+                    UNUserNotificationCenter.current().setBadgeCount(0)
+                } else {
+                    UIApplication.shared.applicationIconBadgeNumber = 0
+                }
+                UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                 // In iOS 13+, idle timer needs to be set in scene to override default
                 UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
             case .inactive: break
@@ -49,14 +56,18 @@ struct DesktopClockApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         DispatchQueue.main.async {
-            UIManager.shared.setupUI()
+            UIManager.shared.setupAppUI()
         }
 
         ProManager.setup()
 
-        // MARK: -
+        // MARK: Observer
 
         UIApplication.shared.addObserver(self, forKeyPath: "idleTimerDisabled", options: .new, context: nil)
+
+        // MARK: Notification
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { _, _ in }
 
         return true
     }
@@ -68,9 +79,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UIManager.shared.landspaceMode.support
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
-    }
+    // Not work
+//    func applicationDidBecomeActive(_ application: UIApplication) {
+//        if #available(iOS 16.0, *) {
+//            UNUserNotificationCenter.current().setBadgeCount(0)
+//        } else {
+//            application.applicationIconBadgeNumber = 0
+//        }
+//        UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
+//    }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         let idleTimerDisabled = AppManager.shared.idleTimerDisabled

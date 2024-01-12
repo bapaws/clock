@@ -11,7 +11,7 @@ import CoreHaptics
 import Foundation
 import SwiftUI
 
-public enum PomodoroState {
+public enum PomodoroState: String, Codable {
     case none, focus, focusCompleted, shortBreak, longBreak
 }
 
@@ -36,36 +36,14 @@ public class PomodoroManager: ObservableObject {
 
     @Published public private(set) var focusCount: Int = 0
     @Published public private(set) var state: PomodoroState {
-        didSet {
-            timer?.invalidate()
-            timer = nil
-
-            #if DEBUG
-            switch state {
-            case .focusCompleted, .shortBreak:
-                time = Time(hour: 0, minute: 5, second: 0)
-            case .longBreak:
-                time = Time(hour: 0, minute: 0, second: 6)
-            default:
-                time = Time(hour: 0, minute: 0, second: 9)
-            }
-            #else
-            switch state {
-            case .focusCompleted, .shortBreak:
-                time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
-            case .longBreak:
-                time = Time(hour: longBreakMinutes / 60, minute: longBreakMinutes % 60, second: 0)
-            default:
-                time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
-            }
-            #endif
-        }
+        didSet { didSetState() }
     }
 
     private var engine: CHHapticEngine?
 
     public var timeInterval: TimeInterval = 1.0
     @Published public private(set) var time: Time = .focus
+
     private var timer: Timer?
 
     private init() {
@@ -77,6 +55,61 @@ public class PomodoroManager: ObservableObject {
     public func setup() {
         guard state == .none else { return }
         time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
+    }
+
+    func didSetState() {
+        timer?.invalidate()
+        timer = nil
+
+        #if DEBUG
+        switch state {
+        case .none:
+            time = Time(hour: 0, minute: 1, second: 9)
+            removeNotification()
+        case .focus:
+            time = Time(hour: 0, minute: 1, second: 9)
+            // 开始专注，添加本地计时通知
+            addNotification()
+        case .focusCompleted, .shortBreak:
+            time = Time(hour: 0, minute: 5, second: 0)
+        case .longBreak:
+            time = Time(hour: 0, minute: 0, second: 6)
+        }
+        #else
+        switch state {
+        case .none:
+            time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
+        case .focus:
+            time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
+            // 开始专注，添加本地计时通知
+            addNotification()
+        case .focusCompleted:
+            time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
+        case .shortBreak:
+            time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
+        case .longBreak:
+            time = Time(hour: longBreakMinutes / 60, minute: longBreakMinutes % 60, second: 0)
+        }
+        #endif
+
+        if #available(iOS 16.1, *) {
+            if state == .none || state == .focusCompleted {
+                PomodoroActivity.shared.stop()
+            } else {
+                var minutes = focusMinutes
+                switch state {
+                case .focusCompleted, .shortBreak:
+                    minutes = shortBreakMinutes
+                case .longBreak:
+                    minutes = longBreakMinutes
+                default:
+                    minutes = focusMinutes
+                }
+
+                let attributes = PomodoroAttributes(minutes: minutes, state: state)
+                PomodoroActivity.shared.start(attributes: attributes, time: time)
+            }
+        }
     }
 }
 
@@ -138,6 +171,10 @@ public extension PomodoroManager {
             guard let self = self else { return }
             self.time--
 
+            if #available(iOS 16.1, *) {
+                PomodoroActivity.shared.update(time: time)
+            }
+
             if self.time.seconds <= 0 {
                 self.focusCount += 1
                 self.state = .focusCompleted
@@ -163,6 +200,10 @@ public extension PomodoroManager {
             guard let self = self else { return }
             self.time--
 
+            if #available(iOS 16.1, *) {
+                PomodoroActivity.shared.update(time: time)
+            }
+
             if self.time.seconds <= 0 {
                 self.state = .none
             }
@@ -185,8 +226,12 @@ public extension PomodoroManager {
             guard let self = self else { return }
             self.time--
 
+            if #available(iOS 16.1, *) {
+                PomodoroActivity.shared.update(time: time)
+            }
+
             if self.time.seconds <= 0 {
-                self.state = .focus
+                self.state = .none
             }
         })
         RunLoop.main.add(timer, forMode: .common)
@@ -202,7 +247,7 @@ public extension PomodoroManager {
     }
 
     func suspendTimer() {
-        timer?.fireDate = .distantFuture
+//        timer?.fireDate = .distantFuture
     }
 
     func resumeTimer() {
@@ -228,5 +273,31 @@ public extension PomodoroManager {
             let soundID = SystemSoundID(kSystemSoundID_Vibrate)
             AudioServicesPlaySystemSound(soundID)
         }
+    }
+}
+
+// MARK: Notification
+
+extension PomodoroManager {
+    static let identifier = "com.bapaws.desktopclock.Pomodoro"
+
+    func addNotification() {
+        let current = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "AppName".localized
+        if state == .focus {
+            content.body = "FocusCompletedNotification".localized
+        } else {
+            content.body = "BreakCompletedNotification".localized
+        }
+        content.sound = .default
+        content.badge = 1
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(time.seconds), repeats: false)
+        let request = UNNotificationRequest(identifier: PomodoroManager.identifier, content: content, trigger: trigger)
+        current.add(request)
+    }
+
+    func removeNotification() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [PomodoroManager.identifier])
     }
 }

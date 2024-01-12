@@ -81,6 +81,8 @@
 "FocusDuration" = "Focus Duration";
 "ShortBreakDuration" = "Break";
 "LongBreakDuration" = "Long Break Duration";
+"FocusCompletedNotification" = "Congratulations! Keep going!👏👏👏";
+"BreakCompletedNotification" = "Break has finished，Keep fighting!💪💪💪";
 
 // MARK: Sound
 
@@ -91,7 +93,6 @@
 "Card" = "Card";
 "Drip" = "Drip";
 "Switch" = "Switch";
-"Seconds" = "Seconds";
 "Muyu" = "Mokugyo";
 "SecondHand" = "Second Hand";
 "BackgroundSound" = "Background Sound";

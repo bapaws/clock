@@ -6,17 +6,14 @@
 //
 
 import Foundation
-import UIKit
-import SwiftUI
+import ClockShare
 
-public enum LandspaceMode: String, Codable, CaseIterable {
-    case system, portrait, landspace
-
-    public static var title: String {
+public extension LandspaceMode {
+    static var title: String {
         R.string.localizable.landspaceMode()
     }
 
-    public var value: String {
+    var value: String {
         switch self {
         case .portrait:
             R.string.localizable.portrait()
@@ -24,39 +21,6 @@ public enum LandspaceMode: String, Codable, CaseIterable {
             R.string.localizable.landspace()
         default:
             R.string.localizable.modeAuto()
-            
-        }
-    }
-
-    public var current: LandspaceMode {
-        switch self {
-        case .system:
-            UIScreen.main.bounds.width < UIScreen.main.bounds.height ? .portrait : .landspace
-        default:
-            self
-        }
-    }
-
-    public var support: UIInterfaceOrientationMask {
-        switch self {
-        case .portrait:
-
-            .portrait
-        case .landspace:
-            [.landscapeLeft, .landscapeRight]
-        default:
-            [.portrait, .landscapeLeft, .landscapeRight]
-        }
-    }
-
-    public var preferred: UIInterfaceOrientationMask? {
-        switch self {
-        case .portrait:
-            .portrait
-        case .landspace:
-            .landscapeRight
-        default:
-            nil
         }
     }
 }

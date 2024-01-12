@@ -7,9 +7,8 @@
 
 import Dependencies
 import Foundation
-import SwiftUI
 
-public struct Time: Equatable {
+public struct Time: Equatable, Codable, Hashable {
     @Dependency(\.date.now) var now
 
     public enum Meridiem: String {
@@ -26,10 +25,10 @@ public struct Time: Equatable {
         self.date = date
 
         let components = Calendar.current.dateComponents([.hour, .minute, .second, .nanosecond], from: date)
-        self.second = components.second ?? 0
-        self.minute = components.minute ?? 25
-        self.hour = components.hour ?? 12
-        self.millisecond = (components.nanosecond ?? 0) / 1000000
+        second = components.second ?? 0
+        minute = components.minute ?? 25
+        hour = components.hour ?? 12
+        millisecond = (components.nanosecond ?? 0) / 1000000
     }
 
     public init(date: Date = Date(), hour: Int, minute: Int, second: Int, millisecond: Int = 0) {
@@ -39,6 +38,40 @@ public struct Time: Equatable {
         self.second = (second + millisecond / 1000) % 60
         self.minute = (minute + second / 60 + millisecond / 1000) % 60
         self.hour = (hour + minute / 60 + second / 3600 + millisecond / 1000) % 24
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case hour
+        case minute
+        case second
+        case millisecond
+        case date
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        hour = try container.decode(Int.self, forKey: .hour)
+        minute = try container.decode(Int.self, forKey: .minute)
+        second = try container.decode(Int.self, forKey: .second)
+        millisecond = try container.decode(Int.self, forKey: .millisecond)
+        date = try container.decode(Date.self, forKey: .date)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(hour, forKey: .hour)
+        try container.encode(minute, forKey: .minute)
+        try container.encode(second, forKey: .second)
+        try container.encode(millisecond, forKey: .millisecond)
+        try container.encode(date, forKey: .date)
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(hour)
+        hasher.combine(minute)
+        hasher.combine(second)
+        hasher.combine(millisecond)
+        hasher.combine(date)
     }
 }
 

@@ -9,6 +9,7 @@ import ClockShare
 import Combine
 import Neumorphic
 import SwiftUI
+import ActivityKit
 
 struct PomodoroView: View {
     @Binding var isTabHidden: Bool
@@ -34,6 +35,13 @@ struct PomodoroView: View {
         .padding()
         .onChange(of: manager.time.seconds) { _ in
             AppManager.shared.playPomodoro()
+        }
+        .task {
+            if #available(iOS 16.1, *) {
+                for activity in Activity<PomodoroAttributes>.activities {
+                    await activity.end()
+                }
+            } 
         }
     }
 

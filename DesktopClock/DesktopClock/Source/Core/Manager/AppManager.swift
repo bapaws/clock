@@ -49,10 +49,10 @@ public enum AppPage: Int, CaseIterable {
 public class AppManager: ObservableObject {
     public static let shared = AppManager()
 
-    @AppStorage(Storage.Key.isMute)
+    @AppStorage(Storage.Key.isMute, store: Storage.default.store)
     public var isMute: Bool = true
 
-    @AppStorage(Storage.Key.soundType)
+    @AppStorage(Storage.Key.soundType, store: Storage.default.store)
     public var soundType: SoundType = .tick {
         didSet {
             audioPlayerQueue.async {
@@ -62,7 +62,7 @@ public class AppManager: ObservableObject {
         }
     }
 
-    @AppStorage(Storage.Key.idleTimerDisabled)
+    @AppStorage(Storage.Key.idleTimerDisabled, store: Storage.default.store)
     public var idleTimerDisabled: Bool = true {
         didSet {
             UIApplication.shared.isIdleTimerDisabled = idleTimerDisabled

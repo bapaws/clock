@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2023/12/24.
 //
 
+import ClockShare
 import Neumorphic
 import SwiftUI
 
