@@ -17,7 +17,7 @@
                BlueprintIdentifier = "8874645C2B37184E004416B8"
                BuildableName = "DesktopClock.app"
                BlueprintName = "DesktopClock"
-               ReferencedContainer = "container:DesktopClock.xcodeproj">
+               ReferencedContainer = "container:DesktopClock/DesktopClock.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,7 +46,7 @@
             BlueprintIdentifier = "8874645C2B37184E004416B8"
             BuildableName = "DesktopClock.app"
             BlueprintName = "DesktopClock"
-            ReferencedContainer = "container:DesktopClock.xcodeproj">
+            ReferencedContainer = "container:DesktopClock/DesktopClock.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,7 +63,7 @@
             BlueprintIdentifier = "8874645C2B37184E004416B8"
             BuildableName = "DesktopClock.app"
             BlueprintName = "DesktopClock"
-            ReferencedContainer = "container:DesktopClock.xcodeproj">
+            ReferencedContainer = "container:DesktopClock/DesktopClock.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

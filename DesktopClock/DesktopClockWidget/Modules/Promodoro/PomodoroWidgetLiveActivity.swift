@@ -35,7 +35,6 @@ struct PomodoroWidgetLiveActivity: Widget {
             }
             .padding(.horizontal, .large)
             .padding(.vertical)
-//            .background(context.attributes.colors.background)
             .background(Color.black)
         } dynamicIsland: { context in
             DynamicIsland {
@@ -90,7 +89,6 @@ struct PomodoroWidgetLiveActivity: Widget {
                     .padding(.vertical, .small)
                     .foregroundColor(context.attributes.colors.background)
             })
-//            .tintColor(context.attributes.colors.background)
             .tint(context.attributes.colors.primary)
             .background(context.attributes.colors.primary)
             .cornerRadius(32, style: .circular)
@@ -99,10 +97,7 @@ struct PomodoroWidgetLiveActivity: Widget {
                 .font(.headline)
                 .padding(.horizontal, .large)
                 .padding(.vertical, .regular)
-//                .tintColor(context.attributes.colors.background)
-//                .foregroundColor(context.attributes.colors.primary)
                 .background(context.attributes.colors.primary)
-//                .background(context.attributes.colors.secondary)
                 .cornerRadius(32, style: .circular)
         }
     }

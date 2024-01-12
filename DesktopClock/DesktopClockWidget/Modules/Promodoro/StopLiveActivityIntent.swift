@@ -15,8 +15,6 @@ struct StopLiveActivityIntent: LiveActivityIntent {
     static var title: LocalizedStringResource = "AppName"
     static var description = IntentDescription("Slogan")
 
-//    static var openAppWhenRun: Bool { true }
-
     func perform() async throws -> some IntentResult {
         DispatchQueue.main.async {
             PomodoroManager.shared.stop()
