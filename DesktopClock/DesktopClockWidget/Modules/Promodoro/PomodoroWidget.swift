@@ -31,6 +31,5 @@ struct PomodoroWidget: View {
         .font(.system(size: digitWidth * 0.6, design: .rounded), weight: .bold)
         .minimumScaleFactor(0.2)
         .foregroundColor(colors.primary)
-//        .frame(.greedy)
     }
 }

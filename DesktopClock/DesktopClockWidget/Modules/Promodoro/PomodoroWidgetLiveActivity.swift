@@ -33,9 +33,9 @@ struct PomodoroWidgetLiveActivity: Widget {
                     releaseButton(for: context)
                 }
             }
-            .padding(.horizontal, .large)
+            .padding(.horizontal, 32)
             .padding(.vertical)
-            .background(Color.black)
+            .background(context.attributes.colors.background)
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
@@ -85,8 +85,6 @@ struct PomodoroWidgetLiveActivity: Widget {
             Button(intent: StopLiveActivityIntent(), label: {
                 Text(R.string.localizable.stop())
                     .font(.headline)
-                    .padding(.horizontal, .regular)
-                    .padding(.vertical, .small)
                     .foregroundColor(context.attributes.colors.background)
             })
             .tint(context.attributes.colors.primary)
@@ -95,8 +93,9 @@ struct PomodoroWidgetLiveActivity: Widget {
         } else {
             Text(R.string.localizable.stop())
                 .font(.headline)
-                .padding(.horizontal, .large)
-                .padding(.vertical, .regular)
+                .padding(.horizontal, .regular)
+                .padding(.vertical, .small)
+                .foregroundColor(context.attributes.colors.background)
                 .background(context.attributes.colors.primary)
                 .cornerRadius(32, style: .circular)
         }

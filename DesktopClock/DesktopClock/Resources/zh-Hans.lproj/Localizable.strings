@@ -82,7 +82,7 @@
 "FocusDuration" = "专注时长";
 "ShortBreakDuration" = "休息";
 "LongBreakDuration" = "长休息";
-"FocusCompletedNotification" = "恭喜，继续加油！👏👏👏";
+"FocusCompletedNotification" = "太棒了，继续前进吧！👏👏👏";
 "BreakCompletedNotification" = "休息结束啦，继续加油！💪💪💪";
 
 // MARK: Sound
