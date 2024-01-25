@@ -7,6 +7,7 @@
 
 import ClockShare
 import Dependencies
+import DesktopClockShare
 import Neumorphic
 import SwiftUI
 import SwiftUIPager
@@ -111,7 +112,7 @@ struct MainView: View {
     // MARK: - Pager
 
     @ViewBuilder func pager(with safeAreaInsets: EdgeInsets) -> some View {
-        Pager(page: page, data: ClockType.allCases, id: \.self) { index in
+        Pager(page: page, data: AppPage.allCases, id: \.self) { index in
             pageContent(at: index)
                 .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))
         }
@@ -133,7 +134,7 @@ struct MainView: View {
 
     // MARK: - Content
 
-    @ViewBuilder func pageContent(at index: ClockType) -> some View {
+    @ViewBuilder func pageContent(at index: AppPage) -> some View {
         switch index {
         case .pomodoro:
             PomodoroView(isTabHidden: $isTabHidden)

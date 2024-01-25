@@ -1,0 +1,988 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		880592E82B620BE70051284F /* SettingsStepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592E72B620BE70051284F /* SettingsStepperCell.swift */; };
+		880592ED2B621B090051284F /* SettingsTimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592EC2B621B090051284F /* SettingsTimerSection.swift */; };
+		8837ADDA2B5C0082000DC432 /* DigitalClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADD92B5C0082000DC432 /* DigitalClockApp.swift */; };
+		8837ADDE2B5C0083000DC432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8837ADDD2B5C0083000DC432 /* Assets.xcassets */; };
+		8837ADE12B5C0083000DC432 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8837ADE02B5C0083000DC432 /* Preview Assets.xcassets */; };
+		8837ADEC2B5C09EF000DC432 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 8837ADEB2B5C09EF000DC432 /* SwiftUIX */; };
+		8837ADEF2B5C0A2E000DC432 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8837ADEE2B5C0A2E000DC432 /* RswiftLibrary */; };
+		8837ADF22B5C0AA1000DC432 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 8837ADF12B5C0AA1000DC432 /* RevenueCat */; };
+		8837ADF52B5C0AB5000DC432 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 8837ADF42B5C0AB5000DC432 /* SwiftDate */; };
+		8837AE082B5C0D5C000DC432 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFC2B5C0D5C000DC432 /* AppIcons.swift */; };
+		8837AE092B5C0D5C000DC432 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFD2B5C0D5C000DC432 /* ColorType.swift */; };
+		8837AE0A2B5C0D5C000DC432 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFE2B5C0D5C000DC432 /* DarkMode.swift */; };
+		8837AE0B2B5C0D5C000DC432 /* LandspaceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFF2B5C0D5C000DC432 /* LandspaceMode.swift */; };
+		8837AE0C2B5C0D5C000DC432 /* IconStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE002B5C0D5C000DC432 /* IconStyle.swift */; };
+		8837AE0D2B5C0D5C000DC432 /* ProManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE022B5C0D5C000DC432 /* ProManager.swift */; };
+		8837AE0E2B5C0D5C000DC432 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE032B5C0D5C000DC432 /* SoundType.swift */; };
+		8837AE102B5C0D5C000DC432 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE062B5C0D5C000DC432 /* PageControl.swift */; };
+		8837AE162B5C0DC2000DC432 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE182B5C0DC2000DC432 /* InfoPlist.strings */; };
+		8837AE1A2B5C0DC8000DC432 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE1C2B5C0DC8000DC432 /* Localizable.strings */; };
+		8837AE222B5C0E16000DC432 /* LaunchScreen_zh-Hans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE1F2B5C0E16000DC432 /* LaunchScreen_zh-Hans.storyboard */; };
+		8837AE232B5C0E16000DC432 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE202B5C0E16000DC432 /* LaunchScreen.storyboard */; };
+		8837AE242B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE212B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard */; };
+		8837AEC32B5C0EC4000DC432 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE902B5C0EC4000DC432 /* SplashView.swift */; };
+		8837AEC72B5C0EC4000DC432 /* HoldOnButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE952B5C0EC4000DC432 /* HoldOnButton.swift */; };
+		8837AECA2B5C0EC4000DC432 /* SettingsToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE9A2B5C0EC4000DC432 /* SettingsToggleCell.swift */; };
+		8837AECB2B5C0EC4000DC432 /* SettingsNavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE9B2B5C0EC4000DC432 /* SettingsNavigateCell.swift */; };
+		8837AECC2B5C0EC4000DC432 /* SettingsCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE9C2B5C0EC4000DC432 /* SettingsCheckCell.swift */; };
+		8837AECD2B5C0EC4000DC432 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE9D2B5C0EC4000DC432 /* SettingsView.swift */; };
+		8837AECF2B5C0EC4000DC432 /* SettingsAppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA02B5C0EC4000DC432 /* SettingsAppearanceSection.swift */; };
+		8837AED12B5C0EC4000DC432 /* SettingsLandspaceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA22B5C0EC4000DC432 /* SettingsLandspaceModeView.swift */; };
+		8837AED32B5C0EC4000DC432 /* SettingsDarkModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA42B5C0EC4000DC432 /* SettingsDarkModeView.swift */; };
+		8837AED42B5C0EC4000DC432 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA52B5C0EC4000DC432 /* SettingsSection.swift */; };
+		8837AED62B5C0EC4000DC432 /* SettingsFocusMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA92B5C0EC4000DC432 /* SettingsFocusMinutesView.swift */; };
+		8837AED72B5C0EC4000DC432 /* SettingsPomodoroSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAA2B5C0EC4000DC432 /* SettingsPomodoroSection.swift */; };
+		8837AED82B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAB2B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift */; };
+		8837AED92B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAC2B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift */; };
+		8837AEDA2B5C0EC4000DC432 /* SettingsSoundTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAE2B5C0EC4000DC432 /* SettingsSoundTypeView.swift */; };
+		8837AEDB2B5C0EC4000DC432 /* SettingsSoundSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAF2B5C0EC4000DC432 /* SettingsSoundSection.swift */; };
+		8837AEDC2B5C0EC4000DC432 /* SettingsTimeFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB12B5C0EC4000DC432 /* SettingsTimeFormatView.swift */; };
+		8837AEDD2B5C0EC4000DC432 /* SettingsClockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */; };
+		8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */; };
+		8837AEDF2B5C0EC4000DC432 /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */; };
+		8837AEE02B5C0EC4000DC432 /* PomodoroLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB62B5C0EC4000DC432 /* PomodoroLandspaceView.swift */; };
+		8837AEE12B5C0EC4000DC432 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB82B5C0EC4000DC432 /* AboutView.swift */; };
+		8837AEE22B5C0EC4000DC432 /* ClockPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBA2B5C0EC4000DC432 /* ClockPortraitView.swift */; };
+		8837AEE32B5C0EC4000DC432 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBB2B5C0EC4000DC432 /* ClockView.swift */; };
+		8837AEE42B5C0EC4000DC432 /* ClockLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBC2B5C0EC4000DC432 /* ClockLandspaceView.swift */; };
+		8837AEE52B5C0EC4000DC432 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBE2B5C0EC4000DC432 /* PaywallView.swift */; };
+		8837AEE62B5C0EC4000DC432 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC02B5C0EC4000DC432 /* TimerView.swift */; };
+		8837AEE72B5C0EC4000DC432 /* TimerPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */; };
+		8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */; };
+		8837AEEA2B5C0EF3000DC432 /* DigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEE92B5C0EF3000DC432 /* DigitView.swift */; };
+		8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEEB2B5C1010000DC432 /* MainView.swift */; };
+		8837AEEF2B5C10F0000DC432 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEEE2B5C10F0000DC432 /* ClockShare */; };
+		8837AEF22B5C1107000DC432 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEF12B5C1107000DC432 /* ClockShare */; };
+		8837AEF92B5C1522000DC432 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEF82B5C1522000DC432 /* PopupView */; };
+		8837AEFD2B5C1540000DC432 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEFC2B5C1540000DC432 /* SwiftUIPager */; };
+		886DADC82B5E15E2001EA147 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 886DADC72B5E15E2001EA147 /* PartialSheet */; };
+		888C07432B624EA2008028B6 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 888C07422B624EA2008028B6 /* Pow */; };
+		888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 888C074C2B62517D008028B6 /* DigitalClockShare */; };
+		888C07572B6288F8008028B6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 888C07562B6288F8008028B6 /* GoogleMobileAds */; };
+		888C075A2B628A3C008028B6 /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07592B628A3C008028B6 /* BannerAd.swift */; };
+		888C07632B62A040008028B6 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 888C07602B62A040008028B6 /* tick.wav */; };
+		888C07642B62A040008028B6 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 888C07612B62A040008028B6 /* drip.wav */; };
+		888C07652B62A040008028B6 /* second.wav in Resources */ = {isa = PBXBuildFile; fileRef = 888C07622B62A040008028B6 /* second.wav */; };
+		88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */; };
+		88C7EAF52B61103F00F6ACD4 /* ValueStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		880592E72B620BE70051284F /* SettingsStepperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStepperCell.swift; sourceTree = "<group>"; };
+		880592EC2B621B090051284F /* SettingsTimerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimerSection.swift; sourceTree = "<group>"; };
+		8837ADD62B5C0082000DC432 /* DigitalClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8837ADD92B5C0082000DC432 /* DigitalClockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalClockApp.swift; sourceTree = "<group>"; };
+		8837ADDD2B5C0083000DC432 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8837ADE02B5C0083000DC432 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8837ADF82B5C0B20000DC432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8837ADF92B5C0BC1000DC432 /* DigitalClock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DigitalClock.entitlements; sourceTree = "<group>"; };
+		8837ADFC2B5C0D5C000DC432 /* AppIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
+		8837ADFD2B5C0D5C000DC432 /* ColorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
+		8837ADFE2B5C0D5C000DC432 /* DarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
+		8837ADFF2B5C0D5C000DC432 /* LandspaceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandspaceMode.swift; sourceTree = "<group>"; };
+		8837AE002B5C0D5C000DC432 /* IconStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconStyle.swift; sourceTree = "<group>"; };
+		8837AE022B5C0D5C000DC432 /* ProManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProManager.swift; sourceTree = "<group>"; };
+		8837AE032B5C0D5C000DC432 /* SoundType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
+		8837AE062B5C0D5C000DC432 /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		8837AE172B5C0DC2000DC432 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8837AE192B5C0DC4000DC432 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		8837AE1B2B5C0DC8000DC432 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8837AE1D2B5C0DC9000DC432 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8837AE1F2B5C0E16000DC432 /* LaunchScreen_zh-Hans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hans.storyboard"; sourceTree = "<group>"; };
+		8837AE202B5C0E16000DC432 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8837AE212B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hant.storyboard"; sourceTree = "<group>"; };
+		8837AE902B5C0EC4000DC432 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		8837AE952B5C0EC4000DC432 /* HoldOnButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoldOnButton.swift; sourceTree = "<group>"; };
+		8837AE9A2B5C0EC4000DC432 /* SettingsToggleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsToggleCell.swift; sourceTree = "<group>"; };
+		8837AE9B2B5C0EC4000DC432 /* SettingsNavigateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigateCell.swift; sourceTree = "<group>"; };
+		8837AE9C2B5C0EC4000DC432 /* SettingsCheckCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCheckCell.swift; sourceTree = "<group>"; };
+		8837AE9D2B5C0EC4000DC432 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8837AEA02B5C0EC4000DC432 /* SettingsAppearanceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSection.swift; sourceTree = "<group>"; };
+		8837AEA22B5C0EC4000DC432 /* SettingsLandspaceModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLandspaceModeView.swift; sourceTree = "<group>"; };
+		8837AEA42B5C0EC4000DC432 /* SettingsDarkModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDarkModeView.swift; sourceTree = "<group>"; };
+		8837AEA52B5C0EC4000DC432 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
+		8837AEA92B5C0EC4000DC432 /* SettingsFocusMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFocusMinutesView.swift; sourceTree = "<group>"; };
+		8837AEAA2B5C0EC4000DC432 /* SettingsPomodoroSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPomodoroSection.swift; sourceTree = "<group>"; };
+		8837AEAB2B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLongBreakMinutesView.swift; sourceTree = "<group>"; };
+		8837AEAC2B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsShortBreakMinutesView.swift; sourceTree = "<group>"; };
+		8837AEAE2B5C0EC4000DC432 /* SettingsSoundTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundTypeView.swift; sourceTree = "<group>"; };
+		8837AEAF2B5C0EC4000DC432 /* SettingsSoundSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundSection.swift; sourceTree = "<group>"; };
+		8837AEB12B5C0EC4000DC432 /* SettingsTimeFormatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTimeFormatView.swift; sourceTree = "<group>"; };
+		8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClockSection.swift; sourceTree = "<group>"; };
+		8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroPortraitView.swift; sourceTree = "<group>"; };
+		8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
+		8837AEB62B5C0EC4000DC432 /* PomodoroLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroLandspaceView.swift; sourceTree = "<group>"; };
+		8837AEB82B5C0EC4000DC432 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		8837AEBA2B5C0EC4000DC432 /* ClockPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockPortraitView.swift; sourceTree = "<group>"; };
+		8837AEBB2B5C0EC4000DC432 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		8837AEBC2B5C0EC4000DC432 /* ClockLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockLandspaceView.swift; sourceTree = "<group>"; };
+		8837AEBE2B5C0EC4000DC432 /* PaywallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		8837AEC02B5C0EC4000DC432 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPortraitView.swift; sourceTree = "<group>"; };
+		8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLandspaceView.swift; sourceTree = "<group>"; };
+		8837AEE92B5C0EF3000DC432 /* DigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitView.swift; sourceTree = "<group>"; };
+		8837AEEB2B5C1010000DC432 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		888C07592B628A3C008028B6 /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
+		888C07602B62A040008028B6 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
+		888C07612B62A040008028B6 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
+		888C07622B62A040008028B6 /* second.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = second.wav; sourceTree = "<group>"; };
+		88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStepper.swift; sourceTree = "<group>"; };
+		88E790702B5D04760068B795 /* DigitClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DigitClockShare; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8837ADD32B5C0082000DC432 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				888C07572B6288F8008028B6 /* GoogleMobileAds in Frameworks */,
+				8837ADF52B5C0AB5000DC432 /* SwiftDate in Frameworks */,
+				8837AEF92B5C1522000DC432 /* PopupView in Frameworks */,
+				888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */,
+				8837ADEC2B5C09EF000DC432 /* SwiftUIX in Frameworks */,
+				8837AEEF2B5C10F0000DC432 /* ClockShare in Frameworks */,
+				8837AEF22B5C1107000DC432 /* ClockShare in Frameworks */,
+				886DADC82B5E15E2001EA147 /* PartialSheet in Frameworks */,
+				8837ADEF2B5C0A2E000DC432 /* RswiftLibrary in Frameworks */,
+				8837AEFD2B5C1540000DC432 /* SwiftUIPager in Frameworks */,
+				888C07432B624EA2008028B6 /* Pow in Frameworks */,
+				8837ADF22B5C0AA1000DC432 /* RevenueCat in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		880592EA2B621AE80051284F /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				880592EC2B621B090051284F /* SettingsTimerSection.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		8837ADCD2B5C0082000DC432 = {
+			isa = PBXGroup;
+			children = (
+				88E790702B5D04760068B795 /* DigitClockShare */,
+				8837ADD82B5C0082000DC432 /* DigitalClock */,
+				8837ADD72B5C0082000DC432 /* Products */,
+				8837AEED2B5C10F0000DC432 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8837ADD72B5C0082000DC432 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8837ADD62B5C0082000DC432 /* DigitalClock.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8837ADD82B5C0082000DC432 /* DigitalClock */ = {
+			isa = PBXGroup;
+			children = (
+				8837ADE72B5C097F000DC432 /* Resources */,
+				8837ADE92B5C099B000DC432 /* Source */,
+				8837AEEB2B5C1010000DC432 /* MainView.swift */,
+				8837ADD92B5C0082000DC432 /* DigitalClockApp.swift */,
+				8837ADDF2B5C0083000DC432 /* Preview Content */,
+			);
+			path = DigitalClock;
+			sourceTree = "<group>";
+		};
+		8837ADDF2B5C0083000DC432 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8837ADE02B5C0083000DC432 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8837ADE72B5C097F000DC432 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8837ADF92B5C0BC1000DC432 /* DigitalClock.entitlements */,
+				8837ADF82B5C0B20000DC432 /* Info.plist */,
+				8837ADDD2B5C0083000DC432 /* Assets.xcassets */,
+				8837AE182B5C0DC2000DC432 /* InfoPlist.strings */,
+				8837AE1E2B5C0E16000DC432 /* LaunchScreen */,
+				8837AE1C2B5C0DC8000DC432 /* Localizable.strings */,
+				888C075F2B62A040008028B6 /* Sounds */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8837ADE82B5C098E000DC432 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEB72B5C0EC4000DC432 /* About */,
+				8837AEB92B5C0EC4000DC432 /* Clock */,
+				8837AEBD2B5C0EC4000DC432 /* Paywall */,
+				8837AEB32B5C0EC4000DC432 /* Pomodoro */,
+				8837AE982B5C0EC4000DC432 /* Settings */,
+				8837AE8F2B5C0EC4000DC432 /* Splash */,
+				8837AEBF2B5C0EC4000DC432 /* Timer */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8837ADE92B5C099B000DC432 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8837ADFA2B5C0D5C000DC432 /* Core */,
+				8837ADE82B5C098E000DC432 /* Modules */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		8837ADFA2B5C0D5C000DC432 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8837ADFB2B5C0D5C000DC432 /* Settings */,
+				8837AE012B5C0D5C000DC432 /* Manager */,
+				8837AE052B5C0D5C000DC432 /* Views */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8837ADFB2B5C0D5C000DC432 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8837ADFC2B5C0D5C000DC432 /* AppIcons.swift */,
+				8837ADFD2B5C0D5C000DC432 /* ColorType.swift */,
+				8837ADFE2B5C0D5C000DC432 /* DarkMode.swift */,
+				8837ADFF2B5C0D5C000DC432 /* LandspaceMode.swift */,
+				8837AE002B5C0D5C000DC432 /* IconStyle.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8837AE012B5C0D5C000DC432 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				8837AE022B5C0D5C000DC432 /* ProManager.swift */,
+				8837AE032B5C0D5C000DC432 /* SoundType.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		8837AE052B5C0D5C000DC432 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8837AE062B5C0D5C000DC432 /* PageControl.swift */,
+				8837AEE92B5C0EF3000DC432 /* DigitView.swift */,
+				8837AE952B5C0EC4000DC432 /* HoldOnButton.swift */,
+				88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */,
+				888C07592B628A3C008028B6 /* BannerAd.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8837AE1E2B5C0E16000DC432 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8837AE1F2B5C0E16000DC432 /* LaunchScreen_zh-Hans.storyboard */,
+				8837AE202B5C0E16000DC432 /* LaunchScreen.storyboard */,
+				8837AE212B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		8837AE8F2B5C0EC4000DC432 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				8837AE902B5C0EC4000DC432 /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		8837AE982B5C0EC4000DC432 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				880592EA2B621AE80051284F /* Timer */,
+				8837AE9F2B5C0EC4000DC432 /* Appearance */,
+				8837AE992B5C0EC4000DC432 /* Cells */,
+				8837AEB02B5C0EC4000DC432 /* Clock */,
+				8837AEA82B5C0EC4000DC432 /* Pomodoro */,
+				8837AEAD2B5C0EC4000DC432 /* Sound */,
+				8837AEA52B5C0EC4000DC432 /* SettingsSection.swift */,
+				8837AE9D2B5C0EC4000DC432 /* SettingsView.swift */,
+				88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8837AE992B5C0EC4000DC432 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8837AE9A2B5C0EC4000DC432 /* SettingsToggleCell.swift */,
+				8837AE9B2B5C0EC4000DC432 /* SettingsNavigateCell.swift */,
+				880592E72B620BE70051284F /* SettingsStepperCell.swift */,
+				8837AE9C2B5C0EC4000DC432 /* SettingsCheckCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8837AE9F2B5C0EC4000DC432 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEA02B5C0EC4000DC432 /* SettingsAppearanceSection.swift */,
+				8837AEA22B5C0EC4000DC432 /* SettingsLandspaceModeView.swift */,
+				8837AEA42B5C0EC4000DC432 /* SettingsDarkModeView.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		8837AEA82B5C0EC4000DC432 /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEA92B5C0EC4000DC432 /* SettingsFocusMinutesView.swift */,
+				8837AEAA2B5C0EC4000DC432 /* SettingsPomodoroSection.swift */,
+				8837AEAB2B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift */,
+				8837AEAC2B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift */,
+			);
+			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		8837AEAD2B5C0EC4000DC432 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEAE2B5C0EC4000DC432 /* SettingsSoundTypeView.swift */,
+				8837AEAF2B5C0EC4000DC432 /* SettingsSoundSection.swift */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		8837AEB02B5C0EC4000DC432 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEB12B5C0EC4000DC432 /* SettingsTimeFormatView.swift */,
+				8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		8837AEB32B5C0EC4000DC432 /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */,
+				8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */,
+				8837AEB62B5C0EC4000DC432 /* PomodoroLandspaceView.swift */,
+			);
+			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		8837AEB72B5C0EC4000DC432 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEB82B5C0EC4000DC432 /* AboutView.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		8837AEB92B5C0EC4000DC432 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEBA2B5C0EC4000DC432 /* ClockPortraitView.swift */,
+				8837AEBB2B5C0EC4000DC432 /* ClockView.swift */,
+				8837AEBC2B5C0EC4000DC432 /* ClockLandspaceView.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		8837AEBD2B5C0EC4000DC432 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEBE2B5C0EC4000DC432 /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		8837AEBF2B5C0EC4000DC432 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				8837AEC02B5C0EC4000DC432 /* TimerView.swift */,
+				8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */,
+				8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		8837AEED2B5C10F0000DC432 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		888C075F2B62A040008028B6 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				888C07602B62A040008028B6 /* tick.wav */,
+				888C07612B62A040008028B6 /* drip.wav */,
+				888C07622B62A040008028B6 /* second.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8837ADD52B5C0082000DC432 /* DigitalClock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8837ADE42B5C0083000DC432 /* Build configuration list for PBXNativeTarget "DigitalClock" */;
+			buildPhases = (
+				8837ADD22B5C0082000DC432 /* Sources */,
+				8837ADD32B5C0082000DC432 /* Frameworks */,
+				8837ADD42B5C0082000DC432 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8837ADF72B5C0AE3000DC432 /* PBXTargetDependency */,
+			);
+			name = DigitalClock;
+			packageProductDependencies = (
+				8837ADEB2B5C09EF000DC432 /* SwiftUIX */,
+				8837ADEE2B5C0A2E000DC432 /* RswiftLibrary */,
+				8837ADF12B5C0AA1000DC432 /* RevenueCat */,
+				8837ADF42B5C0AB5000DC432 /* SwiftDate */,
+				8837AEEE2B5C10F0000DC432 /* ClockShare */,
+				8837AEF12B5C1107000DC432 /* ClockShare */,
+				8837AEF82B5C1522000DC432 /* PopupView */,
+				8837AEFC2B5C1540000DC432 /* SwiftUIPager */,
+				886DADC72B5E15E2001EA147 /* PartialSheet */,
+				888C07422B624EA2008028B6 /* Pow */,
+				888C074C2B62517D008028B6 /* DigitalClockShare */,
+				888C07562B6288F8008028B6 /* GoogleMobileAds */,
+			);
+			productName = DigitClock;
+			productReference = 8837ADD62B5C0082000DC432 /* DigitalClock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8837ADCE2B5C0082000DC432 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					8837ADD52B5C0082000DC432 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 8837ADD12B5C0082000DC432 /* Build configuration list for PBXProject "DigitalClock" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 8837ADCD2B5C0082000DC432;
+			packageReferences = (
+				8837ADEA2B5C09EF000DC432 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				8837ADED2B5C0A2E000DC432 /* XCRemoteSwiftPackageReference "R.swift" */,
+				8837ADF02B5C0AA1000DC432 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				8837ADF32B5C0AB5000DC432 /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				8837AEF02B5C1107000DC432 /* XCLocalSwiftPackageReference "../ClockShare" */,
+				8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */,
+				8837AEFB2B5C1540000DC432 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				88E790752B5D05A30068B795 /* XCLocalSwiftPackageReference "DigitClockShare" */,
+				886DADC62B5E15E2001EA147 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */,
+				888C07552B6288F8008028B6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
+			productRefGroup = 8837ADD72B5C0082000DC432 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8837ADD52B5C0082000DC432 /* DigitalClock */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8837ADD42B5C0082000DC432 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8837AE222B5C0E16000DC432 /* LaunchScreen_zh-Hans.storyboard in Resources */,
+				8837ADE12B5C0083000DC432 /* Preview Assets.xcassets in Resources */,
+				8837AE162B5C0DC2000DC432 /* InfoPlist.strings in Resources */,
+				8837AE232B5C0E16000DC432 /* LaunchScreen.storyboard in Resources */,
+				888C07652B62A040008028B6 /* second.wav in Resources */,
+				8837AE1A2B5C0DC8000DC432 /* Localizable.strings in Resources */,
+				8837ADDE2B5C0083000DC432 /* Assets.xcassets in Resources */,
+				888C07642B62A040008028B6 /* drip.wav in Resources */,
+				8837AE242B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard in Resources */,
+				888C07632B62A040008028B6 /* tick.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8837ADD22B5C0082000DC432 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8837AED12B5C0EC4000DC432 /* SettingsLandspaceModeView.swift in Sources */,
+				888C075A2B628A3C008028B6 /* BannerAd.swift in Sources */,
+				8837AEDB2B5C0EC4000DC432 /* SettingsSoundSection.swift in Sources */,
+				8837AECD2B5C0EC4000DC432 /* SettingsView.swift in Sources */,
+				8837AED72B5C0EC4000DC432 /* SettingsPomodoroSection.swift in Sources */,
+				8837AEE62B5C0EC4000DC432 /* TimerView.swift in Sources */,
+				8837AEDA2B5C0EC4000DC432 /* SettingsSoundTypeView.swift in Sources */,
+				8837AE0C2B5C0D5C000DC432 /* IconStyle.swift in Sources */,
+				8837AE0A2B5C0D5C000DC432 /* DarkMode.swift in Sources */,
+				8837AE082B5C0D5C000DC432 /* AppIcons.swift in Sources */,
+				88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */,
+				8837AEEA2B5C0EF3000DC432 /* DigitView.swift in Sources */,
+				8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */,
+				8837AED62B5C0EC4000DC432 /* SettingsFocusMinutesView.swift in Sources */,
+				8837AEE42B5C0EC4000DC432 /* ClockLandspaceView.swift in Sources */,
+				8837ADDA2B5C0082000DC432 /* DigitalClockApp.swift in Sources */,
+				8837AEE32B5C0EC4000DC432 /* ClockView.swift in Sources */,
+				8837AEDF2B5C0EC4000DC432 /* PomodoroView.swift in Sources */,
+				8837AED32B5C0EC4000DC432 /* SettingsDarkModeView.swift in Sources */,
+				8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */,
+				8837AECC2B5C0EC4000DC432 /* SettingsCheckCell.swift in Sources */,
+				8837AECB2B5C0EC4000DC432 /* SettingsNavigateCell.swift in Sources */,
+				8837AEE52B5C0EC4000DC432 /* PaywallView.swift in Sources */,
+				8837AECF2B5C0EC4000DC432 /* SettingsAppearanceSection.swift in Sources */,
+				88C7EAF52B61103F00F6ACD4 /* ValueStepper.swift in Sources */,
+				8837AE0B2B5C0D5C000DC432 /* LandspaceMode.swift in Sources */,
+				8837AEDC2B5C0EC4000DC432 /* SettingsTimeFormatView.swift in Sources */,
+				880592ED2B621B090051284F /* SettingsTimerSection.swift in Sources */,
+				8837AED42B5C0EC4000DC432 /* SettingsSection.swift in Sources */,
+				880592E82B620BE70051284F /* SettingsStepperCell.swift in Sources */,
+				8837AEDD2B5C0EC4000DC432 /* SettingsClockSection.swift in Sources */,
+				8837AED92B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift in Sources */,
+				8837AE0E2B5C0D5C000DC432 /* SoundType.swift in Sources */,
+				8837AEC32B5C0EC4000DC432 /* SplashView.swift in Sources */,
+				8837AED82B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift in Sources */,
+				8837AE102B5C0D5C000DC432 /* PageControl.swift in Sources */,
+				8837AEE02B5C0EC4000DC432 /* PomodoroLandspaceView.swift in Sources */,
+				8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */,
+				8837AEE12B5C0EC4000DC432 /* AboutView.swift in Sources */,
+				8837AEE22B5C0EC4000DC432 /* ClockPortraitView.swift in Sources */,
+				8837AE092B5C0D5C000DC432 /* ColorType.swift in Sources */,
+				8837AE0D2B5C0D5C000DC432 /* ProManager.swift in Sources */,
+				8837AEC72B5C0EC4000DC432 /* HoldOnButton.swift in Sources */,
+				8837AEE72B5C0EC4000DC432 /* TimerPortraitView.swift in Sources */,
+				8837AECA2B5C0EC4000DC432 /* SettingsToggleCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8837ADF72B5C0AE3000DC432 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 8837ADF62B5C0AE3000DC432 /* RswiftGenerateInternalResources */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8837AE182B5C0DC2000DC432 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8837AE172B5C0DC2000DC432 /* en */,
+				8837AE192B5C0DC4000DC432 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8837AE1C2B5C0DC8000DC432 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8837AE1B2B5C0DC8000DC432 /* en */,
+				8837AE1D2B5C0DC9000DC432 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8837ADE22B5C0083000DC432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8837ADE32B5C0083000DC432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8837ADE52B5C0083000DC432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DigitalClock/Resources/DigitalClock.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DigitalClock/Preview Content\"";
+				DEVELOPMENT_TEAM = GM4766U38W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DigitalClock/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8837ADE62B5C0083000DC432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DigitalClock/Resources/DigitalClock.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DigitalClock/Preview Content\"";
+				DEVELOPMENT_TEAM = GM4766U38W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DigitalClock/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8837ADD12B5C0082000DC432 /* Build configuration list for PBXProject "DigitalClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8837ADE22B5C0083000DC432 /* Debug */,
+				8837ADE32B5C0083000DC432 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8837ADE42B5C0083000DC432 /* Build configuration list for PBXNativeTarget "DigitalClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8837ADE52B5C0083000DC432 /* Debug */,
+				8837ADE62B5C0083000DC432 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		8837AEF02B5C1107000DC432 /* XCLocalSwiftPackageReference "../ClockShare" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ClockShare;
+		};
+		88E790752B5D05A30068B795 /* XCLocalSwiftPackageReference "DigitClockShare" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = DigitClockShare;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8837ADEA2B5C09EF000DC432 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.9;
+			};
+		};
+		8837ADED2B5C0A2E000DC432 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.4.0;
+			};
+		};
+		8837ADF02B5C0AA1000DC432 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.32.0;
+			};
+		};
+		8837ADF32B5C0AB5000DC432 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
+		8837AEFB2B5C1540000DC432 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
+		886DADC62B5E15E2001EA147 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+		888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		888C07552B6288F8008028B6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8837ADEB2B5C09EF000DC432 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837ADEA2B5C09EF000DC432 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+		8837ADEE2B5C0A2E000DC432 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837ADED2B5C0A2E000DC432 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		8837ADF12B5C0AA1000DC432 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837ADF02B5C0AA1000DC432 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+		8837ADF42B5C0AB5000DC432 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837ADF32B5C0AB5000DC432 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
+		8837ADF62B5C0AE3000DC432 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		8837AEEE2B5C10F0000DC432 /* ClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClockShare;
+		};
+		8837AEF12B5C1107000DC432 /* ClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClockShare;
+		};
+		8837AEF82B5C1522000DC432 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+		8837AEFC2B5C1540000DC432 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837AEFB2B5C1540000DC432 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
+		886DADC72B5E15E2001EA147 /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 886DADC62B5E15E2001EA147 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+		888C07422B624EA2008028B6 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+		888C074C2B62517D008028B6 /* DigitalClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DigitalClockShare;
+		};
+		888C07562B6288F8008028B6 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 888C07552B6288F8008028B6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8837ADCE2B5C0082000DC432 /* Project object */;
+}

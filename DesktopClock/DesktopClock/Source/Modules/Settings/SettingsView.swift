@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import DesktopClockShare
 import Neumorphic
 import PopupView
 import RevenueCat

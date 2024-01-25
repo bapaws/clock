@@ -15,9 +15,7 @@ public enum PomodoroState: String, Codable {
     case none, focus, focusCompleted, shortBreak, longBreak
 }
 
-public class PomodoroManager: ObservableObject {
-    public static let shared = PomodoroManager()
-
+open class PomodoroBaseManager: ObservableObject {
     @AppStorage(Storage.Key.Pomodoro.focusMinutes, store: Storage.default.store)
     public var focusMinutes: Int = 25 {
         didSet {
@@ -46,7 +44,7 @@ public class PomodoroManager: ObservableObject {
 
     private var timer: Timer?
 
-    private init() {
+    public init() {
         state = .none
 
         setup()
@@ -57,7 +55,7 @@ public class PomodoroManager: ObservableObject {
         time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
     }
 
-    func didSetState() {
+    open func didSetState() {
         timer?.invalidate()
         timer = nil
 
@@ -91,31 +89,154 @@ public class PomodoroManager: ObservableObject {
             time = Time(hour: longBreakMinutes / 60, minute: longBreakMinutes % 60, second: 0)
         }
         #endif
+    }
 
-        if #available(iOS 16.1, *) {
-            if state == .none || state == .focusCompleted {
-                PomodoroActivity.shared.stop()
-            } else {
-                var minutes = focusMinutes
-                switch state {
-                case .focusCompleted, .shortBreak:
-                    minutes = shortBreakMinutes
-                case .longBreak:
-                    minutes = longBreakMinutes
-                default:
-                    minutes = focusMinutes
-                }
+    open func activityUpdate(time: Time) {
+        fatalError()
+    }
+}
 
-                let attributes = PomodoroAttributes(minutes: minutes, state: state)
-                PomodoroActivity.shared.start(attributes: attributes, time: time)
+// MARK: Focus
+
+public extension PomodoroBaseManager {
+    func startFocus() {
+        state = .focus
+        restartFocusTimer()
+    }
+
+    func restartFocusTimer() {
+        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
+            self.time--
+
+            self.activityUpdate(time: time)
+
+            if self.time.seconds <= 0 {
+                self.focusCount += 1
+                self.state = .focusCompleted
+
+                self.playFeedback()
             }
+        })
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
+    }
+}
+
+// MARK: Short Break
+
+public extension PomodoroBaseManager {
+    func startShortBreak() {
+        state = .shortBreak
+        restartShortBreak()
+    }
+
+    func restartShortBreak() {
+        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
+            self.time--
+
+            self.activityUpdate(time: time)
+
+            if self.time.seconds <= 0 {
+                self.state = .none
+            }
+        })
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
+    }
+}
+
+// MARK: Long Break
+
+public extension PomodoroBaseManager {
+    func startLongBreak() {
+        state = .longBreak
+        restartLongBreak()
+    }
+
+    func restartLongBreak() {
+        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
+            self.time--
+
+            self.activityUpdate(time: time)
+
+            if self.time.seconds <= 0 {
+                self.state = .none
+            }
+        })
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
+    }
+}
+
+// MARK: - Timer
+
+public extension PomodoroBaseManager {
+    func stop() {
+        state = .none
+    }
+
+    func suspendTimer() {
+//        timer?.fireDate = .distantFuture
+    }
+
+    func resumeTimer() {
+        guard let timer = timer else { return }
+        time--
+        timer.fireDate = Date()
+    }
+}
+
+// MARK: Feedback
+
+public extension PomodoroBaseManager {
+    func playFeedback() {
+        let soundID = SystemSoundID(kSystemSoundID_Vibrate)
+        AudioServicesPlaySystemSound(soundID)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(soundID)
         }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(soundID)
+        }
+    }
+}
+
+// MARK: Notification
+
+extension PomodoroBaseManager {
+    static let identifier = "com.bapaws.desktopclock.Pomodoro"
+
+    func addNotification() {
+        let current = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "AppName".localized
+        if state == .focus {
+            content.body = "FocusCompletedNotification".localized
+        } else {
+            content.body = "BreakCompletedNotification".localized
+        }
+        content.sound = .default
+        content.badge = 1
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(time.seconds), repeats: false)
+        let request = UNNotificationRequest(identifier: PomodoroBaseManager.identifier, content: content, trigger: trigger)
+        current.add(request)
+    }
+
+    func removeNotification() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [PomodoroBaseManager.identifier])
     }
 }
 
 // MARK: -
 
-public extension PomodoroManager {
+public extension PomodoroBaseManager {
     var focusMinutesOptions: [Int] {
         var options = [Int]()
         var option = 5
@@ -155,149 +276,5 @@ public extension PomodoroManager {
             option += 5
         }
         return options
-    }
-}
-
-// MARK: Focus
-
-public extension PomodoroManager {
-    func startFocus() {
-        state = .focus
-        restartFocusTimer()
-    }
-
-    func restartFocusTimer() {
-        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
-            guard let self = self else { return }
-            self.time--
-
-            if #available(iOS 16.1, *) {
-                PomodoroActivity.shared.update(time: time)
-            }
-
-            if self.time.seconds <= 0 {
-                self.focusCount += 1
-                self.state = .focusCompleted
-
-                self.playFeedback()
-            }
-        })
-        RunLoop.main.add(timer, forMode: .common)
-        self.timer = timer
-    }
-}
-
-// MARK: Short Break
-
-public extension PomodoroManager {
-    func startShortBreak() {
-        state = .shortBreak
-        restartShortBreak()
-    }
-
-    func restartShortBreak() {
-        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
-            guard let self = self else { return }
-            self.time--
-
-            if #available(iOS 16.1, *) {
-                PomodoroActivity.shared.update(time: time)
-            }
-
-            if self.time.seconds <= 0 {
-                self.state = .none
-            }
-        })
-        RunLoop.main.add(timer, forMode: .common)
-        self.timer = timer
-    }
-}
-
-// MARK: Long Break
-
-public extension PomodoroManager {
-    func startLongBreak() {
-        state = .longBreak
-        restartLongBreak()
-    }
-
-    func restartLongBreak() {
-        let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
-            guard let self = self else { return }
-            self.time--
-
-            if #available(iOS 16.1, *) {
-                PomodoroActivity.shared.update(time: time)
-            }
-
-            if self.time.seconds <= 0 {
-                self.state = .none
-            }
-        })
-        RunLoop.main.add(timer, forMode: .common)
-        self.timer = timer
-    }
-}
-
-// MARK: - Timer
-
-public extension PomodoroManager {
-    func stop() {
-        state = .none
-    }
-
-    func suspendTimer() {
-//        timer?.fireDate = .distantFuture
-    }
-
-    func resumeTimer() {
-        guard let timer = timer else { return }
-        time--
-        timer.fireDate = Date()
-    }
-}
-
-// MARK: Feedback
-
-public extension PomodoroManager {
-    func playFeedback() {
-        let soundID = SystemSoundID(kSystemSoundID_Vibrate)
-        AudioServicesPlaySystemSound(soundID)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
-            AudioServicesPlaySystemSound(soundID)
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
-            AudioServicesPlaySystemSound(soundID)
-        }
-    }
-}
-
-// MARK: Notification
-
-extension PomodoroManager {
-    static let identifier = "com.bapaws.desktopclock.Pomodoro"
-
-    func addNotification() {
-        let current = UNUserNotificationCenter.current()
-        let content = UNMutableNotificationContent()
-        content.title = "AppName".localized
-        if state == .focus {
-            content.body = "FocusCompletedNotification".localized
-        } else {
-            content.body = "BreakCompletedNotification".localized
-        }
-        content.sound = .default
-        content.badge = 1
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(time.seconds), repeats: false)
-        let request = UNNotificationRequest(identifier: PomodoroManager.identifier, content: content, trigger: trigger)
-        current.add(request)
-    }
-
-    func removeNotification() {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [PomodoroManager.identifier])
     }
 }

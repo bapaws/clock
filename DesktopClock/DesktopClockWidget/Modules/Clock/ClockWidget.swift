@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import DesktopClockShare
 import Neumorphic
 import SwiftDate
 import SwiftUI
@@ -15,7 +16,7 @@ import WidgetKit
 struct ClockWidgetEntryView: View {
     var entry: ClockProvider.Entry
 
-    @EnvironmentObject var ui: UIManager
+    @EnvironmentObject var ui: DesktopClockShare.UIManager
 
     @Environment(\.widgetFamily) var widgetFamily
 

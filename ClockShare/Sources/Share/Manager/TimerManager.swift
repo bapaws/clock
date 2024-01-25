@@ -18,6 +18,9 @@ public class TimerManager: ObservableObject {
     @Published public private(set) var isStarted: Bool = false
     @Published public private(set) var isPaused: Bool = false
 
+    @AppStorage(Storage.Key.hourStyle, store: Storage.default.store)
+    public var hourStyle: DigitStyle = .none
+
     @Dependency(\.date.now) var now
 
     public var timeInterval: TimeInterval = 0.25

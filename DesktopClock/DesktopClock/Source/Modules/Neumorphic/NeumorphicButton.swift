@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import DesktopClockShare
 import SwiftUI
 import SwiftUIX
 import Neumorphic

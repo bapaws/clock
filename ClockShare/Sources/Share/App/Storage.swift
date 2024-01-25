@@ -29,6 +29,9 @@ public class Storage {
         public static let timeFormat = "timeFormat"
         public static let dateStyle = "dateStyle"
 
+        // MARK: Timer
+        public static let hourStyle = "hourStyle"
+
         // MARK: UI
 
         public static let appIcon = "appIcon"

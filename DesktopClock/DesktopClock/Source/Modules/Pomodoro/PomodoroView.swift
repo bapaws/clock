@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import DesktopClockShare
 import Combine
 import Neumorphic
 import SwiftUI
@@ -13,20 +14,20 @@ import ActivityKit
 
 struct PomodoroView: View {
     @Binding var isTabHidden: Bool
-    @StateObject var manager = PomodoroManager.shared
+    @StateObject var manager = DesktopClockShare.PomodoroManager.shared
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
         GeometryReader { proxy in
             if proxy.size.width > proxy.size.height {
                 HStack(spacing: 16) {
-                    PomodoroLandspaceView(time: PomodoroManager.shared.time, color: ui.colors)
+                    PomodoroLandspaceView(time: manager.time, color: ui.colors)
                     button
                         .animation(.easeIn, value: manager.state)
                 }
             } else {
                 VStack(spacing: 16) {
-                    PomodoroPortraitView(time: PomodoroManager.shared.time, color: ui.colors)
+                    PomodoroPortraitView(time: manager.time, color: ui.colors)
                     button
                         .animation(.easeIn, value: manager.state)
                 }
@@ -38,7 +39,7 @@ struct PomodoroView: View {
         }
         .task {
             if #available(iOS 16.1, *) {
-                for activity in Activity<PomodoroAttributes>.activities {
+                for activity in Activity<DesktopClockShare.PomodoroAttributes>.activities {
                     await activity.end()
                 }
             } 

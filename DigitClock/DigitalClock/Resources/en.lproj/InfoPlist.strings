@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  DigitalClock
+
+  Created by 张敏超 on 2024/1/20.
+  
+*/
+
+"CFBundleDisplayName" = "Digital Clock";
+"CFBundleName" = "Digital Clock";
+"UILaunchStoryboardName" = "LaunchScreen";

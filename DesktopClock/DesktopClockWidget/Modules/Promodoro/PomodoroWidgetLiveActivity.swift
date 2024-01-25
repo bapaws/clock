@@ -7,6 +7,7 @@
 
 import ActivityKit
 import ClockShare
+import DesktopClockShare
 import Foundation
 import SwiftUI
 import SwiftUIX
@@ -80,7 +81,7 @@ struct PomodoroWidgetLiveActivity: Widget {
         }
     }
 
-    @ViewBuilder func releaseButton(for context: ActivityViewContext<PomodoroAttributes>) -> some View {
+    @ViewBuilder func releaseButton(for context: ActivityViewContext<DesktopClockShare.PomodoroAttributes>) -> some View {
         if #available(iOSApplicationExtension 17.0, *) {
             Button(intent: StopLiveActivityIntent(), label: {
                 Text(R.string.localizable.stop())
@@ -104,28 +105,28 @@ struct PomodoroWidgetLiveActivity: Widget {
 
 // MARK: Preview
 
-private extension PomodoroAttributes {
-    static var preview: PomodoroAttributes {
-        PomodoroAttributes(minutes: 25, state: .shortBreak)
+private extension DesktopClockShare.PomodoroAttributes {
+    static var preview: DesktopClockShare.PomodoroAttributes {
+        DesktopClockShare.PomodoroAttributes(minutes: 25, state: .shortBreak)
     }
 }
 
-private extension PomodoroAttributes.ContentState {
-    static var focus: PomodoroAttributes.ContentState {
-        PomodoroAttributes.ContentState(time: Time(hour: 0, minute: 20, second: 30))
+private extension DesktopClockShare.PomodoroAttributes.ContentState {
+    static var focus: DesktopClockShare.PomodoroAttributes.ContentState {
+        DesktopClockShare.PomodoroAttributes.ContentState(time: Time(hour: 0, minute: 20, second: 30))
     }
 
-    static var shortBreak: PomodoroAttributes.ContentState {
-        PomodoroAttributes.ContentState(time: Time.shortBreak)
+    static var shortBreak: DesktopClockShare.PomodoroAttributes.ContentState {
+        DesktopClockShare.PomodoroAttributes.ContentState(time: Time.shortBreak)
     }
 }
 
 @available(iOS 17.0, *)
-#Preview("Notification", as: .content, using: PomodoroAttributes.preview) {
+#Preview("Notification", as: .content, using: DesktopClockShare.PomodoroAttributes.preview) {
     PomodoroWidgetLiveActivity()
 } contentStates: {
-    PomodoroAttributes.ContentState.focus
-    PomodoroAttributes.ContentState.shortBreak
+    DesktopClockShare.PomodoroAttributes.ContentState.focus
+    DesktopClockShare.PomodoroAttributes.ContentState.shortBreak
 }
 
 // @available(iOS 17.0, *)

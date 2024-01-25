@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import DesktopClockShare
 import SwiftUI
 
 struct SettingsColorsView: View {

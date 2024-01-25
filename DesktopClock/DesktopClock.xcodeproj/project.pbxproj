@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,7 @@
 		883811532B4D4B26003C1F4E /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 883811522B4D4B26003C1F4E /* SwiftDate */; };
 		8838115A2B4D6D8C003C1F4E /* DigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883811582B4D6CA5003C1F4E /* DigitView.swift */; };
 		8838115E2B4D8385003C1F4E /* ColonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838115B2B4D834E003C1F4E /* ColonView.swift */; };
-		883AA6CA2B43A7F3003A6C11 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883AA6C92B43A7F3003A6C11 /* AppManager.swift */; };
+		883AA6CA2B43A7F3003A6C11 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883AA6C92B43A7F3003A6C11 /* SoundType.swift */; };
 		883AA6D22B4406A2003A6C11 /* SettingsSoundSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883AA6D12B4406A2003A6C11 /* SettingsSoundSection.swift */; };
 		883B5BEF2B511BD00097C216 /* StopLiveActivityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824F6D42B502E1C00BCC110 /* StopLiveActivityIntent.swift */; };
 		887464932B3718D4004416B8 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 887464922B3718D4004416B8 /* SwiftUIPager */; };
@@ -38,7 +38,6 @@
 		88A8D7272B3D78F400983E0E /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6EA2B3D78F300983E0E /* DarkMode.swift */; };
 		88A8D7292B3D78F400983E0E /* LandspaceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6EC2B3D78F300983E0E /* LandspaceMode.swift */; };
 		88A8D72A2B3D78F400983E0E /* IconStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6ED2B3D78F300983E0E /* IconStyle.swift */; };
-		88A8D72B2B3D78F400983E0E /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6EF2B3D78F300983E0E /* SafariView.swift */; };
 		88A8D72C2B3D78F400983E0E /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F02B3D78F300983E0E /* PageControl.swift */; };
 		88A8D72D2B3D78F400983E0E /* DesktopClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F12B3D78F300983E0E /* DesktopClockApp.swift */; };
 		88A8D72E2B3D78F400983E0E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6F22B3D78F300983E0E /* MainView.swift */; };
@@ -88,13 +87,14 @@
 		88CE4DD42B42BB5F0035BAE9 /* SettingsNavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE4DD32B42BB5F0035BAE9 /* SettingsNavigateCell.swift */; };
 		88CF13D22B4FD51100DBE9A1 /* PomodoroWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18F22B4EC06E00EA8BCB /* PomodoroWidget.swift */; };
 		88CF13D82B5011B600DBE9A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88CF13DA2B5011B600DBE9A1 /* Localizable.strings */; };
+		88DEB1F82B5CDB4E00EA01BE /* DesktopClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88DEB1F72B5CDB4E00EA01BE /* DesktopClockShare */; };
+		88DEB1FA2B5CDB5700EA01BE /* DesktopClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88DEB1F92B5CDB5700EA01BE /* DesktopClockShare */; };
 		88DF1A172B4512D500D0A709 /* SettingsSoundTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF1A162B4512D500D0A709 /* SettingsSoundTypeView.swift */; };
 		88DF1A1F2B45943100D0A709 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88DF1A1E2B45943100D0A709 /* drip.wav */; };
 		88DF1A212B459C4B00D0A709 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88DF1A202B459C4B00D0A709 /* tick.wav */; };
 		88DF1A242B45A0BF00D0A709 /* second.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88DF1A232B45A0BF00D0A709 /* second.wav */; };
 		88F8102D2B46689300EFB3D2 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 88F8102C2B46689300EFB3D2 /* MBProgressHUD */; };
 		88F810352B46C50D00EFB3D2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 88F810342B46C50D00EFB3D2 /* SwiftUIX */; };
-		88FE18DF2B4E840C00EA8BCB /* UIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18DE2B4E840C00EA8BCB /* UIManager.swift */; };
 		88FE18E42B4E9DF400EA8BCB /* ClockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18E12B4E9D8B00EA8BCB /* ClockProvider.swift */; };
 		88FE18F82B4EC26C00EA8BCB /* PomodoroWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18F52B4EC08F00EA8BCB /* PomodoroWidgetLiveActivity.swift */; };
 		88FE19012B4EC71800EA8BCB /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18FF2B4EC6B900EA8BCB /* Time.swift */; };
@@ -136,7 +136,7 @@
 		883811312B4D0003003C1F4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883811582B4D6CA5003C1F4E /* DigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitView.swift; sourceTree = "<group>"; };
 		8838115B2B4D834E003C1F4E /* ColonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColonView.swift; sourceTree = "<group>"; };
-		883AA6C92B43A7F3003A6C11 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		883AA6C92B43A7F3003A6C11 /* SoundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
 		883AA6D12B4406A2003A6C11 /* SettingsSoundSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSoundSection.swift; sourceTree = "<group>"; };
 		8874645D2B37184E004416B8 /* DesktopClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A8D6DC2B3D78F300983E0E /* LaunchScreen_zh-Hans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hans.storyboard"; sourceTree = "<group>"; };
@@ -151,7 +151,6 @@
 		88A8D6EA2B3D78F300983E0E /* DarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
 		88A8D6EC2B3D78F300983E0E /* LandspaceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandspaceMode.swift; sourceTree = "<group>"; };
 		88A8D6ED2B3D78F300983E0E /* IconStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconStyle.swift; sourceTree = "<group>"; };
-		88A8D6EF2B3D78F300983E0E /* SafariView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		88A8D6F02B3D78F300983E0E /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		88A8D6F12B3D78F300983E0E /* DesktopClockApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesktopClockApp.swift; sourceTree = "<group>"; };
 		88A8D6F22B3D78F300983E0E /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -198,13 +197,13 @@
 		88CE4DD32B42BB5F0035BAE9 /* SettingsNavigateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigateCell.swift; sourceTree = "<group>"; };
 		88CF13D92B5011B600DBE9A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88CF13DB2B5011B700DBE9A1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88DEB1F32B5CDB0900EA01BE /* DesktopClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DesktopClockShare; sourceTree = "<group>"; };
 		88DF1A162B4512D500D0A709 /* SettingsSoundTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSoundTypeView.swift; sourceTree = "<group>"; };
 		88DF1A1E2B45943100D0A709 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
 		88DF1A202B459C4B00D0A709 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 		88DF1A232B45A0BF00D0A709 /* second.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = second.wav; sourceTree = "<group>"; };
 		88F810292B46549900EFB3D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88F810302B467E8E00EFB3D2 /* DesktopClock.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DesktopClock.storekit; sourceTree = "<group>"; };
-		88FE18DE2B4E840C00EA8BCB /* UIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIManager.swift; sourceTree = "<group>"; };
 		88FE18E12B4E9D8B00EA8BCB /* ClockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockProvider.swift; sourceTree = "<group>"; };
 		88FE18F02B4EA28A00EA8BCB /* DesktopClockWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DesktopClockWidgetExtension.entitlements; sourceTree = "<group>"; };
 		88FE18F22B4EC06E00EA8BCB /* PomodoroWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroWidget.swift; sourceTree = "<group>"; };
@@ -219,6 +218,7 @@
 			files = (
 				8838113B2B4D01DD003C1F4E /* ClockShare in Frameworks */,
 				8838113E2B4D2F12003C1F4E /* RswiftLibrary in Frameworks */,
+				88DEB1FA2B5CDB5700EA01BE /* DesktopClockShare in Frameworks */,
 				883811272B4D0002003C1F4E /* SwiftUI.framework in Frameworks */,
 				883811532B4D4B26003C1F4E /* SwiftDate in Frameworks */,
 				8838114F2B4D3971003C1F4E /* Neumorphic in Frameworks */,
@@ -233,6 +233,7 @@
 			files = (
 				88F810352B46C50D00EFB3D2 /* SwiftUIX in Frameworks */,
 				88A8D7622B3DB1EC00983E0E /* KeychainSwift in Frameworks */,
+				88DEB1F82B5CDB4E00EA01BE /* DesktopClockShare in Frameworks */,
 				88ABA21E2B3AB4BF0035DDDB /* PopupView in Frameworks */,
 				88F8102D2B46689300EFB3D2 /* MBProgressHUD in Frameworks */,
 				88A8D7542B3D7B9E00983E0E /* ClockShare in Frameworks */,
@@ -278,9 +279,7 @@
 		883AA6CC2B43A7FC003A6C11 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				883AA6C92B43A7F3003A6C11 /* AppManager.swift */,
 				88A8D75D2B3DAE3200983E0E /* ProManager.swift */,
-				88FE18DE2B4E840C00EA8BCB /* UIManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -297,6 +296,7 @@
 		887464542B37184E004416B8 = {
 			isa = PBXGroup;
 			children = (
+				88DEB1F32B5CDB0900EA01BE /* DesktopClockShare */,
 				88A8D6D92B3D78F300983E0E /* DesktopClock */,
 				883811282B4D0002003C1F4E /* DesktopClockWidget */,
 				8874645E2B37184E004416B8 /* Products */,
@@ -372,29 +372,29 @@
 			isa = PBXGroup;
 			children = (
 				883AA6CC2B43A7FC003A6C11 /* Manager */,
-				88A8D6E92B3D78F300983E0E /* Settings */,
+				88A8D6E92B3D78F300983E0E /* Data */,
 				88A8D6EE2B3D78F300983E0E /* Views */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		88A8D6E92B3D78F300983E0E /* Settings */ = {
+		88A8D6E92B3D78F300983E0E /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				883AA6C92B43A7F3003A6C11 /* SoundType.swift */,
 				88A8D6EA2B3D78F300983E0E /* DarkMode.swift */,
 				88A8D6ED2B3D78F300983E0E /* IconStyle.swift */,
 				88A8D6EC2B3D78F300983E0E /* LandspaceMode.swift */,
 				88CE4DA92B4269210035BAE9 /* AppIcons.swift */,
 				88CE4D732B3FC3AB0035BAE9 /* ColorType.swift */,
 			);
-			path = Settings;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		88A8D6EE2B3D78F300983E0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				88CE4DA22B424A1C0035BAE9 /* CaptureView.swift */,
-				88A8D6EF2B3D78F300983E0E /* SafariView.swift */,
 				88A8D6F02B3D78F300983E0E /* PageControl.swift */,
 			);
 			path = Views;
@@ -637,6 +637,7 @@
 				883811422B4D302E003C1F4E /* SwiftUIX */,
 				8838114E2B4D3971003C1F4E /* Neumorphic */,
 				883811522B4D4B26003C1F4E /* SwiftDate */,
+				88DEB1F92B5CDB5700EA01BE /* DesktopClockShare */,
 			);
 			productName = DesktopClockWidgetExtension;
 			productReference = 883811232B4D0002003C1F4E /* DesktopClockWidgetExtension.appex */;
@@ -668,6 +669,7 @@
 				88A8D7612B3DB1EC00983E0E /* KeychainSwift */,
 				88F8102C2B46689300EFB3D2 /* MBProgressHUD */,
 				88F810342B46C50D00EFB3D2 /* SwiftUIX */,
+				88DEB1F72B5CDB4E00EA01BE /* DesktopClockShare */,
 			);
 			productName = PureClock;
 			productReference = 8874645D2B37184E004416B8 /* DesktopClock.app */;
@@ -711,6 +713,7 @@
 				88F8102B2B46689300EFB3D2 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
 				88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				883811512B4D4B26003C1F4E /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				88DEB1F62B5CDB4E00EA01BE /* XCLocalSwiftPackageReference "DesktopClockShare" */,
 			);
 			productRefGroup = 8874645E2B37184E004416B8 /* Products */;
 			projectDirPath = "";
@@ -793,7 +796,6 @@
 				88A8D73F2B3D78F400983E0E /* SplashView.swift in Sources */,
 				88A8D7472B3D78F400983E0E /* TimerView.swift in Sources */,
 				88A8D73D2B3D78F400983E0E /* SettingsTimeFormatView.swift in Sources */,
-				88FE18DF2B4E840C00EA8BCB /* UIManager.swift in Sources */,
 				88CE4DD12B42BA940035BAE9 /* SettingsCheckCell.swift in Sources */,
 				88A8D75E2B3DAE3200983E0E /* ProManager.swift in Sources */,
 				88A8D74A2B3D78F400983E0E /* PomodoroPortraitView.swift in Sources */,
@@ -815,11 +817,10 @@
 				88CE4DCE2B42B9B50035BAE9 /* SettingsToggleCell.swift in Sources */,
 				883B5BEF2B511BD00097C216 /* StopLiveActivityIntent.swift in Sources */,
 				88A8D74D2B3D78F400983E0E /* ClockPortraitView.swift in Sources */,
-				88A8D72B2B3D78F400983E0E /* SafariView.swift in Sources */,
 				88A8D7412B3D78F400983E0E /* NeumorphicPortraitColon.swift in Sources */,
 				88A8D72D2B3D78F400983E0E /* DesktopClockApp.swift in Sources */,
 				88A8D7342B3D78F400983E0E /* SettingsDarkModeView.swift in Sources */,
-				883AA6CA2B43A7F3003A6C11 /* AppManager.swift in Sources */,
+				883AA6CA2B43A7F3003A6C11 /* SoundType.swift in Sources */,
 				88A8D7362B3D78F400983E0E /* SettingsSection.swift in Sources */,
 				88A8D7682B3E696B00983E0E /* PaywallView.swift in Sources */,
 				88A8D72A2B3D78F400983E0E /* IconStyle.swift in Sources */,
@@ -897,7 +898,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock.DesktopClockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -927,7 +928,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock.DesktopClockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1081,7 +1082,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1115,7 +1116,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1155,6 +1156,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		88DEB1F62B5CDB4E00EA01BE /* XCLocalSwiftPackageReference "DesktopClockShare" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = DesktopClockShare;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		883811512B4D4B26003C1F4E /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
@@ -1297,6 +1305,14 @@
 		88CF13EF2B501F3D00DBE9A1 /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		88DEB1F72B5CDB4E00EA01BE /* DesktopClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesktopClockShare;
+		};
+		88DEB1F92B5CDB5700EA01BE /* DesktopClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesktopClockShare;
 		};
 		88F8102C2B46689300EFB3D2 /* MBProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;

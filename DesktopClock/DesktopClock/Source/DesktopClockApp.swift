@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import DesktopClockShare
 import RevenueCat
 import SwiftUI
 import WidgetKit

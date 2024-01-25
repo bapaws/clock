@@ -1,0 +1,116 @@
+/* 
+  Localizable.strings
+  DigitalClock
+
+  Created by 张敏超 on 2024/1/20.
+  
+*/
+
+"AppName" = "Digital Clock";
+"Slogan" = "Let time hold more value.";
+"Cancel" = "Cancel";
+"Congratulations" = "🎉Congratulations🎉";
+
+// MARK: - Main
+
+"Pomodoro" = "Pomodoro";
+"Clock" = "Clock";
+"Timer" = "Timer";
+
+// MARK: - Settings
+
+"Settings" = "Settings";
+
+// MARK: Appearance
+
+"Appearance" = "Appearance";
+"ModeAuto" = "Use Device Setting";
+
+// MARK: Icon Style
+"IconType" = "Icon Type";
+"Text" = "Text";
+"Start" = "Start";
+"Stop" = "Stop";
+"Pause" = "Pause";
+"Resume" = "Resume";
+"Restart" = "Restart";
+
+// MARK: App Icon
+
+"AppIcon" = "App Icon";
+"LightClassic" = "Classic Light";
+"LightPink" = "Pink";
+"LightPurple" = "Purple";
+"LightOrange" = "Orange";
+"DarkClassic" = "Classic Dark";
+"DarkPink" = "Pink";
+"DarkPurple" = "Purple";
+"DarkOrange" = "Orange";
+
+"ColorThemes" = "Color Themes";
+"Default" = "Default";
+"Classic" = "Classic";
+"Pink" = "Pink";
+"Purple" = "Purple";
+"Orange" = "Orange";
+
+"DarkMode" = "Dark Mode";
+"LightMode" = "Light Mode";
+"Dark" = "Dark";
+"Light" = "Light";
+
+"LandspaceMode" = "Landspace Mode";
+"PortraitMode" = "Portrait Mode";
+"Portrait" = "Portrait";
+"Landspace" = "Landspace";
+
+// MARK: Other
+
+"Other" = "Other";
+"Rate" = "Rate Our App";
+"Upgrade" = "Upgrade";
+"About" = "About";
+
+// MARK: Clock
+
+"TimeFormat" = "Time Format";
+"ShowSecond" = "Display Seconds";
+
+// MARK: Pomodoro
+
+"FocusDuration" = "Focus Duration";
+"ShortBreakDuration" = "Break";
+"LongBreakDuration" = "Long Break Duration";
+"FocusCompletedNotification" = "Congratulations! Keep going!👏👏👏";
+"BreakCompletedNotification" = "Break has finished，Keep fighting!💪💪💪";
+
+// MARK: Timer
+
+"ShowHour" = "Always Display Hours";
+
+// MARK: Sound
+
+"Sound" = "Sound";
+"Mute" = "Mute";
+"Tick" = "Tick";
+"Pendulum" = "Pendulum";
+"Card" = "Card";
+"Drip" = "Drip";
+"Switch" = "Switch";
+"Muyu" = "Mokugyo";
+"SecondHand" = "Second Hand";
+"BackgroundSound" = "Background Sound";
+
+// MARK: About
+
+"Privacy" = "Privacy Policy";
+"And" = " and ";
+"Terms" = "Terms of Service";
+
+// MARK: Paywall
+
+"ProMembership" = "Pro Membership";
+"GetPro" = "Get Pro";
+"Restore" = "Restore";
+"Sale" = "SALE";
+"AdRemoval" = "Permanent ad removal";

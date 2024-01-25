@@ -8,6 +8,7 @@
 import ActivityKit
 import AppIntents
 import ClockShare
+import DesktopClockShare
 import WidgetKit
 
 @available(iOS 16.1, *)

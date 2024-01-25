@@ -5,8 +5,9 @@
 //  Created by 张敏超 on 2024/1/1.
 //
 
-import Neumorphic
 import ClockShare
+import DesktopClockShare
+import Neumorphic
 import SwiftUI
 
 let cellHeight: CGFloat = 64
@@ -17,7 +18,7 @@ struct SettingsToggleCell: View {
     @Binding var isOn: Bool
 
     @EnvironmentObject var ui: UIManager
-    
+
     var body: some View {
         HStack(spacing: 2) {
             Text(title)

@@ -11,33 +11,35 @@ import SwiftUI
 public enum ColorType: String, CaseIterable, Codable {
     case classic, pink, orange, purple
 
-    public var colors: Colors {
-        switch self {
-        case .classic:
-            Colors.classic()
-        case .pink:
-            Colors.pink()
-        case .orange:
-            Colors.orange()
-        case .purple:
-            Colors.purple()
-        }
-    }
-
-    public func colors(scheme: ColorScheme = .light) -> Colors {
-        switch self {
-        case .classic:
-            Colors.classic(scheme: scheme)
-        case .pink:
-            Colors.pink(scheme: scheme)
-        case .orange:
-            Colors.orange(scheme: scheme)
-        case .purple:
-            Colors.purple(scheme: scheme)
-        }
-    }
-
     public var isPro: Bool {
         self != .classic
     }
+}
+
+public protocol ThemeColors {
+    var scheme: ColorScheme { get set }
+
+    // MARK: Light Theme
+
+    var lightThemePrimary: UIColor { get }
+    var lightThemeSecondary: UIColor { get }
+    var lightThemeBackground: UIColor { get }
+
+    // MARK: Dark Theme
+
+    var darkThemePrimary: UIColor { get }
+    var darkThemeSecondary: UIColor { get }
+    var darkThemeBackground: UIColor { get }
+
+    init(
+        scheme: ColorScheme,
+        light: Color,
+        dark: Color
+    )
+}
+
+public extension ThemeColors {
+    var primary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary }) }
+    var secondary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary }) }
+    var background: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground }) }
 }

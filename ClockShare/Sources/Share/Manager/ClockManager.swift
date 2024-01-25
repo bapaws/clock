@@ -10,12 +10,6 @@ import Combine
 import Foundation
 import SwiftUI
 
-public enum SecondStyle: String, CaseIterable {
-    case none
-    case small
-    case big
-}
-
 public enum DateStyle: Int, CaseIterable {
     case none = 0
     case short = 1
@@ -38,10 +32,10 @@ public class ClockManager: ObservableObject {
     @Published public private(set) var time: Time = .init()
 
     @AppStorage(Storage.Key.secondStyle, store: Storage.default.store)
-    public var secondStyle: SecondStyle = .small
+    public var secondStyle: DigitStyle = .big
 
     @AppStorage(Storage.Key.timeFormat, store: Storage.default.store)
-    public var timeFormat: TimeFormat = .h24
+    public var timeFormat: TimeFormat = .h12
 
     @AppStorage(Storage.Key.dateStyle, store: Storage.default.store)
     public var dateStyle: DateStyle = .none

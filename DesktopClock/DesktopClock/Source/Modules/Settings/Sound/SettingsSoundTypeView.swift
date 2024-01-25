@@ -5,6 +5,8 @@
 //  Created by 张敏超 on 2024/1/3.
 //
 
+import ClockShare
+import DesktopClockShare
 import SwiftUI
 
 struct SettingsSoundTypeView: View {
