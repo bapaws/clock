@@ -11,7 +11,7 @@ import Foundation
 public struct PomodoroAttributes: ClockShare.PomodoroActivityAttributes {
     public typealias ContentState = ClockShare.PomodoroContentState
 
-    public var minutes: Int = 25
+    public var seconds: Int = 25 * 60
     public var state: PomodoroState
 
     public private(set) var colorType: ColorType
@@ -19,13 +19,13 @@ public struct PomodoroAttributes: ClockShare.PomodoroActivityAttributes {
     public private(set) var appIcon: AppIconType
 
     public init(
-        minutes: Int,
+        seconds: Int,
         state: PomodoroState,
         colorType: ColorType? = nil,
         colors: Colors? = nil,
         appIcon: AppIconType? = nil
     ) {
-        self.minutes = minutes
+        self.seconds = seconds
         self.state = state
 
         self.colorType = colorType ?? UIManager.shared.colorType
@@ -44,7 +44,7 @@ public class PomodoroActivity: ClockShare.PomodoroActivity<PomodoroAttributes> {
 public class PomodoroManager: ClockShare.PomodoroBaseManager {
     public static let shared = PomodoroManager()
 
-    private override init() {
+    override private init() {
         super.init()
     }
 
@@ -55,17 +55,28 @@ public class PomodoroManager: ClockShare.PomodoroBaseManager {
             if state == .none || state == .focusCompleted {
                 PomodoroActivity.shared.stop()
             } else {
-                var minutes = focusMinutes
+                var seconds = focusMinutes * 60
+#if DEBUG
                 switch state {
                 case .focusCompleted, .shortBreak:
-                    minutes = shortBreakMinutes
+                    seconds = 5 * 60
                 case .longBreak:
-                    minutes = longBreakMinutes
+                    seconds = 6
                 default:
-                    minutes = focusMinutes
+                    seconds = 60 + 9
                 }
+#else
+                switch state {
+                case .focusCompleted, .shortBreak:
+                    seconds = shortBreakMinutes * 60
+                case .longBreak:
+                    seconds = longBreakMinutes * 60
+                default:
+                    seconds = focusMinutes * 60
+                }
+#endif
 
-                let attributes = PomodoroAttributes(minutes: minutes, state: state)
+                let attributes = PomodoroAttributes(seconds: seconds, state: state)
                 PomodoroActivity.shared.start(attributes: attributes, time: time)
             }
         }

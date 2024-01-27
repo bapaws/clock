@@ -20,12 +20,12 @@ struct PomodoroLandspaceView: View {
             let digitHeight = ceil(digitWidth * 0.8)
             HStack(spacing: spacing) {
                 if time.hour != 0 {
-                    DigitView(tens: time.hourTens, ones: time.hourOnes, color: color)
+                    DigitView(tens: time.hourTens, ones: time.hourOnes)
                         .frame(width: digitWidth, height: digitHeight)
                 }
-                DigitView(tens: time.minuteTens, ones: time.minuteOnes, color: color)
+                DigitView(tens: time.minuteTens, ones: time.minuteOnes)
                     .frame(width: digitWidth, height: digitHeight)
-                DigitView(tens: time.secondTens, ones: time.secondOnes, color: color)
+                DigitView(tens: time.secondTens, ones: time.secondOnes)
                     .frame(width: digitWidth, height: digitHeight)
             }
             .font(.system(size: digitHeight, design: .rounded), weight: .ultraLight)

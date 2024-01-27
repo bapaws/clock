@@ -19,18 +19,18 @@ struct TimerPortraitView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            let digitCount: CGFloat = time.hour == 0 ? 2 : 3
+            let digitCount: CGFloat = time.hour != 0 || timer.hourStyle != .none ? 3 : 2
             let digitWidth = min(proxy.size.width, floor((proxy.size.height - spacing * (digitCount - 1)) / digitCount))
             let digitHeight = ceil(digitWidth * 0.8)
             VStack(alignment: .center, spacing: spacing) {
                 Spacer()
                 if time.hour != 0 || timer.hourStyle != .none {
-                    DigitView(tens: time.hourTens, ones: time.hourOnes, color: color)
+                    DigitView(tens: time.hourTens, ones: time.hourOnes)
                         .frame(width: digitWidth, height: digitHeight)
                 }
-                DigitView(tens: time.minuteTens, ones: time.minuteOnes, color: color)
+                DigitView(tens: time.minuteTens, ones: time.minuteOnes)
                     .frame(width: digitWidth, height: digitHeight)
-                DigitView(tens: time.secondTens, ones: time.secondOnes, color: color)
+                DigitView(tens: time.secondTens, ones: time.secondOnes)
                     .frame(width: digitWidth, height: digitHeight)
                 Spacer()
             }

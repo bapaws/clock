@@ -7,8 +7,9 @@
 
 import Dependencies
 import Foundation
+import WidgetKit
 
-public struct Time: Equatable, Codable, Hashable {
+public struct Time: Equatable, Codable, Hashable, TimelineEntry {
     @Dependency(\.date.now) var now
 
     public enum Meridiem: String {
@@ -130,12 +131,17 @@ public extension Time {
         (seconds / 3600) % 24 % 10
     }
 
+    var hour12: Int {
+        let hour = (seconds / 3600) % 24
+        return hour <= 12 ? hour : hour - 12
+    }
+
     var hour12Tens: Int {
-        (seconds / 3600) % 12 / 10
+        hour12 / 10
     }
 
     var hour12Ones: Int {
-        (seconds / 3600) % 12 % 10
+        hour12 % 10
     }
 
     var meridiem: Meridiem {

@@ -22,18 +22,18 @@ struct ClockLandspaceView: View {
             let secondWidth = floor(digitWidth * clock.secondStyle.heightMultiple)
             ZStack {
                 HStack(spacing: spacing) {
-                    DigitView(tens: clock.hourTens, ones: clock.hourOnes, color: color)
+                    DigitView(tens: clock.hourTens, ones: clock.hourOnes)
                         .frame(width: digitWidth, height: digitWidth)
 
-                    DigitView(tens: clock.time.minuteTens, ones: clock.time.minuteOnes, color: color)
+                    DigitView(tens: clock.time.minuteTens, ones: clock.time.minuteOnes)
                         .frame(width: digitWidth, height: digitWidth)
                     if clock.secondStyle == .big {
-                        DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes, color: color)
+                        DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes)
                             .frame(width: secondWidth, height: secondWidth)
                     }
                 }
                 if clock.secondStyle == .small {
-                    DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes, color: color)
+                    DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes)
                         .frame(width: secondWidth, height: secondWidth)
                         .font(.system(size: floor(secondWidth * 0.5), design: .rounded), weight: .ultraLight)
                         .offset(y: proxy.size.height / 2)

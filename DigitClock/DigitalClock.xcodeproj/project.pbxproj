@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		880592E82B620BE70051284F /* SettingsStepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592E72B620BE70051284F /* SettingsStepperCell.swift */; };
 		880592ED2B621B090051284F /* SettingsTimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592EC2B621B090051284F /* SettingsTimerSection.swift */; };
+		88227F902B63A1D800176CC8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88227F8F2B63A1D700176CC8 /* WidgetKit.framework */; };
+		88227F922B63A1D800176CC8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88227F912B63A1D800176CC8 /* SwiftUI.framework */; };
+		88227F952B63A1D800176CC8 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227F942B63A1D800176CC8 /* WidgetsBundle.swift */; };
+		88227F9F2B63A1D900176CC8 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 88227F8E2B63A1D700176CC8 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		88227FC72B63A2AC00176CC8 /* ClockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FB92B63A21700176CC8 /* ClockWidget.swift */; };
+		88227FC82B63A2B000176CC8 /* ClockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FBA2B63A21700176CC8 /* ClockProvider.swift */; };
+		88227FC92B63A2B400176CC8 /* PomodoroWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FB62B63A21700176CC8 /* PomodoroWidget.swift */; };
+		88227FCA2B63A2B400176CC8 /* PomodoroWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FB72B63A21700176CC8 /* PomodoroWidgetLiveActivity.swift */; };
+		88227FCB2B63A2B400176CC8 /* StopLiveActivityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FB52B63A21700176CC8 /* StopLiveActivityIntent.swift */; };
+		88227FCC2B63A2C000176CC8 /* PomodoroState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FAF2B63A21700176CC8 /* PomodoroState.swift */; };
+		88227FD02B63A2ED00176CC8 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FCF2B63A2ED00176CC8 /* ClockShare */; };
+		88227FD22B63A2F100176CC8 /* DigitalClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FD12B63A2F100176CC8 /* DigitalClockShare */; };
+		88227FD52B63A31300176CC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE1C2B5C0DC8000DC432 /* Localizable.strings */; };
+		88227FD62B63A31800176CC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88227FA62B63A21700176CC8 /* Localizable.strings */; };
+		88227FD72B63A31C00176CC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88227FA92B63A21700176CC8 /* Assets.xcassets */; };
+		88227FE62B63A80100176CC8 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FE52B63A80100176CC8 /* SwiftDate */; };
+		88227FEA2B63A82700176CC8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FE92B63A82700176CC8 /* RswiftLibrary */; };
+		88227FFD2B63FB7200176CC8 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FF92B63F68200176CC8 /* SecondView.swift */; };
 		8837ADDA2B5C0082000DC432 /* DigitalClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADD92B5C0082000DC432 /* DigitalClockApp.swift */; };
 		8837ADDE2B5C0083000DC432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8837ADDD2B5C0083000DC432 /* Assets.xcassets */; };
 		8837ADE12B5C0083000DC432 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8837ADE02B5C0083000DC432 /* Preview Assets.xcassets */; };
@@ -25,7 +43,6 @@
 		8837AE0E2B5C0D5C000DC432 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE032B5C0D5C000DC432 /* SoundType.swift */; };
 		8837AE102B5C0D5C000DC432 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE062B5C0D5C000DC432 /* PageControl.swift */; };
 		8837AE162B5C0DC2000DC432 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE182B5C0DC2000DC432 /* InfoPlist.strings */; };
-		8837AE1A2B5C0DC8000DC432 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE1C2B5C0DC8000DC432 /* Localizable.strings */; };
 		8837AE222B5C0E16000DC432 /* LaunchScreen_zh-Hans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE1F2B5C0E16000DC432 /* LaunchScreen_zh-Hans.storyboard */; };
 		8837AE232B5C0E16000DC432 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE202B5C0E16000DC432 /* LaunchScreen.storyboard */; };
 		8837AE242B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE212B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard */; };
@@ -58,7 +75,6 @@
 		8837AEE62B5C0EC4000DC432 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC02B5C0EC4000DC432 /* TimerView.swift */; };
 		8837AEE72B5C0EC4000DC432 /* TimerPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */; };
 		8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */; };
-		8837AEEA2B5C0EF3000DC432 /* DigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEE92B5C0EF3000DC432 /* DigitView.swift */; };
 		8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEEB2B5C1010000DC432 /* MainView.swift */; };
 		8837AEEF2B5C10F0000DC432 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEEE2B5C10F0000DC432 /* ClockShare */; };
 		8837AEF22B5C1107000DC432 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEF12B5C1107000DC432 /* ClockShare */; };
@@ -72,13 +88,58 @@
 		888C07632B62A040008028B6 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 888C07602B62A040008028B6 /* tick.wav */; };
 		888C07642B62A040008028B6 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 888C07612B62A040008028B6 /* drip.wav */; };
 		888C07652B62A040008028B6 /* second.wav in Resources */ = {isa = PBXBuildFile; fileRef = 888C07622B62A040008028B6 /* second.wav */; };
+		888C07682B62A84F008028B6 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07672B62A84E008028B6 /* CaptureView.swift */; };
+		888C07702B62AC8E008028B6 /* SettingsAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C076F2B62AC8E008028B6 /* SettingsAppIconView.swift */; };
+		888C07722B62AE47008028B6 /* SettingsAppIconSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07712B62AE47008028B6 /* SettingsAppIconSection.swift */; };
 		88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */; };
 		88C7EAF52B61103F00F6ACD4 /* ValueStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */; };
+		88CEEAB32B64BAF50037ACF8 /* ClockEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CEEAB22B64BAF50037ACF8 /* ClockEntryView.swift */; };
+		88CEEAB72B64BC630037ACF8 /* ClockMediumEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CEEAB62B64BC630037ACF8 /* ClockMediumEntryView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88227F9D2B63A1D900176CC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8837ADCE2B5C0082000DC432 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88227F8D2B63A1D700176CC8;
+			remoteInfo = WidgetsExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88227FA02B63A1D900176CC8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				88227F9F2B63A1D900176CC8 /* WidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		880592E72B620BE70051284F /* SettingsStepperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStepperCell.swift; sourceTree = "<group>"; };
 		880592EC2B621B090051284F /* SettingsTimerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimerSection.swift; sourceTree = "<group>"; };
+		88227F8E2B63A1D700176CC8 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		88227F8F2B63A1D700176CC8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		88227F912B63A1D800176CC8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		88227F942B63A1D800176CC8 /* WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsBundle.swift; sourceTree = "<group>"; };
+		88227FA72B63A21700176CC8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88227FA82B63A21700176CC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88227FA92B63A21700176CC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88227FAB2B63A21700176CC8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88227FAF2B63A21700176CC8 /* PomodoroState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroState.swift; sourceTree = "<group>"; };
+		88227FB52B63A21700176CC8 /* StopLiveActivityIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopLiveActivityIntent.swift; sourceTree = "<group>"; };
+		88227FB62B63A21700176CC8 /* PomodoroWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroWidget.swift; sourceTree = "<group>"; };
+		88227FB72B63A21700176CC8 /* PomodoroWidgetLiveActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		88227FB92B63A21700176CC8 /* ClockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockWidget.swift; sourceTree = "<group>"; };
+		88227FBA2B63A21700176CC8 /* ClockProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockProvider.swift; sourceTree = "<group>"; };
+		88227FD92B63A36900176CC8 /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
+		88227FF92B63F68200176CC8 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		8837ADD62B5C0082000DC432 /* DigitalClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8837ADD92B5C0082000DC432 /* DigitalClockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalClockApp.swift; sourceTree = "<group>"; };
 		8837ADDD2B5C0083000DC432 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,18 +190,35 @@
 		8837AEC02B5C0EC4000DC432 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPortraitView.swift; sourceTree = "<group>"; };
 		8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLandspaceView.swift; sourceTree = "<group>"; };
-		8837AEE92B5C0EF3000DC432 /* DigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitView.swift; sourceTree = "<group>"; };
 		8837AEEB2B5C1010000DC432 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		888C07592B628A3C008028B6 /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
 		888C07602B62A040008028B6 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 		888C07612B62A040008028B6 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
 		888C07622B62A040008028B6 /* second.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = second.wav; sourceTree = "<group>"; };
+		888C07672B62A84E008028B6 /* CaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		888C076F2B62AC8E008028B6 /* SettingsAppIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppIconView.swift; sourceTree = "<group>"; };
+		888C07712B62AE47008028B6 /* SettingsAppIconSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppIconSection.swift; sourceTree = "<group>"; };
 		88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStepper.swift; sourceTree = "<group>"; };
+		88CEEAB22B64BAF50037ACF8 /* ClockEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockEntryView.swift; sourceTree = "<group>"; };
+		88CEEAB62B64BC630037ACF8 /* ClockMediumEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockMediumEntryView.swift; sourceTree = "<group>"; };
 		88E790702B5D04760068B795 /* DigitClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DigitClockShare; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		88227F8B2B63A1D700176CC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88227FD02B63A2ED00176CC8 /* ClockShare in Frameworks */,
+				88227F922B63A1D800176CC8 /* SwiftUI.framework in Frameworks */,
+				88227FE62B63A80100176CC8 /* SwiftDate in Frameworks */,
+				88227FD22B63A2F100176CC8 /* DigitalClockShare in Frameworks */,
+				88227F902B63A1D800176CC8 /* WidgetKit.framework in Frameworks */,
+				88227FEA2B63A82700176CC8 /* RswiftLibrary in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8837ADD32B5C0082000DC432 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,11 +249,89 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
+		88227F932B63A1D800176CC8 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				88227FA52B63A21700176CC8 /* Resources */,
+				88227FAC2B63A21700176CC8 /* Core */,
+				88227FB32B63A21700176CC8 /* Modules */,
+				88227F942B63A1D800176CC8 /* WidgetsBundle.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		88227FA52B63A21700176CC8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88227FD92B63A36900176CC8 /* WidgetsExtension.entitlements */,
+				88227FA62B63A21700176CC8 /* Localizable.strings */,
+				88227FA92B63A21700176CC8 /* Assets.xcassets */,
+				88227FAB2B63A21700176CC8 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88227FAC2B63A21700176CC8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				88227FF82B63F67000176CC8 /* Views */,
+				88227FAE2B63A21700176CC8 /* Data */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		88227FAE2B63A21700176CC8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				88227FAF2B63A21700176CC8 /* PomodoroState.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		88227FB32B63A21700176CC8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				88227FB42B63A21700176CC8 /* Promodoro */,
+				88227FB82B63A21700176CC8 /* Clock */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		88227FB42B63A21700176CC8 /* Promodoro */ = {
+			isa = PBXGroup;
+			children = (
+				88227FB52B63A21700176CC8 /* StopLiveActivityIntent.swift */,
+				88227FB62B63A21700176CC8 /* PomodoroWidget.swift */,
+				88227FB72B63A21700176CC8 /* PomodoroWidgetLiveActivity.swift */,
+			);
+			path = Promodoro;
+			sourceTree = "<group>";
+		};
+		88227FB82B63A21700176CC8 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				88227FB92B63A21700176CC8 /* ClockWidget.swift */,
+				88CEEAB62B64BC630037ACF8 /* ClockMediumEntryView.swift */,
+				88CEEAB22B64BAF50037ACF8 /* ClockEntryView.swift */,
+				88227FBA2B63A21700176CC8 /* ClockProvider.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		88227FF82B63F67000176CC8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88227FF92B63F68200176CC8 /* SecondView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8837ADCD2B5C0082000DC432 = {
 			isa = PBXGroup;
 			children = (
 				88E790702B5D04760068B795 /* DigitClockShare */,
 				8837ADD82B5C0082000DC432 /* DigitalClock */,
+				88227F932B63A1D800176CC8 /* Widgets */,
 				8837ADD72B5C0082000DC432 /* Products */,
 				8837AEED2B5C10F0000DC432 /* Frameworks */,
 			);
@@ -185,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				8837ADD62B5C0082000DC432 /* DigitalClock.app */,
+				88227F8E2B63A1D700176CC8 /* WidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,8 +437,8 @@
 		8837AE052B5C0D5C000DC432 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				888C07672B62A84E008028B6 /* CaptureView.swift */,
 				8837AE062B5C0D5C000DC432 /* PageControl.swift */,
-				8837AEE92B5C0EF3000DC432 /* DigitView.swift */,
 				8837AE952B5C0EC4000DC432 /* HoldOnButton.swift */,
 				88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */,
 				888C07592B628A3C008028B6 /* BannerAd.swift */,
@@ -310,6 +467,7 @@
 		8837AE982B5C0EC4000DC432 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				888C076E2B62AC8E008028B6 /* AppIcon */,
 				880592EA2B621AE80051284F /* Timer */,
 				8837AE9F2B5C0EC4000DC432 /* Appearance */,
 				8837AE992B5C0EC4000DC432 /* Cells */,
@@ -422,6 +580,8 @@
 		8837AEED2B5C10F0000DC432 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88227F8F2B63A1D700176CC8 /* WidgetKit.framework */,
+				88227F912B63A1D800176CC8 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -436,9 +596,42 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		888C076E2B62AC8E008028B6 /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				888C076F2B62AC8E008028B6 /* SettingsAppIconView.swift */,
+				888C07712B62AE47008028B6 /* SettingsAppIconSection.swift */,
+			);
+			path = AppIcon;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		88227F8D2B63A1D700176CC8 /* WidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88227FA32B63A1D900176CC8 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */;
+			buildPhases = (
+				88227F8A2B63A1D700176CC8 /* Sources */,
+				88227F8B2B63A1D700176CC8 /* Frameworks */,
+				88227F8C2B63A1D700176CC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88227FDF2B63A75400176CC8 /* PBXTargetDependency */,
+			);
+			name = WidgetsExtension;
+			packageProductDependencies = (
+				88227FCF2B63A2ED00176CC8 /* ClockShare */,
+				88227FD12B63A2F100176CC8 /* DigitalClockShare */,
+				88227FE52B63A80100176CC8 /* SwiftDate */,
+				88227FE92B63A82700176CC8 /* RswiftLibrary */,
+			);
+			productName = WidgetsExtension;
+			productReference = 88227F8E2B63A1D700176CC8 /* WidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8837ADD52B5C0082000DC432 /* DigitalClock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8837ADE42B5C0083000DC432 /* Build configuration list for PBXNativeTarget "DigitalClock" */;
@@ -446,11 +639,13 @@
 				8837ADD22B5C0082000DC432 /* Sources */,
 				8837ADD32B5C0082000DC432 /* Frameworks */,
 				8837ADD42B5C0082000DC432 /* Resources */,
+				88227FA02B63A1D900176CC8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				8837ADF72B5C0AE3000DC432 /* PBXTargetDependency */,
+				88227F9E2B63A1D900176CC8 /* PBXTargetDependency */,
 			);
 			name = DigitalClock;
 			packageProductDependencies = (
@@ -481,6 +676,9 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					88227F8D2B63A1D700176CC8 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					8837ADD52B5C0082000DC432 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -514,11 +712,21 @@
 			projectRoot = "";
 			targets = (
 				8837ADD52B5C0082000DC432 /* DigitalClock */,
+				88227F8D2B63A1D700176CC8 /* WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		88227F8C2B63A1D700176CC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88227FD72B63A31C00176CC8 /* Assets.xcassets in Resources */,
+				88227FD62B63A31800176CC8 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8837ADD42B5C0082000DC432 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -528,10 +736,10 @@
 				8837AE162B5C0DC2000DC432 /* InfoPlist.strings in Resources */,
 				8837AE232B5C0E16000DC432 /* LaunchScreen.storyboard in Resources */,
 				888C07652B62A040008028B6 /* second.wav in Resources */,
-				8837AE1A2B5C0DC8000DC432 /* Localizable.strings in Resources */,
 				8837ADDE2B5C0083000DC432 /* Assets.xcassets in Resources */,
 				888C07642B62A040008028B6 /* drip.wav in Resources */,
 				8837AE242B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard in Resources */,
+				88227FD52B63A31300176CC8 /* Localizable.strings in Resources */,
 				888C07632B62A040008028B6 /* tick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,6 +747,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		88227F8A2B63A1D700176CC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88CEEAB32B64BAF50037ACF8 /* ClockEntryView.swift in Sources */,
+				88227FCA2B63A2B400176CC8 /* PomodoroWidgetLiveActivity.swift in Sources */,
+				88227FC72B63A2AC00176CC8 /* ClockWidget.swift in Sources */,
+				88227FFD2B63FB7200176CC8 /* SecondView.swift in Sources */,
+				88227FC82B63A2B000176CC8 /* ClockProvider.swift in Sources */,
+				88227FC92B63A2B400176CC8 /* PomodoroWidget.swift in Sources */,
+				88227FCB2B63A2B400176CC8 /* StopLiveActivityIntent.swift in Sources */,
+				88227F952B63A1D800176CC8 /* WidgetsBundle.swift in Sources */,
+				88227FCC2B63A2C000176CC8 /* PomodoroState.swift in Sources */,
+				88CEEAB72B64BC630037ACF8 /* ClockMediumEntryView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8837ADD22B5C0082000DC432 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -551,10 +776,10 @@
 				8837AEE62B5C0EC4000DC432 /* TimerView.swift in Sources */,
 				8837AEDA2B5C0EC4000DC432 /* SettingsSoundTypeView.swift in Sources */,
 				8837AE0C2B5C0D5C000DC432 /* IconStyle.swift in Sources */,
+				888C07702B62AC8E008028B6 /* SettingsAppIconView.swift in Sources */,
 				8837AE0A2B5C0D5C000DC432 /* DarkMode.swift in Sources */,
 				8837AE082B5C0D5C000DC432 /* AppIcons.swift in Sources */,
 				88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */,
-				8837AEEA2B5C0EF3000DC432 /* DigitView.swift in Sources */,
 				8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */,
 				8837AED62B5C0EC4000DC432 /* SettingsFocusMinutesView.swift in Sources */,
 				8837AEE42B5C0EC4000DC432 /* ClockLandspaceView.swift in Sources */,
@@ -565,6 +790,7 @@
 				8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */,
 				8837AECC2B5C0EC4000DC432 /* SettingsCheckCell.swift in Sources */,
 				8837AECB2B5C0EC4000DC432 /* SettingsNavigateCell.swift in Sources */,
+				888C07722B62AE47008028B6 /* SettingsAppIconSection.swift in Sources */,
 				8837AEE52B5C0EC4000DC432 /* PaywallView.swift in Sources */,
 				8837AECF2B5C0EC4000DC432 /* SettingsAppearanceSection.swift in Sources */,
 				88C7EAF52B61103F00F6ACD4 /* ValueStepper.swift in Sources */,
@@ -582,6 +808,7 @@
 				8837AEE02B5C0EC4000DC432 /* PomodoroLandspaceView.swift in Sources */,
 				8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */,
 				8837AEE12B5C0EC4000DC432 /* AboutView.swift in Sources */,
+				888C07682B62A84F008028B6 /* CaptureView.swift in Sources */,
 				8837AEE22B5C0EC4000DC432 /* ClockPortraitView.swift in Sources */,
 				8837AE092B5C0D5C000DC432 /* ColorType.swift in Sources */,
 				8837AE0D2B5C0D5C000DC432 /* ProManager.swift in Sources */,
@@ -594,6 +821,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		88227F9E2B63A1D900176CC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88227F8D2B63A1D700176CC8 /* WidgetsExtension */;
+			targetProxy = 88227F9D2B63A1D900176CC8 /* PBXContainerItemProxy */;
+		};
+		88227FDF2B63A75400176CC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 88227FDE2B63A75400176CC8 /* RswiftGenerateInternalResources */;
+		};
 		8837ADF72B5C0AE3000DC432 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 8837ADF62B5C0AE3000DC432 /* RswiftGenerateInternalResources */;
@@ -601,6 +837,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		88227FA62B63A21700176CC8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88227FA72B63A21700176CC8 /* zh-Hans */,
+				88227FA82B63A21700176CC8 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		8837AE182B5C0DC2000DC432 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -622,6 +867,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		88227FA12B63A1D900176CC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/WidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GM4766U38W;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88227FA22B63A1D900176CC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/WidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GM4766U38W;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widgets/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8837ADE22B5C0083000DC432 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -744,8 +1049,10 @@
 		8837ADE52B5C0083000DC432 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = LightClassic;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DigitalClock/Resources/DigitalClock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -779,8 +1086,10 @@
 		8837ADE62B5C0083000DC432 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = LightClassic;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DigitalClock/Resources/DigitalClock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -814,6 +1123,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		88227FA32B63A1D900176CC8 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88227FA12B63A1D900176CC8 /* Debug */,
+				88227FA22B63A1D900176CC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8837ADD12B5C0082000DC432 /* Build configuration list for PBXProject "DigitalClock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -921,6 +1239,28 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		88227FCF2B63A2ED00176CC8 /* ClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClockShare;
+		};
+		88227FD12B63A2F100176CC8 /* DigitalClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DigitalClockShare;
+		};
+		88227FDE2B63A75400176CC8 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		88227FE52B63A80100176CC8 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837ADF32B5C0AB5000DC432 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
+		88227FE92B63A82700176CC8 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8837ADED2B5C0A2E000DC432 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
 		8837ADEB2B5C09EF000DC432 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8837ADEA2B5C09EF000DC432 /* XCRemoteSwiftPackageReference "SwiftUIX" */;

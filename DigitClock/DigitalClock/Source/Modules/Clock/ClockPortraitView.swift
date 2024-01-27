@@ -22,15 +22,15 @@ struct ClockPortraitView: View {
             let secondWidth = floor(digitWidth * clock.secondStyle.heightMultiple)
             VStack(alignment: .center, spacing: spacing) {
                 Spacer()
-                DigitView(tens: clock.hourTens, ones: clock.hourOnes, color: color)
+                DigitView(tens: clock.hourTens, ones: clock.hourOnes)
                     .frame(width: digitWidth, height: digitHeight)
-                DigitView(tens: clock.time.minuteTens, ones: clock.time.minuteOnes, color: color)
+                DigitView(tens: clock.time.minuteTens, ones: clock.time.minuteOnes)
                     .frame(width: digitWidth, height: digitHeight)
                 if clock.secondStyle == .big {
-                    DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes, color: color)
+                    DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes)
                         .frame(width: digitWidth, height: digitHeight)
                 } else if clock.secondStyle == .small {
-                    DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes, color: color)
+                    DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes)
                         .frame(width: secondWidth, height: secondWidth)
                         .font(.system(size: floor(digitWidth * 0.25), design: .rounded), weight: .ultraLight)
                 }

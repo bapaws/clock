@@ -53,6 +53,7 @@ struct MainView: View {
             // MARK: - Settings
 
             .popup(isPresented: $isSettingsPresented) {
+//                CaptureView()
                 let width = isPortrait ? proxy.size.width : proxy.size.width * 0.6
                 let height = isPortrait ? 420 : (proxy.size.height + proxy.safeAreaInsets.bottom + proxy.safeAreaInsets.top)
                 SettingsView(

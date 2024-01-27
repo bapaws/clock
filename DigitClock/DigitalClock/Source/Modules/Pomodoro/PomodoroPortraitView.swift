@@ -22,12 +22,12 @@ struct PomodoroPortraitView: View {
             VStack(alignment: .center, spacing: spacing) {
                 Spacer()
                 if time.hour != 0 {
-                    DigitView(tens: time.hourTens, ones: time.hourOnes, color: color)
+                    DigitView(tens: time.hourTens, ones: time.hourOnes)
                         .frame(width: digitWidth, height: digitHeight)
                 }
-                DigitView(tens: time.minuteTens, ones: time.minuteOnes, color: color)
+                DigitView(tens: time.minuteTens, ones: time.minuteOnes)
                     .frame(width: digitWidth, height: digitHeight)
-                DigitView(tens: time.secondTens, ones: time.secondOnes, color: color)
+                DigitView(tens: time.secondTens, ones: time.secondOnes)
                     .frame(width: digitWidth, height: digitHeight)
                 Spacer()
             }

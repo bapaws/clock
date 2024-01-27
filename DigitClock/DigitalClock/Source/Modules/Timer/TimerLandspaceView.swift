@@ -21,12 +21,12 @@ struct TimerLandspaceView: View {
             let digitWidth = min(ceil((proxy.size.width - spacing * (1 + timer.hourStyle.digitCount)) / (2 + timer.hourStyle.heightMultiple)), proxy.size.height)
             HStack(alignment: .center, spacing: spacing) {
                 if time.hour != 0 || timer.hourStyle != .none {
-                    DigitView(tens: time.hourTens, ones: time.hourOnes, color: color)
+                    DigitView(tens: time.hourTens, ones: time.hourOnes)
                         .frame(width: digitWidth, height: digitWidth)
                 }
-                DigitView(tens: time.minuteTens, ones: time.minuteOnes, color: color)
+                DigitView(tens: time.minuteTens, ones: time.minuteOnes)
                     .frame(width: digitWidth, height: digitWidth)
-                DigitView(tens: time.secondTens, ones: time.secondOnes, color: color)
+                DigitView(tens: time.secondTens, ones: time.secondOnes)
                     .frame(width: digitWidth, height: digitWidth)
             }
             .font(.system(size: digitWidth * 0.8, design: .rounded), weight: .ultraLight)

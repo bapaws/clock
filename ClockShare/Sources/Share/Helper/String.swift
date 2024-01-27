@@ -17,18 +17,17 @@ public extension String {
         NSRange(location: 0, length: count)
     }
 
-    func height(constrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+    func boundingSize(with size: CGSize, font: UIFont) -> CGSize {
+        let boundingBox = self.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        return CGSize(width: ceil(boundingBox.width), height: ceil(boundingBox.height))
+    }
 
-        return ceil(boundingBox.height)
+    func height(constrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        self.boundingSize(with: CGSize(width: width, height: .greatestFiniteMagnitude), font: font).height
     }
 
     func width(constrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
-
-        return ceil(boundingBox.width)
+        self.boundingSize(with: CGSize(width: .greatestFiniteMagnitude, height: height), font: font).width
     }
 
     func matchEmails() -> [String]? {

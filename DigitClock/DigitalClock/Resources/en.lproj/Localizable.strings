@@ -37,6 +37,7 @@
 
 // MARK: App Icon
 
+"Icon" = "Icon";
 "AppIcon" = "App Icon";
 "LightClassic" = "Classic Light";
 "LightPink" = "Pink";

@@ -52,7 +52,7 @@ public struct PomodoroContentState: Codable, Hashable {
 public protocol PomodoroActivityAttributes: ActivityAttributes {
     associatedtype C: ThemeColors
 
-    var minutes: Int { set get }
+    var seconds: Int { set get }
     var state: PomodoroState { set get }
 
     var colorType: ColorType { get }
@@ -60,7 +60,7 @@ public protocol PomodoroActivityAttributes: ActivityAttributes {
     var appIcon: AppIconType { get }
 
     init(
-        minutes: Int,
+        seconds: Int,
         state: PomodoroState,
         colorType: ColorType?,
         colors: C?,

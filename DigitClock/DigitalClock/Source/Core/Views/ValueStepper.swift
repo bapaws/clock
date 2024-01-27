@@ -51,6 +51,7 @@ public struct ValueStepper: View {
                 }
             }) {
                 Image(systemName: "minus")
+                    .frame(width: buttonWidth, height: height)
             }
             .foregroundStyle(borderColor)
             .frame(width: buttonWidth, height: height)
@@ -71,6 +72,7 @@ public struct ValueStepper: View {
                 }
             }) {
                 Image(systemName: "plus")
+                    .frame(width: buttonWidth, height: height)
             }
             .foregroundStyle(borderColor)
             .frame(width: buttonWidth, height: height)

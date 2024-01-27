@@ -8,6 +8,7 @@
 import AVFoundation
 import Combine
 import Foundation
+import SwiftDate
 import SwiftUI
 
 public enum DateStyle: Int, CaseIterable {
@@ -43,6 +44,8 @@ public class ClockManager: ObservableObject {
     public var timeInterval: TimeInterval = 0.5
     private var timer: Timer? = nil
     private init(time: Time = .init(), timeInterval: TimeInterval = 0.5) {
+        SwiftDate.defaultRegion = .local
+
         self.time = time
         self.timeInterval = timeInterval
         start()

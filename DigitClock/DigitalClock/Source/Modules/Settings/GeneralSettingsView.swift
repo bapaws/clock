@@ -19,6 +19,7 @@ struct GeneralSettingsView: View {
 
     @State var isDarkModePresented: Bool = false
     @State var isLandspaceModePresented: Bool = false
+    @State var isAppIconPresented: Bool = false
 
     // MARK: Clock
 
@@ -56,6 +57,9 @@ struct GeneralSettingsView: View {
         .popup(isPresented: $isLandspaceModePresented, view: {
             SettingsLandspaceModeView(isPresented: $isLandspaceModePresented)
         }, customize: customize)
+        .sheet(isPresented: $isAppIconPresented) {
+            SettingsAppIconView(isPresented: $isAppIconPresented)
+        }
 
         // MARK: Clock
 
@@ -105,6 +109,10 @@ struct GeneralSettingsView: View {
                     isDarkModePresented: $isDarkModePresented,
                     isLandspaceModePresented: $isLandspaceModePresented
                 )
+
+                // MARK: App Icons
+
+                SettingsAppIconSection(isAppIconPresented: $isAppIconPresented)
 
                 // MARK: Other
 
