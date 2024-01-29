@@ -91,6 +91,7 @@ struct ClockMediumEntryView: View {
                                     .frame(width: proxy.size.width - digitSize.width, height: digitSize.height)
                             }
                         }
+                        .offset(x: -spacing)
 
                     HStack(spacing: spacing) {
                         DigitView(tens: time.hourTens, ones: time.hourOnes)
@@ -100,8 +101,8 @@ struct ClockMediumEntryView: View {
                             .frame(digitSize)
                     }
                     .frame(alignment: .leading)
+                    .offset(x: spacing)
                 }
-                .padding(.horizontal, .large)
             }
         }
         .font(.system(size: fontSize, design: .rounded), weight: .ultraLight)

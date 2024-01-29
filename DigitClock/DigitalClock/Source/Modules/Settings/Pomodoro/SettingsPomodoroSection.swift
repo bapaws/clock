@@ -10,10 +10,6 @@ import DigitalClockShare
 import SwiftUI
 
 struct SettingsPomodoroSection: View {
-    @Binding var isFocusPresented: Bool
-    @Binding var isShortBreakPresented: Bool
-    @Binding var isLongBreakPresented: Bool
-
     @EnvironmentObject var pomodoro: PomodoroManager
 
     var body: some View {
@@ -33,10 +29,6 @@ struct SettingsPomodoroSection: View {
 }
 
 #Preview {
-    SettingsPomodoroSection(
-        isFocusPresented: Binding<Bool>.constant(false),
-        isShortBreakPresented: Binding<Bool>.constant(false),
-        isLongBreakPresented: Binding<Bool>.constant(false)
-    )
-    .environmentObject(PomodoroManager.shared)
+    SettingsPomodoroSection()
+        .environmentObject(PomodoroManager.shared)
 }

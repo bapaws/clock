@@ -116,6 +116,7 @@ struct MainView: View {
         Pager(page: page, data: AppPage.allCases, id: \.self) { index in
             pageContent(at: index)
                 .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))
+                .contentShape(Rectangle())
         }
         .onDraggingChanged { value in
             offsetX = value

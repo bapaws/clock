@@ -19,16 +19,6 @@ struct SettingsView: View {
 
     @Binding var pageIndex: Int
 
-    // MARK: Clock
-
-    @State var isTimeFormatPresented: Bool = false
-
-    // MARK: Pomodoro
-
-    @State var isFocusPresented: Bool = false
-    @State var isShortBreakPresented: Bool = false
-    @State var isLongBreakPresented: Bool = false
-
     // MARK: General Settings
 
     @State var isGeneralSettingsPresented = false
@@ -58,20 +48,14 @@ struct SettingsView: View {
 
             switch pageIndex {
             case 0:
-                SettingsPomodoroSection(
-                    isFocusPresented: $isFocusPresented,
-                    isShortBreakPresented: $isShortBreakPresented,
-                    isLongBreakPresented: $isLongBreakPresented
-                )
-                .environmentObject(PomodoroManager.shared)
+                SettingsPomodoroSection()
+                    .environmentObject(PomodoroManager.shared)
             case 2:
                 SettingsTimerSection()
                     .environmentObject(TimerManager.shared)
             default:
-                SettingsClockSection(
-                    isTimeFormatPresented: $isTimeFormatPresented
-                )
-                .environmentObject(ClockManager.shared)
+                SettingsClockSection()
+                    .environmentObject(ClockManager.shared)
             }
 
             Spacer()
@@ -98,28 +82,6 @@ struct SettingsView: View {
         .foregroundStyle(ui.colors.primary)
         .background(ui.colors.background)
         .font(.system(.body, design: .rounded), weight: .ultraLight)
-
-        // MARK: Clock
-
-        .popup(isPresented: $isTimeFormatPresented, view: {
-            SettingsTimeFormatView(isPresented: $isTimeFormatPresented)
-                .environmentObject(ClockManager.shared)
-        }, customize: customize)
-
-        // MARK: Pomodoro
-
-        .popup(isPresented: $isFocusPresented, view: {
-            SettingsFocusMinutesView(isPresented: $isFocusPresented)
-                .environmentObject(PomodoroManager.shared)
-        }, customize: customize)
-        .popup(isPresented: $isShortBreakPresented, view: {
-            SettingsShortBreakMinutesView(isPresented: $isShortBreakPresented)
-                .environmentObject(PomodoroManager.shared)
-        }, customize: customize)
-        .popup(isPresented: $isLongBreakPresented, view: {
-            SettingsLongBreakMinutesView(isPresented: $isLongBreakPresented)
-                .environmentObject(PomodoroManager.shared)
-        }, customize: customize)
 
         // MARK: About
 

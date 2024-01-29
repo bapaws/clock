@@ -96,11 +96,11 @@ struct PomodoroWidgetLiveActivity: Widget {
         if #available(iOSApplicationExtension 17.0, *) {
             Button(intent: StopLiveActivityIntent(), label: {
                 Text(R.string.localizable.stop())
-                    .font(.headline)
+                    .font(.headline, weight: .ultraLight)
             })
         } else {
             Text(R.string.localizable.stop())
-                .font(.headline)
+                .font(.headline, weight: .ultraLight)
                 .padding(.horizontal, .regular)
                 .padding(.vertical, .small)
         }

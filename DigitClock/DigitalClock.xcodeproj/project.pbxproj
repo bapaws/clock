@@ -56,13 +56,9 @@
 		8837AED12B5C0EC4000DC432 /* SettingsLandspaceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA22B5C0EC4000DC432 /* SettingsLandspaceModeView.swift */; };
 		8837AED32B5C0EC4000DC432 /* SettingsDarkModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA42B5C0EC4000DC432 /* SettingsDarkModeView.swift */; };
 		8837AED42B5C0EC4000DC432 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA52B5C0EC4000DC432 /* SettingsSection.swift */; };
-		8837AED62B5C0EC4000DC432 /* SettingsFocusMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEA92B5C0EC4000DC432 /* SettingsFocusMinutesView.swift */; };
 		8837AED72B5C0EC4000DC432 /* SettingsPomodoroSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAA2B5C0EC4000DC432 /* SettingsPomodoroSection.swift */; };
-		8837AED82B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAB2B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift */; };
-		8837AED92B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAC2B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift */; };
 		8837AEDA2B5C0EC4000DC432 /* SettingsSoundTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAE2B5C0EC4000DC432 /* SettingsSoundTypeView.swift */; };
 		8837AEDB2B5C0EC4000DC432 /* SettingsSoundSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAF2B5C0EC4000DC432 /* SettingsSoundSection.swift */; };
-		8837AEDC2B5C0EC4000DC432 /* SettingsTimeFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB12B5C0EC4000DC432 /* SettingsTimeFormatView.swift */; };
 		8837AEDD2B5C0EC4000DC432 /* SettingsClockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */; };
 		8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */; };
 		8837AEDF2B5C0EC4000DC432 /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */; };
@@ -171,13 +167,9 @@
 		8837AEA22B5C0EC4000DC432 /* SettingsLandspaceModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLandspaceModeView.swift; sourceTree = "<group>"; };
 		8837AEA42B5C0EC4000DC432 /* SettingsDarkModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDarkModeView.swift; sourceTree = "<group>"; };
 		8837AEA52B5C0EC4000DC432 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
-		8837AEA92B5C0EC4000DC432 /* SettingsFocusMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFocusMinutesView.swift; sourceTree = "<group>"; };
 		8837AEAA2B5C0EC4000DC432 /* SettingsPomodoroSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPomodoroSection.swift; sourceTree = "<group>"; };
-		8837AEAB2B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLongBreakMinutesView.swift; sourceTree = "<group>"; };
-		8837AEAC2B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsShortBreakMinutesView.swift; sourceTree = "<group>"; };
 		8837AEAE2B5C0EC4000DC432 /* SettingsSoundTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundTypeView.swift; sourceTree = "<group>"; };
 		8837AEAF2B5C0EC4000DC432 /* SettingsSoundSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundSection.swift; sourceTree = "<group>"; };
-		8837AEB12B5C0EC4000DC432 /* SettingsTimeFormatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTimeFormatView.swift; sourceTree = "<group>"; };
 		8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClockSection.swift; sourceTree = "<group>"; };
 		8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroPortraitView.swift; sourceTree = "<group>"; };
 		8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
@@ -505,10 +497,7 @@
 		8837AEA82B5C0EC4000DC432 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
-				8837AEA92B5C0EC4000DC432 /* SettingsFocusMinutesView.swift */,
 				8837AEAA2B5C0EC4000DC432 /* SettingsPomodoroSection.swift */,
-				8837AEAB2B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift */,
-				8837AEAC2B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift */,
 			);
 			path = Pomodoro;
 			sourceTree = "<group>";
@@ -525,7 +514,6 @@
 		8837AEB02B5C0EC4000DC432 /* Clock */ = {
 			isa = PBXGroup;
 			children = (
-				8837AEB12B5C0EC4000DC432 /* SettingsTimeFormatView.swift */,
 				8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */,
 			);
 			path = Clock;
@@ -781,7 +769,6 @@
 				8837AE082B5C0D5C000DC432 /* AppIcons.swift in Sources */,
 				88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */,
 				8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */,
-				8837AED62B5C0EC4000DC432 /* SettingsFocusMinutesView.swift in Sources */,
 				8837AEE42B5C0EC4000DC432 /* ClockLandspaceView.swift in Sources */,
 				8837ADDA2B5C0082000DC432 /* DigitalClockApp.swift in Sources */,
 				8837AEE32B5C0EC4000DC432 /* ClockView.swift in Sources */,
@@ -795,15 +782,12 @@
 				8837AECF2B5C0EC4000DC432 /* SettingsAppearanceSection.swift in Sources */,
 				88C7EAF52B61103F00F6ACD4 /* ValueStepper.swift in Sources */,
 				8837AE0B2B5C0D5C000DC432 /* LandspaceMode.swift in Sources */,
-				8837AEDC2B5C0EC4000DC432 /* SettingsTimeFormatView.swift in Sources */,
 				880592ED2B621B090051284F /* SettingsTimerSection.swift in Sources */,
 				8837AED42B5C0EC4000DC432 /* SettingsSection.swift in Sources */,
 				880592E82B620BE70051284F /* SettingsStepperCell.swift in Sources */,
 				8837AEDD2B5C0EC4000DC432 /* SettingsClockSection.swift in Sources */,
-				8837AED92B5C0EC4000DC432 /* SettingsShortBreakMinutesView.swift in Sources */,
 				8837AE0E2B5C0D5C000DC432 /* SoundType.swift in Sources */,
 				8837AEC32B5C0EC4000DC432 /* SplashView.swift in Sources */,
-				8837AED82B5C0EC4000DC432 /* SettingsLongBreakMinutesView.swift in Sources */,
 				8837AE102B5C0D5C000DC432 /* PageControl.swift in Sources */,
 				8837AEE02B5C0EC4000DC432 /* PomodoroLandspaceView.swift in Sources */,
 				8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */,

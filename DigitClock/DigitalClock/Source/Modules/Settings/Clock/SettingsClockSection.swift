@@ -9,19 +9,17 @@ import ClockShare
 import SwiftUI
 
 struct SettingsClockSection: View {
-    @Binding var isTimeFormatPresented: Bool
-
     @EnvironmentObject var clock: ClockManager
 
     @State var isShowed: Bool = ClockManager.shared.secondStyle != .none
 
     var body: some View {
         timeFormatView
-        .padding(.horizontal)
+            .padding(.horizontal)
         SettingsToggleCell(title: R.string.localizable.showSecond(), isOn: $isShowed)
             .onChange(of: isShowed) { isShowed in
                 withAnimation {
-                    clock.secondStyle = isShowed ? .small : .none
+                    clock.secondStyle = isShowed ? .big : .none
                 }
             }
             .padding(.horizontal)
@@ -48,8 +46,6 @@ struct SettingsClockSection: View {
 }
 
 #Preview {
-    SettingsClockSection(
-        isTimeFormatPresented: Binding<Bool>.constant(false)
-    )
+    SettingsClockSection(    )
     .environmentObject(ClockManager.shared)
 }
