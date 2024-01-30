@@ -9,7 +9,6 @@ import ClockShare
 import DigitalClockShare
 import GoogleMobileAds
 import RevenueCat
-import PartialSheet
 import SwiftUI
 import WidgetKit
 

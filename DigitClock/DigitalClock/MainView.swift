@@ -7,7 +7,6 @@
 
 import ClockShare
 import DigitalClockShare
-import PartialSheet
 import PopupView
 import SwiftUI
 import SwiftUIPager
