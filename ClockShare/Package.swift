@@ -19,6 +19,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/jdg/MBProgressHUD.git", .upToNextMajor(from: "1.2.0")),
         .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift.git", from: "20.0.0"),
+        .package(url: "https://github.com/malcommac/SwiftDate.git", from: "5.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -26,6 +27,7 @@ let package = Package(
         .target(name: "ClockShare", dependencies: [
             "SwiftUIX",
             "KeychainSwift",
+            "SwiftDate",
             "MBProgressHUD",
             .product(name: "Dependencies", package: "swift-dependencies"),
         ]),

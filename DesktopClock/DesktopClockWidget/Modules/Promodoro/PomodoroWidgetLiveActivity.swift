@@ -66,9 +66,8 @@ struct PomodoroWidgetLiveActivity: Widget {
                     .foregroundStyle(context.attributes.colors.primary)
             } minimal: {
                 let time = context.state.time
-                let total = Double(context.attributes.minutes * 60)
-                let progress = (total - Double(time.seconds)) / total
-                ProgressView(value: progress, total: total) {
+                let total = Double(context.attributes.seconds)
+                ProgressView(value: total - Double(time.seconds), total: total) {
                     Text("\(time.secondTens)\(time.secondOnes)")
                         .font(.callout, weight: .bold)
                         .foregroundStyle(context.attributes.colors.primary)
@@ -107,7 +106,7 @@ struct PomodoroWidgetLiveActivity: Widget {
 
 private extension DesktopClockShare.PomodoroAttributes {
     static var preview: DesktopClockShare.PomodoroAttributes {
-        DesktopClockShare.PomodoroAttributes(minutes: 25, state: .shortBreak)
+        DesktopClockShare.PomodoroAttributes(seconds: 25 * 60, state: .shortBreak)
     }
 }
 

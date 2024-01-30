@@ -13,7 +13,7 @@ struct AboutView: View {
     @Binding var isPresented: Bool
 
     @State var showSafari = false
-    @State var urlString = "https://duckduckgo.com"
+    @State var urlString = "https://privacy.bapaws.com"
 
     var body: some View {
         NavigationView {
@@ -48,11 +48,21 @@ struct AboutView: View {
                 Text("Copyright © 2021-\(year) Bapaws. All rights reserved.")
                     .font(.caption)
                     .foregroundColor(.quaternaryLabel)
+                if NSLocale.preferredLanguages.contains(where: { $0.starts(with: "zh") }) {
+                    Button {
+                        urlString = "https://beian.miit.gov.cn"
+
+                    } label: {
+                        Text("皖ICP备2023007894号-4A")
+                            .underline()
+                            .font(.caption)
+                            .foregroundColor(.quaternaryLabel)
+                    }
+                }
                 Spacer()
                 HStack {
                     Button {
                         urlString = "https://privacy.bapaws.com/desktopclock/terms.html"
-                        showSafari = true
                     } label: {
                         Text(R.string.localizable.terms())
                             .font(.caption)
@@ -63,7 +73,6 @@ struct AboutView: View {
                         .foregroundColor(.quaternaryLabel)
                     Button {
                         urlString = "https://privacy.bapaws.com/desktopclock/privacy.html"
-                        showSafari = true
                     } label: {
                         Text(R.string.localizable.privacy())
                             .font(.caption)
@@ -83,8 +92,13 @@ struct AboutView: View {
                     .foregroundColor(Color.Neumorphic.secondary)
             }))
         }
+        .onChange(of: urlString) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                showSafari = true
+            }
+        }
         .sheet(isPresented: $showSafari) {
-            SafariView(url: URL(string: self.urlString)!)
+            SafariView(url: URL(string: urlString)!)
         }
     }
 }
