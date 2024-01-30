@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  DeskClock
+
+  Created by 张敏超 on 2024/1/11.
+  
+*/
+
+"AppName" = "桌面时钟";
+"Slogan" = "让时间更有价值";
+
+"Focus" = "专注";
+"Break" = "休息";
+"Stop" = "放弃";

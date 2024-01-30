@@ -1,0 +1,1332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		881DFDE62B69130700E15906 /* LaunchScreen_zh-Hans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD8E2B69130700E15906 /* LaunchScreen_zh-Hans.storyboard */; };
+		881DFDE72B69130700E15906 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD8F2B69130700E15906 /* LaunchScreen.storyboard */; };
+		881DFDE82B69130700E15906 /* LaunchScreen_zh-Hant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD902B69130700E15906 /* LaunchScreen_zh-Hant.storyboard */; };
+		881DFDE92B69130700E15906 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD912B69130700E15906 /* Localizable.strings */; };
+		881DFDEA2B69130700E15906 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD932B69130700E15906 /* InfoPlist.strings */; };
+		881DFDEB2B69130700E15906 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD972B69130700E15906 /* Assets.xcassets */; };
+		881DFDEC2B69130700E15906 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD9A2B69130700E15906 /* tick.wav */; };
+		881DFDED2B69130700E15906 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD9B2B69130700E15906 /* drip.wav */; };
+		881DFDEE2B69130700E15906 /* second.wav in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD9C2B69130700E15906 /* second.wav */; };
+		881DFDEF2B69130700E15906 /* DeskClock.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 881DFD9D2B69130700E15906 /* DeskClock.storekit */; };
+		881DFDF12B69130700E15906 /* ProManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDA22B69130700E15906 /* ProManager.swift */; };
+		881DFDF22B69130700E15906 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDA42B69130700E15906 /* AppIcons.swift */; };
+		881DFDF32B69130700E15906 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDA52B69130700E15906 /* ColorType.swift */; };
+		881DFDF42B69130700E15906 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDA62B69130700E15906 /* DarkMode.swift */; };
+		881DFDF52B69130700E15906 /* LandspaceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDA72B69130700E15906 /* LandspaceMode.swift */; };
+		881DFDF62B69130700E15906 /* IconStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDA82B69130700E15906 /* IconStyle.swift */; };
+		881DFDF72B69130700E15906 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDA92B69130700E15906 /* SoundType.swift */; };
+		881DFDF82B69130700E15906 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDAB2B69130700E15906 /* PageControl.swift */; };
+		881DFDF92B69130700E15906 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDAC2B69130700E15906 /* CaptureView.swift */; };
+		881DFDFA2B69130700E15906 /* DeskClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDAD2B69130700E15906 /* DeskClockApp.swift */; };
+		881DFDFB2B69130700E15906 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDAE2B69130700E15906 /* MainView.swift */; };
+		881DFDFC2B69130700E15906 /* SettingsToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDB22B69130700E15906 /* SettingsToggleCell.swift */; };
+		881DFDFD2B69130700E15906 /* SettingsNavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDB32B69130700E15906 /* SettingsNavigateCell.swift */; };
+		881DFDFE2B69130700E15906 /* SettingsCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDB42B69130700E15906 /* SettingsCheckCell.swift */; };
+		881DFDFF2B69130700E15906 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDB52B69130700E15906 /* SettingsView.swift */; };
+		881DFE002B69130700E15906 /* SettingsProCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDB62B69130700E15906 /* SettingsProCell.swift */; };
+		881DFE012B69130700E15906 /* SettingsAppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDB82B69130700E15906 /* SettingsAppearanceSection.swift */; };
+		881DFE022B69130700E15906 /* SettingsIconStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDB92B69130700E15906 /* SettingsIconStyleView.swift */; };
+		881DFE032B69130700E15906 /* SettingsLandspaceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDBA2B69130700E15906 /* SettingsLandspaceModeView.swift */; };
+		881DFE042B69130700E15906 /* SettingsColorStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDBB2B69130700E15906 /* SettingsColorStyleView.swift */; };
+		881DFE052B69130700E15906 /* SettingsDarkModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDBC2B69130700E15906 /* SettingsDarkModeView.swift */; };
+		881DFE062B69130700E15906 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDBD2B69130700E15906 /* SettingsSection.swift */; };
+		881DFE072B69130700E15906 /* SettingsAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDBF2B69130700E15906 /* SettingsAppIconView.swift */; };
+		881DFE082B69130700E15906 /* SettingsFocusMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDC12B69130700E15906 /* SettingsFocusMinutesView.swift */; };
+		881DFE092B69130700E15906 /* SettingsPomodoroSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDC22B69130700E15906 /* SettingsPomodoroSection.swift */; };
+		881DFE0A2B69130700E15906 /* SettingsLongBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDC32B69130700E15906 /* SettingsLongBreakMinutesView.swift */; };
+		881DFE0B2B69130700E15906 /* SettingsShortBreakMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDC42B69130700E15906 /* SettingsShortBreakMinutesView.swift */; };
+		881DFE0C2B69130700E15906 /* SettingsSoundTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDC62B69130700E15906 /* SettingsSoundTypeView.swift */; };
+		881DFE0D2B69130700E15906 /* SettingsSoundSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDC72B69130700E15906 /* SettingsSoundSection.swift */; };
+		881DFE0E2B69130700E15906 /* SettingsTimeFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDC92B69130700E15906 /* SettingsTimeFormatView.swift */; };
+		881DFE0F2B69130700E15906 /* SettingsClockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDCA2B69130700E15906 /* SettingsClockSection.swift */; };
+		881DFE102B69130700E15906 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDCC2B69130700E15906 /* SplashView.swift */; };
+		881DFE112B69130700E15906 /* NeumorphicLandspaceColon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDCE2B69130700E15906 /* NeumorphicLandspaceColon.swift */; };
+		881DFE122B69130700E15906 /* NeumorphicPortraitColon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDCF2B69130700E15906 /* NeumorphicPortraitColon.swift */; };
+		881DFE132B69130700E15906 /* NeumorphicDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD02B69130700E15906 /* NeumorphicDigit.swift */; };
+		881DFE142B69130700E15906 /* HoldOnNeumorphicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD12B69130700E15906 /* HoldOnNeumorphicButton.swift */; };
+		881DFE152B69130700E15906 /* NeumorphicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD22B69130700E15906 /* NeumorphicStyle.swift */; };
+		881DFE162B69130700E15906 /* NeumorphicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD32B69130700E15906 /* NeumorphicButton.swift */; };
+		881DFE172B69130700E15906 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD52B69130700E15906 /* TimerView.swift */; };
+		881DFE182B69130700E15906 /* TimerPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD62B69130700E15906 /* TimerPortraitView.swift */; };
+		881DFE192B69130700E15906 /* TimerLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD72B69130700E15906 /* TimerLandspaceView.swift */; };
+		881DFE1A2B69130700E15906 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDD92B69130700E15906 /* AboutView.swift */; };
+		881DFE1B2B69130700E15906 /* PomodoroPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDDB2B69130700E15906 /* PomodoroPortraitView.swift */; };
+		881DFE1C2B69130700E15906 /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDDC2B69130700E15906 /* PomodoroView.swift */; };
+		881DFE1D2B69130700E15906 /* PomodoroLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDDD2B69130700E15906 /* PomodoroLandspaceView.swift */; };
+		881DFE1E2B69130700E15906 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDDF2B69130700E15906 /* PaywallView.swift */; };
+		881DFE1F2B69130700E15906 /* ClockPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDE12B69130700E15906 /* ClockPortraitView.swift */; };
+		881DFE202B69130700E15906 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDE22B69130700E15906 /* ClockView.swift */; };
+		881DFE212B69130700E15906 /* ClockLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881DFDE32B69130700E15906 /* ClockLandspaceView.swift */; };
+		881DFE222B69130700E15906 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 881DFDE52B69130700E15906 /* Preview Assets.xcassets */; };
+		8821C1042B6918A000402945 /* DeskClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8821C1032B6918A000402945 /* DeskClockShare */; };
+		8824F6D32B50239900BCC110 /* PomodoroState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824F6C92B50227800BCC110 /* PomodoroState.swift */; };
+		8824F6D52B502E1C00BCC110 /* StopLiveActivityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824F6D42B502E1C00BCC110 /* StopLiveActivityIntent.swift */; };
+		883811252B4D0002003C1F4E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883811242B4D0002003C1F4E /* WidgetKit.framework */; };
+		883811272B4D0002003C1F4E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883811262B4D0002003C1F4E /* SwiftUI.framework */; };
+		8838112A2B4D0002003C1F4E /* DesktopClockWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883811292B4D0002003C1F4E /* DesktopClockWidgetBundle.swift */; };
+		8838112E2B4D0002003C1F4E /* ClockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838112D2B4D0002003C1F4E /* ClockWidget.swift */; };
+		883811302B4D0003003C1F4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8838112F2B4D0003003C1F4E /* Assets.xcassets */; };
+		883811342B4D0003003C1F4E /* DeskClockWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 883811232B4D0002003C1F4E /* DeskClockWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8838113B2B4D01DD003C1F4E /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8838113A2B4D01DD003C1F4E /* ClockShare */; };
+		8838113E2B4D2F12003C1F4E /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8838113D2B4D2F12003C1F4E /* RswiftLibrary */; };
+		883811432B4D302E003C1F4E /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 883811422B4D302E003C1F4E /* SwiftUIX */; };
+		8838114F2B4D3971003C1F4E /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 8838114E2B4D3971003C1F4E /* Neumorphic */; };
+		883811532B4D4B26003C1F4E /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 883811522B4D4B26003C1F4E /* SwiftDate */; };
+		8838115A2B4D6D8C003C1F4E /* DigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883811582B4D6CA5003C1F4E /* DigitView.swift */; };
+		8838115E2B4D8385003C1F4E /* ColonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838115B2B4D834E003C1F4E /* ColonView.swift */; };
+		883B5BEF2B511BD00097C216 /* StopLiveActivityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824F6D42B502E1C00BCC110 /* StopLiveActivityIntent.swift */; };
+		887464932B3718D4004416B8 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 887464922B3718D4004416B8 /* SwiftUIPager */; };
+		887464992B37190A004416B8 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 887464982B37190A004416B8 /* Neumorphic */; };
+		8874649C2B37191D004416B8 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 8874649B2B37191D004416B8 /* RevenueCat */; };
+		887464A12B371935004416B8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 887464A02B371935004416B8 /* RswiftLibrary */; };
+		88A8D7542B3D7B9E00983E0E /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88A8D7532B3D7B9E00983E0E /* ClockShare */; };
+		88A8D7622B3DB1EC00983E0E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88A8D7612B3DB1EC00983E0E /* KeychainSwift */; };
+		88ABA21E2B3AB4BF0035DDDB /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 88ABA21D2B3AB4BF0035DDDB /* PopupView */; };
+		88C3BFDA2B691767004FD993 /* DeskClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88C3BFD92B691767004FD993 /* DeskClockShare */; };
+		88CF13D22B4FD51100DBE9A1 /* PomodoroWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18F22B4EC06E00EA8BCB /* PomodoroWidget.swift */; };
+		88CF13D82B5011B600DBE9A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88CF13DA2B5011B600DBE9A1 /* Localizable.strings */; };
+		88F8102D2B46689300EFB3D2 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 88F8102C2B46689300EFB3D2 /* MBProgressHUD */; };
+		88F810352B46C50D00EFB3D2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 88F810342B46C50D00EFB3D2 /* SwiftUIX */; };
+		88FE18E42B4E9DF400EA8BCB /* ClockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18E12B4E9D8B00EA8BCB /* ClockProvider.swift */; };
+		88FE18F82B4EC26C00EA8BCB /* PomodoroWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18F52B4EC08F00EA8BCB /* PomodoroWidgetLiveActivity.swift */; };
+		88FE19012B4EC71800EA8BCB /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18FF2B4EC6B900EA8BCB /* Time.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		883811322B4D0003003C1F4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 887464552B37184E004416B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 883811222B4D0002003C1F4E;
+			remoteInfo = DesktopClockWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		883811352B4D0003003C1F4E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				883811342B4D0003003C1F4E /* DeskClockWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		881DFD8E2B69130700E15906 /* LaunchScreen_zh-Hans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hans.storyboard"; sourceTree = "<group>"; };
+		881DFD8F2B69130700E15906 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		881DFD902B69130700E15906 /* LaunchScreen_zh-Hant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hant.storyboard"; sourceTree = "<group>"; };
+		881DFD922B69130700E15906 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		881DFD942B69130700E15906 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		881DFD952B69130700E15906 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		881DFD962B69130700E15906 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		881DFD972B69130700E15906 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		881DFD982B69130700E15906 /* DeskClock.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = DeskClock.entitlements; sourceTree = "<group>"; };
+		881DFD9A2B69130700E15906 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
+		881DFD9B2B69130700E15906 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
+		881DFD9C2B69130700E15906 /* second.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = second.wav; sourceTree = "<group>"; };
+		881DFD9D2B69130700E15906 /* DeskClock.storekit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeskClock.storekit; sourceTree = "<group>"; };
+		881DFD9E2B69130700E15906 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		881DFDA22B69130700E15906 /* ProManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProManager.swift; sourceTree = "<group>"; };
+		881DFDA42B69130700E15906 /* AppIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
+		881DFDA52B69130700E15906 /* ColorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
+		881DFDA62B69130700E15906 /* DarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
+		881DFDA72B69130700E15906 /* LandspaceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandspaceMode.swift; sourceTree = "<group>"; };
+		881DFDA82B69130700E15906 /* IconStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconStyle.swift; sourceTree = "<group>"; };
+		881DFDA92B69130700E15906 /* SoundType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
+		881DFDAB2B69130700E15906 /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		881DFDAC2B69130700E15906 /* CaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		881DFDAD2B69130700E15906 /* DeskClockApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeskClockApp.swift; sourceTree = "<group>"; };
+		881DFDAE2B69130700E15906 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		881DFDB22B69130700E15906 /* SettingsToggleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsToggleCell.swift; sourceTree = "<group>"; };
+		881DFDB32B69130700E15906 /* SettingsNavigateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigateCell.swift; sourceTree = "<group>"; };
+		881DFDB42B69130700E15906 /* SettingsCheckCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCheckCell.swift; sourceTree = "<group>"; };
+		881DFDB52B69130700E15906 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		881DFDB62B69130700E15906 /* SettingsProCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsProCell.swift; sourceTree = "<group>"; };
+		881DFDB82B69130700E15906 /* SettingsAppearanceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSection.swift; sourceTree = "<group>"; };
+		881DFDB92B69130700E15906 /* SettingsIconStyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsIconStyleView.swift; sourceTree = "<group>"; };
+		881DFDBA2B69130700E15906 /* SettingsLandspaceModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLandspaceModeView.swift; sourceTree = "<group>"; };
+		881DFDBB2B69130700E15906 /* SettingsColorStyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsColorStyleView.swift; sourceTree = "<group>"; };
+		881DFDBC2B69130700E15906 /* SettingsDarkModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDarkModeView.swift; sourceTree = "<group>"; };
+		881DFDBD2B69130700E15906 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
+		881DFDBF2B69130700E15906 /* SettingsAppIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppIconView.swift; sourceTree = "<group>"; };
+		881DFDC12B69130700E15906 /* SettingsFocusMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFocusMinutesView.swift; sourceTree = "<group>"; };
+		881DFDC22B69130700E15906 /* SettingsPomodoroSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPomodoroSection.swift; sourceTree = "<group>"; };
+		881DFDC32B69130700E15906 /* SettingsLongBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLongBreakMinutesView.swift; sourceTree = "<group>"; };
+		881DFDC42B69130700E15906 /* SettingsShortBreakMinutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsShortBreakMinutesView.swift; sourceTree = "<group>"; };
+		881DFDC62B69130700E15906 /* SettingsSoundTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundTypeView.swift; sourceTree = "<group>"; };
+		881DFDC72B69130700E15906 /* SettingsSoundSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundSection.swift; sourceTree = "<group>"; };
+		881DFDC92B69130700E15906 /* SettingsTimeFormatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTimeFormatView.swift; sourceTree = "<group>"; };
+		881DFDCA2B69130700E15906 /* SettingsClockSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClockSection.swift; sourceTree = "<group>"; };
+		881DFDCC2B69130700E15906 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		881DFDCE2B69130700E15906 /* NeumorphicLandspaceColon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicLandspaceColon.swift; sourceTree = "<group>"; };
+		881DFDCF2B69130700E15906 /* NeumorphicPortraitColon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicPortraitColon.swift; sourceTree = "<group>"; };
+		881DFDD02B69130700E15906 /* NeumorphicDigit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicDigit.swift; sourceTree = "<group>"; };
+		881DFDD12B69130700E15906 /* HoldOnNeumorphicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoldOnNeumorphicButton.swift; sourceTree = "<group>"; };
+		881DFDD22B69130700E15906 /* NeumorphicStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicStyle.swift; sourceTree = "<group>"; };
+		881DFDD32B69130700E15906 /* NeumorphicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeumorphicButton.swift; sourceTree = "<group>"; };
+		881DFDD52B69130700E15906 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		881DFDD62B69130700E15906 /* TimerPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPortraitView.swift; sourceTree = "<group>"; };
+		881DFDD72B69130700E15906 /* TimerLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLandspaceView.swift; sourceTree = "<group>"; };
+		881DFDD92B69130700E15906 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		881DFDDB2B69130700E15906 /* PomodoroPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroPortraitView.swift; sourceTree = "<group>"; };
+		881DFDDC2B69130700E15906 /* PomodoroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
+		881DFDDD2B69130700E15906 /* PomodoroLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroLandspaceView.swift; sourceTree = "<group>"; };
+		881DFDDF2B69130700E15906 /* PaywallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		881DFDE12B69130700E15906 /* ClockPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockPortraitView.swift; sourceTree = "<group>"; };
+		881DFDE22B69130700E15906 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		881DFDE32B69130700E15906 /* ClockLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockLandspaceView.swift; sourceTree = "<group>"; };
+		881DFDE52B69130700E15906 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		881DFE232B69131B00E15906 /* DeskClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DeskClockShare; sourceTree = "<group>"; };
+		8824F6C92B50227800BCC110 /* PomodoroState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroState.swift; sourceTree = "<group>"; };
+		8824F6D42B502E1C00BCC110 /* StopLiveActivityIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLiveActivityIntent.swift; sourceTree = "<group>"; };
+		883811232B4D0002003C1F4E /* DeskClockWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeskClockWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		883811242B4D0002003C1F4E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		883811262B4D0002003C1F4E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		883811292B4D0002003C1F4E /* DesktopClockWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopClockWidgetBundle.swift; sourceTree = "<group>"; };
+		8838112D2B4D0002003C1F4E /* ClockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWidget.swift; sourceTree = "<group>"; };
+		8838112F2B4D0003003C1F4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		883811312B4D0003003C1F4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		883811582B4D6CA5003C1F4E /* DigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitView.swift; sourceTree = "<group>"; };
+		8838115B2B4D834E003C1F4E /* ColonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColonView.swift; sourceTree = "<group>"; };
+		8874645D2B37184E004416B8 /* DeskClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeskClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88CF13D92B5011B600DBE9A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88CF13DB2B5011B700DBE9A1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88FE18E12B4E9D8B00EA8BCB /* ClockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockProvider.swift; sourceTree = "<group>"; };
+		88FE18F02B4EA28A00EA8BCB /* DeskClockWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeskClockWidgetExtension.entitlements; sourceTree = "<group>"; };
+		88FE18F22B4EC06E00EA8BCB /* PomodoroWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroWidget.swift; sourceTree = "<group>"; };
+		88FE18F52B4EC08F00EA8BCB /* PomodoroWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		88FE18FF2B4EC6B900EA8BCB /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		883811202B4D0002003C1F4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8838113B2B4D01DD003C1F4E /* ClockShare in Frameworks */,
+				8838113E2B4D2F12003C1F4E /* RswiftLibrary in Frameworks */,
+				883811272B4D0002003C1F4E /* SwiftUI.framework in Frameworks */,
+				883811532B4D4B26003C1F4E /* SwiftDate in Frameworks */,
+				8821C1042B6918A000402945 /* DeskClockShare in Frameworks */,
+				8838114F2B4D3971003C1F4E /* Neumorphic in Frameworks */,
+				883811432B4D302E003C1F4E /* SwiftUIX in Frameworks */,
+				883811252B4D0002003C1F4E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8874645A2B37184E004416B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F810352B46C50D00EFB3D2 /* SwiftUIX in Frameworks */,
+				88A8D7622B3DB1EC00983E0E /* KeychainSwift in Frameworks */,
+				88ABA21E2B3AB4BF0035DDDB /* PopupView in Frameworks */,
+				88F8102D2B46689300EFB3D2 /* MBProgressHUD in Frameworks */,
+				88A8D7542B3D7B9E00983E0E /* ClockShare in Frameworks */,
+				8874649C2B37191D004416B8 /* RevenueCat in Frameworks */,
+				887464932B3718D4004416B8 /* SwiftUIPager in Frameworks */,
+				887464992B37190A004416B8 /* Neumorphic in Frameworks */,
+				88C3BFDA2B691767004FD993 /* DeskClockShare in Frameworks */,
+				887464A12B371935004416B8 /* RswiftLibrary in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		881DFD8B2B69130700E15906 /* DeskClock */ = {
+			isa = PBXGroup;
+			children = (
+				881DFD8C2B69130700E15906 /* Resources */,
+				881DFD9F2B69130700E15906 /* Source */,
+				881DFDE42B69130700E15906 /* Preview Content */,
+			);
+			path = DeskClock;
+			sourceTree = "<group>";
+		};
+		881DFD8C2B69130700E15906 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				881DFD8D2B69130700E15906 /* LaunchScreen */,
+				881DFD912B69130700E15906 /* Localizable.strings */,
+				881DFD932B69130700E15906 /* InfoPlist.strings */,
+				881DFD972B69130700E15906 /* Assets.xcassets */,
+				881DFD982B69130700E15906 /* DeskClock.entitlements */,
+				881DFD992B69130700E15906 /* Sounds */,
+				881DFD9D2B69130700E15906 /* DeskClock.storekit */,
+				881DFD9E2B69130700E15906 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		881DFD8D2B69130700E15906 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				881DFD8E2B69130700E15906 /* LaunchScreen_zh-Hans.storyboard */,
+				881DFD8F2B69130700E15906 /* LaunchScreen.storyboard */,
+				881DFD902B69130700E15906 /* LaunchScreen_zh-Hant.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		881DFD992B69130700E15906 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				881DFD9A2B69130700E15906 /* tick.wav */,
+				881DFD9B2B69130700E15906 /* drip.wav */,
+				881DFD9C2B69130700E15906 /* second.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		881DFD9F2B69130700E15906 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDA02B69130700E15906 /* Core */,
+				881DFDAF2B69130700E15906 /* Modules */,
+				881DFDAD2B69130700E15906 /* DeskClockApp.swift */,
+				881DFDAE2B69130700E15906 /* MainView.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		881DFDA02B69130700E15906 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDA12B69130700E15906 /* Manager */,
+				881DFDA32B69130700E15906 /* Data */,
+				881DFDAA2B69130700E15906 /* Views */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		881DFDA12B69130700E15906 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDA22B69130700E15906 /* ProManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		881DFDA32B69130700E15906 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDA42B69130700E15906 /* AppIcons.swift */,
+				881DFDA52B69130700E15906 /* ColorType.swift */,
+				881DFDA62B69130700E15906 /* DarkMode.swift */,
+				881DFDA72B69130700E15906 /* LandspaceMode.swift */,
+				881DFDA82B69130700E15906 /* IconStyle.swift */,
+				881DFDA92B69130700E15906 /* SoundType.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		881DFDAA2B69130700E15906 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDAB2B69130700E15906 /* PageControl.swift */,
+				881DFDAC2B69130700E15906 /* CaptureView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		881DFDAF2B69130700E15906 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDB02B69130700E15906 /* Settings */,
+				881DFDCB2B69130700E15906 /* Splash */,
+				881DFDCD2B69130700E15906 /* Neumorphic */,
+				881DFDD42B69130700E15906 /* Timer */,
+				881DFDD82B69130700E15906 /* About */,
+				881DFDDA2B69130700E15906 /* Pomodoro */,
+				881DFDDE2B69130700E15906 /* Paywall */,
+				881DFDE02B69130700E15906 /* Clock */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		881DFDB02B69130700E15906 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDB12B69130700E15906 /* Cells */,
+				881DFDB52B69130700E15906 /* SettingsView.swift */,
+				881DFDB62B69130700E15906 /* SettingsProCell.swift */,
+				881DFDB72B69130700E15906 /* Appearance */,
+				881DFDBD2B69130700E15906 /* SettingsSection.swift */,
+				881DFDBE2B69130700E15906 /* AppIcon */,
+				881DFDC02B69130700E15906 /* Pomodoro */,
+				881DFDC52B69130700E15906 /* Sound */,
+				881DFDC82B69130700E15906 /* Clock */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		881DFDB12B69130700E15906 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDB22B69130700E15906 /* SettingsToggleCell.swift */,
+				881DFDB32B69130700E15906 /* SettingsNavigateCell.swift */,
+				881DFDB42B69130700E15906 /* SettingsCheckCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		881DFDB72B69130700E15906 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDB82B69130700E15906 /* SettingsAppearanceSection.swift */,
+				881DFDB92B69130700E15906 /* SettingsIconStyleView.swift */,
+				881DFDBA2B69130700E15906 /* SettingsLandspaceModeView.swift */,
+				881DFDBB2B69130700E15906 /* SettingsColorStyleView.swift */,
+				881DFDBC2B69130700E15906 /* SettingsDarkModeView.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		881DFDBE2B69130700E15906 /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDBF2B69130700E15906 /* SettingsAppIconView.swift */,
+			);
+			path = AppIcon;
+			sourceTree = "<group>";
+		};
+		881DFDC02B69130700E15906 /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDC12B69130700E15906 /* SettingsFocusMinutesView.swift */,
+				881DFDC22B69130700E15906 /* SettingsPomodoroSection.swift */,
+				881DFDC32B69130700E15906 /* SettingsLongBreakMinutesView.swift */,
+				881DFDC42B69130700E15906 /* SettingsShortBreakMinutesView.swift */,
+			);
+			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		881DFDC52B69130700E15906 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDC62B69130700E15906 /* SettingsSoundTypeView.swift */,
+				881DFDC72B69130700E15906 /* SettingsSoundSection.swift */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		881DFDC82B69130700E15906 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDC92B69130700E15906 /* SettingsTimeFormatView.swift */,
+				881DFDCA2B69130700E15906 /* SettingsClockSection.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		881DFDCB2B69130700E15906 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDCC2B69130700E15906 /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		881DFDCD2B69130700E15906 /* Neumorphic */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDCE2B69130700E15906 /* NeumorphicLandspaceColon.swift */,
+				881DFDCF2B69130700E15906 /* NeumorphicPortraitColon.swift */,
+				881DFDD02B69130700E15906 /* NeumorphicDigit.swift */,
+				881DFDD12B69130700E15906 /* HoldOnNeumorphicButton.swift */,
+				881DFDD22B69130700E15906 /* NeumorphicStyle.swift */,
+				881DFDD32B69130700E15906 /* NeumorphicButton.swift */,
+			);
+			path = Neumorphic;
+			sourceTree = "<group>";
+		};
+		881DFDD42B69130700E15906 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDD52B69130700E15906 /* TimerView.swift */,
+				881DFDD62B69130700E15906 /* TimerPortraitView.swift */,
+				881DFDD72B69130700E15906 /* TimerLandspaceView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		881DFDD82B69130700E15906 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDD92B69130700E15906 /* AboutView.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		881DFDDA2B69130700E15906 /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDDB2B69130700E15906 /* PomodoroPortraitView.swift */,
+				881DFDDC2B69130700E15906 /* PomodoroView.swift */,
+				881DFDDD2B69130700E15906 /* PomodoroLandspaceView.swift */,
+			);
+			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		881DFDDE2B69130700E15906 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDDF2B69130700E15906 /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		881DFDE02B69130700E15906 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDE12B69130700E15906 /* ClockPortraitView.swift */,
+				881DFDE22B69130700E15906 /* ClockView.swift */,
+				881DFDE32B69130700E15906 /* ClockLandspaceView.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		881DFDE42B69130700E15906 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				881DFDE52B69130700E15906 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		883811282B4D0002003C1F4E /* DeskClockWidget */ = {
+			isa = PBXGroup;
+			children = (
+				88FE18EE2B4EA09700EA8BCB /* Resources */,
+				88FE18FB2B4EC67D00EA8BCB /* Core */,
+				88FE18FD2B4EC68600EA8BCB /* Modules */,
+				883811292B4D0002003C1F4E /* DesktopClockWidgetBundle.swift */,
+			);
+			path = DeskClockWidget;
+			sourceTree = "<group>";
+		};
+		883811552B4D6C72003C1F4E /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				8838112D2B4D0002003C1F4E /* ClockWidget.swift */,
+				88FE18E12B4E9D8B00EA8BCB /* ClockProvider.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		883811572B4D6C8A003C1F4E /* Digit */ = {
+			isa = PBXGroup;
+			children = (
+				883811582B4D6CA5003C1F4E /* DigitView.swift */,
+				8838115B2B4D834E003C1F4E /* ColonView.swift */,
+			);
+			path = Digit;
+			sourceTree = "<group>";
+		};
+		887464542B37184E004416B8 = {
+			isa = PBXGroup;
+			children = (
+				881DFE232B69131B00E15906 /* DeskClockShare */,
+				881DFD8B2B69130700E15906 /* DeskClock */,
+				883811282B4D0002003C1F4E /* DeskClockWidget */,
+				8874645E2B37184E004416B8 /* Products */,
+				887464A32B37195D004416B8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8874645E2B37184E004416B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8874645D2B37184E004416B8 /* DeskClock.app */,
+				883811232B4D0002003C1F4E /* DeskClockWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		887464A32B37195D004416B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				883811242B4D0002003C1F4E /* WidgetKit.framework */,
+				883811262B4D0002003C1F4E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88CF13E32B5015C800DBE9A1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8824F6C92B50227800BCC110 /* PomodoroState.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		88FE18E72B4EA07000EA8BCB /* Promodoro */ = {
+			isa = PBXGroup;
+			children = (
+				88FE18F22B4EC06E00EA8BCB /* PomodoroWidget.swift */,
+				88FE18F52B4EC08F00EA8BCB /* PomodoroWidgetLiveActivity.swift */,
+				8824F6D42B502E1C00BCC110 /* StopLiveActivityIntent.swift */,
+			);
+			path = Promodoro;
+			sourceTree = "<group>";
+		};
+		88FE18EE2B4EA09700EA8BCB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88FE18F02B4EA28A00EA8BCB /* DeskClockWidgetExtension.entitlements */,
+				883811312B4D0003003C1F4E /* Info.plist */,
+				8838112F2B4D0003003C1F4E /* Assets.xcassets */,
+				88CF13DA2B5011B600DBE9A1 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88FE18FB2B4EC67D00EA8BCB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				88CF13E32B5015C800DBE9A1 /* Data */,
+				883811572B4D6C8A003C1F4E /* Digit */,
+				88FE18FF2B4EC6B900EA8BCB /* Time.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		88FE18FD2B4EC68600EA8BCB /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				883811552B4D6C72003C1F4E /* Clock */,
+				88FE18E72B4EA07000EA8BCB /* Promodoro */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		883811222B4D0002003C1F4E /* DeskClockWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 883811382B4D0003003C1F4E /* Build configuration list for PBXNativeTarget "DeskClockWidgetExtension" */;
+			buildPhases = (
+				8838111F2B4D0002003C1F4E /* Sources */,
+				883811202B4D0002003C1F4E /* Frameworks */,
+				883811212B4D0002003C1F4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88CF13F02B501F3D00DBE9A1 /* PBXTargetDependency */,
+			);
+			name = DeskClockWidgetExtension;
+			packageProductDependencies = (
+				8838113A2B4D01DD003C1F4E /* ClockShare */,
+				8838113D2B4D2F12003C1F4E /* RswiftLibrary */,
+				883811422B4D302E003C1F4E /* SwiftUIX */,
+				8838114E2B4D3971003C1F4E /* Neumorphic */,
+				883811522B4D4B26003C1F4E /* SwiftDate */,
+				8821C1032B6918A000402945 /* DeskClockShare */,
+			);
+			productName = DesktopClockWidgetExtension;
+			productReference = 883811232B4D0002003C1F4E /* DeskClockWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		8874645C2B37184E004416B8 /* DeskClock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8874646B2B37184E004416B8 /* Build configuration list for PBXNativeTarget "DeskClock" */;
+			buildPhases = (
+				887464592B37184E004416B8 /* Sources */,
+				8874645A2B37184E004416B8 /* Frameworks */,
+				8874645B2B37184E004416B8 /* Resources */,
+				883811352B4D0003003C1F4E /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				887464A72B37196A004416B8 /* PBXTargetDependency */,
+				883811332B4D0003003C1F4E /* PBXTargetDependency */,
+			);
+			name = DeskClock;
+			packageProductDependencies = (
+				887464922B3718D4004416B8 /* SwiftUIPager */,
+				887464982B37190A004416B8 /* Neumorphic */,
+				8874649B2B37191D004416B8 /* RevenueCat */,
+				887464A02B371935004416B8 /* RswiftLibrary */,
+				88ABA21D2B3AB4BF0035DDDB /* PopupView */,
+				88A8D7532B3D7B9E00983E0E /* ClockShare */,
+				88A8D7612B3DB1EC00983E0E /* KeychainSwift */,
+				88F8102C2B46689300EFB3D2 /* MBProgressHUD */,
+				88F810342B46C50D00EFB3D2 /* SwiftUIX */,
+				88C3BFD92B691767004FD993 /* DeskClockShare */,
+			);
+			productName = PureClock;
+			productReference = 8874645D2B37184E004416B8 /* DeskClock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		887464552B37184E004416B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					883811222B4D0002003C1F4E = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					8874645C2B37184E004416B8 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+				};
+			};
+			buildConfigurationList = 887464582B37184E004416B8 /* Build configuration list for PBXProject "DeskClock" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 887464542B37184E004416B8;
+			packageReferences = (
+				887464912B3718D4004416B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				887464972B37190A004416B8 /* XCRemoteSwiftPackageReference "neumorphic" */,
+				8874649A2B37191D004416B8 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */,
+				88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */,
+				88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				88F8102B2B46689300EFB3D2 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+				88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				883811512B4D4B26003C1F4E /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				88C3BFD82B691767004FD993 /* XCLocalSwiftPackageReference "DeskClockShare" */,
+			);
+			productRefGroup = 8874645E2B37184E004416B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8874645C2B37184E004416B8 /* DeskClock */,
+				883811222B4D0002003C1F4E /* DeskClockWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		883811212B4D0002003C1F4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883811302B4D0003003C1F4E /* Assets.xcassets in Resources */,
+				88CF13D82B5011B600DBE9A1 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8874645B2B37184E004416B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				881DFDE62B69130700E15906 /* LaunchScreen_zh-Hans.storyboard in Resources */,
+				881DFDE92B69130700E15906 /* Localizable.strings in Resources */,
+				881DFDE82B69130700E15906 /* LaunchScreen_zh-Hant.storyboard in Resources */,
+				881DFDED2B69130700E15906 /* drip.wav in Resources */,
+				881DFE222B69130700E15906 /* Preview Assets.xcassets in Resources */,
+				881DFDE72B69130700E15906 /* LaunchScreen.storyboard in Resources */,
+				881DFDEB2B69130700E15906 /* Assets.xcassets in Resources */,
+				881DFDEF2B69130700E15906 /* DeskClock.storekit in Resources */,
+				881DFDEA2B69130700E15906 /* InfoPlist.strings in Resources */,
+				881DFDEE2B69130700E15906 /* second.wav in Resources */,
+				881DFDEC2B69130700E15906 /* tick.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8838111F2B4D0002003C1F4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8824F6D52B502E1C00BCC110 /* StopLiveActivityIntent.swift in Sources */,
+				88FE18E42B4E9DF400EA8BCB /* ClockProvider.swift in Sources */,
+				8838112E2B4D0002003C1F4E /* ClockWidget.swift in Sources */,
+				88CF13D22B4FD51100DBE9A1 /* PomodoroWidget.swift in Sources */,
+				8824F6D32B50239900BCC110 /* PomodoroState.swift in Sources */,
+				88FE19012B4EC71800EA8BCB /* Time.swift in Sources */,
+				8838115E2B4D8385003C1F4E /* ColonView.swift in Sources */,
+				8838115A2B4D6D8C003C1F4E /* DigitView.swift in Sources */,
+				88FE18F82B4EC26C00EA8BCB /* PomodoroWidgetLiveActivity.swift in Sources */,
+				8838112A2B4D0002003C1F4E /* DesktopClockWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		887464592B37184E004416B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				881DFE1C2B69130700E15906 /* PomodoroView.swift in Sources */,
+				881DFE042B69130700E15906 /* SettingsColorStyleView.swift in Sources */,
+				881DFE0E2B69130700E15906 /* SettingsTimeFormatView.swift in Sources */,
+				881DFDFA2B69130700E15906 /* DeskClockApp.swift in Sources */,
+				881DFE132B69130700E15906 /* NeumorphicDigit.swift in Sources */,
+				881DFE072B69130700E15906 /* SettingsAppIconView.swift in Sources */,
+				881DFE022B69130700E15906 /* SettingsIconStyleView.swift in Sources */,
+				881DFDFB2B69130700E15906 /* MainView.swift in Sources */,
+				881DFDFE2B69130700E15906 /* SettingsCheckCell.swift in Sources */,
+				881DFE1B2B69130700E15906 /* PomodoroPortraitView.swift in Sources */,
+				881DFE0F2B69130700E15906 /* SettingsClockSection.swift in Sources */,
+				881DFE0A2B69130700E15906 /* SettingsLongBreakMinutesView.swift in Sources */,
+				883B5BEF2B511BD00097C216 /* StopLiveActivityIntent.swift in Sources */,
+				881DFE0B2B69130700E15906 /* SettingsShortBreakMinutesView.swift in Sources */,
+				881DFE112B69130700E15906 /* NeumorphicLandspaceColon.swift in Sources */,
+				881DFE152B69130700E15906 /* NeumorphicStyle.swift in Sources */,
+				881DFE122B69130700E15906 /* NeumorphicPortraitColon.swift in Sources */,
+				881DFE082B69130700E15906 /* SettingsFocusMinutesView.swift in Sources */,
+				881DFDF62B69130700E15906 /* IconStyle.swift in Sources */,
+				881DFE032B69130700E15906 /* SettingsLandspaceModeView.swift in Sources */,
+				881DFE192B69130700E15906 /* TimerLandspaceView.swift in Sources */,
+				881DFE062B69130700E15906 /* SettingsSection.swift in Sources */,
+				881DFE0C2B69130700E15906 /* SettingsSoundTypeView.swift in Sources */,
+				881DFDF82B69130700E15906 /* PageControl.swift in Sources */,
+				881DFE1E2B69130700E15906 /* PaywallView.swift in Sources */,
+				881DFDF42B69130700E15906 /* DarkMode.swift in Sources */,
+				881DFDFC2B69130700E15906 /* SettingsToggleCell.swift in Sources */,
+				881DFDF22B69130700E15906 /* AppIcons.swift in Sources */,
+				881DFE092B69130700E15906 /* SettingsPomodoroSection.swift in Sources */,
+				881DFE212B69130700E15906 /* ClockLandspaceView.swift in Sources */,
+				881DFE052B69130700E15906 /* SettingsDarkModeView.swift in Sources */,
+				881DFE1F2B69130700E15906 /* ClockPortraitView.swift in Sources */,
+				881DFDFF2B69130700E15906 /* SettingsView.swift in Sources */,
+				881DFE182B69130700E15906 /* TimerPortraitView.swift in Sources */,
+				881DFE142B69130700E15906 /* HoldOnNeumorphicButton.swift in Sources */,
+				881DFE102B69130700E15906 /* SplashView.swift in Sources */,
+				881DFE162B69130700E15906 /* NeumorphicButton.swift in Sources */,
+				881DFE172B69130700E15906 /* TimerView.swift in Sources */,
+				881DFDF12B69130700E15906 /* ProManager.swift in Sources */,
+				881DFDFD2B69130700E15906 /* SettingsNavigateCell.swift in Sources */,
+				881DFE202B69130700E15906 /* ClockView.swift in Sources */,
+				881DFE012B69130700E15906 /* SettingsAppearanceSection.swift in Sources */,
+				881DFDF72B69130700E15906 /* SoundType.swift in Sources */,
+				881DFE1A2B69130700E15906 /* AboutView.swift in Sources */,
+				881DFE002B69130700E15906 /* SettingsProCell.swift in Sources */,
+				881DFE0D2B69130700E15906 /* SettingsSoundSection.swift in Sources */,
+				881DFDF52B69130700E15906 /* LandspaceMode.swift in Sources */,
+				881DFE1D2B69130700E15906 /* PomodoroLandspaceView.swift in Sources */,
+				881DFDF32B69130700E15906 /* ColorType.swift in Sources */,
+				881DFDF92B69130700E15906 /* CaptureView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		883811332B4D0003003C1F4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 883811222B4D0002003C1F4E /* DeskClockWidgetExtension */;
+			targetProxy = 883811322B4D0003003C1F4E /* PBXContainerItemProxy */;
+		};
+		887464A72B37196A004416B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 887464A62B37196A004416B8 /* RswiftGenerateInternalResources */;
+		};
+		88CF13F02B501F3D00DBE9A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 88CF13EF2B501F3D00DBE9A1 /* RswiftGenerateInternalResources */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		881DFD912B69130700E15906 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				881DFD922B69130700E15906 /* zh-Hans */,
+				881DFD952B69130700E15906 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		881DFD932B69130700E15906 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				881DFD942B69130700E15906 /* zh-Hans */,
+				881DFD962B69130700E15906 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		88CF13DA2B5011B600DBE9A1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88CF13D92B5011B600DBE9A1 /* en */,
+				88CF13DB2B5011B700DBE9A1 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		883811362B4D0003003C1F4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DeskClockWidget/Resources/DeskClockWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GM4766U38W;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeskClockWidget/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeskClockWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock.DesktopClockWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		883811372B4D0003003C1F4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DeskClockWidget/Resources/DeskClockWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GM4766U38W;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeskClockWidget/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeskClockWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock.DesktopClockWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		887464692B37184E004416B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8874646A2B37184E004416B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8874646C2B37184E004416B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = DarkClassic;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = DeskClock/Resources/DeskClock.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DeskClock/Preview Content\"";
+				DEVELOPMENT_TEAM = GM4766U38W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeskClock/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8874646D2B37184E004416B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = DarkClassic;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = DeskClock/Resources/DeskClock.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DeskClock/Preview Content\"";
+				DEVELOPMENT_TEAM = GM4766U38W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeskClock/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		883811382B4D0003003C1F4E /* Build configuration list for PBXNativeTarget "DeskClockWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				883811362B4D0003003C1F4E /* Debug */,
+				883811372B4D0003003C1F4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		887464582B37184E004416B8 /* Build configuration list for PBXProject "DeskClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				887464692B37184E004416B8 /* Debug */,
+				8874646A2B37184E004416B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8874646B2B37184E004416B8 /* Build configuration list for PBXNativeTarget "DeskClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8874646C2B37184E004416B8 /* Debug */,
+				8874646D2B37184E004416B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		88C3BFD82B691767004FD993 /* XCLocalSwiftPackageReference "DeskClockShare" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = DeskClockShare;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		883811512B4D4B26003C1F4E /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		887464912B3718D4004416B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
+		887464972B37190A004416B8 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/costachung/neumorphic/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		8874649A2B37191D004416B8 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.31.6;
+			};
+		};
+		8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.4.0;
+			};
+		};
+		88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
+		88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
+		88F8102B2B46689300EFB3D2 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8821C1032B6918A000402945 /* DeskClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DeskClockShare;
+		};
+		8838113A2B4D01DD003C1F4E /* ClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClockShare;
+		};
+		8838113D2B4D2F12003C1F4E /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		883811422B4D302E003C1F4E /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+		8838114E2B4D3971003C1F4E /* Neumorphic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 887464972B37190A004416B8 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
+		};
+		883811522B4D4B26003C1F4E /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 883811512B4D4B26003C1F4E /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
+		887464922B3718D4004416B8 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 887464912B3718D4004416B8 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
+		887464982B37190A004416B8 /* Neumorphic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 887464972B37190A004416B8 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
+		};
+		8874649B2B37191D004416B8 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8874649A2B37191D004416B8 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+		887464A02B371935004416B8 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8874649F2B371935004416B8 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		887464A62B37196A004416B8 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		88A8D7532B3D7B9E00983E0E /* ClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClockShare;
+		};
+		88A8D7612B3DB1EC00983E0E /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88A8D7602B3DB1EC00983E0E /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		88ABA21D2B3AB4BF0035DDDB /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88ABA21C2B3AB4BF0035DDDB /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+		88C3BFD92B691767004FD993 /* DeskClockShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DeskClockShare;
+		};
+		88CF13EF2B501F3D00DBE9A1 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		88F8102C2B46689300EFB3D2 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F8102B2B46689300EFB3D2 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		88F810342B46C50D00EFB3D2 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88F810332B46C50D00EFB3D2 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 887464552B37184E004416B8 /* Project object */;
+}

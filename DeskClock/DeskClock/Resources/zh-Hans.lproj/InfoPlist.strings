@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  DeskClock
+
+  Created by 张敏超 on 2023/12/25.
+  
+*/
+
+"CFBundleDisplayName" = "桌面时钟";
+"CFBundleName" = "桌面时钟";
+"UILaunchStoryboardName" = "LaunchScreen_zh-Hans";

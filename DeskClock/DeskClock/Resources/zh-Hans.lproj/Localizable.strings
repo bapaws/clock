@@ -1,0 +1,125 @@
+/* 
+  Localizable.strings
+  DeskClock
+
+  Created by 张敏超 on 2023/12/25.
+  
+*/
+
+"AppName" = "桌面时钟";
+"Slogan" = "让时间更有价值";
+"Cancel" = "取消";
+"Congratulations" = "🎉恭喜解锁 Pro 会员🎉";
+
+// MARK: - Main
+
+"Pomodoro" = "番茄钟";
+"Clock" = "时钟";
+"Timer" = "计时器";
+
+// MARK: - Settings
+
+"Settings" = "设置";
+
+// MARK: Appearance
+
+"Appearance" = "外观";
+"ModeAuto" = "跟随系统";
+
+// MARK: Icon Style
+
+"IconType" = "Emoji 按钮";
+"Text" = "文本";
+"Start" = "开始";
+"Stop" = "结束";
+"Pause" = "暂停";
+"Resume" = "继续";
+"Restart" = "重置";
+
+// MARK: App Icon
+
+"AppIcon" = "彩色图标";
+"LightClassic" = "经典白";
+"LightPink" = "粉红";
+"LightPurple" = "紫";
+"LightOrange" = "橙";
+"DarkClassic" = "经典黑";
+"DarkPink" = "粉红";
+"DarkPurple" = "紫";
+"DarkOrange" = "橙";
+
+"ColorThemes" = "彩色主题";
+"Default" = "默认";
+"Classic" = "经典";
+"Pink" = "粉红";
+"Purple" = "紫";
+"Orange" = "橙";
+
+"DarkMode" = "深色模式";
+"LightMode" = "浅色模式";
+"Dark" = "深色";
+"Light" = "浅色";
+
+"LandspaceMode" = "横屏模式";
+"PortraitMode" = "竖屏模式";
+"Portrait" = "竖屏";
+"Landspace" = "横屏";
+
+// MARK: Other
+
+"Other" = "其他";
+"Rate" = "鼓励一下";
+"Upgrade" = "检查更新";
+"About" = "关于";
+
+// MARK: Clock
+
+"TimeFormat" = "时间格式";
+"ShowSecond" = "显示秒钟";
+
+// MARK: Pomodoro
+
+"FocusDuration" = "专注时长";
+"ShortBreakDuration" = "休息";
+"LongBreakDuration" = "长休息";
+"FocusCompletedNotification" = "太棒了，继续前进吧！👏👏👏";
+"BreakCompletedNotification" = "休息结束啦，继续加油！💪💪💪";
+
+// MARK: Sound
+
+"Sound" = "声音";
+"Mute" = "静音";
+"Tick" = "嘀嗒";
+"Pendulum" = "钟摆";
+"Card" = "翻牌";
+"Drip" = "水滴";
+"Switch" = "开关";
+"Muyu" = "木鱼";
+"SecondHand" = "秒针";
+"BackgroundSound" = "背景音";
+
+// MARK: About
+
+"Privacy" = "隐私协议";
+"And" = " 和 ";
+"Terms" = "服务条款";
+
+// MARK: Paywall
+
+"ProMembership" = "Pro 会员";
+"UnlockPro" = "解锁全部高级功能";
+"TryFree" = "免费试用";
+"ProInfo1" = "更好用的番茄钟";
+"ProInfo2" = "Emoji 图标样式";
+"ProInfo3" = "更多定制化的字体";
+"ProInfo4" = "更多可供选择的图标";
+"ProInfo5" = "未来所有的新功能";
+"GetPro" = "立即成为会员";
+"Restore" = "恢复购买";
+"Sale" = "限时优惠";
+"freeTrial.days" = "  %@ 天免费试用  ";
+"subscriptionWarning" =  "确认购买后，将向您的Apple账户收费，购买连续包月、包年项目，将自动续费，Apple账户会在到期前24小时内扣费，扣费成功后订阅周期顺延至下一个订阅周期;
+自动订阅如需取消，请在当前订阅周期结束前24小时前关闭自动续费功能，你可以在“设置”，点击“Apple ID”，选择“查看Apple ID”，点击“订阅”选择桌面时钟高级版取消订阅即可。
+若出现充值未到账的情况，请将您的Apple ID和扣款凭证邮件至dev@bapaws.com;
+Pro 会员免广告服务暂时包含移除app开屏广告、banner广告;
+Pro 会员服务系网络商品和虚拟商品，一经开通后不可退款，感谢理解和支持。";

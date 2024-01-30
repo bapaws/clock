@@ -5,7 +5,7 @@
       location = "group:DesktopClock/../ClockShare">
    </FileRef>
    <FileRef
-      location = "group:/Users/zhangminchao/Documents/Clock/DesktopClock/DesktopClock.xcodeproj">
+      location = "group:DeskClock/DeskClock.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:/Users/zhangminchao/Documents/Clock/DigitClock/DigitalClock.xcodeproj">
