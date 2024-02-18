@@ -22,7 +22,7 @@ public class UIManager: ClockShare.UIBaseManager {
         didSet { setupColors() }
     }
 
-    override private init() {
+    private init() {
         super.init()
     }
 

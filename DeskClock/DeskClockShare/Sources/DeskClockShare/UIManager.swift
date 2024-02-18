@@ -20,11 +20,23 @@ public class UIManager: ClockShare.UIBaseManager {
         didSet { setupColors() }
     }
 
-    private override init() {
-        super.init()
+    private init() {
+        super.init(darkMode: .dark)
     }
 
-    public override func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
+    override public func setupUI() {
+        super.setupUI()
+
+        setupDarkMode()
+        // pad 下横竖屏切换无效
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            setupLandspaceMode()
+        }
+
+        setupNavigationBar()
+    }
+
+    override public func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
         let classic = ColorType.classic.colors
         let backgroundColor = classic.background.toUIColor()
         let foregroundColor = classic.primary.toUIColor()
@@ -49,7 +61,7 @@ public class UIManager: ClockShare.UIBaseManager {
         navigationBar.scrollEdgeAppearance = appearance
     }
 
-    public override func setupColors(scheme: ColorScheme? = nil) {
+    override public func setupColors(scheme: ColorScheme? = nil) {
         colors = colorType.colors
         colors.scheme = darkMode.current.raw ?? scheme ?? .light
 
@@ -58,21 +70,9 @@ public class UIManager: ClockShare.UIBaseManager {
     }
 }
 
+// MARK: - Color
+
 public extension UIManager {
-    func setupAppUI() {
-        setupUI()
-
-        setupDarkMode()
-        // pad 下横竖屏切换无效
-        if UIDevice.current.userInterfaceIdiom != .pad {
-            setupLandspaceMode()
-        }
-
-        setupNavigationBar()
-    }
-
-    // MARK: - Color
-
     var primary: Color { colors.primary }
     var secondary: Color { colors.secondary }
     var background: Color { colors.background }

@@ -55,30 +55,12 @@
       }
     },
     {
-      "identity" : "neumorphic",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/costachung/neumorphic/",
-      "state" : {
-        "revision" : "03c6f7b3d27bfb28a082db2e9ffae45fbc69cb8b",
-        "version" : "2.0.6"
-      }
-    },
-    {
-      "identity" : "partialsheet",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/AndreaMiotto/PartialSheet.git",
-      "state" : {
-        "revision" : "6c61890976181274ea7baf6a4c297418346db799",
-        "version" : "3.1.1"
-      }
-    },
-    {
       "identity" : "popupview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/exyte/PopupView.git",
       "state" : {
-        "revision" : "4e64eb67d4510c96f82efd9e34b8fa5b9b397791",
-        "version" : "2.8.3"
+        "revision" : "d34361fa70d57af2fffde2f1e8863de1f25bd0a3",
+        "version" : "2.8.4"
       }
     },
     {
@@ -104,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RevenueCat/purchases-ios.git",
       "state" : {
-        "revision" : "2f559c69a255da5cd5f66d5a6b9a1dfe6bc61ead",
-        "version" : "4.32.0"
+        "revision" : "a7be2902411685c7797a67c9b6f10329f2ac4d74",
+        "version" : "4.33.0"
       }
     },
     {
@@ -149,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-dependencies",
       "state" : {
-        "revision" : "c31b1445c4fae49e6fdb75496b895a3653f6aefc",
-        "version" : "1.1.5"
+        "revision" : "adb04a8e35f07edc001877af9f9f97fcc21d409e",
+        "version" : "1.2.0"
       }
     },
     {
@@ -176,8 +158,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-syntax",
       "state" : {
-        "revision" : "6ad4ea24b01559dde0773e3d091f1b9e36175036",
-        "version" : "509.0.2"
+        "revision" : "64889f0c732f210a935a0ad7cda38f77f876262d",
+        "version" : "509.1.1"
       }
     },
     {
@@ -185,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/malcommac/SwiftDate.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e"
+        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e",
+        "version" : "7.0.0"
       }
     },
     {
@@ -201,7 +183,7 @@
     {
       "identity" : "swiftuix",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwiftUIX/SwiftUIX",
+      "location" : "https://github.com/SwiftUIX/SwiftUIX.git",
       "state" : {
         "revision" : "a5a22a1aaca885c229f475af049d75a6d9144de8",
         "version" : "0.1.9"
@@ -221,8 +203,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
       "state" : {
-        "revision" : "23cbf2294e350076ea4dbd7d5d047c1e76b03631",
-        "version" : "1.0.2"
+        "revision" : "b58e6627149808b40634c4552fcf2f44d0b3ca87",
+        "version" : "1.1.0"
       }
     }
   ],

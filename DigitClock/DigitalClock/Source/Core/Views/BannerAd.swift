@@ -14,7 +14,6 @@ struct BannerAd: UIViewRepresentable {
     static let size = CGSize(width: 320, height: 100)
 
     let adView = GADBannerView(adSize: GADAdSizeLargeBanner)
-    let indicatorView = UIActivityIndicatorView(style: .medium)
 
     var unitID: String
 
@@ -25,11 +24,6 @@ struct BannerAd: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
-
-        indicatorView.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin]
-        indicatorView.center = view.center
-        indicatorView.startAnimating()
-        view.addSubview(indicatorView)
 
         adView.adUnitID = unitID
         adView.delegate = context.coordinator

@@ -33,9 +33,11 @@ open class UIBaseManager: ObservableObject {
         didSet { changeAppIcon(to: appIcon) }
     }
 
-    @AppStorage(Storage.Key.darkMode, store: Storage.default.store)
-    public var darkMode: DarkMode = .system {
+    public var darkMode: DarkMode {
         didSet {
+            // Store
+            Storage.default.darkMode = darkMode
+
             setupDarkMode()
             // 暗黑模式切换需要更换颜色
             setupColors()
@@ -56,7 +58,13 @@ open class UIBaseManager: ObservableObject {
         didSet { icon = iconType.style }
     }
 
-    public init() {}
+    public init(darkMode: DarkMode = .system) {
+        if let mode = Storage.default.darkMode {
+            self.darkMode = mode
+        } else {
+            self.darkMode = darkMode
+        }
+    }
 
     // MARK: Setup
 

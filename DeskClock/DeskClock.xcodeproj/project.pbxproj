@@ -191,6 +191,7 @@
 		881DFDE32B69130700E15906 /* ClockLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockLandspaceView.swift; sourceTree = "<group>"; };
 		881DFDE52B69130700E15906 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		881DFE232B69131B00E15906 /* DeskClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DeskClockShare; sourceTree = "<group>"; };
+		8821C1072B691F7800402945 /* ClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ClockShare; path = ../ClockShare; sourceTree = "<group>"; };
 		8824F6C92B50227800BCC110 /* PomodoroState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroState.swift; sourceTree = "<group>"; };
 		8824F6D42B502E1C00BCC110 /* StopLiveActivityIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLiveActivityIntent.swift; sourceTree = "<group>"; };
 		883811232B4D0002003C1F4E /* DeskClockWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeskClockWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -541,6 +542,7 @@
 		887464542B37184E004416B8 = {
 			isa = PBXGroup;
 			children = (
+				8821C1072B691F7800402945 /* ClockShare */,
 				881DFE232B69131B00E15906 /* DeskClockShare */,
 				881DFD8B2B69130700E15906 /* DeskClock */,
 				883811282B4D0002003C1F4E /* DeskClockWidget */,

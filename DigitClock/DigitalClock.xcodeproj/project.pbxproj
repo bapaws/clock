@@ -19,7 +19,6 @@
 		88227FCA2B63A2B400176CC8 /* PomodoroWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FB72B63A21700176CC8 /* PomodoroWidgetLiveActivity.swift */; };
 		88227FCB2B63A2B400176CC8 /* StopLiveActivityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FB52B63A21700176CC8 /* StopLiveActivityIntent.swift */; };
 		88227FCC2B63A2C000176CC8 /* PomodoroState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FAF2B63A21700176CC8 /* PomodoroState.swift */; };
-		88227FD02B63A2ED00176CC8 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FCF2B63A2ED00176CC8 /* ClockShare */; };
 		88227FD22B63A2F100176CC8 /* DigitalClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FD12B63A2F100176CC8 /* DigitalClockShare */; };
 		88227FD52B63A31300176CC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE1C2B5C0DC8000DC432 /* Localizable.strings */; };
 		88227FD62B63A31800176CC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88227FA62B63A21700176CC8 /* Localizable.strings */; };
@@ -72,11 +71,8 @@
 		8837AEE72B5C0EC4000DC432 /* TimerPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */; };
 		8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */; };
 		8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEEB2B5C1010000DC432 /* MainView.swift */; };
-		8837AEEF2B5C10F0000DC432 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEEE2B5C10F0000DC432 /* ClockShare */; };
-		8837AEF22B5C1107000DC432 /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEF12B5C1107000DC432 /* ClockShare */; };
 		8837AEF92B5C1522000DC432 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEF82B5C1522000DC432 /* PopupView */; };
 		8837AEFD2B5C1540000DC432 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEFC2B5C1540000DC432 /* SwiftUIPager */; };
-		886DADC82B5E15E2001EA147 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 886DADC72B5E15E2001EA147 /* PartialSheet */; };
 		888C07432B624EA2008028B6 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 888C07422B624EA2008028B6 /* Pow */; };
 		888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 888C074C2B62517D008028B6 /* DigitalClockShare */; };
 		888C07572B6288F8008028B6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 888C07562B6288F8008028B6 /* GoogleMobileAds */; };
@@ -120,6 +116,7 @@
 /* Begin PBXFileReference section */
 		880592E72B620BE70051284F /* SettingsStepperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStepperCell.swift; sourceTree = "<group>"; };
 		880592EC2B621B090051284F /* SettingsTimerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimerSection.swift; sourceTree = "<group>"; };
+		8821C10A2B691FDC00402945 /* ClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ClockShare; path = ../ClockShare; sourceTree = "<group>"; };
 		88227F8E2B63A1D700176CC8 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		88227F8F2B63A1D700176CC8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		88227F912B63A1D800176CC8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -202,7 +199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88227FD02B63A2ED00176CC8 /* ClockShare in Frameworks */,
 				88227F922B63A1D800176CC8 /* SwiftUI.framework in Frameworks */,
 				88227FE62B63A80100176CC8 /* SwiftDate in Frameworks */,
 				88227FD22B63A2F100176CC8 /* DigitalClockShare in Frameworks */,
@@ -220,9 +216,6 @@
 				8837AEF92B5C1522000DC432 /* PopupView in Frameworks */,
 				888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */,
 				8837ADEC2B5C09EF000DC432 /* SwiftUIX in Frameworks */,
-				8837AEEF2B5C10F0000DC432 /* ClockShare in Frameworks */,
-				8837AEF22B5C1107000DC432 /* ClockShare in Frameworks */,
-				886DADC82B5E15E2001EA147 /* PartialSheet in Frameworks */,
 				8837ADEF2B5C0A2E000DC432 /* RswiftLibrary in Frameworks */,
 				8837AEFD2B5C1540000DC432 /* SwiftUIPager in Frameworks */,
 				888C07432B624EA2008028B6 /* Pow in Frameworks */,
@@ -321,6 +314,7 @@
 		8837ADCD2B5C0082000DC432 = {
 			isa = PBXGroup;
 			children = (
+				8821C10A2B691FDC00402945 /* ClockShare */,
 				88E790702B5D04760068B795 /* DigitClockShare */,
 				8837ADD82B5C0082000DC432 /* DigitalClock */,
 				88227F932B63A1D800176CC8 /* Widgets */,
@@ -611,7 +605,6 @@
 			);
 			name = WidgetsExtension;
 			packageProductDependencies = (
-				88227FCF2B63A2ED00176CC8 /* ClockShare */,
 				88227FD12B63A2F100176CC8 /* DigitalClockShare */,
 				88227FE52B63A80100176CC8 /* SwiftDate */,
 				88227FE92B63A82700176CC8 /* RswiftLibrary */,
@@ -641,11 +634,8 @@
 				8837ADEE2B5C0A2E000DC432 /* RswiftLibrary */,
 				8837ADF12B5C0AA1000DC432 /* RevenueCat */,
 				8837ADF42B5C0AB5000DC432 /* SwiftDate */,
-				8837AEEE2B5C10F0000DC432 /* ClockShare */,
-				8837AEF12B5C1107000DC432 /* ClockShare */,
 				8837AEF82B5C1522000DC432 /* PopupView */,
 				8837AEFC2B5C1540000DC432 /* SwiftUIPager */,
-				886DADC72B5E15E2001EA147 /* PartialSheet */,
 				888C07422B624EA2008028B6 /* Pow */,
 				888C074C2B62517D008028B6 /* DigitalClockShare */,
 				888C07562B6288F8008028B6 /* GoogleMobileAds */,
@@ -691,7 +681,6 @@
 				8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */,
 				8837AEFB2B5C1540000DC432 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				88E790752B5D05A30068B795 /* XCLocalSwiftPackageReference "DigitClockShare" */,
-				886DADC62B5E15E2001EA147 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 				888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */,
 				888C07552B6288F8008028B6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
@@ -871,7 +860,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -901,7 +890,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1057,10 +1046,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1094,10 +1085,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1196,14 +1189,6 @@
 				minimumVersion = 2.5.0;
 			};
 		};
-		886DADC62B5E15E2001EA147 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.1;
-			};
-		};
 		888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow";
@@ -1223,10 +1208,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		88227FCF2B63A2ED00176CC8 /* ClockShare */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ClockShare;
-		};
 		88227FD12B63A2F100176CC8 /* DigitalClockShare */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DigitalClockShare;
@@ -1269,14 +1250,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:RswiftGenerateInternalResources";
 		};
-		8837AEEE2B5C10F0000DC432 /* ClockShare */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ClockShare;
-		};
-		8837AEF12B5C1107000DC432 /* ClockShare */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ClockShare;
-		};
 		8837AEF82B5C1522000DC432 /* PopupView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */;
@@ -1286,11 +1259,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8837AEFB2B5C1540000DC432 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
 			productName = SwiftUIPager;
-		};
-		886DADC72B5E15E2001EA147 /* PartialSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 886DADC62B5E15E2001EA147 /* XCRemoteSwiftPackageReference "PartialSheet" */;
-			productName = PartialSheet;
 		};
 		888C07422B624EA2008028B6 /* Pow */ = {
 			isa = XCSwiftPackageProductDependency;
