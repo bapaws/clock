@@ -23,7 +23,7 @@ public class TimerManager: ObservableObject {
 
     @Dependency(\.date.now) var now
 
-    public var timeInterval: TimeInterval = 0.25
+    public var timeInterval: TimeInterval = 0.5
     private var timer: Timer?
 
     public init(time: Time = .zero, timer: Timer? = nil) {

@@ -1,0 +1,93 @@
+//
+//  RecordObject.swift
+//  Hours
+//
+//  Created by 张敏超 on 2024/3/4.
+//
+
+import Foundation
+import RealmSwift
+import SwiftDate
+
+// MARK: Help
+
+public typealias EventTime = (hour: Int, minute: Int, second: Int)
+
+public extension Int {
+    // convert Millisecond to time tuple
+    var time: EventTime {
+        let seconds: Int = .init((Double(self) / 1000).rounded())
+        return (seconds / 3600, seconds / 60 % 60, seconds % 60)
+    }
+}
+
+// MARK: - RecordObject
+
+public enum RecordCreationMode: Int, PersistableEnum, Codable {
+    case pomodoro, timer, enter
+}
+
+public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
+    /// 任务计时类型：倒计时 or 正计时
+    @Persisted public var creationMode: RecordCreationMode
+    /// 持续时间
+    @Persisted public var milliseconds: Int {
+        didSet {
+            time = milliseconds.time
+        }
+    }
+
+    // 开始时间
+    @Persisted public var startAt: Date
+
+    @Persisted(originProperty: "items") public var event: LinkingObjects<EventObject>
+
+    public lazy var endAt: Date = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
+
+    public lazy var time: (hour: Int, minute: Int, second: Int) = milliseconds.time
+    public var hours: Int { time.hour }
+    public var minutes: Int { time.minute }
+    public var seconds: Int { time.second }
+
+    override public init() {
+        super.init()
+    }
+
+    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int) {
+        super.init()
+
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.milliseconds = milliseconds
+    }
+
+    public init(creationMode: RecordCreationMode, startAt: Date, endAt: Date) {
+        super.init()
+
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.milliseconds = Int(startAt.distance(to: endAt) * 1000)
+    }
+
+    // MARK: - Codable
+
+    enum CodingKeys: String, CodingKey {
+        case creationMode
+        case milliseconds
+        case startAt
+    }
+
+    public required init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        creationMode = try container.decode(RecordCreationMode.self, forKey: .creationMode)
+        milliseconds = try container.decode(Int.self, forKey: .milliseconds)
+        startAt = try container.decode(Date.self, forKey: .startAt)
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(creationMode, forKey: .creationMode)
+        try container.encode(milliseconds, forKey: .milliseconds)
+        try container.encode(startAt, forKey: .startAt)
+    }
+}

@@ -73,7 +73,6 @@
 		8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEEB2B5C1010000DC432 /* MainView.swift */; };
 		8837AEF92B5C1522000DC432 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEF82B5C1522000DC432 /* PopupView */; };
 		8837AEFD2B5C1540000DC432 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEFC2B5C1540000DC432 /* SwiftUIPager */; };
-		888C07432B624EA2008028B6 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 888C07422B624EA2008028B6 /* Pow */; };
 		888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 888C074C2B62517D008028B6 /* DigitalClockShare */; };
 		888C07572B6288F8008028B6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 888C07562B6288F8008028B6 /* GoogleMobileAds */; };
 		888C075A2B628A3C008028B6 /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07592B628A3C008028B6 /* BannerAd.swift */; };
@@ -100,6 +99,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		88201ADE2B94BF5B00D4D187 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		88227FA02B63A1D900176CC8 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,7 +227,6 @@
 				8837ADEC2B5C09EF000DC432 /* SwiftUIX in Frameworks */,
 				8837ADEF2B5C0A2E000DC432 /* RswiftLibrary in Frameworks */,
 				8837AEFD2B5C1540000DC432 /* SwiftUIPager in Frameworks */,
-				888C07432B624EA2008028B6 /* Pow in Frameworks */,
 				8837ADF22B5C0AA1000DC432 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +629,7 @@
 				8837ADD32B5C0082000DC432 /* Frameworks */,
 				8837ADD42B5C0082000DC432 /* Resources */,
 				88227FA02B63A1D900176CC8 /* Embed Foundation Extensions */,
+				88201ADE2B94BF5B00D4D187 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -636,7 +645,6 @@
 				8837ADF42B5C0AB5000DC432 /* SwiftDate */,
 				8837AEF82B5C1522000DC432 /* PopupView */,
 				8837AEFC2B5C1540000DC432 /* SwiftUIPager */,
-				888C07422B624EA2008028B6 /* Pow */,
 				888C074C2B62517D008028B6 /* DigitalClockShare */,
 				888C07562B6288F8008028B6 /* GoogleMobileAds */,
 			);
@@ -681,7 +689,6 @@
 				8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */,
 				8837AEFB2B5C1540000DC432 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				88E790752B5D05A30068B795 /* XCLocalSwiftPackageReference "DigitClockShare" */,
-				888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */,
 				888C07552B6288F8008028B6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 8837ADD72B5C0082000DC432 /* Products */;
@@ -860,7 +867,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -890,7 +897,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1046,7 +1053,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1085,7 +1092,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1189,14 +1196,6 @@
 				minimumVersion = 2.5.0;
 			};
 		};
-		888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EmergeTools/Pow";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
 		888C07552B6288F8008028B6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
@@ -1259,11 +1258,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8837AEFB2B5C1540000DC432 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
 			productName = SwiftUIPager;
-		};
-		888C07422B624EA2008028B6 /* Pow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 888C07412B624EA2008028B6 /* XCRemoteSwiftPackageReference "Pow" */;
-			productName = Pow;
 		};
 		888C074C2B62517D008028B6 /* DigitalClockShare */ = {
 			isa = XCSwiftPackageProductDependency;

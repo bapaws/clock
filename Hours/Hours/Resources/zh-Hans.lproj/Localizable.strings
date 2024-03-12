@@ -1,0 +1,160 @@
+/* 
+  Localizable.strings
+  Counter
+
+  Created by 张敏超 on 2024/3/3.
+  
+*/
+
+"AppName" = "极简专注";
+"Slogan" = "让时间更有价值";
+"Cancel" = "取消";
+"Congratulations" = "🎉恭喜解锁 Pro 会员🎉";
+
+// MARK: Tasks
+
+"Tasks" = "任务";
+
+"Today" = "今天";
+"Yesterday" = "昨天";
+
+// MARK: Category
+
+"Study" = "学习";
+"Work" = "工作";
+"Travel" = "旅行";
+"Sports" = "运动";
+"Life" = "生活";
+"Entertainment" = "娱乐";
+"Game" = "游戏";
+
+// MARK: Statistics
+
+"Statistics" = "统计";
+
+"Hours" = "时";
+"Minutes" = "分";
+"Seconds" = "秒";
+
+"Duration" = "时长";
+"Time" = "时间";
+"Summary" = "总结";
+"Total" = "总数";
+"Records" = "记录";
+
+"Task" = "任务";
+"Category" = "标签";
+
+// MARK: Timer
+
+"Finish" = "完成";
+
+// MARK: - Main
+
+"Pomodoro" = "番茄钟";
+"Clock" = "时钟";
+"Timer" = "计时器";
+
+// MARK: - Settings
+
+"Settings" = "设置";
+
+// MARK: Appearance
+
+"Appearance" = "外观";
+"ModeAuto" = "跟随系统";
+
+// MARK: Icon Style
+
+"IconType" = "Emoji 按钮";
+"Text" = "文本";
+"Start" = "开始";
+"Stop" = "结束";
+"Pause" = "暂停";
+"Resume" = "继续";
+"Restart" = "重置";
+
+// MARK: App Icon
+
+"Icon" = "图标";
+"AppIcon" = "应用图标";
+"LightClassic" = "经典白";
+"LightPink" = "粉红";
+"LightPurple" = "紫";
+"LightOrange" = "橙";
+"DarkClassic" = "经典黑";
+"DarkPink" = "粉红";
+"DarkPurple" = "紫";
+"DarkOrange" = "橙";
+
+"ColorThemes" = "彩色主题";
+"Default" = "默认";
+"Classic" = "经典";
+"Pink" = "粉红";
+"Purple" = "紫";
+"Orange" = "橙";
+
+"DarkMode" = "深色模式";
+"LightMode" = "浅色模式";
+"Dark" = "深色";
+"Light" = "浅色";
+
+"LandspaceMode" = "横屏模式";
+"PortraitMode" = "竖屏模式";
+"Portrait" = "竖屏";
+"Landspace" = "横屏";
+
+// MARK: Other
+
+"Other" = "其他";
+"Rate" = "鼓励一下";
+"Upgrade" = "检查更新";
+"About" = "关于";
+
+// MARK: Clock
+
+"TimeFormat" = "时间格式";
+"ShowSecond" = "显示秒";
+
+// MARK: Pomodoro
+
+"Congratulations" = "太棒了! 👏👏👏";
+"Leave" = "结束";
+"Break" = "休息";
+
+"FocusDuration" = "专注时长";
+"ShortBreakDuration" = "休息";
+"LongBreakDuration" = "长休息";
+"FocusCompletedNotification" = "太棒了，继续前进吧！👏👏👏";
+"BreakCompletedNotification" = "休息结束啦，继续加油！💪💪💪";
+
+// MARK: Timer
+
+"ShowHour" = "一直显示小时";
+
+// MARK: Sound
+
+"Sound" = "声音";
+"Mute" = "静音";
+"Tick" = "嘀嗒";
+"Pendulum" = "钟摆";
+"Card" = "翻牌";
+"Drip" = "水滴";
+"Switch" = "开关";
+"Muyu" = "木鱼";
+"SecondHand" = "秒针";
+"BackgroundSound" = "背景音";
+
+// MARK: About
+
+"Privacy" = "隐私协议";
+"And" = " 和 ";
+"Terms" = "服务条款";
+
+// MARK: Paywall
+
+"ProMembership" = "Pro 会员";
+"GetPro" = "立即成为会员";
+"Restore" = "恢复购买";
+"Sale" = "限时优惠";
+"AdRemoval" = "永久去广告";
