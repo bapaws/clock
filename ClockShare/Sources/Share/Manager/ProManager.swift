@@ -32,7 +32,7 @@ public struct PurchasedProduct: Codable {
     }
 
     public var isLifetime: Bool {
-        identifier == "com.bapaws.desktopclock.lifetime"
+        identifier == "com.bapaws.Hours.lifetime"
     }
 }
 

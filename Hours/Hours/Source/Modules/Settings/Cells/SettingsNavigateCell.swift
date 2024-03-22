@@ -38,9 +38,11 @@ struct SettingsNavigateCell: View {
                     .padding(.leading, .extraSmall)
             }
         }
-        .font(.system(.body, design: .rounded), weight: .ultraLight)
+        .font(.body)
         .padding(horizontal: .regular, vertical: .small)
         .height(cellHeight)
+        .background(ui.secondaryBackground)
+        .cornerRadius(16)
     }
 }
 

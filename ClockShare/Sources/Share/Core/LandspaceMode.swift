@@ -24,7 +24,6 @@ public enum LandspaceMode: String, Codable, CaseIterable {
     public var support: UIInterfaceOrientationMask {
         switch self {
         case .portrait:
-
             .portrait
         case .landspace:
             [.landscapeLeft, .landscapeRight]

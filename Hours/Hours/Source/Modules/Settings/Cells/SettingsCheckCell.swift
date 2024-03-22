@@ -9,7 +9,25 @@ import ClockShare
 import HoursShare
 import SwiftUI
 
+struct CheckButtonStyle: ButtonStyle {
+    let checked: Bool
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        HStack {
+            configuration.label
+            Spacer()
+            if checked || configuration.isPressed {
+                Image(systemName: "checkmark")
+                    .foregroundColor(UIManager.shared.colors.primary)
+                    .frame(width: 32, height: 32)
+            }
+        }
+        .contentShape(Rectangle())
+    }
+}
+
 struct SettingsCheckCell: View {
+    var icon: String?
     let title: String
     var isPro: Bool = false
 
@@ -23,8 +41,11 @@ struct SettingsCheckCell: View {
             isChecked = true
             action()
         }) {
-            HStack(spacing: 2) {
+            HStack(spacing: 8) {
                 Text(title)
+                if let icon = icon {
+                    Image(systemName: icon)
+                }
                 if isPro {
                     Image(systemName: "crown")
                         .font(.subheadline, weight: .regular)
@@ -32,27 +53,12 @@ struct SettingsCheckCell: View {
                 }
             }
         }
-        .font(.system(.body, design: .rounded), weight: .ultraLight)
+        .font(.body)
         .buttonStyle(CheckButtonStyle(checked: isChecked))
         .padding(.horizontal)
         .height(cellHeight)
-    }
-
-    struct CheckButtonStyle: ButtonStyle {
-        let checked: Bool
-
-        func makeBody(configuration: Self.Configuration) -> some View {
-            HStack {
-                configuration.label
-                Spacer()
-                if checked || configuration.isPressed {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(UIManager.shared.colors.primary)
-                        .frame(width: 32, height: 32)
-                }
-            }
-            .contentShape(Rectangle())
-        }
+        .background(ui.secondaryBackground)
+        .cornerRadius(16)
     }
 }
 

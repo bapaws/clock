@@ -59,36 +59,39 @@ open class PomodoroBaseManager: ObservableObject {
         timer?.invalidate()
         timer = nil
 
-        #if DEBUG
-        switch state {
-        case .none:
-            time = Time(hour: 0, minute: 1, second: 9)
-            removeNotification()
-        case .focus:
-            time = Time(hour: 0, minute: 1, second: 9)
-            // 开始专注，添加本地计时通知
-            addNotification()
-        case .focusCompleted, .shortBreak:
-            time = Time(hour: 0, minute: 5, second: 0)
-        case .longBreak:
-            time = Time(hour: 0, minute: 0, second: 6)
+        withAnimation {
+            #if DEBUG
+                switch state {
+                case .none:
+                    time = Time(hour: 0, minute: 1, second: 9)
+                    removeNotification()
+                case .focus:
+                    time = Time(hour: 0, minute: 1, second: 9)
+                    // 开始专注，添加本地计时通知
+                    addNotification()
+                case .focusCompleted, .shortBreak:
+                    time = Time(hour: 0, minute: 5, second: 0)
+                case .longBreak:
+                    time = Time(hour: 0, minute: 0, second: 6)
+                }
+
+            #else
+                switch state {
+                case .none:
+                    time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
+                case .focus:
+                    time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
+                    // 开始专注，添加本地计时通知
+                    addNotification()
+                case .focusCompleted:
+                    time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
+                case .shortBreak:
+                    time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
+                case .longBreak:
+                    time = Time(hour: longBreakMinutes / 60, minute: longBreakMinutes % 60, second: 0)
+                }
+            #endif
         }
-        #else
-        switch state {
-        case .none:
-            time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
-        case .focus:
-            time = Time(hour: focusMinutes / 60, minute: focusMinutes % 60, second: 0)
-            // 开始专注，添加本地计时通知
-            addNotification()
-        case .focusCompleted:
-            time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
-        case .shortBreak:
-            time = Time(hour: shortBreakMinutes / 60, minute: shortBreakMinutes % 60, second: 0)
-        case .longBreak:
-            time = Time(hour: longBreakMinutes / 60, minute: longBreakMinutes % 60, second: 0)
-        }
-        #endif
     }
 
     open func activityUpdate(time: Time) {
@@ -107,7 +110,9 @@ public extension PomodoroBaseManager {
     func restartFocusTimer() {
         let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             guard let self = self else { return }
-            self.time--
+            withAnimation {
+                self.time--
+            }
 
             self.activityUpdate(time: time)
 
@@ -134,7 +139,9 @@ public extension PomodoroBaseManager {
     func restartShortBreak() {
         let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             guard let self = self else { return }
-            self.time--
+            withAnimation {
+                self.time--
+            }
 
             self.activityUpdate(time: time)
 
@@ -158,7 +165,9 @@ public extension PomodoroBaseManager {
     func restartLongBreak() {
         let timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             guard let self = self else { return }
-            self.time--
+            withAnimation {
+                self.time--
+            }
 
             self.activityUpdate(time: time)
 

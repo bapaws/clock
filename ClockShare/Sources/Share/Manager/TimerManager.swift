@@ -39,7 +39,9 @@ public extension TimerManager {
         stop()
 
         timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
-            self?.time++
+            withAnimation {
+                self?.time++
+            }
         })
         RunLoop.main.add(timer!, forMode: .common)
 

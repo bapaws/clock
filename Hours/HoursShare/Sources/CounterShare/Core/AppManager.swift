@@ -9,6 +9,7 @@ import AVFoundation
 import ClockShare
 import Foundation
 import RealmSwift
+import SwiftUI
 
 public class AppManager: ClockShare.AppBaseManager {
     public static let shared = AppManager()
@@ -20,15 +21,20 @@ public class AppManager: ClockShare.AppBaseManager {
     private var timer: Timer?
     @Published public var today: Date = Date().dateAtStartOf(.day)
 
+    @AppStorage(Storage.Key.timingMode, store: Storage.default.store)
+    public var timingMode: TimingMode = .timer
+
+    @AppStorage(Storage.Key.minimumRecordedTime, store: Storage.default.store)
+    public var minimumRecordedTime: TimeInterval = 60
+
     /// 可以记录的初始时间
-    public let startAt = Date(year: 2023, month: 4, day: 7, hour: 0, minute: 0)
+    public let initialDate = Date(year: 2023, month: 4, day: 7, hour: 0, minute: 0)
 
-
-    private override init() {
+    override private init() {
         super.init()
     }
 
-    public override func suspend() {
+    override public func suspend() {
         ClockManager.shared.suspendTimer()
         PomodoroManager.shared.suspendTimer()
         TimerManager.shared.suspendTimer()
@@ -41,7 +47,7 @@ public class AppManager: ClockShare.AppBaseManager {
         }
     }
 
-    public override func resume() {
+    override public func resume() {
         switch page {
         case .pomodoro:
             isPomodoroStopped = false

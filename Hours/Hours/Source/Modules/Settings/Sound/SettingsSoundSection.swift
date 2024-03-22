@@ -21,12 +21,8 @@ struct SettingsSoundSection: View {
                 .onChange(of: isMute) { isMute in
                     AppManager.shared.isMute = isMute
                 }
-
-//            SettingsNavigateCell(title: R.string.localizable.backgroundSound(), value: app.soundType.value) {
-//                isSoundTypePresented = true
-//            }
         }
-        .background(UIManager.shared.background)
+        .background(ui.background)
     }
 }
 

@@ -56,10 +56,10 @@ struct EventEnterView: View {
                         .frame(width: 25, height: 25, alignment: .center)
                         .padding(4)
                         .font(.callout)
-                        .foregroundStyle(hex.titleColor)
+                        .foregroundStyle(hex.onPrimary)
                         .background {
                             Circle()
-                                .fill(hex.color)
+                                .fill(hex.primary)
                         }
 
                 }

@@ -40,11 +40,12 @@ struct SettingsSection<Cell: View, ID: Hashable>: View {
                 }
             } else {
                 content()
+                    .background(ui.secondaryBackground)
+                    .cornerRadius(16)
             }
         }
         .contentShape(Rectangle())
-        .padding(.vertical)
-        .padding(.horizontal)
+        .padding()
     }
 }
 

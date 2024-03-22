@@ -9,14 +9,8 @@
 "AppName" = "Hours";
 "Slogan" = "Let time hold more value.";
 "Cancel" = "Cancel";
+"Save" = "Save";
 "Congratulations" = "🎉Congratulations🎉";
-
-// MARK: Tasks
-
-"Tasks" = "Tasks";
-
-"Today" = "Today";
-"Yesterday" = "Yesterday";
 
 // MARK: Category
 
@@ -28,10 +22,41 @@
 "Entertainment" = "Entertainment";
 "Game" = "Game";
 
+"Category" = "Category";
+
+// MARK: Events
+
+"Events" = "Events";
+"EventName" = "Event Name";
+
+"Today" = "Today";
+"Yesterday" = "Yesterday";
+
+"Delete" = "Delete";
+
+"StartTimer" = "Start Timer";
+"StartPomodoro" = "Start Pomodoro";
+
+// MARK: New Record
+
+"NewEvent" = "New Event";
+"Event" = "Event";
+
+"NewRecord" = "New Record";
+
+"StartTime" = "Start Time";
+"EndTime" = "End Time";
+"Note" = "Note";
+
 // MARK: Statistics
 
 "Statistics" = "Statistics";
 
+"RecordCount" = "Record Count";
+"TimeInvest" = "Time Invest";
+"Today" = "Today";
+
+"Days" = "d";
 "Hours" = "h";
 "Minutes" = "min";
 "Seconds" = "s";
@@ -42,8 +67,26 @@
 "Total" = "Total";
 "Records" = "Records";
 
-"Task" = "Task";
+"DailyInput" = "Daily Input";
+"TimeDistribution" = "Time Distribution";
+
+"TotalInvest" = "Total Invest";
+
+"Event" = "Event";
 "Category" = "Category";
+
+"Last7Days" = "Last 7 Days";
+"Weekly" = "Weekly";
+"Monthly" = "Monthly";
+"Yearly" = "Yearly";
+
+"WeekNum" = "Week%ld";
+
+"TimeDistribution" = "Time Distribution";
+"All" = "All";
+"Year" = "Year";
+"Month" = "Month";
+"Week" = "Week";
 
 // MARK: Timer
 
@@ -59,33 +102,20 @@
 
 "Settings" = "Settings";
 
+"TimingMode" = "Timing Mode";
+"MinimumRecordedTime" = "Minimum Recorded Time";
+
 // MARK: Appearance
 
 "Appearance" = "Appearance";
 "ModeAuto" = "Use Device Setting";
-
-// MARK: Icon Style
-
-"IconType" = "Icon Type";
-"Text" = "Text";
-"Start" = "Start";
-"Stop" = "Stop";
-"Pause" = "Pause";
-"Resume" = "Resume";
-"Restart" = "Restart";
 
 // MARK: App Icon
 
 "Icon" = "Icon";
 "AppIcon" = "App Icon";
 "LightClassic" = "Classic Light";
-"LightPink" = "Pink";
-"LightPurple" = "Purple";
-"LightOrange" = "Orange";
 "DarkClassic" = "Classic Dark";
-"DarkPink" = "Pink";
-"DarkPurple" = "Purple";
-"DarkOrange" = "Orange";
 
 "ColorThemes" = "Color Themes";
 "Default" = "Default";
@@ -98,11 +128,6 @@
 "LightMode" = "Light Mode";
 "Dark" = "Dark";
 "Light" = "Light";
-
-"LandspaceMode" = "Landspace Mode";
-"PortraitMode" = "Portrait Mode";
-"Portrait" = "Portrait";
-"Landspace" = "Landspace";
 
 // MARK: Other
 
@@ -154,7 +179,21 @@
 // MARK: Paywall
 
 "ProMembership" = "Pro Membership";
+"Premium" = "Hours Premium";
+"UnlockPro" = "Unlock all premium features.";
+"TryFree" = "Try Free";
+
+"ProInfo1" = "Unlock statistics features";
+"ProInfo2" = "Remove in-app ads";
+"ProInfo3" = "More personalization";
+"ProInfo4" = "More surprise features in the future.";
+
 "GetPro" = "Get Pro";
 "Restore" = "Restore";
 "Sale" = "SALE";
-"AdRemoval" = "Permanent ad removal";
+"freeTrial.days" = "  %@-day free trial  ";
+"subscriptionWarning" = "After confirming the purchase, your Apple account will be charged, and the subscription will be automatically renewed if you purchase a monthly or yearly subscription, your Apple account will be charged 24 hours before the expiration date, and the subscription cycle will be postponed to the next subscription cycle after the successful deduction of the charge.
+If you want to cancel the automatic subscription, please turn off the auto-renewal function 24 hours before the end of the current subscription cycle. You can cancel your subscription by going to \"Settings\" --> click \"Apple ID\", click \"Subscribe\" and select \"Desktop Clock\" to unsubscribe.
+If the recharge does not arrive, please send your Apple ID and debit voucher to dev@bapaws.com.
+Pro member ad-free service temporarily includes the removal of app opening screen ads, banner ads.
+Pro member service is an online commodity and virtual commodity, once opened can not be refunded, thank you for your understanding and support.";

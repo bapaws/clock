@@ -14,53 +14,75 @@ import SwiftUI
 import SwiftUIX
 
 struct RecordsView: View {
-    @State var currentDate: Date = Date().dateAtStartOf(.day)
+    @State var currentDate: Date = AppManager.shared.today
 
     var today: Date { AppManager.shared.today }
-    var startAt: Date { AppManager.shared.startAt }
+    var initialDate: Date { AppManager.shared.initialDate }
 
-    @State var isNewRecordPresented: Bool = false
+    @State private var isDatePickerPresented: Bool = false
+    @State private var isNewRecordPresented: Bool = false
+
+    var pageIndex: Binding<Int> {
+        Binding<Int>(get: {
+            currentDate.difference(in: .day, from: initialDate)!
+        }, set: { newValue in
+            currentDate = initialDate.dateByAdding(newValue, .day).date
+        })
+    }
+
+    var newRecordStartAt: Date {
+        let date = DBManager.default.getRecordEndAt(for: currentDate)
+        return date ?? currentDate.dateBySet(hour: 9, min: 0, secs: 0)!
+    }
+
+    var newRecordEndAt: Date {
+        let startAt = newRecordStartAt
+        var endAt = startAt.addingTimeInterval(3600)
+        if currentDate.compare(.isSameDay(today)) {
+            endAt = Date.now < startAt ? startAt.addingTimeInterval(3600) : Date.now
+        }
+        return endAt
+    }
 
     var body: some View {
-        let pageCount = Int(startAt.getInterval(toDate: today, component: .day))
-        GeometryReader { proxy in
+        let pageCount = today.difference(in: .day, from: initialDate)!
+        NavigationStack {
             VStack(spacing: 0) {
-                Color.systemBackground.height(proxy.safeAreaInsets.top)
-
                 RecordsCalendarView(currentDate: $currentDate, isNewRecordPresented: $isNewRecordPresented)
-                    .background(Color.systemBackground)
-                    .clipShape(.rect(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
 
-                TabView(selection: $currentDate.animation()) {
+                PaginationView(showsIndicators: false) {
                     ForEach(0 ... pageCount, id: \.self) { index in
                         let date = today.dateByAdding(index - pageCount, .day).date
-//                        let records = DBManager.default.getRecords(for: date)
                         TimelineView(date: date)
-                            .tag(date)
                     }
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
+                .currentPageIndex(pageIndex)
             }
-            .ignoresSafeArea(.container, edges: .top)
+            .background(ui.background)
         }
-        .background(Color.secondarySystemBackground)
+        .background(ui.background)
         .sheet(isPresented: $isNewRecordPresented) {
-            let date = DBManager.default.getRecordEndAt(for: currentDate)
-            let startAt = date ?? currentDate.dateBySet(hour: 9, min: 0, secs: 0)!
-            let endAt = currentDate == today ? Date() : startAt.addingTimeInterval(3600)
+            let view = NewRecordView(startAt: newRecordStartAt, endAt: newRecordEndAt, isPresented: $isNewRecordPresented)
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+                .labelsHidden()
             if #available(iOS 16.4, *) {
-                NewRecordView(startAt: startAt, endAt: endAt, isPresented: $isNewRecordPresented)
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
+                view
                     .presentationCornerRadius(32)
                     .presentationContentInteraction(.scrolls)
-                    .labelsHidden()
             } else {
-                NewRecordView(startAt: startAt, endAt: endAt, isPresented: $isNewRecordPresented)
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
-                    .labelsHidden()
+                view
             }
+        }
+        .sheet(isPresented: $isDatePickerPresented) {
+            DatePicker("Enter", selection: $currentDate.animation(), in: ...today, displayedComponents: [.date])
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .presentationDetents([.height(400)])
+                .presentationDragIndicator(.visible)
+                .labelsHidden()
+        }
+        .onChange(of: AppManager.shared.today) { newValue in
+            currentDate = newValue
         }
     }
 }

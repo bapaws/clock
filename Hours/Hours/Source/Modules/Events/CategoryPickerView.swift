@@ -17,19 +17,17 @@ struct CategoryIconView: View {
         Group {
             if let icon = category.icon {
                 Image(systemName: icon)
-                    .frame(width: 25, height: 25, alignment: .center)
             }
             if let emoji = category.emoji {
                 Text(emoji)
-                    .frame(width: 25, height: 25, alignment: .center)
             }
         }
-        .foregroundStyle(category.titleColor)
-        .font(.callout)
-        .padding(padding)
+        .frame(width: 25, height: 25, alignment: .center)
+        .foregroundStyle(category.onSecondaryContainer)
+        .padding(.small)
         .background {
             Circle()
-                .fill(category.color)
+                .fill(category.secondaryContainer)
         }
     }
 }
@@ -40,15 +38,26 @@ struct CategoryView: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            CategoryIconView(category: category, padding: padding)
+            Group {
+                if let icon = category.icon {
+                    Image(systemName: icon)
+                }
+                if let emoji = category.emoji {
+                    Text(emoji)
+                }
+            }
+            .font(.body)
+            .frame(width: 25, height: 25, alignment: .center)
 
             Text(category.name)
-                .font(.callout, weight: .bold)
+                .font(.footnote)
         }
-        .padding(.trailing, .small)
+        .foregroundStyle(category.onSecondaryContainer)
+        .padding(.horizontal, .small)
+        .padding(.vertical, .extraSmall)
         .background {
             Capsule()
-                .fill(category.color.opacity(0.5))
+                .fill(category.secondaryContainer)
         }
     }
 }

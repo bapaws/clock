@@ -40,9 +40,11 @@ struct SettingsStepperCell: View {
                 borderColor: ui.colors.primary
             )
         }
-        .font(.system(.body, design: .rounded), weight: .ultraLight)
+        .font(.body)
         .padding(horizontal: .regular, vertical: .small)
         .height(cellHeight)
+        .background(ui.secondaryBackground)
+        .cornerRadius(16)
     }
 }
 

@@ -30,9 +30,11 @@ struct SettingsToggleCell: View {
             Toggle("", isOn: $isOn)
                 .frame(width: 64, height: 32)
         }
-        .font(.system(.body, design: .rounded), weight: .ultraLight)
+        .font(.body)
         .padding(horizontal: .regular, vertical: .small)
         .height(cellHeight)
+        .background(ui.secondaryBackground)
+        .cornerRadius(16)
     }
 }
 

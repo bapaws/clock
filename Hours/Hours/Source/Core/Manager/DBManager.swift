@@ -12,42 +12,72 @@ import SwiftUI
 import UIKit
 
 public extension DBManager {
-    var json: String { """
-    [{"emoji":"👨🏻‍💻","category":{"hex":{"dark":"#FDDFDF","light":"#FDDFDF"},"emoji":null,"icon":"graduationcap","name":"学习"},"createdAt":731686877.738567,"name":"英语","_id":"65ec705daddba53b60aca1be","hex":{"light":"#E3BEF2","dark":"#E3BEF2"},"items":[{"creationMode":1,"startAt":731686877.848944,"milliseconds":1002}]},{"emoji":"😆","category":{"emoji":null,"hex":{"light":"#FDDFDF","dark":"#FDDFDF"},"name":"学习","icon":"graduationcap"},"createdAt":731686893.805073,"_id":"65ec706daddba53b60aca1c1","name":"数学","hex":{"dark":"#DBEAB3","light":"#DBEAB3"},"items":[{"creationMode":1,"milliseconds":1501,"startAt":731686893.866343}]},{"items":[{"creationMode":1,"startAt":731686913.883149,"milliseconds":1001}],"_id":"65ec7081addba53b60aca1c4","emoji":"🛈","category":{"emoji":null,"icon":"figure.run","hex":{"dark":"#EDDD9E","light":"#EDDD9E"},"name":"运动"},"createdAt":731686913.809013,"hex":{"dark":"#FDDFDF","light":"#FDDFDF"},"name":"跑步"},{"items":[{"milliseconds":1001,"startAt":731686929.036935,"creationMode":1}],"hex":{"light":"#EDDD9E","dark":"#EDDD9E"},"emoji":"🚣","createdAt":731686928.966461,"category":{"emoji":null,"icon":"figure.run","name":"运动","hex":{"dark":"#EDDD9E","light":"#EDDD9E"}},"_id":"65ec7090addba53b60aca1c7","name":"游泳"},{"name":"语文","emoji":"🚴","category":{"icon":"graduationcap","hex":{"light":"#FDDFDF","dark":"#FDDFDF"},"name":"学习","emoji":null},"_id":"65ec70b0addba53b60aca1ca","items":[{"milliseconds":1001,"startAt":731686960.750193,"creationMode":1}],"hex":{"light":"#78C2C4","dark":"#78C2C4"},"createdAt":731686960.640491},{"name":"洗衣服","category":{"emoji":null,"hex":{"light":"#E3BEF2","dark":"#E3BEF2"},"icon":"balloon.2","name":"生活"},"createdAt":731686977.080843,"hex":{"light":"#777BCE","dark":"#777BCE"},"_id":"65ec70c1addba53b60aca1cd","items":[{"milliseconds":1001,"creationMode":1,"startAt":731686977.156195}],"emoji":"🛿"},{"name":"听音乐","emoji":"🛉","_id":"65ec70e9addba53b60aca1d0","createdAt":731687017.619374,"hex":{"light":"#DC9FB4","dark":"#DC9FB4"},"category":{"name":"娱乐","emoji":null,"hex":{"dark":"#78C2C4","light":"#78C2C4"},"icon":"music.note"},"items":[{"milliseconds":1001,"startAt":731687017.727147,"creationMode":1}]}]
-    """
-    }
-
     func setup() {
         do {
-            let objects = realm.objects(EventObject.self)
-            if objects.isEmpty, let data = json.data(using: .utf8)  {
-                let events = try JSONDecoder().decode([EventObject].self, from: data)
+//            let decoder = JSONDecoder()
+//            let jsonData = nipponColors.data(using: .utf8)
+//            let colors = try decoder.decode([OneColor].self, from: jsonData!)
+//            let hexs = colors.map { HexObject(hex: $0.hex) }
+//
+//            let events = realm.objects(EventObject.self)
+//
+//            try? realm.write {
+//                for index in 0 ..< events.count {
+//                    events[index].hex = hexs[index]
+//                }
+//            }
+
+            let objects = realm.objects(CategoryObject.self)
+            if objects.isEmpty {
+                let json = getCategoryData()
+                let data = json.data(using: .utf8)!
+                let categorys = try JSONDecoder().decode([CategoryObject].self, from: data)
                 try realm.write {
-                    realm.add(events)
+                    realm.add(categorys)
                 }
+
+                #if DEBUG
+                    let events = realm.objects(EventObject.self)
+                    try realm.write {
+                        let now = Date.now
+                        var startAt = AppManager.shared.initialDate
+                        while startAt < now {
+                            let milliseconds = Int.random(in: 60000...7200000)
+                            let mode = RecordCreationMode(rawValue: Int.random(in: 0...2))!
+                            let record = RecordObject(creationMode: mode, startAt: startAt, milliseconds: milliseconds)
+                            realm.add(record)
+
+                            let index = Int.random(in: 0 ..< events.count)
+                            events[index].items.append(record)
+
+                            startAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
+                        }
+                    }
+                #endif
             } else {
-                let jsonData = try JSONEncoder().encode(objects)
-                if  let jsonString = String(data: jsonData, encoding: .utf8) {
-                    print(jsonString)
-                }
+                #if DEBUG
+                    let jsonData = try JSONEncoder().encode(objects)
+                    if let jsonString = String(data: jsonData, encoding: .utf8) {
+                        print(jsonString)
+                    }
+                #endif
             }
         } catch {
             print(error)
         }
 
-
         if schemaVersion == 0 {
             guard self.categorys.isEmpty, self.hexs.isEmpty else { return }
 
-            let categorys = [
-                CategoryObject(hex: HexObject(hex: "#E3BEF2"), icon: "balloon.2", name: R.string.localizable.life()),
-                CategoryObject(hex: HexObject(hex: "#DBEAB3"), icon: "magicmouse", name: R.string.localizable.work()),
-                CategoryObject(hex: HexObject(hex: "#FDDFDF"), icon: "graduationcap", name: R.string.localizable.study()),
-                CategoryObject(hex: HexObject(hex: "#EDDD9E"), icon: "figure.run", name: R.string.localizable.sports()),
-                CategoryObject(hex: HexObject(hex: "#78C2C4"), icon: "music.note", name: R.string.localizable.entertainment()),
-                CategoryObject(hex: HexObject(hex: "#777BCE"), icon: "gamecontroller", name: R.string.localizable.game()),
-            ]
             try? realm.write {
+                let categorys = [
+                    CategoryObject(hex: HexObject(hex: "#E3BEF2"), emoji: "🍲", name: R.string.localizable.life()),
+                    CategoryObject(hex: HexObject(hex: "#DBEAB3"), emoji: "🧑🏻‍💻", name: R.string.localizable.work()),
+                    CategoryObject(hex: HexObject(hex: "#FDDFDF"), emoji: "🎒", name: R.string.localizable.study()),
+                    CategoryObject(hex: HexObject(hex: "#EDDD9E"), emoji: "🏃", name: R.string.localizable.sports()),
+                    CategoryObject(hex: HexObject(hex: "#78C2C4"), emoji: "🎤", name: R.string.localizable.entertainment()),
+                    CategoryObject(hex: HexObject(hex: "#777BCE"), emoji: "🎮", name: R.string.localizable.game()),
+                ]
                 self.realm.add(categorys)
             }
 

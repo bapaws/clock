@@ -18,6 +18,13 @@ class ProManager: ClockShare.ProManager, ObservableObject {
     public private(set) var availablePackages = [Package]()
     private var allPackages = [Package]()
 
+    public var isLifetime: Bool {
+        if let product = purchasedProduct, product.isLifetime {
+            return true
+        }
+        return false
+    }
+
     public var lifetimePackage: Package? {
         availablePackages.first {
             $0.storeProduct.productIdentifier == "com.bapaws.Hours.lifetime"
@@ -33,7 +40,7 @@ class ProManager: ClockShare.ProManager, ObservableObject {
         Purchases.logLevel = .error
         #endif
         Purchases.configure(
-            withAPIKey: "appl_IsbmpEVsRHRUpPjLkEUmGPSkrUW",
+            withAPIKey: "appl_IoRurOtZMJYeGrmeUszwicGFquF",
             appUserID: AppIdentifier.shared.anonymous
         )
 

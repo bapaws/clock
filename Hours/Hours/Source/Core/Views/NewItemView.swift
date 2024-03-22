@@ -20,6 +20,7 @@ struct NewItemView<Content: View>: View {
             content()
         }
         .multilineTextAlignment(.trailing)
+        .height(24)
         .padding()
         .padding(.horizontal, .small)
         .background(.tertiarySystemBackground)

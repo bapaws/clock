@@ -17,11 +17,19 @@ struct RecordsCalendarView: View {
     @Binding var isNewRecordPresented: Bool
 
     @State private var isDatePickerPresented: Bool = false
+    @State private var pickDate: Date
 
     let weekdaySymbols = DateFormatter().shortWeekdaySymbols!
 
     var today: Date { AppManager.shared.today }
-    var startAt: Date { AppManager.shared.startAt }
+    var startAt: Date { AppManager.shared.initialDate }
+
+    init(currentDate: Binding<Date>, isNewRecordPresented: Binding<Bool>) {
+        self._currentDate = currentDate
+        self._isNewRecordPresented = isNewRecordPresented
+
+        self.pickDate = currentDate.wrappedValue
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -35,7 +43,7 @@ struct RecordsCalendarView: View {
                         Text(currentDate.to(format: "yyyyMM"))
                             .font(.title)
                         Image(systemName: "chevron.right")
-                            .font(.title3)
+                            .font(.body)
                     }
                 }
                 Spacer()
@@ -47,9 +55,7 @@ struct RecordsCalendarView: View {
                         .font(.title3)
                 }
             }
-            .foregroundStyle(Color.mint)
-//            .padding(.horizontal)
-//            .padding(.top)
+            .foregroundStyle(ui.primary)
             .padding()
 
             GeometryReader { proxy in
@@ -69,14 +75,14 @@ struct RecordsCalendarView: View {
                                     Text(weekdaySymbols[weekdayIndex])
                                         .font(.caption2)
                                     Text("\(day)")
-                                        .font(.body, weight: .bold)
+                                        .font(.title3)
                                     if isCurrent {
                                         Circle()
-                                            .fill(Color.mint)
+                                            .fill(ui.primary)
                                             .frame(width: 4, height: 4)
                                     }
                                 }
-                                .foregroundStyle(isCurrent ? .mint : .label)
+                                .foregroundStyle(isCurrent ? ui.primary : ui.secondaryLabel)
                                 .width(itemWidth)
                                 .onTapGesture {
                                     withAnimation {
@@ -90,12 +96,17 @@ struct RecordsCalendarView: View {
                     .onAppear {
                         scrollViewProxy.scrollTo(monthDays, anchor: .bottom)
                     }
+                    .onChange(of: currentDate) { newValue in
+                        withAnimation {
+                            scrollViewProxy.scrollTo(newValue.day, anchor: .center)
+                        }
+                    }
                 }
             }
         }
         .height(126)
         .sheet(isPresented: $isDatePickerPresented) {
-            DatePicker("Enter", selection: $currentDate.animation(), in: startAt ... today, displayedComponents: [.date])
+            DatePicker("Enter", selection: $currentDate.animation(), in: ...today, displayedComponents: [.date])
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .presentationDetents([.height(400)])
                 .presentationDragIndicator(.visible)

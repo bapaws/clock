@@ -24,12 +24,20 @@ public protocol ThemeColors {
     var lightThemePrimary: UIColor { get }
     var lightThemeSecondary: UIColor { get }
     var lightThemeBackground: UIColor { get }
+    var lightThemeSecondaryBackground: UIColor { get }
+
+    var lightThemeLabel: UIColor { get }
+    var lightThemeSecondaryLabel: UIColor { get }
 
     // MARK: Dark Theme
 
     var darkThemePrimary: UIColor { get }
     var darkThemeSecondary: UIColor { get }
     var darkThemeBackground: UIColor { get }
+    var darkThemeSecondaryBackground: UIColor { get }
+
+    var darkThemeLabel: UIColor { get }
+    var darkThemeSecondaryLabel: UIColor { get }
 
     init(
         scheme: ColorScheme,
@@ -42,4 +50,8 @@ public extension ThemeColors {
     var primary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary }) }
     var secondary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary }) }
     var background: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground }) }
+    var secondaryBackground: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? lightThemeSecondaryBackground : darkThemeSecondaryBackground }) }
+
+    var label: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeLabel : lightThemeLabel }) }
+    var secondaryLabel: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryLabel : lightThemeSecondaryLabel }) }
 }

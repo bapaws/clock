@@ -18,12 +18,20 @@ public struct Colors: Codable, ClockShare.ThemeColors {
     public let lightThemePrimary: UIColor
     public let lightThemeSecondary: UIColor
     public let lightThemeBackground: UIColor
+    public let lightThemeSecondaryBackground: UIColor
+
+    public let lightThemeLabel: UIColor
+    public let lightThemeSecondaryLabel: UIColor
 
     // MARK: Dark Theme
 
     public let darkThemePrimary: UIColor
     public let darkThemeSecondary: UIColor
     public let darkThemeBackground: UIColor
+    public let darkThemeSecondaryBackground: UIColor
+
+    public let darkThemeLabel: UIColor
+    public let darkThemeSecondaryLabel: UIColor
 
     public init(
         scheme: ColorScheme = .light,
@@ -37,12 +45,19 @@ public struct Colors: Codable, ClockShare.ThemeColors {
         let lightBrightness = lightThemePrimary.brightness
         lightThemeSecondary = lightThemePrimary.adjustSaturation(by: (1 - lightSaturation) * 0.5).adjustBrightness(by: lightBrightness * 0.2)
         lightThemeBackground = lightThemePrimary.adjustSaturation(by: -lightSaturation * 0.8)
+        lightThemeSecondaryBackground = .systemBackground
 
         darkThemePrimary = dark.toUIColor() ?? UIColor(red: 0.910, green: 0.910, blue: 0.910, alpha: 1.0)
         let darkSaturation = darkThemePrimary.saturation
         let darkBrightness = darkThemePrimary.brightness
         darkThemeSecondary = darkThemePrimary.adjustSaturation(by: -darkSaturation * 0.2).adjustBrightness(by: -darkBrightness * 0.1)
         darkThemeBackground = UIColor(red: 0.188, green: 0.192, blue: 0.208, alpha: 1.0)
+        darkThemeSecondaryBackground = .systemBackground
+
+        lightThemeLabel = .label
+        lightThemeSecondaryLabel = .secondaryLabel
+        darkThemeLabel = .label
+        darkThemeSecondaryLabel = .secondaryLabel
     }
 
     public init(
@@ -50,17 +65,29 @@ public struct Colors: Codable, ClockShare.ThemeColors {
         lightThemePrimary: Color,
         lightThemeSecondary: Color,
         lightThemeBackground: Color,
+        lightThemeLabel: Color,
+        lightThemeSecondaryLabel: Color,
+        lightThemeSecondaryBackground: Color,
         darkThemePrimary: Color,
         darkThemeSecondary: Color,
-        darkThemeBackground: Color
+        darkThemeBackground: Color,
+        darkThemeLabel: Color,
+        darkThemeSecondaryLabel: Color,
+        darkThemeSecondaryBackground: Color
     ) {
         self.scheme = scheme
         self.lightThemePrimary = lightThemePrimary.toUIColor() ?? UIColor(red: 0.482, green: 0.502, blue: 0.549, alpha: 1.0)
         self.lightThemeSecondary = lightThemeSecondary.toUIColor() ?? UIColor.systemTeal
         self.lightThemeBackground = lightThemeBackground.toUIColor() ?? UIColor(red: 0.925, green: 0.941, blue: 0.953, alpha: 1.0)
+        self.lightThemeLabel = lightThemeLabel.toUIColor() ?? .label
+        self.lightThemeSecondaryLabel = lightThemeSecondaryLabel.toUIColor() ?? .secondaryLabel
+        self.lightThemeSecondaryBackground = lightThemeSecondaryBackground.toUIColor() ?? .systemBackground
+        self.darkThemeLabel = darkThemeLabel.toUIColor() ?? .label
+        self.darkThemeSecondaryLabel = darkThemeSecondaryLabel.toUIColor() ?? .secondaryLabel
         self.darkThemePrimary = darkThemePrimary.toUIColor() ?? UIColor(red: 0.910, green: 0.910, blue: 0.910, alpha: 1.0)
         self.darkThemeSecondary = darkThemeSecondary.toUIColor() ?? UIColor.systemTeal
         self.darkThemeBackground = darkThemeBackground.toUIColor() ?? UIColor(red: 0.188, green: 0.192, blue: 0.208, alpha: 1.0)
+        self.darkThemeSecondaryBackground = darkThemeSecondaryBackground.toUIColor() ?? .systemBackground
     }
 }
 
@@ -120,13 +147,15 @@ public extension Colors {
         case lightThemePrimary
         case lightThemeSecondary
         case lightThemeBackground
-        case lightThemeDarkShadow
-        case lightThemeLightShadow
+        case lightThemeLabel
+        case lightThemeSecondaryLabel
+        case lightThemeSecondaryBackground
         case darkThemePrimary
         case darkThemeSecondary
         case darkThemeBackground
-        case darkThemeDarkShadow
-        case darkThemeLightShadow
+        case darkThemeLabel
+        case darkThemeSecondaryLabel
+        case darkThemeSecondaryBackground
     }
 
     init(from decoder: Decoder) throws {
@@ -135,9 +164,15 @@ public extension Colors {
         lightThemePrimary = try container.decode(Argb.self, forKey: .lightThemePrimary).uiColor
         lightThemeSecondary = try container.decode(Argb.self, forKey: .lightThemeSecondary).uiColor
         lightThemeBackground = try container.decode(Argb.self, forKey: .lightThemeBackground).uiColor
+        lightThemeLabel = try container.decode(Argb.self, forKey: .lightThemeLabel).uiColor
+        lightThemeSecondaryLabel = try container.decode(Argb.self, forKey: .lightThemeSecondaryLabel).uiColor
+        lightThemeSecondaryBackground = try container.decode(Argb.self, forKey: .lightThemeSecondaryBackground).uiColor
         darkThemePrimary = try container.decode(Argb.self, forKey: .darkThemePrimary).uiColor
         darkThemeSecondary = try container.decode(Argb.self, forKey: .darkThemeSecondary).uiColor
         darkThemeBackground = try container.decode(Argb.self, forKey: .darkThemeBackground).uiColor
+        darkThemeLabel = try container.decode(Argb.self, forKey: .darkThemeLabel).uiColor
+        darkThemeSecondaryLabel = try container.decode(Argb.self, forKey: .darkThemeSecondaryLabel).uiColor
+        darkThemeSecondaryBackground = try container.decode(Argb.self, forKey: .darkThemeSecondaryBackground).uiColor
     }
 
     func encode(to encoder: Encoder) throws {
@@ -146,9 +181,15 @@ public extension Colors {
         try container.encode(Argb(uiColor: lightThemePrimary), forKey: .lightThemePrimary)
         try container.encode(Argb(uiColor: lightThemeSecondary), forKey: .lightThemeSecondary)
         try container.encode(Argb(uiColor: lightThemeBackground), forKey: .lightThemeBackground)
+        try container.encode(Argb(uiColor: lightThemeLabel), forKey: .lightThemeLabel)
+        try container.encode(Argb(uiColor: lightThemeSecondaryLabel), forKey: .lightThemeSecondaryLabel)
+        try container.encode(Argb(uiColor: lightThemeSecondaryBackground), forKey: .lightThemeSecondaryBackground)
         try container.encode(Argb(uiColor: darkThemePrimary), forKey: .darkThemePrimary)
         try container.encode(Argb(uiColor: darkThemeSecondary), forKey: .darkThemeSecondary)
         try container.encode(Argb(uiColor: darkThemeBackground), forKey: .darkThemeBackground)
+        try container.encode(Argb(uiColor: darkThemeLabel), forKey: .darkThemeLabel)
+        try container.encode(Argb(uiColor: darkThemeSecondaryLabel), forKey: .darkThemeSecondaryLabel)
+        try container.encode(Argb(uiColor: darkThemeSecondaryBackground), forKey: .darkThemeSecondaryBackground)
     }
 }
 
@@ -158,12 +199,18 @@ public extension Colors {
     static func classic(scheme: ColorScheme = .light) -> Colors {
         Colors(
             scheme: scheme,
-            lightThemePrimary: Color.label,
-            lightThemeSecondary: Color.secondaryLabel,
-            lightThemeBackground: Color.systemBackground,
-            darkThemePrimary: Color.label,
-            darkThemeSecondary: Color.secondaryLabel,
-            darkThemeBackground: Color.systemBackground
+            lightThemePrimary: Color.systemMint,
+            lightThemeSecondary: Color.systemTeal,
+            lightThemeBackground: Color(argb: 0xfff3f3ed),
+            lightThemeLabel: Color(white: 0.2),
+            lightThemeSecondaryLabel: .secondaryLabel,
+            lightThemeSecondaryBackground: .systemBackground,
+            darkThemePrimary: Color.systemMint,
+            darkThemeSecondary: Color.systemTeal,
+            darkThemeBackground: Color.secondarySystemBackground,
+            darkThemeLabel: Color(white: 0.85),
+            darkThemeSecondaryLabel: .secondaryLabel,
+            darkThemeSecondaryBackground: .systemBackground
         )
     }
 

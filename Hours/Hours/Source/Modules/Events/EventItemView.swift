@@ -16,11 +16,10 @@ struct EventItemView: View {
         HStack(spacing: 16) {
             HStack(spacing: 12) {
                 RoundedRectangle(cornerRadius: 2)
-                    .fill(event.color)
+                    .fill(event.primary)
                     .frame(width: 4)
                 Text(event.name)
-                    .font(.title3)
-                    .foregroundStyle(Color(white: 0.2))
+                    .font(.body, weight: .regular)
             }
             .padding(.leading)
             .padding(.vertical)
@@ -30,22 +29,23 @@ struct EventItemView: View {
             if let action = playAction {
                 Button(action: { action(event) }) {
                     Image(systemName: "play.fill")
-                        .font(.system(.title3, design: .rounded))
-                        .foregroundStyle(.white)
-                        .padding(.small)
+                        .font(.system(.callout, design: .rounded))
+                        .foregroundStyle(event.primary)
+                        .padding(12)
                         .background {
                             RoundedRectangle(cornerRadius: 16)
-                                .fill(event.color)
+                                .fill(event.primaryContainer)
                         }
                 }
             }
         }
         .padding(.trailing)
-        .background(Color.tertiarySystemBackground)
+        .frame(height: cellHeight)
+        .background(ui.secondaryBackground)
         .cornerRadius(16)
     }
 }
 
 #Preview {
-    EventItemView(event: EventObject(emoji: "👌", name: "Programing", category: CategoryObject(hex: HexObject(hex: "#DBEAB3"), emoji: "💰", name: "Work"), hex: HexObject(hex: "#757573")))
+    EventItemView(event: EventObject(emoji: "👌", name: "Programing", hex: HexObject(hex: "#757573")))
 }

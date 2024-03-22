@@ -12,132 +12,83 @@ import RealmSwift
 import SwiftUI
 import SwiftUIX
 
-struct EventsView: View {
-    @ObservedSectionedResults(
-        EventObject.self,
-        sectionBlock: { $0.category!.name },
-        sortDescriptors: [SortDescriptor(keyPath: \EventObject.createdAt, ascending: false)],
-        configuration: DBManager.default.config
-    )
-    var sections
-
-    var today: Date { AppManager.shared.today }
-
-    @State var currentDate: Date = .init()
-
-    @State var isInfinity: Bool = false
-
-    @State var category: CategoryObject? = DBManager.default.categorys.first
+struct EventsView<MenuItems: View>: View {
+    @ObservedResults(CategoryObject.self)
+    var categorys
 
     @State private var selectEvent: EventObject?
     @State private var newRecordSelectEvent: EventObject?
 
-    @State private var isTimerPresented = false
-    @State private var isPomodoroPresented = false
-
-    @State private var newEventSelectCategory: CategoryObject?
-
-    @State private var isNewRecordPresented = false
+    var menuItems: ((EventObject) -> MenuItems)?
+    var newEventAction: ((CategoryObject) -> Void)?
+    var playAction: ((EventObject) -> Void)?
+    var tapAction: ((EventObject) -> Void)?
 
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 16) {
-                ForEach(sections, id: \.id) { section in
-                    let category = DBManager.default.categorys.first(where: { $0.name == section.key })!
+                ForEach(categorys, id: \.id) { category in
                     LazyVStack(spacing: 16) {
                         HStack {
                             CategoryView(category: category)
                             Spacer()
-                            Button(action: {
-                                newEventSelectCategory = category
-                            }) {
-                                Image(systemName: "plus")
+                            if let action = newEventAction {
+                                Button(action: {
+                                    action(category)
+                                }) {
+                                    Image(systemName: "plus")
+                                }
                             }
                         }
 
-                        ForEach(section) { event in
-                            EventItemView(event: event, playAction: presentTimer)
+                        ForEach(category.events) { event in
+                            let itemView = EventItemView(event: event, playAction: playAction)
                                 .onTapGesture {
-                                    newRecordSelectEvent = event
-                                    isNewRecordPresented.toggle()
+                                    tapAction?(event)
                                 }
+                            if let menuItems = menuItems {
+                                itemView.contextMenu {
+                                    menuItems(event)
+                                }
+                            } else {
+                                itemView
+                            }
                         }
                     }
-                    .padding(.vertical)
-                    .padding(.horizontal)
                 }
+                .padding(.bottom)
             }
             .padding()
-        }
-        .background(Color.secondarySystemBackground)
-
-        // MARK: Timer
-
-        .fullScreenCover(isPresented: $isTimerPresented, onDismiss: {
-            selectEvent = nil
-        }) {
-            TimerView(task: $selectEvent, isPresented: $isTimerPresented)
-                .environmentObject(TimerManager.shared)
-        }
-
-        // MARK: Pomodoro
-
-        .fullScreenCover(isPresented: $isPomodoroPresented, onDismiss: {
-            selectEvent = nil
-        }) {
-            PomodoroView(task: $selectEvent, isPresented: $isPomodoroPresented)
-                .environmentObject(PomodoroManager.shared)
-        }
-
-        // MARK: New Record
-
-        .sheet(item: $newRecordSelectEvent) { event in
-            let date = DBManager.default.getRecordEndAt(for: today)
-            let startAt = date ?? today.dateBySet(hour: 9, min: 0, secs: 0)!
-            let view = NewRecordView(event: event, startAt: startAt, endAt: Date.now, isPresented: $isNewRecordPresented)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-                .labelsHidden()
-            if #available(iOS 16.4, *) {
-                view.presentationCornerRadius(32)
-            } else {
-                view
-            }
-        }
-
-        // MARK: New Event
-
-        .sheet(item: $newEventSelectCategory) { _ in
-            let view = NewEventView(category: $newEventSelectCategory)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-            if #available(iOS 16.4, *) {
-                view
-                    .presentationCornerRadius(32)
-                    .presentationContentInteraction(.scrolls)
-            } else {
-                view
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Toggle(isOn: $isInfinity) {
-                    Text("")
-                }
-                .toggleStyle(
-                    SymbolToggleStyle(onSystemName: "infinity.circle", onFillColor: .mint, offSystemName: "timer", offFillColor: .mint)
-                )
-            }
+            .background(ui.background)
         }
     }
+}
 
-    private func presentTimer(event: EventObject) {
-        selectEvent = event
-        isTimerPresented = isInfinity
-        isPomodoroPresented = !isInfinity
+extension EventsView where MenuItems == Never {
+    init(
+        newEventAction: ((CategoryObject) -> Void)? = nil,
+        playAction: ((EventObject) -> Void)? = nil,
+        tapAction: ((EventObject) -> Void)? = nil
+    ) {
+        self.newEventAction = newEventAction
+        self.playAction = playAction
+        self.tapAction = tapAction
     }
 }
 
 #Preview {
-    EventsView()
+    EventsView(menuItems: { _ in
+        Group {
+            Button(action: {}) {
+                Label(R.string.localizable.delete(), systemImage: "trash")
+            }
+            Button(action: {}) {
+                Label(R.string.localizable.newRecord(), systemImage: "plus")
+            }
+            Button(action: {}) {
+                Label("Delete", systemImage: "minus.circle")
+            }
+        }
+    }
+    )
 }

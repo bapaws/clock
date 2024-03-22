@@ -29,6 +29,10 @@ public class Storage {
         public static let timeFormat = "timeFormat"
         public static let dateStyle = "dateStyle"
 
+        // MARK: Record
+        public static let timingMode = "timingMode"
+        public static let minimumRecordedTime = "minimumRecordedTime"
+
         // MARK: Timer
 
         public static let hourStyle = "hourStyle"
@@ -85,6 +89,20 @@ public extension Storage {
         }
         get {
             if let rawValue = store.string(forKey: Key.darkMode), let mode = DarkMode(rawValue: rawValue) {
+                return mode
+            }
+            return nil
+        }
+    }
+
+    var appIcon: AppIconType? {
+        set {
+            if let value = newValue?.rawValue {
+                store.set(value, forKey: Key.appIcon)
+            }
+        }
+        get {
+            if let rawValue = store.string(forKey: Key.appIcon), let mode = AppIconType(rawValue: rawValue) {
                 return mode
             }
             return nil

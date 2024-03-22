@@ -11,10 +11,10 @@ import SwiftUIX
 
 public struct SymbolToggleStyle: ToggleStyle {
     public var onSystemName: String
-    public var onActiveColor: Color = .label
+    public var onActiveColor: Color = .black
     public var onFillColor: Color = .green
     public var offSystemName: String
-    public var offActiveColor: Color = .primary
+    public var offActiveColor: Color = .black
     public var offFillColor: Color = .systemGray5
 
     public init(
@@ -43,7 +43,7 @@ public struct SymbolToggleStyle: ToggleStyle {
                         .padding(3)
                         .overlay {
                             Image(systemName: configuration.isOn ? onSystemName : offSystemName)
-                                .foregroundColor(configuration.isOn ? onActiveColor : offActiveColor)
+                                .foregroundColor(.black)
                                 .rotationEffect(.degrees(configuration.isOn ? 0 : -360))
                         }
                         .offset(x: configuration.isOn ? 10 : -10)

@@ -28,9 +28,13 @@ public protocol IconStyle {
 open class UIBaseManager: ObservableObject {
     public static let homeButtonSize = CGSize(width: 54, height: 54)
 
-    @AppStorage(Storage.Key.appIcon, store: Storage.default.store)
-    public var appIcon: AppIconType = .darkClassic {
-        didSet { changeAppIcon(to: appIcon) }
+    @Published public var appIcon: AppIconType {
+        didSet {
+            // Store
+            Storage.default.appIcon = appIcon
+
+            changeAppIcon(to: appIcon)
+        }
     }
 
     public var darkMode: DarkMode {
@@ -58,11 +62,16 @@ open class UIBaseManager: ObservableObject {
         didSet { icon = iconType.style }
     }
 
-    public init(darkMode: DarkMode = .system) {
+    public init(darkMode: DarkMode = .system, appIcon: AppIconType = .darkClassic) {
         if let mode = Storage.default.darkMode {
             self.darkMode = mode
         } else {
             self.darkMode = darkMode
+        }
+        if let appIcon = Storage.default.appIcon {
+            self.appIcon = appIcon
+        } else {
+            self.appIcon = appIcon
         }
     }
 
@@ -74,6 +83,7 @@ open class UIBaseManager: ObservableObject {
     }
 
     open func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {}
+    open func setupTabBar(_ tabBar: UITabBar? = nil) {}
 
     open func setupDarkMode() {
         let windows = UIApplication.shared.connectedScenes.compactMap {

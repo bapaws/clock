@@ -9,11 +9,14 @@ import ClockShare
 import HoursShare
 import PopupView
 import RevenueCat
+import RevenueCatUI
 import SwiftUI
 import SwiftUIX
 
 struct GeneralSettingsView: View {
-    @Binding var isPresented: Bool
+    // MARK: Paywall
+
+    @State var isPaywallPresented: Bool = false
 
     // MARK: Appearance
 
@@ -32,30 +35,16 @@ struct GeneralSettingsView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             scrollView
-        }
-        .foregroundStyle(ui.colors.primary)
-        .background(ui.colors.background)
-        .font(.system(.body, design: .rounded), weight: .ultraLight)
-
-        // MARK: Appearance
-
-        .popup(isPresented: $isDarkModePresented, view: {
-            SettingsDarkModeView(isPresented: $isDarkModePresented)
-        }, customize: customize)
-        .popup(isPresented: $isLandspaceModePresented, view: {
-            SettingsLandspaceModeView(isPresented: $isLandspaceModePresented)
-        }, customize: customize)
-        .sheet(isPresented: $isAppIconPresented) {
-            SettingsAppIconView(isPresented: $isAppIconPresented)
+                .background(ui.colors.background)
         }
 
-        // MARK: Sound
+        // MARK: Paywall
 
-        .popup(isPresented: $isSoundTypePresented, view: {
-            SettingsSoundTypeView(isPresented: $isSoundTypePresented)
-        }, customize: customize)
+        .fullScreenCover(isPresented: $isPaywallPresented) {
+            PaywallView()
+        }
 
         // MARK: About
 
@@ -67,20 +56,15 @@ struct GeneralSettingsView: View {
     var scrollView: some View {
         ScrollView {
             LazyVStack {
-//                PaywallView()
-
-                SettingsSoundSection(isSoundTypePresented: $isSoundTypePresented)
+                SettingsPaywallView {
+                    if ProManager.default.isLifetime { return }
+                    isPaywallPresented = true
+                }
+                SettingsRecordSection()
 
                 // MARK: Appearance
 
-                SettingsAppearanceSection(
-                    isDarkModePresented: $isDarkModePresented,
-                    isLandspaceModePresented: $isLandspaceModePresented
-                )
-
-                // MARK: App Icons
-
-                SettingsAppIconSection(isAppIconPresented: $isAppIconPresented)
+                SettingsAppearanceSection()
 
                 // MARK: Other
 
@@ -90,65 +74,17 @@ struct GeneralSettingsView: View {
                         isAboutPresented = true
                     }
                 }
-                Color.clear
-                    .height(54)
-                    .padding(.vertical, .large)
             }
+            .padding(.bottom)
         }
         .navigationTitle(R.string.localizable.settings())
-        .navigationBarItems(leading: Button(action: {
-            isPresented = false
-        }, label: {
-            Image(systemName: "xmark")
-                .font(.subheadline)
-        }))
-    }
-
-    func customize<PopupContent: View>(parameters: Popup<PopupContent>.PopupParameters) -> Popup<PopupContent>.PopupParameters {
-        parameters
-            .type(.floater(verticalPadding: 0, horizontalPadding: 0, useSafeAreaInset: true))
-            .position(.bottom)
-            .appearFrom(.bottom)
-            .closeOnTapOutside(true)
-            .backgroundColor(Color.black.opacity(0.35))
-            .animation(.spring(duration: 0.3))
     }
 
     func goToRate() {
-        UIApplication.shared.open(URL(string: "https://apps.apple.com/app/id6474898768?action=write-review")!)
-    }
-
-    func purchase() {
-        guard let package = ProManager.default.lifetimePackage else { return }
-
-        HUD.show()
-        ProManager.default.purchase(package: package) { error in
-            HUD.hide()
-            if let error = error {
-                print(error)
-                Toast.show(error.localizedDescription)
-            } else {
-                isPresented = false
-                Toast.show(R.string.localizable.congratulations())
-            }
-        }
-    }
-
-    func restore() {
-        HUD.show()
-        ProManager.default.restorePurchases { error in
-            HUD.hide()
-            if let error = error {
-                print(error)
-                Toast.show(error.localizedDescription)
-            } else {
-                isPresented = false
-                Toast.show(R.string.localizable.congratulations())
-            }
-        }
+        UIApplication.shared.open(URL(string: "https://apps.apple.com/app/id6479001202?action=write-review")!)
     }
 }
 
 #Preview {
-    GeneralSettingsView(isPresented: Binding<Bool>.constant(true))
+    GeneralSettingsView()
 }

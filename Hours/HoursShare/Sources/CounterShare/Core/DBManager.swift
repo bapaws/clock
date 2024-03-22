@@ -42,6 +42,7 @@ public class DBManager: ObservableObject {
     public private(set) var totalMilliseconds: Int = 0
 
     // MARK: Records
+
     public var records: Results<RecordObject>
 
     public var schemaVersion: UInt64 {
@@ -95,21 +96,39 @@ public class DBManager: ObservableObject {
     }
 }
 
-
 // MARK: Records
-public extension DBManager {
 
+public extension DBManager {
     func getRecords(for date: Date) -> Results<RecordObject> {
         let startOfDay = date.dateAtStartOf(.day)
         let tomorrow = date.dateAt(.tomorrowAtStart)
         let predicate = NSPredicate(format: "startAt >= %@ AND startAt < %@", startOfDay as NSDate, tomorrow as NSDate)
-        return realm.objects(RecordObject.self).filter(predicate)
+        return realm.objects(RecordObject.self).filter(predicate).sorted(by: \.endAt, ascending: false)
     }
 
     func getRecordEndAt(for date: Date) -> Date? {
         let startOfDay = date.dateAtStartOf(.day)
         let tomorrow = date.dateAt(.tomorrowAtStart)
         let predicate = NSPredicate(format: "startAt >= %@ AND startAt < %@", startOfDay as NSDate, tomorrow as NSDate)
-        return realm.objects(RecordObject.self).filter(predicate).sorted(byKeyPath: "startAt", ascending: false).last?.endAt
+        return realm.objects(RecordObject.self).filter(predicate).sorted(byKeyPath: "endAt", ascending: true).last?.endAt
+    }
+}
+
+// MARK: Statistics
+
+public extension DBManager {
+    func getDailyEvents(for date: Date) -> Results<EventObject> {
+        let startOfDay = date.dateAtStartOf(.day)
+        let tomorrow = date.dateAt(.tomorrowAtStart)
+        let predicate = NSPredicate(format: "ANY items.startAt >= %@ AND ANY items.startAt < %@", startOfDay as NSDate, tomorrow as NSDate)
+        return realm.objects(EventObject.self).filter(predicate)
+    }
+
+    func getDailyRecords(for event: EventObject, in results: Results<RecordObject>) -> Results<RecordObject> {
+        results.where { $0.event == event }
+    }
+
+    func getDailyRecords(for category: CategoryObject, in results: Results<RecordObject>) -> Results<RecordObject> {
+        results.where { $0.event.categorys.contains(category) }
     }
 }

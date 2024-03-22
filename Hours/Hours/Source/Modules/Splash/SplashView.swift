@@ -12,6 +12,10 @@ import UIKit
 struct SplashView: View {
     @Binding var didFinishLoad: Bool
 
+    #if DEBUG
+    @State var isLogoPresented = false
+    #endif
+
     var body: some View {
         GeometryReader { _ in
             VStack {
@@ -31,8 +35,11 @@ struct SplashView: View {
                 .offset(x: -12)
             }
             .padding(.bottom, 16)
-            .background(Color.systemBackground)
+            .background(ui.background)
             .onAppear {
+                #if DEBUG
+                guard !isLogoPresented else { return }
+                #endif
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     withAnimation {
                         didFinishLoad = true
@@ -40,6 +47,12 @@ struct SplashView: View {
                 }
             }
         }
+
+        #if DEBUG
+        .sheet(isPresented: $isLogoPresented) {
+                LogoView()
+            }
+        #endif
     }
 }
 

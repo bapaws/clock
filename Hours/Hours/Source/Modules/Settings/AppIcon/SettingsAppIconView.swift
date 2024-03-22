@@ -11,48 +11,51 @@ import SwiftUI
 import SwiftUIX
 
 struct SettingsAppIconView: View {
-    @Binding var isPresented: Bool
     @EnvironmentObject var ui: UIManager
 
+    @Environment(\.dismiss) var dismiss
+
+    let appIcons = [.lightClassic, AppIconType.darkClassic]
+
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 LazyVStack {
-                    ForEach([AppIconType.darkClassic, .lightClassic], id: \.self) { icon in
+                    ForEach(appIcons, id: \.self) { icon in
                         Button {
                             ui.appIcon = icon
-                            isPresented = false
+                            dismiss()
                         } label: {
                             HStack {
                                 if let image = UIImage(named: icon.imageName) {
                                     Image(uiImage: image)
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 72, height: 72)
-                                        .cornerRadius(16, style: .continuous)
-                                        .shadow(.drop(color: .gray, radius: 5))
+                                        .frame(width: 42, height: 42)
+                                        .cornerRadius(8, style: .continuous)
                                 }
                                 Text(icon.value)
-                                    .font(.title3)
-                                    .padding(.leading, .regular)
                                 if icon.isPro {
                                     Image(systemName: "crown")
                                         .font(.title3)
                                 }
-                                Spacer()
-                                Image(systemName: ui.appIcon == icon ? "checkmark.circle.fill" : "circle")
-                                    .font(.title2)
                             }
                             .font(.body)
                         }
+                        .buttonStyle(CheckButtonStyle(checked: ui.appIcon == icon))
+                        .font(.body)
+                        .padding(horizontal: .regular, vertical: .small)
+                        .height(cellHeight)
+                        .background(ui.secondaryBackground)
+                        .cornerRadius(16)
                     }
-                    .padding(.vertical, .regular)
-                    .padding(.horizontal, .large)
                 }
+                .padding()
             }
+            .background(ui.background)
             .navigationTitle(R.string.localizable.appIcon())
-            .navigationBarItems(leading: Button(action: {
-                isPresented = false
+            .navigationBarItems(trailing: Button(action: {
+                dismiss()
             }, label: {
                 Image(systemName: "xmark")
                     .font(.subheadline)
@@ -62,6 +65,6 @@ struct SettingsAppIconView: View {
 }
 
 #Preview {
-    SettingsAppIconView(isPresented: Binding<Bool>.constant(true))
+    SettingsAppIconView()
         .environmentObject(UIManager.shared)
 }

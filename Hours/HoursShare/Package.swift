@@ -17,6 +17,7 @@ let package = Package(
             targets: ["HoursShare"]),
     ],
     dependencies: [
+        .package(path: "../Palette"),
         .package(path: "../ClockShare"),
         .package(url: "https://github.com/SwiftUIX/SwiftUIX", from: "0.1.9"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
@@ -29,6 +30,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "HoursShare", dependencies: [
+                "Palette",
                 "ClockShare",
                 "SwiftUIX",
                 "KeychainSwift",

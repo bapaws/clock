@@ -46,10 +46,10 @@ struct WinnerView: View {
                     .font(.body, weight: .bold)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical)
-                    .foregroundColor(Color(hexadecimal6: 0x7F8BFF))
+                    .foregroundColor(ui.primary)
                     .background {
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color(hexadecimal6: 0x7F8BFF), lineWidth: 1.0)
+                            .stroke(ui.primary, lineWidth: 1.0)
                     }
                     .cornerRadius(12)
 
@@ -61,7 +61,7 @@ struct WinnerView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical)
                     .foregroundColor(.white)
-                    .background(Color(hexadecimal6: 0x7F8BFF))
+                    .background(ui.primary)
                     .cornerRadius(12)
                 }
             }

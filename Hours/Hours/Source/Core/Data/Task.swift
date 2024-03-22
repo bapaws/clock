@@ -10,20 +10,6 @@ import HoursShare
 import SwiftUI
 import SwiftUIX
 
-public extension CategoryObject {
-    var color: Color {
-        hex?.color ?? Color(hexadecimal6: 0xDBEAB3)
-    }
-
-    var titleColor: Color {
-        hex?.titleColor ?? Color(white: 0.2)
-    }
-
-    var subtitleColor: Color {
-        hex?.subtitleColor ?? Color.systemGray5
-    }
-}
-
 public extension EventObject {
     var sectionTitle: String {
         if createdAt.isToday {
@@ -56,25 +42,13 @@ public extension EventObject {
         }
         return strings.joined(separator: " ")
     }
-
-    var color: Color {
-        hex?.color ?? category?.color ?? Color(hexadecimal6: 0xDBEAB3)
-    }
-
-    var titleColor: Color {
-        hex?.titleColor ?? Color(white: 0.2)
-    }
-
-    var subtitleColor: Color {
-        hex?.subtitleColor ?? Color.systemGray5
-    }
 }
 
 // MARK: Help
 
 public extension Int {
     var timeLengthText: String {
-        let (hour, minute, second) = time
+        let (day, hour, minute, second) = time
         var text = ""
         if second != 0 {
             text = "\(second)" + R.string.localizable.seconds()
@@ -84,6 +58,9 @@ public extension Int {
         }
         if hour != 0 {
             text = "\(hour)" + R.string.localizable.hours() + text
+        }
+        if day != 0 {
+            text = "\(day)" + R.string.localizable.days() + text
         }
         return text
     }
@@ -105,6 +82,11 @@ public extension Int {
         }
 
         let hours = minutes / 60
-        return (formatter.string(from: NSNumber(value: hours)) ?? "0") + R.string.localizable.hours()
+        if hours < 24 {
+            return (formatter.string(from: NSNumber(value: hours)) ?? "0") + R.string.localizable.hours()
+        }
+
+        let days = hours / 24
+        return (formatter.string(from: NSNumber(value: days)) ?? "0") + R.string.localizable.days()
     }
 }

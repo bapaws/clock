@@ -68,8 +68,9 @@ struct AboutView: View {
             }
             .padding()
             .frame(.greedy)
+            .background(ui.background)
             .navigationTitle(R.string.localizable.about())
-            .navigationBarItems(leading: Button(action: {
+            .navigationBarItems(trailing: Button(action: {
                 isPresented = false
             }, label: {
                 Image(systemName: "xmark")

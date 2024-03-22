@@ -10,8 +10,8 @@ import HoursShare
 import SwiftUI
 
 struct SettingsAppearanceSection: View {
-    @Binding var isDarkModePresented: Bool
-    @Binding var isLandspaceModePresented: Bool
+    @State var isDarkModePresented: Bool = false
+    @State var isAppIconPresented: Bool = false
 
     @State var isEmoji: Bool = UIManager.shared.iconType == .emoji
 
@@ -22,20 +22,20 @@ struct SettingsAppearanceSection: View {
             SettingsNavigateCell(title: DarkMode.title, value: ui.darkMode.value) {
                 isDarkModePresented = true
             }
-
-            // pad 下横竖屏切换无效
-            if UIDevice.current.userInterfaceIdiom != .pad {
-                SettingsNavigateCell(title: LandspaceMode.title, value: ui.landspaceMode.value) {
-                    isLandspaceModePresented = true
-                }
+            SettingsNavigateCell(title: AppIconType.title, value: ui.appIcon.value) {
+                isAppIconPresented = true
             }
+        }
+        .background(ui.background)
+        .sheet(isPresented: $isDarkModePresented) {
+            SettingsDarkModeView()
+        }
+        .sheet(isPresented: $isAppIconPresented) {
+            SettingsAppIconView()
         }
     }
 }
 
 #Preview {
-    SettingsAppearanceSection(
-        isDarkModePresented: Binding<Bool>.constant(false),
-        isLandspaceModePresented: Binding<Bool>.constant(false)
-    )
+    SettingsAppearanceSection()
 }

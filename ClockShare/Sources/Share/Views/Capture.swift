@@ -9,18 +9,17 @@ import Foundation
 import SwiftUI
 
 public extension View {
-    func capture(size: CGSize? = nil, ignoreSafeArea: Bool = false, delay: Double = 1.5, completion: @escaping (UIImage?) -> Void) -> some View {
+    func capture(size: CGSize? = nil, scale: CGFloat = UIScreen.main.scale, ignoreSafeArea: Bool = false, delay: Double = 1.5, completion: @escaping (UIImage?) -> Void) -> some View {
         // 非全屏情况下，一般需要忽略安全区域Capture
         let controller = ignoreSafeArea ? UIHostingController(rootView: ignoresSafeArea()) : UIHostingController(rootView: self)
         let view = controller.view!
         let format = UIGraphicsImageRendererFormat()
         if let size = size {
             view.bounds = CGRect(origin: .zero, size: size)
-            format.scale = UIScreen.main.scale
         } else {
             view.bounds = UIScreen.main.bounds
-            format.scale = UIScreen.main.scale
         }
+        format.scale = scale
         view.backgroundColor = .clear
 
         let renderer = UIGraphicsImageRenderer(bounds: view.bounds, format: format)

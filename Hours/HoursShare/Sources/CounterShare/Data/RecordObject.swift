@@ -11,13 +11,13 @@ import SwiftDate
 
 // MARK: Help
 
-public typealias EventTime = (hour: Int, minute: Int, second: Int)
+public typealias TimeLength = (day: Int, hour: Int, minute: Int, second: Int)
 
 public extension Int {
     // convert Millisecond to time tuple
-    var time: EventTime {
+    var time: TimeLength {
         let seconds: Int = .init((Double(self) / 1000).rounded())
-        return (seconds / 3600, seconds / 60 % 60, seconds % 60)
+        return (seconds / 3600 / 24, seconds / 3600 % 24, seconds / 60 % 60, seconds % 60)
     }
 }
 
@@ -28,6 +28,8 @@ public enum RecordCreationMode: Int, PersistableEnum, Codable {
 }
 
 public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
+    @Persisted(primaryKey: true) var _id: ObjectId
+
     /// 任务计时类型：倒计时 or 正计时
     @Persisted public var creationMode: RecordCreationMode
     /// 持续时间
@@ -38,13 +40,14 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
     }
 
     // 开始时间
-    @Persisted public var startAt: Date
+    @Persisted(indexed: true) public var startAt: Date
+    /// 结束时间
+    @Persisted public var endAt: Date
 
-    @Persisted(originProperty: "items") public var event: LinkingObjects<EventObject>
+    @Persisted(originProperty: "items") public var events: LinkingObjects<EventObject>
+    public var event: EventObject? { events.first }
 
-    public lazy var endAt: Date = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
-
-    public lazy var time: (hour: Int, minute: Int, second: Int) = milliseconds.time
+    public lazy var time: TimeLength = milliseconds.time
     public var hours: Int { time.hour }
     public var minutes: Int { time.minute }
     public var seconds: Int { time.second }
@@ -59,6 +62,7 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
         self.creationMode = creationMode
         self.startAt = startAt
         self.milliseconds = milliseconds
+        endAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
     }
 
     public init(creationMode: RecordCreationMode, startAt: Date, endAt: Date) {
@@ -66,7 +70,8 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
 
         self.creationMode = creationMode
         self.startAt = startAt
-        self.milliseconds = Int(startAt.distance(to: endAt) * 1000)
+        self.endAt = endAt
+        milliseconds = Int(startAt.distance(to: endAt) * 1000)
     }
 
     // MARK: - Codable
@@ -78,6 +83,8 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
     }
 
     public required init(from decoder: any Decoder) throws {
+        super.init()
+
         let container = try decoder.container(keyedBy: CodingKeys.self)
         creationMode = try container.decode(RecordCreationMode.self, forKey: .creationMode)
         milliseconds = try container.decode(Int.self, forKey: .milliseconds)
