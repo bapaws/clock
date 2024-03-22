@@ -916,7 +916,6 @@
 				INFOPLIST_FILE = Hours/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "健康";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "我们需要访问您的健康数据以获取运动类型信息。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -953,7 +952,6 @@
 				INFOPLIST_FILE = Hours/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "健康";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "我们需要访问您的健康数据以获取运动类型信息。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
