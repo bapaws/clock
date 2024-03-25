@@ -12,10 +12,10 @@ import SwiftUI
 
 // MARK: StatisticsDailyType
 
-public enum StatisticsDailyType: CaseIterable, Identifiable {
+public enum StatisticsType: CaseIterable, Identifiable {
     case task, category
 
-    public var id: StatisticsDailyType { self }
+    public var id: StatisticsType { self }
 
     var title: String {
         switch self {
@@ -102,10 +102,11 @@ public class StatisticsViewModel: ObservableObject {
     @Published var totalRecords: Int
     @Published var totalMilliseconds: Int
 
+    @Published public var dailyType: StatisticsType = .task
+
     // MARK: Daily
 
     @Published public var dailyDate: Date = AppManager.shared.today
-    @Published public var dailyType: StatisticsDailyType = .task
     @Published public var dailyTotalMilliseconds: Int = 0
 
     @Published var dailyEvents: [EventObject] = []
@@ -242,7 +243,7 @@ public class StatisticsViewModel: ObservableObject {
                 if let index = barValues.firstIndex(where: { $0.eventName == event.name && $0.date == startAt }) {
                     barValues[index].milliseconds += record.milliseconds
                 } else {
-                    let value = StatisticsBarValue(index: index, type: newValue, date: startAt, eventName: event.name, milliseconds: record.milliseconds, color: event.color)
+                    let value = StatisticsBarValue(index: index, type: newValue, date: startAt, eventName: event.name, milliseconds: record.milliseconds, color: event.darkPrimary)
                     barValues.append(value)
                 }
             }

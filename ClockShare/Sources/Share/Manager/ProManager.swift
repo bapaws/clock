@@ -43,7 +43,7 @@ open class ProManager: NSObject {
 
     public var isPro: Bool {
         #if DEBUG
-        false
+        true
         #else
         purchasedProduct != nil
         #endif
@@ -55,7 +55,7 @@ open class ProManager: NSObject {
         }
     }
 
-    public override init() {
+    override public init() {
         super.init()
         purchasedProduct = Storage.default.purchasedProduct
     }

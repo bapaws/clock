@@ -23,7 +23,7 @@ struct ProMask: ViewModifier {
                     .blur(radius: 8)
 
                 VStack(spacing: 24) {
-                    Image(systemName: "crown")
+                    Image(systemName: "crown.fill")
                         .font(.system(size: 48), weight: .light)
                         .foregroundStyle(Color.systemOrange)
                     Text(R.string.localizable.tryFree())

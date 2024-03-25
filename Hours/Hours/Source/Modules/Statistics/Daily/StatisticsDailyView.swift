@@ -57,11 +57,10 @@ struct StatisticsDailyView: View {
                 Spacer()
 
                 Picker(selection: $viewModel.dailyType.animation(), label: Text("Segments")) {
-                    ForEach(StatisticsDailyType.allCases) {
+                    ForEach(StatisticsType.allCases) {
                         Text($0.title)
                     }
                 }
-                .width(120)
                 .labelsHidden()
                 .pickerStyle(.segmented)
             }

@@ -97,7 +97,6 @@ struct PomodoroView: View {
                 manager.startShortBreak()
 
                 isWinnerPresented = false
-                dismiss()
             })
         }, customize: customize)
     }

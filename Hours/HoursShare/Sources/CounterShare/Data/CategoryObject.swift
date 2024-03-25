@@ -26,22 +26,24 @@ public class CategoryObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         super.init()
     }
 
-    public init(hex: HexObject?, emoji: String, name: String) {
+    public init(hex: HexObject?, emoji: String, name: String, events: List<EventObject> = List<EventObject>()) {
         super.init()
 
         _id = ObjectId.generate()
         self.hex = hex
-        icon = emoji
+        self.emoji = emoji
         self.name = name
+        self.events = events
     }
 
-    public init(hex: HexObject?, icon: String, name: String) {
+    public init(hex: HexObject?, icon: String, name: String, events: List<EventObject> = List<EventObject>()) {
         super.init()
 
         _id = ObjectId.generate()
         self.hex = hex
         self.icon = icon
         self.name = name
+        self.events = events
     }
 
     // MARK: - Codable

@@ -73,11 +73,11 @@ struct StatisticsDailyCategoryView: View {
                 GridRow {
                     let leftEvent = viewModel.dailyCategorys[index * 2]
                     let leftMilliseconds = viewModel.dailyCategoryMilliseconds[index * 2]
-                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.color)
+                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.darkPrimary)
 
                     let rightEvent = viewModel.dailyEvents[index * 2 + 1]
                     let rightMilliseconds = viewModel.dailyCategoryMilliseconds[index * 2 + 1]
-                    StatisticsDailyRatioView(title: rightEvent.name, milliseconds: rightMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: rightEvent.color)
+                    StatisticsDailyRatioView(title: rightEvent.name, milliseconds: rightMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: rightEvent.darkPrimary)
                 }
             }
 
@@ -85,7 +85,7 @@ struct StatisticsDailyCategoryView: View {
                 GridRow {
                     let leftEvent = viewModel.dailyCategorys[count - 1]
                     let leftMilliseconds = viewModel.dailyCategoryMilliseconds[count - 1]
-                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.color)
+                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.darkPrimary)
                 }
             }
         }

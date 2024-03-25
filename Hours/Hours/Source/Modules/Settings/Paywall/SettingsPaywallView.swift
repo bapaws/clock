@@ -15,7 +15,7 @@ struct SettingsPaywallView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Text(R.string.localizable.appName())
-                    Image(systemName: "crown")
+                    Image(systemName: "crown.fill")
                         .foregroundStyle(.orange)
                 }
                 .font(.title3)

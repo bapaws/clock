@@ -20,26 +20,24 @@ struct WinnerView: View {
                 Button(action: onClose) {
                     Image(systemName: "xmark.circle")
                         .font(.title, weight: .thin)
-                        .foregroundStyle(Color.systemGray)
+                        .foregroundStyle(ui.label)
                 }
                 .frame(width: 36, height: 36)
                 .padding()
             }
 
             VStack {
-                if let image = R.image.winner() {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.horizontal)
-                }
+                Image("Winner")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.horizontal)
 
                 Text(R.string.localizable.congratulations())
                     .font(.body)
                     .padding(.vertical)
 
                 HStack(spacing: 16) {
-                    Button(R.string.localizable.finish()) {
+                    Button(R.string.localizable.leave()) {
                         onFinish()
                     }
                     .buttonStyle(.plain)
@@ -53,7 +51,7 @@ struct WinnerView: View {
                     }
                     .cornerRadius(12)
 
-                    Button(R.string.localizable.break()) {
+                    Button(R.string.localizable.startBreak()) {
                         onBreak()
                     }
                     .buttonStyle(.plain)
@@ -68,7 +66,7 @@ struct WinnerView: View {
             .padding(.horizontal, .large)
             .padding(.bottom, .large)
         }
-        .background(Color.white.cornerRadius(20))
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 0)
         .shadow(color: .black.opacity(0.16), radius: 24, x: 0, y: 0)
         .padding(.horizontal, .large)

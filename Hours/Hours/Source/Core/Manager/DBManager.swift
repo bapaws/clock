@@ -13,72 +13,62 @@ import UIKit
 
 public extension DBManager {
     func setup() {
-        do {
-//            let decoder = JSONDecoder()
-//            let jsonData = nipponColors.data(using: .utf8)
-//            let colors = try decoder.decode([OneColor].self, from: jsonData!)
-//            let hexs = colors.map { HexObject(hex: $0.hex) }
-//
-//            let events = realm.objects(EventObject.self)
-//
-//            try? realm.write {
-//                for index in 0 ..< events.count {
-//                    events[index].hex = hexs[index]
-//                }
-//            }
-
-            let objects = realm.objects(CategoryObject.self)
-            if objects.isEmpty {
-                let json = getCategoryData()
-                let data = json.data(using: .utf8)!
-                let categorys = try JSONDecoder().decode([CategoryObject].self, from: data)
-                try realm.write {
-                    realm.add(categorys)
-                }
-
-                #if DEBUG
-                    let events = realm.objects(EventObject.self)
-                    try realm.write {
-                        let now = Date.now
-                        var startAt = AppManager.shared.initialDate
-                        while startAt < now {
-                            let milliseconds = Int.random(in: 60000...7200000)
-                            let mode = RecordCreationMode(rawValue: Int.random(in: 0...2))!
-                            let record = RecordObject(creationMode: mode, startAt: startAt, milliseconds: milliseconds)
-                            realm.add(record)
-
-                            let index = Int.random(in: 0 ..< events.count)
-                            events[index].items.append(record)
-
-                            startAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
-                        }
-                    }
-                #endif
-            } else {
-                #if DEBUG
-                    let jsonData = try JSONEncoder().encode(objects)
-                    if let jsonString = String(data: jsonData, encoding: .utf8) {
-                        print(jsonString)
-                    }
-                #endif
+        #if DEBUG
+            try? realm.write {
+                realm.deleteAll()
             }
-        } catch {
-            print(error)
-        }
+        #endif
 
         if schemaVersion == 0 {
             guard self.categorys.isEmpty, self.hexs.isEmpty else { return }
 
             try? realm.write {
-                let categorys = [
-                    CategoryObject(hex: HexObject(hex: "#E3BEF2"), emoji: "🍲", name: R.string.localizable.life()),
-                    CategoryObject(hex: HexObject(hex: "#DBEAB3"), emoji: "🧑🏻‍💻", name: R.string.localizable.work()),
-                    CategoryObject(hex: HexObject(hex: "#FDDFDF"), emoji: "🎒", name: R.string.localizable.study()),
-                    CategoryObject(hex: HexObject(hex: "#EDDD9E"), emoji: "🏃", name: R.string.localizable.sports()),
-                    CategoryObject(hex: HexObject(hex: "#78C2C4"), emoji: "🎤", name: R.string.localizable.entertainment()),
-                    CategoryObject(hex: HexObject(hex: "#777BCE"), emoji: "🎮", name: R.string.localizable.game()),
-                ]
-                self.realm.add(categorys)
+                let lifeEvents = RealmSwift.List<EventObject>()
+                lifeEvents.append(EventObject(emoji: "🪥", name: R.string.localizable.personalGrooming(), hex: HexObject(hex: "#E4CECE")))
+                lifeEvents.append(EventObject(emoji: "✈️", name: R.string.localizable.travel(), hex: HexObject(hex: "#BCCBB0")))
+                lifeEvents.append(EventObject(emoji: "🛒", name: R.string.localizable.shopping(), hex: HexObject(hex: "#D9D19B")))
+                let life = CategoryObject(hex: HexObject(hex: "#E3BEF2"), emoji: "🛀", name: R.string.localizable.life(), events: lifeEvents)
+                self.realm.add(life)
+
+                let workEvents = RealmSwift.List<EventObject>()
+                workEvents.append(EventObject(emoji: "💼", name: R.string.localizable.work(), hex: HexObject(hex: "#99A4BC")))
+                workEvents.append(EventObject(emoji: "👩‍💻", name: R.string.localizable.coding(), hex: HexObject(hex: "#9C9E89")))
+                let work = CategoryObject(hex: HexObject(hex: "#DBEAB3"), emoji: "🧑🏻‍💻", name: R.string.localizable.work(), events: workEvents)
+                self.realm.add(work)
+
+                let studyEvents = RealmSwift.List<EventObject>()
+                studyEvents.append(EventObject(emoji: "📚", name: R.string.localizable.reading(), hex: HexObject(hex: "#C80926")))
+                studyEvents.append(EventObject(emoji: "🗣️", name: R.string.localizable.english(), hex: HexObject(hex: "0A1053")))
+                studyEvents.append(EventObject(emoji: "📐", name: R.string.localizable.math(), hex: HexObject(hex: "595E66")))
+                studyEvents.append(EventObject(emoji: "✍️", name: R.string.localizable.exam(), hex: HexObject(hex: "806247")))
+                let study = CategoryObject(hex: HexObject(hex: "#FDDFDF"), emoji: "📖", name: R.string.localizable.study(), events: studyEvents)
+                self.realm.add(study)
+
+                let sportsEvents = RealmSwift.List<EventObject>()
+                sportsEvents.append(EventObject(emoji: "🏃‍♂️", name: R.string.localizable.running(), hex: HexObject(hex: "A79A7B")))
+                sportsEvents.append(EventObject(emoji: "🏊‍♂️", name: R.string.localizable.swimming(), hex: HexObject(hex: "B1886A")))
+                let sports = CategoryObject(hex: HexObject(hex: "#EDDD9E"), emoji: "🏃", name: R.string.localizable.sports(), events: sportsEvents)
+                self.realm.add(sports)
+
+                let entertainmentEvents = RealmSwift.List<EventObject>()
+                entertainmentEvents.append(EventObject(emoji: "🎵", name: R.string.localizable.music(), hex: HexObject(hex: "C1C19C")))
+                entertainmentEvents.append(EventObject(emoji: "📺", name: R.string.localizable.video(), hex: HexObject(hex: "1E3124")))
+                entertainmentEvents.append(EventObject(emoji: "🎮", name: R.string.localizable.game(), hex: HexObject(hex: "FFFAE8")))
+                let entertainment = CategoryObject(hex: HexObject(hex: "#78C2C4"), emoji: "🎮", name: R.string.localizable.entertainment(), events: entertainmentEvents)
+                self.realm.add(entertainment)
+
+                let breakEvents = RealmSwift.List<EventObject>()
+                breakEvents.append(EventObject(emoji: "😴", name: R.string.localizable.middayNap(), hex: HexObject(hex: "E88B00")))
+                breakEvents.append(EventObject(emoji: "🍰", name: R.string.localizable.afternoonTea(), hex: HexObject(hex: "FF441A")))
+                breakEvents.append(EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD")))
+                let `break` = CategoryObject(hex: HexObject(hex: "#CAC3D4"), emoji: "🛋", name: R.string.localizable.break(), events: breakEvents)
+                self.realm.add(`break`)
+
+                let houseworkEvents = RealmSwift.List<EventObject>()
+                houseworkEvents.append(EventObject(emoji: "🧹", name: R.string.localizable.cleaning(), hex: HexObject(hex: "405742")))
+                houseworkEvents.append(EventObject(emoji: "🍳", name: R.string.localizable.cooking(), hex: HexObject(hex: "3F4470")))
+                let housework = CategoryObject(hex: HexObject(hex: "#E38C7A"), emoji: "🧹", name: R.string.localizable.housework(), events: houseworkEvents)
+                self.realm.add(housework)
             }
 
             if let jsonData = nipponColors.data(using: .utf8) {
@@ -97,39 +87,24 @@ public extension DBManager {
             self.hexs = realm.objects(HexObject.self)
             self.categorys = realm.objects(CategoryObject.self)
         }
-    }
 
-    private func generateSimilarColors(baseColor: Color, numberOfColors: Int) -> [Color] {
-        var similarColors: [Color] = []
+        #if DEBUG
+            let events = realm.objects(EventObject.self)
+            try? realm.write {
+                let now = Date.now
+                var startAt = AppManager.shared.initialDate
+                while startAt < now {
+                    let milliseconds = Int.random(in: 60000...7200000)
+                    let mode = RecordCreationMode(rawValue: Int.random(in: 0...2))!
+                    let record = RecordObject(creationMode: mode, startAt: startAt, milliseconds: milliseconds)
+                    realm.add(record)
 
-        // 获取基准颜色的 HSB（色相、饱和度、亮度）值
-        var hue: CGFloat = 0
-        var saturation: CGFloat = 0
-        var brightness: CGFloat = 0
-        var alpha: CGFloat = 0
-        baseColor.toUIColor()!.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+                    let index = Int.random(in: 0 ..< events.count)
+                    events[index].items.append(record)
 
-        // 计算相近颜色的色相间隔
-        let hueInterval: CGFloat = 1.0 / CGFloat(numberOfColors)
-
-        // 计算色相的起始值
-        var startHue = hue - hueInterval / 2
-
-        // 循环生成相近颜色
-        for _ in 0 ..< numberOfColors {
-            // 处理色相值小于0或大于1的情况
-            if startHue < 0 {
-                startHue += 1
-            } else if startHue > 1 {
-                startHue -= 1
+                    startAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
+                }
             }
-
-            let similarColor = UIColor(hue: startHue, saturation: saturation, brightness: brightness, alpha: alpha)
-            similarColors.append(Color(similarColor))
-
-            startHue += hueInterval
-        }
-
-        return similarColors
+        #endif
     }
 }

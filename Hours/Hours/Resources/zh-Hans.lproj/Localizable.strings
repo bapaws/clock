@@ -21,6 +21,8 @@
 "Life" = "生活";
 "Entertainment" = "娱乐";
 "Game" = "游戏";
+"Break" = "休息";
+"Housework" = "家务";
 
 "Category" = "分类";
 
@@ -36,6 +38,43 @@
 
 "StartTimer" = "启动计时器";
 "StartPomodoro" = "启动番茄钟";
+
+// 工作
+"Work" = "上班";
+"Coding" = "写代码";
+
+// 生活
+"PersonalGrooming" = "洗漱";
+"Travel" = "旅游";
+"Shopping" = "购物";
+
+// 学习
+"Reading" = "阅读";
+"English" = "英语";
+"Math" = "数学";
+"Exam" = "考试";
+
+// 运动
+"Running" = "跑步";
+"Swimming" = "游泳";
+
+// 娱乐
+"Music" = "听音乐";
+"Video" = "看视频";
+
+// 游戏
+"Genshin" = "原神";
+"Dota2" = "Dota2";
+
+// 休息
+"MiddayNap" = "午休";
+"AfternoonTea" = "下午茶";
+"Sleep" = "睡觉";
+
+// 家务
+"Cleaning" = "打扫";
+"Cooking" = "做饭";
+
 
 // MARK: New Record
 
@@ -145,8 +184,8 @@
 // MARK: Pomodoro
 
 "Congratulations" = "太棒了! 👏👏👏";
-"Leave" = "结束";
-"Break" = "休息";
+"Leave" = "离开";
+"StartBreak" = "开始休息";
 
 "FocusDuration" = "专注时长";
 "ShortBreakDuration" = "休息";

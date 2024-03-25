@@ -21,6 +21,8 @@
 "Life" = "Life";
 "Entertainment" = "Entertainment";
 "Game" = "Game";
+"Break" = "Break";
+"Housework" = "Housework";
 
 "Category" = "Category";
 
@@ -36,6 +38,42 @@
 
 "StartTimer" = "Start Timer";
 "StartPomodoro" = "Start Pomodoro";
+
+// 工作
+"Work" = "Work";
+"Coding" = "Coding";
+
+// 生活
+"PersonalGrooming" = "Personal Grooming";
+"Travel" = "Travel";
+"Shopping" = "Shopping";
+
+// 学习
+"Reading" = "Reading";
+"English" = "English";
+"Math" = "Math";
+"Exam" = "Exam";
+
+// 运动
+"Running" = "Running";
+"Swimming" = "Swimming";
+
+// 娱乐
+"Music" = "Music";
+"Video" = "Video";
+
+// 游戏
+"Genshin" = "Genshin";
+"Dota2" = "Dota2";
+
+// 休息
+"MiddayNap" = "Midday Nap";
+"AfternoonTea" = "Afternoon Tea";
+"Sleep" = "Sleep";
+
+// 家务
+"Cleaning" = "Cleaning";
+"Cooking" = "Cooking";
 
 // MARK: New Record
 
@@ -145,7 +183,7 @@
 
 "Congratulations" = "Congratulations! 👏👏👏";
 "Leave" = "Leave";
-"Break" = "Break";
+"StartBreak" = "Start Break";
 
 "FocusDuration" = "Focus Duration";
 "ShortBreakDuration" = "Break";

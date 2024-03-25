@@ -26,13 +26,20 @@ struct TimelineView: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                LazyVStack(spacing: 0) {
-                    ForEach(0 ..< records.count, id: \.self) { index in
-                        let record = records[index]
-                        TimelineItemView(index: index, record: record, isLast: index == records.count - 1)
+                if records.isEmpty {
+                    Image("NotFound")
+                        .resizable()
+                        .padding(.large)
+                        .padding(.top, .large)
+                } else {
+                    LazyVStack(spacing: 0) {
+                        ForEach(0 ..< records.count, id: \.self) { index in
+                            let record = records[index]
+                            TimelineItemView(index: index, record: record, isLast: index == records.count - 1)
+                        }
                     }
+                    .padding()
                 }
-                .padding()
             }
         }
     }

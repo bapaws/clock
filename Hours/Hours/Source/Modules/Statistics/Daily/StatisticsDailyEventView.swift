@@ -29,7 +29,7 @@ struct StatisticsDailyEventView: View {
                             let milliseconds = viewModel.dailyEventMilliseconds[index]
                             SectorMark(angle: .value(event.name, milliseconds), innerRadius: .ratio(0.618), angularInset: 1)
                                 .cornerRadius(8)
-                                .foregroundStyle(event.color)
+                                .foregroundStyle(event.darkPrimary)
                         }
                     }
 
@@ -58,13 +58,13 @@ struct StatisticsDailyEventView: View {
                 GridRow {
                     let leftEvent = viewModel.dailyEvents[index * 2]
                     let leftMilliseconds = viewModel.dailyEventMilliseconds[index * 2]
-                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.color)
+                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.darkPrimary)
 
 
                         let rightEvent = viewModel.dailyEvents[index * 2 + 1]
                         let rightMilliseconds = viewModel.dailyEventMilliseconds[index * 2 + 1]
-                        StatisticsDailyRatioView(title: rightEvent.name, milliseconds: rightMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: rightEvent.color)
-                    
+                        StatisticsDailyRatioView(title: rightEvent.name, milliseconds: rightMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: rightEvent.darkPrimary)
+
                 }
             }
 
@@ -72,7 +72,7 @@ struct StatisticsDailyEventView: View {
                 GridRow {
                     let leftEvent = viewModel.dailyEvents[count - 1]
                     let leftMilliseconds = viewModel.dailyEventMilliseconds[count - 1]
-                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.color)
+                    StatisticsDailyRatioView(title: leftEvent.name, milliseconds: leftMilliseconds, totalMilliseconds: totalMilliseconds, foregroundColor: leftEvent.darkPrimary)
                 }
             }
         }
