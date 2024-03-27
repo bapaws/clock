@@ -11,6 +11,8 @@ import SwiftUI
 import UIKit
 
 public struct Colors: Codable, ClockShare.ThemeColors {
+
+
     public var scheme: ColorScheme = .light
 
     // MARK: Light Theme
@@ -21,6 +23,10 @@ public struct Colors: Codable, ClockShare.ThemeColors {
     public let lightThemeDarkShadow: UIColor
     public let lightThemeLightShadow: UIColor
 
+    public var lightThemeSecondaryBackground: UIColor = .systemBackground
+    public var lightThemeLabel: UIColor = .label
+    public var lightThemeSecondaryLabel: UIColor = .secondaryLabel
+
     // MARK: Dark Theme
 
     public let darkThemePrimary: UIColor
@@ -28,6 +34,10 @@ public struct Colors: Codable, ClockShare.ThemeColors {
     public let darkThemeBackground: UIColor
     public let darkThemeDarkShadow: UIColor
     public let darkThemeLightShadow: UIColor
+    
+    public var darkThemeSecondaryBackground: UIColor = .systemBackground
+    public var darkThemeLabel: UIColor = .label
+    public var darkThemeSecondaryLabel: UIColor = .secondaryLabel
 
     public init(
         scheme: ColorScheme = .light,

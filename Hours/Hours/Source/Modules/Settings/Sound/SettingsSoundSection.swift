@@ -10,7 +10,6 @@ import HoursShare
 import SwiftUI
 
 struct SettingsSoundSection: View {
-    @Binding var isSoundTypePresented: Bool
     @State var isMute: Bool = AppManager.shared.isMute
 
     @EnvironmentObject var app: AppManager
@@ -27,5 +26,5 @@ struct SettingsSoundSection: View {
 }
 
 #Preview {
-    SettingsSoundSection(isSoundTypePresented: Binding.constant(false))
+    SettingsSoundSection()
 }

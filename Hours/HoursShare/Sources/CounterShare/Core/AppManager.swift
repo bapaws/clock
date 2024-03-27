@@ -14,9 +14,6 @@ import SwiftUI
 public class AppManager: ClockShare.AppBaseManager {
     public static let shared = AppManager()
 
-    private var isPomodoroStopped: Bool = true
-    private var isClockStopped: Bool = false
-    private var isTimerStopped: Bool = true
 
     private var timer: Timer?
     @Published public var today: Date = Date().dateAtStartOf(.day)
@@ -32,48 +29,9 @@ public class AppManager: ClockShare.AppBaseManager {
 
     override private init() {
         super.init()
-    }
 
-    override public func suspend() {
-        ClockManager.shared.suspendTimer()
-        PomodoroManager.shared.suspendTimer()
-        TimerManager.shared.suspendTimer()
-
-        isPomodoroStopped = true
-        isClockStopped = true
-        isTimerStopped = true
-        audioPlayerQueue.async {
-            self.audioPlayer?.stop()
-        }
-    }
-
-    override public func resume() {
-        switch page {
-        case .pomodoro:
-            isPomodoroStopped = false
-            isClockStopped = true
-            isTimerStopped = true
-
-            PomodoroManager.shared.resumeTimer()
-            ClockManager.shared.suspendTimer()
-            TimerManager.shared.suspendTimer()
-        case .clock:
-            isPomodoroStopped = true
-            isClockStopped = false
-            isTimerStopped = true
-
-            PomodoroManager.shared.suspendTimer()
-            ClockManager.shared.resumeTimer()
-            TimerManager.shared.suspendTimer()
-        case .timer:
-            isPomodoroStopped = true
-            isClockStopped = true
-            isTimerStopped = false
-
-            PomodoroManager.shared.suspendTimer()
-            ClockManager.shared.suspendTimer()
-            TimerManager.shared.resumeTimer()
-        }
+        isPomodoroStopped = false
+        isTimerStopped = false
     }
 
     // MARK: Timer

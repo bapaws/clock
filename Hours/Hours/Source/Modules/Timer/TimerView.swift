@@ -78,6 +78,9 @@ struct TimerView: View {
         .onDisappear {
             manager.stop()
         }
+        .onChange(of: manager.time.seconds) { _ in
+            AppManager.shared.playTimer()
+        }
     }
 
     var stopButton: some View {

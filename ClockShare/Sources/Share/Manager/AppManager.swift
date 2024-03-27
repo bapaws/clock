@@ -41,9 +41,9 @@ open class AppBaseManager: ObservableObject {
 
     public let audioPlayerQueue = DispatchQueue(label: "com.bapaws.AudioPlayer")
     public private(set) var audioPlayer: AVAudioPlayer?
-    private var isPomodoroStopped: Bool = true
-    private var isClockStopped: Bool = false
-    private var isTimerStopped: Bool = true
+    public var isPomodoroStopped: Bool = true
+    public var isClockStopped: Bool = false
+    public var isTimerStopped: Bool = true
 
     public private(set) var page: AppPage = .clock
 

@@ -77,9 +77,16 @@ struct PomodoroView: View {
         .onAppear {
             manager.startFocus()
             startAt = time.date
+
+            AppManager.shared.resume()
         }
         .onDisappear {
             manager.stop()
+
+            AppManager.shared.suspend()
+        }
+        .onChange(of: manager.time.seconds) { _ in
+            AppManager.shared.playPomodoro()
         }
         // Popup winner
         .popup(isPresented: $isWinnerPresented, view: {

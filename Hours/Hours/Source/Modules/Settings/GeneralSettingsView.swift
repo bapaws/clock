@@ -62,6 +62,10 @@ struct GeneralSettingsView: View {
                 }
                 SettingsRecordSection()
 
+                // MARK: Sound
+
+                SettingsSoundSection()
+
                 // MARK: Appearance
 
                 SettingsAppearanceSection()

@@ -90,6 +90,9 @@
 		88E886FD2BA28F1F00607AB0 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E886FC2BA28F1F00607AB0 /* StatisticsViewModel.swift */; };
 		88E887032BA2A37700607AB0 /* StatisticsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E887022BA2A37700607AB0 /* StatisticsBarView.swift */; };
 		88E887062BA32FF100607AB0 /* StatisticsTimeDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E887052BA32FF100607AB0 /* StatisticsTimeDistributionView.swift */; };
+		88F4225F2BB40BD3009C5175 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88F4225B2BB40BD3009C5175 /* drip.wav */; };
+		88F422602BB40BD3009C5175 /* second.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88F4225C2BB40BD3009C5175 /* second.wav */; };
+		88F422612BB40BD3009C5175 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88F4225D2BB40BD3009C5175 /* tick.wav */; };
 		88FE051A2BAD6A22002B990A /* WorkoutActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE05192BAD6A22002B990A /* WorkoutActivityType.swift */; };
 		88FE051D2BADCA3B002B990A /* ProMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE051C2BADCA3B002B990A /* ProMask.swift */; };
 /* End PBXBuildFile section */
@@ -172,6 +175,9 @@
 		88E886FC2BA28F1F00607AB0 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		88E887022BA2A37700607AB0 /* StatisticsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsBarView.swift; sourceTree = "<group>"; };
 		88E887052BA32FF100607AB0 /* StatisticsTimeDistributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTimeDistributionView.swift; sourceTree = "<group>"; };
+		88F4225B2BB40BD3009C5175 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
+		88F4225C2BB40BD3009C5175 /* second.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = second.wav; sourceTree = "<group>"; };
+		88F4225D2BB40BD3009C5175 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 		88FE05192BAD6A22002B990A /* WorkoutActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutActivityType.swift; sourceTree = "<group>"; };
 		88FE051C2BADCA3B002B990A /* ProMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,6 +323,7 @@
 				88D23AC12B949D9800E33DE5 /* Assets.xcassets */,
 				88201AB72B94B5BB00D4D187 /* Hours.entitlements */,
 				88D23B502B94AF3100E33DE5 /* Info.plist */,
+				88F4225E2BB40BD3009C5175 /* Sounds */,
 				88201ABF2B94B65000D4D187 /* Localizable.strings */,
 				88201AC32B94B65700D4D187 /* Info.strings */,
 			);
@@ -581,6 +588,16 @@
 			path = Number;
 			sourceTree = "<group>";
 		};
+		88F4225E2BB40BD3009C5175 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				88F4225B2BB40BD3009C5175 /* drip.wav */,
+				88F4225C2BB40BD3009C5175 /* second.wav */,
+				88F4225D2BB40BD3009C5175 /* tick.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -669,8 +686,11 @@
 			files = (
 				8802CBC92BAB2AF800F0091E /* LaunchScreen_zh-Hans.storyboard in Resources */,
 				88201AC12B94B65700D4D187 /* Info.strings in Resources */,
+				88F422602BB40BD3009C5175 /* second.wav in Resources */,
 				88D23AC52B949D9800E33DE5 /* Preview Assets.xcassets in Resources */,
 				88201ABD2B94B65000D4D187 /* Localizable.strings in Resources */,
+				88F4225F2BB40BD3009C5175 /* drip.wav in Resources */,
+				88F422612BB40BD3009C5175 /* tick.wav in Resources */,
 				8802CBCB2BAB2AF900F0091E /* LaunchScreen.storyboard in Resources */,
 				88D23AC22B949D9800E33DE5 /* Assets.xcassets in Resources */,
 			);
