@@ -19,11 +19,19 @@ public struct Colors: Codable, ClockShare.ThemeColors {
     public let lightThemeSecondary: UIColor
     public let lightThemeBackground: UIColor
 
+    public var lightThemeSecondaryBackground: UIColor = .systemBackground
+    public var lightThemeLabel: UIColor = .label
+    public var lightThemeSecondaryLabel: UIColor = .secondaryLabel
+
     // MARK: Dark Theme
 
     public let darkThemePrimary: UIColor
     public let darkThemeSecondary: UIColor
     public let darkThemeBackground: UIColor
+
+    public var darkThemeSecondaryBackground: UIColor = .systemBackground
+    public var darkThemeLabel: UIColor = .label
+    public var darkThemeSecondaryLabel: UIColor = .secondaryLabel
 
     public init(
         scheme: ColorScheme = .light,

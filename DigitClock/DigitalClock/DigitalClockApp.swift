@@ -7,7 +7,7 @@
 
 import ClockShare
 import DigitalClockShare
-import GoogleMobileAds
+//import GoogleMobileAds
 import RevenueCat
 import SwiftUI
 import WidgetKit
@@ -72,9 +72,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { _, _ in }
 
-        if !ProManager.default.isPro {
-            GADMobileAds.sharedInstance().start(completionHandler: nil)
-        }
+//        if !ProManager.default.isPro {
+//            GADMobileAds.sharedInstance().start(completionHandler: nil)
+//        }
 
         return true
     }

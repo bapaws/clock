@@ -9,15 +9,12 @@ import ClockShare
 import DigitalClockShare
 import PopupView
 import SwiftUI
-import SwiftUIPager
 import SwiftUIX
 
 struct MainView: View {
     // MARK: Pager
 
-    @State var offsetX: CGFloat = 0
     @State private var currentIndex = 1
-    @StateObject var page: Page = .withIndex(1)
 
     // MARK: UI
 
@@ -91,9 +88,6 @@ struct MainView: View {
             DispatchQueue.main.async {
                 AppManager.shared.onPageWillChange(index: index)
             }
-            withAnimation {
-                page.update(.new(index: index))
-            }
         }
 
         // MARK: Listen
@@ -112,24 +106,14 @@ struct MainView: View {
     // MARK: - Pager
 
     @ViewBuilder func pager(with safeAreaInsets: EdgeInsets) -> some View {
-        Pager(page: page, data: AppPage.allCases, id: \.self) { index in
-            pageContent(at: index)
-                .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))
-                .contentShape(Rectangle())
-        }
-        .onDraggingChanged { value in
-            offsetX = value
-        }
-        .onDraggingEnded {
-            withAnimation {
-                offsetX = 0
+        PaginationView(showsIndicators: false) {
+            ForEach(AppPage.allCases, id: \.self) { index in
+                pageContent(at: index)
+                    .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))
+                    .contentShape(Rectangle())
             }
         }
-        .onPageWillChange { index in
-            withAnimation {
-                currentIndex = index
-            }
-        }
+        .currentPageIndex($currentIndex)
     }
 
     // MARK: - Content
