@@ -11,10 +11,6 @@ import Foundation
 
 public class AppManager: ClockShare.AppBaseManager {
     public static let shared = AppManager()
-
-    private var isPomodoroStopped: Bool = true
-    private var isClockStopped: Bool = false
-    private var isTimerStopped: Bool = true
     
     private override init() {
         super.init()
