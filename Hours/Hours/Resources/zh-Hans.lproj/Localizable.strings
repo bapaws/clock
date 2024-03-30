@@ -16,7 +16,6 @@
 
 "Study" = "学习";
 "Work" = "工作";
-"Travel" = "旅行";
 "Sports" = "运动";
 "Life" = "生活";
 "Entertainment" = "娱乐";
@@ -36,6 +35,9 @@
 
 "Delete" = "删除";
 
+"PlayButtonTipTitle" = "开始计时或番茄钟";
+"PlayButtonTipMessage" = "通过计时器或番茄钟来添加记录";
+
 "StartTimer" = "启动计时器";
 "StartPomodoro" = "启动番茄钟";
 
@@ -45,7 +47,7 @@
 
 // 生活
 "PersonalGrooming" = "洗漱";
-"Travel" = "旅游";
+"Travel" = "旅行";
 "Shopping" = "购物";
 
 // 学习

@@ -11,8 +11,7 @@ import SwiftUIX
 struct AboutView: View {
     @Binding var isPresented: Bool
 
-    @State var showSafari = false
-    @State var urlString = "https://duckduckgo.com"
+    @State var urlString: String?
 
     var body: some View {
         NavigationView {
@@ -47,22 +46,20 @@ struct AboutView: View {
                 HStack {
                     Button {
                         urlString = "https://privacy.bapaws.com/Hours/terms.html"
-                        showSafari = true
                     } label: {
                         Text(R.string.localizable.terms())
                             .font(.caption)
-                            .foregroundColor(.quaternaryLabel)
+                            .foregroundColor(.tertiaryLabel)
                     }
                     Text(R.string.localizable.and())
                         .font(.caption)
-                        .foregroundColor(.quaternaryLabel)
+                        .foregroundColor(.tertiaryLabel)
                     Button {
                         urlString = "https://privacy.bapaws.com/Hours/privacy.html"
-                        showSafari = true
                     } label: {
                         Text(R.string.localizable.privacy())
                             .font(.caption)
-                            .foregroundColor(.quaternaryLabel)
+                            .foregroundColor(.tertiaryLabel)
                     }
                 }
             }
@@ -77,8 +74,8 @@ struct AboutView: View {
                     .font(.subheadline)
             }))
         }
-        .sheet(isPresented: $showSafari) {
-            SafariView(url: URL(string: self.urlString)!)
+        .sheet(item: $urlString) {
+            SafariView(url: URL(string: $0)!)
         }
     }
 }

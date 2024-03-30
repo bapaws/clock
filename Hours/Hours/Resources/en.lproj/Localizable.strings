@@ -16,7 +16,6 @@
 
 "Study" = "Study";
 "Work" = "Work";
-"Travel" = "Travel";
 "Sports" = "Sports";
 "Life" = "Life";
 "Entertainment" = "Entertainment";
@@ -35,6 +34,9 @@
 "Yesterday" = "Yesterday";
 
 "Delete" = "Delete";
+
+"PlayButtonTipTitle" = "Start a timer or pomodoro";
+"PlayButtonTipMessage" = "Add records via timer or pomodoro.";
 
 "StartTimer" = "Start Timer";
 "StartPomodoro" = "Start Pomodoro";
@@ -212,7 +214,7 @@
 
 "Privacy" = "Privacy Policy";
 "And" = " and ";
-"Terms" = "Terms of Service";
+"Terms" = "Terms of Use";
 
 // MARK: Paywall
 

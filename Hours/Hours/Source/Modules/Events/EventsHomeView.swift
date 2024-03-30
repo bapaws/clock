@@ -117,6 +117,7 @@ struct EventsHomeView: View {
             }) {
                 Label(R.string.localizable.newRecord(), systemImage: "plus")
             }
+            Divider()
             Button(action: {
                 timerSelectEvent = event
                 isTimerPresented = true
@@ -129,6 +130,7 @@ struct EventsHomeView: View {
             }) {
                 Label(R.string.localizable.startPomodoro(), systemImage: "timer")
             }
+            Divider()
             Button(role: .destructive, action: {
                 deleteEvent(event)
             }) {

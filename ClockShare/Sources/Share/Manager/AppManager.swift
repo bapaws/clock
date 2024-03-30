@@ -39,6 +39,11 @@ open class AppBaseManager: ObservableObject {
         }
     }
 
+    public var launchCount: Int {
+        set { Storage.default.launchedCount = newValue }
+        get { Storage.default.launchedCount }
+    }
+
     public let audioPlayerQueue = DispatchQueue(label: "com.bapaws.AudioPlayer")
     public private(set) var audioPlayer: AVAudioPlayer?
     public var isPomodoroStopped: Bool = true

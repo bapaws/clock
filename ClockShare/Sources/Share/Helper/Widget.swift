@@ -28,7 +28,7 @@ public extension View {
         }
     }
 
-    @ViewBuilder func ifLet<T, Content: View>(_ object: T?, transform: (Self, T) -> Content) -> some View {
+    @ViewBuilder func ifLet<T, Content: View>(_ object: T?, @ViewBuilder transform: (Self, T) -> Content) -> some View {
         if let obj = object {
             transform(self, obj)
         } else {

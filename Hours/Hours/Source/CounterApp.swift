@@ -76,6 +76,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         ProManager.setup()
 
+//        #if DEBUG
+//        if #available(iOS 17.0, *) {
+//            try? Tips.configure()
+//        }
+//        #else
+//        if #available(iOS 17.0, *), AppManager.shared.launchCount == 0 {
+//            try? Tips.configure()
+//        }
+//        #endif
+
         // MARK: Observer
 
         UIApplication.shared.addObserver(self, forKeyPath: "idleTimerDisabled", options: .new, context: nil)

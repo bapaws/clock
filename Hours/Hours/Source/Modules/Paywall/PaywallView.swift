@@ -16,6 +16,8 @@ struct PaywallView: View {
 
     @State var selectedPackage: Package? = ProManager.default.availablePackages.first
 
+    @State var urlString: String?
+
     @Environment(\.dismiss) var dismiss
 
     private let infos = [
@@ -58,7 +60,6 @@ struct PaywallView: View {
         GeometryReader { proxy in
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-
                     Text(R.string.localizable.premium())
                         .font(.title)
                         .padding(.top, .large)
@@ -82,6 +83,28 @@ struct PaywallView: View {
                         .padding(.horizontal)
 
                     Spacer()
+
+                    HStack {
+                        Spacer()
+                        Button {
+                            urlString = "https://privacy.bapaws.com/Hours/terms.html"
+                        } label: {
+                            Text(R.string.localizable.terms())
+                                .font(.caption)
+                                .foregroundColor(.tertiaryLabel)
+                        }
+                        Text(R.string.localizable.and())
+                            .font(.caption)
+                            .foregroundColor(.tertiaryLabel)
+                        Button {
+                            urlString = "https://privacy.bapaws.com/Hours/privacy.html"
+                        } label: {
+                            Text(R.string.localizable.privacy())
+                                .font(.caption)
+                                .foregroundColor(.tertiaryLabel)
+                        }
+                        Spacer()
+                    }
                 }
             }
             .safeAreaInset(edge: .top) {
@@ -108,6 +131,10 @@ struct PaywallView: View {
                 footer
             }
             .ignoresSafeArea()
+
+            .sheet(item: $urlString) { urlString in
+                SafariView(url: URL(string: urlString)!)
+            }
         }
     }
 
