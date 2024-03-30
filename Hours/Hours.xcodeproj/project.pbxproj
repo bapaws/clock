@@ -115,6 +115,7 @@
 		88059EA42B9EDC9000C8BF9E /* NewRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordView.swift; sourceTree = "<group>"; };
 		88059EA72B9F4F6500C8BF9E /* NewRecordTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordTimeView.swift; sourceTree = "<group>"; };
 		8808A8E32B99734B004CAD2F /* RecordsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsCalendarView.swift; sourceTree = "<group>"; };
+		881059122BB845B500DCA648 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8814503A2BA437DD00058F7F /* Palette */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Palette; path = ../Palette; sourceTree = "<group>"; };
 		8814503F2BA4789400058F7F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8816E5B52BA988E100A68B71 /* TimelineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineItemView.swift; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 				88D23AC12B949D9800E33DE5 /* Assets.xcassets */,
 				88201AB72B94B5BB00D4D187 /* Hours.entitlements */,
 				88D23B502B94AF3100E33DE5 /* Info.plist */,
+				881059122BB845B500DCA648 /* PrivacyInfo.xcprivacy */,
 				88F4225E2BB40BD3009C5175 /* Sounds */,
 				88201ABF2B94B65000D4D187 /* Localizable.strings */,
 				88201AC32B94B65700D4D187 /* Info.strings */,
