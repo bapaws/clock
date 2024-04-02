@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		880592E82B620BE70051284F /* SettingsStepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592E72B620BE70051284F /* SettingsStepperCell.swift */; };
 		880592ED2B621B090051284F /* SettingsTimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592EC2B621B090051284F /* SettingsTimerSection.swift */; };
+		881688DF2BBBC0D5003E62AA /* PurchaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881688DE2BBBC0D5003E62AA /* PurchaseButton.swift */; };
+		881688F62BBC0453003E62AA /* TimeRecordClockEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881688EE2BBBFB57003E62AA /* TimeRecordClockEntryView.swift */; };
+		881688F72BBC0456003E62AA /* TimeRecordClockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881688F22BBC0314003E62AA /* TimeRecordClockWidget.swift */; };
 		88227F902B63A1D800176CC8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88227F8F2B63A1D700176CC8 /* WidgetKit.framework */; };
 		88227F922B63A1D800176CC8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88227F912B63A1D800176CC8 /* SwiftUI.framework */; };
 		88227F952B63A1D800176CC8 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227F942B63A1D800176CC8 /* WidgetsBundle.swift */; };
@@ -46,7 +49,6 @@
 		8837AE232B5C0E16000DC432 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE202B5C0E16000DC432 /* LaunchScreen.storyboard */; };
 		8837AE242B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE212B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard */; };
 		8837AEC32B5C0EC4000DC432 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE902B5C0EC4000DC432 /* SplashView.swift */; };
-		8837AEC72B5C0EC4000DC432 /* HoldOnButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE952B5C0EC4000DC432 /* HoldOnButton.swift */; };
 		8837AECA2B5C0EC4000DC432 /* SettingsToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE9A2B5C0EC4000DC432 /* SettingsToggleCell.swift */; };
 		8837AECB2B5C0EC4000DC432 /* SettingsNavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE9B2B5C0EC4000DC432 /* SettingsNavigateCell.swift */; };
 		8837AECC2B5C0EC4000DC432 /* SettingsCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE9C2B5C0EC4000DC432 /* SettingsCheckCell.swift */; };
@@ -123,6 +125,9 @@
 /* Begin PBXFileReference section */
 		880592E72B620BE70051284F /* SettingsStepperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStepperCell.swift; sourceTree = "<group>"; };
 		880592EC2B621B090051284F /* SettingsTimerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimerSection.swift; sourceTree = "<group>"; };
+		881688DE2BBBC0D5003E62AA /* PurchaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseButton.swift; sourceTree = "<group>"; };
+		881688EE2BBBFB57003E62AA /* TimeRecordClockEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRecordClockEntryView.swift; sourceTree = "<group>"; };
+		881688F22BBC0314003E62AA /* TimeRecordClockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRecordClockWidget.swift; sourceTree = "<group>"; };
 		8821C10A2B691FDC00402945 /* ClockShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ClockShare; path = ../ClockShare; sourceTree = "<group>"; };
 		88227F8E2B63A1D700176CC8 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		88227F8F2B63A1D700176CC8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -162,7 +167,6 @@
 		8837AE202B5C0E16000DC432 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8837AE212B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen_zh-Hant.storyboard"; sourceTree = "<group>"; };
 		8837AE902B5C0EC4000DC432 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		8837AE952B5C0EC4000DC432 /* HoldOnButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoldOnButton.swift; sourceTree = "<group>"; };
 		8837AE9A2B5C0EC4000DC432 /* SettingsToggleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsToggleCell.swift; sourceTree = "<group>"; };
 		8837AE9B2B5C0EC4000DC432 /* SettingsNavigateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigateCell.swift; sourceTree = "<group>"; };
 		8837AE9C2B5C0EC4000DC432 /* SettingsCheckCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCheckCell.swift; sourceTree = "<group>"; };
@@ -238,6 +242,15 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
+		881688ED2BBBFB37003E62AA /* TimeRecordClock */ = {
+			isa = PBXGroup;
+			children = (
+				881688EE2BBBFB57003E62AA /* TimeRecordClockEntryView.swift */,
+				881688F22BBC0314003E62AA /* TimeRecordClockWidget.swift */,
+			);
+			path = TimeRecordClock;
+			sourceTree = "<group>";
+		};
 		88227F932B63A1D800176CC8 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +293,7 @@
 		88227FB32B63A21700176CC8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				881688ED2BBBFB37003E62AA /* TimeRecordClock */,
 				88227FB42B63A21700176CC8 /* Promodoro */,
 				88227FB82B63A21700176CC8 /* Clock */,
 			);
@@ -429,7 +443,6 @@
 			children = (
 				888C07672B62A84E008028B6 /* CaptureView.swift */,
 				8837AE062B5C0D5C000DC432 /* PageControl.swift */,
-				8837AE952B5C0EC4000DC432 /* HoldOnButton.swift */,
 				88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */,
 				888C07592B628A3C008028B6 /* BannerAd.swift */,
 			);
@@ -549,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				8837AEBE2B5C0EC4000DC432 /* PaywallView.swift */,
+				881688DE2BBBC0D5003E62AA /* PurchaseButton.swift */,
 			);
 			path = Paywall;
 			sourceTree = "<group>";
@@ -727,9 +741,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				881688F72BBC0456003E62AA /* TimeRecordClockWidget.swift in Sources */,
 				88CEEAB32B64BAF50037ACF8 /* ClockEntryView.swift in Sources */,
 				88227FCA2B63A2B400176CC8 /* PomodoroWidgetLiveActivity.swift in Sources */,
 				88227FC72B63A2AC00176CC8 /* ClockWidget.swift in Sources */,
+				881688F62BBC0453003E62AA /* TimeRecordClockEntryView.swift in Sources */,
 				88227FFD2B63FB7200176CC8 /* SecondView.swift in Sources */,
 				88227FC82B63A2B000176CC8 /* ClockProvider.swift in Sources */,
 				88227FC92B63A2B400176CC8 /* PomodoroWidget.swift in Sources */,
@@ -754,6 +770,7 @@
 				8837AE0C2B5C0D5C000DC432 /* IconStyle.swift in Sources */,
 				888C07702B62AC8E008028B6 /* SettingsAppIconView.swift in Sources */,
 				8837AE0A2B5C0D5C000DC432 /* DarkMode.swift in Sources */,
+				881688DF2BBBC0D5003E62AA /* PurchaseButton.swift in Sources */,
 				8837AE082B5C0D5C000DC432 /* AppIcons.swift in Sources */,
 				88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */,
 				8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */,
@@ -784,7 +801,6 @@
 				8837AEE22B5C0EC4000DC432 /* ClockPortraitView.swift in Sources */,
 				8837AE092B5C0D5C000DC432 /* ColorType.swift in Sources */,
 				8837AE0D2B5C0D5C000DC432 /* ProManager.swift in Sources */,
-				8837AEC72B5C0EC4000DC432 /* HoldOnButton.swift in Sources */,
 				8837AEE72B5C0EC4000DC432 /* TimerPortraitView.swift in Sources */,
 				8837AECA2B5C0EC4000DC432 /* SettingsToggleCell.swift in Sources */,
 			);

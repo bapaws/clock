@@ -40,25 +40,8 @@ struct PaywallView: View {
             }
 
         if !ProManager.default.isPro {
-            Button(action: purchase) {
-                HStack {
-                    if let package = ProManager.default.lifetimePackage {
-                        Text(package.localizedPriceString)
-                            .font(.title2)
-                    }
-                    Text(R.string.localizable.adRemoval())
-                        .font(.subheadline)
-                }
-                .padding(.horizontal, .large)
-                .padding(.vertical, .small)
-            }
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.roundedRectangle(radius: 8))
-            .tint(.label)
-            .foregroundStyle(UIManager.shared.colors.background)
-            .frame(width: .greedy, height: 54)
-            .padding(.horizontal, .large)
-            .padding(.top, .small)
+            PurchaseButton()
+                .padding(.top)
 
             Button(action: restore) {
                 Text(R.string.localizable.restore())
@@ -67,21 +50,6 @@ struct PaywallView: View {
                     .font(.caption)
             }
             .padding(.horizontal, .large)
-        }
-    }
-
-    func purchase() {
-        guard let package = package else { return }
-
-        HUD.show()
-        ProManager.default.purchase(package: package) { error in
-            HUD.hide()
-            if let error = error {
-                print(error)
-                Toast.show(error.localizedDescription)
-            } else {
-                Toast.show(R.string.localizable.congratulations())
-            }
         }
     }
 

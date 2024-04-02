@@ -28,6 +28,7 @@ struct PomodoroView: View {
                     .height(ui.bottomHeight)
                     .font(.system(.title, design: .rounded), weight: .ultraLight)
                     .animation(.easeIn, value: manager.state)
+                    .contentShape(Rectangle())
             }
         }
         .padding()
@@ -54,7 +55,7 @@ struct PomodoroView: View {
     }
 
     var stopButton: some View {
-        HoldOnButton(color: ui.colors, action: manager.stop) {
+        HoldOnButton(strokeColor: ui.colors.primary, action: manager.stop) {
             Image(systemName: "stop")
         }
     }

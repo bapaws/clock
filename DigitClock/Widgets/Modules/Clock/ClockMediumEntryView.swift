@@ -37,22 +37,9 @@ struct ClockMediumEntryView: View {
     var time: Time { entry.time }
 
     var body: some View {
-        Group {
-            if !entry.isPreview, secondStyle != .none, !ProManager.default.isPro {
-                ZStack {
-                    content
-                    Color.black
-                        .frame(.greedy)
-                        .opacity(0.6)
-                    Image(systemName: "crown")
-                        .foregroundStyle(Color.systemOrange)
-                        .font(.title)
-                }
-            } else {
-                content
-            }
-        }
-        .containerBackground(ui.background)
+        content
+            .proMask(isPreview: entry.isPreview)
+            .containerBackground(ui.background)
     }
 
     @ViewBuilder var content: some View {

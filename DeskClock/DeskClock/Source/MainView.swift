@@ -112,12 +112,6 @@ struct MainView: View {
     // MARK: - Pager
 
     @ViewBuilder func pager(with safeAreaInsets: EdgeInsets) -> some View {
-        PaginationView {
-            ForEach(AppPage.allCases, id: \.self) { index in
-                pageContent(at: index)
-                    .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))
-            }
-        }
         Pager(page: page, data: AppPage.allCases, id: \.self) { index in
             pageContent(at: index)
                 .padding(EdgeInsets(top: 0, leading: safeAreaInsets.leading, bottom: safeAreaInsets.bottom, trailing: safeAreaInsets.trailing))

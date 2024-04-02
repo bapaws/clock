@@ -10,19 +10,36 @@ import WidgetKit
 
 @main
 struct WidgetsBundle: WidgetBundle {
-    var body: some Widget {
-        ClockSmallWidget()
-        ClockSmallWidget(secondStyle: .small)
-        ClockMediumWidget()
-        ClockMediumWidget(secondStyle: .big)
+    @WidgetBundleBuilder var body: some Widget {
+        ClockSmallWidgetBundle().body
 
-        ClockSmallWidget(colorScheme: .dark)
-        ClockSmallWidget(secondStyle: .small, colorScheme: .dark)
-        ClockMediumWidget(colorScheme: .dark)
-        ClockMediumWidget(secondStyle: .big, colorScheme: .dark)
+        ClockMediumWidgetBundle().body
+
+        TimeRecordWidgetBundle().body
 
         if #available(iOSApplicationExtension 16.1, *) {
             PomodoroWidgetLiveActivity()
         }
+    }
+}
+
+struct ClockSmallWidgetBundle: WidgetBundle {
+    var body: some Widget {
+        ClockSmallWidget()
+        ClockSmallWidget(secondStyle: .small)
+    }
+}
+
+struct ClockMediumWidgetBundle: WidgetBundle {
+    var body: some Widget {
+        ClockMediumWidget()
+        ClockMediumWidget(secondStyle: .big)
+    }
+}
+
+struct TimeRecordWidgetBundle: WidgetBundle {
+    @WidgetBundleBuilder var body: some Widget {
+        TimeRecordClockWidget()
+        TimeRecordClockWidget(secondStyle: .none)
     }
 }

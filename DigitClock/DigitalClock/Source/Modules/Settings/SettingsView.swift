@@ -59,18 +59,13 @@ struct SettingsView: View {
             }
 
             Spacer()
-//            if !ProManager.default.isPro {
-//#if DEBUG
-//                BannerAd(unitID: "ca-app-pub-3940256099942544/2934735716")
-//                    .frame(BannerAd.size)
-//#else
-//                BannerAd(unitID: "ca-app-pub-3709047998636393/8407088534")
-//                    .frame(BannerAd.size)
-//#endif
-//            } else {
+
+            if !ProManager.default.isPro {
+                PurchaseButton()
+            } else {
                 Rectangle().fill(Color.separator).height(0.5)
                     .padding(.horizontal)
-//            }
+            }
 
             SettingsNavigateCell(title: R.string.localizable.settings()) {
                 isGeneralSettingsPresented = true
