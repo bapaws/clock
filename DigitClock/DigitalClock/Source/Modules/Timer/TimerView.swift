@@ -12,6 +12,7 @@ import SwiftUI
 
 struct TimerView: View {
     @Binding var isTabHidden: Bool
+    @Binding var ignoreTapGesture: Bool
     @StateObject var manager = TimerManager.shared
     @EnvironmentObject var ui: UIManager
 
@@ -49,13 +50,17 @@ struct TimerView: View {
     }
 
     var stopButton: some View {
-        Button(action: manager.stop) {
+        Button(action: {
+            ignoreTapGesture = true
+            manager.stop()
+        }) {
             Image(systemName: "stop")
         }
     }
 
     var startButton: some View {
         Button(action: {
+            ignoreTapGesture = true
             withAnimation {
                 isTabHidden = true
             }
@@ -66,19 +71,25 @@ struct TimerView: View {
     }
 
     var pauseButton: some View {
-        Button(action: manager.pause) {
+        Button(action: {
+            ignoreTapGesture = true
+            manager.pause()
+        }) {
             Image(systemName: "pause")
         }
     }
 
     var resumeButton: some View {
-        Button(action: manager.resume) {
+        Button(action: {
+            ignoreTapGesture = true
+            manager.resume()
+        }) {
             Image(systemName: "play")
         }
     }
 }
 
 #Preview {
-    TimerView(isTabHidden: Binding<Bool>.constant(true))
+    TimerView(isTabHidden: Binding<Bool>.constant(true), ignoreTapGesture: .constant(true))
         .background(UIManager.shared.colors.background)
 }

@@ -13,6 +13,7 @@ import SwiftUI
 
 struct PomodoroView: View {
     @Binding var isTabHidden: Bool
+    @Binding var ignoreTapGesture: Bool
     @StateObject var manager = DigitalClockShare.PomodoroManager.shared
     @EnvironmentObject var ui: UIManager
 
@@ -55,13 +56,17 @@ struct PomodoroView: View {
     }
 
     var stopButton: some View {
-        HoldOnButton(strokeColor: ui.colors.primary, action: manager.stop) {
+        HoldOnButton(strokeColor: ui.colors.primary, action: {
+            ignoreTapGesture = true
+            manager.stop()
+        }) {
             Image(systemName: "stop")
         }
     }
 
     var startButton: some View {
         Button(action: {
+            ignoreTapGesture = true
             withAnimation {
                 isTabHidden = true
             }
@@ -72,13 +77,17 @@ struct PomodoroView: View {
     }
 
     var restartButton: some View {
-        Button(action: manager.restartFocusTimer) {
+        Button(action: {
+            ignoreTapGesture = true
+            manager.restartFocusTimer()
+        }) {
             Image(systemName: "goforward")
         }
     }
 
     var shortBreakButton: some View {
         Button(action: {
+            ignoreTapGesture = true
             withAnimation {
                 isTabHidden = true
             }
@@ -90,6 +99,6 @@ struct PomodoroView: View {
 }
 
 #Preview {
-    PomodoroView(isTabHidden: Binding<Bool>.constant(true))
+    PomodoroView(isTabHidden: Binding<Bool>.constant(true), ignoreTapGesture: .constant(true))
         .background(UIManager.shared.colors.background)
 }

@@ -7,7 +7,7 @@
 
 import ClockShare
 import DigitalClockShare
-//import GoogleMobileAds
+// import GoogleMobileAds
 import RevenueCat
 import SwiftUI
 import WidgetKit
@@ -22,6 +22,10 @@ struct DigitalClockApp: App {
     var body: some Scene {
         WindowGroup {
             group
+                .onOpenURL { url in
+                    guard url.scheme == proScheme else { return }
+                    purchase()
+                }
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
@@ -50,6 +54,21 @@ struct DigitalClockApp: App {
                 .transition(AnyTransition.opacity)
         } else {
             SplashView(didFinishLoad: $didFinishLoad)
+        }
+    }
+
+    func purchase() {
+        guard let package = ProManager.default.lifetimePackage else { return }
+
+        HUD.show()
+        ProManager.default.purchase(package: package) { error in
+            HUD.hide()
+            if let error = error {
+                print(error)
+                Toast.show(error.localizedDescription)
+            } else {
+                Toast.show(R.string.localizable.congratulations())
+            }
         }
     }
 }

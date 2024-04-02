@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+public let proScheme = "WidgetPro"
+
 struct WidgetProMask: ViewModifier {
     var isPreview: Bool = false
     var font: Font?
@@ -27,7 +29,7 @@ struct WidgetProMask: ViewModifier {
                         .foregroundStyle(Color.systemOrange)
                 }
             }
-            .widgetURL(URL(string: "widget://pro")!)
+            .widgetURL(URL(string: "\(proScheme)://pro")!)
         }
     }
 }

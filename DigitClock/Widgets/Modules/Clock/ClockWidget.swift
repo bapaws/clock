@@ -30,8 +30,7 @@ struct ClockSmallWidget: Widget {
         }
         .supportedFamilies([.systemSmall])
         .disableContentMarginsIfNeeded()
-        .configurationDisplayName("Clock")
-        .description("This is an clock widget.")
+        .configurationDisplayName(R.string.localizable.appName())
     }
 }
 
@@ -54,7 +53,6 @@ struct ClockMediumWidget: Widget {
         }
         .supportedFamilies([.systemMedium])
         .disableContentMarginsIfNeeded()
-        .configurationDisplayName("Clock")
-        .description("This is an clock widget.")
+        .configurationDisplayName(R.string.localizable.appName())
     }
 }

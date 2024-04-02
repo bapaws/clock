@@ -19,6 +19,7 @@ struct MainView: View {
     // MARK: UI
 
     @State private var isTabHidden = false
+    @State private var ignoreTapGesture = false
 
     @State private var isSettingsPresented = false
 
@@ -43,6 +44,11 @@ struct MainView: View {
             .background(ui.colors.background)
             .ignoresSafeArea()
             .onTapGesture {
+                ignoreTapGesture.toggle()
+                if !ignoreTapGesture {
+                    return
+                }
+
                 isSettingsPresented = true
             }
 
@@ -121,13 +127,13 @@ struct MainView: View {
     @ViewBuilder func pageContent(at index: AppPage) -> some View {
         switch index {
         case .pomodoro:
-            PomodoroView(isTabHidden: $isTabHidden)
+            PomodoroView(isTabHidden: $isTabHidden, ignoreTapGesture: $ignoreTapGesture)
                 .environmentObject(pomodoro)
         case .clock:
             ClockView()
                 .environmentObject(clock)
         case .timer:
-            TimerView(isTabHidden: $isTabHidden)
+            TimerView(isTabHidden: $isTabHidden, ignoreTapGesture: $ignoreTapGesture)
                 .environmentObject(timer)
         }
     }

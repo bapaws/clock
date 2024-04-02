@@ -12,26 +12,20 @@ import WidgetKit
 
 struct TimeRecordClockWidget: Widget {
     var secondStyle: DigitStyle = .none
-//    var colorScheme: ColorScheme = .light
+    var colorScheme: ColorScheme = .light
 
     var kind: String {
-        "TimeRecordClockWidgetWidget" + secondStyle.rawValue
+        "TimeRecordClockWidgetWidget" + secondStyle.rawValue + "\(colorScheme)"
     }
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ClockProvider()) { entry in
             TimeRecordClockEntryView(entry: entry, secondStyle: secondStyle)
                 .environmentObject(UIManager.shared)
-                .ifLet(UIManager.shared.darkMode.raw) {
-                    $0.environment(\.colorScheme, $1)
-                }
-//                .onAppear {
-//                    UIManager.shared.setupColors(scheme: colorScheme)
-//                }
+                .environment(\.colorScheme, colorScheme)
         }
         .supportedFamilies([.systemSmall])
         .disableContentMarginsIfNeeded()
-        .configurationDisplayName("Clock")
-        .description("This is an clock widget.")
+        .configurationDisplayName(R.string.localizable.timeRecord())
     }
 }

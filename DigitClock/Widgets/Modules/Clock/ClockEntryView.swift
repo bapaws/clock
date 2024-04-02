@@ -91,6 +91,7 @@ struct ClockEntryView: View {
         }
         .font(.system(size: fontSize, design: .rounded), weight: .ultraLight)
         .padding(.vertical)
+        .background(ui.background)
     }
 }
 
