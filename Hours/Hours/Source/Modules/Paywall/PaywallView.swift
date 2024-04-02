@@ -87,7 +87,7 @@ struct PaywallView: View {
                     HStack {
                         Spacer()
                         Button {
-                            urlString = "https://privacy.bapaws.com/Hours/terms.html"
+                            urlString = "https://privacy.bapaws.com/hours/terms.html"
                         } label: {
                             Text(R.string.localizable.terms())
                                 .font(.caption)
@@ -97,7 +97,7 @@ struct PaywallView: View {
                             .font(.caption)
                             .foregroundColor(.tertiaryLabel)
                         Button {
-                            urlString = "https://privacy.bapaws.com/Hours/privacy.html"
+                            urlString = "https://privacy.bapaws.com/hours/privacy.html"
                         } label: {
                             Text(R.string.localizable.privacy())
                                 .font(.caption)
