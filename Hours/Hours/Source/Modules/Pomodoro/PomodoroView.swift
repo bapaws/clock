@@ -42,7 +42,7 @@ struct PomodoroView: View {
             .foregroundStyle(colorScheme == .dark ? event.primary : event.onPrimaryContainer)
 
             Spacer()
-            
+
             HStack {
                 let seconds = time.seconds
                 if time.hour > 0 {
@@ -77,13 +77,9 @@ struct PomodoroView: View {
         .onAppear {
             manager.startFocus()
             startAt = time.date
-
-            AppManager.shared.resume()
         }
         .onDisappear {
             manager.stop()
-
-            AppManager.shared.suspend()
         }
         .onChange(of: manager.time.seconds) { _ in
             AppManager.shared.playPomodoro()
@@ -173,7 +169,7 @@ struct PomodoroView: View {
         if colorScheme == .dark {
             LinearGradient(gradient: Gradient(colors: [event.onPrimary, event.onPrimaryContainer]), startPoint: .top, endPoint: .bottom)
         } else {
-            LinearGradient(gradient: Gradient(colors: [event.primary, event.onPrimary]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [event.primaryContainer, event.background]), startPoint: .top, endPoint: .bottom)
         }
     }
 
