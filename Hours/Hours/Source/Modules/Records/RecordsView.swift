@@ -75,7 +75,7 @@ struct RecordsView: View {
             }
         }
         .sheet(isPresented: $isDatePickerPresented) {
-            DatePicker("Enter", selection: $currentDate.animation(), in: ...today, displayedComponents: [.date])
+            DatePicker("Enter", selection: $currentDate.animation(), in: initialDate...today, displayedComponents: [.date])
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .presentationDetents([.height(400)])
                 .presentationDragIndicator(.visible)

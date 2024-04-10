@@ -22,7 +22,7 @@ struct RecordsCalendarView: View {
     let weekdaySymbols = DateFormatter().shortWeekdaySymbols!
 
     var today: Date { AppManager.shared.today }
-    var startAt: Date { AppManager.shared.initialDate }
+    var initialDate: Date { AppManager.shared.initialDate }
 
     init(currentDate: Binding<Date>, isNewRecordPresented: Binding<Bool>) {
         self._currentDate = currentDate
@@ -106,7 +106,7 @@ struct RecordsCalendarView: View {
         }
         .height(126)
         .sheet(isPresented: $isDatePickerPresented) {
-            DatePicker("Enter", selection: $currentDate.animation(), in: ...today, displayedComponents: [.date])
+            DatePicker("Enter", selection: $currentDate.animation(), in: initialDate...today, displayedComponents: [.date])
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .presentationDetents([.height(400)])
                 .presentationDragIndicator(.visible)
