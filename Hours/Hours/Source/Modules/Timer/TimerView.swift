@@ -45,7 +45,7 @@ struct TimerView: View {
 
             HStack {
                 let seconds = time.seconds
-                if manager.hourStyle != .none {
+                if manager.hourStyle != .none || time.hour > 0 {
                     Text("\(time.hourTens)\(time.hourOnes)")
                         .foregroundColor(seconds < 3600 ? zeroNumberColor : numberColor)
                     Text(":")
@@ -85,8 +85,8 @@ struct TimerView: View {
 
     var stopButton: some View {
         HoldOnButton(strokeColor: event.primary, action: {
-            manager.stop()
-            dismiss()
+            onFinished()
+
         }) {
             buttonLabel(systemName: "stop")
         }
