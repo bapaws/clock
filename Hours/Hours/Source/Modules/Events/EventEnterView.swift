@@ -7,7 +7,6 @@
 
 import HoursShare
 import SwiftUI
-import MCEmojiPicker
 
 struct EventEnterView: View {
     static let height: CGFloat = 54
