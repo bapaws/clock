@@ -130,11 +130,13 @@ struct EventsHomeView: View {
             }) {
                 Label(R.string.localizable.startPomodoro(), systemImage: "timer")
             }
-            Divider()
-            Button(role: .destructive, action: {
-                deleteEvent(event)
-            }) {
-                Label(R.string.localizable.delete(), systemImage: "trash")
+            if !event.isSystem {
+                Divider()
+                Button(role: .destructive, action: {
+                    deleteEvent(event)
+                }) {
+                    Label(R.string.localizable.delete(), systemImage: "trash")
+                }
             }
         }
     }

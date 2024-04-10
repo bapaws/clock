@@ -60,7 +60,7 @@ public extension DBManager {
                 let breakEvents = RealmSwift.List<EventObject>()
                 breakEvents.append(EventObject(emoji: "😴", name: R.string.localizable.middayNap(), hex: HexObject(hex: "E88B00")))
                 breakEvents.append(EventObject(emoji: "🍰", name: R.string.localizable.afternoonTea(), hex: HexObject(hex: "FF441A")))
-                breakEvents.append(EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD")))
+                breakEvents.append(EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD"), isSystem: true))
                 let `break` = CategoryObject(hex: HexObject(hex: "#CAC3D4"), emoji: "🛋", name: R.string.localizable.break(), events: breakEvents)
                 self.realm.add(`break`)
 

@@ -27,8 +27,10 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         }
     }
 
-    // 创建时间
+    /// 创建时间
     @Persisted public var createdAt: Date = .init()
+    /// 是否可以删除
+    @Persisted public var isSystem: Bool = false
 
     public lazy var milliseconds: Int = items.sum(of: \.milliseconds)
 
@@ -41,7 +43,13 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         super.init()
     }
 
-    public init(emoji: String? = nil, name: String, hex: HexObject? = nil, items: List<RecordObject> = List<RecordObject>()) {
+    public init(
+        emoji: String? = nil,
+        name: String,
+        hex: HexObject? = nil,
+        items: List<RecordObject> = List<RecordObject>(),
+        isSystem: Bool = false
+    ) {
         super.init()
         self._id = ObjectId.generate()
         self.emoji = emoji
@@ -49,6 +57,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         self.hex = hex
         self.items = items
         self.createdAt = .init()
+        self.isSystem = isSystem
     }
 
     // MARK: Codable
@@ -69,7 +78,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         self.name = try container.decode(String.self, forKey: .name)
         self.emoji = try container.decodeIfPresent(String.self, forKey: .emoji)
         self.hex = try container.decodeIfPresent(HexObject.self, forKey: .hex)
-//        self.items = try container.decode(List<RecordObject>.self, forKey: .items)
+        self.items = try container.decodeIfPresent(List<RecordObject>.self, forKey: .items) ?? List<RecordObject>()
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
     }
 
@@ -79,7 +88,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         try container.encode(self.name, forKey: .name)
         try container.encode(self.emoji, forKey: .emoji)
         try container.encode(self.hex, forKey: .hex)
-//        try container.encode(self.items, forKey: .items)
+        try container.encode(self.items, forKey: .items)
         try container.encode(self.createdAt, forKey: .createdAt)
     }
 }
