@@ -28,7 +28,7 @@ struct TimelineItemView: View {
                 if index == 0 {
                     Image(systemName: "circle.circle")
                         .font(.title2)
-                        .foregroundStyle(Color.systemMint)
+                        .foregroundStyle(ui.primary)
                 } else {
                     Circle()
                         .stroke(ui.primary, lineWidth: 2)

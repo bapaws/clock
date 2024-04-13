@@ -16,7 +16,11 @@ struct TimelineView: View {
     @ObservedResults(RecordObject.self, sortDescriptor: SortDescriptor(keyPath: \RecordObject.endAt, ascending: false))
     var records
 
-    init(date: Date) {
+    @Binding var selectedRecord: RecordObject?
+
+    init(date: Date, selectedRecord: Binding<RecordObject?>) {
+        self._selectedRecord = selectedRecord
+
         let startOfDay = date.dateAtStartOf(.day)
         let tomorrow = date.dateAt(.tomorrowAtStart)
         let predicate = NSPredicate(format: "endAt >= %@ AND endAt < %@", startOfDay as NSDate, tomorrow as NSDate)
@@ -24,11 +28,10 @@ struct TimelineView: View {
     }
 
     var body: some View {
-        ScrollViewReader { proxy in
+        ScrollViewReader { _ in
             ScrollView {
                 if records.isEmpty {
                     Image("NotFound")
-                        .resizable()
                         .padding(.large)
                         .padding(.top, .large)
                 } else {
@@ -36,6 +39,9 @@ struct TimelineView: View {
                         ForEach(0 ..< records.count, id: \.self) { index in
                             let record = records[index]
                             TimelineItemView(index: index, record: record, isLast: index == records.count - 1)
+                                .onTapGesture {
+                                    selectedRecord = record
+                                }
                         }
                     }
                     .padding()
@@ -46,5 +52,5 @@ struct TimelineView: View {
 }
 
 #Preview {
-    TimelineView(date: Date())
+    TimelineView(date: Date(), selectedRecord: Binding<RecordObject?>.constant(nil))
 }

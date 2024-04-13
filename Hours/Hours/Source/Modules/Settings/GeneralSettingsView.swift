@@ -35,22 +35,21 @@ struct GeneralSettingsView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        NavigationStack {
-            scrollView
-                .background(ui.colors.background)
-        }
+        scrollView
+            .navigationTitle(R.string.localizable.settings())
+            .background(ui.colors.background)
 
-        // MARK: Paywall
+            // MARK: Paywall
 
-        .fullScreenCover(isPresented: $isPaywallPresented) {
-            PaywallView()
-        }
+            .fullScreenCover(isPresented: $isPaywallPresented) {
+                PaywallView()
+            }
 
-        // MARK: About
+            // MARK: About
 
-        .sheet(isPresented: $isAboutPresented) {
-            AboutView(isPresented: $isAboutPresented)
-        }
+            .sheet(isPresented: $isAboutPresented) {
+                AboutView(isPresented: $isAboutPresented)
+            }
     }
 
     var scrollView: some View {
@@ -81,7 +80,6 @@ struct GeneralSettingsView: View {
             }
             .padding(.bottom)
         }
-        .navigationTitle(R.string.localizable.settings())
     }
 
     func goToRate() {

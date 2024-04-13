@@ -59,9 +59,23 @@ struct EventsView<MenuItems: View>: View {
                 .padding(.bottom)
             }
             .padding()
-            .background(ui.background)
         }
+        .background(ui.background)
     }
+
+//    func itemView(for event: EventObject) -> some View {
+//        var itemView: some View = EventItemView(event: event, playAction: playAction)
+//            .onTapGesture {
+//                tapAction?(event)
+//            }
+//        if let menuItems = menuItems {
+//            itemView = itemView.contextMenu {
+//                menuItems(event)
+//            }
+//        } else {
+//            itemView
+//        }
+//    }
 }
 
 extension EventsView where MenuItems == Never {

@@ -9,8 +9,6 @@ import Foundation
 import RealmSwift
 
 public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
-
-
     @Persisted(primaryKey: true) var _id: ObjectId
     /// 名称
     @Persisted public var name: String

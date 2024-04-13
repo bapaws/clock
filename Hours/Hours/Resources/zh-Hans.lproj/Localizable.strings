@@ -84,6 +84,7 @@
 "Event" = "事件";
 
 "NewRecord" = "新建记录";
+"EditRecord" = "修改记录";
 
 "StartTime" = "开始时间";
 "EndTime" = "结束时间";

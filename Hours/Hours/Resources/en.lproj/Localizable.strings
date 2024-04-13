@@ -83,6 +83,7 @@
 "Event" = "Event";
 
 "NewRecord" = "New Record";
+"EditRecord" = "Edit Record";
 
 "StartTime" = "Start Time";
 "EndTime" = "End Time";

@@ -144,10 +144,11 @@ public class StatisticsViewModel: ObservableObject {
     }
 
     init() {
-        records = DBManager.default.realm.objects(RecordObject.self)
+        records = DBManager.default.records
         totalRecords = records.count
         totalMilliseconds = records.sum(of: \.milliseconds)
 
+        // TODO: 性能问题修复
         let today = AppManager.shared.today
         onDailyDateChanged(today)
         onBarSelectionWillChange(.last7Days)

@@ -13,76 +13,71 @@ import SwiftUI
 struct EventsHomeView: View {
     @EnvironmentObject var app: AppManager
 
-    var today: Date { app.today }
+    @State private var showTabBar = true
 
-    @State private var selectEvent: EventObject?
-    @State private var newRecordSelectEvent: EventObject?
-
-    @State private var timerSelectEvent: EventObject?
-    @State private var isTimerPresented: Bool = false
-    @State private var pomodoroSelectEvent: EventObject?
-    @State private var isPomodoroPresented: Bool = false
+    // MARK: Event
 
     @State private var newEventSelectCategory: CategoryObject?
 
-    @State private var isNewRecordPresented = false
+    // MARK: Record
 
-    var isInfinity: Binding<Bool> {
-        Binding(get: {
-            app.timingMode == .timer
-        }, set: { newValue in
-            app.timingMode = newValue ? .timer : .pomodoro
-        })
+    @State private var newRecordSelectEvent: EventObject?
+
+    // MARK: Timer
+
+    @State private var timerSelectEvent: EventObject?
+
+    // MARK: Detail
+
+    @State private var detailSelectEvent: EventObject? {
+        didSet {
+            withAnimation {
+                showTabBar = detailSelectEvent == nil
+            }
+        }
+    }
+
+    var isDetailPresented: Binding<Bool> {
+        Binding<Bool>(
+            get: { detailSelectEvent != nil },
+            set: { _ in
+
+                detailSelectEvent = nil
+            }
+        )
     }
 
     var body: some View {
-        NavigationStack {
-            EventsView(menuItems: menuItems, newEventAction: { category in
-                newEventSelectCategory = category
-            }, playAction: presentTimer, tapAction: { event in
-                selectEvent = event
-                isNewRecordPresented.toggle()
-            })
-            .background(UIManager.shared.colors.background)
-            .navigationTitle(R.string.localizable.events())
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Toggle(isOn: isInfinity) {
-                        Text("")
-                    }
-                    .toggleStyle(
-                        SymbolToggleStyle(
-                            onSystemName: "infinity.circle",
-                            onFillColor: ui.primary,
-                            offSystemName: "timer",
-                            offFillColor: ui.primary
-                        )
-                    )
-                }
+        EventsView(menuItems: menuItems, newEventAction: { category in
+            newEventSelectCategory = category
+        }, playAction: presentTimer, tapAction: { event in
+            detailSelectEvent = event
+        })
+        .background(UIManager.shared.colors.background)
+        .navigationTitle(R.string.localizable.events())
+        .navigationDestination(isPresented: isDetailPresented) { [detailSelectEvent] in
+            if let event = detailSelectEvent {
+                EventDetailView(
+                    event: event,
+                    timerSelectEvent: $timerSelectEvent
+                )
             }
         }
 
         // MARK: Timer
 
-        .fullScreenCover(isPresented: $isTimerPresented) { [timerSelectEvent] in
-            TimerView(event: timerSelectEvent!)
+        .fullScreenCover(item: $timerSelectEvent) { event in
+            TimerView(event: event)
                 .environmentObject(TimerManager.shared)
-        }
-
-        // MARK: Pomodoro
-
-        .fullScreenCover(isPresented: $isPomodoroPresented) { [pomodoroSelectEvent] in
-            PomodoroView(event: pomodoroSelectEvent!)
-                .environmentObject(PomodoroManager.shared)
         }
 
         // MARK: New Record
 
-        .sheet(isPresented: $isNewRecordPresented) { [selectEvent] in
+        .sheet(item: $newRecordSelectEvent) { event in
             let date = DBManager.default.getRecordEndAt(for: today)
             let startAt = date ?? today.dateBySet(hour: 9, min: 0, secs: 0)!
             let endAt = Date.now < startAt ? startAt.addingTimeInterval(3600) : Date.now
-            let view = NewRecordView(event: selectEvent, startAt: startAt, endAt: endAt, isPresented: $isNewRecordPresented)
+            let view = NewRecordView(event: event, startAt: startAt, endAt: endAt)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
                 .labelsHidden()
@@ -112,26 +107,17 @@ struct EventsHomeView: View {
     @ViewBuilder func menuItems(for event: EventObject) -> some View {
         Group {
             Button(action: {
-                selectEvent = event
-                isNewRecordPresented = true
+                newRecordSelectEvent = event
             }) {
                 Label(R.string.localizable.newRecord(), systemImage: "plus")
             }
-            Divider()
             Button(action: {
                 timerSelectEvent = event
-                isTimerPresented = true
             }) {
                 Label(R.string.localizable.startTimer(), systemImage: "infinity.circle")
             }
-            Button(action: {
-                pomodoroSelectEvent = event
-                isPomodoroPresented = true
-            }) {
-                Label(R.string.localizable.startPomodoro(), systemImage: "timer")
-            }
+            Divider()
             if !event.isSystem {
-                Divider()
                 Button(role: .destructive, action: {
                     deleteEvent(event)
                 }) {
@@ -142,13 +128,7 @@ struct EventsHomeView: View {
     }
 
     private func presentTimer(event: EventObject) {
-        if app.timingMode == .timer {
-            timerSelectEvent = event
-            isTimerPresented = true
-        } else {
-            pomodoroSelectEvent = event
-            isPomodoroPresented = true
-        }
+        timerSelectEvent = event
     }
 
     private func deleteEvent(_ event: EventObject) {

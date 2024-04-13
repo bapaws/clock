@@ -14,12 +14,8 @@ import SwiftUI
 public class AppManager: ClockShare.AppBaseManager {
     public static let shared = AppManager()
 
-
     private var timer: Timer?
     @Published public var today: Date = Date().dateAtStartOf(.day)
-
-    @AppStorage(Storage.Key.timingMode, store: Storage.default.store)
-    public var timingMode: TimingMode = .timer
 
     @AppStorage(Storage.Key.minimumRecordedTime, store: Storage.default.store)
     public var minimumRecordedTime: TimeInterval = 60
@@ -29,6 +25,7 @@ public class AppManager: ClockShare.AppBaseManager {
 
     override private init() {
         super.init()
+        Storage.default.store.removeObject(forKey: Storage.Key.timingMode)
 
         isPomodoroStopped = false
         isTimerStopped = false

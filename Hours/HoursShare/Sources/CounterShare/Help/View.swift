@@ -8,9 +8,8 @@
 import SwiftUI
 
 public extension View {
-    var ui: UIManager {
-//        @EnvironmentObject var ui: UIManager
-//        return ui
-        UIManager.shared
-    }
+    var ui: UIManager { UIManager.shared }
+
+    var app: AppManager { AppManager.shared }
+    var today: Date { app.today }
 }

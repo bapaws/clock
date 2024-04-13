@@ -20,6 +20,8 @@ struct RecordsView: View {
     var initialDate: Date { AppManager.shared.initialDate }
 
     @State private var isDatePickerPresented: Bool = false
+
+    @State private var selectedRecord: RecordObject?
     @State private var isNewRecordPresented: Bool = false
 
     var pageIndex: Binding<Int> {
@@ -29,6 +31,41 @@ struct RecordsView: View {
             currentDate = initialDate.dateByAdding(newValue, .day).date
         })
     }
+
+    var body: some View {
+        let pageCount = today.difference(in: .day, from: initialDate)!
+
+        VStack(spacing: 0) {
+            RecordsCalendarView(currentDate: $currentDate, isNewRecordPresented: $isNewRecordPresented)
+
+            PaginationView(showsIndicators: false) {
+                ForEach(0 ... pageCount, id: \.self) { index in
+                    let date = today.dateByAdding(index - pageCount, .day).date
+                    TimelineView(date: date, selectedRecord: $selectedRecord)
+                }
+            }
+            .currentPageIndex(pageIndex)
+        }
+        .background(ui.background)
+        .sheet(item: $selectedRecord) {
+            presentNewRecord(for: $0)
+        }
+        .sheet(isPresented: $isNewRecordPresented) {
+            presentNewRecord()
+        }
+        .sheet(isPresented: $isDatePickerPresented) {
+            DatePicker("Enter", selection: $currentDate.animation(), in: initialDate ... today, displayedComponents: [.date])
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .presentationDetents([.height(400)])
+                .presentationDragIndicator(.visible)
+                .labelsHidden()
+        }
+        .onChange(of: AppManager.shared.today) { newValue in
+            currentDate = newValue
+        }
+    }
+
+    // MARK: New Record
 
     var newRecordStartAt: Date {
         let date = DBManager.default.getRecordEndAt(for: currentDate)
@@ -44,45 +81,24 @@ struct RecordsView: View {
         return endAt
     }
 
-    var body: some View {
-        let pageCount = today.difference(in: .day, from: initialDate)!
-        NavigationStack {
-            VStack(spacing: 0) {
-                RecordsCalendarView(currentDate: $currentDate, isNewRecordPresented: $isNewRecordPresented)
+    func presentNewRecord(for record: RecordObject? = nil) -> some View {
+        var newRecordView: NewRecordView
+        if let record = record {
+            newRecordView = NewRecordView(record: record)
+        } else {
+            newRecordView = NewRecordView(startAt: newRecordStartAt, endAt: newRecordEndAt)
+        }
 
-                PaginationView(showsIndicators: false) {
-                    ForEach(0 ... pageCount, id: \.self) { index in
-                        let date = today.dateByAdding(index - pageCount, .day).date
-                        TimelineView(date: date)
-                    }
-                }
-                .currentPageIndex(pageIndex)
-            }
-            .background(ui.background)
-        }
-        .background(ui.background)
-        .sheet(isPresented: $isNewRecordPresented) {
-            let view = NewRecordView(startAt: newRecordStartAt, endAt: newRecordEndAt, isPresented: $isNewRecordPresented)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-                .labelsHidden()
-            if #available(iOS 16.4, *) {
-                view
-                    .presentationCornerRadius(32)
-                    .presentationContentInteraction(.scrolls)
-            } else {
-                view
-            }
-        }
-        .sheet(isPresented: $isDatePickerPresented) {
-            DatePicker("Enter", selection: $currentDate.animation(), in: initialDate...today, displayedComponents: [.date])
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .presentationDetents([.height(400)])
-                .presentationDragIndicator(.visible)
-                .labelsHidden()
-        }
-        .onChange(of: AppManager.shared.today) { newValue in
-            currentDate = newValue
+        let view = newRecordView
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+            .labelsHidden()
+        if #available(iOS 16.4, *) {
+            return view
+                .presentationCornerRadius(32)
+                .presentationContentInteraction(.scrolls)
+        } else {
+            return view
         }
     }
 }

@@ -12,33 +12,12 @@ import SwiftUI
 import SwiftUIX
 import UIKit
 
-struct NewRecordEnterView: View {
-    let title: String
-    let placeholder: String
-    let text: String
-
-    var body: some View {
-        HStack {
-            Text(title)
-                .font(.body, weight: .bold)
-            Spacer()
-
-            Text(text)
-                .font(.body, weight: .bold)
-        }
-        .multilineTextAlignment(.trailing)
-        .padding()
-        .padding(.horizontal, .small)
-        .background(.tertiarySystemBackground)
-        .cornerRadius(16)
-    }
-}
-
 struct NewRecordView: View {
+    @State var record: RecordObject?
+
     @State var event: EventObject?
     @State var startAt: Date
     @State var endAt: Date
-    @Binding var isPresented: Bool
 
     @State var isEventPresented = false
     @State var isStartTimePresented = false
@@ -46,10 +25,26 @@ struct NewRecordView: View {
 
     @State var createAttempts = 0
 
+    @Environment(\.dismiss) var dismiss
+
+    init(event: EventObject? = nil, startAt: Date, endAt: Date) {
+        self.event = event
+        self.startAt = startAt
+        self.endAt = endAt
+    }
+
+    init(record: RecordObject) {
+        self.record = record
+
+        self.event = record.event
+        self.startAt = record.startAt
+        self.endAt = record.endAt
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text(R.string.localizable.newRecord())
+                Text(record == nil ? R.string.localizable.newRecord() : R.string.localizable.editRecord())
                     .font(.title)
                     .foregroundStyle(ui.primary)
                 Spacer()
@@ -91,7 +86,7 @@ struct NewRecordView: View {
 
             HStack(spacing: 16) {
                 Button(action: {
-                    isPresented = false
+                    dismiss()
                 }, label: {
                     Text(R.string.localizable.cancel())
                         .padding(.vertical, .small)
@@ -181,17 +176,23 @@ struct NewRecordView: View {
             return
         }
 
-        let record = RecordObject(creationMode: .enter, startAt: startAt, endAt: endAt)
+        if let record = record?.thaw(), let realm = record.realm {
+            try? realm.write {
+                realm.delete(record)
+            }
+        }
+
+        let record = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
         try? realm.write {
             realm.add(record)
 
             event.items.append(record)
         }
 
-        isPresented = false
+        dismiss()
     }
 }
 
 #Preview {
-    NewRecordView(event: EventObject(emoji: "👌", name: "Programing", hex: HexObject(hex: "#757573")), startAt: .init(), endAt: .init(), isPresented: .constant(false))
+    NewRecordView(event: EventObject(emoji: "👌", name: "Programing", hex: HexObject(hex: "#757573")), startAt: .init(), endAt: .init())
 }
