@@ -12,10 +12,13 @@ import SwiftUI
 struct EventRecordsView: View {
     let event: EventObject
 
+    @Binding var editRecord: RecordObject?
+
     private var results: SectionedResults<String, RecordObject>
 
-    init(event: EventObject) {
+    init(event: EventObject, editRecord: Binding<RecordObject?>) {
         self.event = event
+        _editRecord = editRecord
 
         results = event.items.sectioned(
             by: { $0.endAt.toString(.date(.medium)) },
@@ -24,16 +27,20 @@ struct EventRecordsView: View {
     }
 
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 0) {
+        LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(results) { result in
-                Text(result.key)
-                    .padding(.vertical)
-
-                ForEach(result) {
-                    EventRecordsItemView(record: $0)
-                        .onTapGesture {
-                            
-                        }
+                Section {
+                    ForEach(result) { record in
+                        EventRecordsItemView(record: record)
+                            .onTapGesture {
+                                editRecord = record
+                            }
+                    }
+                } header: {
+                    Text(result.key)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(ui.background)
                 }
             }
         }
@@ -42,5 +49,5 @@ struct EventRecordsView: View {
 }
 
 #Preview {
-    EventRecordsView(event: EventObject())
+    EventRecordsView(event: EventObject(), editRecord: .constant(RecordObject()))
 }

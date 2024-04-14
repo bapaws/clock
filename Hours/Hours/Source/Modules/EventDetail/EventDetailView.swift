@@ -9,9 +9,9 @@ import ClockShare
 import DeviceActivity
 import FamilyControls
 import HoursShare
+import RealmSwift
 import SwiftUI
 import SwiftUIX
-import RealmSwift
 
 private enum EventDetailViewSelectionType: Int, Identifiable, CaseIterable {
     case statistics, records
@@ -30,6 +30,8 @@ private enum EventDetailViewSelectionType: Int, Identifiable, CaseIterable {
 struct EventDetailView: View {
     @ObservedRealmObject var event: EventObject
 
+    @State var selectedRecord: RecordObject?
+
     // MARK: Record
 
     @State var newRecordSelectEvent: EventObject?
@@ -40,39 +42,49 @@ struct EventDetailView: View {
 
     @State private var selectionType: EventDetailViewSelectionType = .statistics
 
+    @Environment(\.safeAreaInsets) var safeAreaInsets
+
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                LazyVStack(spacing: 32) {
-                    number
-                    EventRecordsView(event: event)
-                }
-                .padding()
-            }
+            scrollView
 
             header
                 .padding(.horizontal)
                 .padding(.vertical, .small)
                 .background(ui.background)
+
+            ui.background.height(safeAreaInsets.bottom)
         }
+        .ignoresSafeArea(.container, edges: .bottom)
+        .toolbar(.hidden, for: .tabBar)
         .navigationTitle(event.name)
         .background(ui.background)
 
         // MARK: New Record
 
+        .sheet(item: $selectedRecord) {
+            presentNewRecord(for: $0)
+        }
         .sheet(item: $newRecordSelectEvent) { event in
-            let date = DBManager.default.getRecordEndAt(for: today)
-            let startAt = date ?? today.dateBySet(hour: 9, min: 0, secs: 0)!
-            let endAt = Date.now < startAt ? startAt.addingTimeInterval(3600) : Date.now
-            let view = NewRecordView(event: event, startAt: startAt, endAt: endAt)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-                .labelsHidden()
-            if #available(iOS 16.4, *) {
-                view.presentationCornerRadius(32)
-            } else {
-                view
+            presentNewRecord(event: event)
+        }
+    }
+
+    var scrollView: some View {
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                number
+
+                // Records
+                if event.items.isEmpty {
+                    Image("NotFound")
+                        .padding(.large)
+                        .padding(.top, .large)
+                } else {
+                    EventRecordsView(event: event, editRecord: $selectedRecord)
+                }
             }
+            .padding()
         }
     }
 
@@ -114,6 +126,38 @@ struct EventDetailView: View {
             StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), fillColor: ui.primary) {
                 StatisticsTimeView(time: event.time)
             }
+        }
+    }
+
+    // MARK: New Record
+
+    var newRecordStartAt: Date {
+        let date = DBManager.default.getRecordEndAt(for: today)
+        return date ?? today.dateBySet(hour: 9, min: 0, secs: 0)!
+    }
+
+    var newRecordEndAt: Date {
+        return newRecordStartAt.addingTimeInterval(3600)
+    }
+
+    func presentNewRecord(for record: RecordObject? = nil, event: EventObject? = nil) -> some View {
+        var newRecordView: NewRecordView
+        if let record = record {
+            newRecordView = NewRecordView(record: record)
+        } else {
+            newRecordView = NewRecordView(event: event, startAt: newRecordStartAt, endAt: newRecordEndAt)
+        }
+
+        let view = newRecordView
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+            .labelsHidden()
+        if #available(iOS 16.4, *) {
+            return view
+                .presentationCornerRadius(32)
+                .presentationContentInteraction(.scrolls)
+        } else {
+            return view
         }
     }
 }

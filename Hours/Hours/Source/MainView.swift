@@ -20,41 +20,38 @@ struct MainView: View {
     @State private var selectionValue: MainTabTag = .events
 
     var body: some View {
-        NavigationStack {
-            TabView(selection: $selectionValue) {
-//                NavigationStack {
-                    EventsHomeView()
-//                }
-                .tag(MainTabTag.events)
-                .tabItem {
-                    Image(image: R.image.events()!)
-                }
-
-                RecordsView()
-                    .tag(MainTabTag.records)
-                    .tabItem {
-                        Image(image: R.image.records()!)
-                    }
-
-//                NavigationStack {
-                    StatisticsView()
-//                }
-                .tag(MainTabTag.statistics)
-                .tabItem {
-                    Image(image: R.image.statistics()!)
-                }
-
-//                NavigationStack {
-                    GeneralSettingsView()
-//                }
-                .tag(MainTabTag.settings)
-                .tabItem {
-                    Image(image: R.image.settings()!)
-                }
+        TabView(selection: $selectionValue) {
+            NavigationStack {
+                EventsHomeView()
             }
-            .toolbar(selectionValue == .records ? .hidden : .visible, for: .navigationBar)
-            .navigationTitle(navigationTitle)
+            .tag(MainTabTag.events)
+            .tabItem {
+                Image(image: R.image.events()!)
+            }
+
+            RecordsView()
+                .tag(MainTabTag.records)
+                .tabItem {
+                    Image(image: R.image.records()!)
+                }
+
+            NavigationStack {
+                StatisticsView()
+            }
+            .tag(MainTabTag.statistics)
+            .tabItem {
+                Image(image: R.image.statistics()!)
+            }
+
+            NavigationStack {
+                GeneralSettingsView()
+            }
+            .tag(MainTabTag.settings)
+            .tabItem {
+                Image(image: R.image.settings()!)
+            }
         }
+
         .accentColor(ui.primary)
         .tint(ui.primary)
         .background(ui.colors.background)

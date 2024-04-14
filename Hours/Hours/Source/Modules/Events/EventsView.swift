@@ -26,21 +26,9 @@ struct EventsView<MenuItems: View>: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 16) {
+            LazyVStack(alignment: .leading, spacing: 8, pinnedViews: .sectionHeaders) {
                 ForEach(categorys, id: \.id) { category in
-                    LazyVStack(spacing: 16) {
-                        HStack {
-                            CategoryView(category: category)
-                            Spacer()
-                            if let action = newEventAction {
-                                Button(action: {
-                                    action(category)
-                                }) {
-                                    Image(systemName: "plus")
-                                }
-                            }
-                        }
-
+                    Section {
                         ForEach(category.events) { event in
                             let itemView = EventItemView(event: event, playAction: playAction)
                                 .onTapGesture {
@@ -54,11 +42,27 @@ struct EventsView<MenuItems: View>: View {
                                 itemView
                             }
                         }
+                    } header: {
+                        HStack {
+                            CategoryView(category: category)
+                            Spacer()
+                            if let action = newEventAction {
+                                Button(action: {
+                                    action(category)
+                                }) {
+                                    Image(systemName: "plus")
+                                }
+                            }
+                        }
+                        .padding(.vertical, .small)
+                        .background(ui.background)
                     }
+
+                    ui.background
                 }
-                .padding(.bottom)
             }
-            .padding()
+            .padding(.bottom)
+            .padding(.horizontal)
         }
         .background(ui.background)
     }

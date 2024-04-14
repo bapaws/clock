@@ -11,8 +11,6 @@ import RealmSwift
 import SwiftUI
 
 struct EventsHomeView: View {
-    @EnvironmentObject var app: AppManager
-
     @State private var showTabBar = true
 
     // MARK: Event
@@ -53,7 +51,8 @@ struct EventsHomeView: View {
         }, playAction: presentTimer, tapAction: { event in
             detailSelectEvent = event
         })
-        .background(UIManager.shared.colors.background)
+        .background(ui.background)
+        .toolbar(showTabBar ? .visible : .hidden, for: .tabBar)
         .navigationTitle(R.string.localizable.events())
         .navigationDestination(isPresented: isDetailPresented) { [detailSelectEvent] in
             if let event = detailSelectEvent {
