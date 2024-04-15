@@ -97,26 +97,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { _, _ in }
 
-        Task {
-            try? await AuthorizationCenter.shared.requestAuthorization(for: .individual)
-        }
-        AuthorizationCenter.shared.revokeAuthorization { result in
-            switch result {
-            case .success:
-                print("success")
-
-                let schedule = DeviceActivitySchedule(
-                    intervalStart: DateComponents(hour: 0, minute: 0),
-                    intervalEnd: DateComponents(hour: 23, minute: 59),
-                    repeats: true
-                )
-                let center = DeviceActivityCenter()
-                try? center.startMonitoring(.daily, during: schedule)
-            case .failure(let failure):
-                print(failure)
-            }
-        }
-
         return true
     }
 
@@ -151,8 +131,4 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //            print(workoutType.rawValue)
 //        }
 //    }
-}
-
-extension DeviceActivityName {
-    static let daily = Self("Daily")
 }

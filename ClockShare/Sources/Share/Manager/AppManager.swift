@@ -33,7 +33,7 @@ open class AppBaseManager: ObservableObject {
     }
 
     @AppStorage(Storage.Key.idleTimerDisabled, store: Storage.default.store)
-    public var idleTimerDisabled: Bool = true {
+    public var idleTimerDisabled: Bool = false {
         didSet {
             UIApplication.shared.isIdleTimerDisabled = idleTimerDisabled
         }
