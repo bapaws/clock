@@ -9,7 +9,6 @@ import ClockShare
 import HoursShare
 import PopupView
 import RevenueCat
-import RevenueCatUI
 import SwiftUI
 import SwiftUIX
 
