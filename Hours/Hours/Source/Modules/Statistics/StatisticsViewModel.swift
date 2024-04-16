@@ -99,8 +99,8 @@ public enum StatisticsTimeDistributionType: CaseIterable, Identifiable {
 // MARK: StatisticsViewModel
 
 public class StatisticsViewModel: ObservableObject {
-    @Published var totalRecords: Int
-    @Published var totalMilliseconds: Int
+    @Published var totalRecords: Int = 0
+    @Published var totalMilliseconds: Int = 0
 
     @Published public var dailyType: StatisticsType = .task
 
@@ -145,15 +145,8 @@ public class StatisticsViewModel: ObservableObject {
 
     init() {
         records = DBManager.default.records
-        totalRecords = records.count
-        totalMilliseconds = records.sum(of: \.milliseconds)
-
-        // TODO: 性能问题修复
-        let today = AppManager.shared.today
-        onDailyDateChanged(today)
-        onBarSelectionWillChange(.last7Days)
-
-        onDistributionTypeWillChange(.all)
+        // TODO: 解决性能问题
+        onRecordsUpdated()
 
         token = records.observe { [weak self] change in
             guard let self = self else { return }
@@ -161,8 +154,7 @@ public class StatisticsViewModel: ObservableObject {
             case .initial(let collectionType):
                 print(collectionType)
             case .update:
-                self.onDailyDateChanged(self.dailyDate)
-                self.onBarSelectionWillChange(self.barSelection)
+                self.onRecordsUpdated()
             case .error(let error):
                 print(error)
             }
@@ -171,6 +163,15 @@ public class StatisticsViewModel: ObservableObject {
 
     deinit {
         token?.invalidate()
+    }
+
+    func onRecordsUpdated() {
+        totalRecords = records.count
+        totalMilliseconds = records.sum(of: \.milliseconds)
+
+        self.onDailyDateChanged(self.dailyDate)
+        self.onBarSelectionWillChange(self.barSelection)
+        self.onDistributionTypeWillChange(self.distributionType)
     }
 
     func onDailyDateChanged(_ newValue: Date) {

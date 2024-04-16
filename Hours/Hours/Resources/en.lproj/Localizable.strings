@@ -10,6 +10,7 @@
 "Slogan" = "Let time hold more value.";
 "Cancel" = "Cancel";
 "Save" = "Save";
+"Warning" = "⚠️Warning";
 "Congratulations" = "🎉Congratulations🎉";
 
 // MARK: Category
@@ -34,6 +35,7 @@
 "Yesterday" = "Yesterday";
 
 "Delete" = "Delete";
+"DeleteEventWarning" = "Are you sure you want to delete \"%@\"? \n All records of \"%@\" will also be deleted together.";
 
 "PlayButtonTipTitle" = "Start a timer or pomodoro";
 "PlayButtonTipMessage" = "Add records via timer or pomodoro.";

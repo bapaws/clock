@@ -61,8 +61,7 @@ struct EventsView<MenuItems: View>: View {
                     ui.background
                 }
             }
-            .padding(.bottom)
-            .padding(.horizontal)
+            .padding()
         }
         .background(ui.background)
     }

@@ -127,7 +127,7 @@ struct TimerView: View {
         guard time.milliseconds > Int(AppManager.shared.minimumRecordedTime * 1000) else { return }
         guard let event = event.thaw(), let realm = event.realm else { return }
 
-        try? realm.write {
+        realm.writeAsync {
             let item = RecordObject(creationMode: .timer, startAt: self.startAt, milliseconds: time.milliseconds)
             realm.add(item)
 

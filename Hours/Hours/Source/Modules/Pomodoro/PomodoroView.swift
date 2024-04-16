@@ -178,7 +178,7 @@ struct PomodoroView: View {
             manager.stop()
             return
         }
-        try? realm.write {
+        realm.writeAsync {
             let milliseconds = manager.focusMinutes * 60 * 1000 - time.milliseconds
             let item = RecordObject(creationMode: .timer, startAt: self.startAt, milliseconds: milliseconds)
             realm.add(item)

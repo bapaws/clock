@@ -21,7 +21,7 @@ public class AppManager: ClockShare.AppBaseManager {
     public var minimumRecordedTime: TimeInterval = 60
 
     /// 可以记录的初始时间
-    public let initialDate = Date(year: 2023, month: 4, day: 7, hour: 0, minute: 0)
+    public let initialDate = Date(year: 2023, month: 1, day: 1, hour: 0, minute: 0)
 
     override private init() {
         super.init()

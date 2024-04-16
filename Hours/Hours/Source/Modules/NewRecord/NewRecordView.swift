@@ -176,17 +176,15 @@ struct NewRecordView: View {
             return
         }
 
-        if let record = record?.thaw(), let realm = record.realm {
-            try? realm.write {
-                realm.delete(record)
+        let thawedRecord = record?.thaw()
+        let newRecord = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
+        realm.writeAsync {
+            if let thawedRecord = thawedRecord {
+                realm.delete(thawedRecord)
             }
-        }
+            realm.add(newRecord)
 
-        let record = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
-        try? realm.write {
-            realm.add(record)
-
-            event.items.append(record)
+            event.items.append(newRecord)
         }
 
         dismiss()

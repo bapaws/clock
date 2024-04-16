@@ -98,7 +98,7 @@ struct NewEventView: View {
         // 保存创建任务对象
         let hex = DBManager.default.nextHex
         let event = EventObject(name: name, hex: hex)
-        try? realm.write {
+        realm.writeAsync {
             category.events.append(event)
         }
 

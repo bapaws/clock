@@ -25,6 +25,18 @@ struct EventsHomeView: View {
 
     @State private var timerSelectEvent: EventObject?
 
+    // MARK: Delete
+
+    @State private var deleteEvent: EventObject?
+    var isDeletePresented: Binding<Bool> {
+        Binding<Bool>(
+            get: { deleteEvent != nil },
+            set: { _ in
+                deleteEvent = nil
+            }
+        )
+    }
+
     // MARK: Detail
 
     @State private var detailSelectEvent: EventObject? {
@@ -87,6 +99,17 @@ struct EventsHomeView: View {
             }
         }
 
+        // MARK: Delete Event
+
+        .alert(R.string.localizable.warning(), isPresented: isDeletePresented, presenting: deleteEvent, actions: { event in
+            Button(R.string.localizable.cancel(), role: .cancel) {}
+            Button(R.string.localizable.delete(), role: .destructive) {
+                deleteEvent(event)
+            }
+        }, message: { event in
+            Text(R.string.localizable.deleteEventWarning(event.name, event.name))
+        })
+
         // MARK: New Event
 
         .sheet(item: $newEventSelectCategory) { _ in
@@ -116,12 +139,11 @@ struct EventsHomeView: View {
                 Label(R.string.localizable.startTimer(), systemImage: "infinity.circle")
             }
             Divider()
-            if !event.isSystem {
-                Button(role: .destructive, action: {
-                    deleteEvent(event)
-                }) {
-                    Label(R.string.localizable.delete(), systemImage: "trash")
-                }
+
+            Button(role: .destructive, action: {
+                deleteEvent = event
+            }) {
+                Label(R.string.localizable.delete(), systemImage: "trash")
             }
         }
     }
@@ -133,7 +155,10 @@ struct EventsHomeView: View {
     private func deleteEvent(_ event: EventObject) {
         guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
 
-        try? realm.write {
+        realm.writeAsync {
+            for item in event.items {
+                realm.delete(item)
+            }
             realm.delete(event)
         }
     }
