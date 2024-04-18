@@ -27,7 +27,7 @@ public extension DBManager {
                 lifeEvents.append(EventObject(emoji: "🪥", name: R.string.localizable.personalGrooming(), hex: HexObject(hex: "#E4CECE")))
                 lifeEvents.append(EventObject(emoji: "✈️", name: R.string.localizable.travel(), hex: HexObject(hex: "#BCCBB0")))
                 lifeEvents.append(EventObject(emoji: "🛒", name: R.string.localizable.shopping(), hex: HexObject(hex: "#D9D19B")))
-                let life = CategoryObject(hex: HexObject(hex: "#E3BEF2"), emoji: "🛀", name: R.string.localizable.life(), events: lifeEvents)
+                let life = CategoryObject(hex: HexObject(hex: "#E3BEF2"), emoji: "🏠", name: R.string.localizable.life(), events: lifeEvents)
                 self.realm.add(life)
 
                 let workEvents = RealmSwift.List<EventObject>()

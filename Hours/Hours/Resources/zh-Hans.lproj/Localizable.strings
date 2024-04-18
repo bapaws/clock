@@ -151,6 +151,8 @@
 "MinimumRecordedTime" = "最短记录时间";
 "MaximumRecordedTime" = "最长记录时间";
 
+"SyncRecordsToCalendar" = "记录同步到日历";
+
 // MARK: Appearance
 
 "Appearance" = "外观";

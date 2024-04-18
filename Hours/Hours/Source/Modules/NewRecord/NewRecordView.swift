@@ -181,9 +181,16 @@ struct NewRecordView: View {
         let thawedRecord = record?.thaw()
         let newRecord = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
         realm.writeAsync {
-            if let thawedRecord = thawedRecord {
+            let newRecord = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
+
+            var eventIdendtifier: String?
+            if let thawedRecord = record?.thaw() {
+                eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: thawedRecord)
                 realm.delete(thawedRecord)
+            } else {
+                eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
             }
+            newRecord.calendarEventIdentifier = eventIdendtifier
             realm.add(newRecord)
 
             event.items.append(newRecord)
@@ -192,7 +199,7 @@ struct NewRecordView: View {
         dismiss()
 
         // 发起 App Store 评论请求
-        AppManager.shared.requestReview(delay: 2)
+        AppManager.shared.requestReview()
     }
 }
 

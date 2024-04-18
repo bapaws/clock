@@ -42,6 +42,7 @@ struct StatisticsView: View {
             .environmentObject(viewModel)
             .background(ui.background)
         }
+        .background(ui.background)
         .navigationTitle(R.string.localizable.statistics())
     }
 }

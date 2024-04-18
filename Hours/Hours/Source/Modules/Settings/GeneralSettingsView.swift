@@ -58,7 +58,7 @@ struct GeneralSettingsView: View {
                     if ProManager.default.isLifetime { return }
                     isPaywallPresented = true
                 }
-                SettingsRecordSection()
+                SettingsRecordSection(isPaywallPresented: $isPaywallPresented)
 
                 // MARK: Sound
 

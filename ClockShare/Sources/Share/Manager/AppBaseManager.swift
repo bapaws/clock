@@ -125,10 +125,14 @@ public extension AppBaseManager {
 // MARK: Review
 
 public extension AppBaseManager {
-    func requestReview(delay: TimeInterval) {
+    func requestReview(delay: TimeInterval = 1) {
+        #if DEBUG
+        return
+        #else
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             guard let windowScene = UIApplication.shared.keyWindow?.windowScene else { return }
             SKStoreReviewController.requestReview(in: windowScene)
         }
+        #endif
     }
 }

@@ -133,10 +133,13 @@ struct TimerView: View {
 
         realm.writeAsync {
             let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
-            let item = RecordObject(creationMode: .timer, startAt: self.startAt, milliseconds: milliseconds)
-            realm.add(item)
+            let newRecord = RecordObject(creationMode: .timer, startAt: self.startAt, milliseconds: milliseconds)
+            // 同步到日历应用
+            let eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+            newRecord.calendarEventIdentifier = eventIdendtifier
+            realm.add(newRecord)
 
-            event.items.append(item)
+            event.items.append(newRecord)
         }
 
         // 发起 App Store 评论请求
