@@ -147,6 +147,7 @@
 
 "TimingMode" = "Timing Mode";
 "MinimumRecordedTime" = "Minimum Recorded Time";
+"MaximumRecordedTime" = "Maximum Recorded Time";
 
 // MARK: Appearance
 

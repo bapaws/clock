@@ -16,8 +16,10 @@ import SwiftUIX
 struct RecordsView: View {
     @State var currentDate: Date = AppManager.shared.today
 
-    var today: Date { AppManager.shared.today }
-    var initialDate: Date { AppManager.shared.initialDate }
+    @EnvironmentObject var app: AppManager
+
+    var today: Date { app.today }
+    var initialDate: Date { app.initialDate }
 
     @State private var isDatePickerPresented: Bool = false
 

@@ -44,8 +44,6 @@ struct SettingsAppIconView: View {
                         }
                         .buttonStyle(CheckButtonStyle(checked: ui.appIcon == icon))
                         .font(.body)
-                        .padding(horizontal: .regular, vertical: .small)
-                        .height(cellHeight)
                         .background(ui.secondaryBackground)
                         .cornerRadius(16)
                     }

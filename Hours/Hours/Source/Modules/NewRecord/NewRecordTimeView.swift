@@ -31,13 +31,13 @@ struct NewRecordTimeView: View {
                         title,
                         selection: $dateTime,
                         in: range,
-                        displayedComponents: [.hourAndMinute]
+                        displayedComponents: [.date, .hourAndMinute]
                     )
                 } else {
                     DatePicker(
                         title,
                         selection: $dateTime,
-                        displayedComponents: [.hourAndMinute]
+                        displayedComponents: [.date, .hourAndMinute]
                     )
                 }
             }
@@ -49,7 +49,7 @@ struct NewRecordTimeView: View {
                 Button(action: {
                     isPresented = false
                 }, label: {
-                    Text("Cancel")
+                    Text(R.string.localizable.cancel())
                         .padding(.vertical, .small)
                         .frame(maxWidth: .infinity)
                 })
@@ -60,7 +60,7 @@ struct NewRecordTimeView: View {
                 Button(action: {
                     isPresented = false
                 }, label: {
-                    Text("Save")
+                    Text(R.string.localizable.save())
                         .padding(.vertical, .small)
                         .frame(maxWidth: .infinity)
                 })

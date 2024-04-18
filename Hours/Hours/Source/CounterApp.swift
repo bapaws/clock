@@ -45,6 +45,16 @@ struct CounterApp: SwiftUI.App {
                 // In iOS 13+, idle timer needs to be set in scene to override default
                 UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
                 WidgetCenter.shared.reloadTimelines(ofKind: "HoursWidget")
+
+                // 启动后更新时间
+                #if DEBUG
+                let today = app.today.dateByAdding(1, .day).date
+                #else
+                let today = Date().dateAtStartOf(.day).dateByAdding(1, .day).date
+                #endif
+                if today != app.today {
+                    app.today = today
+                }
             case .inactive: break
             case .background: break
             @unknown default: print("ScenePhase: unexpected state")

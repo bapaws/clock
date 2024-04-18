@@ -37,10 +37,10 @@ struct SettingsNavigateCell: View {
                     .foregroundColor(ui.colors.secondary)
                     .padding(.leading, .extraSmall)
             }
+            .padding(horizontal: .regular, vertical: .small)
+            .height(cellHeight)
         }
         .font(.body)
-        .padding(horizontal: .regular, vertical: .small)
-        .height(cellHeight)
         .background(ui.secondaryBackground)
         .cornerRadius(16)
     }

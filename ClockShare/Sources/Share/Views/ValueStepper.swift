@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2024/1/24.
 //
 
+import Pow
 import SwiftUI
 import SwiftUIX
 
@@ -26,6 +27,8 @@ public struct ValueStepper: View {
     public var width: CGFloat = 120
     public var height: CGFloat = 32
     public var borderColor: Color = .black
+
+    @State private var createAttempts = 0
 
     public init(
         value: Binding<Double>,
@@ -55,8 +58,18 @@ public struct ValueStepper: View {
         Binding<String>(
             get: { formatter.string(from: value as NSNumber) ?? "0" },
             set: {
-                if let newValue = formatter.number(from: $0) {
-                    value = Double(truncating: newValue)
+                guard let newValue = formatter.number(from: $0) else { return }
+                let value = Double(truncating: newValue)
+                if value < minimumValue {
+                    self.value = minimumValue
+                    // 动画提醒超过界限
+                    createAttempts += 1
+                } else if value > maximumValue {
+                    self.value = maximumValue
+                    // 动画提醒超过界限
+                    createAttempts += 1
+                } else {
+                    self.value = value
                 }
             }
         )
@@ -68,8 +81,12 @@ public struct ValueStepper: View {
                 let newValue = value - stepValue
                 if newValue < minimumValue {
                     value = minimumValue
+                    // 动画提醒超过界限
+                    createAttempts += 1
                 } else if newValue > maximumValue {
                     value = maximumValue
+                    // 动画提醒超过界限
+                    createAttempts += 1
                 } else {
                     value = newValue
                 }
@@ -80,7 +97,8 @@ public struct ValueStepper: View {
             .foregroundStyle(borderColor)
             .frame(width: buttonWidth, height: height)
 
-            TextField("Number", text: number)
+            TextField("", text: number)
+                .keyboardType(.decimalPad)
                 .multilineTextAlignment(.center)
                 .frame(width: width - 2 * buttonWidth, height: height)
                 .border(borderColor)
@@ -89,8 +107,12 @@ public struct ValueStepper: View {
                 let newValue = value + stepValue
                 if newValue < minimumValue {
                     value = minimumValue
+                    // 动画提醒超过界限
+                    createAttempts += 1
                 } else if newValue > maximumValue {
                     value = maximumValue
+                    // 动画提醒超过界限
+                    createAttempts += 1
                 } else {
                     value = newValue
                 }
@@ -108,6 +130,7 @@ public struct ValueStepper: View {
                 .border(cornerRadius: 8, style: StrokeStyle())
                 .foregroundStyle(borderColor)
         }
+        .changeEffect(.shake(rate: .fast), value: createAttempts)
     }
 }
 

@@ -8,6 +8,7 @@
 import AVFoundation
 import SwiftUI
 import UIKit
+import StoreKit
 
 public enum SoundType: String, CaseIterable {
 //    case tick, pendulum, card, drip, muyu, `switch`
@@ -117,6 +118,17 @@ public extension AppBaseManager {
         if isMute || isTimerStopped { return }
         audioPlayerQueue.async {
             self.audioPlayer?.play()
+        }
+    }
+}
+
+// MARK: Review
+
+public extension AppBaseManager {
+    func requestReview(delay: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            guard let windowScene = UIApplication.shared.keyWindow?.windowScene else { return }
+            SKStoreReviewController.requestReview(in: windowScene)
         }
     }
 }

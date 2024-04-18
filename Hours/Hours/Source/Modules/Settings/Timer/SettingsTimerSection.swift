@@ -13,11 +13,18 @@ struct SettingsTimerSection: View {
     @EnvironmentObject var timer: TimerManager
     @Environment(\.dismiss) var dismiss
 
+    @EnvironmentObject var app: AppManager
+
     var isShowed: Binding<Bool> {
         Binding(get: { timer.hourStyle == .big }, set: { newValue in timer.hourStyle = newValue ? .big : .none })
     }
 
-    @EnvironmentObject var app: AppManager
+    var maximumRecordedTime: Binding<Double> {
+        Binding(
+            get: { floor(app.maximumRecordedTime / 60 / 60) },
+            set: { app.maximumRecordedTime = $0 * 60 * 60 }
+        )
+    }
 
     var body: some View {
         NavigationStack {
@@ -25,6 +32,8 @@ struct SettingsTimerSection: View {
                 SettingsToggleCell(title: R.string.localizable.showHour(), isOn: isShowed)
 
                 SettingsStepperCell(title: R.string.localizable.minimumRecordedTime() + " (s)", value: app.$minimumRecordedTime, minimumValue: 0, maximumValue: 300, stepValue: 30)
+
+                SettingsStepperCell(title: R.string.localizable.maximumRecordedTime() + " (h)", value: maximumRecordedTime, minimumValue: 1, maximumValue: 24, stepValue: 1)
 
                 Spacer()
             }

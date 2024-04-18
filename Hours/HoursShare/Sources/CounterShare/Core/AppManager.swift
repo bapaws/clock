@@ -20,6 +20,10 @@ public class AppManager: ClockShare.AppBaseManager {
     @AppStorage(Storage.Key.minimumRecordedTime, store: Storage.default.store)
     public var minimumRecordedTime: TimeInterval = 60
 
+    /// 最长记录时间，单位小时
+    @AppStorage(Storage.Key.maximumRecordedTime, store: Storage.default.store)
+    public var maximumRecordedTime: TimeInterval = 6 * 60 * 60
+
     /// 可以记录的初始时间
     public let initialDate = Date(year: 2023, month: 1, day: 1, hour: 0, minute: 0)
 

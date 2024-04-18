@@ -78,8 +78,12 @@ struct TimerView: View {
         .onDisappear {
             manager.stop()
         }
-        .onChange(of: manager.time.seconds) { _ in
-            AppManager.shared.playTimer()
+        .onChange(of: manager.time.seconds) { newValue in
+            if newValue >= Int(app.maximumRecordedTime) {
+                onFinished()
+            } else {
+                AppManager.shared.playTimer()
+            }
         }
     }
 
@@ -124,15 +128,19 @@ struct TimerView: View {
         manager.pause()
         dismiss()
 
-        guard time.milliseconds > Int(AppManager.shared.minimumRecordedTime * 1000) else { return }
+        guard time.milliseconds > Int(app.minimumRecordedTime * 1000) else { return }
         guard let event = event.thaw(), let realm = event.realm else { return }
 
         realm.writeAsync {
-            let item = RecordObject(creationMode: .timer, startAt: self.startAt, milliseconds: time.milliseconds)
+            let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
+            let item = RecordObject(creationMode: .timer, startAt: self.startAt, milliseconds: milliseconds)
             realm.add(item)
 
             event.items.append(item)
         }
+
+        // 发起 App Store 评论请求
+        AppManager.shared.requestReview(delay: 2)
     }
 }
 

@@ -13,17 +13,17 @@ import SwiftUIX
 import UIKit
 
 struct NewRecordView: View {
-    @State var record: RecordObject?
+    @State private var record: RecordObject?
 
-    @State var event: EventObject?
-    @State var startAt: Date
-    @State var endAt: Date
+    @State private var event: EventObject?
+    @State private var startAt: Date
+    @State private var endAt: Date
 
-    @State var isEventPresented = false
-    @State var isStartTimePresented = false
-    @State var isEndTimePresented = false
+    @State private var isEventPresented = false
+    @State private var isStartTimePresented = false
+    @State private var isEndTimePresented = false
 
-    @State var createAttempts = 0
+    @State private var createAttempts = 0
 
     @Environment(\.dismiss) var dismiss
 
@@ -71,14 +71,16 @@ struct NewRecordView: View {
             .changeEffect(.shake(rate: .fast), value: createAttempts)
 
             NewItemView(title: R.string.localizable.startTime()) {
-                Text(startAt.toString(.time(.short)))
+                Text(startAt.to(format: "MMMddHH:mm"))
+                    .monospacedDigit()
             }
             .onTapGesture {
                 isStartTimePresented = true
             }
 
             NewItemView(title: R.string.localizable.endTime()) {
-                Text(endAt.toString(.time(.short)))
+                Text(endAt.to(format: "MMMddHH:mm"))
+                    .monospacedDigit()
             }
             .onTapGesture {
                 isEndTimePresented = true
@@ -188,6 +190,9 @@ struct NewRecordView: View {
         }
 
         dismiss()
+
+        // 发起 App Store 评论请求
+        AppManager.shared.requestReview(delay: 2)
     }
 }
 

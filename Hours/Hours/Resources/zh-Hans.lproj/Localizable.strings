@@ -149,6 +149,7 @@
 
 "TimingMode" = "计时模式";
 "MinimumRecordedTime" = "最短记录时间";
+"MaximumRecordedTime" = "最长记录时间";
 
 // MARK: Appearance
 

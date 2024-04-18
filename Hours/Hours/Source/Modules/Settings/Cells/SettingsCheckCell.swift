@@ -22,6 +22,8 @@ struct CheckButtonStyle: ButtonStyle {
                     .frame(width: 32, height: 32)
             }
         }
+        .padding(horizontal: .regular, vertical: .small)
+        .height(cellHeight)
         .contentShape(Rectangle())
     }
 }
@@ -55,8 +57,6 @@ struct SettingsCheckCell: View {
         }
         .font(.body)
         .buttonStyle(CheckButtonStyle(checked: isChecked))
-        .padding(.horizontal)
-        .height(cellHeight)
         .background(ui.secondaryBackground)
         .cornerRadius(16)
     }
