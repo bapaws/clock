@@ -1,5 +1,5 @@
 //
-//  AppManager.swift
+//  AppBaseManager.swift
 //
 //
 //  Created by 张敏超 on 2024/1/20.
