@@ -16,7 +16,7 @@ struct TimeRecordClockEntryView: View {
     var body: some View {
         TimeRecordClock(time: entry.time)
             .proMask(isPreview: entry.isPreview)
-            .background(Color.systemBackground)
+            .containerBackground(Color.systemBackground)
     }
 }
 

@@ -20,6 +20,7 @@ let package = Package(
         .package(url: "https://github.com/jdg/MBProgressHUD.git", .upToNextMajor(from: "1.2.0")),
         .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift.git", from: "20.0.0"),
         .package(url: "https://github.com/malcommac/SwiftDate.git", from: "7.0.0"),
+        .package(url: "https://github.com/EmergeTools/Pow", from: Version(1, 0, 0)),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -30,6 +31,7 @@ let package = Package(
             "SwiftDate",
             "MBProgressHUD",
             .product(name: "Dependencies", package: "swift-dependencies"),
+            .product(name: "Pow", package: "Pow"),
         ]),
         .testTarget(name: "ClockShareTests", dependencies: ["ClockShare"]),
     ])

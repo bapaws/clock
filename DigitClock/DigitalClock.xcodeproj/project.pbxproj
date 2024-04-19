@@ -29,6 +29,7 @@
 		88227FE62B63A80100176CC8 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FE52B63A80100176CC8 /* SwiftDate */; };
 		88227FEA2B63A82700176CC8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 88227FE92B63A82700176CC8 /* RswiftLibrary */; };
 		88227FFD2B63FB7200176CC8 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88227FF92B63F68200176CC8 /* SecondView.swift */; };
+		882622142BD11B2900E04DF7 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 882622132BD11B2900E04DF7 /* Pow */; };
 		8837ADDA2B5C0082000DC432 /* DigitalClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADD92B5C0082000DC432 /* DigitalClockApp.swift */; };
 		8837ADDE2B5C0083000DC432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8837ADDD2B5C0083000DC432 /* Assets.xcassets */; };
 		8837ADE12B5C0083000DC432 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8837ADE02B5C0083000DC432 /* Preview Assets.xcassets */; };
@@ -82,6 +83,8 @@
 		888C07682B62A84F008028B6 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07672B62A84E008028B6 /* CaptureView.swift */; };
 		888C07702B62AC8E008028B6 /* SettingsAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C076F2B62AC8E008028B6 /* SettingsAppIconView.swift */; };
 		888C07722B62AE47008028B6 /* SettingsAppIconSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07712B62AE47008028B6 /* SettingsAppIconSection.swift */; };
+		88B463172BD2981C00CBFD9B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 88B463162BD2981C00CBFD9B /* PrivacyInfo.xcprivacy */; };
+		88B463182BD2982200CBFD9B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 88B463142BD2978900CBFD9B /* PrivacyInfo.xcprivacy */; };
 		88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */; };
 		88C7EAF52B61103F00F6ACD4 /* ValueStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */; };
 		88CEEAB32B64BAF50037ACF8 /* ClockEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CEEAB22B64BAF50037ACF8 /* ClockEntryView.swift */; };
@@ -198,6 +201,8 @@
 		888C07672B62A84E008028B6 /* CaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 		888C076F2B62AC8E008028B6 /* SettingsAppIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppIconView.swift; sourceTree = "<group>"; };
 		888C07712B62AE47008028B6 /* SettingsAppIconSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppIconSection.swift; sourceTree = "<group>"; };
+		88B463142BD2978900CBFD9B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		88B463162BD2981C00CBFD9B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStepper.swift; sourceTree = "<group>"; };
 		88CEEAB22B64BAF50037ACF8 /* ClockEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockEntryView.swift; sourceTree = "<group>"; };
@@ -223,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8837ADF52B5C0AB5000DC432 /* SwiftDate in Frameworks */,
+				882622142BD11B2900E04DF7 /* Pow in Frameworks */,
 				8837AEF92B5C1522000DC432 /* PopupView in Frameworks */,
 				888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */,
 				8837ADEC2B5C09EF000DC432 /* SwiftUIX in Frameworks */,
@@ -269,6 +275,7 @@
 				88227FA62B63A21700176CC8 /* Localizable.strings */,
 				88227FA92B63A21700176CC8 /* Assets.xcassets */,
 				88227FAB2B63A21700176CC8 /* Info.plist */,
+				88B463142BD2978900CBFD9B /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -373,6 +380,7 @@
 		8837ADE72B5C097F000DC432 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88B463162BD2981C00CBFD9B /* PrivacyInfo.xcprivacy */,
 				8837ADF92B5C0BC1000DC432 /* DigitalClock.entitlements */,
 				8837ADF82B5C0B20000DC432 /* Info.plist */,
 				8837ADDD2B5C0083000DC432 /* Assets.xcassets */,
@@ -655,6 +663,7 @@
 				8837ADF42B5C0AB5000DC432 /* SwiftDate */,
 				8837AEF82B5C1522000DC432 /* PopupView */,
 				888C074C2B62517D008028B6 /* DigitalClockShare */,
+				882622132BD11B2900E04DF7 /* Pow */,
 			);
 			productName = DigitClock;
 			productReference = 8837ADD62B5C0082000DC432 /* DigitalClock.app */;
@@ -696,6 +705,7 @@
 				8837AEF02B5C1107000DC432 /* XCLocalSwiftPackageReference "../ClockShare" */,
 				8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */,
 				88E790752B5D05A30068B795 /* XCLocalSwiftPackageReference "DigitClockShare" */,
+				882622122BD11B2900E04DF7 /* XCRemoteSwiftPackageReference "Pow" */,
 			);
 			productRefGroup = 8837ADD72B5C0082000DC432 /* Products */;
 			projectDirPath = "";
@@ -712,6 +722,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B463182BD2982200CBFD9B /* PrivacyInfo.xcprivacy in Resources */,
 				88227FD72B63A31C00176CC8 /* Assets.xcassets in Resources */,
 				88227FD62B63A31800176CC8 /* Localizable.strings in Resources */,
 			);
@@ -726,6 +737,7 @@
 				8837AE162B5C0DC2000DC432 /* InfoPlist.strings in Resources */,
 				8837AE232B5C0E16000DC432 /* LaunchScreen.storyboard in Resources */,
 				888C07652B62A040008028B6 /* second.wav in Resources */,
+				88B463172BD2981C00CBFD9B /* PrivacyInfo.xcprivacy in Resources */,
 				8837ADDE2B5C0083000DC432 /* Assets.xcassets in Resources */,
 				888C07642B62A040008028B6 /* drip.wav in Resources */,
 				8837AE242B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard in Resources */,
@@ -875,7 +887,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -905,7 +917,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1061,7 +1073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1100,7 +1112,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1156,6 +1168,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		882622122BD11B2900E04DF7 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8837ADEA2B5C09EF000DC432 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
@@ -1216,6 +1236,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8837ADED2B5C0A2E000DC432 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = RswiftLibrary;
+		};
+		882622132BD11B2900E04DF7 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 882622122BD11B2900E04DF7 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
 		};
 		8837ADEB2B5C09EF000DC432 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

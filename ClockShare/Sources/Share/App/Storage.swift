@@ -10,7 +10,7 @@ import Foundation
 public class Storage {
     static var groupIdentifier: String {
         if let bundleIdentifier = Bundle.main.bundleIdentifier {
-            return "group." + bundleIdentifier
+            return "group." + bundleIdentifier.split(separator: ".")[0...2].joined(separator: ".")
         }
         return "group.com.bapaws.Clock"
     }
