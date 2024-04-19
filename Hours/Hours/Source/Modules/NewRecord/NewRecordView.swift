@@ -178,8 +178,6 @@ struct NewRecordView: View {
             return
         }
 
-        let thawedRecord = record?.thaw()
-        let newRecord = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
         realm.writeAsync {
             let newRecord = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
 
