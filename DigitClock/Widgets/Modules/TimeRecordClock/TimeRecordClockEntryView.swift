@@ -13,10 +13,12 @@ struct TimeRecordClockEntryView: View {
     var entry: ClockProvider.Entry
     var secondStyle: DigitStyle = .none
 
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         TimeRecordClock(time: entry.time)
             .proMask(isPreview: entry.isPreview)
-            .containerBackground(Color.systemBackground)
+            .containerBackground(colorScheme == .dark ? .black : .white)
     }
 }
 
