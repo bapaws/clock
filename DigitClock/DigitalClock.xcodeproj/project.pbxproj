@@ -83,6 +83,8 @@
 		888C07682B62A84F008028B6 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07672B62A84E008028B6 /* CaptureView.swift */; };
 		888C07702B62AC8E008028B6 /* SettingsAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C076F2B62AC8E008028B6 /* SettingsAppIconView.swift */; };
 		888C07722B62AE47008028B6 /* SettingsAppIconSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07712B62AE47008028B6 /* SettingsAppIconSection.swift */; };
+		88B463172BD2981C00CBFD9B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 88B463162BD2981C00CBFD9B /* PrivacyInfo.xcprivacy */; };
+		88B463182BD2982200CBFD9B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 88B463142BD2978900CBFD9B /* PrivacyInfo.xcprivacy */; };
 		88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */; };
 		88C7EAF52B61103F00F6ACD4 /* ValueStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */; };
 		88CEEAB32B64BAF50037ACF8 /* ClockEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CEEAB22B64BAF50037ACF8 /* ClockEntryView.swift */; };
@@ -199,6 +201,8 @@
 		888C07672B62A84E008028B6 /* CaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 		888C076F2B62AC8E008028B6 /* SettingsAppIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppIconView.swift; sourceTree = "<group>"; };
 		888C07712B62AE47008028B6 /* SettingsAppIconSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppIconSection.swift; sourceTree = "<group>"; };
+		88B463142BD2978900CBFD9B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		88B463162BD2981C00CBFD9B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		88C7EAF02B610ACF00F6ACD4 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		88C7EAF42B61103F00F6ACD4 /* ValueStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStepper.swift; sourceTree = "<group>"; };
 		88CEEAB22B64BAF50037ACF8 /* ClockEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockEntryView.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 				88227FA62B63A21700176CC8 /* Localizable.strings */,
 				88227FA92B63A21700176CC8 /* Assets.xcassets */,
 				88227FAB2B63A21700176CC8 /* Info.plist */,
+				88B463142BD2978900CBFD9B /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 		8837ADE72B5C097F000DC432 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88B463162BD2981C00CBFD9B /* PrivacyInfo.xcprivacy */,
 				8837ADF92B5C0BC1000DC432 /* DigitalClock.entitlements */,
 				8837ADF82B5C0B20000DC432 /* Info.plist */,
 				8837ADDD2B5C0083000DC432 /* Assets.xcassets */,
@@ -716,6 +722,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B463182BD2982200CBFD9B /* PrivacyInfo.xcprivacy in Resources */,
 				88227FD72B63A31C00176CC8 /* Assets.xcassets in Resources */,
 				88227FD62B63A31800176CC8 /* Localizable.strings in Resources */,
 			);
@@ -730,6 +737,7 @@
 				8837AE162B5C0DC2000DC432 /* InfoPlist.strings in Resources */,
 				8837AE232B5C0E16000DC432 /* LaunchScreen.storyboard in Resources */,
 				888C07652B62A040008028B6 /* second.wav in Resources */,
+				88B463172BD2981C00CBFD9B /* PrivacyInfo.xcprivacy in Resources */,
 				8837ADDE2B5C0083000DC432 /* Assets.xcassets in Resources */,
 				888C07642B62A040008028B6 /* drip.wav in Resources */,
 				8837AE242B5C0E16000DC432 /* LaunchScreen_zh-Hant.storyboard in Resources */,
@@ -879,7 +887,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -909,7 +917,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1065,7 +1073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1104,7 +1112,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
