@@ -42,11 +42,11 @@ open class ProManager: NSObject {
     open class var `default`: ProManager { shared }
 
     public var isPro: Bool {
-        #if DEBUG
-        false
-        #else
+//        #if DEBUG
+//        false
+//        #else
         purchasedProduct != nil
-        #endif
+//        #endif
     }
 
     @Published open var purchasedProduct: PurchasedProduct? {

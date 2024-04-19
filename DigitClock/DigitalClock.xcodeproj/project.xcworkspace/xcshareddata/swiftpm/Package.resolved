@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/EmergeTools/Pow",
       "state" : {
-        "branch" : "main",
-        "revision" : "ebf05a2239eaded68a17bb417a4fbbb4ca431849"
+        "revision" : "cc014eba4b65f689cadc281ad925de5607f2adc9",
+        "version" : "1.0.3"
       }
     },
     {
