@@ -37,11 +37,9 @@ open class UIBaseManager: ObservableObject {
         }
     }
 
-    public var darkMode: DarkMode {
+    @AppStorage(Storage.Key.darkMode, store: Storage.default.store)
+    open var darkMode: DarkMode = .system {
         didSet {
-            // Store
-            Storage.default.darkMode = darkMode
-
             setupDarkMode()
             // 暗黑模式切换需要更换颜色
             setupColors()
@@ -73,13 +71,15 @@ open class UIBaseManager: ObservableObject {
         } else {
             self.appIcon = appIcon
         }
+        setupDarkMode()
+        // 暗黑模式切换需要更换颜色
+        setupColors()
     }
 
     // MARK: Setup
 
     open func setupUI() {
         icon = iconType.style
-        setupColors()
     }
 
     open func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {}
@@ -119,7 +119,7 @@ open class UIBaseManager: ObservableObject {
         }
     }
 
-    open func setupColors(scheme: ColorScheme? = nil) {
+    open func setupColors() {
         // 刷新小組件的樣式
         WidgetCenter.shared.reloadAllTimelines()
     }

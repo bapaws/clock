@@ -102,7 +102,7 @@ struct PaywallView: View {
     @ViewBuilder var scrollView: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .center) {
-                ClockLandspaceView(color: Colors.classic(scheme: colorScheme), colonWidth: 16)
+                ClockLandspaceView(color: Colors.classic(mode: UIManager.shared.darkMode), colonWidth: 16)
                     .environmentObject(ClockManager.shared)
                     .frame(width: 280, height: 130)
                     .padding(.vertical, .large)
