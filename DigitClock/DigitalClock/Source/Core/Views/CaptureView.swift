@@ -26,7 +26,8 @@ struct CaptureView: View {
         let padding: CGFloat = 120
         let width: CGFloat = 1024
         let digitWidth: CGFloat = width - padding * 2
-        DigitView(tens: 2, ones: 5)
+        Text("25")
+            .monospacedDigit()
             .padding(.all, padding)
             .frame(width: width, height: width)
 //            .foregroundColor(colors.primary)

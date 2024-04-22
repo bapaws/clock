@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  DigitalMainView.swift
 //  Clock
 //
 //  Created by 张敏超 on 2023/12/17.
@@ -11,7 +11,7 @@ import PopupView
 import SwiftUI
 import SwiftUIX
 
-struct MainView: View {
+struct DigitalMainView: View {
     // MARK: Pager
 
     @State private var currentIndex = 1
@@ -65,7 +65,7 @@ struct MainView: View {
                     pageIndex: $currentIndex
                 )
                 .frame(width: width, height: height)
-                .environmentObject(ProManager.default)
+                .environmentObject(DigitalProManager.default)
             } customize: {
                 $0
                     .animation(.spring())
@@ -85,14 +85,14 @@ struct MainView: View {
 
         .onChange(of: isSettingsPresented) { isPresented in
             if isPresented {
-                AppManager.shared.suspend()
+                DigitalAppManager.shared.suspend()
             } else {
-                AppManager.shared.resume()
+                DigitalAppManager.shared.resume()
             }
         }
         .onChange(of: currentIndex) { index in
             DispatchQueue.main.async {
-                AppManager.shared.onPageWillChange(index: index)
+                DigitalAppManager.shared.onPageWillChange(index: index)
             }
         }
 
@@ -127,13 +127,13 @@ struct MainView: View {
     @ViewBuilder func pageContent(at index: AppPage) -> some View {
         switch index {
         case .pomodoro:
-            PomodoroView(isTabHidden: $isTabHidden, ignoreTapGesture: $ignoreTapGesture)
+            DigitalPomodoroView(isTabHidden: $isTabHidden, ignoreTapGesture: $ignoreTapGesture)
                 .environmentObject(pomodoro)
         case .clock:
-            ClockView()
+            DigitalClockView()
                 .environmentObject(clock)
         case .timer:
-            TimerView(isTabHidden: $isTabHidden, ignoreTapGesture: $ignoreTapGesture)
+            DigitalTimerView(isTabHidden: $isTabHidden, ignoreTapGesture: $ignoreTapGesture)
                 .environmentObject(timer)
         }
     }
@@ -161,12 +161,12 @@ struct MainView: View {
 
 // MARK: Getter
 
-extension MainView {
+extension DigitalMainView {
     var icon: IconStyle { ui.icon }
     var color: Colors { ui.colors }
 }
 
 #Preview {
-    MainView()
+    DigitalMainView()
         .environmentObject(UIManager.shared)
 }

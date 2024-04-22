@@ -1,5 +1,5 @@
 //
-//  AboutView.swift
+//  DigitalAboutView.swift
 //  DigitalClock
 //
 //  Created by 张敏超 on 2023/12/28.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftUIX
 
-struct AboutView: View {
+struct DigitalAboutView: View {
     @Binding var isPresented: Bool
 
     @State var showSafari = false
@@ -83,5 +83,5 @@ struct AboutView: View {
 }
 
 #Preview {
-    AboutView(isPresented: Binding<Bool>.constant(true))
+    DigitalAboutView(isPresented: Binding<Bool>.constant(true))
 }

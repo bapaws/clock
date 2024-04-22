@@ -40,20 +40,7 @@
 "Icon" = "Icon";
 "AppIcon" = "App Icon";
 "LightClassic" = "Classic Light";
-"LightPink" = "Pink";
-"LightPurple" = "Purple";
-"LightOrange" = "Orange";
 "DarkClassic" = "Classic Dark";
-"DarkPink" = "Pink";
-"DarkPurple" = "Purple";
-"DarkOrange" = "Orange";
-
-"ColorThemes" = "Color Themes";
-"Default" = "Default";
-"Classic" = "Classic";
-"Pink" = "Pink";
-"Purple" = "Purple";
-"Orange" = "Orange";
 
 "DarkMode" = "Dark Mode";
 "LightMode" = "Light Mode";

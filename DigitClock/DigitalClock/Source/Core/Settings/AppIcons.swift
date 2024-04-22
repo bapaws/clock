@@ -17,20 +17,10 @@ public extension AppIconType {
         switch self {
         case .lightClassic:
             R.string.localizable.lightClassic()
-        case .lightPink:
-            R.string.localizable.lightPink()
-        case .lightOrange:
-            R.string.localizable.lightOrange()
-        case .lightPurple:
-            R.string.localizable.lightPurple()
         case .darkClassic:
             R.string.localizable.darkClassic()
-        case .darkPink:
-            R.string.localizable.darkPink()
-        case .darkOrange:
-            R.string.localizable.darkOrange()
-        case .darkPurple:
-            R.string.localizable.darkPurple()
+        default:
+            fatalError()
         }
     }
 }

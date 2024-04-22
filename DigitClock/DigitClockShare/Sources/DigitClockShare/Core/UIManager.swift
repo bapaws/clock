@@ -14,7 +14,7 @@ import WidgetKit
 public class UIManager: ClockShare.UIBaseManager {
     public static let shared = UIManager()
 
-    public let bottomHeight: CGFloat = 54
+    public let bottomHeight: CGFloat = 64
 
     @Published public private(set) var colors: Colors = ColorType.classic.colors
     @AppStorage(Storage.Key.colorType, store: Storage.default.store)

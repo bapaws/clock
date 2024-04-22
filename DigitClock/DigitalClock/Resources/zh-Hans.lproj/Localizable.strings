@@ -41,20 +41,7 @@
 "Icon" = "图标";
 "AppIcon" = "应用图标";
 "LightClassic" = "经典白";
-"LightPink" = "粉红";
-"LightPurple" = "紫";
-"LightOrange" = "橙";
 "DarkClassic" = "经典黑";
-"DarkPink" = "粉红";
-"DarkPurple" = "紫";
-"DarkOrange" = "橙";
-
-"ColorThemes" = "彩色主题";
-"Default" = "默认";
-"Classic" = "经典";
-"Pink" = "粉红";
-"Purple" = "紫";
-"Orange" = "橙";
 
 "DarkMode" = "深色模式";
 "LightMode" = "浅色模式";

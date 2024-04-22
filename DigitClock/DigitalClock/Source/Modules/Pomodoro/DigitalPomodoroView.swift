@@ -1,5 +1,5 @@
 //
-//  PomodoroView.swift
+//  DigitalPomodoroView.swift
 //  Clock
 //
 //  Created by 张敏超 on 2023/12/15.
@@ -11,7 +11,7 @@ import Combine
 import DigitalClockShare
 import SwiftUI
 
-struct PomodoroView: View {
+struct DigitalPomodoroView: View {
     @Binding var isTabHidden: Bool
     @Binding var ignoreTapGesture: Bool
     @StateObject var manager = DigitalClockShare.PomodoroManager.shared
@@ -21,9 +21,9 @@ struct PomodoroView: View {
         GeometryReader { proxy in
             VStack(spacing: 16) {
                 if proxy.size.width > proxy.size.height {
-                    PomodoroLandspaceView(time: manager.time, color: ui.colors)
+                    DigitalPomodoroLandspaceView(time: manager.time, color: ui.colors)
                 } else {
-                    PomodoroPortraitView(time: manager.time, color: ui.colors)
+                    DigitalPomodoroPortraitView(time: manager.time, color: ui.colors)
                 }
                 button
                     .height(ui.bottomHeight)
@@ -34,7 +34,7 @@ struct PomodoroView: View {
         }
         .padding()
         .onChange(of: manager.time.seconds) { _ in
-            AppManager.shared.playPomodoro()
+            DigitalAppManager.shared.playPomodoro()
         }
         .task {
             if #available(iOS 16.1, *) {
@@ -61,6 +61,7 @@ struct PomodoroView: View {
             manager.stop()
         }) {
             Image(systemName: "stop")
+                .padding()
         }
     }
 
@@ -99,6 +100,6 @@ struct PomodoroView: View {
 }
 
 #Preview {
-    PomodoroView(isTabHidden: Binding<Bool>.constant(true), ignoreTapGesture: .constant(true))
+    DigitalPomodoroView(isTabHidden: Binding<Bool>.constant(true), ignoreTapGesture: .constant(true))
         .background(UIManager.shared.colors.background)
 }

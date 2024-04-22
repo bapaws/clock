@@ -12,13 +12,13 @@ import SwiftUI
 import WidgetKit
 
 struct PurchaseButton: View {
-    @State var package: Package? = ProManager.default.lifetimePackage
+    @State var package: Package? = DigitalProManager.default.lifetimePackage
 
     @EnvironmentObject var ui: UIManager
     var body: some View {
         Button(action: purchase) {
             HStack(spacing: 32) {
-                if let package = ProManager.default.lifetimePackage {
+                if let package = DigitalProManager.default.lifetimePackage {
                     Text(package.localizedPriceString)
                         .font(.title2)
                 }
@@ -43,13 +43,13 @@ struct PurchaseButton: View {
             identifier: "com.bapaws.DigitalClock.lifetime",
             localizedTitle: "Lifetime"
         )
-        ProManager.default.purchasedProduct = purchased
+        DigitalProManager.default.purchasedProduct = purchased
         WidgetCenter.shared.reloadAllTimelines()
         #else
-        guard let package = ProManager.default.lifetimePackage else { return }
+        guard let package = DigitalProManager.default.lifetimePackage else { return }
 
         HUD.show()
-        ProManager.default.purchase(package: package) { error in
+        DigitalProManager.default.purchase(package: package) { error in
             HUD.hide()
             WidgetCenter.shared.reloadAllTimelines()
             if let error = error {

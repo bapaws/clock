@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88038CFF2BD68B25000AFFFB /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 88038CFE2BD68B25000AFFFB /* GoogleMobileAds */; };
 		880592E82B620BE70051284F /* SettingsStepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592E72B620BE70051284F /* SettingsStepperCell.swift */; };
 		880592ED2B621B090051284F /* SettingsTimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880592EC2B621B090051284F /* SettingsTimerSection.swift */; };
 		881688DF2BBBC0D5003E62AA /* PurchaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881688DE2BBBC0D5003E62AA /* PurchaseButton.swift */; };
@@ -38,11 +39,10 @@
 		8837ADF22B5C0AA1000DC432 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 8837ADF12B5C0AA1000DC432 /* RevenueCat */; };
 		8837ADF52B5C0AB5000DC432 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 8837ADF42B5C0AB5000DC432 /* SwiftDate */; };
 		8837AE082B5C0D5C000DC432 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFC2B5C0D5C000DC432 /* AppIcons.swift */; };
-		8837AE092B5C0D5C000DC432 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFD2B5C0D5C000DC432 /* ColorType.swift */; };
 		8837AE0A2B5C0D5C000DC432 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFE2B5C0D5C000DC432 /* DarkMode.swift */; };
 		8837AE0B2B5C0D5C000DC432 /* LandspaceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837ADFF2B5C0D5C000DC432 /* LandspaceMode.swift */; };
 		8837AE0C2B5C0D5C000DC432 /* IconStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE002B5C0D5C000DC432 /* IconStyle.swift */; };
-		8837AE0D2B5C0D5C000DC432 /* ProManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE022B5C0D5C000DC432 /* ProManager.swift */; };
+		8837AE0D2B5C0D5C000DC432 /* DigitalProManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE022B5C0D5C000DC432 /* DigitalProManager.swift */; };
 		8837AE0E2B5C0D5C000DC432 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE032B5C0D5C000DC432 /* SoundType.swift */; };
 		8837AE102B5C0D5C000DC432 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AE062B5C0D5C000DC432 /* PageControl.swift */; };
 		8837AE162B5C0DC2000DC432 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8837AE182B5C0DC2000DC432 /* InfoPlist.strings */; };
@@ -62,18 +62,18 @@
 		8837AEDA2B5C0EC4000DC432 /* SettingsSoundTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAE2B5C0EC4000DC432 /* SettingsSoundTypeView.swift */; };
 		8837AEDB2B5C0EC4000DC432 /* SettingsSoundSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEAF2B5C0EC4000DC432 /* SettingsSoundSection.swift */; };
 		8837AEDD2B5C0EC4000DC432 /* SettingsClockSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */; };
-		8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */; };
-		8837AEDF2B5C0EC4000DC432 /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */; };
-		8837AEE02B5C0EC4000DC432 /* PomodoroLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB62B5C0EC4000DC432 /* PomodoroLandspaceView.swift */; };
-		8837AEE12B5C0EC4000DC432 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB82B5C0EC4000DC432 /* AboutView.swift */; };
-		8837AEE22B5C0EC4000DC432 /* ClockPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBA2B5C0EC4000DC432 /* ClockPortraitView.swift */; };
-		8837AEE32B5C0EC4000DC432 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBB2B5C0EC4000DC432 /* ClockView.swift */; };
-		8837AEE42B5C0EC4000DC432 /* ClockLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBC2B5C0EC4000DC432 /* ClockLandspaceView.swift */; };
+		8837AEDE2B5C0EC4000DC432 /* DigitalPomodoroPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB42B5C0EC4000DC432 /* DigitalPomodoroPortraitView.swift */; };
+		8837AEDF2B5C0EC4000DC432 /* DigitalPomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB52B5C0EC4000DC432 /* DigitalPomodoroView.swift */; };
+		8837AEE02B5C0EC4000DC432 /* DigitalPomodoroLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB62B5C0EC4000DC432 /* DigitalPomodoroLandspaceView.swift */; };
+		8837AEE12B5C0EC4000DC432 /* DigitalAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEB82B5C0EC4000DC432 /* DigitalAboutView.swift */; };
+		8837AEE22B5C0EC4000DC432 /* DigitalClockPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBA2B5C0EC4000DC432 /* DigitalClockPortraitView.swift */; };
+		8837AEE32B5C0EC4000DC432 /* DigitalClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBB2B5C0EC4000DC432 /* DigitalClockView.swift */; };
+		8837AEE42B5C0EC4000DC432 /* DigitalClockLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBC2B5C0EC4000DC432 /* DigitalClockLandspaceView.swift */; };
 		8837AEE52B5C0EC4000DC432 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEBE2B5C0EC4000DC432 /* PaywallView.swift */; };
-		8837AEE62B5C0EC4000DC432 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC02B5C0EC4000DC432 /* TimerView.swift */; };
-		8837AEE72B5C0EC4000DC432 /* TimerPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */; };
-		8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */; };
-		8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEEB2B5C1010000DC432 /* MainView.swift */; };
+		8837AEE62B5C0EC4000DC432 /* DigitalTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC02B5C0EC4000DC432 /* DigitalTimerView.swift */; };
+		8837AEE72B5C0EC4000DC432 /* DigitalTimerPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC12B5C0EC4000DC432 /* DigitalTimerPortraitView.swift */; };
+		8837AEE82B5C0EC4000DC432 /* DigitalTimerLandspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEC22B5C0EC4000DC432 /* DigitalTimerLandspaceView.swift */; };
+		8837AEEC2B5C1010000DC432 /* DigitalMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837AEEB2B5C1010000DC432 /* DigitalMainView.swift */; };
 		8837AEF92B5C1522000DC432 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 8837AEF82B5C1522000DC432 /* PopupView */; };
 		888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 888C074C2B62517D008028B6 /* DigitalClockShare */; };
 		888C075A2B628A3C008028B6 /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888C07592B628A3C008028B6 /* BannerAd.swift */; };
@@ -155,11 +155,10 @@
 		8837ADF82B5C0B20000DC432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8837ADF92B5C0BC1000DC432 /* DigitalClock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DigitalClock.entitlements; sourceTree = "<group>"; };
 		8837ADFC2B5C0D5C000DC432 /* AppIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
-		8837ADFD2B5C0D5C000DC432 /* ColorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		8837ADFE2B5C0D5C000DC432 /* DarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
 		8837ADFF2B5C0D5C000DC432 /* LandspaceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandspaceMode.swift; sourceTree = "<group>"; };
 		8837AE002B5C0D5C000DC432 /* IconStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconStyle.swift; sourceTree = "<group>"; };
-		8837AE022B5C0D5C000DC432 /* ProManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProManager.swift; sourceTree = "<group>"; };
+		8837AE022B5C0D5C000DC432 /* DigitalProManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalProManager.swift; sourceTree = "<group>"; };
 		8837AE032B5C0D5C000DC432 /* SoundType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
 		8837AE062B5C0D5C000DC432 /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		8837AE172B5C0DC2000DC432 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -182,18 +181,18 @@
 		8837AEAE2B5C0EC4000DC432 /* SettingsSoundTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundTypeView.swift; sourceTree = "<group>"; };
 		8837AEAF2B5C0EC4000DC432 /* SettingsSoundSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundSection.swift; sourceTree = "<group>"; };
 		8837AEB22B5C0EC4000DC432 /* SettingsClockSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClockSection.swift; sourceTree = "<group>"; };
-		8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroPortraitView.swift; sourceTree = "<group>"; };
-		8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
-		8837AEB62B5C0EC4000DC432 /* PomodoroLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroLandspaceView.swift; sourceTree = "<group>"; };
-		8837AEB82B5C0EC4000DC432 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		8837AEBA2B5C0EC4000DC432 /* ClockPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockPortraitView.swift; sourceTree = "<group>"; };
-		8837AEBB2B5C0EC4000DC432 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
-		8837AEBC2B5C0EC4000DC432 /* ClockLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockLandspaceView.swift; sourceTree = "<group>"; };
+		8837AEB42B5C0EC4000DC432 /* DigitalPomodoroPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalPomodoroPortraitView.swift; sourceTree = "<group>"; };
+		8837AEB52B5C0EC4000DC432 /* DigitalPomodoroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalPomodoroView.swift; sourceTree = "<group>"; };
+		8837AEB62B5C0EC4000DC432 /* DigitalPomodoroLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalPomodoroLandspaceView.swift; sourceTree = "<group>"; };
+		8837AEB82B5C0EC4000DC432 /* DigitalAboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalAboutView.swift; sourceTree = "<group>"; };
+		8837AEBA2B5C0EC4000DC432 /* DigitalClockPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalClockPortraitView.swift; sourceTree = "<group>"; };
+		8837AEBB2B5C0EC4000DC432 /* DigitalClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalClockView.swift; sourceTree = "<group>"; };
+		8837AEBC2B5C0EC4000DC432 /* DigitalClockLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalClockLandspaceView.swift; sourceTree = "<group>"; };
 		8837AEBE2B5C0EC4000DC432 /* PaywallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
-		8837AEC02B5C0EC4000DC432 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerPortraitView.swift; sourceTree = "<group>"; };
-		8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLandspaceView.swift; sourceTree = "<group>"; };
-		8837AEEB2B5C1010000DC432 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		8837AEC02B5C0EC4000DC432 /* DigitalTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalTimerView.swift; sourceTree = "<group>"; };
+		8837AEC12B5C0EC4000DC432 /* DigitalTimerPortraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalTimerPortraitView.swift; sourceTree = "<group>"; };
+		8837AEC22B5C0EC4000DC432 /* DigitalTimerLandspaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalTimerLandspaceView.swift; sourceTree = "<group>"; };
+		8837AEEB2B5C1010000DC432 /* DigitalMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalMainView.swift; sourceTree = "<group>"; };
 		888C07592B628A3C008028B6 /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
 		888C07602B62A040008028B6 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 		888C07612B62A040008028B6 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
@@ -231,6 +230,7 @@
 				882622142BD11B2900E04DF7 /* Pow in Frameworks */,
 				8837AEF92B5C1522000DC432 /* PopupView in Frameworks */,
 				888C074D2B62517D008028B6 /* DigitalClockShare in Frameworks */,
+				88038CFF2BD68B25000AFFFB /* GoogleMobileAds in Frameworks */,
 				8837ADEC2B5C09EF000DC432 /* SwiftUIX in Frameworks */,
 				8837ADEF2B5C0A2E000DC432 /* RswiftLibrary in Frameworks */,
 				8837ADF22B5C0AA1000DC432 /* RevenueCat in Frameworks */,
@@ -362,7 +362,7 @@
 			children = (
 				8837ADE72B5C097F000DC432 /* Resources */,
 				8837ADE92B5C099B000DC432 /* Source */,
-				8837AEEB2B5C1010000DC432 /* MainView.swift */,
+				8837AEEB2B5C1010000DC432 /* DigitalMainView.swift */,
 				8837ADD92B5C0082000DC432 /* DigitalClockApp.swift */,
 				8837ADDF2B5C0083000DC432 /* Preview Content */,
 			);
@@ -429,7 +429,6 @@
 			isa = PBXGroup;
 			children = (
 				8837ADFC2B5C0D5C000DC432 /* AppIcons.swift */,
-				8837ADFD2B5C0D5C000DC432 /* ColorType.swift */,
 				8837ADFE2B5C0D5C000DC432 /* DarkMode.swift */,
 				8837ADFF2B5C0D5C000DC432 /* LandspaceMode.swift */,
 				8837AE002B5C0D5C000DC432 /* IconStyle.swift */,
@@ -440,7 +439,7 @@
 		8837AE012B5C0D5C000DC432 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				8837AE022B5C0D5C000DC432 /* ProManager.swift */,
+				8837AE022B5C0D5C000DC432 /* DigitalProManager.swift */,
 				8837AE032B5C0D5C000DC432 /* SoundType.swift */,
 			);
 			path = Manager;
@@ -541,9 +540,9 @@
 		8837AEB32B5C0EC4000DC432 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
-				8837AEB42B5C0EC4000DC432 /* PomodoroPortraitView.swift */,
-				8837AEB52B5C0EC4000DC432 /* PomodoroView.swift */,
-				8837AEB62B5C0EC4000DC432 /* PomodoroLandspaceView.swift */,
+				8837AEB42B5C0EC4000DC432 /* DigitalPomodoroPortraitView.swift */,
+				8837AEB52B5C0EC4000DC432 /* DigitalPomodoroView.swift */,
+				8837AEB62B5C0EC4000DC432 /* DigitalPomodoroLandspaceView.swift */,
 			);
 			path = Pomodoro;
 			sourceTree = "<group>";
@@ -551,7 +550,7 @@
 		8837AEB72B5C0EC4000DC432 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				8837AEB82B5C0EC4000DC432 /* AboutView.swift */,
+				8837AEB82B5C0EC4000DC432 /* DigitalAboutView.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -559,9 +558,9 @@
 		8837AEB92B5C0EC4000DC432 /* Clock */ = {
 			isa = PBXGroup;
 			children = (
-				8837AEBA2B5C0EC4000DC432 /* ClockPortraitView.swift */,
-				8837AEBB2B5C0EC4000DC432 /* ClockView.swift */,
-				8837AEBC2B5C0EC4000DC432 /* ClockLandspaceView.swift */,
+				8837AEBA2B5C0EC4000DC432 /* DigitalClockPortraitView.swift */,
+				8837AEBB2B5C0EC4000DC432 /* DigitalClockView.swift */,
+				8837AEBC2B5C0EC4000DC432 /* DigitalClockLandspaceView.swift */,
 			);
 			path = Clock;
 			sourceTree = "<group>";
@@ -578,9 +577,9 @@
 		8837AEBF2B5C0EC4000DC432 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				8837AEC02B5C0EC4000DC432 /* TimerView.swift */,
-				8837AEC12B5C0EC4000DC432 /* TimerPortraitView.swift */,
-				8837AEC22B5C0EC4000DC432 /* TimerLandspaceView.swift */,
+				8837AEC02B5C0EC4000DC432 /* DigitalTimerView.swift */,
+				8837AEC12B5C0EC4000DC432 /* DigitalTimerPortraitView.swift */,
+				8837AEC22B5C0EC4000DC432 /* DigitalTimerLandspaceView.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -664,6 +663,7 @@
 				8837AEF82B5C1522000DC432 /* PopupView */,
 				888C074C2B62517D008028B6 /* DigitalClockShare */,
 				882622132BD11B2900E04DF7 /* Pow */,
+				88038CFE2BD68B25000AFFFB /* GoogleMobileAds */,
 			);
 			productName = DigitClock;
 			productReference = 8837ADD62B5C0082000DC432 /* DigitalClock.app */;
@@ -706,6 +706,7 @@
 				8837AEF72B5C1522000DC432 /* XCRemoteSwiftPackageReference "PopupView" */,
 				88E790752B5D05A30068B795 /* XCLocalSwiftPackageReference "DigitClockShare" */,
 				882622122BD11B2900E04DF7 /* XCRemoteSwiftPackageReference "Pow" */,
+				88038CFD2BD68B25000AFFFB /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 8837ADD72B5C0082000DC432 /* Products */;
 			projectDirPath = "";
@@ -777,7 +778,7 @@
 				8837AEDB2B5C0EC4000DC432 /* SettingsSoundSection.swift in Sources */,
 				8837AECD2B5C0EC4000DC432 /* SettingsView.swift in Sources */,
 				8837AED72B5C0EC4000DC432 /* SettingsPomodoroSection.swift in Sources */,
-				8837AEE62B5C0EC4000DC432 /* TimerView.swift in Sources */,
+				8837AEE62B5C0EC4000DC432 /* DigitalTimerView.swift in Sources */,
 				8837AEDA2B5C0EC4000DC432 /* SettingsSoundTypeView.swift in Sources */,
 				8837AE0C2B5C0D5C000DC432 /* IconStyle.swift in Sources */,
 				888C07702B62AC8E008028B6 /* SettingsAppIconView.swift in Sources */,
@@ -785,13 +786,13 @@
 				881688DF2BBBC0D5003E62AA /* PurchaseButton.swift in Sources */,
 				8837AE082B5C0D5C000DC432 /* AppIcons.swift in Sources */,
 				88C7EAF12B610ACF00F6ACD4 /* GeneralSettingsView.swift in Sources */,
-				8837AEDE2B5C0EC4000DC432 /* PomodoroPortraitView.swift in Sources */,
-				8837AEE42B5C0EC4000DC432 /* ClockLandspaceView.swift in Sources */,
+				8837AEDE2B5C0EC4000DC432 /* DigitalPomodoroPortraitView.swift in Sources */,
+				8837AEE42B5C0EC4000DC432 /* DigitalClockLandspaceView.swift in Sources */,
 				8837ADDA2B5C0082000DC432 /* DigitalClockApp.swift in Sources */,
-				8837AEE32B5C0EC4000DC432 /* ClockView.swift in Sources */,
-				8837AEDF2B5C0EC4000DC432 /* PomodoroView.swift in Sources */,
+				8837AEE32B5C0EC4000DC432 /* DigitalClockView.swift in Sources */,
+				8837AEDF2B5C0EC4000DC432 /* DigitalPomodoroView.swift in Sources */,
 				8837AED32B5C0EC4000DC432 /* SettingsDarkModeView.swift in Sources */,
-				8837AEEC2B5C1010000DC432 /* MainView.swift in Sources */,
+				8837AEEC2B5C1010000DC432 /* DigitalMainView.swift in Sources */,
 				8837AECC2B5C0EC4000DC432 /* SettingsCheckCell.swift in Sources */,
 				8837AECB2B5C0EC4000DC432 /* SettingsNavigateCell.swift in Sources */,
 				888C07722B62AE47008028B6 /* SettingsAppIconSection.swift in Sources */,
@@ -806,14 +807,13 @@
 				8837AE0E2B5C0D5C000DC432 /* SoundType.swift in Sources */,
 				8837AEC32B5C0EC4000DC432 /* SplashView.swift in Sources */,
 				8837AE102B5C0D5C000DC432 /* PageControl.swift in Sources */,
-				8837AEE02B5C0EC4000DC432 /* PomodoroLandspaceView.swift in Sources */,
-				8837AEE82B5C0EC4000DC432 /* TimerLandspaceView.swift in Sources */,
-				8837AEE12B5C0EC4000DC432 /* AboutView.swift in Sources */,
+				8837AEE02B5C0EC4000DC432 /* DigitalPomodoroLandspaceView.swift in Sources */,
+				8837AEE82B5C0EC4000DC432 /* DigitalTimerLandspaceView.swift in Sources */,
+				8837AEE12B5C0EC4000DC432 /* DigitalAboutView.swift in Sources */,
 				888C07682B62A84F008028B6 /* CaptureView.swift in Sources */,
-				8837AEE22B5C0EC4000DC432 /* ClockPortraitView.swift in Sources */,
-				8837AE092B5C0D5C000DC432 /* ColorType.swift in Sources */,
-				8837AE0D2B5C0D5C000DC432 /* ProManager.swift in Sources */,
-				8837AEE72B5C0EC4000DC432 /* TimerPortraitView.swift in Sources */,
+				8837AEE22B5C0EC4000DC432 /* DigitalClockPortraitView.swift in Sources */,
+				8837AE0D2B5C0D5C000DC432 /* DigitalProManager.swift in Sources */,
+				8837AEE72B5C0EC4000DC432 /* DigitalTimerPortraitView.swift in Sources */,
 				8837AECA2B5C0EC4000DC432 /* SettingsToggleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -881,13 +881,13 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -911,13 +911,13 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1068,12 +1068,12 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1107,12 +1107,12 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1168,6 +1168,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		88038CFD2BD68B25000AFFFB /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.3.0;
+			};
+		};
 		882622122BD11B2900E04DF7 /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow";
@@ -1219,6 +1227,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		88038CFE2BD68B25000AFFFB /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88038CFD2BD68B25000AFFFB /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		88227FD12B63A2F100176CC8 /* DigitalClockShare */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DigitalClockShare;

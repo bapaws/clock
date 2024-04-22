@@ -12,14 +12,14 @@ import SwiftUI
 import SwiftUIX
 
 struct PaywallView: View {
-    @State var package: Package? = ProManager.default.lifetimePackage
+    @State var package: Package? = DigitalProManager.default.lifetimePackage
 
     @Environment(\.colorScheme) var colorScheme
 
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        ClockLandspaceView(color: Colors.classic(mode: ui.darkMode))
+        DigitalClockLandspaceView(color: Colors.classic(mode: ui.darkMode))
             .environmentObject(ClockManager.shared)
             .height(130)
             .border(cornerRadius: 16, style: StrokeStyle())
@@ -30,11 +30,11 @@ struct PaywallView: View {
 
                 guard package == nil else { return }
                 HUD.show()
-                ProManager.default.getOfferings { error in
+                DigitalProManager.default.getOfferings { error in
                     HUD.hide()
 
                     guard error == nil else { return }
-                    package = ProManager.default.lifetimePackage
+                    package = DigitalProManager.default.lifetimePackage
                 }
             }
             .onDisappear {
@@ -57,7 +57,7 @@ struct PaywallView: View {
 
     func restore() {
         HUD.show()
-        ProManager.default.restorePurchases { error in
+        DigitalProManager.default.restorePurchases { error in
             HUD.hide()
             if let error = error {
                 print(error)
