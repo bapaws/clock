@@ -99,7 +99,7 @@ struct MainView: View {
         // MARK: Listen
 
         .onChange(of: colorScheme) { newValue in
-            ui.setupColors(scheme: newValue)
+            ui.setupColors()
         }
 
         if #available(iOS 16.0, *) {

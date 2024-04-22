@@ -60,7 +60,7 @@ struct SettingsView: View {
 
             Spacer()
 
-            if !ProManager.default.availablePackages.isEmpty && !ProManager.default.isPro {
+            if !ProManager.default.isPro {
                 PurchaseButton()
             } else {
                 Rectangle().fill(Color.separator).height(0.5)

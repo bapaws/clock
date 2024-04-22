@@ -14,6 +14,7 @@ struct SettingsSoundSection: View {
     @State var isMute: Bool = AppManager.shared.isMute
 
     @EnvironmentObject var app: AppManager
+    @EnvironmentObject var ui: UIManager
 
     var body: some View {
         SettingsSection(title: R.string.localizable.sound()) {
@@ -26,7 +27,6 @@ struct SettingsSoundSection: View {
                 isSoundTypePresented = true
             }
         }
-        .background(UIManager.shared.background)
     }
 }
 

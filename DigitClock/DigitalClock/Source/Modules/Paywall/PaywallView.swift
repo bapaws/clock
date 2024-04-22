@@ -16,8 +16,10 @@ struct PaywallView: View {
 
     @Environment(\.colorScheme) var colorScheme
 
+    @EnvironmentObject var ui: UIManager
+
     var body: some View {
-        ClockLandspaceView(color: Colors.classic(scheme: colorScheme))
+        ClockLandspaceView(color: Colors.classic(mode: ui.darkMode))
             .environmentObject(ClockManager.shared)
             .height(130)
             .border(cornerRadius: 16, style: StrokeStyle())

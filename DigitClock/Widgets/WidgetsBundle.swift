@@ -24,49 +24,15 @@ struct WidgetsBundle: WidgetBundle {
 struct ClockVipWidgetBundle: WidgetBundle {
     var body: some Widget {
         ClockSmallWidget(secondStyle: .small)
-        ClockSmallWidget(secondStyle: .small, colorScheme: .dark)
-
         ClockMediumWidget(secondStyle: .big)
-        ClockMediumWidget(secondStyle: .big, colorScheme: .dark)
 
         TimeRecordClockWidget()
-        TimeRecordClockWidget(colorScheme: .dark)
     }
 }
 
 struct ClockFreeWidgetBundle: WidgetBundle {
     var body: some Widget {
         ClockSmallWidget()
-        ClockSmallWidget(colorScheme: .dark)
-
         ClockMediumWidget()
-        ClockMediumWidget(colorScheme: .dark)
-    }
-}
-
-struct ClockSmallWidgetBundle: WidgetBundle {
-    var body: some Widget {
-        ClockSmallWidget()
-        ClockSmallWidget(secondStyle: .small)
-
-        ClockSmallWidget(colorScheme: .dark)
-        ClockSmallWidget(secondStyle: .small, colorScheme: .dark)
-    }
-}
-
-struct ClockMediumWidgetBundle: WidgetBundle {
-    var body: some Widget {
-        ClockMediumWidget()
-        ClockMediumWidget(secondStyle: .big)
-
-        ClockMediumWidget(colorScheme: .dark)
-        ClockMediumWidget(secondStyle: .big, colorScheme: .dark)
-    }
-}
-
-struct TimeRecordWidgetBundle: WidgetBundle {
-    @WidgetBundleBuilder var body: some Widget {
-        TimeRecordClockWidget()
-        TimeRecordClockWidget(colorScheme: .dark)
     }
 }

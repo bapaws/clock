@@ -12,6 +12,8 @@ import SwiftUI
 struct SettingsSoundTypeView: View {
     @Binding var isPresented: Bool
 
+    @EnvironmentObject var ui: UIManager
+
     var body: some View {
         SettingsSection(title: R.string.localizable.backgroundSound()) {
             ForEach(SoundType.allCases, id: \.self) { type in
@@ -21,7 +23,6 @@ struct SettingsSoundTypeView: View {
                 }
             }
         }
-        .background(UIManager.shared.background)
     }
 }
 

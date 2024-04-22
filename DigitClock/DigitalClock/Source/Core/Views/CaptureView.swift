@@ -11,10 +11,10 @@ import SwiftUI
 import SwiftUIX
 
 struct CaptureView: View {
-    let colors = Colors.classic(scheme: .light)
-//    let colors = Colors.pink(scheme: .dark)
-//    let colors = Colors.orange(scheme: .dark)
-//    let colors = Colors.purple(scheme: .dark)
+    let colors = Colors.classic(mode: .light)
+//    let colors = Colors.pink(mode: .dark)
+//    let colors = Colors.orange(mode: .dark)
+//    let colors = Colors.purple(mode: .dark)
 
     var body: some View {
         logo

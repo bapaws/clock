@@ -15,10 +15,12 @@ struct TimeRecordClockEntryView: View {
 
     @Environment(\.colorScheme) var colorScheme
 
+    @EnvironmentObject var ui: UIManager
+
     var body: some View {
         TimeRecordClock(time: entry.time)
             .proMask(isPreview: entry.isPreview)
-            .containerBackground(colorScheme == .dark ? .black : .white)
+            .containerBackground(ui.background)
     }
 }
 
