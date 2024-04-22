@@ -37,7 +37,7 @@ open class UIBaseManager: ObservableObject {
         }
     }
 
-    @AppStorage(Storage.Key.landspaceMode, store: Storage.default.store)
+    @AppStorage(Storage.Key.darkMode, store: Storage.default.store)
     open var darkMode: DarkMode = .system {
         didSet {
             setupDarkMode()
@@ -119,7 +119,7 @@ open class UIBaseManager: ObservableObject {
         }
     }
 
-    open func setupColors(scheme: ColorScheme? = nil) {
+    open func setupColors() {
         // 刷新小組件的樣式
         WidgetCenter.shared.reloadAllTimelines()
     }

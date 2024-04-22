@@ -12,10 +12,10 @@ import SwiftUI
 import SwiftUIX
 
 struct CaptureView: View {
-//    let colors = Colors.classic(scheme: .dark)
-//    let colors = Colors.pink(scheme: .dark)
-//    let colors = Colors.orange(scheme: .dark)
-    let colors = Colors.purple(scheme: .dark)
+//    let colors = Colors.classic(mode: .dark)
+//    let colors = Colors.pink(mode: .dark)
+//    let colors = Colors.orange(mode: .dark)
+    let colors = Colors.purple(mode: .dark)
 
     var body: some View {
         // Navigate Press

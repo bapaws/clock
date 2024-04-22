@@ -11,7 +11,7 @@ import SwiftUI
 import UIKit
 
 public struct Colors: Codable, ClockShare.ThemeColors {
-    public var scheme: ColorScheme = .light
+    public var mode: DarkMode = .light
 
     // MARK: Light Theme
 
@@ -38,11 +38,11 @@ public struct Colors: Codable, ClockShare.ThemeColors {
     public var darkThemeSecondaryLabel: UIColor = .secondaryLabel
 
     public init(
-        scheme: ColorScheme = .light,
+        mode: DarkMode = .light,
         light: Color,
         dark: Color
     ) {
-        self.scheme = scheme
+        self.mode = mode
 
         lightThemePrimary = light.toUIColor() ?? UIColor(red: 0.482, green: 0.502, blue: 0.549, alpha: 1.0)
         let lightSaturation = lightThemePrimary.saturation
@@ -68,7 +68,7 @@ public struct Colors: Codable, ClockShare.ThemeColors {
     }
 
     public init(
-        scheme: ColorScheme = .light,
+        mode: DarkMode = .light,
         lightThemePrimary: Color,
         lightThemeSecondary: Color,
         lightThemeBackground: Color,
@@ -80,7 +80,7 @@ public struct Colors: Codable, ClockShare.ThemeColors {
         darkThemeDarkShadow: Color,
         darkThemeLightShadow: Color
     ) {
-        self.scheme = scheme
+        self.mode = mode
         self.lightThemePrimary = lightThemePrimary.toUIColor() ?? UIColor(red: 0.482, green: 0.502, blue: 0.549, alpha: 1.0)
         self.lightThemeSecondary = lightThemeSecondary.toUIColor() ?? UIColor.systemTeal
         self.lightThemeBackground = lightThemeBackground.toUIColor() ?? UIColor(red: 0.925, green: 0.941, blue: 0.953, alpha: 1.0)
@@ -121,32 +121,8 @@ public extension Colors {
         }
     }
 
-    private enum Scheme: String, Codable {
-        case light, dark
-
-        init(colorScheme: ColorScheme) {
-            switch colorScheme {
-            case .light:
-                self = .light
-            case .dark:
-                self = .dark
-            @unknown default:
-                self = .light
-            }
-        }
-
-        var colorScheme: ColorScheme {
-            switch self {
-            case .light:
-                .light
-            case .dark:
-                .dark
-            }
-        }
-    }
-
     private enum CodingKeys: String, CodingKey {
-        case scheme
+        case mode
         case lightThemePrimary
         case lightThemeSecondary
         case lightThemeBackground
@@ -161,7 +137,7 @@ public extension Colors {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        scheme = try container.decode(Scheme.self, forKey: .scheme).colorScheme
+        mode = try container.decode(DarkMode.self, forKey: .mode)
         lightThemePrimary = try container.decode(Argb.self, forKey: .lightThemePrimary).uiColor
         lightThemeSecondary = try container.decode(Argb.self, forKey: .lightThemeSecondary).uiColor
         lightThemeBackground = try container.decode(Argb.self, forKey: .lightThemeBackground).uiColor
@@ -176,7 +152,7 @@ public extension Colors {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(Scheme(colorScheme: scheme), forKey: .scheme)
+        try container.encode(mode, forKey: .mode)
         try container.encode(Argb(uiColor: lightThemePrimary), forKey: .lightThemePrimary)
         try container.encode(Argb(uiColor: lightThemeSecondary), forKey: .lightThemeSecondary)
         try container.encode(Argb(uiColor: lightThemeBackground), forKey: .lightThemeBackground)
@@ -193,9 +169,9 @@ public extension Colors {
 // MARK: Classic
 
 public extension Colors {
-    static func classic(scheme: ColorScheme = .light) -> Colors {
+    static func classic(mode: DarkMode = .light) -> Colors {
         Colors(
-            scheme: scheme,
+            mode: mode,
             lightThemePrimary: Color(red: 0.482, green: 0.502, blue: 0.549),
             lightThemeSecondary: Color.systemTeal,
             lightThemeBackground: Color(red: 0.925, green: 0.941, blue: 0.953),
@@ -209,15 +185,15 @@ public extension Colors {
         )
     }
 
-    static func pink(scheme: ColorScheme = .light) -> Colors {
+    static func pink(mode: DarkMode = .light) -> Colors {
         Colors(light: Color(hexadecimal6: 0xff96b6), dark: Color(hexadecimal6: 0xff96b6))
     }
 
-    static func orange(scheme: ColorScheme = .light) -> Colors {
+    static func orange(mode: DarkMode = .light) -> Colors {
         Colors(light: Color(hexadecimal6: 0xf58653), dark: Color(hexadecimal6: 0xf58653))
     }
 
-    static func purple(scheme: ColorScheme = .light) -> Colors {
+    static func purple(mode: DarkMode = .light) -> Colors {
         Colors(light: Color(hexadecimal6: 0x9a4cf4), dark: Color(hexadecimal6: 0x907dac))
     }
 }
@@ -225,11 +201,51 @@ public extension Colors {
 // MARK: Mode
 
 public extension Colors {
-    var primary: Color { Color(uiColor: scheme == .dark ? darkThemePrimary : lightThemePrimary) }
-    var secondary: Color { Color(uiColor: scheme == .dark ? darkThemeSecondary : lightThemeSecondary) }
-    var background: Color { Color(uiColor: scheme == .dark ? darkThemeBackground : lightThemeBackground) }
-    var darkShadow: Color { Color(uiColor: scheme == .dark ? darkThemeDarkShadow : lightThemeDarkShadow) }
-    var lightShadow: Color { Color(uiColor: scheme == .dark ? darkThemeLightShadow : lightThemeLightShadow) }
+//    var primary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary }) }
+//    var secondary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary }) }
+//    var background: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground }) }
+//    var darkShadow: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeDarkShadow : lightThemeDarkShadow }) }
+//    var lightShadow: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeLightShadow : lightThemeLightShadow }) }
+
+    var primary: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemePrimary)
+        case .light: Color(uiColor: lightThemePrimary)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary })
+        }
+    }
+
+    var secondary: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeSecondary)
+        case .light: Color(uiColor: lightThemeSecondary)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary })
+        }
+    }
+
+    var background: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeBackground)
+        case .light: Color(uiColor: lightThemeBackground)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground })
+        }
+    }
+
+    var darkShadow: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeDarkShadow)
+        case .light: Color(uiColor: lightThemeDarkShadow)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeDarkShadow : lightThemeDarkShadow })
+        }
+    }
+
+    var lightShadow: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeLightShadow)
+        case .light: Color(uiColor: lightThemeLightShadow)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeLightShadow : lightThemeLightShadow })
+        }
+    }
 }
 
 // MARK: Color Helper
@@ -295,16 +311,16 @@ public extension ColorType {
         }
     }
 
-    func colors(scheme: ColorScheme = .light) -> Colors {
+    func colors(mode: DarkMode = .light) -> Colors {
         switch self {
         case .classic:
-            Colors.classic(scheme: scheme)
+            Colors.classic(mode: mode)
         case .pink:
-            Colors.pink(scheme: scheme)
+            Colors.pink(mode: mode)
         case .orange:
-            Colors.orange(scheme: scheme)
+            Colors.orange(mode: mode)
         case .purple:
-            Colors.purple(scheme: scheme)
+            Colors.purple(mode: mode)
         }
     }
 }

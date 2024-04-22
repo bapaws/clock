@@ -36,11 +36,12 @@ public class UIManager: ClockShare.UIBaseManager {
     }
 
     override public func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
+        let classic = ColorType.classic.colors
         let backgroundColor = UIColor {
-            [unowned self] in $0.userInterfaceStyle == .dark ? colors.darkThemeBackground : colors.lightThemeBackground
+            $0.userInterfaceStyle == .dark ? classic.darkThemeBackground : classic.lightThemeBackground
         }
         let foregroundColor = UIColor {
-            [unowned self] in $0.userInterfaceStyle == .dark ? colors.darkThemePrimary : colors.lightThemePrimary
+            $0.userInterfaceStyle == .dark ? classic.darkThemePrimary : classic.lightThemePrimary
         }
 
         let appearance = UINavigationBarAppearance()
@@ -49,11 +50,11 @@ public class UIManager: ClockShare.UIBaseManager {
         appearance.backgroundColor = backgroundColor
         appearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .light),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         appearance.largeTitleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 25, weight: .light),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         let navigationBar = navigationBar ?? UINavigationBar.appearance()
         navigationBar.prefersLargeTitles = false
@@ -63,9 +64,9 @@ public class UIManager: ClockShare.UIBaseManager {
         navigationBar.scrollEdgeAppearance = appearance
     }
 
-    override public func setupColors(scheme: ColorScheme? = nil) {
+    override public func setupColors() {
         colors = colorType.colors
-        colors.scheme = darkMode.current.raw ?? scheme ?? .light
+        colors.mode = darkMode
 
         // 刷新小組件的樣式
         WidgetCenter.shared.reloadAllTimelines()

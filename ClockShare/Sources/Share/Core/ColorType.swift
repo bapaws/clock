@@ -17,7 +17,7 @@ public enum ColorType: String, CaseIterable, Codable {
 }
 
 public protocol ThemeColors {
-    var scheme: ColorScheme { get set }
+    var mode: DarkMode { get set }
 
     // MARK: Light Theme
 
@@ -40,7 +40,7 @@ public protocol ThemeColors {
     var darkThemeSecondaryLabel: UIColor { get }
 
     init(
-        scheme: ColorScheme,
+        mode: DarkMode,
         light: Color,
         dark: Color
     )
