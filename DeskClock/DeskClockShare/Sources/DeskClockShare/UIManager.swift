@@ -27,7 +27,6 @@ public class UIManager: ClockShare.UIBaseManager {
     override public func setupUI() {
         super.setupUI()
 
-        setupDarkMode()
         // pad 下横竖屏切换无效
         if UIDevice.current.userInterfaceIdiom != .pad {
             setupLandspaceMode()
@@ -37,9 +36,12 @@ public class UIManager: ClockShare.UIBaseManager {
     }
 
     override public func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
-        let classic = ColorType.classic.colors
-        let backgroundColor = classic.background.toUIColor()
-        let foregroundColor = classic.primary.toUIColor()
+        let backgroundColor = UIColor {
+            [unowned self] in $0.userInterfaceStyle == .dark ? colors.darkThemeBackground : colors.lightThemeBackground
+        }
+        let foregroundColor = UIColor {
+            [unowned self] in $0.userInterfaceStyle == .dark ? colors.darkThemePrimary : colors.lightThemePrimary
+        }
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()

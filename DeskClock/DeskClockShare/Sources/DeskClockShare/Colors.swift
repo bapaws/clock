@@ -11,8 +11,6 @@ import SwiftUI
 import UIKit
 
 public struct Colors: Codable, ClockShare.ThemeColors {
-
-
     public var scheme: ColorScheme = .light
 
     // MARK: Light Theme
@@ -34,7 +32,7 @@ public struct Colors: Codable, ClockShare.ThemeColors {
     public let darkThemeBackground: UIColor
     public let darkThemeDarkShadow: UIColor
     public let darkThemeLightShadow: UIColor
-    
+
     public var darkThemeSecondaryBackground: UIColor = .systemBackground
     public var darkThemeLabel: UIColor = .label
     public var darkThemeSecondaryLabel: UIColor = .secondaryLabel
@@ -227,11 +225,11 @@ public extension Colors {
 // MARK: Mode
 
 public extension Colors {
-    var primary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary }) }
-    var secondary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary }) }
-    var background: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground }) }
-    var darkShadow: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeDarkShadow : lightThemeDarkShadow }) }
-    var lightShadow: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeLightShadow : lightThemeLightShadow }) }
+    var primary: Color { Color(uiColor: scheme == .dark ? darkThemePrimary : lightThemePrimary) }
+    var secondary: Color { Color(uiColor: scheme == .dark ? darkThemeSecondary : lightThemeSecondary) }
+    var background: Color { Color(uiColor: scheme == .dark ? darkThemeBackground : lightThemeBackground) }
+    var darkShadow: Color { Color(uiColor: scheme == .dark ? darkThemeDarkShadow : lightThemeDarkShadow) }
+    var lightShadow: Color { Color(uiColor: scheme == .dark ? darkThemeLightShadow : lightThemeLightShadow) }
 }
 
 // MARK: Color Helper
