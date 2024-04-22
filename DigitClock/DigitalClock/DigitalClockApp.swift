@@ -38,7 +38,7 @@ struct DigitalClockApp: App {
                 UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                 // In iOS 13+, idle timer needs to be set in scene to override default
                 UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
-                WidgetCenter.shared.reloadTimelines(ofKind: "DigitalClockWidget")
+                WidgetCenter.shared.reloadAllTimelines()
             case .inactive: break
             case .background: break
             @unknown default: print("ScenePhase: unexpected state")
