@@ -17,7 +17,7 @@ public enum ColorType: String, CaseIterable, Codable {
 }
 
 public protocol ThemeColors {
-    var scheme: ColorScheme { get set }
+    var mode: DarkMode { get set }
 
     // MARK: Light Theme
 
@@ -40,18 +40,58 @@ public protocol ThemeColors {
     var darkThemeSecondaryLabel: UIColor { get }
 
     init(
-        scheme: ColorScheme,
+        mode: DarkMode,
         light: Color,
         dark: Color
     )
 }
 
 public extension ThemeColors {
-    var primary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary }) }
-    var secondary: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary }) }
-    var background: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground }) }
-    var secondaryBackground: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? lightThemeSecondaryBackground : darkThemeSecondaryBackground }) }
+    var primary: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemePrimary)
+        case .light: Color(uiColor: lightThemePrimary)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary })
+        }
+    }
 
-    var label: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeLabel : lightThemeLabel }) }
-    var secondaryLabel: Color { Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryLabel : lightThemeSecondaryLabel }) }
+    var secondary: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeSecondary)
+        case .light: Color(uiColor: lightThemeSecondary)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary })
+        }
+    }
+
+    var background: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeBackground)
+        case .light: Color(uiColor: lightThemeBackground)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground })
+        }
+    }
+
+    var secondaryBackground: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeSecondaryBackground)
+        case .light: Color(uiColor: lightThemeSecondaryBackground)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? lightThemeSecondaryBackground : darkThemeSecondaryBackground })
+        }
+    }
+
+    var label: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeLabel)
+        case .light: Color(uiColor: lightThemeLabel)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeLabel : lightThemeLabel })
+        }
+    }
+
+    var secondaryLabel: Color {
+        switch mode {
+        case .dark: Color(uiColor: darkThemeSecondaryLabel)
+        case .light: Color(uiColor: lightThemeSecondaryLabel)
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryLabel : lightThemeSecondaryLabel })
+        }
+    }
 }

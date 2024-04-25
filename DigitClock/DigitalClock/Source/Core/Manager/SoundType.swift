@@ -20,19 +20,5 @@ public extension SoundType {
         case .drip:
             R.string.localizable.drip()
         }
-//        switch self {
-//        case .card:
-//            R.string.localizable.card()
-//        case .drip:
-//            R.string.localizable.drip()
-//        case .muyu:
-//            R.string.localizable.muyu()
-//        case .pendulum:
-//            R.string.localizable.pendulum()
-//        case .switch:
-//            R.string.localizable.switch()
-//        case .tick:
-//            R.string.localizable.tick()
-//        }
     }
 }

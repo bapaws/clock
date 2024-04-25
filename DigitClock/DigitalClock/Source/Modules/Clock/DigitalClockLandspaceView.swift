@@ -1,5 +1,5 @@
 //
-//  ClockLandspaceView.swift
+//  DigitalClockLandspaceView.swift
 //  DigitalClock
 //
 //  Created by 张敏超 on 2023/12/24.
@@ -10,7 +10,7 @@ import DigitalClockShare
 import SwiftUI
 import SwiftUIX
 
-struct ClockLandspaceView: View {
+struct DigitalClockLandspaceView: View {
     @EnvironmentObject var clock: ClockManager
     let color: Colors
 
@@ -22,23 +22,24 @@ struct ClockLandspaceView: View {
             let secondWidth = floor(digitWidth * clock.secondStyle.heightMultiple)
             ZStack {
                 HStack(spacing: spacing) {
-                    DigitView(tens: clock.hourTens, ones: clock.hourOnes)
+                    Text("\(clock.hourTens)\(clock.hourOnes)")
                         .frame(width: digitWidth, height: digitWidth)
 
-                    DigitView(tens: clock.time.minuteTens, ones: clock.time.minuteOnes)
+                    Text("\(clock.time.minuteTens)\(clock.time.minuteOnes)")
                         .frame(width: digitWidth, height: digitWidth)
                     if clock.secondStyle == .big {
-                        DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes)
+                        Text("\(clock.time.secondTens)\(clock.time.secondOnes)")
                             .frame(width: secondWidth, height: secondWidth)
                     }
                 }
                 if clock.secondStyle == .small {
-                    DigitView(tens: clock.time.secondTens, ones: clock.time.secondOnes)
+                    Text("\(clock.time.secondTens)\(clock.time.secondOnes)")
                         .frame(width: secondWidth, height: secondWidth)
                         .font(.system(size: floor(secondWidth * 0.5), design: .rounded), weight: .ultraLight)
                         .offset(y: proxy.size.height / 2)
                 }
             }
+            .monospacedDigit()
             .font(.system(size: digitWidth * 0.8, design: .rounded), weight: .ultraLight)
             .frame(proxy.size)
         }
@@ -47,6 +48,6 @@ struct ClockLandspaceView: View {
 }
 
 #Preview {
-    ClockLandspaceView(color: ColorType.classic.colors)
+    DigitalClockLandspaceView(color: ColorType.classic.colors)
         .environmentObject(ClockManager.shared)
 }

@@ -14,7 +14,7 @@ import WidgetKit
 public class UIManager: ClockShare.UIBaseManager {
     public static let shared = UIManager()
 
-    public let bottomHeight: CGFloat = 54
+    public let bottomHeight: CGFloat = 64
 
     @Published public private(set) var colors: Colors = ColorType.classic.colors
     @AppStorage(Storage.Key.colorType, store: Storage.default.store)
@@ -40,20 +40,20 @@ public class UIManager: ClockShare.UIBaseManager {
 
     override public func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
         let classic = ColorType.classic.colors
-        let backgroundColor = classic.background.toUIColor()
-        let foregroundColor = classic.primary.toUIColor()
+        let foregroundColor = UIColor {
+            $0.userInterfaceStyle == .dark ? classic.darkThemePrimary : classic.lightThemePrimary
+        }
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
         appearance.shadowColor = .clear
-        appearance.backgroundColor = backgroundColor
         appearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .ultraLight),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         appearance.largeTitleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 25, weight: .ultraLight),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         let navigationBar = navigationBar ?? UINavigationBar.appearance()
         navigationBar.prefersLargeTitles = false
@@ -63,9 +63,9 @@ public class UIManager: ClockShare.UIBaseManager {
         navigationBar.scrollEdgeAppearance = appearance
     }
 
-    override public func setupColors(scheme: ColorScheme? = nil) {
+    override public func setupColors() {
         colors = colorType.colors
-        colors.scheme = darkMode.current.raw ?? scheme ?? .light
+        colors.mode = darkMode
 
         // 刷新小組件的樣式
         WidgetCenter.shared.reloadAllTimelines()

@@ -1,5 +1,5 @@
 //
-//  ProManager.swift
+//  DigitalProManager.swift
 //  CalendarArt
 //
 //  Created by 张敏超 on 2023/11/19.
@@ -11,9 +11,9 @@ import RevenueCat
 
 typealias ProCompletionHandler = (PublicError?) -> Void
 
-class ProManager: ClockShare.ProManager, ObservableObject {
-    private static let shared = ProManager()
-    override class var `default`: ProManager { shared }
+class DigitalProManager: ClockShare.ProManager, ObservableObject {
+    private static let shared = DigitalProManager()
+    override class var `default`: DigitalProManager { shared }
 
     public private(set) var availablePackages = [Package]()
     private var allPackages = [Package]()
@@ -115,7 +115,7 @@ class ProManager: ClockShare.ProManager, ObservableObject {
 
 // MARK: -
 
-extension ProManager {
+extension DigitalProManager {
     func purchase(index: Int, completion: ProCompletionHandler?) {
         guard index < availablePackages.count else {
             completion?(PublicError(domain: "", code: 404))
@@ -142,7 +142,7 @@ extension ProManager {
 
 // MARK: -
 
-extension ProManager: PurchasesDelegate {
+extension DigitalProManager: PurchasesDelegate {
     func purchases(_ purchases: Purchases, receivedUpdated customerInfo: CustomerInfo) {
         savePurchased(customerInfo: customerInfo)
     }

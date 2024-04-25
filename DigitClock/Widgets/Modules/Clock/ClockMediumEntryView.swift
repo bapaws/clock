@@ -59,10 +59,10 @@ struct ClockMediumEntryView: View {
             if secondStyle == .none {
                 HStack {
                     Spacer()
-                    DigitView(tens: time.hourTens, ones: time.hourOnes)
+                    Text("\(time.hourTens)\(time.hourOnes)")
                         .frame(digitSize)
                     Spacer()
-                    DigitView(tens: time.minuteTens, ones: time.minuteOnes)
+                    Text("\(time.minuteTens)\(time.minuteOnes)")
                         .frame(digitSize)
                     Spacer()
                 }
@@ -81,17 +81,17 @@ struct ClockMediumEntryView: View {
                         .offset(x: -spacing)
 
                     HStack(spacing: spacing) {
-                        DigitView(tens: time.hourTens, ones: time.hourOnes)
+                        Text("\(time.hourTens)\(time.hourOnes)")
                             .frame(digitSize)
 
-                        DigitView(tens: time.minuteTens, ones: time.minuteOnes)
-                            .frame(digitSize)
+                        Text("\(time.minuteTens)\(time.minuteOnes)").frame(digitSize)
                     }
                     .frame(alignment: .leading)
                     .offset(x: spacing)
                 }
             }
         }
+        .monospacedDigit()
         .font(.system(size: fontSize, design: .rounded), weight: .ultraLight)
         .height(digitSize.height)
     }

@@ -27,7 +27,6 @@ public class UIManager: ClockShare.UIBaseManager {
     override public func setupUI() {
         super.setupUI()
 
-        setupDarkMode()
         // pad 下横竖屏切换无效
         if UIDevice.current.userInterfaceIdiom != .pad {
             setupLandspaceMode()
@@ -38,8 +37,12 @@ public class UIManager: ClockShare.UIBaseManager {
 
     override public func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
         let classic = ColorType.classic.colors
-        let backgroundColor = classic.background.toUIColor()
-        let foregroundColor = classic.primary.toUIColor()
+        let backgroundColor = UIColor {
+            $0.userInterfaceStyle == .dark ? classic.darkThemeBackground : classic.lightThemeBackground
+        }
+        let foregroundColor = UIColor {
+            $0.userInterfaceStyle == .dark ? classic.darkThemePrimary : classic.lightThemePrimary
+        }
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
@@ -47,11 +50,11 @@ public class UIManager: ClockShare.UIBaseManager {
         appearance.backgroundColor = backgroundColor
         appearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .light),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         appearance.largeTitleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 25, weight: .light),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         let navigationBar = navigationBar ?? UINavigationBar.appearance()
         navigationBar.prefersLargeTitles = false
@@ -61,9 +64,9 @@ public class UIManager: ClockShare.UIBaseManager {
         navigationBar.scrollEdgeAppearance = appearance
     }
 
-    override public func setupColors(scheme: ColorScheme? = nil) {
+    override public func setupColors() {
         colors = colorType.colors
-        colors.scheme = darkMode.current.raw ?? scheme ?? .light
+        colors.mode = darkMode
 
         // 刷新小組件的樣式
         WidgetCenter.shared.reloadAllTimelines()

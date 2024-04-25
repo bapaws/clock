@@ -1,5 +1,5 @@
 //
-//  TimerView.swift
+//  DigitalTimerView.swift
 //  Clock
 //
 //  Created by 张敏超 on 2023/12/17.
@@ -10,7 +10,7 @@ import Combine
 import DigitalClockShare
 import SwiftUI
 
-struct TimerView: View {
+struct DigitalTimerView: View {
     @Binding var isTabHidden: Bool
     @Binding var ignoreTapGesture: Bool
     @StateObject var manager = TimerManager.shared
@@ -20,9 +20,9 @@ struct TimerView: View {
         GeometryReader { proxy in
             VStack(spacing: 16) {
                 if proxy.size.width > proxy.size.height {
-                    TimerLandspaceView(time: manager.time, color: ui.colors)
+                    DigitalTimerLandspaceView(time: manager.time, color: ui.colors)
                 } else {
-                    TimerPortraitView(time: manager.time, color: ui.colors)
+                    DigitalTimerPortraitView(time: manager.time, color: ui.colors)
                 }
                 HStack(spacing: 64) {
                     buttons
@@ -30,10 +30,11 @@ struct TimerView: View {
                 .height(ui.bottomHeight)
                 .font(.system(.title, design: .rounded), weight: .ultraLight)
             }
+            .contentTransition(.numericText(countsDown: false))
         }
         .padding()
         .onChange(of: manager.time.seconds) { _ in
-            AppManager.shared.playTimer()
+            DigitalAppManager.shared.playTimer()
         }
     }
 
@@ -90,6 +91,6 @@ struct TimerView: View {
 }
 
 #Preview {
-    TimerView(isTabHidden: Binding<Bool>.constant(true), ignoreTapGesture: .constant(true))
+    DigitalTimerView(isTabHidden: Binding<Bool>.constant(true), ignoreTapGesture: .constant(true))
         .background(UIManager.shared.colors.background)
 }

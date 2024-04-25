@@ -13,19 +13,21 @@ import WidgetKit
 
 struct ClockSmallWidget: Widget {
     var secondStyle: DigitStyle = .none
-    var colorScheme: ColorScheme = .light
 
     var kind: String {
-        "DigitalClockSmallWidget" + secondStyle.rawValue + "\(colorScheme)"
+        "DigitalClockSmallWidget" + secondStyle.rawValue
     }
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ClockProvider()) { entry in
             ClockEntryView(entry: entry, secondStyle: secondStyle)
                 .environmentObject(UIManager.shared)
-                .environment(\.colorScheme, colorScheme)
+                .ifLet(UIManager.shared.darkMode.raw) {
+                    $0.environment(\.colorScheme, $1)
+                }
                 .onAppear {
-                    UIManager.shared.setupColors(scheme: colorScheme)
+                    ProManager.default.refresh()
+                    UIManager.shared.setupColors()
                 }
         }
         .supportedFamilies([.systemSmall])
@@ -36,19 +38,21 @@ struct ClockSmallWidget: Widget {
 
 struct ClockMediumWidget: Widget {
     var secondStyle: DigitStyle = .none
-    var colorScheme: ColorScheme = .light
 
     var kind: String {
-        "DigitalClockMediumWidget" + secondStyle.rawValue + "\(colorScheme)"
+        "DigitalClockMediumWidget" + secondStyle.rawValue
     }
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ClockProvider()) { entry in
             ClockMediumEntryView(entry: entry, secondStyle: secondStyle)
                 .environmentObject(UIManager.shared)
-                .environment(\.colorScheme, colorScheme)
+                .ifLet(UIManager.shared.darkMode.raw) {
+                    $0.environment(\.colorScheme, $1)
+                }
                 .onAppear {
-                    UIManager.shared.setupColors(scheme: colorScheme)
+                    ProManager.default.refresh()
+                    UIManager.shared.setupColors()
                 }
         }
         .supportedFamilies([.systemMedium])

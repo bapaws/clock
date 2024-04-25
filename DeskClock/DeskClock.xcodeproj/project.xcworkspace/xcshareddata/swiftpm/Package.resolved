@@ -28,10 +28,14 @@
       }
     },
     {
-      "identity" : "neumorphic",
+      "identity" : "pow",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/costachung/neumorphic/",
+      "location" : "https://github.com/EmergeTools/Pow",
       "state" : {
+<<<<<<< HEAD
+        "revision" : "cc014eba4b65f689cadc281ad925de5607f2adc9",
+        "version" : "1.0.3"
+=======
         "revision" : "03c6f7b3d27bfb28a082db2e9ffae45fbc69cb8b",
         "version" : "2.0.6"
       }
@@ -79,6 +83,7 @@
       "state" : {
         "revision" : "c8ed701b513cf5177118a175d85fbbbcd707ab41",
         "version" : "1.3.0"
+>>>>>>> 18be4556abe1931c4d230a644f680e6d01e926db
       }
     },
     {
@@ -122,17 +127,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/malcommac/SwiftDate.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e"
-      }
-    },
-    {
-      "identity" : "swiftuipager",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/fermoya/SwiftUIPager.git",
-      "state" : {
-        "revision" : "4ddc04c801aac143090bb14cf26603a3bf9c74cb",
-        "version" : "2.5.0"
+        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e",
+        "version" : "7.0.0"
       }
     },
     {
@@ -142,15 +138,6 @@
       "state" : {
         "revision" : "a5a22a1aaca885c229f475af049d75a6d9144de8",
         "version" : "0.1.9"
-      }
-    },
-    {
-      "identity" : "xcodeedit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tomlokhorst/XcodeEdit",
-      "state" : {
-        "revision" : "b6b67389a0f1a6fdd9c6457a8ab5b02eaab13c5c",
-        "version" : "2.9.2"
       }
     },
     {

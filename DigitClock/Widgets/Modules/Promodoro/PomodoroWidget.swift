@@ -19,9 +19,10 @@ struct PomodoroWidget: View {
 
     var body: some View {
         HStack(spacing: spacing) {
-            DigitView(tens: time.minuteTens, ones: time.minuteOnes)
-            DigitView(tens: time.secondTens, ones: time.secondOnes)
+            Text("\(time.minuteTens)\(time.minuteOnes)")
+            Text("\(time.secondTens)\(time.secondOnes)")
         }
+        .monospacedDigit()
         .font(.system(size: 75, design: .rounded), weight: .ultraLight)
         .minimumScaleFactor(0.2)
     }

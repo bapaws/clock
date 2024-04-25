@@ -7,16 +7,18 @@
 
 import ClockShare
 import DigitalClockShare
-import SwiftUI
 import RevenueCat
+import SwiftUI
+import WidgetKit
 
 struct PurchaseButton: View {
-    @State var package: Package? = ProManager.default.lifetimePackage
+    @State var package: Package? = DigitalProManager.default.lifetimePackage
 
+    @EnvironmentObject var ui: UIManager
     var body: some View {
         Button(action: purchase) {
             HStack(spacing: 32) {
-                if let package = ProManager.default.lifetimePackage {
+                if let package = DigitalProManager.default.lifetimePackage {
                     Text(package.localizedPriceString)
                         .font(.title2)
                 }
@@ -32,15 +34,24 @@ struct PurchaseButton: View {
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.roundedRectangle(radius: 8))
         .tint(.label)
-        .foregroundStyle(UIManager.shared.colors.background)
+        .foregroundStyle(ui.background)
     }
 
     func purchase() {
-        guard let package = package else { return }
+        #if DEBUG
+        let purchased = PurchasedProduct(
+            identifier: "com.bapaws.DigitalClock.lifetime",
+            localizedTitle: "Lifetime"
+        )
+        DigitalProManager.default.purchasedProduct = purchased
+        WidgetCenter.shared.reloadAllTimelines()
+        #else
+        guard let package = DigitalProManager.default.lifetimePackage else { return }
 
         HUD.show()
-        ProManager.default.purchase(package: package) { error in
+        DigitalProManager.default.purchase(package: package) { error in
             HUD.hide()
+            WidgetCenter.shared.reloadAllTimelines()
             if let error = error {
                 print(error)
                 Toast.show(error.localizedDescription)
@@ -48,6 +59,7 @@ struct PurchaseButton: View {
                 Toast.show(R.string.localizable.congratulations())
             }
         }
+        #endif
     }
 }
 

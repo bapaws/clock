@@ -11,10 +11,10 @@ import SwiftUI
 import SwiftUIX
 
 struct CaptureView: View {
-    let colors = Colors.classic(scheme: .light)
-//    let colors = Colors.pink(scheme: .dark)
-//    let colors = Colors.orange(scheme: .dark)
-//    let colors = Colors.purple(scheme: .dark)
+    let colors = Colors.classic(mode: .light)
+//    let colors = Colors.pink(mode: .dark)
+//    let colors = Colors.orange(mode: .dark)
+//    let colors = Colors.purple(mode: .dark)
 
     var body: some View {
         logo
@@ -26,7 +26,8 @@ struct CaptureView: View {
         let padding: CGFloat = 120
         let width: CGFloat = 1024
         let digitWidth: CGFloat = width - padding * 2
-        DigitView(tens: 2, ones: 5)
+        Text("25")
+            .monospacedDigit()
             .padding(.all, padding)
             .frame(width: width, height: width)
 //            .foregroundColor(colors.primary)

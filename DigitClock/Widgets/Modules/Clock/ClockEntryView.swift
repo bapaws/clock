@@ -53,7 +53,7 @@ struct ClockEntryView: View {
     var content: some View {
         VStack(spacing: 6) {
             Spacer()
-            Text(entry.date.to(format: "MMdd, EE"))
+            Text(entry.date.to(format: "MMMdd, EE"))
                 .font(.system(size: 18, design: .rounded), weight: .ultraLight)
                 .multilineTextAlignment(.trailing)
 
@@ -63,10 +63,10 @@ struct ClockEntryView: View {
 
                 HStack(spacing: spacing) {
                     ui.background
-                    DigitView(tens: time.hourTens, ones: time.hourOnes)
+                    Text("\(time.hourTens)\(time.hourOnes)")
                         .frame(digitSize)
 
-                    DigitView(tens: time.minuteTens, ones: time.minuteOnes)
+                    Text("\(time.minuteTens)\(time.minuteOnes)")
                         .frame(digitSize)
                     ui.background
                 }
@@ -89,6 +89,7 @@ struct ClockEntryView: View {
             }
             Spacer()
         }
+        .monospacedDigit()
         .font(.system(size: fontSize, design: .rounded), weight: .ultraLight)
         .padding(.vertical)
         .background(ui.background)

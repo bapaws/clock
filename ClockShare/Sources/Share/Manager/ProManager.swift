@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public struct PurchasedProduct: Codable {
     public var identifier: String?
@@ -42,17 +43,15 @@ open class ProManager: NSObject {
     open class var `default`: ProManager { shared }
 
     public var isPro: Bool {
-//        #if DEBUG
-//        false
-//        #else
+        #if DEBUG
+        true
+        #else
         purchasedProduct != nil
-//        #endif
+        #endif
     }
 
     @Published open var purchasedProduct: PurchasedProduct? {
-        didSet {
-            Storage.default.purchasedProduct = purchasedProduct
-        }
+        didSet { Storage.default.purchasedProduct = purchasedProduct }
     }
 
     override public init() {
@@ -74,5 +73,11 @@ open class ProManager: NSObject {
         }
         return true
         #endif
+    }
+
+    /// 刷新购买状态
+    /// 在 App 中购买后，及时刷新小组件的购买状态
+    open func refresh() {
+        purchasedProduct = Storage.default.purchasedProduct
     }
 }

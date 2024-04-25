@@ -1,5 +1,5 @@
 //
-//  ClockView.swift
+//  DigitalClockView.swift
 //  Clock
 //
 //  Created by 张敏超 on 2023/12/14.
@@ -12,7 +12,7 @@ import SwiftDate
 import SwiftUI
 import SwiftUIX
 
-struct ClockView: View {
+struct DigitalClockView: View {
     @StateObject var manager: ClockManager = .shared
     @EnvironmentObject var ui: UIManager
 
@@ -26,7 +26,7 @@ struct ClockView: View {
                     Color.clear
                         .frame(width: width, height: width)
                     VStack {
-                        ClockLandspaceView(color: ui.colors)
+                        DigitalClockLandspaceView(color: ui.colors)
                             .environmentObject(manager)
                         date
                     }
@@ -35,7 +35,7 @@ struct ClockView: View {
                 }
             } else {
                 VStack(spacing: 16) {
-                    ClockPortraitView(color: ui.colors)
+                    DigitalClockPortraitView(color: ui.colors)
                         .environmentObject(manager)
                     date
                 }
@@ -43,7 +43,7 @@ struct ClockView: View {
         }
         .padding()
         .onChange(of: manager.time.seconds) { _ in
-            AppManager.shared.playClock()
+            DigitalAppManager.shared.playClock()
         }
     }
 
@@ -60,6 +60,6 @@ struct ClockView: View {
 }
 
 #Preview {
-    ClockView()
+    DigitalClockView()
         .background(UIManager.shared.colors.background)
 }

@@ -60,7 +60,7 @@ struct GeneralSettingsView: View {
         // MARK: About
 
         .sheet(isPresented: $isAboutPresented) {
-            AboutView(isPresented: $isAboutPresented)
+            DigitalAboutView(isPresented: $isAboutPresented)
         }
     }
 
@@ -119,10 +119,10 @@ struct GeneralSettingsView: View {
     }
 
     func purchase() {
-        guard let package = ProManager.default.lifetimePackage else { return }
+        guard let package = DigitalProManager.default.lifetimePackage else { return }
 
         HUD.show()
-        ProManager.default.purchase(package: package) { error in
+        DigitalProManager.default.purchase(package: package) { error in
             HUD.hide()
             if let error = error {
                 print(error)
@@ -136,7 +136,7 @@ struct GeneralSettingsView: View {
 
     func restore() {
         HUD.show()
-        ProManager.default.restorePurchases { error in
+        DigitalProManager.default.restorePurchases { error in
             HUD.hide()
             if let error = error {
                 print(error)

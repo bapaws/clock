@@ -9,8 +9,8 @@ import AVFoundation
 import ClockShare
 import Foundation
 
-public class AppManager: ClockShare.AppBaseManager {
-    public static let shared = AppManager()
+public class DigitalAppManager: ClockShare.AppBaseManager {
+    public static let shared = DigitalAppManager()
     
     private override init() {
         super.init()

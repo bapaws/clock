@@ -1,5 +1,5 @@
 //
-//  PomodoroLandspaceView.swift
+//  DigitalPomodoroLandspaceView.swift
 //  DigitalClock
 //
 //  Created by 张敏超 on 2023/12/24.
@@ -9,7 +9,7 @@ import ClockShare
 import DigitalClockShare
 import SwiftUI
 
-struct PomodoroLandspaceView: View {
+struct DigitalPomodoroLandspaceView: View {
     let time: Time
     let color: Colors
     let spacing: CGFloat = 32
@@ -20,14 +20,15 @@ struct PomodoroLandspaceView: View {
             let digitHeight = ceil(digitWidth * 0.8)
             HStack(spacing: spacing) {
                 if time.hour != 0 {
-                    DigitView(tens: time.hourTens, ones: time.hourOnes)
+                    Text("\(time.hourTens)\(time.hourOnes)")
                         .frame(width: digitWidth, height: digitHeight)
                 }
-                DigitView(tens: time.minuteTens, ones: time.minuteOnes)
+                Text("\(time.minuteTens)\(time.minuteOnes)")
                     .frame(width: digitWidth, height: digitHeight)
-                DigitView(tens: time.secondTens, ones: time.secondOnes)
+                Text("\(time.secondTens)\(time.secondOnes)")
                     .frame(width: digitWidth, height: digitHeight)
             }
+            .monospacedDigit()
             .font(.system(size: digitHeight, design: .rounded), weight: .ultraLight)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         }
@@ -36,5 +37,5 @@ struct PomodoroLandspaceView: View {
 }
 
 #Preview {
-    PomodoroLandspaceView(time: PomodoroManager.shared.time, color: ColorType.classic.colors)
+    DigitalPomodoroLandspaceView(time: PomodoroManager.shared.time, color: ColorType.classic.colors)
 }

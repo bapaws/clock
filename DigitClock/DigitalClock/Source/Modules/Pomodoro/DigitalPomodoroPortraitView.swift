@@ -1,5 +1,5 @@
 //
-//  TimerPortraitView.swift
+//  DigitalPomodoroPortraitView.swift
 //  DigitalClock
 //
 //  Created by 张敏超 on 2023/12/24.
@@ -10,31 +10,29 @@ import DigitalClockShare
 import SwiftUI
 import SwiftUIX
 
-struct TimerPortraitView: View {
+struct DigitalPomodoroPortraitView: View {
     let time: Time
     let color: Colors
     let spacing: CGFloat = 16
 
-    @EnvironmentObject var timer: TimerManager
-
     var body: some View {
         GeometryReader { proxy in
-            let digitCount: CGFloat = time.hour != 0 || timer.hourStyle != .none ? 3 : 2
-            let digitWidth = min(proxy.size.width, floor((proxy.size.height - spacing * (digitCount - 1)) / digitCount))
+            let digitWidth = min(proxy.size.width, (proxy.size.height - spacing * (time.hour != 0 ? 2 : 0)) / 2)
             let digitHeight = ceil(digitWidth * 0.8)
             VStack(alignment: .center, spacing: spacing) {
                 Spacer()
-                if time.hour != 0 || timer.hourStyle != .none {
-                    DigitView(tens: time.hourTens, ones: time.hourOnes)
+                if time.hour != 0 {
+                    Text("\(time.hourTens)\(time.hourOnes)")
                         .frame(width: digitWidth, height: digitHeight)
                 }
-                DigitView(tens: time.minuteTens, ones: time.minuteOnes)
+                Text("\(time.minuteTens)\(time.minuteOnes)")
                     .frame(width: digitWidth, height: digitHeight)
-                DigitView(tens: time.secondTens, ones: time.secondOnes)
+                Text("\(time.secondTens)\(time.secondOnes)")
                     .frame(width: digitWidth, height: digitHeight)
                 Spacer()
             }
-            .font(.system(size: digitWidth * 0.8, design: .rounded), weight: .ultraLight)
+            .monospacedDigit()
+            .font(.system(size: digitHeight, design: .rounded), weight: .ultraLight)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         }
         .padding(.horizontal)
@@ -42,5 +40,5 @@ struct TimerPortraitView: View {
 }
 
 #Preview {
-    TimerPortraitView(time: TimerManager.shared.time, color: ColorType.classic.colors)
+    DigitalPomodoroPortraitView(time: PomodoroManager.shared.time, color: ColorType.classic.colors)
 }

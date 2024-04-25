@@ -7,7 +7,7 @@
 
 import ClockShare
 import DigitalClockShare
-// import GoogleMobileAds
+import GoogleMobileAds
 import RevenueCat
 import SwiftUI
 import WidgetKit
@@ -37,8 +37,8 @@ struct DigitalClockApp: App {
                 }
                 UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                 // In iOS 13+, idle timer needs to be set in scene to override default
-                UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
-                WidgetCenter.shared.reloadTimelines(ofKind: "DigitalClockWidget")
+                UIApplication.shared.isIdleTimerDisabled = DigitalAppManager.shared.idleTimerDisabled
+                WidgetCenter.shared.reloadAllTimelines()
             case .inactive: break
             case .background: break
             @unknown default: print("ScenePhase: unexpected state")
@@ -48,8 +48,8 @@ struct DigitalClockApp: App {
 
     @ViewBuilder var group: some View {
         if didFinishLoad {
-            MainView()
-                .environmentObject(AppManager.shared)
+            DigitalMainView()
+                .environmentObject(DigitalAppManager.shared)
                 .environmentObject(UIManager.shared)
                 .transition(AnyTransition.opacity)
         } else {
@@ -58,10 +58,10 @@ struct DigitalClockApp: App {
     }
 
     func purchase() {
-        guard let package = ProManager.default.lifetimePackage else { return }
+        guard let package = DigitalProManager.default.lifetimePackage else { return }
 
         HUD.show()
-        ProManager.default.purchase(package: package) { error in
+        DigitalProManager.default.purchase(package: package) { error in
             HUD.hide()
             if let error = error {
                 print(error)
@@ -81,7 +81,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             UIManager.shared.setupUI()
         }
 
-        ProManager.setup()
+        DigitalProManager.setup()
 
         // MARK: Observer
 
@@ -91,9 +91,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { _, _ in }
 
-//        if !ProManager.default.isPro {
-//            GADMobileAds.sharedInstance().start(completionHandler: nil)
-//        }
+        if !ProManager.default.isPro {
+            GADMobileAds.sharedInstance().start(completionHandler: nil)
+        }
 
         return true
     }
@@ -106,7 +106,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        let idleTimerDisabled = AppManager.shared.idleTimerDisabled
+        let idleTimerDisabled = DigitalAppManager.shared.idleTimerDisabled
         if let newValue = change?[.newKey] as? Bool, newValue != idleTimerDisabled {
             UIApplication.shared.isIdleTimerDisabled = idleTimerDisabled
         }

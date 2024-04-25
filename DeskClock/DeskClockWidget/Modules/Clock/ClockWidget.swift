@@ -85,9 +85,6 @@ struct ClockWidgetEntryView: View {
         }
         .padding(.horizontal, padding)
         .containerBackground(ui.background)
-        .ifLet(UIManager.shared.darkMode.raw) {
-            $0.environment(\.colorScheme, $1)
-        }
     }
 
     @ViewBuilder var top: some View {
@@ -106,7 +103,8 @@ struct ClockWidgetEntryView: View {
     @ViewBuilder var bottom: some View {
         switch widgetFamily {
         case .systemLarge:
-            let imageName = "\(ui.colorType.rawValue)\(ui.darkMode.raw == .dark ? "Dark" : "Light")"
+            let colorType = ui.colorType.rawValue
+            let imageName = "\(ui.darkMode.raw == .dark ? "dark" : "light")\(colorType.prefix(1).uppercased() + colorType.dropFirst())"
             Image(imageName)
         default:
             EmptyView()
@@ -117,14 +115,15 @@ struct ClockWidgetEntryView: View {
 struct ClockWidget: Widget {
     let kind: String = "DeskClockWidget"
 
-    @Environment(\.colorScheme) var colorScheme
-
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ClockProvider()) { entry in
             ClockWidgetEntryView(entry: entry)
                 .environmentObject(UIManager.shared)
+                .ifLet(UIManager.shared.darkMode.raw) {
+                    $0.environment(\.colorScheme, $1)
+                }
                 .onAppear {
-                    UIManager.shared.setupColors(scheme: colorScheme)
+                    UIManager.shared.setupColors()
                 }
         }
         .disableContentMarginsIfNeeded()

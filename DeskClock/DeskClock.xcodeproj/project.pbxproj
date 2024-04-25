@@ -91,6 +91,8 @@
 		88A8D7542B3D7B9E00983E0E /* ClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88A8D7532B3D7B9E00983E0E /* ClockShare */; };
 		88A8D7622B3DB1EC00983E0E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88A8D7612B3DB1EC00983E0E /* KeychainSwift */; };
 		88ABA21E2B3AB4BF0035DDDB /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 88ABA21D2B3AB4BF0035DDDB /* PopupView */; };
+		88B4631A2BD2992300CBFD9B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 88B463192BD2992300CBFD9B /* PrivacyInfo.xcprivacy */; };
+		88B4631B2BD2992B00CBFD9B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 88B463192BD2992300CBFD9B /* PrivacyInfo.xcprivacy */; };
 		88C3BFDA2B691767004FD993 /* DeskClockShare in Frameworks */ = {isa = PBXBuildFile; productRef = 88C3BFD92B691767004FD993 /* DeskClockShare */; };
 		88CF13D22B4FD51100DBE9A1 /* PomodoroWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE18F22B4EC06E00EA8BCB /* PomodoroWidget.swift */; };
 		88CF13D82B5011B600DBE9A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88CF13DA2B5011B600DBE9A1 /* Localizable.strings */; };
@@ -204,6 +206,7 @@
 		883811582B4D6CA5003C1F4E /* DigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitView.swift; sourceTree = "<group>"; };
 		8838115B2B4D834E003C1F4E /* ColonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColonView.swift; sourceTree = "<group>"; };
 		8874645D2B37184E004416B8 /* DeskClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeskClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88B463192BD2992300CBFD9B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		88CF13D92B5011B600DBE9A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88CF13DB2B5011B700DBE9A1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		88FE18E12B4E9D8B00EA8BCB /* ClockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockProvider.swift; sourceTree = "<group>"; };
@@ -262,6 +265,7 @@
 		881DFD8C2B69130700E15906 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88B463192BD2992300CBFD9B /* PrivacyInfo.xcprivacy */,
 				881DFD8D2B69130700E15906 /* LaunchScreen */,
 				881DFD912B69130700E15906 /* Localizable.strings */,
 				881DFD932B69130700E15906 /* InfoPlist.strings */,
@@ -733,6 +737,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B4631B2BD2992B00CBFD9B /* PrivacyInfo.xcprivacy in Resources */,
 				883811302B4D0003003C1F4E /* Assets.xcassets in Resources */,
 				88CF13D82B5011B600DBE9A1 /* Localizable.strings in Resources */,
 			);
@@ -748,6 +753,7 @@
 				881DFDED2B69130700E15906 /* drip.wav in Resources */,
 				881DFE222B69130700E15906 /* Preview Assets.xcassets in Resources */,
 				881DFDE72B69130700E15906 /* LaunchScreen.storyboard in Resources */,
+				88B4631A2BD2992300CBFD9B /* PrivacyInfo.xcprivacy in Resources */,
 				881DFDEB2B69130700E15906 /* Assets.xcassets in Resources */,
 				881DFDEF2B69130700E15906 /* DeskClock.storekit in Resources */,
 				881DFDEA2B69130700E15906 /* InfoPlist.strings in Resources */,
@@ -902,7 +908,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock.DesktopClockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -932,7 +938,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock.DesktopClockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1086,7 +1092,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1120,7 +1126,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.DesktopClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -18,7 +18,11 @@ public struct TimeRecordClock: View {
     let lineWidth: CGFloat = 1
 
     var labelColor: Color {
-        colorScheme == .dark ? .white : .black
+        switch ui.darkMode {
+        case .dark: Color.white
+        case .light: Color.black
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? UIColor.white : UIColor.black })
+        }
     }
 
     public init(time: Time, secondStyle: DigitStyle = .none) {
