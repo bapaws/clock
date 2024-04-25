@@ -31,6 +31,7 @@ struct DigitalPomodoroView: View {
                     .animation(.easeIn, value: manager.state)
                     .contentShape(Rectangle())
             }
+            .contentTransition(.numericText(countsDown: true))
         }
         .padding()
         .onChange(of: manager.time.seconds) { _ in

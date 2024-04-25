@@ -36,6 +36,7 @@ struct DigitalClockPortraitView: View {
                 }
                 Spacer()
             }
+            .contentTransition(.numericText(countsDown: false))
             .monospacedDigit()
             .font(.system(size: digitHeight, design: .rounded), weight: .ultraLight)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
