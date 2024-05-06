@@ -70,8 +70,12 @@ public class UIManager: ClockShare.UIBaseManager {
 
     override public func setupTabBar(_ tabBar: UITabBar? = nil) {
         let classic = ColorType.classic.colors
-        let backgroundColor = classic.background.toUIColor()
-        let foregroundColor = classic.primary.toUIColor()
+        let backgroundColor = UIColor {
+            $0.userInterfaceStyle == .dark ? classic.darkThemeBackground : classic.lightThemeBackground
+        }
+        let foregroundColor = UIColor {
+            $0.userInterfaceStyle == .dark ? classic.darkThemePrimary : classic.lightThemePrimary
+        }
 
         let appearance = UITabBarAppearance()
         appearance.configureWithDefaultBackground()
