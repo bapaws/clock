@@ -46,6 +46,18 @@ public struct PomodoroContentState: Codable, Hashable {
     public init(time: Time) {
         self.time = time
     }
+
+    public var startAt: Date {
+        time.date
+    }
+
+    public var endAt: Date {
+        time.date.addingTimeInterval(TimeInterval(time.milliseconds) / 1000)
+    }
+
+    public var range: ClosedRange<Date> {
+        startAt ... endAt
+    }
 }
 
 @available(iOS 16.1, *)
