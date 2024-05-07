@@ -9,25 +9,16 @@ import ClockShare
 import DigitalClockShare
 import SwiftUI
 import SwiftUIX
+import WidgetKit
 
+@available(iOSApplicationExtension 16.1, *)
 struct PomodoroWidget: View {
-    let time: Time
-
-    var padding: CGFloat = 16
-    let spacing: CGFloat = 32
-    let digitWidth: CGFloat = 96
+    let context: ActivityViewContext<PomodoroAttributes>
 
     var body: some View {
-        HStack(spacing: spacing) {
-            Text("\(time.minuteTens)\(time.minuteOnes)")
-            Text("\(time.secondTens)\(time.secondOnes)")
-        }
-        .monospacedDigit()
-        .font(.system(size: 75, design: .rounded), weight: .ultraLight)
-        .minimumScaleFactor(0.2)
+        Text(timerInterval: context.state.range, countsDown: true, showsHours: true)
+            .monospacedDigit()
+            .font(.system(size: 75, design: .rounded), weight: .ultraLight)
+            .minimumScaleFactor(0.2)
     }
-}
-
-#Preview {
-    PomodoroWidget(time: Time())
 }

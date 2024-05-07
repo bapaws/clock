@@ -63,7 +63,6 @@ struct PomodoroWidgetLiveActivity: Widget {
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .frame(width: 21, height: 21)
-                    .padding(.leading, .small)
             } compactTrailing: {
                 Text(timerInterval: context.state.range, countsDown: true, showsHours: false)
                     .monospacedDigit()
