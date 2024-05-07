@@ -41,8 +41,12 @@ public class UIManager: ClockShare.UIBaseManager {
 
     override public func setupNavigationBar(_ navigationBar: UINavigationBar? = nil) {
         let classic = ColorType.classic.colors
-        let backgroundColor = classic.background.toUIColor()
-        let foregroundColor = classic.primary.toUIColor()
+        let backgroundColor = UIColor {
+            $0.userInterfaceStyle == .dark ? classic.darkThemeBackground : classic.lightThemeBackground
+        }
+        let foregroundColor = UIColor {
+            $0.userInterfaceStyle == .dark ? classic.darkThemePrimary : classic.lightThemePrimary
+        }
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
@@ -50,11 +54,11 @@ public class UIManager: ClockShare.UIBaseManager {
         appearance.backgroundColor = backgroundColor
         appearance.titleTextAttributes = [
             .font: UIFont.preferredFont(forTextStyle: .headline),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         appearance.largeTitleTextAttributes = [
             .font: UIFont.preferredFont(forTextStyle: .title1),
-            .foregroundColor: foregroundColor ?? UIColor.label
+            .foregroundColor: foregroundColor
         ]
         let navigationBar = navigationBar ?? UINavigationBar.appearance()
         navigationBar.prefersLargeTitles = false
@@ -80,9 +84,9 @@ public class UIManager: ClockShare.UIBaseManager {
         tabBar.scrollEdgeAppearance = appearance
     }
 
-    override public func setupColors(scheme: ColorScheme? = nil) {
+    override public func setupColors() {
         colors = colorType.colors
-        colors.scheme = darkMode.current.raw ?? scheme ?? .light
+        colors.mode = darkMode
 
         // 刷新小組件的樣式
         WidgetCenter.shared.reloadAllTimelines()

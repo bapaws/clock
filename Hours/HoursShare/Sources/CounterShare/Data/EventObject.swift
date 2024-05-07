@@ -30,6 +30,9 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
     /// 是否可以删除
     @Persisted public var isSystem: Bool = false
 
+    /// 事件的分类
+    public var category: CategoryObject? { self.categorys.first }
+
     public lazy var milliseconds: Int = items.sum(of: \.milliseconds)
 
     public lazy var time: TimeLength = milliseconds.time

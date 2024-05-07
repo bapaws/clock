@@ -41,6 +41,11 @@ public class Storage {
         public static let minimumRecordedTime = "minimumRecordedTime"
         public static let maximumRecordedTime = "maximumRecordedTime"
 
+        // MARK: Calndar
+
+        public static let isSyncRecordsToCalendar = "isSyncRecordsToCalendar"
+
+
         // MARK: Timer
 
         public static let hourStyle = "hourStyle"

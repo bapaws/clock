@@ -149,6 +149,8 @@
 "MinimumRecordedTime" = "Minimum Recorded Time";
 "MaximumRecordedTime" = "Maximum Recorded Time";
 
+"SyncRecordsToCalendar" = "Sync records to Calendar";
+
 // MARK: Appearance
 
 "Appearance" = "Appearance";

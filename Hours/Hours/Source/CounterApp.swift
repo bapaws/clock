@@ -47,11 +47,11 @@ struct CounterApp: SwiftUI.App {
                 WidgetCenter.shared.reloadTimelines(ofKind: "HoursWidget")
 
                 // 启动后更新时间
-                #if DEBUG
-                let today = app.today.dateByAdding(1, .day).date
-                #else
-                let today = Date().dateAtStartOf(.day).dateByAdding(1, .day).date
-                #endif
+//                #if DEBUG
+//                let today = app.today.dateByAdding(1, .day).date
+//                #else
+                let today = Date().dateAtStartOf(.day)
+//                #endif
                 if today != app.today {
                     app.today = today
                 }

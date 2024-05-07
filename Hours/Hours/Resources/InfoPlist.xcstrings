@@ -35,6 +35,23 @@
         }
       }
     },
+    "NSCalendarsUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We need access to your calendar to create and view events."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "我们需要访问您的日历来创建和查看记录。"
+          }
+        }
+      }
+    },
     "UILaunchStoryboardName" : {
       "extractionState" : "manual",
       "localizations" : {
