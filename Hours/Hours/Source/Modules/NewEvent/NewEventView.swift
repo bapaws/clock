@@ -10,12 +10,14 @@ import SwiftUI
 
 struct NewEventView: View {
     @State var title: String = ""
-    @Binding var category: CategoryObject?
+    @State var category: CategoryObject?
 
     @State var isEventPresented = false
     @State var isCategoryPickerPresented = false
 
     @FocusState var isFocused
+
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -28,7 +30,8 @@ struct NewEventView: View {
                 if let category = category {
                     CategoryView(category: category)
                 } else {
-                    Text("Empty")
+                    Text(R.string.localizable.selectCategory())
+                        .foregroundStyle(Color.secondaryLabel)
                 }
             }
             .onTapGesture {
@@ -102,10 +105,10 @@ struct NewEventView: View {
             category.events.append(event)
         }
 
-        self.category = nil
+        dismiss()
     }
 }
 
 #Preview {
-    NewEventView(category: .constant(CategoryObject(hex: HexObject(hex: "#FEA6ED"), icon: "plus", name: "Sports")))
+    NewEventView(category: CategoryObject(hex: HexObject(hex: "#FEA6ED"), icon: "plus", name: "Sports"))
 }

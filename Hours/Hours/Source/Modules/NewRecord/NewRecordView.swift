@@ -61,7 +61,7 @@ struct NewRecordView: View {
                         .width(4)
                     Text(event.name)
                 } else {
-                    Text("Select")
+                    Text(R.string.localizable.selectCategory())
                         .foregroundStyle(Color.secondaryLabel)
                 }
             }

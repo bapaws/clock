@@ -16,6 +16,7 @@ struct EventsHomeView: View {
     // MARK: Event
 
     @State private var newEventSelectCategory: CategoryObject?
+    @State private var isNewEventPresented: Bool = false
 
     // MARK: Record
 
@@ -60,6 +61,7 @@ struct EventsHomeView: View {
     var body: some View {
         EventsView(menuItems: menuItems, newEventAction: { category in
             newEventSelectCategory = category
+            isNewEventPresented = true
         }, playAction: presentTimer, tapAction: { event in
             detailSelectEvent = event
         })
@@ -72,6 +74,15 @@ struct EventsHomeView: View {
                     event: event,
                     timerSelectEvent: $timerSelectEvent
                 )
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    isNewEventPresented = true
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
 
@@ -112,17 +123,23 @@ struct EventsHomeView: View {
 
         // MARK: New Event
 
-        .sheet(item: $newEventSelectCategory) { _ in
-            let view = NewEventView(category: $newEventSelectCategory)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-            if #available(iOS 16.4, *) {
-                view
-                    .presentationCornerRadius(32)
-                    .presentationContentInteraction(.scrolls)
-            } else {
-                view
-            }
+        .sheet(isPresented: $isNewEventPresented, onDismiss: {
+            newEventSelectCategory = nil
+        }) { [newEventSelectCategory] in
+            newEventView(with: newEventSelectCategory)
+        }
+    }
+
+    @ViewBuilder private func newEventView(with category: CategoryObject?) -> some View {
+        let view = NewEventView(category: category)
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+        if #available(iOS 16.4, *) {
+            view
+                .presentationCornerRadius(32)
+                .presentationContentInteraction(.scrolls)
+        } else {
+            view
         }
     }
 

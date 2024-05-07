@@ -12,6 +12,7 @@
 "Save" = "保存";
 "Warning" = "⚠️提醒";
 "Congratulations" = "🎉恭喜解锁 Pro 会员🎉";
+"PleaseSelect" = "Please Select";
 
 // MARK: Category
 
@@ -25,6 +26,7 @@
 "Housework" = "家务";
 
 "Category" = "分类";
+"SelectCategory" = "选择分类";
 
 // MARK: Events
 
@@ -84,6 +86,7 @@
 
 "NewEvent" = "新建事件";
 "Event" = "事件";
+"SelectEvent" = "选择事件";
 
 "NewRecord" = "新建记录";
 "EditRecord" = "修改记录";
