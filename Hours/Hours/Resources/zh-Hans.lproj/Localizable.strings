@@ -248,3 +248,16 @@
 若出现充值未到账的情况，请将您的Apple ID和扣款凭证邮件至dev@bapaws.com;
 Pro 会员免广告服务暂时包含移除app开屏广告、banner广告;
 Pro 会员服务系网络商品和虚拟商品，一经开通后不可退款，感谢理解和支持。";
+
+// MARK: Feedback
+
+"Feedback" = "问题反馈";
+"Email" = "邮件";
+"SendEmail" = "发送邮件";
+"EmailMessageBody" = "<p>基本信息：</p><ul><li>系统名称：%@</li><li>系统版本：%@</li><li>设备型号：%@</li><li>App 版本：%@</li></ul><p>反馈的问题：</p><p></p>";
+"EmailCopied" = "电子邮件地址已复制";
+
+"X" = "X";
+"RedBook" = "小红书";
+"WeChat" = "微信";
+"WeChatCopied" = "微信号已复制，去微信添加吧";

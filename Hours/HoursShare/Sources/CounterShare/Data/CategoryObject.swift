@@ -20,7 +20,17 @@ public class CategoryObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
     /// 标签名
     @Persisted(indexed: true) public var name: String
 
+    /// Apple calendar' id
+    @Persisted public var calendarIdentifier: String?
+
     @Persisted public var events: List<EventObject>
+
+    public var title: String {
+        if let emoji = emoji {
+            return emoji + " " + name
+        }
+        return name
+    }
 
     override public init() {
         super.init()

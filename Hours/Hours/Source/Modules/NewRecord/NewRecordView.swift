@@ -181,14 +181,14 @@ struct NewRecordView: View {
         realm.writeAsync {
             let newRecord = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
 
-            var eventIdendtifier: String?
+            var identifier: String?
             if let thawedRecord = record?.thaw() {
-                eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: thawedRecord)
+                identifier = AppManager.shared.syncToCalendar(for: event, record: thawedRecord)
                 realm.delete(thawedRecord)
             } else {
-                eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+                identifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
             }
-            newRecord.calendarEventIdentifier = eventIdendtifier
+            newRecord.calendarEventIdentifier = identifier
             realm.add(newRecord)
 
             event.items.append(newRecord)

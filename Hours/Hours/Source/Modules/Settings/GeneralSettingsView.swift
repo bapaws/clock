@@ -29,6 +29,7 @@ struct GeneralSettingsView: View {
     // MARK: Other
 
     @State var isAboutPresented = false
+    @State var isFeedbackPresented = false
 
     @EnvironmentObject var ui: UIManager
     @Environment(\.colorScheme) var colorScheme
@@ -48,6 +49,9 @@ struct GeneralSettingsView: View {
 
             .sheet(isPresented: $isAboutPresented) {
                 AboutView(isPresented: $isAboutPresented)
+            }
+            .sheet(isPresented: $isFeedbackPresented) {
+                FeedbackView()
             }
     }
 
@@ -72,6 +76,9 @@ struct GeneralSettingsView: View {
 
                 SettingsSection(title: R.string.localizable.other()) {
                     SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
+                    SettingsNavigateCell(title: R.string.localizable.feedback()) {
+                        isFeedbackPresented = true
+                    }
                     SettingsNavigateCell(title: R.string.localizable.about()) {
                         isAboutPresented = true
                     }

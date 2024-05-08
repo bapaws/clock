@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2024/3/18.
 //
 
+import ClockShare
 import SwiftUI
 
 struct SettingsPaywallView: View {
@@ -20,14 +21,14 @@ struct SettingsPaywallView: View {
                 }
                 .font(.title3)
 
-                Text(R.string.localizable.unlockPro())
+                Text(ProManager.default.isPro ? R.string.localizable.slogan() : R.string.localizable.unlockPro())
             }
             .foregroundStyle(.white)
 
             Spacer()
 
             Button(action: action) {
-                Text(R.string.localizable.tryFree())
+                Text(ProManager.default.purchasedProduct?.localizedTitle ?? R.string.localizable.tryFree())
                     .font(.headline)
                     .padding()
                     .foregroundStyle(ui.colors.primary)

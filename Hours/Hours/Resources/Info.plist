@@ -6,5 +6,12 @@
 	<false/>
 	<key>UIBackgroundModes</key>
 	<array/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>weixin</string>
+		<string>wechat</string>
+		<string>twitter</string>
+		<string>xhsdiscover</string>
+	</array>
 </dict>
 </plist>

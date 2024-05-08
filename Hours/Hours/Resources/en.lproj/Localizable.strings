@@ -246,3 +246,17 @@ If you want to cancel the automatic subscription, please turn off the auto-renew
 If the recharge does not arrive, please send your Apple ID and debit voucher to dev@bapaws.com.
 Pro member ad-free service temporarily includes the removal of app opening screen ads, banner ads.
 Pro member service is an online commodity and virtual commodity, once opened can not be refunded, thank you for your understanding and support.";
+
+// MARK: Feedback
+
+"Feedback" = "Feedback";
+"Email" = "Email";
+"SendEmail" = "Send an email";
+"EmailMessageBody" = "<p>ℹ️Info：</p><ul><li>System Name: %@</li><li>System Version: %@</li><li>Model: %@</li><li>App Version: %@</li></ul><p>Issues：</p><p></p>";
+"EmailCopied" = "Email address has been copied.";
+
+
+"X" = "X";
+"RedBook" = "RED";
+"WeChat" = "WeChat";
+"WeChatCopied" = "The WeChat ID has been copied. Go to WeChat to add it.";

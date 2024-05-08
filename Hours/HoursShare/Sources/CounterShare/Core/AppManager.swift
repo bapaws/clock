@@ -85,6 +85,43 @@ public extension AppManager {
         }
     }
 
+    func createCalendars(for result: Results<CategoryObject>) {
+        let calendars = eventStore.calendars(for: .event)
+        for category in result {
+            findOrCreateCalendar(for: category, calendars: calendars)
+        }
+        try? eventStore.commit()
+    }
+
+    @discardableResult
+    private func findOrCreateCalendar(for category: CategoryObject?, calendars: [EKCalendar]? = nil) -> EKCalendar? {
+        guard let category = category else { return nil }
+
+        let title = "\(category.emoji ?? "") \(category.name)"
+        let calendars = calendars ?? eventStore.calendars(for: .event)
+        if let calendar = calendars.first(where: { $0.title == title }) {
+            if calendar.calendarIdentifier != category.calendarIdentifier, let thawedObject = category.thaw() {
+                thawedObject.realm?.writeAsync {
+                    thawedObject.calendarIdentifier = calendar.calendarIdentifier
+                }
+            }
+            return calendar
+        } else {
+            let calendar = EKCalendar(for: .event, eventStore: eventStore)
+            calendar.title = title
+            calendar.cgColor = category.color.cgColor
+            calendar.source = eventStore.sources.first(where: { $0.sourceType == .calDAV && $0.title == "iCloud" }) ?? eventStore.defaultCalendarForNewEvents?.source
+            try? eventStore.saveCalendar(calendar, commit: false)
+
+            if let thawedObject = category.thaw() {
+                thawedObject.realm?.writeAsync {
+                    thawedObject.calendarIdentifier = calendar.calendarIdentifier
+                }
+            }
+            return calendar
+        }
+    }
+
     func syncToCalendar(for eventObject: EventObject, record: RecordObject) -> String? {
         guard calendarAccessGranted, isSyncRecordsToCalendar else { return nil }
 
@@ -94,13 +131,18 @@ public extension AppManager {
                 deleteEvent(for: eventIdentifier)
             }
 
+            let calendar: EKCalendar? = findOrCreateCalendar(for: eventObject.category)
+
             let event = EKEvent(eventStore: eventStore)
-            event.title = "\(eventObject.emoji ?? "") \(eventObject.name)"
+            event.title = eventObject.title
+            event.location = record.milliseconds.timeLengthText
             event.startDate = record.startAt
             event.endDate = record.endAt
-            event.calendar = eventStore.defaultCalendarForNewEvents
+            event.calendar = calendar ?? eventStore.defaultCalendarForNewEvents
+            try eventStore.save(event, span: .thisEvent, commit: false)
 
-            try eventStore.save(event, span: .thisEvent, commit: true)
+            try eventStore.commit()
+
             return event.eventIdentifier
         } catch {
             print(error)

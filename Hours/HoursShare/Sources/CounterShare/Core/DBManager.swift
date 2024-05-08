@@ -12,7 +12,7 @@ import SwiftDate
 public class DBManager: ObservableObject {
     public static let `default` = DBManager()
 
-    public let config = Realm.Configuration(schemaVersion: 1)
+    public let config = Realm.Configuration(schemaVersion: 2)
 
     public private(set) var realm: Realm
 

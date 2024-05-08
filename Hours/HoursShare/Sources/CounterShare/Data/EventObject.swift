@@ -40,6 +40,13 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
     public var minutes: Int { self.time.minute }
     public var seconds: Int { self.time.second }
 
+    public var title: String {
+        if let emoji = emoji {
+            return emoji + " " + name
+        }
+        return name
+    }
+
     override public init() {
         super.init()
     }

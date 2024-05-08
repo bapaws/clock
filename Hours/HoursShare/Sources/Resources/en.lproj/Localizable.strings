@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Counter
+
+  Created by 张敏超 on 2024/3/3.
+  
+*/
+
+"Today" = "Today";
+"Yesterday" = "Yesterday";
+
+"Days" = "d";
+"Hours" = "h";
+"Minutes" = "min";
+"Seconds" = "s";
