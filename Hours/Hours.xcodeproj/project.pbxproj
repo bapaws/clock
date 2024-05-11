@@ -56,7 +56,6 @@
 		8888F7692BEF73BB00E5E646 /* ArchivedEventsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8888F7682BEF73BB00E5E646 /* ArchivedEventsItemView.swift */; };
 		8888F76C2BEF859200E5E646 /* EventsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8888F76B2BEF859200E5E646 /* EventsHomeViewModel.swift */; };
 		8888F7722BEF882400E5E646 /* EventsHomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8888F7712BEF882400E5E646 /* EventsHomeHeader.swift */; };
-		8888F7782BEF9D6F00E5E646 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8888F7772BEF9D6F00E5E646 /* Collections.swift */; };
 		88A9B6592BA150C100385800 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B6582BA150C100385800 /* TitleView.swift */; };
 		88A9B65D2BA158CE00385800 /* StatisticsDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B65C2BA158CE00385800 /* StatisticsDailyView.swift */; };
 		88A9B6632BA1865000385800 /* StatisticsDailyRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B6622BA1865000385800 /* StatisticsDailyRatioView.swift */; };
@@ -189,7 +188,6 @@
 		8888F7682BEF73BB00E5E646 /* ArchivedEventsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedEventsItemView.swift; sourceTree = "<group>"; };
 		8888F76B2BEF859200E5E646 /* EventsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeViewModel.swift; sourceTree = "<group>"; };
 		8888F7712BEF882400E5E646 /* EventsHomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeHeader.swift; sourceTree = "<group>"; };
-		8888F7772BEF9D6F00E5E646 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		88A9B6582BA150C100385800 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		88A9B65C2BA158CE00385800 /* StatisticsDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDailyView.swift; sourceTree = "<group>"; };
 		88A9B6622BA1865000385800 /* StatisticsDailyRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDailyRatioView.swift; sourceTree = "<group>"; };
@@ -661,7 +659,6 @@
 				88CFE2A12B9B2B0A00912C53 /* OneColor.swift */,
 				8814503F2BA4789400058F7F /* Category.swift */,
 				88FE05192BAD6A22002B990A /* WorkoutActivityType.swift */,
-				8888F7772BEF9D6F00E5E646 /* Collections.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -905,7 +902,6 @@
 				8808A8E42B99734B004CAD2F /* RecordsCalendarView.swift in Sources */,
 				8888F7722BEF882400E5E646 /* EventsHomeHeader.swift in Sources */,
 				88D23B222B94A35C00E33DE5 /* SplashView.swift in Sources */,
-				8888F7782BEF9D6F00E5E646 /* Collections.swift in Sources */,
 				88E886FD2BA28F1F00607AB0 /* StatisticsViewModel.swift in Sources */,
 				88D454A62BA839FF00584FAD /* SettingsPaywallView.swift in Sources */,
 				88D23B232B94A35C00E33DE5 /* AboutView.swift in Sources */,
@@ -1086,7 +1082,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1121,7 +1117,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
