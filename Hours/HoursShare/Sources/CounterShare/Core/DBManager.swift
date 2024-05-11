@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2024/3/6.
 //
 
+import ClockShare
 import Foundation
 import RealmSwift
 import SwiftDate
@@ -12,11 +13,14 @@ import SwiftDate
 public class DBManager: ObservableObject {
     public static let `default` = DBManager()
 
-    public let config = Realm.Configuration(schemaVersion: 2)
+    public let config = Realm.Configuration(schemaVersion: 5)
 
     public private(set) var realm: Realm
 
-    private var hexIndex = 0
+    private var hexIndex = 0 {
+        didSet { Storage.default.hexIndex = hexIndex }
+    }
+
     public var hexs: Results<HexObject> {
         didSet {
             hexIndex = events.count % hexs.count
@@ -46,7 +50,9 @@ public class DBManager: ObservableObject {
     }
 
     public var nextHex: HexObject {
-        hexs[hexIndex]
+        let hex = hexs[hexIndex % hexs.count]
+        hexIndex += 1
+        return hex
     }
 
     private init() {
@@ -64,13 +70,16 @@ public class DBManager: ObservableObject {
             case .initial(let collectionType):
                 print(collectionType)
                 self?.didSetEvents()
-            case .update(let collectionType, _, _, _):
+            case .update(let collectionType, _, let insertions, _):
                 print(collectionType)
                 self?.didSetEvents()
             case .error(let error):
                 print("An error occurred: \(error)")
             }
         }
+
+        // 设置颜色的 Index
+        setupHexIndex()
     }
 
     private func didSetEvents() {
@@ -85,8 +94,12 @@ public class DBManager: ObservableObject {
         } else {
             minCreateAt = .init()
         }
+    }
 
-        if hexs.count != 0 {
+    private func setupHexIndex() {
+        if let index = Storage.default.hexIndex {
+            hexIndex = index
+        } else {
             hexIndex = events.count % hexs.count
         }
     }

@@ -84,6 +84,7 @@ struct GeneralSettingsView: View {
                     }
                 }
             }
+            .padding()
             .padding(.bottom)
         }
     }

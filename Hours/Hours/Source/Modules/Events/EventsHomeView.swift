@@ -7,11 +7,15 @@
 
 import ClockShare
 import HoursShare
+import OrderedCollections
 import RealmSwift
 import SwiftUI
+import SwiftUIX
 
 struct EventsHomeView: View {
-    @State private var showTabBar = true
+    // MARK: Category
+
+    @State private var isNewCategoryPresented: Bool = false
 
     // MARK: Event
 
@@ -26,64 +30,63 @@ struct EventsHomeView: View {
 
     @State private var timerSelectEvent: EventObject?
 
-    // MARK: Delete
-
-    @State private var deleteEvent: EventObject?
-    var isDeletePresented: Binding<Bool> {
-        Binding<Bool>(
-            get: { deleteEvent != nil },
-            set: { _ in
-                deleteEvent = nil
-            }
-        )
-    }
-
-    // MARK: Detail
-
-    @State private var detailSelectEvent: EventObject? {
-        didSet {
-            withAnimation {
-                showTabBar = detailSelectEvent == nil
-            }
-        }
-    }
-
-    var isDetailPresented: Binding<Bool> {
-        Binding<Bool>(
-            get: { detailSelectEvent != nil },
-            set: { _ in
-
-                detailSelectEvent = nil
-            }
-        )
-    }
+    @StateObject private var vm = EventsHomeViewModel()
 
     var body: some View {
-        EventsView(menuItems: menuItems, newEventAction: { category in
-            newEventSelectCategory = category
-            isNewEventPresented = true
-        }, playAction: presentTimer, tapAction: { event in
-            detailSelectEvent = event
-        })
-        .background(ui.background)
-        .toolbar(showTabBar ? .visible : .hidden, for: .tabBar)
-        .navigationTitle(R.string.localizable.events())
-        .navigationDestination(isPresented: isDetailPresented) { [detailSelectEvent] in
-            if let event = detailSelectEvent {
-                EventDetailView(
-                    event: event,
-                    timerSelectEvent: $timerSelectEvent
-                )
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
+                    ForEach(0 ..< vm.categories.count, id: \.self) { index in
+                        let category = vm.categories.elements[index].key
+                        let events = vm.categories.elements[index].value
+                        Section {
+                            ForEach(events) { event in
+                                EventItemView(event: event, playAction: presentTimer)
+                                    .onTapGesture {
+                                        let view = EventDetailView(event: event, timerSelectEvent: $timerSelectEvent)
+                                        pushView(view)
+                                    }
+                                    .contextMenu { menuItems(for: event) }
+                            }
+                        } header: {
+                            EventsHeaderView(category: category) { category in
+                                newEventSelectCategory = category
+                                isNewEventPresented = true
+                            }
+                        }
+
+                    }
+
+                    Button {
+                        toggleOtherCategory(for: proxy)
+                    } label: {
+                        HStack {
+                            Text(R.string.localizable.showAll())
+                            Image(systemName: "chevron.forward")
+                                .animation(.easeInOut, value: vm.isOtherCategoriesShow)
+                                .rotationEffect(vm.isOtherCategoriesShow ? .degrees(90) : .zero)
+                        }
+                        .foregroundStyle(ui.secondaryLabel)
+                        .padding(.vertical, .large)
+                    }
+                    .id(R.string.localizable.showAll())
+
+                    if vm.isOtherCategoriesShow {
+                        ForEach(vm.otherCategories, id: \.self) { category in
+                            EventsHeaderView(category: category) { category in
+                                newEventSelectCategory = category
+                                isNewEventPresented = true
+                            }
+                        }
+                    }
+                }
+                .padding()
             }
         }
+        .background(ui.background)
+        .navigationTitle(R.string.localizable.events())
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    isNewEventPresented = true
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
+            toolbar
         }
 
         // MARK: Timer
@@ -110,58 +113,63 @@ struct EventsHomeView: View {
             }
         }
 
-        // MARK: Delete Event
-
-        .alert(R.string.localizable.warning(), isPresented: isDeletePresented, presenting: deleteEvent, actions: { event in
-            Button(R.string.localizable.cancel(), role: .cancel) {}
-            Button(R.string.localizable.delete(), role: .destructive) {
-                deleteEvent(event)
-            }
-        }, message: { event in
-            Text(R.string.localizable.deleteEventWarning(event.name, event.name))
-        })
-
         // MARK: New Event
 
         .sheet(isPresented: $isNewEventPresented, onDismiss: {
             newEventSelectCategory = nil
         }) { [newEventSelectCategory] in
-            newEventView(with: newEventSelectCategory)
+            NewEventView(category: newEventSelectCategory)
+                .sheetStyle()
+        }
+
+        // MARK: New Category
+
+        .sheet(isPresented: $isNewCategoryPresented) {
+            NewCategoryView()
+                .sheetStyle()
         }
     }
 
-    @ViewBuilder private func newEventView(with category: CategoryObject?) -> some View {
-        let view = NewEventView(category: category)
-            .presentationDetents([.medium])
-            .presentationDragIndicator(.visible)
-        if #available(iOS 16.4, *) {
-            view
-                .presentationCornerRadius(32)
-                .presentationContentInteraction(.scrolls)
-        } else {
-            view
+    @ToolbarContentBuilder private var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Menu {
+                Button(R.string.localizable.newEvent(), systemImage: "plus", role: nil) {
+                    isNewEventPresented = true
+                }
+                Button(R.string.localizable.newCategory(), systemImage: "folder.badge.plus", role: nil) {
+                    isNewCategoryPresented = true
+                }
+
+                Divider()
+
+                Button(R.string.localizable.archived(), systemImage: "archivebox.fill", role: nil) {
+                    pushView(ArchivedEventsView(timerSelectEvent: $timerSelectEvent))
+                }
+            } label: {
+                Image(systemName: "ellipsis")
+                    .padding(.leading)
+                    .padding(.vertical)
+            }
         }
     }
 
     @ViewBuilder func menuItems(for event: EventObject) -> some View {
-        Group {
-            Button(action: {
-                newRecordSelectEvent = event
-            }) {
-                Label(R.string.localizable.newRecord(), systemImage: "plus")
-            }
-            Button(action: {
-                timerSelectEvent = event
-            }) {
-                Label(R.string.localizable.startTimer(), systemImage: "infinity.circle")
-            }
-            Divider()
+        Button(action: {
+            newRecordSelectEvent = event
+        }) {
+            Label(R.string.localizable.newRecord(), systemImage: "plus")
+        }
+        Button(action: {
+            timerSelectEvent = event
+        }) {
+            Label(R.string.localizable.startTimer(), systemImage: "play")
+        }
+        Divider()
 
-            Button(role: .destructive, action: {
-                deleteEvent = event
-            }) {
-                Label(R.string.localizable.delete(), systemImage: "trash")
-            }
+        Button(action: {
+            vm.archiveEvent(event)
+        }) {
+            Label(R.string.localizable.archive(), systemImage: "archivebox")
         }
     }
 
@@ -169,14 +177,18 @@ struct EventsHomeView: View {
         timerSelectEvent = event
     }
 
-    private func deleteEvent(_ event: EventObject) {
-        guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
-
-        realm.writeAsync {
-            for item in event.items {
-                realm.delete(item)
+    private func toggleOtherCategory(for proxy: ScrollViewProxy) {
+        if vm.isOtherCategoriesShow {
+            withAnimation {
+                vm.isOtherCategoriesShow.toggle()
             }
-            realm.delete(event)
+        } else {
+            vm.isOtherCategoriesShow.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                withAnimation {
+                    proxy.scrollTo(R.string.localizable.showAll(), anchor: .top)
+                }
+            }
         }
     }
 }

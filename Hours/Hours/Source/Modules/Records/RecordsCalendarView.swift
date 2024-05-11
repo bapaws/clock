@@ -55,7 +55,7 @@ struct RecordsCalendarView: View {
                         .font(.title3)
                 }
             }
-            .foregroundStyle(ui.primary)
+            .foregroundStyle(ui.label)
             .padding()
 
             GeometryReader { proxy in

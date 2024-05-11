@@ -45,7 +45,7 @@ public class UIManager: ClockShare.UIBaseManager {
             $0.userInterfaceStyle == .dark ? classic.darkThemeBackground : classic.lightThemeBackground
         }
         let foregroundColor = UIColor {
-            $0.userInterfaceStyle == .dark ? classic.darkThemePrimary : classic.lightThemePrimary
+            $0.userInterfaceStyle == .dark ? classic.darkThemeLabel : classic.lightThemeLabel
         }
 
         let appearance = UINavigationBarAppearance()
@@ -61,7 +61,7 @@ public class UIManager: ClockShare.UIBaseManager {
             .foregroundColor: foregroundColor
         ]
         let navigationBar = navigationBar ?? UINavigationBar.appearance()
-        navigationBar.prefersLargeTitles = false
+        navigationBar.prefersLargeTitles = true
         navigationBar.tintColor = foregroundColor
         navigationBar.barTintColor = foregroundColor
         navigationBar.standardAppearance = appearance
@@ -107,6 +107,15 @@ public extension UIManager {
 
     var label: Color { colors.label }
     var secondaryLabel: Color { colors.secondaryLabel }
+
+    // MARK: UIKit
+
+    var uiPrimary: UIColor { colors.uiPrimary }
+    var uiSecondary: UIColor { colors.uiSecondary }
+    var uiBackground: UIColor { colors.uiBackground }
+    var uiSecondaryBackground: UIColor { colors.uiSecondaryBackground }
+    var uiLabel: UIColor { colors.uiLabel }
+    var uiSecondaryLabel: UIColor { colors.uiSecondaryLabel }
 }
 
 // MARK: App Icon

@@ -16,6 +16,8 @@ struct EventsView<MenuItems: View>: View {
     @ObservedResults(CategoryObject.self)
     var categorys
 
+    @ObservedObject private var vm = EventsViewModel()
+
     @State private var selectEvent: EventObject?
     @State private var newRecordSelectEvent: EventObject?
 
@@ -27,9 +29,11 @@ struct EventsView<MenuItems: View>: View {
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 8, pinnedViews: .sectionHeaders) {
-                ForEach(categorys, id: \.id) { category in
+                ForEach(0 ..< vm.categories.count, id: \.self) { index in
+                    let category = vm.categories.elements[index].key
+                    let events = vm.categories.elements[index].value
                     Section {
-                        ForEach(category.events) { event in
+                        ForEach(events) { event in
                             let itemView = EventItemView(event: event, playAction: playAction)
                                 .onTapGesture {
                                     tapAction?(event)

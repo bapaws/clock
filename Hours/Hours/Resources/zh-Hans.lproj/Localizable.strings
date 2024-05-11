@@ -12,7 +12,10 @@
 "Save" = "保存";
 "Warning" = "⚠️提醒";
 "Congratulations" = "🎉恭喜解锁 Pro 会员🎉";
-"PleaseSelect" = "Please Select";
+"PleaseSelect" = "请选择";
+"PleaseEnter" = "请输入";
+"ShowAll" = "显示全部";
+"Edit" = "编辑";
 
 // MARK: Category
 
@@ -27,6 +30,12 @@
 
 "Category" = "分类";
 "SelectCategory" = "选择分类";
+
+// MARK: New Category
+
+"NewCategory" = "新建分类";
+"Emoji" = "Emoji";
+"CategoryName" = "分类名";
 
 // MARK: Events
 
@@ -95,6 +104,12 @@
 "EndTime" = "结束时间";
 "Note" = "备注";
 
+// MARK: Archived Events
+
+"Archive" = "归档";
+"Archived" = "已归档";
+"ArchivedAt" = "归档于：%@";
+"Unarchive" = "取消归档";
 
 // MARK: Statistics
 
@@ -261,3 +276,17 @@ Pro 会员服务系网络商品和虚拟商品，一经开通后不可退款，�
 "RedBook" = "小红书";
 "WeChat" = "微信";
 "WeChatCopied" = "微信号已复制，去微信添加吧";
+
+// MARK: App Screen Time
+
+"AppDidOpen" = "应用程序打开";
+"AppDidClose" = "应用程序关闭";
+"App is closed. Create a record for ${eventID}" = "应用已关闭，创建${eventID}的记录";
+
+"AppScreenTime" = "应用屏幕时间";
+
+"AutoRecordSetupGuide" = "自动记录设置帮助";
+
+"AdjacentRecords" = "相邻记录";
+"AutoMergeAdjacentRecords" = "自动合并相邻记录";
+"Interval" = "相隔时长";

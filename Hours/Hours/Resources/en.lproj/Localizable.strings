@@ -12,7 +12,10 @@
 "Save" = "Save";
 "Warning" = "⚠️Warning";
 "Congratulations" = "🎉Congratulations🎉";
-"PleaseSelect" = "Please Select";
+"PleaseSelect" = "Select...";
+"PleaseEnter" = "Enter...";
+"ShowAll" = "Show All";
+"Edit" = "Edit";
 
 // MARK: Category
 
@@ -27,6 +30,12 @@
 
 "Category" = "Category";
 "SelectCategory" = "Select Category";
+
+// MARK: New Category
+
+"NewCategory" = "New Category";
+"Emoji" = "Emoji";
+"CategoryName" = "Category Name";
 
 // MARK: Events
 
@@ -93,6 +102,13 @@
 "StartTime" = "Start Time";
 "EndTime" = "End Time";
 "Note" = "Note";
+
+// MARK: Archived Events
+
+"Archive" = "Archive";
+"Archived" = "Archived";
+"ArchivedAt" = "Archived At: %@";
+"Unarchive" = "Unarchive";
 
 // MARK: Statistics
 
@@ -260,3 +276,17 @@ Pro member service is an online commodity and virtual commodity, once opened can
 "RedBook" = "RED";
 "WeChat" = "WeChat";
 "WeChatCopied" = "The WeChat ID has been copied. Go to WeChat to add it.";
+
+// MARK: App Screen Time
+
+"AppDidOpen" = "App Did Open";
+"AppDidClose" = "App Did Close";
+"App is closed. Create a record for ${eventID}" = "App is closed. Create a record for ${eventID}";
+
+"AppScreenTime" = "App Screen Time";
+
+"AutoRecordSetupGuide" = "Auto-Record Setup Guide";
+
+"AdjacentRecords" = "Adjacent Records";
+"AutoMergeAdjacentRecords" = "Auto Merge Adjacent Records";
+"Interval" = "Interval";

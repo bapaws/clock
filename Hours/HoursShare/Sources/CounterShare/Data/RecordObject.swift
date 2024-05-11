@@ -24,7 +24,7 @@ public extension Int {
 // MARK: - RecordObject
 
 public enum RecordCreationMode: Int, PersistableEnum, Codable {
-    case pomodoro, timer, enter
+    case pomodoro, timer, enter, shortcut
 }
 
 public class RecordObject: Object, ObjectKeyIdentifiable, Codable {

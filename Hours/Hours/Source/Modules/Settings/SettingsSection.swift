@@ -44,8 +44,8 @@ struct SettingsSection<Cell: View, ID: Hashable>: View {
                     .cornerRadius(16)
             }
         }
+        .padding(.top)
         .contentShape(Rectangle())
-        .padding()
     }
 }
 

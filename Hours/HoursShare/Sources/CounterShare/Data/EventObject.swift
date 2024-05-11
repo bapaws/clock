@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
-    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted(primaryKey: true) public var _id: ObjectId
     /// 名称
     @Persisted public var name: String
     /// 标签
@@ -25,13 +25,18 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         }
     }
 
-    /// 创建时间
-    @Persisted public var createdAt: Date = .init()
     /// 是否可以删除
     @Persisted public var isSystem: Bool = false
 
+    /// 创建时间
+    @Persisted public var createdAt: Date = .init()
+    /// 删除时间
+    @Persisted public var deletedAt: Date?
+    /// 归档时间
+    @Persisted public var archivedAt: Date?
+
     /// 事件的分类
-    public var category: CategoryObject? { self.categorys.first }
+    public var category: CategoryObject { self.categorys[0] }
 
     public lazy var milliseconds: Int = items.sum(of: \.milliseconds)
 
@@ -42,9 +47,9 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
 
     public var title: String {
         if let emoji = emoji {
-            return emoji + " " + name
+            return emoji + " " + self.name
         }
-        return name
+        return self.name
     }
 
     override public init() {

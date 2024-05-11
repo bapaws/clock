@@ -95,3 +95,31 @@ public extension ThemeColors {
         }
     }
 }
+
+// MARK: UIKit
+
+public extension ThemeColors {
+    var uiPrimary: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary }
+    }
+
+    var uiSecondary: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary }
+    }
+
+    var uiBackground: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground }
+    }
+
+    var uiSecondaryBackground: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? lightThemeSecondaryBackground : darkThemeSecondaryBackground }
+    }
+
+    var uiLabel: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeLabel : lightThemeLabel }
+    }
+
+    var uiSecondaryLabel: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryLabel : lightThemeSecondaryLabel }
+    }
+}

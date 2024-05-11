@@ -17,6 +17,9 @@ enum MainTabTag: Int, Identifiable {
 }
 
 struct MainView: View {
+    @State var ui: UIManager = .shared
+    @State var app: AppManager = .shared
+
     @State private var selectionValue: MainTabTag = .events
 
     var body: some View {
@@ -51,10 +54,12 @@ struct MainView: View {
                 Image(image: R.image.settings()!)
             }
         }
-
         .accentColor(ui.primary)
         .tint(ui.primary)
         .background(ui.colors.background)
+        .foregroundStyle(ui.colors.label)
+        .environmentObject(ui)
+        .environmentObject(app)
     }
 
     var navigationTitle: String {

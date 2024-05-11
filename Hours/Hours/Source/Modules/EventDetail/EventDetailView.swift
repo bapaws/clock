@@ -32,6 +32,8 @@ struct EventDetailView: View {
 
     @State var selectedRecord: RecordObject?
 
+    @State var isEditPresented: Bool = false
+
     // MARK: Record
 
     @State var newRecordSelectEvent: EventObject?
@@ -40,9 +42,14 @@ struct EventDetailView: View {
 
     @Binding var timerSelectEvent: EventObject?
 
+    // MARK: Delete
+
+    @State private var isDeletePresented = false
+
     @State private var selectionType: EventDetailViewSelectionType = .statistics
 
     @Environment(\.safeAreaInsets) var safeAreaInsets
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack(spacing: 0) {
@@ -58,16 +65,50 @@ struct EventDetailView: View {
         .ignoresSafeArea(.container, edges: .bottom)
         .toolbar(.hidden, for: .tabBar)
         .navigationTitle(event.name)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button(R.string.localizable.edit(), systemImage: "pencil", role: nil) {
+                        isEditPresented = true
+                    }
+                    Button(event.archivedAt == nil ? R.string.localizable.archive() : R.string.localizable.unarchive(), systemImage: event.archivedAt == nil ? "archivebox" : "archivebox.fill", role: nil, action: archiveEvent)
+                        .controlSize(.regular)
+                    Divider()
+                    Button(R.string.localizable.delete(), systemImage: "trash", role: .destructive) {
+                        isDeletePresented = true
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .padding(.leading)
+                        .padding(.vertical)
+                        .foregroundStyle(ui.label)
+                }
+            }
+        }
         .background(ui.background)
 
         // MARK: New Record
 
         .sheet(item: $selectedRecord) {
-            presentNewRecord(for: $0)
+            NewRecordView(record: $0)
+                .sheetStyle()
         }
         .sheet(item: $newRecordSelectEvent) { event in
-            presentNewRecord(event: event)
+            NewRecordView(event: event, startAt: newRecordStartAt, endAt: newRecordEndAt)
+                .sheetStyle()
         }
+
+        // MARK: Event
+        .sheet(isPresented: $isEditPresented) {
+            NewEventView(event: event)
+                .sheetStyle()
+        }
+        .alert(R.string.localizable.warning(), isPresented: $isDeletePresented, actions: {
+            Button(R.string.localizable.cancel(), role: .cancel) {}
+            Button(R.string.localizable.delete(), role: .destructive, action: deleteEvent)
+        }, message: {
+            Text(R.string.localizable.deleteEventWarning(event.name, event.name))
+        })
     }
 
     var scrollView: some View {
@@ -76,13 +117,8 @@ struct EventDetailView: View {
                 number
 
                 // Records
-                if event.items.isEmpty {
-                    Image("NotFound")
-                        .padding(.large)
-                        .padding(.top, .large)
-                } else {
-                    EventRecordsView(event: event, editRecord: $selectedRecord)
-                }
+                EventRecordsView(event: event, editRecord: $selectedRecord)
+                    .emptyStyle(isEmpty: event.items.isEmpty)
             }
             .padding()
         }
@@ -140,24 +176,24 @@ struct EventDetailView: View {
         return newRecordStartAt.addingTimeInterval(3600)
     }
 
-    func presentNewRecord(for record: RecordObject? = nil, event: EventObject? = nil) -> some View {
-        var newRecordView: NewRecordView
-        if let record = record {
-            newRecordView = NewRecordView(record: record)
-        } else {
-            newRecordView = NewRecordView(event: event, startAt: newRecordStartAt, endAt: newRecordEndAt)
+    private func deleteEvent() {
+        guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
+
+        realm.writeAsync {
+            for item in event.items {
+                realm.delete(item)
+            }
+            realm.delete(event)
         }
 
-        let view = newRecordView
-            .presentationDetents([.medium])
-            .presentationDragIndicator(.visible)
-            .labelsHidden()
-        if #available(iOS 16.4, *) {
-            return view
-                .presentationCornerRadius(32)
-                .presentationContentInteraction(.scrolls)
-        } else {
-            return view
+        dismiss()
+    }
+
+    private func archiveEvent() {
+        guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
+
+        realm.writeAsync {
+            event.archivedAt = event.archivedAt == nil ? .init() : nil
         }
     }
 }

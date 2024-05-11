@@ -13,6 +13,7 @@ struct SettingsRecordSection: View {
     @Binding var isPaywallPresented: Bool
     @State private var isTimerPresented: Bool = false
     @State private var isSyncRecordsToCalendar = AppManager.shared.isSyncRecordsToCalendar
+    @State private var isAppScreenTimePresented: Bool = false
 
     @EnvironmentObject var app: AppManager
 
@@ -23,14 +24,8 @@ struct SettingsRecordSection: View {
             }
 
             // Pro 功能
-            SettingsToggleCell(title: R.string.localizable.syncRecordsToCalendar(), isPro: true, isOn: $isSyncRecordsToCalendar)
+            SettingsToggleCell(title: R.string.localizable.syncRecordsToCalendar(), isOn: $isSyncRecordsToCalendar)
                 .onChange(of: isSyncRecordsToCalendar) { isSyncRecordsToCalendar in
-                    // 先判断是否符合 Pro 的条件
-                    if !ProManager.default.isPro {
-                        isPaywallPresented = true
-                        self.isSyncRecordsToCalendar = false
-                        return
-                    }
                     if !isSyncRecordsToCalendar {
                         AppManager.shared.isSyncRecordsToCalendar = false
                         return
@@ -45,10 +40,17 @@ struct SettingsRecordSection: View {
                         UIApplication.shared.open(settingsURL)
                     }
                 }
+
+            SettingsNavigateCell(title: R.string.localizable.appScreenTime()) {
+                isAppScreenTimePresented = true
+            }
         }
         .sheet(isPresented: $isTimerPresented) {
             SettingsTimerSection()
                 .environmentObject(TimerManager.shared)
+        }
+        .sheet(isPresented: $isAppScreenTimePresented) {
+            SettingsScreenTimeView()
         }
     }
 }

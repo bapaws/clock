@@ -43,7 +43,7 @@ struct SettingsPaywallView: View {
         .padding(.vertical)
         .background(ui.colors.primary)
         .cornerRadius(32)
-        .padding()
+        .padding(.vertical)
         .onTapGesture(perform: action)
     }
 }

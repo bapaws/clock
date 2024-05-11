@@ -10,7 +10,8 @@ import SwiftUI
 import UIKit
 
 struct SplashView: View {
-    @Binding var didFinishLoad: Bool
+//    @Binding var didFinishLoad: Bool
+    @State private var isMainPresented: Bool = false
 
     #if DEBUG
     @State var isLogoPresented = false
@@ -41,11 +42,16 @@ struct SplashView: View {
                 guard !isLogoPresented else { return }
                 #endif
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    withAnimation {
-                        didFinishLoad = true
-                    }
+//                    withAnimation {
+//                        didFinishLoad = true
+//                    }
+//                    isMainPresented = true
+                    replaceRootViewController()
                 }
             }
+        }
+        .fullScreenCover(isPresented: $isMainPresented) {
+            MainView()
         }
 
         #if DEBUG
@@ -54,8 +60,18 @@ struct SplashView: View {
             }
         #endif
     }
+
+    func replaceRootViewController() {
+        guard let window = UIApplication.shared.firstKeyWindow else {
+            return
+        }
+        let main = MainViewController()
+        let root = UINavigationController(rootViewController: main)
+        window.rootViewController = root
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})
+    }
 }
 
-#Preview {
-    SplashView(didFinishLoad: Binding<Bool>.constant(false))
-}
+// #Preview {
+//    SplashView(didFinishLoad: Binding<Bool>.constant(false))
+// }

@@ -6,18 +6,27 @@
 //
 
 import HoursShare
+import RealmSwift
 import SwiftUI
 
 struct NewEventView: View {
-    @State var title: String = ""
-    @State var category: CategoryObject?
+    var event: EventObject?
 
-    @State var isEventPresented = false
-    @State var isCategoryPickerPresented = false
+    @State private var title: String
+    @State private var category: CategoryObject?
 
-    @FocusState var isFocused
+    @State private var isEventPresented = false
+    @State private var isCategoryPickerPresented = false
 
-    @Environment(\.dismiss) var dismiss
+    @FocusState private var isFocused
+
+    @Environment(\.dismiss) private var dismiss
+
+    init(event: EventObject? = nil, category: CategoryObject? = nil) {
+        self.event = event
+        self._title = .init(initialValue: event?.name ?? "")
+        self._category = .init(initialValue: category ?? event?.category)
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -31,7 +40,7 @@ struct NewEventView: View {
                     CategoryView(category: category)
                 } else {
                     Text(R.string.localizable.selectCategory())
-                        .foregroundStyle(Color.secondaryLabel)
+                        .foregroundStyle(Color.placeholderText)
                 }
             }
             .onTapGesture {
@@ -51,7 +60,7 @@ struct NewEventView: View {
             }
 
             NewItemView(title: R.string.localizable.eventName()) {
-                TextField(text: $title)
+                TextField(R.string.localizable.pleaseEnter(), text: $title)
                     .focused($isFocused)
             }
             .onTapGesture {
@@ -98,17 +107,27 @@ struct NewEventView: View {
             return
         }
 
+        defer { dismiss() }
+        if let event = event?.thaw() {
+            realm.writeAsync {
+                event.name = title
+                if category != event.category, let index = event.category.events.firstIndex(of: event) {
+                    event.category.events.remove(at: index)
+                }
+                category.events.append(event)
+            }
+            return
+        }
+
         // 保存创建任务对象
         let hex = DBManager.default.nextHex
         let event = EventObject(name: name, hex: hex)
         realm.writeAsync {
             category.events.append(event)
         }
-
-        dismiss()
     }
 }
 
 #Preview {
-    NewEventView(category: CategoryObject(hex: HexObject(hex: "#FEA6ED"), icon: "plus", name: "Sports"))
+    NewEventView()
 }

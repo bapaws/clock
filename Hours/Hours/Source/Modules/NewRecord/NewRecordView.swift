@@ -61,8 +61,8 @@ struct NewRecordView: View {
                         .width(4)
                     Text(event.name)
                 } else {
-                    Text(R.string.localizable.selectCategory())
-                        .foregroundStyle(Color.secondaryLabel)
+                    Text(R.string.localizable.pleaseSelect())
+                        .foregroundStyle(Color.placeholderText)
                 }
             }
             .onTapGesture {
