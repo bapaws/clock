@@ -27,19 +27,10 @@ struct TimerView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                if let emoji = event.categorys.first?.emoji {
-                    Text(emoji)
-                        .font(.largeTitle, weight: .black)
-                    Text("•")
-                        .font(.largeTitle, weight: .black)
-                        .foregroundStyle(event.primary)
-                }
-                Text(event.name)
-            }
-            .font(.title)
-            .frame(width: .greedy)
-            .foregroundStyle(colorScheme == .dark ? event.primary : event.onPrimaryContainer)
+            Text(event.title)
+                .font(.title)
+                .frame(width: .greedy)
+                .foregroundStyle(event.primary)
 
             Spacer()
 
@@ -88,10 +79,9 @@ struct TimerView: View {
     }
 
     var stopButton: some View {
-        HoldOnButton(strokeColor: event.primary, action: {
+        Button {
             onFinished()
-
-        }) {
+        } label: {
             buttonLabel(systemName: "stop")
         }
     }
