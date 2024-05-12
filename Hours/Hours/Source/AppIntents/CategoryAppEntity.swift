@@ -8,6 +8,7 @@
 import AppIntents
 import Foundation
 import HoursShare
+import RealmSwift
 
 struct CategoryAppEntity: AppEntity {
     // Entity ID
@@ -32,6 +33,7 @@ struct CategoryEntityQuery: EntityQuery {
 
     @MainActor func suggestedEntities() async throws -> [CategoryAppEntity] {
         DBManager.default.categorys
+            .where { ($0.archivedAt == nil && $0.events[keyPath: \.archivedAt] == nil) }
             .map { CategoryAppEntity(id: $0._id.stringValue, title: $0.title) }
     }
 }

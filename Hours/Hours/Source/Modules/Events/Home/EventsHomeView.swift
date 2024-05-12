@@ -44,7 +44,7 @@ struct EventsHomeView: View {
                                 EventItemView(event: event, playAction: presentTimer)
                                     .onTapGesture {
                                         let view = EventDetailView(event: event, timerSelectEvent: $timerSelectEvent)
-                                        pushView(view)
+                                        pushView(view, title: event.name)
                                     }
                                     .contextMenu { menuItems(for: event) }
                             }
@@ -54,7 +54,6 @@ struct EventsHomeView: View {
                                 isNewEventPresented = true
                             }
                         }
-
                     }
 
                     Button {
@@ -143,7 +142,8 @@ struct EventsHomeView: View {
                 Divider()
 
                 Button(R.string.localizable.archived(), systemImage: "archivebox.fill", role: nil) {
-                    pushView(ArchivedEventsView(timerSelectEvent: $timerSelectEvent))
+                    let view = ArchivedEventsView(timerSelectEvent: $timerSelectEvent)
+                    pushView(view, title: R.string.localizable.archived())
                 }
             } label: {
                 Image(systemName: "ellipsis")

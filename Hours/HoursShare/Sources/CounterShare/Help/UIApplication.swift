@@ -14,8 +14,9 @@ public extension UIApplication {
         UIApplication.shared.firstKeyWindow?.rootViewController as? UINavigationController
     }
 
-    func pushView<Destination: View>(_ content: Destination, animated: Bool = true) {
+    func pushView<Destination: View>(_ content: Destination, title: String?, animated: Bool = true) {
         let hostingController = UIHostingController(rootView: content)
+        hostingController.title = title
 
         navigationController?.pushViewController(hostingController, animated: animated)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

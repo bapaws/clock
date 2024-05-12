@@ -146,30 +146,10 @@ struct NewRecordView: View {
 
         // MARK: Event
 
-        .sheet(isPresented: $isEventPresented, content: {
-            let view = EventsView(tapAction: { event in
-                self.event = event
-                isEventPresented = false
-            })
-            .presentationDetents([.medium])
-            .presentationDragIndicator(.visible)
-            if #available(iOS 16.4, *) {
-                view
-                    .presentationCornerRadius(32)
-                    .presentationContentInteraction(.scrolls)
-            } else {
-                view
-            }
-        })
-    }
-
-    func customize<PopupContent: View>(parameters: Popup<PopupContent>.PopupParameters) -> Popup<PopupContent>.PopupParameters {
-        parameters
-            .type(.floater(verticalPadding: 0, horizontalPadding: 0, useSafeAreaInset: false))
-            .position(.bottom)
-            .appearFrom(.bottom)
-            .closeOnTapOutside(true)
-            .animation(.spring(duration: 0.3))
+        .sheet(isPresented: $isEventPresented) {
+            SelectEventView(selectedEvent: $event)
+                .sheetStyle()
+        }
     }
 
     func newRecord() {

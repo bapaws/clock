@@ -78,33 +78,34 @@ struct PaywallView: View {
                     .padding(.horizontal)
 
                     Text(R.string.localizable.subscriptionWarning())
-                        .font(.caption2)
+                        .font(.footnote)
+                        .foregroundColor(.tertiaryLabel)
                         .padding(.vertical, .large)
                         .padding(.horizontal)
 
                     Spacer()
 
-                    HStack {
+                    HStack(spacing: 16) {
                         Spacer()
                         Button {
                             urlString = "https://privacy.bapaws.com/hours/terms.html"
                         } label: {
                             Text(R.string.localizable.terms())
-                                .font(.caption)
-                                .foregroundColor(.tertiaryLabel)
                         }
-                        Text(R.string.localizable.and())
-                            .font(.caption)
-                            .foregroundColor(.tertiaryLabel)
+                        Text("|")
                         Button {
                             urlString = "https://privacy.bapaws.com/hours/privacy.html"
                         } label: {
                             Text(R.string.localizable.privacy())
-                                .font(.caption)
-                                .foregroundColor(.tertiaryLabel)
+                        }
+                        Text("|")
+                        Button(action: restore) {
+                            Text(R.string.localizable.restore())
                         }
                         Spacer()
                     }
+                    .font(.footnote)
+                    .foregroundColor(.tertiaryLabel)
                 }
             }
             .safeAreaInset(edge: .top) {
@@ -155,13 +156,6 @@ struct PaywallView: View {
             .padding(.horizontal)
             .background(ui.primary)
             .cornerRadius(16)
-
-            Button(action: restore) {
-                Text(R.string.localizable.restore())
-                    .foregroundColor(.tertiaryLabel)
-                    .frame(width: .greedy, height: 32)
-                    .font(.caption)
-            }
         }
         .padding()
         .padding(.bottom)

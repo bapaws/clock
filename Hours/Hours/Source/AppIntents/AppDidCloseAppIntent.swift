@@ -22,28 +22,38 @@ struct AppDidCloseAppIntent: AppIntent {
         Summary("App is closed. Create a record for \(\.$eventID)")
     }
 
-    func perform() async throws -> some IntentResult {
-        guard let startAt = UserDefaults.standard.value(forKey: "AppDidOpen") as? Date else { return .result(value: "") }
+    @MainActor func perform() async throws -> some IntentResult {
+        guard let startAt = UserDefaults.standard.value(forKey: "AppDidOpen") as? Date else {
+            return .result()
+        }
         let endAt = Date()
+
+        defer { UserDefaults.standard.removeObject(forKey: "AppDidOpen") }
 
         print(eventID)
         let event = DBManager.default.events.first { $0._id.stringValue == eventID }
 
         guard let event = event?.thaw(), let realm = event.realm else {
-            return .result(value: "")
+            return .result()
         }
 
         // 当设置自动合并是，执行合并记录的逻辑
         if AppManager.shared.isAutoMergeAdjacentRecords {
             let minEndAt = startAt.addingTimeInterval(-AppManager.shared.autoMergeAdjacentRecordsInterval)
             if let record = realm.objects(RecordObject.self)
-                .where({ $0.event == event && $0.endAt > minEndAt })
-                .first {
+                .where({ $0.events == event && $0.endAt > minEndAt })
+                .first
+            {
                 record.realm?.writeAsync {
                     record.endAt = endAt
                 }
-                return .result(value: "")
+                return .result()
             }
+        }
+
+        // 小于最低记录时长时，不记录
+        if endAt.timeIntervalSince1970 - startAt.timeIntervalSince1970 < AppManager.shared.minimumRecordedScreenTime {
+            return .result()
         }
 
         realm.writeAsync {
@@ -55,6 +65,6 @@ struct AppDidCloseAppIntent: AppIntent {
             event.items.append(newRecord)
         }
 
-        return .result(value: "")
+        return .result()
     }
 }

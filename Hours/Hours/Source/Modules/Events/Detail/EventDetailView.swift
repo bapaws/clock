@@ -55,15 +55,16 @@ struct EventDetailView: View {
         VStack(spacing: 0) {
             scrollView
 
-            header
-                .padding(.horizontal)
-                .padding(.vertical, .small)
-                .background(ui.background)
+            if event.archivedAt == nil {
+                footer
+                    .padding(.horizontal)
+                    .padding(.vertical, .small)
+                    .background(ui.background)
 
-            ui.background.height(safeAreaInsets.bottom)
+                ui.background.height(safeAreaInsets.bottom)
+            }
         }
         .ignoresSafeArea(.container, edges: .bottom)
-        .toolbar(.hidden, for: .tabBar)
         .navigationTitle(event.name)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -99,6 +100,7 @@ struct EventDetailView: View {
         }
 
         // MARK: Event
+
         .sheet(isPresented: $isEditPresented) {
             NewEventView(event: event)
                 .sheetStyle()
@@ -124,7 +126,7 @@ struct EventDetailView: View {
         }
     }
 
-    @ViewBuilder var header: some View {
+    @ViewBuilder var footer: some View {
         HStack(spacing: 16) {
             Button(action: {
                 newRecordSelectEvent = event

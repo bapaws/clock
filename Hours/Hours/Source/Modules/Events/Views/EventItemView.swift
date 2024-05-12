@@ -18,6 +18,10 @@ struct EventItemView: View {
                 RoundedRectangle(cornerRadius: 2)
                     .fill(event.primary)
                     .frame(width: 4)
+                if let emoji = event.emoji {
+                    Text(emoji)
+                        .padding(.small)
+                }
                 Text(event.name)
                     .font(.body, weight: .regular)
             }

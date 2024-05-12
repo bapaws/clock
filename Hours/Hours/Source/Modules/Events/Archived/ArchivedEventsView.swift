@@ -27,7 +27,8 @@ struct ArchivedEventsView: View {
                             ForEach(events) { event in
                                 ArchivedEventsItemView(event: event, unarchiveEvent: vm.unarchiveEvent)
                                     .onTapGesture {
-                                        pushView(EventDetailView(event: event, timerSelectEvent: $timerSelectEvent))
+                                        let view = EventDetailView(event: event, timerSelectEvent: $timerSelectEvent)
+                                        pushView(view, title: event.name)
                                     }
                             }
                         } header: {

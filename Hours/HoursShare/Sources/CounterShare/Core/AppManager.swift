@@ -33,13 +33,13 @@ public class AppManager: ClockShare.AppBaseManager {
     // MARK: App Screen Time
 
     @AppStorage(Storage.Key.minimumRecordedScreenTime, store: Storage.default.store)
-    public var minimumRecordedScreenTime: TimeInterval = 5
+    public var minimumRecordedScreenTime: TimeInterval = 10
 
     @AppStorage(Storage.Key.isAutoMergeAdjacentRecords, store: Storage.default.store)
     public var isAutoMergeAdjacentRecords: Bool = false
 
     @AppStorage(Storage.Key.autoMergeAdjacentRecordsInterval, store: Storage.default.store)
-    public var autoMergeAdjacentRecordsInterval: TimeInterval = 2 * 60
+    public var autoMergeAdjacentRecordsInterval: TimeInterval = 30
 
     // MARK: Calendar
 

@@ -33,7 +33,7 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
     /// 任务计时类型：倒计时 or 正计时
     @Persisted public var creationMode: RecordCreationMode
     /// 持续时间
-    @Persisted public var milliseconds: Int {
+    @Persisted public private(set) var milliseconds: Int {
         didSet {
             time = milliseconds.time
         }
@@ -42,7 +42,13 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
     // 开始时间
     @Persisted(indexed: true) public var startAt: Date
     /// 结束时间
-    @Persisted public var endAt: Date
+    @Persisted public var endAt: Date {
+        didSet {
+            milliseconds = Int(startAt.distance(to: endAt) * 1000)
+        }
+    }
+
+    @Persisted public var notes: String?
 
     @Persisted(originProperty: "items") public var events: LinkingObjects<EventObject>
     public var event: EventObject? { events.first }

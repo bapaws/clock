@@ -12,11 +12,12 @@ import SwiftUI
 struct NewEventView: View {
     var event: EventObject?
 
+    @State private var emoji: String = ""
     @State private var title: String
     @State private var category: CategoryObject?
 
-    @State private var isEventPresented = false
-    @State private var isCategoryPickerPresented = false
+    @State private var isEmojiPresented = false
+    @State private var isCategoryPresented = false
 
     @FocusState private var isFocused
 
@@ -24,6 +25,7 @@ struct NewEventView: View {
 
     init(event: EventObject? = nil, category: CategoryObject? = nil) {
         self.event = event
+        self._emoji = .init(initialValue: event?.emoji ?? "")
         self._title = .init(initialValue: event?.name ?? "")
         self._category = .init(initialValue: category ?? event?.category)
     }
@@ -44,19 +46,27 @@ struct NewEventView: View {
                 }
             }
             .onTapGesture {
-                withAnimation {
-                    isCategoryPickerPresented.toggle()
-                }
+                isCategoryPresented.toggle()
             }
 
-            if isCategoryPickerPresented {
-                CategoryPickerView(categorys: DBManager.default.categorys) { object in
-                    category = object
-                    withAnimation {
-                        isCategoryPickerPresented.toggle()
-                    }
+            NewItemView(title: R.string.localizable.emoji()) {
+                if emoji.isEmpty {
+                    Text(R.string.localizable.pleaseSelect())
+                        .foregroundStyle(Color.placeholderText)
+                } else {
+                    Text(emoji)
                 }
-                .cornerRadius(16)
+            }
+            .emojiPicker(isPresented: $isEmojiPresented, selectedEmoji: $emoji, arrowDirection: .down)
+            .onTapGesture {
+                if isFocused {
+                    isFocused.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        isEmojiPresented.toggle()
+                    }
+                } else {
+                    isEmojiPresented.toggle()
+                }
             }
 
             NewItemView(title: R.string.localizable.eventName()) {
@@ -97,6 +107,11 @@ struct NewEventView: View {
         .padding()
         .padding(.vertical, .extraLarge)
         .background(ui.background)
+
+        .sheet(isPresented: $isCategoryPresented) {
+            SelectCategoryView(selectedCategory: $category)
+                .sheetStyle()
+        }
     }
 
     func newEvent() {
@@ -110,6 +125,7 @@ struct NewEventView: View {
         defer { dismiss() }
         if let event = event?.thaw() {
             realm.writeAsync {
+                event.emoji = emoji
                 event.name = title
                 if category != event.category, let index = event.category.events.firstIndex(of: event) {
                     event.category.events.remove(at: index)
@@ -121,7 +137,7 @@ struct NewEventView: View {
 
         // 保存创建任务对象
         let hex = DBManager.default.nextHex
-        let event = EventObject(name: name, hex: hex)
+        let event = EventObject(emoji: emoji, name: name, hex: hex)
         realm.writeAsync {
             category.events.append(event)
         }
