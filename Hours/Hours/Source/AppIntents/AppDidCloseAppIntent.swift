@@ -46,6 +46,9 @@ struct AppDidCloseAppIntent: AppIntent {
             {
                 record.realm?.writeAsync {
                     record.endAt = endAt
+                    // 先完成更新，后同步日历
+                    let identifier = AppManager.shared.syncToCalendar(for: event, record: record)
+                    record.calendarEventIdentifier = identifier
                 }
                 return .result()
             }
@@ -57,7 +60,7 @@ struct AppDidCloseAppIntent: AppIntent {
         }
 
         realm.writeAsync {
-            let newRecord = RecordObject(creationMode: .enter, startAt: startAt, endAt: endAt)
+            let newRecord = RecordObject(creationMode: .shortcut, startAt: startAt, endAt: endAt)
             let identifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
             newRecord.calendarEventIdentifier = identifier
             realm.add(newRecord)
