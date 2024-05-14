@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "simulator_screenshot_EAE52E8E-EABE-4A52-AACB-D2918C252DC4.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Simulator Screenshot - iPhone 15 Pro Max - 2024-05-13 at 11.46.22.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -25,7 +25,6 @@ struct EventsHeaderView: View {
             }
         }
         .padding(.vertical, .small)
-        .padding(.top)
         .background(ui.background)
     }
 }

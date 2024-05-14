@@ -22,6 +22,14 @@ struct MainView: View {
 
     @State private var selectionValue: MainTabTag = .events
 
+    // MARK: Paywall
+
+    @State var isPaywallPresented: Bool
+
+    init(isPaywallPresented: Bool = false) {
+        self._isPaywallPresented = .init(initialValue: isPaywallPresented)
+    }
+
     var body: some View {
         TabView(selection: $selectionValue) {
             NavigationStack {
@@ -47,7 +55,7 @@ struct MainView: View {
             }
 
             NavigationStack {
-                GeneralSettingsView()
+                GeneralSettingsView(isPaywallPresented: $isPaywallPresented)
             }
             .tag(MainTabTag.settings)
             .tabItem {
@@ -60,6 +68,12 @@ struct MainView: View {
         .foregroundStyle(ui.colors.label)
         .environmentObject(ui)
         .environmentObject(app)
+
+        // MARK: Paywall
+
+        .fullScreenCover(isPresented: $isPaywallPresented) {
+            PaywallView()
+        }
     }
 
     var navigationTitle: String {

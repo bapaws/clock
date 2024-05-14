@@ -23,4 +23,8 @@ public extension UIApplication {
             hostingController.navigationItem.backButtonTitle = ""
         }
     }
+
+    func popView(animated: Bool = true) {
+        navigationController?.popViewController(animated: animated)
+    }
 }

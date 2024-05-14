@@ -36,9 +36,8 @@ struct EventsHomeView: View {
         ScrollViewReader { proxy in
             ScrollView {
                 LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
-                    ForEach(0 ..< vm.categories.count, id: \.self) { index in
-                        let category = vm.categories.elements[index].key
-                        let events = vm.categories.elements[index].value
+                    ForEach(vm.categories.keys.elements) { category in
+                        let events = vm.categories[category]!
                         Section {
                             ForEach(events) { event in
                                 EventItemView(event: event, playAction: presentTimer)
@@ -48,6 +47,8 @@ struct EventsHomeView: View {
                                     }
                                     .contextMenu { menuItems(for: event) }
                             }
+
+                            ui.background
                         } header: {
                             EventsHeaderView(category: category) { category in
                                 newEventSelectCategory = category
@@ -76,6 +77,7 @@ struct EventsHomeView: View {
                                 newEventSelectCategory = category
                                 isNewEventPresented = true
                             }
+                            .id(category._id)
                         }
                     }
                 }

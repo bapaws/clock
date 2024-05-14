@@ -131,7 +131,7 @@ struct PaywallView: View {
             .safeAreaInset(edge: .bottom) {
                 footer
             }
-            .ignoresSafeArea()
+            .ignoresSafeArea(.container, edges: .top)
 
             .sheet(item: $urlString) { urlString in
                 SafariView(url: URL(string: urlString)!)
@@ -152,13 +152,12 @@ struct PaywallView: View {
                         .foregroundColor(ui.background)
                 }
             }
-            .frame(width: .greedy, height: 54)
+            .frame(width: .greedy, height: 60)
             .padding(.horizontal)
             .background(ui.primary)
             .cornerRadius(16)
         }
         .padding()
-        .padding(.bottom)
         .background(ui.background)
     }
 

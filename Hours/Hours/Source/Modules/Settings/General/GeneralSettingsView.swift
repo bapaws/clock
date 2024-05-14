@@ -15,7 +15,7 @@ import SwiftUIX
 struct GeneralSettingsView: View {
     // MARK: Paywall
 
-    @State var isPaywallPresented: Bool = false
+    @Binding var isPaywallPresented: Bool
 
     // MARK: Appearance
 
@@ -28,6 +28,7 @@ struct GeneralSettingsView: View {
 
     // MARK: Other
 
+    @State var isOnboardingPresented = false
     @State var isAboutPresented = false
     @State var isFeedbackPresented = false
 
@@ -39,14 +40,13 @@ struct GeneralSettingsView: View {
             .navigationTitle(R.string.localizable.settings())
             .background(ui.colors.background)
 
-            // MARK: Paywall
+            // MARK: Other
 
-            .fullScreenCover(isPresented: $isPaywallPresented) {
-                PaywallView()
+            .sheet(isPresented: $isOnboardingPresented) {
+                OnboardingView {
+                    isOnboardingPresented.toggle()
+                }
             }
-
-            // MARK: About
-
             .sheet(isPresented: $isAboutPresented) {
                 AboutView(isPresented: $isAboutPresented)
             }
@@ -75,6 +75,9 @@ struct GeneralSettingsView: View {
                 // MARK: Other
 
                 SettingsSection(title: R.string.localizable.other()) {
+                    SettingsNavigateCell(title: R.string.localizable.onboarding()) {
+                        isOnboardingPresented.toggle()
+                    }
                     SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
                     SettingsNavigateCell(title: R.string.localizable.feedback()) {
                         isFeedbackPresented = true
@@ -95,5 +98,5 @@ struct GeneralSettingsView: View {
 }
 
 #Preview {
-    GeneralSettingsView()
+    GeneralSettingsView(isPaywallPresented: .constant(false))
 }

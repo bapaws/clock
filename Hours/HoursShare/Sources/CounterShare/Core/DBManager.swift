@@ -100,7 +100,7 @@ public class DBManager: ObservableObject {
         if let index = Storage.default.hexIndex {
             hexIndex = index
         } else {
-            hexIndex = events.count % hexs.count
+            hexIndex = hexs.count == 0 ? 0 : events.count % hexs.count
         }
     }
 }

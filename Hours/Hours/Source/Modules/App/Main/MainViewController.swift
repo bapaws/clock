@@ -8,10 +8,11 @@
 import HoursShare
 import SwiftUI
 import UIKit
+import UIOnboarding
 
 class MainViewController: UIHostingController<MainView> {
-    init() {
-        let main = MainView()
+    init(isPaywallPresented: Bool = false) {
+        let main = MainView(isPaywallPresented: isPaywallPresented)
         super.init(rootView: main)
     }
 

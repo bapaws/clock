@@ -64,6 +64,13 @@
 		88A9B6662BA1868600385800 /* StatisticsDailyEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B6652BA1868600385800 /* StatisticsDailyEventView.swift */; };
 		88A9B66B2BA1A0CE00385800 /* StatisticsDailyCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B66A2BA1A0CE00385800 /* StatisticsDailyCategoryView.swift */; };
 		88A9B6712BA1E12F00385800 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 88A9B6702BA1E12F00385800 /* Collections */; };
+		88B8DA9D2BF1B0A800249EAE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DA9C2BF1B0A800249EAE /* OnboardingView.swift */; };
+		88B8DAA02BF1B3BB00249EAE /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 88B8DA9F2BF1B3BB00249EAE /* UIOnboarding */; };
+		88B8DAA22BF1B44C00249EAE /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA12BF1B44C00249EAE /* SplashViewController.swift */; };
+		88B8DAA42BF20BEF00249EAE /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA32BF20BEF00249EAE /* OnboardingWelcomeView.swift */; };
+		88B8DAA92BF2103100249EAE /* OnboardingCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA82BF2103100249EAE /* OnboardingCalendarView.swift */; };
+		88B8DAAC2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAAB2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift */; };
+		88B9DA5D2BF2FE9F000979EE /* OnboardingStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B9DA5C2BF2FE9F000979EE /* OnboardingStatisticsView.swift */; };
 		88CB58B82BEE5B4F000A2BF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58B62BEE5B4F000A2BF7 /* AppDelegate.swift */; };
 		88CB58B92BEE5B4F000A2BF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58B72BEE5B4F000A2BF7 /* SceneDelegate.swift */; };
 		88CB58BF2BEE60A0000A2BF7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58BE2BEE60A0000A2BF7 /* MainViewController.swift */; };
@@ -193,6 +200,12 @@
 		88A9B6622BA1865000385800 /* StatisticsDailyRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDailyRatioView.swift; sourceTree = "<group>"; };
 		88A9B6652BA1868600385800 /* StatisticsDailyEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDailyEventView.swift; sourceTree = "<group>"; };
 		88A9B66A2BA1A0CE00385800 /* StatisticsDailyCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDailyCategoryView.swift; sourceTree = "<group>"; };
+		88B8DA9C2BF1B0A800249EAE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		88B8DAA12BF1B44C00249EAE /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		88B8DAA32BF20BEF00249EAE /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
+		88B8DAA82BF2103100249EAE /* OnboardingCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCalendarView.swift; sourceTree = "<group>"; };
+		88B8DAAB2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAppScreenTimeView.swift; sourceTree = "<group>"; };
+		88B9DA5C2BF2FE9F000979EE /* OnboardingStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStatisticsView.swift; sourceTree = "<group>"; };
 		88CB58B62BEE5B4F000A2BF7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88CB58B72BEE5B4F000A2BF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		88CB58BE2BEE60A0000A2BF7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +272,7 @@
 				88D23AD82B949FA000E33DE5 /* RealmSwift in Frameworks */,
 				882B82DF2BF0B68A00B0365A /* Flow in Frameworks */,
 				8888F7632BEF047700E5E646 /* MCEmojiPicker in Frameworks */,
+				88B8DAA02BF1B3BB00249EAE /* UIOnboarding in Frameworks */,
 				88D23AD32B949F1000E33DE5 /* RevenueCat in Frameworks */,
 				88059EA22B9EBA2100C8BF9E /* HoursShare in Frameworks */,
 			);
@@ -472,6 +486,18 @@
 			path = Feedback;
 			sourceTree = "<group>";
 		};
+		88B8DA9B2BF1AAE500249EAE /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				88B8DA9C2BF1B0A800249EAE /* OnboardingView.swift */,
+				88B8DAA32BF20BEF00249EAE /* OnboardingWelcomeView.swift */,
+				88B8DAAB2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift */,
+				88B8DAA82BF2103100249EAE /* OnboardingCalendarView.swift */,
+				88B9DA5C2BF2FE9F000979EE /* OnboardingStatisticsView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		88CB58BC2BEE6097000A2BF7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +606,7 @@
 			children = (
 				882B82D62BF0ADEC00B0365A /* App */,
 				88D50FD12B974B150065C4AA /* Events */,
+				88B8DA9B2BF1AAE500249EAE /* Onboarding */,
 				88E23AD22B9C9C4700C421DB /* Records */,
 				88D23AF42B94A35C00E33DE5 /* Settings */,
 				88D50FD42B974BC90065C4AA /* Statistics */,
@@ -640,6 +667,7 @@
 			isa = PBXGroup;
 			children = (
 				88D23B0E2B94A35C00E33DE5 /* SplashView.swift */,
+				88B8DAA12BF1B44C00249EAE /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -806,6 +834,7 @@
 				880B1F522BCAC35D00519C4C /* SwiftUIIntrospect */,
 				8888F7622BEF047700E5E646 /* MCEmojiPicker */,
 				882B82DE2BF0B68A00B0365A /* Flow */,
+				88B8DA9F2BF1B3BB00249EAE /* UIOnboarding */,
 			);
 			productName = Counter;
 			productReference = 88D23ABA2B949D9700E33DE5 /* Hours.app */;
@@ -846,6 +875,7 @@
 				880B1F512BCAC35D00519C4C /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
 				8888F7612BEF047700E5E646 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
 				882B82DD2BF0B68A00B0365A /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */,
+				88B8DA9E2BF1B3BB00249EAE /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 			);
 			productRefGroup = 88D23ABB2B949D9700E33DE5 /* Products */;
 			projectDirPath = "";
@@ -887,7 +917,9 @@
 				8827A5792BEC85D40010FC4C /* EventProvider.swift in Sources */,
 				8802CBBD2BAB0CF700F0091E /* PaywallFeatureItemView.swift in Sources */,
 				88D23B132B94A35C00E33DE5 /* SettingsStepperCell.swift in Sources */,
+				88B8DAA92BF2103100249EAE /* OnboardingCalendarView.swift in Sources */,
 				88D23AEE2B94A26D00E33DE5 /* DarkMode.swift in Sources */,
+				88B8DA9D2BF1B0A800249EAE /* OnboardingView.swift in Sources */,
 				8827A5742BEC854E0010FC4C /* AppShortcutsProvider.swift in Sources */,
 				88D23B122B94A35C00E33DE5 /* SettingsNavigateCell.swift in Sources */,
 				88D50FD92B9764490065C4AA /* CategoryPickerView.swift in Sources */,
@@ -926,6 +958,7 @@
 				8863CED52B99C108000BA47D /* StatisticsNumberView.swift in Sources */,
 				88861D352BC690F5001DAE8E /* EventRecordsView.swift in Sources */,
 				88FE051D2BADCA3B002B990A /* ProMask.swift in Sources */,
+				88B8DAA22BF1B44C00249EAE /* SplashViewController.swift in Sources */,
 				88D454B02BA84BB500584FAD /* SettingsCell.swift in Sources */,
 				88CB58C72BEE6A1A000A2BF7 /* NewCategoryView.swift in Sources */,
 				880326A52B98769400E6653A /* PomodoroView.swift in Sources */,
@@ -942,9 +975,12 @@
 				8802CBD42BAB2CF700F0091E /* SettingsAppIconView.swift in Sources */,
 				8827A5772BEC85BE0010FC4C /* NewRecordAppIntent.swift in Sources */,
 				8888F76C2BEF859200E5E646 /* EventsHomeViewModel.swift in Sources */,
+				88B8DAAC2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift in Sources */,
 				880326982B984FDB00E6653A /* TimerView.swift in Sources */,
+				88B8DAA42BF20BEF00249EAE /* OnboardingWelcomeView.swift in Sources */,
 				8827A56A2BEC63550010FC4C /* AppDidOpenAppIntent.swift in Sources */,
 				88D23ABE2B949D9700E33DE5 /* CounterApp.swift in Sources */,
+				88B9DA5D2BF2FE9F000979EE /* OnboardingStatisticsView.swift in Sources */,
 				88A9B6592BA150C100385800 /* TitleView.swift in Sources */,
 				8867985A2BEA602500E55B2C /* FeedbackView.swift in Sources */,
 				8802CBBA2BAAE51100F0091E /* PaywallPackageItemView.swift in Sources */,
@@ -1242,6 +1278,14 @@
 				minimumVersion = 1.1.0;
 			};
 		};
+		88B8DA9E2BF1B3BB00249EAE /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
 		88CFE29A2B9AB80600912C53 /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow";
@@ -1314,6 +1358,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88A9B66F2BA1E12F00385800 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
+		};
+		88B8DA9F2BF1B3BB00249EAE /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B8DA9E2BF1B3BB00249EAE /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			productName = UIOnboarding;
 		};
 		88CFE29B2B9AB80600912C53 /* Pow */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -10,7 +10,7 @@ import RealmSwift
 import SwiftUI
 
 struct EventRecordsView: View {
-    let event: EventObject
+    @ObservedRealmObject var event: EventObject
 
     @Binding var editRecord: RecordObject?
 
@@ -20,6 +20,8 @@ struct EventRecordsView: View {
         self.event = event
         _editRecord = editRecord
 
+        // 当事件被删除时，这里的 event 是无效的，执行 setioned 方法会导致崩溃
+        // 所以事件删除，先返回主页，再删除
         results = event.items.sectioned(
             by: { $0.endAt.toString(.date(.medium)) },
             sortDescriptors: [SortDescriptor(keyPath: \RecordObject.endAt, ascending: false)]

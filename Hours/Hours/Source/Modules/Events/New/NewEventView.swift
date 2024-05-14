@@ -32,7 +32,7 @@ struct NewEventView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(R.string.localizable.newEvent())
+            Text(event == nil ? R.string.localizable.newEvent() : R.string.localizable.editEvent())
                 .font(.title)
                 .foregroundStyle(ui.primary)
                 .padding()
@@ -79,7 +79,7 @@ struct NewEventView: View {
 
             HStack(spacing: 16) {
                 Button(action: {
-                    category = nil
+                    dismiss()
                 }, label: {
                     Text(R.string.localizable.cancel())
                         .padding(.vertical, .small)
@@ -131,6 +131,8 @@ struct NewEventView: View {
                     event.category.events.remove(at: index)
                 }
                 category.events.append(event)
+
+                AppManager.shared.updateCalendarEvents(by: event)
             }
             return
         }

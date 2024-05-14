@@ -10,6 +10,7 @@ import Foundation
 
 public extension Storage.Key {
     static let hexIndex = "hexIndex"
+    static let onboardingVersion = "onboardingVersion"
 }
 
 public extension Storage {
@@ -23,6 +24,15 @@ public extension Storage {
         }
         get {
             store.object(forKey: Key.hexIndex) as? Int
+        }
+    }
+
+    var onboardingVersion: Int {
+        set {
+            store.set(newValue, forKey: Key.onboardingVersion)
+        }
+        get {
+            store.integer(forKey: Key.onboardingVersion)
         }
     }
 }

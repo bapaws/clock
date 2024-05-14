@@ -141,7 +141,7 @@ public extension AppManager {
         do {
             // 如果是修改记录，现删除记录
             if let eventIdentifier = record.calendarEventIdentifier {
-                deleteEvent(for: eventIdentifier)
+                deleteCalendarEvent(for: eventIdentifier)
             }
 
             let calendar: EKCalendar? = findOrCreateCalendar(for: eventObject.category)
@@ -163,7 +163,7 @@ public extension AppManager {
         }
     }
 
-    func deleteEvent(for identifier: String) {
+    func deleteCalendarEvent(for identifier: String) {
         if let event = eventStore.event(withIdentifier: identifier) {
             try? eventStore.remove(event, span: .thisEvent)
         } else {
@@ -174,8 +174,28 @@ public extension AppManager {
             }
             deleteEventIdentifiers[identifier] = count - 1
             DispatchQueue.global().asyncAfter(deadline: .now() + 5) { [weak self] in
-                self?.deleteEvent(for: identifier)
+                self?.deleteCalendarEvent(for: identifier)
             }
+        }
+    }
+
+    func updateCalendarEvents(by eventObject: EventObject) {
+        do {
+            let calendar: EKCalendar? = findOrCreateCalendar(for: eventObject.category)
+
+            for record in eventObject.items {
+                guard let calendarEventIdentifier = record.calendarEventIdentifier else { continue }
+
+                if let event = eventStore.event(withIdentifier: calendarEventIdentifier) {
+                    event.title = eventObject.title
+                    event.calendar = calendar ?? eventStore.defaultCalendarForNewEvents
+                    try eventStore.save(event, span: .thisEvent, commit: false)
+                }
+            }
+
+            try eventStore.commit()
+        } catch {
+            print(error)
         }
     }
 }

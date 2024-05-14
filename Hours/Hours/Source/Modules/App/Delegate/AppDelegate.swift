@@ -35,10 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        #endif
 
-        // MARK: Notification
-
-        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { _, _ in }
-
         return true
     }
 

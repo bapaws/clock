@@ -16,6 +16,26 @@
 "PleaseEnter" = "Enter...";
 "ShowAll" = "Show All";
 "Edit" = "Edit";
+"Continue" = "Continue";
+
+// MARK: Onboarding
+
+"Onboarding" = "Onboarding";
+
+"WelcomeTo" = "Welcome To";
+"WelcomeText" = "An app that helps you better manage your time and improve your productivity.";
+
+"SetupLater" = "Set up later";
+
+"AppScreenTimeTitle" = "Record App Screen Time";
+"AppScreenTimeDesc" = "Auto-record your screen time. Just set up the Shortcuts app on iOS to listen for our app's open and close events. It's that simple!";
+
+"CalendarTitle" = "Use with Apple Calendar";
+"CalendarDesc" = "Please allow Hours access to your calendar so that you can see your time consumption in Apple Calendar.";
+"CalendarNotAccess" = "Hours cannot access Calendar and can be turned on in settings later.";
+
+"StatisticsTitle" = "Statistics Pro";
+"StatisticsDesc" = "Unlock deep insights into time management, customize your daily productivity, and achieve your goals with our Statistics Pro – making every moment count.";
 
 // MARK: Category
 
@@ -90,9 +110,11 @@
 "Cleaning" = "Cleaning";
 "Cooking" = "Cooking";
 
-// MARK: New Record
+// MARK: New
 
 "NewEvent" = "New Event";
+"EditEvent" = "Edit Event";
+
 "Event" = "Event";
 "SelectEvent" = "Select Event";
 

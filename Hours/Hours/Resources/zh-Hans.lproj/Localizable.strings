@@ -16,6 +16,26 @@
 "PleaseEnter" = "请输入";
 "ShowAll" = "显示全部";
 "Edit" = "编辑";
+"Continue" = "继续";
+
+// MARK: Onboarding
+
+"Onboarding" = "新手引导";
+
+"WelcomeTo" = "欢迎使用";
+"WelcomeText" = "帮助你了解时间都去哪儿了";
+
+"SetupLater" = "算了";
+
+"AppScreenTimeTitle" = "自动记录屏幕使用时间";
+"AppScreenTimeDesc" = "只需通过 iOS 上的「快捷指令」的应用程序的自动化功能，设置应用程序的打开和关闭自动化，就可以自动记录你的屏幕时间。就是这么简单!";
+
+"CalendarTitle" = "和苹果日历一起使用";
+"CalendarDesc" = "请允许时间记录访问你的日历，以便能你能在苹果日历中能看到你的时间消耗。";
+"CalendarNotAccess" = "时间记录无法访问你的日历，可以稍后在设置中开启。";
+
+"StatisticsTitle" = "数据统计 Pro";
+"StatisticsDesc" = "通过数据统计 Pro，解锁时间管理的深度洞察，个性化定制您的日常，提升效率，实现目标，让每一分每一秒都发挥最大价值。";
 
 // MARK: Category
 
@@ -94,6 +114,7 @@
 // MARK: New Record
 
 "NewEvent" = "新建事件";
+"EditEvent" = "编辑事件";
 "Event" = "事件";
 "SelectEvent" = "选择事件";
 

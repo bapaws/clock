@@ -16,4 +16,8 @@ public extension View {
     func pushView<Destination: View>(_ content: Destination, title: String? = nil, animated: Bool = true) {
         UIApplication.shared.pushView(content, title: title, animated: animated)
     }
+
+    func popView(animated: Bool = true) {
+        UIApplication.shared.popView(animated: animated)
+    }
 }

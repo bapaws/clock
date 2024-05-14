@@ -23,6 +23,10 @@ struct SelectCategoryView: View {
             HFlow(spacing: 12) {
                 ForEach(categories) { category in
                     CategoryView(category: category)
+                        .onTapGesture {
+                            selectedCategory = category
+                            dismiss()
+                        }
                 }
             }
             .padding()

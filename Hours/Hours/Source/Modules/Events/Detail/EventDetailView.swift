@@ -52,16 +52,25 @@ struct EventDetailView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        VStack(spacing: 0) {
-            scrollView
+        Group {
+            // 当 event 被删除时，是无效数据，在界面中展示会造成崩溃
+            // 这里通过判断 event.realm 是否存在，然后避免崩溃
+            if event.realm == nil {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            } else {
+                VStack(spacing: 0) {
+                    scrollView
 
-            if event.archivedAt == nil {
-                footer
-                    .padding(.horizontal)
-                    .padding(.vertical, .small)
-                    .background(ui.background)
+                    if event.archivedAt == nil {
+                        footer
+                            .padding(.horizontal)
+                            .padding(.vertical, .small)
+                            .background(ui.background)
 
-                ui.background.height(safeAreaInsets.bottom)
+                        ui.background.height(safeAreaInsets.bottom)
+                    }
+                }
             }
         }
         .ignoresSafeArea(.container, edges: .bottom)
@@ -120,7 +129,7 @@ struct EventDetailView: View {
 
                 // Records
                 EventRecordsView(event: event, editRecord: $selectedRecord)
-                    .emptyStyle(isEmpty: event.items.isEmpty)
+                    .emptyStyle(isEmpty: event.isInvalidated || event.items.isEmpty)
             }
             .padding()
         }
@@ -179,16 +188,19 @@ struct EventDetailView: View {
     }
 
     private func deleteEvent() {
+        dismiss()
+
         guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
 
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
         realm.writeAsync {
             for item in event.items {
-                realm.delete(item)
+                guard let thawedItem = item.thaw() else { continue }
+                realm.delete(thawedItem)
             }
             realm.delete(event)
         }
-
-        dismiss()
+//        }
     }
 
     private func archiveEvent() {

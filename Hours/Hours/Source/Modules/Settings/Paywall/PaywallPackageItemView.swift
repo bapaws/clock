@@ -22,7 +22,7 @@ struct PaywallPackageItemView: View {
                     HStack {
                         if selectedPackage == package {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(ui.secondary)
+                                .foregroundColor(ui.primary)
                                 .font(.headline, weight: .regular)
                         } else {
                             Image(systemName: "circle")
@@ -47,6 +47,7 @@ struct PaywallPackageItemView: View {
                     }
                 }
             }
+            .foregroundStyle(ui.label)
             .padding()
         }
         .background(ui.secondaryBackground)
