@@ -114,7 +114,7 @@ public extension AppManager {
     func setupOnboardingIndices() {
         let store = Storage.default.store
         for index in OnboardingIndices.allCases where store.integer(forKey: index.storeKey) != index.version {
-            if index == .health && !HKHealthStore.isHealthDataAvailable() { continue }
+            if index == .health, !HKHealthStore.isHealthDataAvailable() { continue }
             onboardingIndices.append(index)
         }
     }
@@ -280,8 +280,11 @@ public extension AppManager {
         let from = Storage.default.lastSyncWorkoutDate ?? initialDate
         let to = Date()
 
+        if from.distance(to: to) < 10 { return }
+        Storage.default.lastSyncWorkoutDate = to
+
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: .workoutType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
             guard error == nil, let workouts = samples as? [HKWorkout] else { return }
 
@@ -292,17 +295,23 @@ public extension AppManager {
         healthStore.execute(query)
     }
 
-    private func saveWorkouts(_ workouts: [HKWorkout]) {
+    private var healthCategory: CategoryObject {
         let realm = DBManager.default.realm
-        var category: CategoryObject
+
         if let health = realm.objects(CategoryObject.self).first(where: { $0.name == R.string.localizable.health() }) {
-            category = health
+            return health
         } else {
-            category = CategoryObject(hex: DBManager.default.nextHex, emoji: "❤️", name: R.string.localizable.health())
+            let category = CategoryObject(hex: DBManager.default.nextHex, emoji: "❤️", name: R.string.localizable.health())
             realm.writeAsync {
                 realm.add(category)
             }
+            return category
         }
+    }
+
+    private func saveWorkouts(_ workouts: [HKWorkout]) {
+        let realm = DBManager.default.realm
+        let category: CategoryObject = healthCategory
 
         for workout in workouts {
             let id = workout.uuid.uuidString
@@ -315,18 +324,18 @@ public extension AppManager {
             newRecord.healthSampleUUIDString = id
             if let eventObject = realm.objects(EventObject.self).first(where: { $0.name == name && $0.emoji == emoji }) {
                 realm.writeAsync {
-//                    category.events.append(eventObject)
                     // 同步到日历
                     newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: eventObject, record: newRecord)
                     eventObject.items.append(newRecord)
                 }
             } else {
-                realm.writeAsync {
+                try? realm.write {
                     let event = EventObject(emoji: emoji, name: name, hex: DBManager.default.nextHex, isSystem: true)
                     event.items.append(newRecord)
 
                     // 同步到日历
                     newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+                    realm.add(event)
 
                     category.events.append(event)
                 }
@@ -340,17 +349,60 @@ public extension AppManager {
         let from = Storage.default.lastSyncSleepDate ?? initialDate
         let to = Date()
 
-        if to.timeIntervalSince1970 - from.timeIntervalSince1970 < 10 { return }
+        if from.distance(to: to) < 10 { return }
+        Storage.default.lastSyncSleepDate = to
 
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, error in
-            print(samples)
-            guard error == nil, let workouts = samples as? [HKCategorySample] else {
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
+            guard error == nil, let items = samples as? [HKCategorySample] else {
                 return
             }
-            print(workouts)
+
+            DispatchQueue.main.async {
+                self?.saveSleep(items)
+            }
         }
         healthStore.execute(query)
+    }
+
+    private func saveSleep(_ samples: [HKCategorySample]) {
+        let realm = DBManager.default.realm
+        let category: CategoryObject = healthCategory
+
+        let name = R.string.localizable.sleep()
+        let emoji = "🛌"
+        var event: EventObject
+        if let eventObject = realm.objects(EventObject.self).first(where: { $0.name == name && $0.emoji == emoji }) {
+            event = eventObject
+        } else {
+            event = EventObject(emoji: emoji, name: name, hex: DBManager.default.nextHex, isSystem: true)
+            try? realm.write {
+                category.events.append(event)
+            }
+        }
+
+        var records = [RecordObject]()
+
+        for item in samples {
+            guard let type = HKCategoryValueSleepAnalysis(rawValue: item.value), type == .inBed else { continue }
+
+            guard !realm.objects(RecordObject.self).contains(where: { $0.startAt <= item.startDate && $0.endAt >= item.endDate }) else { continue }
+
+            // 当睡眠数据非连续时，进行合并，让数据完整
+            if let last = records.last, last.endAt.distance(to: item.startDate) < 90 * 60 {
+                last.endAt = item.endDate
+            } else {
+                let record = RecordObject(creationMode: .health, startAt: item.startDate, endAt: item.endDate)
+                record.healthSampleUUIDString = item.uuid.uuidString
+                records.append(record)
+            }
+        }
+
+        realm.writeAsync {
+            // 过滤掉时间非连续，并且时长小于 5 分的数据
+            let filtedRecord = records.filter { $0.milliseconds > 300 * 1000 }
+            event.items.append(objectsIn: filtedRecord)
+        }
     }
 }

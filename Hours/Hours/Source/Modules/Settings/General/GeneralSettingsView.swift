@@ -43,7 +43,7 @@ struct GeneralSettingsView: View {
             // MARK: Other
 
             .sheet(isPresented: $isOnboardingPresented) {
-                OnboardingView {
+                OnboardingView(onboardingIndices: OnboardingIndices.allCases) {
                     isOnboardingPresented.toggle()
                 }
             }

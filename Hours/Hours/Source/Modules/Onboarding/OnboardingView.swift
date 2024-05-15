@@ -21,12 +21,16 @@ struct OnboardingView: View {
 
     var onFinished: (() -> Void)?
 
-    private var onboardingIndices: [OnboardingIndices] {
-        AppManager.shared.onboardingIndices
-    }
+    private var onboardingIndices: [OnboardingIndices]
 
     private var index: OnboardingIndices {
         onboardingIndices[currentPageIndex]
+    }
+
+    init(onboardingIndices: [OnboardingIndices]? = nil, onFinished: (() -> Void)? = nil) {
+        self.onboardingIndices = onboardingIndices ?? AppManager.shared.onboardingIndices
+
+        self.onFinished = onFinished
     }
 
     var body: some View {
@@ -138,9 +142,9 @@ struct OnboardingView: View {
 
     private func setupLater(isPaywallPresented: Bool = false) {
         let newPageIndex = currentPageIndex + 1
-        if onboardingIndices.count > newPageIndex {
-            Storage.default.store.set(index.version, forKey: index.storeKey)
+        Storage.default.store.set(index.version, forKey: index.storeKey)
 
+        if onboardingIndices.count > newPageIndex {
             withAnimation { currentPageIndex = newPageIndex }
         } else if let onFinished = onFinished {
             onFinished()

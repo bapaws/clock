@@ -40,6 +40,28 @@ struct PaywallView: View {
                 scrollView
             }
         }
+        .safeAreaInset(edge: .top) {
+            GeometryReader { proxy in
+                ZStack(alignment: .topTrailing) {
+                    if let image = R.image.hourglass() {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: proxy.size.width, height: proxy.size.width / 3 * 2)
+                    }
+                    
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .frame(width: 42, height: 42)
+                    }
+                    .padding(.trailing, proxy.safeAreaInsets.trailing)
+                    .padding(.trailing, .small)
+                    .padding(.top, proxy.safeAreaInsets.top)
+                }
+            }
+        }
         .frame(.greedy)
         .background(ui.background)
         .onAppear {
@@ -106,26 +128,6 @@ struct PaywallView: View {
                     }
                     .font(.footnote)
                     .foregroundColor(.tertiaryLabel)
-                }
-            }
-            .safeAreaInset(edge: .top) {
-                ZStack(alignment: .topTrailing) {
-                    if let image = R.image.hourglass() {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: proxy.size.width, height: proxy.size.width / 3 * 2)
-                    }
-
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.white)
-                            .font(.title)
-                            .frame(width: 42, height: 42)
-                    }
-                    .padding(.trailing, proxy.safeAreaInsets.trailing)
-                    .padding(.trailing, .small)
-                    .padding(.top, proxy.safeAreaInsets.top)
                 }
             }
             .safeAreaInset(edge: .bottom) {
