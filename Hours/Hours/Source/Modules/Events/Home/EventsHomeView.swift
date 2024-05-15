@@ -72,12 +72,11 @@ struct EventsHomeView: View {
                     .id(R.string.localizable.showAll())
 
                     if vm.isOtherCategoriesShow {
-                        ForEach(vm.otherCategories, id: \.self) { category in
+                        ForEach(vm.otherCategories) { category in
                             EventsHeaderView(category: category) { category in
                                 newEventSelectCategory = category
                                 isNewEventPresented = true
                             }
-                            .id(category._id)
                         }
                     }
                 }

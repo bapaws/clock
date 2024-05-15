@@ -31,7 +31,7 @@ struct SettingsRecordSection: View {
                         return
                     }
                     // 请求权限
-                    app.requestAccess { granted in
+                    app.requestCalendarAccess { granted in
                         self.isSyncRecordsToCalendar = granted
                         AppManager.shared.isSyncRecordsToCalendar = granted
 

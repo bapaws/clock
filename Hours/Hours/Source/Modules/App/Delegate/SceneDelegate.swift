@@ -41,6 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         // In iOS 13+, idle timer needs to be set in scene to override default
         UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
+
+        AppManager.shared.syncHealth()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

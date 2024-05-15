@@ -9,8 +9,18 @@ import AVFoundation
 import ClockShare
 import EventKit
 import Foundation
+import HealthKit
 import RealmSwift
 import SwiftUI
+
+// MARK: Onboarding
+
+public enum OnboardingIndices: Int, CaseIterable {
+    case welcome, appScreenTime, health, calendar, statistics
+
+    public var storeKey: String { Storage.Key.onboardingVersion + "\(rawValue)" }
+    public var version: Int { 1 }
+}
 
 public class AppManager: ClockShare.AppBaseManager {
     public static let shared = AppManager()
@@ -30,6 +40,9 @@ public class AppManager: ClockShare.AppBaseManager {
     @AppStorage(Storage.Key.isSyncRecordsToCalendar, store: Storage.default.store)
     public var isSyncRecordsToCalendar: Bool = false
 
+    @AppStorage(Storage.Key.isAutoSyncHealth, store: Storage.default.store)
+    public var isAutoSyncHealth: Bool = false
+
     // MARK: App Screen Time
 
     @AppStorage(Storage.Key.minimumRecordedScreenTime, store: Storage.default.store)
@@ -41,11 +54,20 @@ public class AppManager: ClockShare.AppBaseManager {
     @AppStorage(Storage.Key.autoMergeAdjacentRecordsInterval, store: Storage.default.store)
     public var autoMergeAdjacentRecordsInterval: TimeInterval = 30
 
+    // MARK: Onboarding
+
+    public private(set) var onboardingIndices = [OnboardingIndices]()
+
     // MARK: Calendar
 
     private let eventStore = EKEventStore()
     public private(set) var calendarAccessGranted: Bool = false
     private var deleteEventIdentifiers = Map<String, Int>()
+
+    // MARK: HealthKit
+
+    private lazy var healthStore = HKHealthStore()
+    public private(set) var healthAccessGranted = false
 
     /// 可以记录的初始时间
     public let initialDate = Date(year: 2023, month: 1, day: 1, hour: 0, minute: 0)
@@ -57,8 +79,14 @@ public class AppManager: ClockShare.AppBaseManager {
         isPomodoroStopped = false
         isTimerStopped = false
 
+        setupOnboardingIndices()
+
         if isSyncRecordsToCalendar {
-            requestAccess()
+            requestCalendarAccess()
+        }
+
+        if isAutoSyncHealth {
+            requestHealthAccess()
         }
     }
 
@@ -80,10 +108,22 @@ public class AppManager: ClockShare.AppBaseManager {
     }
 }
 
+// MARK: Onboarding
+
+public extension AppManager {
+    func setupOnboardingIndices() {
+        let store = Storage.default.store
+        for index in OnboardingIndices.allCases where store.integer(forKey: index.storeKey) != index.version {
+            if index == .health && !HKHealthStore.isHealthDataAvailable() { continue }
+            onboardingIndices.append(index)
+        }
+    }
+}
+
 // MARK: Calendar
 
 public extension AppManager {
-    func requestAccess(completion: ((Bool) -> Void)? = nil) {
+    func requestCalendarAccess(completion: ((Bool) -> Void)? = nil) {
         let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, _ in
             self?.calendarAccessGranted = granted
 
@@ -197,5 +237,120 @@ public extension AppManager {
         } catch {
             print(error)
         }
+    }
+}
+
+// MARK: HealthKit
+
+public extension AppManager {
+    func requestHealthAccess(completion: ((Bool) -> Void)? = nil) {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            completion?(false)
+            return
+        }
+
+        let allTypes: Set = [
+            HKCategoryType(.sleepAnalysis),
+            HKQuantityType.workoutType(),
+        ]
+        healthStore.requestAuthorization(toShare: nil, read: allTypes) { [weak self] granted, _ in
+            self?.healthAccessGranted = granted
+
+            if granted, self?.isAutoSyncHealth == true {
+                self?.syncSleep()
+                self?.syncWorkout()
+            }
+
+            DispatchQueue.main.async {
+                completion?(granted)
+            }
+        }
+    }
+
+    func syncHealth() {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted, isAutoSyncHealth else { return }
+
+        syncWorkout()
+        syncSleep()
+    }
+
+    func syncWorkout() {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+
+        let from = Storage.default.lastSyncWorkoutDate ?? initialDate
+        let to = Date()
+
+        let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let query = HKSampleQuery(sampleType: .workoutType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
+            guard error == nil, let workouts = samples as? [HKWorkout] else { return }
+
+            DispatchQueue.main.async {
+                self?.saveWorkouts(workouts)
+            }
+        }
+        healthStore.execute(query)
+    }
+
+    private func saveWorkouts(_ workouts: [HKWorkout]) {
+        let realm = DBManager.default.realm
+        var category: CategoryObject
+        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == R.string.localizable.health() }) {
+            category = health
+        } else {
+            category = CategoryObject(hex: DBManager.default.nextHex, emoji: "❤️", name: R.string.localizable.health())
+            realm.writeAsync {
+                realm.add(category)
+            }
+        }
+
+        for workout in workouts {
+            let id = workout.uuid.uuidString
+            guard !realm.objects(RecordObject.self).contains(where: { $0.healthSampleUUIDString == id }) else { continue }
+
+            let name = workout.workoutActivityType.name
+            let emoji = workout.workoutActivityType.emoji
+
+            let newRecord = RecordObject(creationMode: .health, startAt: workout.startDate, endAt: workout.endDate)
+            newRecord.healthSampleUUIDString = id
+            if let eventObject = realm.objects(EventObject.self).first(where: { $0.name == name && $0.emoji == emoji }) {
+                realm.writeAsync {
+//                    category.events.append(eventObject)
+                    // 同步到日历
+                    newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: eventObject, record: newRecord)
+                    eventObject.items.append(newRecord)
+                }
+            } else {
+                realm.writeAsync {
+                    let event = EventObject(emoji: emoji, name: name, hex: DBManager.default.nextHex, isSystem: true)
+                    event.items.append(newRecord)
+
+                    // 同步到日历
+                    newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+
+                    category.events.append(event)
+                }
+            }
+        }
+    }
+
+    func syncSleep() {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+
+        let from = Storage.default.lastSyncSleepDate ?? initialDate
+        let to = Date()
+
+        if to.timeIntervalSince1970 - from.timeIntervalSince1970 < 10 { return }
+
+        let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, error in
+            print(samples)
+            guard error == nil, let workouts = samples as? [HKCategorySample] else {
+                return
+            }
+            print(workouts)
+        }
+        healthStore.execute(query)
     }
 }

@@ -13,7 +13,7 @@ import SwiftDate
 public class DBManager: ObservableObject {
     public static let `default` = DBManager()
 
-    public let config = Realm.Configuration(schemaVersion: 6)
+    public let config = Realm.Configuration(schemaVersion: 7)
 
     public private(set) var realm: Realm
 
@@ -50,7 +50,7 @@ public class DBManager: ObservableObject {
     }
 
     public var nextHex: HexObject {
-        let hex = hexs[hexIndex % hexs.count]
+        let hex = hexs[hexs.count == 0 ? 0 : hexIndex % hexs.count]
         hexIndex += 1
         return hex
     }

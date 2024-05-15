@@ -63,10 +63,10 @@ class SplashViewController: UIHostingController<SplashView> {
         super.viewDidAppear(animated)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
-            if Storage.default.onboardingVersion != OnboardingView.version {
-                self?.replaceOnboardingView()
-            } else {
+            if AppManager.shared.onboardingIndices.isEmpty {
                 self?.replaceRootViewController()
+            } else {
+                self?.replaceOnboardingView()
             }
         }
     }

@@ -71,6 +71,7 @@
 		88B8DAA92BF2103100249EAE /* OnboardingCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA82BF2103100249EAE /* OnboardingCalendarView.swift */; };
 		88B8DAAC2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAAB2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift */; };
 		88B9DA5D2BF2FE9F000979EE /* OnboardingStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B9DA5C2BF2FE9F000979EE /* OnboardingStatisticsView.swift */; };
+		88B9DA622BF38608000979EE /* OnboardingHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B9DA612BF38608000979EE /* OnboardingHealthView.swift */; };
 		88CB58B82BEE5B4F000A2BF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58B62BEE5B4F000A2BF7 /* AppDelegate.swift */; };
 		88CB58B92BEE5B4F000A2BF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58B72BEE5B4F000A2BF7 /* SceneDelegate.swift */; };
 		88CB58BF2BEE60A0000A2BF7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58BE2BEE60A0000A2BF7 /* MainViewController.swift */; };
@@ -118,7 +119,6 @@
 		88F4225F2BB40BD3009C5175 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88F4225B2BB40BD3009C5175 /* drip.wav */; };
 		88F422602BB40BD3009C5175 /* second.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88F4225C2BB40BD3009C5175 /* second.wav */; };
 		88F422612BB40BD3009C5175 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88F4225D2BB40BD3009C5175 /* tick.wav */; };
-		88FE051A2BAD6A22002B990A /* WorkoutActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE05192BAD6A22002B990A /* WorkoutActivityType.swift */; };
 		88FE051D2BADCA3B002B990A /* ProMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE051C2BADCA3B002B990A /* ProMask.swift */; };
 /* End PBXBuildFile section */
 
@@ -206,6 +206,7 @@
 		88B8DAA82BF2103100249EAE /* OnboardingCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCalendarView.swift; sourceTree = "<group>"; };
 		88B8DAAB2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAppScreenTimeView.swift; sourceTree = "<group>"; };
 		88B9DA5C2BF2FE9F000979EE /* OnboardingStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStatisticsView.swift; sourceTree = "<group>"; };
+		88B9DA612BF38608000979EE /* OnboardingHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingHealthView.swift; sourceTree = "<group>"; };
 		88CB58B62BEE5B4F000A2BF7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88CB58B72BEE5B4F000A2BF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		88CB58BE2BEE60A0000A2BF7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -250,7 +251,6 @@
 		88F4225B2BB40BD3009C5175 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
 		88F4225C2BB40BD3009C5175 /* second.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = second.wav; sourceTree = "<group>"; };
 		88F4225D2BB40BD3009C5175 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
-		88FE05192BAD6A22002B990A /* WorkoutActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutActivityType.swift; sourceTree = "<group>"; };
 		88FE051C2BADCA3B002B990A /* ProMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -492,6 +492,7 @@
 				88B8DA9C2BF1B0A800249EAE /* OnboardingView.swift */,
 				88B8DAA32BF20BEF00249EAE /* OnboardingWelcomeView.swift */,
 				88B8DAAB2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift */,
+				88B9DA612BF38608000979EE /* OnboardingHealthView.swift */,
 				88B8DAA82BF2103100249EAE /* OnboardingCalendarView.swift */,
 				88B9DA5C2BF2FE9F000979EE /* OnboardingStatisticsView.swift */,
 			);
@@ -738,7 +739,6 @@
 			children = (
 				88CFE2A12B9B2B0A00912C53 /* OneColor.swift */,
 				8814503F2BA4789400058F7F /* Category.swift */,
-				88FE05192BAD6A22002B990A /* WorkoutActivityType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -934,8 +934,8 @@
 				880326AD2B98A1DD00E6653A /* WinnerView.swift in Sources */,
 				8827A57D2BED08500010FC4C /* SettingsScreenTimeView.swift in Sources */,
 				88E23AD42B9C9D3600C421DB /* TimelineView.swift in Sources */,
-				88FE051A2BAD6A22002B990A /* WorkoutActivityType.swift in Sources */,
 				8803269B2B98565500E6653A /* EventItemView.swift in Sources */,
+				88B9DA622BF38608000979EE /* OnboardingHealthView.swift in Sources */,
 				88A9B65D2BA158CE00385800 /* StatisticsDailyView.swift in Sources */,
 				880326952B98189F00E6653A /* DBManager.swift in Sources */,
 				88D23B112B94A35C00E33DE5 /* SettingsToggleCell.swift in Sources */,
@@ -1186,7 +1186,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = Hours/Resources/Hours.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Hours/HoursRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hours/Preview Content\"";

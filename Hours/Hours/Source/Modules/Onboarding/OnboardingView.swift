@@ -7,47 +7,31 @@
 
 import ClockShare
 import Foundation
+import HealthKitUI
 import HoursShare
 import SwiftUI
 import SwiftUIX
 
-enum OnboardingIndices: Int, CaseIterable {
-    case welcome, appScreenTime, calendar, statistics
-
-    var version: Int {
-        switch self {
-        case .welcome:
-            1
-        case .appScreenTime:
-            1
-        case .calendar:
-            1
-        case .statistics:
-            1
-        }
-    }
-}
-
 struct OnboardingView: View {
-    static let version = 1
-
-    @State private var index: OnboardingIndices = .welcome
     private let indicesWidth: CGFloat = 120
 
-    private var currentPageIndex: Binding<Int> {
-        Binding<Int>.init(get: {
-            index.rawValue
-        }, set: {
-            guard let index = OnboardingIndices(rawValue: $0) else { return }
-            self.index = index
-        })
-    }
+    @State private var currentPageIndex = 0
+
+    @State private var isHealthPresented = true
 
     var onFinished: (() -> Void)?
 
+    private var onboardingIndices: [OnboardingIndices] {
+        AppManager.shared.onboardingIndices
+    }
+
+    private var index: OnboardingIndices {
+        onboardingIndices[currentPageIndex]
+    }
+
     var body: some View {
         VStack(spacing: 24) {
-            PaginationView(OnboardingIndices.allCases, id: \.self, showsIndicators: false) { index in
+            PaginationView(onboardingIndices, id: \.self, showsIndicators: false) { index in
                 VStack {
                     switch index {
                     case .welcome:
@@ -56,13 +40,15 @@ struct OnboardingView: View {
                         OnboardingCalendarView()
                     case .appScreenTime:
                         OnboardingAppScreenTimeView()
+                    case .health:
+                        OnboardingHealthView()
                     case .statistics:
                         OnboardingStatisticsView()
                     }
                 }
                 .padding(.large)
             }
-            .currentPageIndex(currentPageIndex.animation())
+            .currentPageIndex($currentPageIndex.animation())
 
             Spacer()
 
@@ -81,12 +67,12 @@ struct OnboardingView: View {
                 RoundedRectangle(cornerRadius: 3)
                     .fill(Color.systemGray5)
 
-                let indexWidth = indicesWidth / CGFloat(OnboardingIndices.allCases.count)
+                let indexWidth = indicesWidth / CGFloat(onboardingIndices.count)
                 RoundedRectangle(cornerRadius: 3)
                     .fill(Color.white)
                     .width(indexWidth)
-                    .offset(x: indexWidth * CGFloat(index.rawValue))
-                    .animation(.spring, value: index)
+                    .offset(x: indexWidth * CGFloat(currentPageIndex))
+                    .animation(.spring, value: currentPageIndex)
             }
             .frame(width: indicesWidth, height: 6)
 
@@ -124,8 +110,18 @@ struct OnboardingView: View {
 
     private func `continue`() {
         switch index {
+        case .health:
+            isHealthPresented.toggle()
+            AppManager.shared.requestHealthAccess { granted in
+                if granted {
+                    AppManager.shared.isAutoSyncHealth = true
+                } else {
+                    Toast.show(R.string.localizable.calendarNotAccess())
+                }
+                setupLater()
+            }
         case .calendar:
-            AppManager.shared.requestAccess { granted in
+            AppManager.shared.requestCalendarAccess { granted in
                 if granted {
                     AppManager.shared.isSyncRecordsToCalendar = true
                 } else {
@@ -141,10 +137,11 @@ struct OnboardingView: View {
     }
 
     private func setupLater(isPaywallPresented: Bool = false) {
-        if let newIndex = OnboardingIndices(rawValue: index.rawValue + 1) {
-            withAnimation {
-                index = newIndex
-            }
+        let newPageIndex = currentPageIndex + 1
+        if onboardingIndices.count > newPageIndex {
+            Storage.default.store.set(index.version, forKey: index.storeKey)
+
+            withAnimation { currentPageIndex = newPageIndex }
         } else if let onFinished = onFinished {
             onFinished()
         } else {
@@ -156,8 +153,6 @@ struct OnboardingView: View {
         guard let window = UIApplication.shared.firstKeyWindow else {
             return
         }
-
-        Storage.default.onboardingVersion = OnboardingView.version
 
         let main = MainViewController(isPaywallPresented: isPaywallPresented)
         let root = UINavigationController(rootViewController: main)

@@ -11,6 +11,10 @@ import Foundation
 public extension Storage.Key {
     static let hexIndex = "hexIndex"
     static let onboardingVersion = "onboardingVersion"
+
+    static let isAutoSyncHealth = "isAutoSyncHealth"
+    static let lastSyncWorkoutDate = "lastSyncWorkoutDate"
+    static let lastSyncSleepDate = "lastSyncSleepDate"
 }
 
 public extension Storage {
@@ -34,5 +38,17 @@ public extension Storage {
         get {
             store.integer(forKey: Key.onboardingVersion)
         }
+    }
+
+
+
+    var lastSyncWorkoutDate: Date? {
+        set { store.set(newValue, forKey: Key.lastSyncWorkoutDate) }
+        get { store.object(forKey: Key.lastSyncWorkoutDate) as? Date }
+    }
+
+    var lastSyncSleepDate: Date? {
+        set { store.set(newValue, forKey: Key.lastSyncSleepDate) }
+        get { store.object(forKey: Key.lastSyncSleepDate) as? Date }
     }
 }

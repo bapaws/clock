@@ -30,5 +30,9 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>时间记录希望能获取你的健康数据，以便自动记录睡眠和运动等事件。</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>时间记录希望能写入你的健康数据，以便记录睡眠和运动等事件。</string>
 </dict>
 </plist>

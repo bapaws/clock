@@ -24,7 +24,7 @@ public extension Int {
 // MARK: - RecordObject
 
 public enum RecordCreationMode: Int, PersistableEnum, Codable {
-    case pomodoro, timer, enter, shortcut
+    case pomodoro, timer, enter, shortcut, health
 }
 
 public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
@@ -55,6 +55,8 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
 
     /// 同步到苹果系统日历事件的 eventIdentifier
     @Persisted public var calendarEventIdentifier: String?
+
+    @Persisted public var healthSampleUUIDString: String?
 
     public lazy var time: TimeLength = milliseconds.time
     public var hours: Int { time.hour }

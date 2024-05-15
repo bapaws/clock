@@ -19,7 +19,7 @@ struct OnboardingStatisticsView: View {
             ], startPoint: .top, endPoint: .bottom)
                 .cornerRadius(15)
 
-            Image(systemName: "chart.bar.xaxis.ascending")
+            Image(systemName: "chart.bar.xaxis")
                 .font(.system(size: 48))
                 .foregroundStyle(.white)
         }

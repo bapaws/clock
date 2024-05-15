@@ -16,6 +16,8 @@ public class UIManager: ClockShare.UIBaseManager {
 
     public let bottomHeight: CGFloat = 54
 
+    // MARK: Colors
+
     @Published public private(set) var colors: Colors = ColorType.classic.colors
     @AppStorage(Storage.Key.colorType, store: Storage.default.store)
     public var colorType: ColorType = .classic {
