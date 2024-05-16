@@ -9,40 +9,9 @@ import ClockShare
 import HoursShare
 import SwiftUI
 import UIKit
-import UIOnboarding
 
 class SplashViewController: UIHostingController<SplashView> {
     var ui: UIManager { UIManager.shared }
-
-    private lazy var onboardingConfiguration: UIOnboardingViewConfiguration = .init(
-        appIcon: R.image.launchImage()!,
-        firstTitleLine: NSMutableAttributedString(
-            string: R.string.localizable.welcomeTo(),
-            attributes: [
-                .font: UIFont.preferredFont(forTextStyle: .largeTitle),
-                .foregroundColor: ui.uiLabel
-            ]
-        ),
-        secondTitleLine: NSMutableAttributedString(
-            string: R.string.localizable.appName(),
-            attributes: [
-                .font: UIFont.preferredFont(forTextStyle: .title1),
-                .foregroundColor: ui.uiPrimary
-            ]
-        ),
-        features: [
-            UIOnboardingFeature(
-                icon: UIImage(systemName: "calendar")!,
-                iconTint: .systemPink,
-                title: R.string.localizable.calendarTitle(),
-                description: ""
-            )
-        ],
-        buttonConfiguration: UIOnboardingButtonConfiguration(
-            title: R.string.localizable.continue(),
-            backgroundColor: ui.uiPrimary
-        )
-    )
 
     init() {
         let view = SplashView()
@@ -88,8 +57,4 @@ class SplashViewController: UIHostingController<SplashView> {
         window.rootViewController = root
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})
     }
-}
-
-extension SplashViewController: UIOnboardingViewControllerDelegate {
-    func didFinishOnboarding(onboardingViewController: UIOnboardingViewController) {}
 }

@@ -13,14 +13,18 @@ let cellHeight: CGFloat = 64
 
 struct SettingsToggleCell: View {
     var title: String
+    var isNew: Bool = false
     var isPro: Bool = false
     @Binding var isOn: Bool
 
     @EnvironmentObject var ui: UIManager
     
     var body: some View {
-        HStack(spacing: 2) {
+        HStack(spacing: 4) {
             Text(title)
+            if isNew {
+                SettingsNewTagView()
+            }
             if isPro {
                 Image(systemName: "crown")
                     .font(.subheadline)

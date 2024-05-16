@@ -40,8 +40,11 @@ public class AppManager: ClockShare.AppBaseManager {
     @AppStorage(Storage.Key.isSyncRecordsToCalendar, store: Storage.default.store)
     public var isSyncRecordsToCalendar: Bool = false
 
-    @AppStorage(Storage.Key.isAutoSyncHealth, store: Storage.default.store)
-    public var isAutoSyncHealth: Bool = false
+    @AppStorage(Storage.Key.isAutoSyncSleep, store: Storage.default.store)
+    public var isAutoSyncSleep: Bool = false
+
+    @AppStorage(Storage.Key.isAutoSyncWorkout, store: Storage.default.store)
+    public var isAutoSyncWorkout: Bool = false
 
     // MARK: App Screen Time
 
@@ -85,7 +88,7 @@ public class AppManager: ClockShare.AppBaseManager {
             requestCalendarAccess()
         }
 
-        if isAutoSyncHealth {
+        if isAutoSyncSleep || isAutoSyncWorkout {
             requestHealthAccess()
         }
     }
@@ -243,11 +246,13 @@ public extension AppManager {
 // MARK: HealthKit
 
 public extension AppManager {
+    var isHealthAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
+
     func requestHealthAccess(completion: ((Bool) -> Void)? = nil) {
-        guard HKHealthStore.isHealthDataAvailable() else {
-            completion?(false)
-            return
-        }
+//        guard HKHealthStore.isHealthDataAvailable() else {
+//            completion?(false)
+//            return
+//        }
 
         let allTypes: Set = [
             HKCategoryType(.sleepAnalysis),
@@ -256,9 +261,9 @@ public extension AppManager {
         healthStore.requestAuthorization(toShare: nil, read: allTypes) { [weak self] granted, _ in
             self?.healthAccessGranted = granted
 
-            if granted, self?.isAutoSyncHealth == true {
-                self?.syncSleep()
-                self?.syncWorkout()
+            if granted {
+                self?.autoSyncWorkout()
+                self?.autoSyncSleep()
             }
 
             DispatchQueue.main.async {
@@ -267,26 +272,32 @@ public extension AppManager {
         }
     }
 
-    func syncHealth() {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted, isAutoSyncHealth else { return }
+    func autoSyncHealth() {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
 
-        syncWorkout()
-        syncSleep()
+        autoSyncWorkout()
+        autoSyncSleep()
     }
 
-    func syncWorkout() {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+    func autoSyncWorkout() {
+        guard isAutoSyncSleep else { return }
 
         let from = Storage.default.lastSyncWorkoutDate ?? initialDate
         let to = Date()
 
-        if from.distance(to: to) < 10 { return }
+        if from.distance(to: to) < 30 { return }
         Storage.default.lastSyncWorkoutDate = to
+
+        syncWorkout(from: from, to: to)
+    }
+
+    private func syncWorkout(from: Date, to: Date) {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
 
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: .workoutType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
-            guard error == nil, let workouts = samples as? [HKWorkout] else { return }
+            guard error == nil, let workouts = samples as? [HKWorkout], !workouts.isEmpty else { return }
 
             DispatchQueue.main.async {
                 self?.saveWorkouts(workouts)
@@ -343,19 +354,25 @@ public extension AppManager {
         }
     }
 
-    func syncSleep() {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+    func autoSyncSleep() {
+        guard isAutoSyncSleep else { return }
 
         let from = Storage.default.lastSyncSleepDate ?? initialDate
         let to = Date()
 
-        if from.distance(to: to) < 10 { return }
+        if from.distance(to: to) < 30 { return }
         Storage.default.lastSyncSleepDate = to
+
+        syncSleep(from: from, to: to)
+    }
+
+    private func syncSleep(from: Date, to: Date) {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
 
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
-            guard error == nil, let items = samples as? [HKCategorySample] else {
+            guard error == nil, let items = samples as? [HKCategorySample], !items.isEmpty else {
                 return
             }
 

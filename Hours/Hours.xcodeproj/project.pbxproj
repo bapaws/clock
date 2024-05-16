@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8800967B2BF59972008AC521 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 8800967A2BF59972008AC521 /* ScalingHeaderScrollView */; };
+		880096802BF5A6A5008AC521 /* SettingsScreenTimeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800967F2BF5A6A5008AC521 /* SettingsScreenTimeSection.swift */; };
+		880096822BF5A919008AC521 /* SettingsHealthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096812BF5A919008AC521 /* SettingsHealthSection.swift */; };
+		880096842BF5ABFD008AC521 /* SettingsHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096832BF5ABFD008AC521 /* SettingsHealthView.swift */; };
+		880096862BF5BACC008AC521 /* SettingsNewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096852BF5BACC008AC521 /* SettingsNewTagView.swift */; };
 		8801DCB62B9FE437003DE039 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DCB52B9FE437003DE039 /* NewEventView.swift */; };
 		8801DCBA2B9FE4EF003DE039 /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DCB92B9FE4EF003DE039 /* NewItemView.swift */; };
 		8802CBBA2BAAE51100F0091E /* PaywallPackageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8802CBB92BAAE51100F0091E /* PaywallPackageItemView.swift */; };
@@ -65,7 +70,6 @@
 		88A9B66B2BA1A0CE00385800 /* StatisticsDailyCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B66A2BA1A0CE00385800 /* StatisticsDailyCategoryView.swift */; };
 		88A9B6712BA1E12F00385800 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 88A9B6702BA1E12F00385800 /* Collections */; };
 		88B8DA9D2BF1B0A800249EAE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DA9C2BF1B0A800249EAE /* OnboardingView.swift */; };
-		88B8DAA02BF1B3BB00249EAE /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 88B8DA9F2BF1B3BB00249EAE /* UIOnboarding */; };
 		88B8DAA22BF1B44C00249EAE /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA12BF1B44C00249EAE /* SplashViewController.swift */; };
 		88B8DAA42BF20BEF00249EAE /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA32BF20BEF00249EAE /* OnboardingWelcomeView.swift */; };
 		88B8DAA92BF2103100249EAE /* OnboardingCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA82BF2103100249EAE /* OnboardingCalendarView.swift */; };
@@ -146,6 +150,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8800967F2BF5A6A5008AC521 /* SettingsScreenTimeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenTimeSection.swift; sourceTree = "<group>"; };
+		880096812BF5A919008AC521 /* SettingsHealthSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHealthSection.swift; sourceTree = "<group>"; };
+		880096832BF5ABFD008AC521 /* SettingsHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHealthView.swift; sourceTree = "<group>"; };
+		880096852BF5BACC008AC521 /* SettingsNewTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNewTagView.swift; sourceTree = "<group>"; };
 		8801DCB52B9FE437003DE039 /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
 		8801DCB92B9FE4EF003DE039 /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 		8802CBB92BAAE51100F0091E /* PaywallPackageItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallPackageItemView.swift; sourceTree = "<group>"; };
@@ -270,9 +278,9 @@
 				88D23AD62B949FA000E33DE5 /* Realm in Frameworks */,
 				8863CEDB2B9A09B3000BA47D /* Charts.framework in Frameworks */,
 				88D23AD82B949FA000E33DE5 /* RealmSwift in Frameworks */,
+				8800967B2BF59972008AC521 /* ScalingHeaderScrollView in Frameworks */,
 				882B82DF2BF0B68A00B0365A /* Flow in Frameworks */,
 				8888F7632BEF047700E5E646 /* MCEmojiPicker in Frameworks */,
-				88B8DAA02BF1B3BB00249EAE /* UIOnboarding in Frameworks */,
 				88D23AD32B949F1000E33DE5 /* RevenueCat in Frameworks */,
 				88059EA22B9EBA2100C8BF9E /* HoursShare in Frameworks */,
 			);
@@ -287,6 +295,15 @@
 				880326972B984FDB00E6653A /* TimerView.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		8800967D2BF5A613008AC521 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				880096812BF5A919008AC521 /* SettingsHealthSection.swift */,
+				880096832BF5ABFD008AC521 /* SettingsHealthView.swift */,
+			);
+			path = Health;
 			sourceTree = "<group>";
 		};
 		8801DCB82B9FE4E3003DE039 /* Views */ = {
@@ -344,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				8827A57C2BED08500010FC4C /* SettingsScreenTimeView.swift */,
+				8800967F2BF5A6A5008AC521 /* SettingsScreenTimeSection.swift */,
 			);
 			path = ScreenTime;
 			sourceTree = "<group>";
@@ -455,6 +473,7 @@
 		882B82D82BF0AE1200B0365A /* General */ = {
 			isa = PBXGroup;
 			children = (
+				8800967D2BF5A613008AC521 /* Health */,
 				8827A57A2BED07E80010FC4C /* ScreenTime */,
 				88D23AFB2B94A35C00E33DE5 /* Appearance */,
 				8802CBD22BAB2CF700F0091E /* AppIcon */,
@@ -631,6 +650,7 @@
 			children = (
 				88D23AF62B94A35C00E33DE5 /* SettingsToggleCell.swift */,
 				88D23AF72B94A35C00E33DE5 /* SettingsNavigateCell.swift */,
+				880096852BF5BACC008AC521 /* SettingsNewTagView.swift */,
 				88D23AF82B94A35C00E33DE5 /* SettingsStepperCell.swift */,
 				88D23AF92B94A35C00E33DE5 /* SettingsCheckCell.swift */,
 				88D454AF2BA84BB500584FAD /* SettingsCell.swift */,
@@ -834,7 +854,7 @@
 				880B1F522BCAC35D00519C4C /* SwiftUIIntrospect */,
 				8888F7622BEF047700E5E646 /* MCEmojiPicker */,
 				882B82DE2BF0B68A00B0365A /* Flow */,
-				88B8DA9F2BF1B3BB00249EAE /* UIOnboarding */,
+				8800967A2BF59972008AC521 /* ScalingHeaderScrollView */,
 			);
 			productName = Counter;
 			productReference = 88D23ABA2B949D9700E33DE5 /* Hours.app */;
@@ -875,7 +895,7 @@
 				880B1F512BCAC35D00519C4C /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
 				8888F7612BEF047700E5E646 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
 				882B82DD2BF0B68A00B0365A /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */,
-				88B8DA9E2BF1B3BB00249EAE /* XCRemoteSwiftPackageReference "UIOnboarding" */,
+				880096792BF59972008AC521 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
 			);
 			productRefGroup = 88D23ABB2B949D9700E33DE5 /* Products */;
 			projectDirPath = "";
@@ -942,6 +962,7 @@
 				88D23B192B94A35C00E33DE5 /* SettingsSection.swift in Sources */,
 				882B82C82BF0A9D500B0365A /* SelectEventView.swift in Sources */,
 				88D23B182B94A35C00E33DE5 /* SettingsDarkModeView.swift in Sources */,
+				880096802BF5A6A5008AC521 /* SettingsScreenTimeSection.swift in Sources */,
 				88D454A32BA82D2300584FAD /* PaywallView.swift in Sources */,
 				8888F7662BEF20FF00E5E646 /* ArchivedEventsViewModel.swift in Sources */,
 				88D23AED2B94A26D00E33DE5 /* ColorType.swift in Sources */,
@@ -981,11 +1002,13 @@
 				8827A56A2BEC63550010FC4C /* AppDidOpenAppIntent.swift in Sources */,
 				88D23ABE2B949D9700E33DE5 /* CounterApp.swift in Sources */,
 				88B9DA5D2BF2FE9F000979EE /* OnboardingStatisticsView.swift in Sources */,
+				880096842BF5ABFD008AC521 /* SettingsHealthView.swift in Sources */,
 				88A9B6592BA150C100385800 /* TitleView.swift in Sources */,
 				8867985A2BEA602500E55B2C /* FeedbackView.swift in Sources */,
 				8802CBBA2BAAE51100F0091E /* PaywallPackageItemView.swift in Sources */,
 				88CB58B82BEE5B4F000A2BF7 /* AppDelegate.swift in Sources */,
 				8888F7692BEF73BB00E5E646 /* ArchivedEventsItemView.swift in Sources */,
+				880096862BF5BACC008AC521 /* SettingsNewTagView.swift in Sources */,
 				88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */,
 				8808A8E42B99734B004CAD2F /* RecordsCalendarView.swift in Sources */,
 				8888F7722BEF882400E5E646 /* EventsHomeHeader.swift in Sources */,
@@ -996,6 +1019,7 @@
 				88D23B202B94A35C00E33DE5 /* SettingsSoundSection.swift in Sources */,
 				88D23B162B94A35C00E33DE5 /* SettingsAppearanceSection.swift in Sources */,
 				88D23B1A2B94A35C00E33DE5 /* SettingsTimerSection.swift in Sources */,
+				880096822BF5A919008AC521 /* SettingsHealthSection.swift in Sources */,
 				88D7A5202BA0427E00FD129F /* EventsHomeView.swift in Sources */,
 				8827A56F2BEC6EAD0010FC4C /* CategoryAppEntity.swift in Sources */,
 			);
@@ -1238,6 +1262,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		880096792BF59972008AC521 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ScalingHeaderScrollView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
 		880B1F512BCAC35D00519C4C /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/swiftui-introspect";
@@ -1278,14 +1310,6 @@
 				minimumVersion = 1.1.0;
 			};
 		};
-		88B8DA9E2BF1B3BB00249EAE /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.3;
-			};
-		};
 		88CFE29A2B9AB80600912C53 /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow";
@@ -1321,6 +1345,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8800967A2BF59972008AC521 /* ScalingHeaderScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 880096792BF59972008AC521 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
+			productName = ScalingHeaderScrollView;
+		};
 		880326AA2B98A0F600E6653A /* PopupView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 88201AB42B94B58C00D4D187 /* XCRemoteSwiftPackageReference "PopupView" */;
@@ -1358,11 +1387,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88A9B66F2BA1E12F00385800 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
-		};
-		88B8DA9F2BF1B3BB00249EAE /* UIOnboarding */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 88B8DA9E2BF1B3BB00249EAE /* XCRemoteSwiftPackageReference "UIOnboarding" */;
-			productName = UIOnboarding;
 		};
 		88CFE29B2B9AB80600912C53 /* Pow */ = {
 			isa = XCSwiftPackageProductDependency;

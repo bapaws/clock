@@ -8,7 +8,6 @@
 import HoursShare
 import SwiftUI
 import UIKit
-import UIOnboarding
 
 class MainViewController: UIHostingController<MainView> {
     init(isPaywallPresented: Bool = false) {

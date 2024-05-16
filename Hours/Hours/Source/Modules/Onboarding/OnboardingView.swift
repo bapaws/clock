@@ -118,7 +118,8 @@ struct OnboardingView: View {
             isHealthPresented.toggle()
             AppManager.shared.requestHealthAccess { granted in
                 if granted {
-                    AppManager.shared.isAutoSyncHealth = true
+                    AppManager.shared.isAutoSyncSleep = true
+                    AppManager.shared.isAutoSyncWorkout = true
                 } else {
                     Toast.show(R.string.localizable.calendarNotAccess())
                 }

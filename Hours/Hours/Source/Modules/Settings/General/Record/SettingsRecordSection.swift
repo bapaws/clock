@@ -14,17 +14,17 @@ struct SettingsRecordSection: View {
     @State private var isTimerPresented: Bool = false
     @State private var isSyncRecordsToCalendar = AppManager.shared.isSyncRecordsToCalendar
     @State private var isAppScreenTimePresented: Bool = false
+    @State private var isHealthPresented: Bool = false
 
     @EnvironmentObject var app: AppManager
 
     var body: some View {
         SettingsSection(title: R.string.localizable.records()) {
             SettingsNavigateCell(title: R.string.localizable.timer()) {
-                isTimerPresented = true
+                isTimerPresented.toggle()
             }
 
-            // Pro 功能
-            SettingsToggleCell(title: R.string.localizable.syncRecordsToCalendar(), isOn: $isSyncRecordsToCalendar)
+            SettingsToggleCell(title: R.string.localizable.syncRecordsToCalendar(), isNew: true, isOn: $isSyncRecordsToCalendar)
                 .onChange(of: isSyncRecordsToCalendar) { isSyncRecordsToCalendar in
                     if !isSyncRecordsToCalendar {
                         AppManager.shared.isSyncRecordsToCalendar = false
@@ -41,8 +41,14 @@ struct SettingsRecordSection: View {
                     }
                 }
 
-            SettingsNavigateCell(title: R.string.localizable.appScreenTime()) {
-                isAppScreenTimePresented = true
+            SettingsNavigateCell(title: R.string.localizable.appScreenTime(), isNew: true) {
+                isAppScreenTimePresented.toggle()
+            }
+
+            if app.isHealthAvailable {
+                SettingsNavigateCell(title: R.string.localizable.health(), isNew: true) {
+                    isHealthPresented.toggle()
+                }
             }
         }
         .sheet(isPresented: $isTimerPresented) {
@@ -51,6 +57,9 @@ struct SettingsRecordSection: View {
         }
         .sheet(isPresented: $isAppScreenTimePresented) {
             SettingsScreenTimeView()
+        }
+        .sheet(isPresented: $isHealthPresented) {
+            SettingsHealthView()
         }
     }
 }

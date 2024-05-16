@@ -260,6 +260,12 @@
 "SecondHand" = "Second Hand";
 "BackgroundSound" = "Background Sound";
 
+// MARK: Health
+
+"Health" = "Health";
+"HealthAutoSyncSleep" = "Auto Sync Sleep";
+"HealthAutoSyncWorkout" = "Auto Sync Workout";
+
 // MARK: About
 
 "Privacy" = "Privacy Policy";

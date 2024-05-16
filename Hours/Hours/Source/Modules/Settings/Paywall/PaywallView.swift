@@ -30,15 +30,22 @@ struct PaywallView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        Group {
+        ZStack(alignment: .topTrailing) {
             if packages.count == 0 {
-                Spacer()
                 ProgressView()
                     .progressViewStyle(.circular)
-                Spacer()
+                    .frame(.greedy, alignment: .center)
             } else {
                 scrollView
             }
+
+            Button(action: { dismiss() }) {
+                Image(systemName: "xmark.circle.fill")
+                    .foregroundStyle(.white)
+                    .font(.title)
+                    .frame(width: 54, height: 54)
+            }
+            .padding(.trailing, .small)
         }
         .frame(.greedy)
         .background(ui.background)
@@ -57,85 +64,69 @@ struct PaywallView: View {
     }
 
     @ViewBuilder var scrollView: some View {
-        GeometryReader { proxy in
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    Text(R.string.localizable.premium())
-                        .font(.title)
-                        .padding(.top, .large)
-                        .padding(.bottom)
-                        .padding(.horizontal)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading) {
+                if let image = R.image.hourglass() {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                }
 
-                    ForEach(infos, id: \.self) { info in
-                        PaywallFeatureItemView(info: info)
-                    }
-                    .padding(.bottom, .small)
+                Text(R.string.localizable.premium())
+                    .font(.title)
+                    .padding(.top, .large)
+                    .padding(.bottom)
                     .padding(.horizontal)
 
-                    ForEach(packages, id: \.self) { package in
-                        PaywallPackageItemView(selectedPackage: $selectedPackage, package: package)
-                    }
-                    .padding(.horizontal)
+                ForEach(infos, id: \.self) { info in
+                    PaywallFeatureItemView(info: info)
+                }
+                .padding(.bottom, .small)
+                .padding(.horizontal)
 
-                    Text(R.string.localizable.subscriptionWarning())
-                        .font(.footnote)
-                        .foregroundColor(.tertiaryLabel)
-                        .padding(.vertical, .large)
-                        .padding(.horizontal)
+                ForEach(packages, id: \.self) { package in
+                    PaywallPackageItemView(selectedPackage: $selectedPackage, package: package)
+                }
+                .padding(.horizontal)
 
-                    Spacer()
-
-                    HStack(spacing: 16) {
-                        Spacer()
-                        Button {
-                            urlString = "https://privacy.bapaws.com/hours/terms.html"
-                        } label: {
-                            Text(R.string.localizable.terms())
-                        }
-                        Text("|")
-                        Button {
-                            urlString = "https://privacy.bapaws.com/hours/privacy.html"
-                        } label: {
-                            Text(R.string.localizable.privacy())
-                        }
-                        Text("|")
-                        Button(action: restore) {
-                            Text(R.string.localizable.restore())
-                        }
-                        Spacer()
-                    }
+                Text(R.string.localizable.subscriptionWarning())
                     .font(.footnote)
                     .foregroundColor(.tertiaryLabel)
-                }
-            }
-            .safeAreaInset(edge: .top) {
-                ZStack(alignment: .topTrailing) {
-                    if let image = R.image.hourglass() {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: proxy.size.width, height: proxy.size.width / 3 * 2)
-                    }
+                    .padding(.vertical, .large)
+                    .padding(.horizontal)
 
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.white)
-                            .font(.title)
-                            .frame(width: 42, height: 42)
-                    }
-                    .padding(.trailing, proxy.safeAreaInsets.trailing)
-                    .padding(.trailing, .small)
-                    .padding(.top, proxy.safeAreaInsets.top)
-                }
-            }
-            .safeAreaInset(edge: .bottom) {
-                footer
-            }
-            .ignoresSafeArea(.container, edges: .top)
+                Spacer()
 
-            .sheet(item: $urlString) { urlString in
-                SafariView(url: URL(string: urlString)!)
+                HStack(spacing: 16) {
+                    Spacer()
+                    Button {
+                        urlString = "https://privacy.bapaws.com/hours/terms.html"
+                    } label: {
+                        Text(R.string.localizable.terms())
+                    }
+                    Text("|")
+                    Button {
+                        urlString = "https://privacy.bapaws.com/hours/privacy.html"
+                    } label: {
+                        Text(R.string.localizable.privacy())
+                    }
+                    Text("|")
+                    Button(action: restore) {
+                        Text(R.string.localizable.restore())
+                    }
+                    Spacer()
+                }
+                .font(.footnote)
+                .foregroundColor(.tertiaryLabel)
             }
+        }
+        .safeAreaInset(edge: .bottom) {
+            footer
+        }
+        .ignoresSafeArea(.container, edges: .top)
+
+        .sheet(item: $urlString) { urlString in
+            SafariView(url: URL(string: urlString)!)
         }
     }
 

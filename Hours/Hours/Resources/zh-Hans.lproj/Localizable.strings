@@ -260,6 +260,12 @@
 "SecondHand" = "秒针";
 "BackgroundSound" = "背景音";
 
+// MARK: Health
+
+"Health" = "健康";
+"HealthAutoSyncSleep" = "自动同步睡眠";
+"HealthAutoSyncWorkout" = "自动同步运动";
+
 // MARK: About
 
 "Privacy" = "隐私协议";

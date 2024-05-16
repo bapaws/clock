@@ -5,12 +5,11 @@
 //  Created by 张敏超 on 2024/5/9.
 //
 
-import SwiftUIX
 import HoursShare
 import SwiftUI
+import SwiftUIX
 
 struct SettingsScreenTimeView: View {
-    @State private var path: NavigationPath = .init()
     @State private var isGuidePresented: Bool = false
 
     @State private var isAutoMergeAdjacentRecords = false
@@ -26,7 +25,7 @@ struct SettingsScreenTimeView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack {
             VStack(alignment: .leading) {
                 SettingsNavigateCell(title: R.string.localizable.autoRecordSetupGuide()) {
                     isGuidePresented = true

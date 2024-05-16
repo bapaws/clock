@@ -42,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // In iOS 13+, idle timer needs to be set in scene to override default
         UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
 
-        AppManager.shared.syncHealth()
+        AppManager.shared.autoSyncHealth()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
