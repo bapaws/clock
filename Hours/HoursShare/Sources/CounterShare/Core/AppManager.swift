@@ -249,10 +249,10 @@ public extension AppManager {
     var isHealthAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
 
     func requestHealthAccess(completion: ((Bool) -> Void)? = nil) {
-//        guard HKHealthStore.isHealthDataAvailable() else {
-//            completion?(false)
-//            return
-//        }
+        guard HKHealthStore.isHealthDataAvailable() else {
+            completion?(false)
+            return
+        }
 
         let allTypes: Set = [
             HKCategoryType(.sleepAnalysis),

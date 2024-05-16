@@ -32,6 +32,7 @@
 
 "HealthTitle" = "Record Sleep & Workout";
 "HealthDesc" = "Please allow Hours access to your Health, So that your sleep and workout records can be automatically synchronized.";
+"HealthNotAccess" = "Hours cannot access Health and can be turned on in settings later.";
 
 "CalendarTitle" = "Use with Apple Calendar";
 "CalendarDesc" = "Please allow Hours access to your calendar so that you can see your time consumption in Apple Calendar.";

@@ -121,7 +121,7 @@ struct OnboardingView: View {
                     AppManager.shared.isAutoSyncSleep = true
                     AppManager.shared.isAutoSyncWorkout = true
                 } else {
-                    Toast.show(R.string.localizable.calendarNotAccess())
+                    Toast.show(R.string.localizable.healthNotAccess())
                 }
                 setupLater()
             }

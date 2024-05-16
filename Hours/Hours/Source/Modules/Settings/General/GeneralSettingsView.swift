@@ -43,7 +43,8 @@ struct GeneralSettingsView: View {
             // MARK: Other
 
             .sheet(isPresented: $isOnboardingPresented) {
-                OnboardingView(onboardingIndices: OnboardingIndices.allCases) {
+                let indices = app.isHealthAvailable ? OnboardingIndices.allCases : [.welcome, .appScreenTime, .calendar, .health]
+                OnboardingView(onboardingIndices: indices) {
                     isOnboardingPresented.toggle()
                 }
             }
