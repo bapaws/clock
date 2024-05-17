@@ -6,10 +6,12 @@
 //
 
 import Charts
+import HoursShare
 import SwiftUI
 import SwiftUIX
 
 struct StatisticsBarView: View {
+    @EnvironmentObject var ui: UIManager
     @EnvironmentObject var viewModel: StatisticsViewModel
 
     var body: some View {

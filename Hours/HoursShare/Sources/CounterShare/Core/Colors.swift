@@ -191,13 +191,13 @@ public extension Colors {
             lightThemeBackground: Color(argb: 0xfff3f3ed),
             lightThemeLabel: Color(white: 0.2),
             lightThemeSecondaryLabel: lightSecondaryLabel,
-            lightThemeSecondaryBackground: darkSecondaryBackground ,
+            lightThemeSecondaryBackground:  lightSecondaryBackground,
             darkThemePrimary: darkPrimary,
             darkThemeSecondary: darkSecondary,
             darkThemeBackground: darkBackground,
             darkThemeLabel: Color(white: 0.85),
             darkThemeSecondaryLabel: darkSecondaryLabel,
-            darkThemeSecondaryBackground: lightSecondaryBackground
+            darkThemeSecondaryBackground: darkSecondaryBackground
         )
     }
 }

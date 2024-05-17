@@ -38,7 +38,7 @@ struct GeneralSettingsView: View {
     var body: some View {
         scrollView
             .navigationTitle(R.string.localizable.settings())
-            .background(ui.colors.background)
+            .background(ui.background)
 
             // MARK: Other
 

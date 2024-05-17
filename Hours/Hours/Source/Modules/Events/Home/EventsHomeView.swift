@@ -32,6 +32,8 @@ struct EventsHomeView: View {
 
     @StateObject private var vm = EventsHomeViewModel()
 
+    @EnvironmentObject var ui: UIManager
+
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {

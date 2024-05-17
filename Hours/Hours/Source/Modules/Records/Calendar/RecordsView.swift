@@ -17,6 +17,7 @@ struct RecordsView: View {
     @State var currentDate: Date = AppManager.shared.today
 
     @EnvironmentObject var app: AppManager
+    @EnvironmentObject var ui: UIManager
 
     var today: Date { app.today }
     var initialDate: Date { app.initialDate }

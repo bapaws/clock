@@ -15,6 +15,8 @@ import SwiftUIX
 struct StatisticsView: View {
     @StateObject var viewModel: StatisticsViewModel = .init()
 
+    @EnvironmentObject var ui: UIManager
+
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 32) {

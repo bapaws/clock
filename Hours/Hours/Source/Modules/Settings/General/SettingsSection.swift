@@ -18,6 +18,8 @@ struct SettingsSection<Cell: View, ID: Hashable>: View {
 
     @ViewBuilder var content: () -> Cell
 
+    @EnvironmentObject var ui: UIManager
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)

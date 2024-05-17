@@ -17,8 +17,8 @@ enum MainTabTag: Int, Identifiable {
 }
 
 struct MainView: View {
-    @State var ui: UIManager = .shared
-    @State var app: AppManager = .shared
+    @StateObject var ui: UIManager = .shared
+    @StateObject var app: AppManager = .shared
 
     @State private var selectionValue: MainTabTag = .events
 
@@ -64,8 +64,8 @@ struct MainView: View {
         }
         .accentColor(ui.primary)
         .tint(ui.primary)
-        .background(ui.colors.background)
-        .foregroundStyle(ui.colors.label)
+        .background(ui.background)
+        .foregroundStyle(ui.label)
         .environmentObject(ui)
         .environmentObject(app)
 

@@ -21,7 +21,6 @@ struct SettingsSoundSection: View {
                     AppManager.shared.isMute = isMute
                 }
         }
-        .background(ui.background)
     }
 }
 
