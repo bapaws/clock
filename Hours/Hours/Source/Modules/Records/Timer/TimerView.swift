@@ -10,6 +10,7 @@ import HoursShare
 import RealmSwift
 import SwiftUI
 import SwiftUIX
+import UIKit
 
 struct TimerView: View {
     let event: EventObject
@@ -115,6 +116,9 @@ struct TimerView: View {
     }
 
     func onFinished() {
+        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+        impactMed.impactOccurred()
+
         manager.pause()
         dismiss()
 

@@ -75,7 +75,7 @@ public extension ThemeColors {
         switch mode {
         case .dark: Color(uiColor: darkThemeSecondaryBackground)
         case .light: Color(uiColor: lightThemeSecondaryBackground)
-        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? lightThemeSecondaryBackground : darkThemeSecondaryBackground })
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryBackground : lightThemeSecondaryBackground })
         }
     }
 
@@ -112,7 +112,7 @@ public extension ThemeColors {
     }
 
     var uiSecondaryBackground: UIColor {
-        .init { $0.userInterfaceStyle == .dark ? lightThemeSecondaryBackground : darkThemeSecondaryBackground }
+        .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryBackground : lightThemeSecondaryBackground }
     }
 
     var uiLabel: UIColor {
