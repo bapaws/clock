@@ -16,6 +16,7 @@ struct EventsHomeView: View {
     // MARK: Category
 
     @State private var isNewCategoryPresented: Bool = false
+    @State private var newestCategoryID: String? = nil
 
     // MARK: Event
 
@@ -79,10 +80,21 @@ struct EventsHomeView: View {
                                 newEventSelectCategory = category
                                 isNewEventPresented = true
                             }
+                            .id(category._id.stringValue)
                         }
                     }
                 }
                 .padding()
+                .onChange(of: newestCategoryID) { newValue in
+                    guard let value = newValue else { return }
+
+                    vm.isOtherCategoriesShow = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        withAnimation {
+                            proxy.scrollTo(value, anchor: .top)
+                        }
+                    }
+                }
             }
         }
         .background(ui.background)
@@ -127,7 +139,7 @@ struct EventsHomeView: View {
         // MARK: New Category
 
         .sheet(isPresented: $isNewCategoryPresented) {
-            NewCategoryView()
+            NewCategoryView(newestCategoryID: $newestCategoryID)
                 .sheetStyle()
         }
     }

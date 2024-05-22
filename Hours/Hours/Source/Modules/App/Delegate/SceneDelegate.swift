@@ -43,6 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UIApplication.shared.isIdleTimerDisabled = AppManager.shared.idleTimerDisabled
 
         AppManager.shared.autoSyncHealth()
+        AppManager.shared.startTimer()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

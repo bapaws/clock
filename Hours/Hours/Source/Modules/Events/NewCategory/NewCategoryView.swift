@@ -14,6 +14,8 @@ import SwiftUI
 struct NewCategoryView: View {
     var category: CategoryObject?
 
+    @Binding var newestCategoryID: String?
+
     @State private var emoji: String = ""
     @State private var title: String = ""
 
@@ -116,10 +118,12 @@ struct NewCategoryView: View {
             // 保存创建任务对象
             let realm = DBManager.default.realm
             let hex = DBManager.default.nextHex.thaw()
+            let newCategory = CategoryObject(hex: hex, emoji: emoji, name: title)
             realm.writeAsync {
-                let newCategory = CategoryObject(hex: hex, emoji: emoji, name: title)
                 realm.add(newCategory)
             }
+
+            newestCategoryID = newCategory._id.stringValue
         }
 
         dismiss()
@@ -127,5 +131,5 @@ struct NewCategoryView: View {
 }
 
 #Preview {
-    NewCategoryView(category: CategoryObject(hex: HexObject(hex: "#FEA6ED"), icon: "plus", name: "Sports"))
+    NewCategoryView(category: CategoryObject(hex: HexObject(hex: "#FEA6ED"), icon: "plus", name: "Sports"), newestCategoryID: .constant(nil))
 }

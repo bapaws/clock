@@ -95,7 +95,7 @@ public class AppManager: ClockShare.AppBaseManager {
 
     // MARK: Timer
 
-    private func startTimer() {
+    public func startTimer() {
         let now = Date()
 #if targetEnvironment(simulator)
         let distance = 120.0

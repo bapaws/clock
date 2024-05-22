@@ -30,6 +30,10 @@ public class TimerManager: ObservableObject {
         self.time = time
         self.timer = timer
     }
+
+    open func activityUpdate(time: Time) {
+        fatalError()
+    }
 }
 
 // MARK: - Timer
@@ -44,6 +48,8 @@ public extension TimerManager {
             }
         })
         RunLoop.main.add(timer!, forMode: .common)
+
+        activityUpdate(time: time)
 
         isStarted = true
         isPaused = false
