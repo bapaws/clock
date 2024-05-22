@@ -13,6 +13,7 @@ import SwiftUI
 import SwiftUIX
 
 struct StatisticsDailyView: View {
+    @EnvironmentObject var ui: UIManager
     @EnvironmentObject var viewModel: StatisticsViewModel
 
     var dailyDate: Date { viewModel.dailyDate }

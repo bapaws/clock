@@ -12,6 +12,34 @@
 "Save" = "Save";
 "Warning" = "⚠️Warning";
 "Congratulations" = "🎉Congratulations🎉";
+"PleaseSelect" = "Select...";
+"PleaseEnter" = "Enter...";
+"ShowAll" = "Show All";
+"Edit" = "Edit";
+"Continue" = "Continue";
+
+// MARK: Onboarding
+
+"Onboarding" = "Onboarding";
+
+"WelcomeTo" = "Welcome To";
+"WelcomeText" = "An app that helps you better manage your time and improve your productivity.";
+
+"SetupLater" = "Set up later";
+
+"AppScreenTimeTitle" = "Record App Screen Time";
+"AppScreenTimeDesc" = "Auto-record your screen time. Just set up the Shortcuts app on iOS to listen for our app's open and close events. It's that simple!";
+
+"HealthTitle" = "Record Sleep & Workout";
+"HealthDesc" = "Please allow Hours access to your Health, So that your sleep and workout records can be automatically synchronized.";
+"HealthNotAccess" = "Hours cannot access Health and can be turned on in settings later.";
+
+"CalendarTitle" = "Use with Apple Calendar";
+"CalendarDesc" = "Please allow Hours access to your calendar so that you can see your time consumption in Apple Calendar.";
+"CalendarNotAccess" = "Hours cannot access Calendar and can be turned on in settings later.";
+
+"StatisticsTitle" = "Statistics Pro";
+"StatisticsDesc" = "Unlock deep insights into time management, customize your daily productivity, and achieve your goals with our Statistics Pro – making every moment count.";
 
 // MARK: Category
 
@@ -25,6 +53,13 @@
 "Housework" = "Housework";
 
 "Category" = "Category";
+"SelectCategory" = "Select Category";
+
+// MARK: New Category
+
+"NewCategory" = "New Category";
+"Emoji" = "Emoji";
+"CategoryName" = "Category Name";
 
 // MARK: Events
 
@@ -79,10 +114,13 @@
 "Cleaning" = "Cleaning";
 "Cooking" = "Cooking";
 
-// MARK: New Record
+// MARK: New
 
 "NewEvent" = "New Event";
+"EditEvent" = "Edit Event";
+
 "Event" = "Event";
+"SelectEvent" = "Select Event";
 
 "NewRecord" = "New Record";
 "EditRecord" = "Edit Record";
@@ -90,6 +128,13 @@
 "StartTime" = "Start Time";
 "EndTime" = "End Time";
 "Note" = "Note";
+
+// MARK: Archived Events
+
+"Archive" = "Archive";
+"Archived" = "Archived";
+"ArchivedAt" = "Archived At: %@";
+"Unarchive" = "Unarchive";
 
 // MARK: Statistics
 
@@ -216,6 +261,12 @@
 "SecondHand" = "Second Hand";
 "BackgroundSound" = "Background Sound";
 
+// MARK: Health
+
+"Health" = "Health";
+"HealthAutoSyncSleep" = "Auto Sync Sleep";
+"HealthAutoSyncWorkout" = "Auto Sync Workout";
+
 // MARK: About
 
 "Privacy" = "Privacy Policy";
@@ -243,3 +294,31 @@ If you want to cancel the automatic subscription, please turn off the auto-renew
 If the recharge does not arrive, please send your Apple ID and debit voucher to dev@bapaws.com.
 Pro member ad-free service temporarily includes the removal of app opening screen ads, banner ads.
 Pro member service is an online commodity and virtual commodity, once opened can not be refunded, thank you for your understanding and support.";
+
+// MARK: Feedback
+
+"Feedback" = "Feedback";
+"Email" = "Email";
+"SendEmail" = "Send an email";
+"EmailMessageBody" = "<p>ℹ️Info：</p><ul><li>System Name: %@</li><li>System Version: %@</li><li>Model: %@</li><li>App Version: %@</li></ul><p>Issues：</p><p></p>";
+"EmailCopied" = "Email address has been copied.";
+
+
+"X" = "X";
+"RedBook" = "RED";
+"WeChat" = "WeChat";
+"WeChatCopied" = "The WeChat ID has been copied. Go to WeChat to add it.";
+
+// MARK: App Screen Time
+
+"AppDidOpen" = "App Did Open";
+"AppDidClose" = "App Did Close";
+"App is closed. Create a record for ${eventID}" = "App is closed. Create a record for ${eventID}";
+
+"AppScreenTime" = "App Screen Time";
+
+"AutoRecordSetupGuide" = "Auto-Record Setup Guide";
+
+"AdjacentRecords" = "Adjacent Records";
+"AutoMergeAdjacentRecords" = "Auto Merge Adjacent Records";
+"Interval" = "Interval";

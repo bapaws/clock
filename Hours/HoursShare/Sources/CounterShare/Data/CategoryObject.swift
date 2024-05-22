@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 public class CategoryObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
-    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted(primaryKey: true) public var _id: ObjectId
 
     /// 颜色
     @Persisted public var hex: HexObject?
@@ -20,7 +20,26 @@ public class CategoryObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
     /// 标签名
     @Persisted(indexed: true) public var name: String
 
+    /// Apple calendar' id
+    @Persisted public var calendarIdentifier: String?
+
     @Persisted public var events: List<EventObject>
+
+    @Persisted public var index: Int = 0
+
+    /// 创建时间
+    @Persisted public var createdAt: Date = .init()
+    /// 删除时间
+    @Persisted public var deletedAt: Date?
+    /// 归档时间
+    @Persisted public var archivedAt: Date?
+
+    public var title: String {
+        if let emoji = emoji {
+            return emoji + " " + name
+        }
+        return name
+    }
 
     override public init() {
         super.init()

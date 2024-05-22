@@ -13,6 +13,7 @@ import SwiftUI
 import SwiftUIX
 
 struct StatisticsTimeDistributionView: View {
+    @EnvironmentObject var ui: UIManager
     @EnvironmentObject var viewModel: StatisticsViewModel
 
     var body: some View {

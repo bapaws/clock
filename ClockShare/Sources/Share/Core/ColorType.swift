@@ -75,7 +75,7 @@ public extension ThemeColors {
         switch mode {
         case .dark: Color(uiColor: darkThemeSecondaryBackground)
         case .light: Color(uiColor: lightThemeSecondaryBackground)
-        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? lightThemeSecondaryBackground : darkThemeSecondaryBackground })
+        case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryBackground : lightThemeSecondaryBackground })
         }
     }
 
@@ -93,5 +93,33 @@ public extension ThemeColors {
         case .light: Color(uiColor: lightThemeSecondaryLabel)
         case .system: Color(uiColor: .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryLabel : lightThemeSecondaryLabel })
         }
+    }
+}
+
+// MARK: UIKit
+
+public extension ThemeColors {
+    var uiPrimary: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemePrimary : lightThemePrimary }
+    }
+
+    var uiSecondary: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeSecondary : lightThemeSecondary }
+    }
+
+    var uiBackground: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeBackground : lightThemeBackground }
+    }
+
+    var uiSecondaryBackground: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryBackground : lightThemeSecondaryBackground }
+    }
+
+    var uiLabel: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeLabel : lightThemeLabel }
+    }
+
+    var uiSecondaryLabel: UIColor {
+        .init { $0.userInterfaceStyle == .dark ? darkThemeSecondaryLabel : lightThemeSecondaryLabel }
     }
 }

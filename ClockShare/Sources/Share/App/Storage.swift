@@ -10,7 +10,7 @@ import Foundation
 public class Storage {
     static var groupIdentifier: String {
         if let bundleIdentifier = Bundle.main.bundleIdentifier {
-            return "group." + bundleIdentifier.split(separator: ".")[0...2].joined(separator: ".")
+            return "group." + bundleIdentifier.split(separator: ".")[0 ... 2].joined(separator: ".")
         }
         return "group.com.bapaws.Clock"
     }
@@ -45,6 +45,11 @@ public class Storage {
 
         public static let isSyncRecordsToCalendar = "isSyncRecordsToCalendar"
 
+        // MARK: App Screen Time
+
+        public static let minimumRecordedScreenTime = "minimumRecordedScreenTime"
+        public static let isAutoMergeAdjacentRecords = "isAutoMergeAdjacentRecords"
+        public static let autoMergeAdjacentRecordsInterval = "autoMergeAdjacentRecordsInterval"
 
         // MARK: Timer
 

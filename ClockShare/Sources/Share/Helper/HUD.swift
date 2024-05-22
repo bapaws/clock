@@ -45,6 +45,7 @@ public class Toast {
         let hudView = MBProgressHUD.showAdded(to: keyWindow, animated: true)
         hudView.mode = .text
         hudView.label.text = msg
+        hudView.label.numberOfLines = 0
         hudView.margin = 16
         hudView.hide(animated: true, afterDelay: 3)
     }

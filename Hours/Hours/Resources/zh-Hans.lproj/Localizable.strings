@@ -12,6 +12,34 @@
 "Save" = "保存";
 "Warning" = "⚠️提醒";
 "Congratulations" = "🎉恭喜解锁 Pro 会员🎉";
+"PleaseSelect" = "请选择";
+"PleaseEnter" = "请输入";
+"ShowAll" = "显示全部";
+"Edit" = "编辑";
+"Continue" = "继续";
+
+// MARK: Onboarding
+
+"Onboarding" = "新手引导";
+
+"WelcomeTo" = "欢迎使用";
+"WelcomeText" = "帮助你了解时间都去哪儿了";
+
+"SetupLater" = "算了";
+
+"AppScreenTimeTitle" = "自动记录屏幕使用时间";
+"AppScreenTimeDesc" = "只需通过 iOS 上的「快捷指令」的应用程序的自动化功能，设置应用程序的打开和关闭自动化，就可以自动记录你的屏幕时间。就是这么简单!";
+
+"HealthTitle" = "自动记录睡眠和运动";
+"HealthDesc" = "请允许时间记录访问你的健康数据，以便能自动同步你的睡眠和运动记录。";
+"HealthNotAccess" = "时间记录无法访问你的健康，可以稍后在设置中开启。";
+
+"CalendarTitle" = "和苹果日历一起使用";
+"CalendarDesc" = "请允许时间记录访问你的日历，以便能你能在苹果日历中能看到你的时间消耗。";
+"CalendarNotAccess" = "时间记录无法访问你的日历，可以稍后在设置中开启。";
+
+"StatisticsTitle" = "数据统计 Pro";
+"StatisticsDesc" = "通过数据统计 Pro，解锁时间管理的深度洞察，个性化定制您的日常，提升效率，实现目标，让每一分每一秒都发挥最大价值。";
 
 // MARK: Category
 
@@ -25,6 +53,13 @@
 "Housework" = "家务";
 
 "Category" = "分类";
+"SelectCategory" = "选择分类";
+
+// MARK: New Category
+
+"NewCategory" = "新建分类";
+"Emoji" = "Emoji";
+"CategoryName" = "分类名";
 
 // MARK: Events
 
@@ -83,7 +118,9 @@
 // MARK: New Record
 
 "NewEvent" = "新建事件";
+"EditEvent" = "编辑事件";
 "Event" = "事件";
+"SelectEvent" = "选择事件";
 
 "NewRecord" = "新建记录";
 "EditRecord" = "修改记录";
@@ -92,6 +129,12 @@
 "EndTime" = "结束时间";
 "Note" = "备注";
 
+// MARK: Archived Events
+
+"Archive" = "归档";
+"Archived" = "已归档";
+"ArchivedAt" = "归档于：%@";
+"Unarchive" = "取消归档";
 
 // MARK: Statistics
 
@@ -148,8 +191,8 @@
 "Settings" = "设置";
 
 "TimingMode" = "计时模式";
-"MinimumRecordedTime" = "最短记录时间";
-"MaximumRecordedTime" = "最长记录时间";
+"MinimumRecordedTime" = "最短记录时长";
+"MaximumRecordedTime" = "最长记录时长";
 
 "SyncRecordsToCalendar" = "记录同步到日历";
 
@@ -218,6 +261,12 @@
 "SecondHand" = "秒针";
 "BackgroundSound" = "背景音";
 
+// MARK: Health
+
+"Health" = "健康";
+"HealthAutoSyncSleep" = "自动同步睡眠";
+"HealthAutoSyncWorkout" = "自动同步运动";
+
 // MARK: About
 
 "Privacy" = "隐私协议";
@@ -245,3 +294,30 @@
 若出现充值未到账的情况，请将您的Apple ID和扣款凭证邮件至dev@bapaws.com;
 Pro 会员免广告服务暂时包含移除app开屏广告、banner广告;
 Pro 会员服务系网络商品和虚拟商品，一经开通后不可退款，感谢理解和支持。";
+
+// MARK: Feedback
+
+"Feedback" = "问题反馈";
+"Email" = "邮件";
+"SendEmail" = "发送邮件";
+"EmailMessageBody" = "<p>基本信息：</p><ul><li>系统名称：%@</li><li>系统版本：%@</li><li>设备型号：%@</li><li>App 版本：%@</li></ul><p>反馈的问题：</p><p></p>";
+"EmailCopied" = "电子邮件地址已复制";
+
+"X" = "X";
+"RedBook" = "小红书";
+"WeChat" = "微信";
+"WeChatCopied" = "微信号已复制，去微信添加吧";
+
+// MARK: App Screen Time
+
+"AppDidOpen" = "应用程序打开";
+"AppDidClose" = "应用程序关闭";
+"App is closed. Create a record for ${eventID}" = "应用已关闭，创建${eventID}的记录";
+
+"AppScreenTime" = "应用屏幕时间";
+
+"AutoRecordSetupGuide" = "自动记录设置帮助";
+
+"AdjacentRecords" = "相邻记录";
+"AutoMergeAdjacentRecords" = "自动合并相邻记录";
+"Interval" = "相隔时长";

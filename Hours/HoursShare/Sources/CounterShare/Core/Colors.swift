@@ -173,20 +173,31 @@ public extension Colors {
 
 public extension Colors {
     static func classic(mode: DarkMode = .light) -> Colors {
-        Colors(
+        let dark = UITraitCollection(userInterfaceStyle: .dark)
+        let light = UITraitCollection(userInterfaceStyle: .light)
+        let darkPrimary = Color(UIColor.systemMint.resolvedColor(with: dark))
+        let lightPrimary = Color(UIColor.systemMint.resolvedColor(with: light))
+        let darkSecondary = Color(UIColor.systemTeal.resolvedColor(with: dark))
+        let lightSecondary = Color(UIColor.systemTeal.resolvedColor(with: light))
+        let darkBackground = Color(UIColor.secondarySystemBackground.resolvedColor(with: dark))
+        let darkSecondaryLabel = Color(UIColor.secondaryLabel.resolvedColor(with: dark))
+        let lightSecondaryLabel = Color(UIColor.secondaryLabel.resolvedColor(with: light))
+        let darkSecondaryBackground = Color(UIColor.systemBackground.resolvedColor(with: dark))
+        let lightSecondaryBackground = Color(UIColor.systemBackground.resolvedColor(with: light))
+        return Colors(
             mode: mode,
-            lightThemePrimary: Color.systemMint,
-            lightThemeSecondary: Color.systemTeal,
+            lightThemePrimary: lightPrimary,
+            lightThemeSecondary: lightSecondary,
             lightThemeBackground: Color(argb: 0xfff3f3ed),
             lightThemeLabel: Color(white: 0.2),
-            lightThemeSecondaryLabel: .secondaryLabel,
-            lightThemeSecondaryBackground: .systemBackground,
-            darkThemePrimary: Color.systemMint,
-            darkThemeSecondary: Color.systemTeal,
-            darkThemeBackground: Color.secondarySystemBackground,
+            lightThemeSecondaryLabel: lightSecondaryLabel,
+            lightThemeSecondaryBackground: lightSecondaryBackground,
+            darkThemePrimary: darkPrimary,
+            darkThemeSecondary: darkSecondary,
+            darkThemeBackground: darkBackground,
             darkThemeLabel: Color(white: 0.85),
-            darkThemeSecondaryLabel: .secondaryLabel,
-            darkThemeSecondaryBackground: .systemBackground
+            darkThemeSecondaryLabel: darkSecondaryLabel,
+            darkThemeSecondaryBackground: darkSecondaryBackground
         )
     }
 }
