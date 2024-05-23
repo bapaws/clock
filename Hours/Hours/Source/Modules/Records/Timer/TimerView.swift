@@ -15,11 +15,13 @@ import UIKit
 struct TimerView: View {
     let event: EventObject
 
-    @State var startAt: Date = .init()
-
     var time: Time { manager.time }
 
-    @EnvironmentObject var manager: TimerManager
+    // Timer Stop from live activity
+    let timerStop = NotificationCenter.default
+        .publisher(for: TimerManager.shared.timerStop)
+
+    @EnvironmentObject var manager: HoursShare.TimerManager
     @Environment(\.dismiss) var dismiss
 
     @Environment(\.colorScheme) var colorScheme
@@ -64,8 +66,7 @@ struct TimerView: View {
         .padding(.vertical, .extraExtraLarge)
         .background(linearGradient)
         .onAppear {
-            manager.start()
-            startAt = time.date
+            manager.start(of: event)
         }
         .onDisappear {
             manager.stop()
@@ -76,6 +77,9 @@ struct TimerView: View {
             } else {
                 AppManager.shared.playTimer()
             }
+        }
+        .onReceive(timerStop) { _ in
+            dismiss()
         }
     }
 
@@ -127,7 +131,7 @@ struct TimerView: View {
 
         realm.writeAsync {
             let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
-            let newRecord = RecordObject(creationMode: .timer, startAt: self.startAt, milliseconds: milliseconds)
+            let newRecord = RecordObject(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
             // 同步到日历应用
             let eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
             newRecord.calendarEventIdentifier = eventIdendtifier

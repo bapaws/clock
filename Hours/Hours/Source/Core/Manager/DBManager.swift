@@ -56,18 +56,16 @@ public extension DBManager {
             let entertainment = CategoryObject(hex: HexObject(hex: "#78C2C4"), emoji: "🎮", name: R.string.localizable.entertainment(), events: entertainmentEvents)
             self.realm.add(entertainment)
 
-            let breakEvents = RealmSwift.List<EventObject>()
-            breakEvents.append(EventObject(emoji: "😴", name: R.string.localizable.middayNap(), hex: HexObject(hex: "E88B00")))
-            breakEvents.append(EventObject(emoji: "🍰", name: R.string.localizable.afternoonTea(), hex: HexObject(hex: "FF441A")))
-            breakEvents.append(EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD"), isSystem: true))
-            let `break` = CategoryObject(hex: HexObject(hex: "#CAC3D4"), emoji: "🛋", name: R.string.localizable.break(), events: breakEvents)
-            self.realm.add(`break`)
-
             let houseworkEvents = RealmSwift.List<EventObject>()
             houseworkEvents.append(EventObject(emoji: "🧹", name: R.string.localizable.cleaning(), hex: HexObject(hex: "405742")))
             houseworkEvents.append(EventObject(emoji: "🍳", name: R.string.localizable.cooking(), hex: HexObject(hex: "3F4470")))
-            let housework = CategoryObject(hex: HexObject(hex: "#E38C7A"), emoji: "🧹", name: R.string.localizable.housework(), events: houseworkEvents)
+            let housework = CategoryObject(hex: HexObject(hex: "#20ABEE"), emoji: "🧹", name: R.string.localizable.housework(), events: houseworkEvents)
             self.realm.add(housework)
+
+            let healthEvents = RealmSwift.List<EventObject>()
+            healthEvents.append(EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD"), isSystem: true))
+            let health = CategoryObject(hex: HexObject(hex: "#FF4033"), emoji: "❤️", name: R.string.localizable.health())
+            self.realm.add(health)
         }
 
         if let jsonData = nipponColors.data(using: .utf8) {

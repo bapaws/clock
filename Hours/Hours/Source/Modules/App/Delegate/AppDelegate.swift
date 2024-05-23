@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        #endif
 
+        AppManager.shared.enableObservedSleepAnalysis()
+        AppManager.shared.enableObservedWorkout()
+
         return true
     }
 

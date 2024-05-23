@@ -16,6 +16,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
         case am = "AM", pm = "PM"
     }
 
+    public let initialDate: Date
     public var hour: Int
     public var minute: Int
     public var second: Int
@@ -23,6 +24,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
 
     public private(set) var date: Date
     public init(date: Date = Date()) {
+        self.initialDate = date
         self.date = date
 
         let components = Calendar.current.dateComponents([.hour, .minute, .second, .nanosecond], from: date)
@@ -33,6 +35,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
     }
 
     public init(date: Date = Date(), hour: Int, minute: Int, second: Int, millisecond: Int = 0) {
+        self.initialDate = date
         self.date = date
 
         self.millisecond = millisecond % 1000
@@ -42,6 +45,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case initialDate
         case hour
         case minute
         case second
@@ -51,6 +55,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        initialDate = try container.decode(Date.self, forKey: .initialDate)
         hour = try container.decode(Int.self, forKey: .hour)
         minute = try container.decode(Int.self, forKey: .minute)
         second = try container.decode(Int.self, forKey: .second)
@@ -60,6 +65,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(initialDate, forKey: .initialDate)
         try container.encode(hour, forKey: .hour)
         try container.encode(minute, forKey: .minute)
         try container.encode(second, forKey: .second)
@@ -68,6 +74,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
     }
 
     public func hash(into hasher: inout Hasher) {
+        hasher.combine(initialDate)
         hasher.combine(hour)
         hasher.combine(minute)
         hasher.combine(second)

@@ -28,31 +28,51 @@ struct TimerView: View {
     }
 
     var body: some View {
-        VStack {
-            Text(event.title)
-                .font(.title)
-                .frame(width: .greedy)
-                .foregroundStyle(event.primary)
+        VStack(spacing: 8) {
+            HStack {
+                if let emoji = event.emoji {
+                    Text(emoji)
+                        .font(.title2)
+                }
+                Text(event.name)
+                    .font(.title2)
+                    .minimumScaleFactor(0.7)
+                    .foregroundStyle(event.lightPrimary)
+                Spacer()
+            }
+            HStack {
+                Text(timerInterval: time.date ... time.date.addingTimeInterval(6 * 60 * 60), countsDown: false)
+                    .contentTransition(.numericText(countsDown: false))
+                    .font(.system(size: 54, weight: .bold, design: .rounded))
+                    .foregroundStyle(event.darkPrimary)
+                    .monospacedDigit()
 
-            Spacer()
+                Spacer()
 
-            Text(timerInterval: time.date ... time.date.addingTimeInterval(6 * 60 * 60), countsDown: false)
-                .contentTransition(.numericText(countsDown: true))
-                .font(.largeTitle, weight: .bold)
-                .monospacedDigit()
-
-            Spacer()
-
-            stopButton
-                .frame(width: 64, height: 64)
+                stopButton(for: event)
+            }
         }
     }
 
-    var stopButton: some View {
-        Button {
-            onFinished()
-        } label: {
-            buttonLabel(systemName: "stop")
+    @ViewBuilder func stopButton(for event: EventObject) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            Button(intent: StopTimerLiveActivityIntent(), label: {
+                Image(systemName: "stop.fill")
+                    .font(.title2)
+                    .frame(width: 60, height: 60)
+                    .foregroundStyle(event.darkPrimary)
+                    .background(event.darkOnPrimary)
+                    .cornerRadius(30)
+            })
+            .background(.clear)
+            .buttonStyle(BorderlessButtonStyle())
+        } else {
+            Image(systemName: "stop.fill")
+                .font(.title2)
+                .frame(width: 60, height: 60)
+                .foregroundStyle(event.darkPrimary)
+                .background(event.darkOnPrimary)
+                .cornerRadius(30)
         }
     }
 
@@ -68,19 +88,11 @@ struct TimerView: View {
             }
     }
 
-    private var zeroNumberColor: Color {
-        numberColor.opacity(0.5)
-    }
-
-    private var numberColor: Color {
-        colorScheme == .dark ? event.onPrimary : event.primary
-    }
-
     private var linearGradient: LinearGradient {
         if colorScheme == .dark {
-            LinearGradient(gradient: Gradient(colors: [event.onPrimary, event.onPrimaryContainer]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [event.onPrimary, event.onPrimaryContainer]), startPoint: .leading, endPoint: .trailing)
         } else {
-            LinearGradient(gradient: Gradient(colors: [event.primaryContainer, event.background]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [event.primaryContainer, event.background]), startPoint: .leading, endPoint: .trailing)
         }
     }
 
@@ -93,5 +105,7 @@ struct TimerView: View {
             time: Time(),
             event: EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD"), isSystem: true)
         )
+    } else {
+        return EmptyView()
     }
 }

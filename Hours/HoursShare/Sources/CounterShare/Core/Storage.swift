@@ -16,6 +16,9 @@ public extension Storage.Key {
     static let lastSyncWorkoutDate = "lastSyncWorkoutDate"
     static let isAutoSyncSleep = "isAutoSyncSleep"
     static let lastSyncSleepDate = "lastSyncSleepDate"
+
+    static let currentTimerTime = "currentTimerTime"
+    static let currentTimerEventID = "currentTimerEventID"
 }
 
 public extension Storage {
@@ -41,8 +44,6 @@ public extension Storage {
         }
     }
 
-
-
     var lastSyncWorkoutDate: Date? {
         set { store.set(newValue, forKey: Key.lastSyncWorkoutDate) }
         get { store.object(forKey: Key.lastSyncWorkoutDate) as? Date }
@@ -51,5 +52,25 @@ public extension Storage {
     var lastSyncSleepDate: Date? {
         set { store.set(newValue, forKey: Key.lastSyncSleepDate) }
         get { store.object(forKey: Key.lastSyncSleepDate) as? Date }
+    }
+
+    var currentTimerTime: Time? {
+        set {
+            if let time = newValue {
+                let data = try? JSONEncoder().encode(time)
+                store.set(data, forKey: Key.currentTimerTime)
+            } else {
+                store.removeObject(forKey: Key.currentTimerTime)
+            }
+        }
+        get {
+            guard let data = store.object(forKey: Key.currentTimerTime) as? Data else { return nil }
+            return try? JSONDecoder().decode(Time.self, from: data)
+        }
+    }
+
+    var currentTimerEventID: String? {
+        set { store.set(newValue, forKey: Key.currentTimerEventID) }
+        get { store.string(forKey: Key.currentTimerEventID) }
     }
 }

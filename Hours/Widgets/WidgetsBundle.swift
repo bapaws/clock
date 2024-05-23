@@ -5,13 +5,13 @@
 //  Created by 张敏超 on 2024/5/22.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
 @main
+@available(iOSApplicationExtension 16.1, *)
 struct WidgetsBundle: WidgetBundle {
     var body: some Widget {
-        Widgets()
-        WidgetsLiveActivity()
+        TimerLiveActivity()
     }
 }

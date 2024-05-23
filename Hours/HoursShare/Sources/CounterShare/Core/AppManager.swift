@@ -262,6 +262,9 @@ public extension AppManager {
             self?.healthAccessGranted = granted
 
             if granted {
+                self?.enableObservedSleepAnalysis()
+                self?.enableObservedWorkout()
+
                 self?.autoSyncWorkout()
                 self?.autoSyncSleep()
             }
@@ -279,28 +282,55 @@ public extension AppManager {
         autoSyncSleep()
     }
 
-    func autoSyncWorkout() {
-        guard isAutoSyncSleep else { return }
+    // MARK: Workout
+
+    func enableObservedWorkout() {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+
+        let workoutType = HKObjectType.workoutType()
+        let query = HKObserverQuery(sampleType: workoutType, predicate: nil) { [weak self] _, completionHandler, error in
+            if let error = error { print(error) }
+            self?.autoSyncWorkout(completionHandler: completionHandler)
+        }
+        healthStore.enableBackgroundDelivery(for: workoutType, frequency: .immediate) { _, error in
+            if let error = error {
+                print(error)
+            }
+        }
+        healthStore.execute(query)
+    }
+
+    func autoSyncWorkout(completionHandler: (() -> Void)? = nil) {
+        guard isAutoSyncSleep else {
+            completionHandler?()
+            return
+        }
 
         let from = Storage.default.lastSyncWorkoutDate ?? initialDate
         let to = Date()
 
-        if from.distance(to: to) < 30 { return }
+        if from.distance(to: to) < 30 {
+            completionHandler?()
+            return
+        }
         Storage.default.lastSyncWorkoutDate = to
 
-        syncWorkout(from: from, to: to)
+        syncWorkout(from: from, to: to, completionHandler: completionHandler)
     }
 
-    private func syncWorkout(from: Date, to: Date) {
+    private func syncWorkout(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
         guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
 
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: .workoutType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
-            guard error == nil, let workouts = samples as? [HKWorkout], !workouts.isEmpty else { return }
+            guard error == nil, let workouts = samples as? [HKWorkout], !workouts.isEmpty else {
+                completionHandler?()
+                return
+            }
 
             DispatchQueue.main.async {
-                self?.saveWorkouts(workouts)
+                self?.saveWorkouts(workouts, completionHandler: completionHandler)
             }
         }
         healthStore.execute(query)
@@ -320,7 +350,7 @@ public extension AppManager {
         }
     }
 
-    private func saveWorkouts(_ workouts: [HKWorkout]) {
+    private func saveWorkouts(_ workouts: [HKWorkout], completionHandler: (() -> Void)? = nil) {
         let realm = DBManager.default.realm
         let category: CategoryObject = healthCategory
 
@@ -352,38 +382,68 @@ public extension AppManager {
                 }
             }
         }
+
+        // 稍微延迟一下，等数据入库完成
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completionHandler?()
+        }
     }
 
-    func autoSyncSleep() {
-        guard isAutoSyncSleep else { return }
+    // MARK: Sleep
+
+    func enableObservedSleepAnalysis() {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+
+        let sleepType = HKCategoryType(.sleepAnalysis)
+        let query = HKObserverQuery(sampleType: sleepType, predicate: nil) { [weak self] _, completionHandler, error in
+            if let error = error { print(error) }
+            self?.autoSyncSleep(completionHandler: completionHandler)
+        }
+        healthStore.enableBackgroundDelivery(for: sleepType, frequency: .immediate) { _, error in
+            if let error = error {
+                print(error)
+            }
+        }
+        healthStore.execute(query)
+    }
+
+    func autoSyncSleep(completionHandler: (() -> Void)? = nil) {
+        guard isAutoSyncSleep else {
+            completionHandler?()
+            return
+        }
 
         let from = Storage.default.lastSyncSleepDate ?? initialDate
         let to = Date()
 
-        if from.distance(to: to) < 30 { return }
+        if from.distance(to: to) < 30 {
+            completionHandler?()
+            return
+        }
         Storage.default.lastSyncSleepDate = to
 
-        syncSleep(from: from, to: to)
+        syncSleep(from: from, to: to, completionHandler: completionHandler)
     }
 
-    private func syncSleep(from: Date, to: Date) {
+    private func syncSleep(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
         guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
 
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
             guard error == nil, let items = samples as? [HKCategorySample], !items.isEmpty else {
+                completionHandler?()
                 return
             }
 
             DispatchQueue.main.async {
-                self?.saveSleep(items)
+                self?.saveSleep(items, completionHandler: completionHandler)
             }
         }
         healthStore.execute(query)
     }
 
-    private func saveSleep(_ samples: [HKCategorySample]) {
+    private func saveSleep(_ samples: [HKCategorySample], completionHandler: (() -> Void)? = nil) {
         let realm = DBManager.default.realm
         let category: CategoryObject = healthCategory
 
@@ -420,6 +480,10 @@ public extension AppManager {
             // 过滤掉时间非连续，并且时长小于 5 分的数据
             let filtedRecord = records.filter { $0.milliseconds > 300 * 1000 }
             event.items.append(objectsIn: filtedRecord)
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completionHandler?()
         }
     }
 }

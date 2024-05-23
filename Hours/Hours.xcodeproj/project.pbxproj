@@ -59,9 +59,6 @@
 		887CEC562BFDE8F900E56AB5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887CEC552BFDE8F900E56AB5 /* WidgetKit.framework */; };
 		887CEC582BFDE8F900E56AB5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887CEC572BFDE8F900E56AB5 /* SwiftUI.framework */; };
 		887CEC5B2BFDE8F900E56AB5 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC5A2BFDE8F900E56AB5 /* WidgetsBundle.swift */; };
-		887CEC5D2BFDE8F900E56AB5 /* WidgetsLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC5C2BFDE8F900E56AB5 /* WidgetsLiveActivity.swift */; };
-		887CEC5F2BFDE8F900E56AB5 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC5E2BFDE8F900E56AB5 /* Widgets.swift */; };
-		887CEC612BFDE8F900E56AB5 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC602BFDE8F900E56AB5 /* AppIntent.swift */; };
 		887CEC632BFDE8FA00E56AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 887CEC622BFDE8FA00E56AB5 /* Assets.xcassets */; };
 		887CEC672BFDE8FA00E56AB5 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 887CEC542BFDE8F900E56AB5 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		887CEC6E2BFDE93600E56AB5 /* TimerLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC6D2BFDE93600E56AB5 /* TimerLiveActivity.swift */; };
@@ -70,8 +67,8 @@
 		887CEC742BFDEA0E00E56AB5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 887CEC732BFDEA0E00E56AB5 /* Realm */; };
 		887CEC762BFDEA0E00E56AB5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 887CEC752BFDEA0E00E56AB5 /* RealmSwift */; };
 		887CEC792BFDECD800E56AB5 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC782BFDECD800E56AB5 /* TimerView.swift */; };
-		887CEC7C2BFDF26600E56AB5 /* TimerDigitalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC7B2BFDF26600E56AB5 /* TimerDigitalView.swift */; };
 		887CEC7F2BFDF3CA00E56AB5 /* StopTimerLiveActivityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC7E2BFDF3CA00E56AB5 /* StopTimerLiveActivityIntent.swift */; };
+		887FA2CB2BFF51D1005E1A0B /* StopTimerLiveActivityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEC7E2BFDF3CA00E56AB5 /* StopTimerLiveActivityIntent.swift */; };
 		88861D352BC690F5001DAE8E /* EventRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88861D342BC690F5001DAE8E /* EventRecordsView.swift */; };
 		88861D382BC69130001DAE8E /* EventRecordsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88861D372BC69130001DAE8E /* EventRecordsItemView.swift */; };
 		8888F7632BEF047700E5E646 /* MCEmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8888F7622BEF047700E5E646 /* MCEmojiPicker */; };
@@ -227,14 +224,10 @@
 		887CEC552BFDE8F900E56AB5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		887CEC572BFDE8F900E56AB5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		887CEC5A2BFDE8F900E56AB5 /* WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsBundle.swift; sourceTree = "<group>"; };
-		887CEC5C2BFDE8F900E56AB5 /* WidgetsLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsLiveActivity.swift; sourceTree = "<group>"; };
-		887CEC5E2BFDE8F900E56AB5 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
-		887CEC602BFDE8F900E56AB5 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		887CEC622BFDE8FA00E56AB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		887CEC642BFDE8FA00E56AB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		887CEC6D2BFDE93600E56AB5 /* TimerLiveActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLiveActivity.swift; sourceTree = "<group>"; };
 		887CEC782BFDECD800E56AB5 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		887CEC7B2BFDF26600E56AB5 /* TimerDigitalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDigitalView.swift; sourceTree = "<group>"; };
 		887CEC7E2BFDF3CA00E56AB5 /* StopTimerLiveActivityIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTimerLiveActivityIntent.swift; sourceTree = "<group>"; };
 		88861D222BC6305C001DAE8E /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		88861D342BC690F5001DAE8E /* EventRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRecordsView.swift; sourceTree = "<group>"; };
@@ -565,9 +558,6 @@
 			children = (
 				887CEC6C2BFDE91A00E56AB5 /* Timer */,
 				887CEC5A2BFDE8F900E56AB5 /* WidgetsBundle.swift */,
-				887CEC5C2BFDE8F900E56AB5 /* WidgetsLiveActivity.swift */,
-				887CEC5E2BFDE8F900E56AB5 /* Widgets.swift */,
-				887CEC602BFDE8F900E56AB5 /* AppIntent.swift */,
 				887CEC622BFDE8FA00E56AB5 /* Assets.xcassets */,
 				887CEC642BFDE8FA00E56AB5 /* Info.plist */,
 			);
@@ -580,7 +570,6 @@
 				887CEC6D2BFDE93600E56AB5 /* TimerLiveActivity.swift */,
 				887CEC7E2BFDF3CA00E56AB5 /* StopTimerLiveActivityIntent.swift */,
 				887CEC782BFDECD800E56AB5 /* TimerView.swift */,
-				887CEC7B2BFDF26600E56AB5 /* TimerDigitalView.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -1050,11 +1039,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				887CEC792BFDECD800E56AB5 /* TimerView.swift in Sources */,
-				887CEC5D2BFDE8F900E56AB5 /* WidgetsLiveActivity.swift in Sources */,
 				887CEC6E2BFDE93600E56AB5 /* TimerLiveActivity.swift in Sources */,
-				887CEC612BFDE8F900E56AB5 /* AppIntent.swift in Sources */,
-				887CEC7C2BFDF26600E56AB5 /* TimerDigitalView.swift in Sources */,
-				887CEC5F2BFDE8F900E56AB5 /* Widgets.swift in Sources */,
 				887CEC7F2BFDF3CA00E56AB5 /* StopTimerLiveActivityIntent.swift in Sources */,
 				887CEC5B2BFDE8F900E56AB5 /* WidgetsBundle.swift in Sources */,
 			);
@@ -1074,6 +1059,7 @@
 				88D23AEE2B94A26D00E33DE5 /* DarkMode.swift in Sources */,
 				88B8DA9D2BF1B0A800249EAE /* OnboardingView.swift in Sources */,
 				8827A5742BEC854E0010FC4C /* AppShortcutsProvider.swift in Sources */,
+				887FA2CB2BFF51D1005E1A0B /* StopTimerLiveActivityIntent.swift in Sources */,
 				88D23B122B94A35C00E33DE5 /* SettingsNavigateCell.swift in Sources */,
 				88D50FD92B9764490065C4AA /* CategoryPickerView.swift in Sources */,
 				88A9B6662BA1868600385800 /* StatisticsDailyEventView.swift in Sources */,
@@ -1378,6 +1364,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hours/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "时间记录希望能获取你的健康数据，以便自动记录睡眠和运动等事件。";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "时间记录希望能写入你的健康数据，以便记录睡眠和运动等事件。";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1413,6 +1402,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hours/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "时间记录希望能获取你的健康数据，以便自动记录睡眠和运动等事件。";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "时间记录希望能写入你的健康数据，以便记录睡眠和运动等事件。";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

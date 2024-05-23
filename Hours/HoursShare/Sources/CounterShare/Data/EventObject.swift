@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
+public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors, @unchecked Sendable {
     @Persisted(primaryKey: true) public var _id: ObjectId
     /// 名称
     @Persisted public var name: String
@@ -88,6 +88,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
         super.init()
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self._id = try ObjectId(string: container.decode(String.self, forKey: ._id))
         self.name = try container.decode(String.self, forKey: .name)
         self.emoji = try container.decodeIfPresent(String.self, forKey: .emoji)
         self.hex = try container.decodeIfPresent(HexObject.self, forKey: .hex)
@@ -97,7 +98,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors {
 
     public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self._id, forKey: ._id)
+        try container.encode(self._id.stringValue, forKey: ._id)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.emoji, forKey: .emoji)
         try container.encode(self.hex, forKey: .hex)

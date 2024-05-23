@@ -25,7 +25,7 @@ public struct TimerActivityAttributes: ActivityAttributes {
 
     public static var preview: TimerActivityAttributes {
         TimerActivityAttributes(
-            event: EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD"), isSystem: true)
+            event: EventObject(emoji: "🛌", name: "Sleep", hex: HexObject(hex: "C9D8CD"), isSystem: true)
         )
     }
 }
@@ -38,16 +38,14 @@ open class TimerActivity {
 
     private var activity: Activity<TimerActivityAttributes>?
 
-    public init() {}
+    init() {}
 
     public func start(attributes: TimerActivityAttributes, time: Time) {
-        Task {
-            let contentState = TimerActivityAttributes.ContentState(time: time)
-            do {
-                activity = try Activity.request(attributes: attributes, contentState: contentState, pushType: .token)
-            } catch {
-                print(error.localizedDescription)
-            }
+        let contentState = TimerActivityAttributes.ContentState(time: time)
+        do {
+            activity = try Activity.request(attributes: attributes, contentState: contentState, pushType: .token)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 

@@ -11,9 +11,7 @@ import Dependencies
 import Foundation
 import SwiftUI
 
-public class TimerManager: ObservableObject {
-    public static let shared = TimerManager()
-
+open class TimerBaseManager: ObservableObject {
     @Published public private(set) var time: Time = .zero
     @Published public private(set) var isStarted: Bool = false
     @Published public private(set) var isPaused: Bool = false
@@ -31,15 +29,9 @@ public class TimerManager: ObservableObject {
         self.timer = timer
     }
 
-    open func activityUpdate(time: Time) {
-        fatalError()
-    }
-}
+    // MARK: - Timer
 
-// MARK: - Timer
-
-public extension TimerManager {
-    func start() {
+    open func start() {
         stop()
 
         timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
@@ -49,13 +41,11 @@ public extension TimerManager {
         })
         RunLoop.main.add(timer!, forMode: .common)
 
-        activityUpdate(time: time)
-
         isStarted = true
         isPaused = false
     }
 
-    func pause() {
+    open func pause() {
         if isPaused { return }
         isPaused = true
 
@@ -63,7 +53,7 @@ public extension TimerManager {
         timer?.fireDate = .distantFuture
     }
 
-    func resume() {
+    open func resume() {
         guard isStarted, isPaused else { return }
         isPaused = false
 
@@ -71,7 +61,7 @@ public extension TimerManager {
         timer?.fireDate = now
     }
 
-    func stop() {
+    open func stop() {
         timer?.invalidate()
         timer = nil
 
@@ -84,7 +74,7 @@ public extension TimerManager {
 
 // MARK: -
 
-public extension TimerManager {
+public extension TimerBaseManager {
     func suspendTimer() {
         timer?.fireDate = .distantFuture
     }

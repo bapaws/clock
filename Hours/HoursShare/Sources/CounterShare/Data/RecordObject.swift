@@ -85,6 +85,15 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
         milliseconds = Int(startAt.distance(to: endAt) * 1000)
     }
 
+    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int, endAt: Date) {
+        super.init()
+
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.milliseconds = milliseconds
+        self.endAt = endAt
+    }
+
     // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
