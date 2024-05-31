@@ -128,6 +128,7 @@
 		88D454B42BA8675900584FAD /* SettingsRecordSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D454B32BA8675900584FAD /* SettingsRecordSection.swift */; };
 		88D50FD62B974C200065C4AA /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D50FD52B974C200065C4AA /* StatisticsView.swift */; };
 		88D50FD92B9764490065C4AA /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D50FD82B9764490065C4AA /* CategoryPickerView.swift */; };
+		88D53AEA2C09636E003C02DC /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 88D53AE92C09636E003C02DC /* ComposableArchitecture */; };
 		88D7A5202BA0427E00FD129F /* EventsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D7A51F2BA0427E00FD129F /* EventsHomeView.swift */; };
 		88E23AD42B9C9D3600C421DB /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E23AD32B9C9D3600C421DB /* TimelineView.swift */; };
 		88E886FD2BA28F1F00607AB0 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E886FC2BA28F1F00607AB0 /* StatisticsViewModel.swift */; };
@@ -316,6 +317,7 @@
 				8814503C2BA437FF00058F7F /* Palette in Frameworks */,
 				88CFE29C2B9AB80600912C53 /* Pow in Frameworks */,
 				880326AB2B98A0F600E6653A /* PopupView in Frameworks */,
+				88D53AEA2C09636E003C02DC /* ComposableArchitecture in Frameworks */,
 				88D23AD12B949F1000E33DE5 /* ReceiptParser in Frameworks */,
 				88A9B6712BA1E12F00385800 /* Collections in Frameworks */,
 				88201AB62B94B58C00D4D187 /* PopupView in Frameworks */,
@@ -950,6 +952,7 @@
 				8888F7622BEF047700E5E646 /* MCEmojiPicker */,
 				882B82DE2BF0B68A00B0365A /* Flow */,
 				8800967A2BF59972008AC521 /* ScalingHeaderScrollView */,
+				88D53AE92C09636E003C02DC /* ComposableArchitecture */,
 			);
 			productName = Counter;
 			productReference = 88D23ABA2B949D9700E33DE5 /* Hours.app */;
@@ -994,6 +997,7 @@
 				8888F7612BEF047700E5E646 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
 				882B82DD2BF0B68A00B0365A /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */,
 				880096792BF59972008AC521 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
+				88D53AE82C09636E003C02DC /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 88D23ABB2B949D9700E33DE5 /* Products */;
 			projectDirPath = "";
@@ -1377,7 +1381,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1415,7 +1419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1537,6 +1541,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		88D53AE82C09636E003C02DC /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1634,6 +1646,11 @@
 		88D23AF22B94A31700E33DE5 /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		88D53AE92C09636E003C02DC /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88D53AE82C09636E003C02DC /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

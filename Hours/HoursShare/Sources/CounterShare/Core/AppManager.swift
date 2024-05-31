@@ -6,6 +6,7 @@
 //
 
 import AVFoundation
+import BackgroundTasks
 import ClockShare
 import EventKit
 import Foundation
@@ -71,6 +72,12 @@ public class AppManager: ClockShare.AppBaseManager {
 
     private lazy var healthStore = HKHealthStore()
     public private(set) var healthAccessGranted = false
+
+    // MARK: BackgroundTask
+
+    private var observer: NSObjectProtocol?
+    private let identifier = "cn.com.nostudio.napnap.backgroundFetch.identifier"
+    private let operationQueue: OperationQueue = .init()
 
     /// 可以记录的初始时间
     public let initialDate = Date(year: 2023, month: 1, day: 1, hour: 0, minute: 0)
@@ -275,11 +282,24 @@ public extension AppManager {
         }
     }
 
-    func autoSyncHealth() {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+    func autoSyncHealth(completionHandler: (() -> Void)? = nil) {
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else {
+            completionHandler?()
+            return
+        }
 
-        autoSyncWorkout()
-        autoSyncSleep()
+        let group = DispatchGroup()
+        group.enter()
+        autoSyncSleep {
+            group.leave()
+        }
+        group.enter()
+        autoSyncWorkout {
+            group.leave()
+        }
+        group.notify(queue: DispatchQueue.main) {
+            completionHandler?()
+        }
     }
 
     // MARK: Workout
@@ -292,12 +312,12 @@ public extension AppManager {
             if let error = error { print(error) }
             self?.autoSyncWorkout(completionHandler: completionHandler)
         }
+        healthStore.execute(query)
         healthStore.enableBackgroundDelivery(for: workoutType, frequency: .immediate) { _, error in
             if let error = error {
                 print(error)
             }
         }
-        healthStore.execute(query)
     }
 
     func autoSyncWorkout(completionHandler: (() -> Void)? = nil) {
@@ -306,7 +326,7 @@ public extension AppManager {
             return
         }
 
-        let from = Storage.default.lastSyncWorkoutDate ?? initialDate
+        let from = Storage.default.lastSyncWorkoutDate?.addingTimeInterval(-3 * 24 * 3600) ?? initialDate
         let to = Date()
 
         if from.distance(to: to) < 30 {
@@ -399,12 +419,12 @@ public extension AppManager {
             if let error = error { print(error) }
             self?.autoSyncSleep(completionHandler: completionHandler)
         }
+        healthStore.execute(query)
         healthStore.enableBackgroundDelivery(for: sleepType, frequency: .immediate) { _, error in
             if let error = error {
                 print(error)
             }
         }
-        healthStore.execute(query)
     }
 
     func autoSyncSleep(completionHandler: (() -> Void)? = nil) {
@@ -413,7 +433,7 @@ public extension AppManager {
             return
         }
 
-        let from = Storage.default.lastSyncSleepDate ?? initialDate
+        let from = Storage.default.lastSyncSleepDate?.addingTimeInterval(-3 * 24 * 3600) ?? initialDate
         let to = Date()
 
         if from.distance(to: to) < 30 {
@@ -484,6 +504,46 @@ public extension AppManager {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             completionHandler?()
+        }
+    }
+}
+
+// MARK: - BackgroudTask
+
+public extension AppManager {
+    func registerBackgroundTask() {
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: nil) { task in
+            self.handleAppRefresh(task: task as? BGAppRefreshTask)
+        }
+    }
+
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: identifier)
+        // Fetch no earlier than 5 minutes from now.
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 3 * 60)
+
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            debugPrint("Could not schedule app refresh: \(error)")
+        }
+    }
+
+    func checkBackgroundRefreshStatus() -> UIBackgroundRefreshStatus {
+        UIApplication.shared.backgroundRefreshStatus
+    }
+
+    func handleAppRefresh(task: BGAppRefreshTask?) {
+        guard let task else { return }
+        // Schedule a new refresh task.
+        scheduleAppRefresh()
+
+        autoSyncHealth {
+            task.setTaskCompleted(success: true)
+        }
+        // Provide the background task with an expiration handler that cancels the operation.
+        task.expirationHandler = {
+            task.setTaskCompleted(success: false)
         }
     }
 }
