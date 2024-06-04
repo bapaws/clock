@@ -172,9 +172,26 @@
 
 "TimeDistribution" = "Time Distribution";
 "All" = "All";
+
+"Day" = "Day";
 "Year" = "Year";
 "Month" = "Month";
 "Week" = "Week";
+
+"Overall" = "Overall";
+"Expand" = "Expand";
+"Collapse" = "Collapse";
+
+"HeatMap" = "Heat Map";
+"AM" = "AM";
+"PM" = "PM";
+
+"ThisWeek" = "This Week, %@";
+"WeekOfYear" = "%@, Week: %@";
+
+"ThisMonth" = "This Month, %@";
+"ThisYear" = "This Year, %@";
+
 
 // MARK: Timer
 

@@ -64,5 +64,5 @@ struct StatisticsTimeView: View {
 }
 
 #Preview {
-    StatisticsTimeView(time: (2, 11, 20, 25))
+    StatisticsTimeView(time: TimeLength(integer: 1231231231))
 }

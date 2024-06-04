@@ -172,9 +172,25 @@
 
 "TimeDistribution" = "时间分布";
 "All" = "全部";
+"Day" = "天";
 "Year" = "年";
 "Month" = "月";
 "Week" = "周";
+
+"Overall" = "总体";
+"Expand" = "展开";
+"Collapse" = "收起";
+
+"HeatMap" = "热力图";
+"AM" = "上午";
+"PM" = "下午";
+
+"ThisWeek" = "本周，%@";
+"WeekOfYear" = "%@ 年，第 %@ 周";
+
+"ThisMonth" = "本月，%@";
+"ThisYear" = "今年，%@";
+
 
 // MARK: Timer
 

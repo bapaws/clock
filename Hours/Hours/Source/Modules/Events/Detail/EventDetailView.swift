@@ -164,13 +164,13 @@ struct EventDetailView: View {
 
     @ViewBuilder var number: some View {
         HStack(spacing: 16) {
-            StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), fillColor: ui.primary) {
+            StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), iconBackgound: ui.primary) {
                 Text("\(event.items.count)")
                     .font(.title, weight: .bold)
                     .foregroundStyle(Color.label)
             }
 
-            StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), fillColor: ui.primary) {
+            StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), iconBackgound: ui.primary) {
                 StatisticsTimeView(time: event.time)
             }
         }

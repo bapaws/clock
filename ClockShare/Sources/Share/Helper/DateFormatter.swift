@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftDate
 
 extension DateFormatter {
     static let shared = DateFormatter()
@@ -14,11 +15,7 @@ extension DateFormatter {
 public extension Date {
     func to(format: String, locale: String? = nil) -> String {
         let formatter = DateFormatter.shared
-        if let locale = locale {
-            formatter.locale = Locale(identifier: locale)
-        } else {
-            formatter.locale = Locale.current
-        }
+        formatter.locale = SwiftDate.defaultRegion.locale
         formatter.setLocalizedDateFormatFromTemplate(format)
         return formatter.string(from: self)
     }

@@ -47,19 +47,19 @@ public extension EventObject {
 
 public extension Int {
     var timeLengthText: String {
-        let (day, hour, minute, second) = time
+        let time = time
         var text = ""
-        if second != 0 {
-            text = "\(second)" + R.string.localizable.seconds()
+        if time.second != 0 {
+            text = "\(time.second)" + R.string.localizable.seconds()
         }
-        if minute != 0 {
-            text = "\(minute)" + R.string.localizable.minutes() + text
+        if time.minute != 0 {
+            text = "\(time.minute)" + R.string.localizable.minutes() + text
         }
-        if hour != 0 {
-            text = "\(hour)" + R.string.localizable.hours() + text
+        if time.hour != 0 {
+            text = "\(time.hour)" + R.string.localizable.hours() + text
         }
-        if day != 0 {
-            text = "\(day)" + R.string.localizable.days() + text
+        if time.day != 0 {
+            text = "\(time.day)" + R.string.localizable.days() + text
         }
         return text
     }

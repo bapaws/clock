@@ -20,7 +20,7 @@ struct MainView: View {
     @StateObject var ui: UIManager = .shared
     @StateObject var app: AppManager = .shared
 
-    @State private var selectionValue: MainTabTag = .events
+    @State private var selectionValue: MainTabTag = .statistics
 
     // MARK: Paywall
 
@@ -47,7 +47,9 @@ struct MainView: View {
                 }
 
             NavigationStack {
-                StatisticsView()
+                StatisticsView(
+                    store: StoreManager.default.store
+                )
             }
             .tag(MainTabTag.statistics)
             .tabItem {
