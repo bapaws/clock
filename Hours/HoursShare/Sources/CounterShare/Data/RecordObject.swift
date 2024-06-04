@@ -9,18 +9,6 @@ import Foundation
 import RealmSwift
 import SwiftDate
 
-// MARK: Help
-
-public typealias TimeLength = (day: Int, hour: Int, minute: Int, second: Int)
-
-public extension Int {
-    // convert Millisecond to time tuple
-    var time: TimeLength {
-        let seconds: Int = .init((Double(self) / 1000).rounded())
-        return (seconds / 3600 / 24, seconds / 3600 % 24, seconds / 60 % 60, seconds % 60)
-    }
-}
-
 // MARK: - RecordObject
 
 public enum RecordCreationMode: Int, PersistableEnum, Codable {
@@ -73,7 +61,7 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
         self.creationMode = creationMode
         self.startAt = startAt
         self.milliseconds = milliseconds
-        endAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
+        self.endAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
     }
 
     public init(creationMode: RecordCreationMode, startAt: Date, endAt: Date) {
@@ -82,7 +70,7 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
         self.creationMode = creationMode
         self.startAt = startAt
         self.endAt = endAt
-        milliseconds = Int(startAt.distance(to: endAt) * 1000)
+        self.milliseconds = Int(startAt.distance(to: endAt) * 1000)
     }
 
     public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int, endAt: Date) {
@@ -106,9 +94,9 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
         super.init()
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        creationMode = try container.decode(RecordCreationMode.self, forKey: .creationMode)
-        milliseconds = try container.decode(Int.self, forKey: .milliseconds)
-        startAt = try container.decode(Date.self, forKey: .startAt)
+        self.creationMode = try container.decode(RecordCreationMode.self, forKey: .creationMode)
+        self.milliseconds = try container.decode(Int.self, forKey: .milliseconds)
+        self.startAt = try container.decode(Date.self, forKey: .startAt)
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -117,4 +105,97 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
         try container.encode(milliseconds, forKey: .milliseconds)
         try container.encode(startAt, forKey: .startAt)
     }
+}
+
+// MARK: Entity
+
+public struct RecordEntity: Entity {
+    public var _id: ObjectId = .generate()
+
+    /// 任务计时类型：倒计时 or 正计时
+    public var creationMode: RecordCreationMode
+    /// 持续时间
+    public private(set) var milliseconds: Int {
+        didSet {
+            time = milliseconds.time
+        }
+    }
+
+    // 开始时间
+    public var startAt: Date
+    /// 结束时间
+    public var endAt: Date {
+        didSet {
+            milliseconds = Int(startAt.distance(to: endAt) * 1000)
+        }
+    }
+
+    public var notes: String?
+
+    public var event: EventEntity?
+
+    /// 同步到苹果系统日历事件的 eventIdentifier
+    public var calendarEventIdentifier: String?
+
+    public var healthSampleUUIDString: String?
+
+    public private(set) var time: TimeLength
+
+    public init(object: RecordObject, isLinkedObject: Bool = false) {
+        self.creationMode = object.creationMode
+        self.milliseconds = object.milliseconds
+        self.startAt = object.startAt
+        self.endAt = object.endAt
+        self.notes = object.notes
+        if let event = object.event {
+            self.event = EventEntity(object: event, isLinkedObject: true)
+        }
+        self.calendarEventIdentifier = object.calendarEventIdentifier
+        self.healthSampleUUIDString = object.healthSampleUUIDString
+
+        self.time = milliseconds.time
+    }
+
+    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int) {
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.milliseconds = milliseconds
+        self.endAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
+
+        self.time = milliseconds.time
+    }
+
+    public init(creationMode: RecordCreationMode, startAt: Date, endAt: Date) {
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.endAt = endAt
+        self.milliseconds = Int(startAt.distance(to: endAt) * 1000)
+
+        self.time = milliseconds.time
+    }
+
+    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int, endAt: Date) {
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.milliseconds = milliseconds
+        self.endAt = endAt
+
+        self.time = milliseconds.time
+    }
+
+    public static func random(count: Int) -> [RecordEntity] {
+        var entities = [Self]()
+        for _ in 0 ..< count {
+            var entity = RecordEntity(creationMode: .enter, startAt: Date(), milliseconds: Int.random(in: 60 * 1000 ... 5 * 60 * 60 * 1000))
+            entity.event = EventEntity.random()
+            entities.append(entity)
+        }
+        return entities
+    }
+}
+
+public extension RecordEntity {
+    var hours: Int { time.hour }
+    var minutes: Int { time.minute }
+    var seconds: Int { time.second }
 }

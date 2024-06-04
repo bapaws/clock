@@ -86,17 +86,19 @@ public extension DBManager {
 
 //        #if DEBUG
 //            let events = realm.objects(EventObject.self)
-//            try? realm.write {
+//            realm.writeAsync {
 //                let now = Date.now
 //                var startAt = AppManager.shared.initialDate
 //                while startAt < now {
 //                    let milliseconds = Int.random(in: 60000...7200000)
-//                    let mode = RecordCreationMode(rawValue: Int.random(in: 0...2))!
-//                    let record = RecordObject(creationMode: mode, startAt: startAt, milliseconds: milliseconds)
-//                    realm.add(record)
+//                    if Int.random(in: 0 ... 4) == 1 {
+//                        let mode = RecordCreationMode(rawValue: Int.random(in: 0...2))!
+//                        let record = RecordObject(creationMode: mode, startAt: startAt, milliseconds: milliseconds)
+//                        self.realm.add(record)
 //
-//                    let index = Int.random(in: 0 ..< events.count)
-//                    events[index].items.append(record)
+//                        let index = Int.random(in: 0 ..< events.count)
+//                        events[index].items.append(record)
+//                    }
 //
 //                    startAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
 //                }

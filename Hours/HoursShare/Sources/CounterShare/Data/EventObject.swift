@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors, @unchecked Sendable {
+public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexObjectColors, @unchecked Sendable {
     @Persisted(primaryKey: true) public var _id: ObjectId
     /// 名称
     @Persisted public var name: String
@@ -104,5 +104,98 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexColors, @un
         try container.encode(self.hex, forKey: .hex)
         try container.encode(self.items, forKey: .items)
         try container.encode(self.createdAt, forKey: .createdAt)
+    }
+}
+
+// MARK: EventEntity
+
+public struct EventEntity: Entity, HexEntityColors {
+    public var _id: ObjectId = .generate()
+    /// 名称
+    public var name: String
+
+    /// Emoji
+    public var emoji: String?
+    /// 颜色
+    public var hex: HexEntity?
+    /// 包含的执行对象
+    public var items: [RecordEntity] {
+        didSet { self.milliseconds = self.items.reduce(0) { $0 + $1.milliseconds } }
+    }
+
+    /// 是否可以删除
+    public var isSystem: Bool = false
+
+    /// 创建时间
+    public var createdAt: Date = .init()
+    /// 删除时间
+    public var deletedAt: Date?
+    /// 归档时间
+    public var archivedAt: Date?
+
+    /// 事件的分类
+    public var category: CategoryEntity?
+
+    public var milliseconds: Int = 0
+    public var time: TimeLength = .zero
+
+    public init(
+        emoji: String? = nil,
+        name: String,
+        hex: HexEntity? = nil,
+        items: [RecordEntity] = [],
+        isSystem: Bool = false
+    ) {
+        self.emoji = emoji
+        self.name = name
+        self.hex = hex
+        self.items = items
+        self.createdAt = .init()
+        self.isSystem = isSystem
+    }
+
+    public init(object: EventObject, isLinkedObject: Bool = false) {
+        self._id = object._id
+        self.emoji = object.emoji
+        self.name = object.name
+        if let hex = object.hex {
+            self.hex = HexEntity(object: hex)
+        }
+        if isLinkedObject {
+            self.items = []
+        } else {
+            self.items = object.items.map { RecordEntity(object: $0, isLinkedObject: true) }
+        }
+        self.createdAt = object.createdAt
+        self.isSystem = object.isSystem
+        self.deletedAt = object.deletedAt
+        self.archivedAt = object.archivedAt
+        self.category = CategoryEntity(object: object.category, isLinkedObject: true)
+
+        self.milliseconds = object.milliseconds
+        self.time = object.time
+    }
+
+    public static func random(count: Int) -> [EventEntity] {
+        var entities = [Self]()
+        for index in 0 ..< count {
+            var entity = EventEntity(emoji: randomEmoji(), name: "\(index)", hex: HexEntity.random())
+            entity.category = CategoryEntity.random()
+            entities.append(entity)
+        }
+        return entities
+    }
+}
+
+public extension EventEntity {
+    var hours: Int { self.time.hour }
+    var minutes: Int { self.time.minute }
+    var seconds: Int { self.time.second }
+
+    var title: String {
+        if let emoji = emoji {
+            return emoji + " " + self.name
+        }
+        return self.name
     }
 }

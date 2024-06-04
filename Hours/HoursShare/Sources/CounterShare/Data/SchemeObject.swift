@@ -44,7 +44,7 @@ class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
         super.init()
     }
 
-     init(scheme: Scheme) {
+    init(scheme: Scheme) {
         self.primary = scheme.primary
         self.onPrimary = scheme.onPrimary
         self.primaryContainer = scheme.primaryContainer
@@ -174,5 +174,118 @@ class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
         try container.encode(self.inverseSurface, forKey: .inverseSurface)
         try container.encode(self.onInverseSurface, forKey: .onInverseSurface)
         try container.encode(self.inversePrimary, forKey: .inversePrimary)
+    }
+}
+
+// MARK: Entity
+
+struct SchemeEntity: Entity {
+    var _id: ObjectId = .generate()
+
+    var primary: Int
+    var onPrimary: Int
+    var primaryContainer: Int
+    var onPrimaryContainer: Int
+    var secondary: Int
+    var onSecondary: Int
+    var secondaryContainer: Int
+    var onSecondaryContainer: Int
+    var tertiary: Int
+    var onTertiary: Int
+    var tertiaryContainer: Int
+    var onTertiaryContainer: Int
+    var error: Int
+    var onError: Int
+    var errorContainer: Int
+    var onErrorContainer: Int
+    var background: Int
+    var onBackground: Int
+    var surface: Int
+    var onSurface: Int
+    var surfaceVariant: Int
+    var onSurfaceVariant: Int
+    var outline: Int
+    var outlineVariant: Int
+    var shadow: Int
+    var scrim: Int
+    var inverseSurface: Int
+    var onInverseSurface: Int
+    var inversePrimary: Int
+
+    init(object: SchemeObject, isLinkedObject: Bool = false) {
+        self.primary = object.primary
+        self.onPrimary = object.onPrimary
+        self.primaryContainer = object.primaryContainer
+        self.onPrimaryContainer = object.onPrimaryContainer
+        self.secondary = object.secondary
+        self.onSecondary = object.onSecondary
+        self.secondaryContainer = object.secondaryContainer
+        self.onSecondaryContainer = object.onSecondaryContainer
+        self.tertiary = object.tertiary
+        self.onTertiary = object.onTertiary
+        self.tertiaryContainer = object.tertiaryContainer
+        self.onTertiaryContainer = object.onTertiaryContainer
+        self.error = object.error
+        self.onError = object.onError
+        self.errorContainer = object.errorContainer
+        self.onErrorContainer = object.onErrorContainer
+        self.background = object.background
+        self.onBackground = object.onBackground
+        self.surface = object.surface
+        self.onSurface = object.onSurface
+        self.surfaceVariant = object.surfaceVariant
+        self.onSurfaceVariant = object.onSurfaceVariant
+        self.outline = object.outline
+        self.outlineVariant = object.outlineVariant
+        self.shadow = object.shadow
+        self.scrim = object.scrim
+        self.inverseSurface = object.inverseSurface
+        self.onInverseSurface = object.onInverseSurface
+        self.inversePrimary = object.inversePrimary
+    }
+
+    init(scheme: Scheme) {
+        self.primary = scheme.primary
+        self.onPrimary = scheme.onPrimary
+        self.primaryContainer = scheme.primaryContainer
+        self.onPrimaryContainer = scheme.onPrimaryContainer
+        self.secondary = scheme.secondary
+        self.onSecondary = scheme.onSecondary
+        self.secondaryContainer = scheme.secondaryContainer
+        self.onSecondaryContainer = scheme.onSecondaryContainer
+        self.tertiary = scheme.tertiary
+        self.onTertiary = scheme.onTertiary
+        self.tertiaryContainer = scheme.tertiaryContainer
+        self.onTertiaryContainer = scheme.onTertiaryContainer
+        self.error = scheme.error
+        self.onError = scheme.onError
+        self.errorContainer = scheme.errorContainer
+        self.onErrorContainer = scheme.onErrorContainer
+        self.background = scheme.background
+        self.onBackground = scheme.onBackground
+        self.surface = scheme.surface
+        self.onSurface = scheme.onSurface
+        self.surfaceVariant = scheme.surfaceVariant
+        self.onSurfaceVariant = scheme.onSurfaceVariant
+        self.outline = scheme.outline
+        self.outlineVariant = scheme.outlineVariant
+        self.shadow = scheme.shadow
+        self.scrim = scheme.scrim
+        self.inverseSurface = scheme.inverseSurface
+        self.onInverseSurface = scheme.onInverseSurface
+        self.inversePrimary = scheme.inversePrimary
+    }
+
+    static func random(count: Int) -> [SchemeEntity] {
+        var entities = [Self]()
+        for _ in 0 ..< count {
+            let red = arc4random_uniform(256)
+            let green = arc4random_uniform(256)
+            let blue = arc4random_uniform(256)
+            let hex = String(format: "#FF%02X%02X%02X", red, green, blue)
+            let scheme = Scheme.dark(argb: Int(hex: hex))
+            entities.append(SchemeEntity(scheme: scheme))
+        }
+        return entities
     }
 }
