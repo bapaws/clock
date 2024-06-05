@@ -20,7 +20,7 @@ struct MainView: View {
     @StateObject var ui: UIManager = .shared
     @StateObject var app: AppManager = .shared
 
-    @State private var selectionValue: MainTabTag = .statistics
+    @State private var selectionValue: MainTabTag = .events
 
     // MARK: Paywall
 
