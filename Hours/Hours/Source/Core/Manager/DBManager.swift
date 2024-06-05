@@ -13,11 +13,11 @@ import UIKit
 
 public extension DBManager {
     func setup() {
-//        #if DEBUG
-//            try? realm.write {
-//                realm.deleteAll()
-//            }
-//        #endif
+        #if DEBUG
+            try? realm.write {
+                realm.deleteAll()
+            }
+        #endif
 
         guard self.categorys.isEmpty, self.hexs.isEmpty else { return }
 
@@ -84,25 +84,25 @@ public extension DBManager {
         self.hexs = realm.objects(HexObject.self)
         self.categorys = realm.objects(CategoryObject.self)
 
-//        #if DEBUG
-//            let events = realm.objects(EventObject.self)
-//            realm.writeAsync {
-//                let now = Date.now
-//                var startAt = AppManager.shared.initialDate
-//                while startAt < now {
-//                    let milliseconds = Int.random(in: 60000...7200000)
-//                    if Int.random(in: 0 ... 4) == 1 {
-//                        let mode = RecordCreationMode(rawValue: Int.random(in: 0...2))!
-//                        let record = RecordObject(creationMode: mode, startAt: startAt, milliseconds: milliseconds)
-//                        self.realm.add(record)
-//
-//                        let index = Int.random(in: 0 ..< events.count)
-//                        events[index].items.append(record)
-//                    }
-//
-//                    startAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
-//                }
-//            }
-//        #endif
+        #if DEBUG
+            let events = realm.objects(EventObject.self)
+            realm.writeAsync {
+                let now = Date.now
+                var startAt = AppManager.shared.initialDate
+                while startAt < now {
+                    let milliseconds = Int.random(in: 60000...7200000)
+                    if Int.random(in: 0 ... 4) == 1 {
+                        let mode = RecordCreationMode(rawValue: Int.random(in: 0...2))!
+                        let record = RecordObject(creationMode: mode, startAt: startAt, milliseconds: milliseconds)
+                        self.realm.add(record)
+
+                        let index = Int.random(in: 0 ..< events.count)
+                        events[index].items.append(record)
+                    }
+
+                    startAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
+                }
+            }
+        #endif
     }
 }

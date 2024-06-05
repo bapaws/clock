@@ -88,12 +88,12 @@ struct StatisticsDayView: View {
                 )
             }
 
-            StatisticsSection(title: R.string.localizable.timeDistribution()) {
-                StatisticsDayTimeDistributionView(timeDistributions: store.timeDistributions)
-            }
-
             StatisticsSection(title: R.string.localizable.heatMap()) {
                 StatisticsDayHeatMapView(heatMaps: store.heatMaps)
+            }
+
+            StatisticsSection(title: R.string.localizable.timeDistribution()) {
+                StatisticsDayTimeDistributionView(timeDistributions: store.timeDistributions)
             }
         }
         .padding()

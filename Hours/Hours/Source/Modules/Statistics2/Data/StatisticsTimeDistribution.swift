@@ -13,15 +13,11 @@ struct StatisticsTimeDistribution: Identifiable, Equatable {
     var id: Date { range.lowerBound }
 
     let range: Range<Date>
+    let records: [RecordEntity]
     let duration: TimeInterval
 
     var totalHours: Double { duration / 3600 }
     var totalMinutes: Double { duration / 60 }
-
-    init(range: Range<Date>, duration: TimeInterval) {
-        self.range = range
-        self.duration = duration
-    }
 }
 
 // MARK: -
@@ -48,18 +44,19 @@ protocol StatisticsTimeDistributionReducer {
 
 extension StatisticsTimeDistributionReducer {
     func updateTimeDistribution<State: StatisticsTimeDistributionState>(state: inout State) {
+        state.timeDistributions.removeAll(keepingCapacity: true)
         guard let results = state.records else { return }
 
-        state.timeDistributions.removeAll(keepingCapacity: true)
         var startAt = state.startAt
         while startAt < state.endAt {
             let endAt = startAt.dateByAdding(state.timeDistributionStep, state.timeDistributionComponent).date
             let range = startAt ..< endAt
-            let duration = results.reduce(0) {
-                let duration = ($1.startAt ..< $1.endAt).intersectionDuration(range)
-                return $0 + (duration > 0 ? duration : 0)
+            let records = results.filter { ($0.startAt ..< $0.endAt).isIntersection(range) }
+            let duration = records.reduce(0) {
+                $0 + ($1.startAt ..< $1.endAt).intersectionDuration(range)
             }
-            state.timeDistributions.append(StatisticsTimeDistribution(range: range, duration: duration))
+            let distribution = StatisticsTimeDistribution(range: range, records: records, duration: duration)
+            state.timeDistributions.append(distribution)
 
             startAt = endAt
         }

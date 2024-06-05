@@ -8,6 +8,7 @@
 import SwiftDate
 import SwiftUI
 import SwiftUIX
+import HoursShare
 
 struct StatisticsYearHeatMapView: View {
     let contributions: [StatisticsContribution]
@@ -41,8 +42,9 @@ struct StatisticsYearHeatMapView: View {
                         ForEach(contributions) { contribution in
                             Group {
                                 if let milliseconds = contribution.totalMilliseconds {
+                                    let ratio = Double(milliseconds) / Double(maxMilliseconds)
                                     RoundedRectangle(cornerRadius: 8)
-                                        .fill(milliseconds == 0 ? ui.background : ui.primary.opacity(Double(milliseconds) / Double(maxMilliseconds) * 0.8 + 0.2))
+                                        .fill(milliseconds == 0 ? ui.background : ui.primary.opacity(ratio * 0.9 + 0.1))
                                 } else {
                                     Color.clear
                                 }

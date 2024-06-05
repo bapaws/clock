@@ -35,6 +35,7 @@ protocol StatisticsOverallReducer {
 
 extension StatisticsOverallReducer {
     func updateOverallComposition<State: StatisticsOverallState>(state: inout State) {
+        state.compositions.removeAll(keepingCapacity: true)
         guard let results = state.records else { return }
 
         for result in results {

@@ -147,7 +147,7 @@
 		88F422612BB40BD3009C5175 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88F4225D2BB40BD3009C5175 /* tick.wav */; };
 		88F4828F2C0BFD6F00211368 /* StatisticsDailyRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4828E2C0BFD6F00211368 /* StatisticsDailyRatioView.swift */; };
 		88F482932C0C59DE00211368 /* StatisticsPageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F482922C0C59DE00211368 /* StatisticsPageBar.swift */; };
-		88F482972C0C68A400211368 /* StatisticsTimeDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F482962C0C68A400211368 /* StatisticsTimeDistributionView.swift */; };
+		88F482972C0C68A400211368 /* StatisticsTimeDistributionLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F482962C0C68A400211368 /* StatisticsTimeDistributionLineView.swift */; };
 		88FBAE6F2C0D569F00C45F29 /* StatisticsDayTimeDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FBAE6E2C0D569F00C45F29 /* StatisticsDayTimeDistributionView.swift */; };
 		88FBAE732C0D571F00C45F29 /* StatisticsWeekTimeDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FBAE722C0D571F00C45F29 /* StatisticsWeekTimeDistributionView.swift */; };
 		88FBAE772C0D58BC00C45F29 /* StatisticsTimeDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FBAE762C0D58BC00C45F29 /* StatisticsTimeDistribution.swift */; };
@@ -325,7 +325,7 @@
 		88F4225D2BB40BD3009C5175 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 		88F4828E2C0BFD6F00211368 /* StatisticsDailyRatioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticsDailyRatioView.swift; path = Hours/Source/Modules/Statistics/Daily/StatisticsDailyRatioView.swift; sourceTree = SOURCE_ROOT; };
 		88F482922C0C59DE00211368 /* StatisticsPageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsPageBar.swift; sourceTree = "<group>"; };
-		88F482962C0C68A400211368 /* StatisticsTimeDistributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTimeDistributionView.swift; sourceTree = "<group>"; };
+		88F482962C0C68A400211368 /* StatisticsTimeDistributionLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTimeDistributionLineView.swift; sourceTree = "<group>"; };
 		88FBAE6E2C0D569F00C45F29 /* StatisticsDayTimeDistributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDayTimeDistributionView.swift; sourceTree = "<group>"; };
 		88FBAE722C0D571F00C45F29 /* StatisticsWeekTimeDistributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsWeekTimeDistributionView.swift; sourceTree = "<group>"; };
 		88FBAE762C0D58BC00C45F29 /* StatisticsTimeDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTimeDistribution.swift; sourceTree = "<group>"; };
@@ -991,7 +991,7 @@
 		88FBAE832C0DC12500C45F29 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				88F482962C0C68A400211368 /* StatisticsTimeDistributionView.swift */,
+				88F482962C0C68A400211368 /* StatisticsTimeDistributionLineView.swift */,
 				88E5BE8D2C0B6EE600AEFA1D /* StatisticsCompositionView.swift */,
 				88E5BE7E2C0B0DA500AEFA1D /* StatisticsSection.swift */,
 				88F482922C0C59DE00211368 /* StatisticsPageBar.swift */,
@@ -1248,7 +1248,7 @@
 				88A9B6592BA150C100385800 /* TitleView.swift in Sources */,
 				88FBAE792C0D58D000C45F29 /* StatisticsOverallDay.swift in Sources */,
 				88C2DE952C09C6A7002CEC16 /* StatisticsTimeView.swift in Sources */,
-				88F482972C0C68A400211368 /* StatisticsTimeDistributionView.swift in Sources */,
+				88F482972C0C68A400211368 /* StatisticsTimeDistributionLineView.swift in Sources */,
 				8867985A2BEA602500E55B2C /* FeedbackView.swift in Sources */,
 				8802CBBA2BAAE51100F0091E /* PaywallPackageItemView.swift in Sources */,
 				88CB58B82BEE5B4F000A2BF7 /* AppDelegate.swift in Sources */,

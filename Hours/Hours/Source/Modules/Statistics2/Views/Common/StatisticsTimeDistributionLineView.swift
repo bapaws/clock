@@ -1,5 +1,5 @@
 //
-//  StatisticsTimeDistributionView.swift
+//  StatisticsTimeDistributionLineView.swift
 //  Hours
 //
 //  Created by 张敏超 on 2024/6/2.
@@ -9,7 +9,7 @@ import Charts
 import ComposableArchitecture
 import SwiftUI
 
-struct StatisticsTimeDistributionView<XAxis: AxisContent, YAxis: AxisContent>: View {
+struct StatisticsTimeDistributionLineView<XAxis: AxisContent, YAxis: AxisContent>: View {
     let timeDistributions: IdentifiedArrayOf<StatisticsTimeDistribution>
     let y: (StatisticsTimeDistribution) -> Double
     let xAxis: () -> XAxis
@@ -48,7 +48,7 @@ struct StatisticsTimeDistributionView<XAxis: AxisContent, YAxis: AxisContent>: V
     }
 }
 
-extension StatisticsTimeDistributionView where YAxis == AxisMarks<Never> {
+extension StatisticsTimeDistributionLineView where YAxis == AxisMarks<Never> {
     init(
         timeDistributions: IdentifiedArrayOf<StatisticsTimeDistribution>,
         y: @escaping (StatisticsTimeDistribution) -> Double,
@@ -61,7 +61,7 @@ extension StatisticsTimeDistributionView where YAxis == AxisMarks<Never> {
 }
 
 #Preview {
-    StatisticsTimeDistributionView(
+    StatisticsTimeDistributionLineView(
         timeDistributions: IdentifiedArrayOf<StatisticsTimeDistribution>(),
         y: \.totalMinutes
     ) {

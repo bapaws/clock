@@ -78,16 +78,16 @@ struct StatisticsMonthView: View {
                 )
             }
 
-            StatisticsSection(title: R.string.localizable.timeDistribution()) {
-                StatisticsMonthTimeDistributionView(
-                    timeDistributions: store.timeDistributions
-                )
-            }
-
             StatisticsSection(title: R.string.localizable.heatMap()) {
                 StatisticsMonthHeatMapView(
                     contributions: store.contributions,
                     maxMilliseconds: store.contributionMaxMilliseconds
+                )
+            }
+
+            StatisticsSection(title: R.string.localizable.timeDistribution()) {
+                StatisticsMonthTimeDistributionView(
+                    timeDistributions: store.timeDistributions
                 )
             }
         }

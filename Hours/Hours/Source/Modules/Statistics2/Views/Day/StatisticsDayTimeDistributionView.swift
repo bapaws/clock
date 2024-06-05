@@ -14,7 +14,7 @@ struct StatisticsDayTimeDistributionView: View {
     let timeDistributions: IdentifiedArrayOf<StatisticsTimeDistribution>
 
     var body: some View {
-        StatisticsTimeDistributionView(
+        StatisticsTimeDistributionLineView(
             timeDistributions: timeDistributions,
             y: \.totalMinutes
         ) {

@@ -81,16 +81,16 @@ struct StatisticsWeekView: View {
                 )
             }
 
-            StatisticsSection(title: R.string.localizable.timeDistribution()) {
-                StatisticsWeekTimeDistributionView(
-                    timeDistributions: store.timeDistributions
-                )
-            }
-
             StatisticsSection(title: R.string.localizable.heatMap()) {
                 StatisticsWeekHeatMapView(
                     heatMapTimeInterval: store.heatMapTimeInterval,
                     heatMaps: store.heatMaps
+                )
+            }
+
+            StatisticsSection(title: R.string.localizable.timeDistribution()) {
+                StatisticsWeekTimeDistributionView(
+                    timeDistributions: store.timeDistributions
                 )
             }
         }

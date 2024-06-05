@@ -55,9 +55,10 @@ protocol StatisticsContributionReducer {
 
 extension StatisticsContributionReducer {
     func updateYearContribution<State: StatisticsContributionYearState>(state: inout State) {
-        guard let results = state.records, !results.isEmpty else { return }
         state.contributions.removeAll(keepingCapacity: true)
         state.contributionMonths.removeAll(keepingCapacity: true)
+
+        guard let results = state.records else { return }
 
         var startAt = state.startAt.dateAtStartOf(.year).dateAt(.startOfWeek)
         // 最后时刻
@@ -70,8 +71,6 @@ extension StatisticsContributionReducer {
             let range = startAt ..< endAt
 
             let isThisYear = startAt >= state.startAt && startAt <= state.endAt
-            debugPrint("startAt: \(startAt), endAt: \(endAt)")
-
             if startAt >= month.range.upperBound {
                 let nextWeek = startAt.dateAt(.nextWeek)
                 let endOfWeek = startAt.dateAt(.endOfWeek)
