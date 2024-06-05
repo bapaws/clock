@@ -86,6 +86,7 @@ struct StatisticsDayView: View {
                     totalMilliseconds: store.totalMilliseconds,
                     isOverallDayExpanded: $store.isOverallDayExpanded.animation()
                 )
+                .proMask()
             }
 
             StatisticsSection(title: R.string.localizable.heatMap()) {

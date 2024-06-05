@@ -13,7 +13,6 @@ import SwiftDate
 
 @Reducer
 struct StatisticsDay: StatisticsOverallReducer, StatisticsTimeDistributionReducer, StatisticsHeatMapReducer {
-
     @ObservableState
     struct State: Equatable, StatisticsOverallState, StatisticsTimeDistributionState, StatisticsHeatMapState {
         // MARK: Range
@@ -24,6 +23,8 @@ struct StatisticsDay: StatisticsOverallReducer, StatisticsTimeDistributionReduce
 
         var startAt: Date { range.lowerBound }
         var endAt: Date { range.upperBound }
+
+        var isPro: Bool = false
 
         // MARK: Records
 
@@ -116,6 +117,9 @@ struct StatisticsDay: StatisticsOverallReducer, StatisticsTimeDistributionReduce
                 let lower = state.range.lowerBound.dateByAdding(-1, .day).date
                 let upper = state.range.upperBound.dateByAdding(-1, .day).date
                 state.range = lower ... upper
+
+                state.isPro = !lower.isToday && !lower.isYesterday
+
                 return .run { send in
                     await send(.onAppear)
                 }

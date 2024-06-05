@@ -79,6 +79,7 @@ struct StatisticsWeekView: View {
                     totalMilliseconds: store.totalMilliseconds,
                     isOverallDayExpanded: $store.isOverallDayExpanded.animation()
                 )
+                .proMask()
             }
 
             StatisticsSection(title: R.string.localizable.heatMap()) {
@@ -86,12 +87,14 @@ struct StatisticsWeekView: View {
                     heatMapTimeInterval: store.heatMapTimeInterval,
                     heatMaps: store.heatMaps
                 )
+                .proMask()
             }
 
             StatisticsSection(title: R.string.localizable.timeDistribution()) {
                 StatisticsWeekTimeDistributionView(
                     timeDistributions: store.timeDistributions
                 )
+                .proMask()
             }
         }
         .padding()

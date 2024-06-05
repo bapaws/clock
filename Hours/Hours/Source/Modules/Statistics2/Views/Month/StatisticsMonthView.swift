@@ -76,6 +76,7 @@ struct StatisticsMonthView: View {
                     totalMilliseconds: store.totalMilliseconds,
                     isOverallDayExpanded: $store.isOverallDayExpanded.animation()
                 )
+                .proMask()
             }
 
             StatisticsSection(title: R.string.localizable.heatMap()) {
@@ -83,12 +84,14 @@ struct StatisticsMonthView: View {
                     contributions: store.contributions,
                     maxMilliseconds: store.contributionMaxMilliseconds
                 )
+                .proMask()
             }
 
             StatisticsSection(title: R.string.localizable.timeDistribution()) {
                 StatisticsMonthTimeDistributionView(
                     timeDistributions: store.timeDistributions
                 )
+                .proMask()
             }
         }
         .padding()
