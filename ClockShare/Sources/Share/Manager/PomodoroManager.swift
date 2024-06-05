@@ -66,7 +66,7 @@ open class PomodoroBaseManager: ObservableObject {
                     time = Time(hour: 0, minute: 1, second: 9)
                     removeNotification()
                 case .focus:
-                    time = Time(hour: 0, minute: 1, second: 9)
+                    time = Time(hour: 0, minute: 12, second: 9)
                     // 开始专注，添加本地计时通知
                     addNotification()
                 case .focusCompleted, .shortBreak:
@@ -114,8 +114,6 @@ public extension PomodoroBaseManager {
                 self.time--
             }
 
-            self.activityUpdate(time: time)
-
             if self.time.seconds <= 0 {
                 self.focusCount += 1
                 self.state = .focusCompleted
@@ -143,8 +141,6 @@ public extension PomodoroBaseManager {
                 self.time--
             }
 
-            self.activityUpdate(time: time)
-
             if self.time.seconds <= 0 {
                 self.state = .none
             }
@@ -168,8 +164,6 @@ public extension PomodoroBaseManager {
             withAnimation {
                 self.time--
             }
-
-            self.activityUpdate(time: time)
 
             if self.time.seconds <= 0 {
                 self.state = .none

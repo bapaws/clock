@@ -39,6 +39,7 @@ struct DigitalClockLandspaceView: View {
                         .offset(y: proxy.size.height / 2)
                 }
             }
+            .contentTransition(.numericText(countsDown: false))
             .monospacedDigit()
             .font(.system(size: digitWidth * 0.8, design: .rounded), weight: .ultraLight)
             .frame(proxy.size)

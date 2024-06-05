@@ -26,7 +26,7 @@ struct PomodoroWidgetLiveActivity: Widget {
                     Text(context.attributes.state.value)
                         .font(.headline, weight: .thin)
                         .foregroundStyle(Color.white)
-                    PomodoroWidget(time: context.state.time)
+                    PomodoroWidget(context: context)
                         .foregroundStyle(Color.white)
                         .frame(width: 224)
                 }
@@ -50,7 +50,7 @@ struct PomodoroWidgetLiveActivity: Widget {
                         Text(context.attributes.state.value)
                             .font(.headline, weight: .thin)
                             .foregroundStyle(Color.white)
-                        PomodoroWidget(time: context.state.time)
+                        PomodoroWidget(context: context)
                             .foregroundStyle(Color.white)
                             .frame(width: 224)
                     }
@@ -71,21 +71,19 @@ struct PomodoroWidgetLiveActivity: Widget {
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .frame(width: 24, height: 24)
+                    .padding(.leading, .small)
             } compactTrailing: {
-                let time = context.state.time
-                Text("\(time.minuteTens)\(time.minuteOnes):\(time.secondTens)\(time.secondOnes)")
+                Text(timerInterval: context.state.range, countsDown: true, showsHours: false)
+                    .monospacedDigit()
+                    .minimumScaleFactor(0.5)
+                    .frame(width: 48)
                     .font(.body, weight: .thin)
                     .foregroundStyle(Color.white)
             } minimal: {
-                let time = context.state.time
-                let total = Double(context.attributes.seconds)
-                ProgressView(value: total - Double(time.seconds), total: total) {
-                    Text("\(time.secondTens)\(time.secondOnes)")
-                        .font(.callout, weight: .thin)
-                        .foregroundStyle(Color.white)
-                }
-                .progressViewStyle(CircularProgressViewStyle())
-                .frame(width: 23, height: 23)
+                Text(timerInterval: context.state.range, countsDown: true, showsHours: false)
+                    .font(.callout, weight: .thin)
+                    .minimumScaleFactor(0.2)
+                    .foregroundStyle(Color.white)
             }
             .keylineTint(Color.black)
             .contentMargins(.horizontal, 32, for: .expanded)

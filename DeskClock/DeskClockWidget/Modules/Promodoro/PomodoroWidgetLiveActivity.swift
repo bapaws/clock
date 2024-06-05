@@ -26,7 +26,9 @@ struct PomodoroWidgetLiveActivity: Widget {
                     Text(context.attributes.state.value)
                         .font(.subheadline)
                         .foregroundStyle(context.attributes.colors.primary)
-                    PomodoroWidget(time: context.state.time, colorType: context.attributes.colorType, colors: context.attributes.colors)
+                    PomodoroWidget(context: context)
+                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                        .frame(width: .greedy)
                 }
                 Spacer()
                 VStack {
@@ -40,11 +42,13 @@ struct PomodoroWidgetLiveActivity: Widget {
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text(context.attributes.state.value)
                             .font(.headline)
                             .foregroundStyle(context.attributes.colors.primary)
-                        PomodoroWidget(time: context.state.time, colorType: context.attributes.colorType, colors: context.attributes.colors)
+                        PomodoroWidget(context: context)
+                            .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                            .frame(width: 280)
                     }
                 }
                 DynamicIslandExpandedRegion(.trailing) {
@@ -60,20 +64,16 @@ struct PomodoroWidgetLiveActivity: Widget {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .frame(width: 21, height: 21)
             } compactTrailing: {
-                let time = context.state.time
-                Text("\(time.minuteTens)\(time.minuteOnes):\(time.secondTens)\(time.secondOnes)")
-                    .font(.body, weight: .bold)
-                    .foregroundStyle(context.attributes.colors.primary)
+                Text(timerInterval: context.state.range, countsDown: true, showsHours: false)
+                    .monospacedDigit()
+                    .minimumScaleFactor(0.5)
+                    .frame(width: 48)
+                    .foregroundColor(context.attributes.colors.primary)
             } minimal: {
-                let time = context.state.time
-                let total = Double(context.attributes.seconds)
-                ProgressView(value: total - Double(time.seconds), total: total) {
-                    Text("\(time.secondTens)\(time.secondOnes)")
-                        .font(.callout, weight: .bold)
-                        .foregroundStyle(context.attributes.colors.primary)
-                }
-                .progressViewStyle(CircularProgressViewStyle())
-                .frame(width: 23, height: 23)
+                Text(timerInterval: context.state.range, countsDown: true, showsHours: false)
+                    .font(.system(.body, design: .rounded, weight: .bold))
+                    .minimumScaleFactor(0.2)
+                    .foregroundColor(context.attributes.colors.primary)
             }
             .keylineTint(context.attributes.colors.primary)
             .contentMargins(.horizontal, 32, for: .expanded)

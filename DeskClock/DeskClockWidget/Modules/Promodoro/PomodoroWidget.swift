@@ -9,11 +9,11 @@ import ClockShare
 import DeskClockShare
 import SwiftUI
 import SwiftUIX
+import WidgetKit
 
+@available(iOSApplicationExtension 16.1, *)
 struct PomodoroWidget: View {
-    let time: Time
-    let colorType: ColorType
-    let colors: Colors
+    let context: ActivityViewContext<PomodoroAttributes>
 
     var padding: CGFloat = 16
     var spacing: CGFloat = 4
@@ -21,16 +21,8 @@ struct PomodoroWidget: View {
     var digitWidth: CGFloat = 96
 
     var body: some View {
-        HStack(spacing: spacing) {
-            DigitView(tens: time.minuteTens, ones: time.minuteOnes, colorType: colorType)
-                .frame(width: digitWidth, height: digitWidth)
-            ColonView(colorType: colorType)
-                .frame(width: colonWidth, height: digitWidth)
-            DigitView(tens: time.secondTens, ones: time.secondOnes, colorType: colorType)
-                .frame(width: digitWidth, height: digitWidth)
-        }
-        .font(.system(size: digitWidth * 0.6, design: .rounded), weight: .bold)
-        .minimumScaleFactor(0.2)
-        .foregroundColor(colors.primary)
+        Text(timerInterval: context.state.range, countsDown: true, showsHours: true)
+            .monospacedDigit()
+            .foregroundColor(context.attributes.colors.primary)
     }
 }
