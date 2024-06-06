@@ -12,10 +12,11 @@ struct ProMask: ViewModifier {
 
     @State var isPaywallPresented: Bool = false
 
+    var isPreview: Bool = false
     var isPro: Bool { ProManager.default.isPro }
 
     @ViewBuilder func body(content: Content) -> some View {
-        if isPro {
+        if isPro || isPreview {
             content
         } else {
             ZStack {
@@ -51,7 +52,7 @@ struct ProMask: ViewModifier {
 }
 
 extension View {
-    func proMask() -> some View {
-        modifier(ProMask())
+    func proMask(isPreview: Bool = false) -> some View {
+        modifier(ProMask(isPreview: isPreview))
     }
 }

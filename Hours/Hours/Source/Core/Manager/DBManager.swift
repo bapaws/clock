@@ -13,11 +13,11 @@ import UIKit
 
 public extension DBManager {
     func setup() {
-        #if DEBUG
-            try? realm.write {
-                realm.deleteAll()
-            }
-        #endif
+//        #if DEBUG
+//            try? realm.write {
+//                realm.deleteAll()
+//            }
+//        #endif
 
         guard self.categorys.isEmpty, self.hexs.isEmpty else { return }
 

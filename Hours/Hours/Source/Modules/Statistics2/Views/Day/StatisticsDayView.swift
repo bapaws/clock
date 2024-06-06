@@ -86,15 +86,17 @@ struct StatisticsDayView: View {
                     totalMilliseconds: store.totalMilliseconds,
                     isOverallDayExpanded: $store.isOverallDayExpanded.animation()
                 )
-                .proMask()
+                .proMask(isPreview: store.isToday || store.isYesterday)
             }
 
             StatisticsSection(title: R.string.localizable.heatMap()) {
                 StatisticsDayHeatMapView(heatMaps: store.heatMaps)
+                    .proMask(isPreview: store.isToday || store.isYesterday)
             }
 
             StatisticsSection(title: R.string.localizable.timeDistribution()) {
                 StatisticsDayTimeDistributionView(timeDistributions: store.timeDistributions)
+                    .proMask(isPreview: store.isToday || store.isYesterday)
             }
         }
         .padding()

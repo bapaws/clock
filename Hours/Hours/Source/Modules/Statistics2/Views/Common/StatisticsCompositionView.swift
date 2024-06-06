@@ -17,37 +17,43 @@ struct StatisticsCompositionView: View {
 
     var body: some View {
         VStack {
-            if #available(iOS 17.0, *) {
-                ZStack {
-                    let lineWidth = 250 * (1 - 0.618) / 2
-                    if totalMilliseconds > 0 {
-                        Chart(compositions) { item in
-                            SectorMark(
-                                angle: .value(item.event.name, item.totalMilliseconds),
-                                innerRadius: .ratio(0.618),
-                                angularInset: 1
+            let height: CGFloat = 250
+            ZStack {
+                let lineWidth = 20.0
+                let radius = height / 2 - lineWidth / 2
+                if totalMilliseconds > 0 {
+                    GeometryReader { proxy in
+                        let center = CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2)
+                        ForEach(compositions) { item in
+                            Path { path in
+                                path.addArc(center: center, radius: radius, startAngle: .degrees(item.startAngle), endAngle: .degrees(item.endAngle), clockwise: false)
+                            }
+                            .stroke(
+                                item.event.primaryContainer,
+                                style: StrokeStyle(
+                                    lineWidth: lineWidth,
+                                    lineCap: .round
+                                )
                             )
-                            .cornerRadius(8)
-                            .foregroundStyle(item.event.primaryContainer)
                         }
-                    } else {
-                        Circle()
-                            .stroke(ui.background, style: StrokeStyle(lineWidth: lineWidth))
-                            .frame(width: 250 - lineWidth / 2 - 24, height: 250 - lineWidth / 2 - 24, alignment: .center)
                     }
-
-                    VStack {
-                        Text(R.string.localizable.totalInvest())
-                            .font(.footnote)
-                            .foregroundStyle(Color.secondaryLabel)
-                        Text(totalMilliseconds.shortTimeLengthText)
-                            .font(.title)
-                    }
-                    .frame(.greedy)
+                } else {
+                    Circle()
+                        .stroke(ui.background, style: StrokeStyle(lineWidth: lineWidth))
+                        .frame(width: 250 - lineWidth / 2 - 24, height: 250 - lineWidth / 2 - 24, alignment: .center)
                 }
-                .height(250)
-                .padding(.bottom)
+
+                VStack {
+                    Text(R.string.localizable.totalInvest())
+                        .font(.footnote)
+                        .foregroundStyle(Color.secondaryLabel)
+                    Text(totalMilliseconds.shortTimeLengthText)
+                        .font(.title)
+                }
+                .frame(.greedy)
             }
+            .height(height)
+            .padding(.bottom)
 
             if totalMilliseconds > 0 {
                 ratioView
