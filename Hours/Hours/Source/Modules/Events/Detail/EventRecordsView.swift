@@ -6,40 +6,42 @@
 //
 
 import HoursShare
+import OrderedCollections
 import RealmSwift
 import SwiftUI
 
 struct EventRecordsView: View {
-    @ObservedRealmObject var event: EventObject
+    var event: EventEntity
 
-    @Binding var editRecord: RecordObject?
+    @Binding var editRecord: RecordEntity?
 
-    private var results: SectionedResults<String, RecordObject>
+    @State private var results: OrderedDictionary<String, [RecordEntity]> = [:]
 
-    init(event: EventObject, editRecord: Binding<RecordObject?>) {
+    init(event: EventEntity, editRecord: Binding<RecordEntity?>) {
         self.event = event
         _editRecord = editRecord
 
         // 当事件被删除时，这里的 event 是无效的，执行 setioned 方法会导致崩溃
         // 所以事件删除，先返回主页，再删除
-        results = event.items.sectioned(
-            by: { $0.endAt.toString(.date(.medium)) },
-            sortDescriptors: [SortDescriptor(keyPath: \RecordObject.endAt, ascending: false)]
-        )
+//        results = event.items.sectioned(
+//            by: { $0.endAt.toString(.date(.medium)) },
+//            sortDescriptors: [SortDescriptor(keyPath: \RecordObject.endAt, ascending: false)]
+//        )
     }
 
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-            ForEach(results) { result in
+            ForEach(0 ..< results.count, id: \.self) { index in
+                let (key, value) = results.elements[index]
                 Section {
-                    ForEach(result) { record in
+                    ForEach(value) { record in
                         EventRecordsItemView(record: record)
                             .onTapGesture {
                                 editRecord = record
                             }
                     }
                 } header: {
-                    Text(result.key)
+                    Text(key)
                         .padding(.vertical)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(ui.background)
@@ -47,9 +49,14 @@ struct EventRecordsView: View {
             }
         }
         .padding()
+        .onAppear {
+            Task {
+                results = await AppRealm.shared.sectionedRecords(event, by: { $0.endAt.toString(.date(.medium)) })
+            }
+        }
     }
 }
 
 #Preview {
-    EventRecordsView(event: EventObject(), editRecord: .constant(RecordObject()))
+    EventRecordsView(event: EventEntity.random(), editRecord: .constant(RecordEntity.random()))
 }

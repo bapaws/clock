@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TimelineItemView: View {
     let index: Int
-    let record: RecordObject
+    let record: RecordEntity
     let isLast: Bool
 
     var body: some View {
@@ -59,7 +59,7 @@ struct TimelineItemView: View {
                             .font(.callout)
                             .foregroundStyle(ui.secondaryLabel)
                     }
-                    if let category = event.categorys.first {
+                    if let category = event.category {
                         CategoryView(category: category)
                     }
                 }
@@ -74,7 +74,7 @@ struct TimelineItemView: View {
 
 #Preview {
     VStack {
-        TimelineItemView(index: 0, record: RecordObject(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: false)
-        TimelineItemView(index: 0, record: RecordObject(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: true)
+        TimelineItemView(index: 0, record: RecordEntity(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: false)
+        TimelineItemView(index: 0, record: RecordEntity(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: true)
     }
 }

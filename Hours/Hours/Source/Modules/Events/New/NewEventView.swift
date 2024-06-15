@@ -10,20 +10,23 @@ import RealmSwift
 import SwiftUI
 
 struct NewEventView: View {
-    var event: EventObject?
+    var event: EventEntity?
 
     @State private var emoji: String = ""
     @State private var title: String
-    @State private var category: CategoryObject?
+    @State private var category: CategoryEntity?
 
     @State private var isEmojiPresented = false
     @State private var isCategoryPresented = false
+
+    @State private var createNameAttempts = 0
+    @State private var createCategoryAttempts = 0
 
     @FocusState private var isFocused
 
     @Environment(\.dismiss) private var dismiss
 
-    init(event: EventObject? = nil, category: CategoryObject? = nil) {
+    init(event: EventEntity? = nil, category: CategoryEntity? = nil) {
         self.event = event
         self._emoji = .init(initialValue: event?.emoji ?? "")
         self._title = .init(initialValue: event?.name ?? "")
@@ -45,6 +48,7 @@ struct NewEventView: View {
                         .foregroundStyle(Color.placeholderText)
                 }
             }
+            .changeEffect(.shake(rate: .fast), value: createCategoryAttempts)
             .onTapGesture {
                 isCategoryPresented.toggle()
             }
@@ -73,6 +77,7 @@ struct NewEventView: View {
                 TextField(R.string.localizable.pleaseEnter(), text: $title)
                     .focused($isFocused)
             }
+            .changeEffect(.shake(rate: .fast), value: createNameAttempts)
             .onTapGesture {
                 isFocused.toggle()
             }
@@ -115,33 +120,34 @@ struct NewEventView: View {
     }
 
     func newEvent() {
-        guard let category = category?.thaw(), let realm = category.realm?.thaw() else { return }
-
         let name = title.trimmingCharacters(in: .whitespacesAndNewlines)
         if name.isEmpty {
+            createNameAttempts += 1
+            return
+        }
+
+        guard let category else {
+            createCategoryAttempts += 1
             return
         }
 
         defer { dismiss() }
-        if let event = event?.thaw() {
-            realm.writeAsync {
+
+        Task {
+            if var event {
                 event.emoji = emoji
                 event.name = title
-                if category != event.category, let index = event.category.events.firstIndex(of: event) {
-                    event.category.events.remove(at: index)
-                }
-                category.events.append(event)
+                await AppRealm.shared.writeEvent(event, addTo: category)
 
                 AppManager.shared.updateCalendarEvents(by: event)
-            }
-            return
-        }
 
-        // 保存创建任务对象
-        let hex = DBManager.default.nextHex
-        let event = EventObject(emoji: emoji, name: name, hex: hex)
-        realm.writeAsync {
-            category.events.append(event)
+                return
+            }
+
+            // 保存创建任务对象
+            let hex = await AppRealm.shared.nextHex
+            let event = EventEntity(emoji: emoji, name: name, hex: hex)
+            await AppRealm.shared.writeEvent(event, addTo: category)
         }
     }
 }

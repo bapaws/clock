@@ -16,7 +16,7 @@ struct ArchivedEventsView: View {
 
     // MARK: Timer
 
-    @Binding var timerSelectEvent: EventObject?
+    @Binding var timerSelectEvent: EventEntity?
 
     var body: some View {
         ScrollView {
@@ -27,12 +27,12 @@ struct ArchivedEventsView: View {
                             ForEach(events) { event in
                                 ArchivedEventsItemView(event: event, unarchiveEvent: vm.unarchiveEvent)
                                     .onTapGesture {
-                                        let view = EventDetailView(event: event, timerSelectEvent: $timerSelectEvent)
+                                        let view = EventDetailView(event: EventEntity(object: event), timerSelectEvent: $timerSelectEvent)
                                         pushView(view, title: event.name)
                                     }
                             }
                         } header: {
-                            EventsHeaderView(category: category)
+                            EventsHeaderView(category: CategoryEntity(object: category))
                         }
                     }
                 }
@@ -46,5 +46,5 @@ struct ArchivedEventsView: View {
 }
 
 #Preview {
-    ArchivedEventsView(timerSelectEvent: .constant(EventObject()))
+    ArchivedEventsView(timerSelectEvent: .constant(EventEntity.random()))
 }

@@ -9,8 +9,8 @@ import HoursShare
 import SwiftUI
 
 struct EventItemView: View {
-    var event: EventObject
-    var playAction: ((EventObject) -> Void)?
+    var event: EventEntity
+    var playAction: ((EventEntity) -> Void)?
 
     var body: some View {
         HStack(spacing: 16) {
@@ -51,5 +51,5 @@ struct EventItemView: View {
 }
 
 #Preview {
-    EventItemView(event: EventObject(emoji: "👌", name: "Programing", hex: HexObject(hex: "#757573")))
+    EventItemView(event: EventEntity(emoji: "👌", name: "Programing", hex: HexEntity(hex: "#757573")))
 }

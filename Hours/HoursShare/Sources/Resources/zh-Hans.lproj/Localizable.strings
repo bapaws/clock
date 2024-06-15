@@ -14,5 +14,52 @@
 "Minutes" = "分钟";
 "Seconds" = "秒";
 
+// MARK: Category
+
+"Study" = "学习";
+"Work" = "工作";
+"Sports" = "运动";
+"Life" = "生活";
+"Entertainment" = "娱乐";
+"Game" = "游戏";
+"Break" = "休息";
+"Housework" = "家务";
+
+// 健康
 "Health" = "健康";
 "Sleep" = "睡觉";
+
+// 工作
+"Work" = "上班";
+"Coding" = "写代码";
+
+// 生活
+"PersonalGrooming" = "洗漱";
+"Travel" = "旅行";
+"Shopping" = "购物";
+
+// 学习
+"Reading" = "阅读";
+"English" = "英语";
+"Math" = "数学";
+"Exam" = "考试";
+
+// 运动
+"Running" = "跑步";
+"Swimming" = "游泳";
+
+// 娱乐
+"Music" = "听音乐";
+"Video" = "看视频";
+
+// 游戏
+"Genshin" = "原神";
+"Dota2" = "Dota2";
+
+// 休息
+"Nap" = "午休";
+"AfternoonTea" = "下午茶";
+
+// 家务
+"Cleaning" = "打扫";
+"Cooking" = "做饭";

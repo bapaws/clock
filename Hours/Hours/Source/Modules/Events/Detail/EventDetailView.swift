@@ -28,19 +28,19 @@ private enum EventDetailViewSelectionType: Int, Identifiable, CaseIterable {
 }
 
 struct EventDetailView: View {
-    @ObservedRealmObject var event: EventObject
+    var event: EventEntity
 
-    @State var selectedRecord: RecordObject?
+    @State var selectedRecord: RecordEntity?
 
     @State var isEditPresented: Bool = false
 
     // MARK: Record
 
-    @State var newRecordSelectEvent: EventObject?
+    @State var newRecordSelectEvent: EventEntity?
 
     // MARK: Timer
 
-    @Binding var timerSelectEvent: EventObject?
+    @Binding var timerSelectEvent: EventEntity?
 
     // MARK: Delete
 
@@ -53,23 +53,16 @@ struct EventDetailView: View {
 
     var body: some View {
         Group {
-            // 当 event 被删除时，是无效数据，在界面中展示会造成崩溃
-            // 这里通过判断 event.realm 是否存在，然后避免崩溃
-            if event.realm == nil {
-                ProgressView()
-                    .progressViewStyle(.circular)
-            } else {
-                VStack(spacing: 0) {
-                    scrollView
+            VStack(spacing: 0) {
+                scrollView
 
-                    if event.archivedAt == nil {
-                        footer
-                            .padding(.horizontal)
-                            .padding(.vertical, .small)
-                            .background(ui.background)
+                if event.archivedAt == nil {
+                    footer
+                        .padding(.horizontal)
+                        .padding(.vertical, .small)
+                        .background(ui.background)
 
-                        ui.background.height(safeAreaInsets.bottom)
-                    }
+                    ui.background.height(safeAreaInsets.bottom)
                 }
             }
         }
@@ -129,7 +122,7 @@ struct EventDetailView: View {
 
                 // Records
                 EventRecordsView(event: event, editRecord: $selectedRecord)
-                    .emptyStyle(isEmpty: event.isInvalidated || event.items.isEmpty)
+                    .emptyStyle(isEmpty: event.items.isEmpty)
             }
             .padding()
         }
@@ -189,32 +182,21 @@ struct EventDetailView: View {
 
     private func deleteEvent() {
         dismiss()
-
-        guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
-
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-        realm.writeAsync {
-            for item in event.items {
-                guard let thawedItem = item.thaw() else { continue }
-                realm.delete(thawedItem)
-            }
-            realm.delete(event)
+        Task {
+            await AppRealm.shared.deleteEvent(event)
         }
-//        }
     }
 
     private func archiveEvent() {
-        guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
-
-        realm.writeAsync {
-            event.archivedAt = event.archivedAt == nil ? .init() : nil
+        Task {
+            await AppRealm.shared.archiveEvent(event)
         }
     }
 }
 
 #Preview {
     EventDetailView(
-        event: EventObject(name: "iPhone"),
-        timerSelectEvent: .constant(EventObject())
+        event: EventEntity(name: "iPhone"),
+        timerSelectEvent: .constant(EventEntity.random())
     )
 }

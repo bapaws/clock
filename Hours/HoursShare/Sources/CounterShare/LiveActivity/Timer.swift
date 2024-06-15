@@ -21,11 +21,11 @@ public struct TimerContentState: Codable, Hashable {
 public struct TimerActivityAttributes: ActivityAttributes {
     public typealias ContentState = TimerContentState
 
-    public let event: EventObject
+    public let event: EventEntity
 
     public static var preview: TimerActivityAttributes {
         TimerActivityAttributes(
-            event: EventObject(emoji: "🛌", name: "Sleep", hex: HexObject(hex: "C9D8CD"), isSystem: true)
+            event: EventEntity(emoji: "🛌", name: "Sleep", hex: HexEntity(hex: "C9D8CD"), isSystem: true)
         )
     }
 }

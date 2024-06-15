@@ -24,7 +24,7 @@ struct RecordsView: View {
 
     @State private var isDatePickerPresented: Bool = false
 
-    @State private var selectedRecord: RecordObject?
+    @State private var selectedRecord: RecordEntity?
     @State private var isNewRecordPresented: Bool = false
 
     var pageIndex: Binding<Int> {
@@ -84,7 +84,7 @@ struct RecordsView: View {
         return endAt
     }
 
-    func presentNewRecord(for record: RecordObject? = nil) -> some View {
+    func presentNewRecord(for record: RecordEntity? = nil) -> some View {
         var newRecordView: NewRecordView
         if let record = record {
             newRecordView = NewRecordView(record: record)

@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Date local
         SwiftDate.defaultRegion = .local
 
-        DBManager.default.setup()
+        Task {
+            try? await AppRealm.shared.setup()
+        }
 
         DispatchQueue.main.async {
             UIManager.shared.setupUI()

@@ -13,6 +13,7 @@ public protocol Entity: Identifiable, Equatable, Codable {
     var _id: ObjectId { get }
 
     init(object: Object, isLinkedObject: Bool)
+    func toObject() -> Object
 
     static func random(count: Int) -> [Self]
 }

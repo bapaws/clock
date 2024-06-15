@@ -53,22 +53,15 @@ class EventsHomeViewModel: ObservableObject {
         }
     }
 
-    func deleteEvent(_ event: EventObject) {
-        guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
-
-        realm.writeAsync {
-            for item in event.items {
-                realm.delete(item)
-            }
-            realm.delete(event)
+    func deleteEvent(_ event: EventEntity) {
+        Task {
+            await AppRealm.shared.deleteEvent(event)
         }
     }
 
-    func archiveEvent(_ event: EventObject) {
-        guard let event = event.thaw(), let realm = event.realm?.thaw() else { return }
-
-        realm.writeAsync {
-            event.archivedAt = .init()
+    func archiveEvent(_ event: EventEntity) {
+        Task {
+            await AppRealm.shared.archiveEvent(event)
         }
     }
 }

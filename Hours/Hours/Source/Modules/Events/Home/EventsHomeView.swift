@@ -20,16 +20,16 @@ struct EventsHomeView: View {
 
     // MARK: Event
 
-    @State private var newEventSelectCategory: CategoryObject?
+    @State private var newEventSelectCategory: CategoryEntity?
     @State private var isNewEventPresented: Bool = false
 
     // MARK: Record
 
-    @State private var newRecordSelectEvent: EventObject?
+    @State private var newRecordSelectEvent: EventEntity?
 
     // MARK: Timer
 
-    @State private var timerSelectEvent: EventObject?
+    @State private var timerSelectEvent: EventEntity?
 
     @StateObject private var vm = EventsHomeViewModel()
 
@@ -43,17 +43,19 @@ struct EventsHomeView: View {
                         let events = vm.categories[category]!
                         Section {
                             ForEach(events) { event in
-                                EventItemView(event: event, playAction: presentTimer)
+                                let entity = EventEntity(object: event)
+                                EventItemView(event: entity, playAction: presentTimer)
                                     .onTapGesture {
-                                        let view = EventDetailView(event: event, timerSelectEvent: $timerSelectEvent)
-                                        pushView(view, title: event.name)
+                                        let view = EventDetailView(event: entity, timerSelectEvent: $timerSelectEvent)
+                                        pushView(view, title: entity.name)
                                     }
-                                    .contextMenu { menuItems(for: event) }
+                                    .contextMenu { menuItems(for: entity) }
                             }
 
                             ui.background
                         } header: {
-                            EventsHeaderView(category: category) { category in
+                            let categoryEntity = CategoryEntity(object: category)
+                            EventsHeaderView(category: categoryEntity) { category in
                                 newEventSelectCategory = category
                                 isNewEventPresented = true
                             }
@@ -76,11 +78,12 @@ struct EventsHomeView: View {
 
                     if vm.isOtherCategoriesShow {
                         ForEach(vm.otherCategories) { category in
-                            EventsHeaderView(category: category) { category in
+                            let categoryEntity = CategoryEntity(object: category)
+                            EventsHeaderView(category: categoryEntity) { category in
                                 newEventSelectCategory = category
                                 isNewEventPresented = true
                             }
-                            .id(category._id.stringValue)
+                            .id(categoryEntity.id)
                         }
                     }
                 }
@@ -168,7 +171,7 @@ struct EventsHomeView: View {
         }
     }
 
-    @ViewBuilder func menuItems(for event: EventObject) -> some View {
+    @ViewBuilder func menuItems(for event: EventEntity) -> some View {
         Button(action: {
             newRecordSelectEvent = event
         }) {
@@ -188,7 +191,7 @@ struct EventsHomeView: View {
         }
     }
 
-    private func presentTimer(event: EventObject) {
+    private func presentTimer(event: EventEntity) {
         timerSelectEvent = event
     }
 

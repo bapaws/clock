@@ -145,35 +145,35 @@ class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
 
     func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.primary, forKey: .primary)
-        try container.encode(self.onPrimary, forKey: .onPrimary)
-        try container.encode(self.primaryContainer, forKey: .primaryContainer)
-        try container.encode(self.onPrimaryContainer, forKey: .onPrimaryContainer)
-        try container.encode(self.secondary, forKey: .secondary)
-        try container.encode(self.onSecondary, forKey: .onSecondary)
-        try container.encode(self.secondaryContainer, forKey: .secondaryContainer)
-        try container.encode(self.onSecondaryContainer, forKey: .onSecondaryContainer)
-        try container.encode(self.tertiary, forKey: .tertiary)
-        try container.encode(self.onTertiary, forKey: .onTertiary)
-        try container.encode(self.tertiaryContainer, forKey: .tertiaryContainer)
-        try container.encode(self.onTertiaryContainer, forKey: .onTertiaryContainer)
-        try container.encode(self.error, forKey: .error)
-        try container.encode(self.onError, forKey: .onError)
-        try container.encode(self.errorContainer, forKey: .errorContainer)
-        try container.encode(self.onErrorContainer, forKey: .onErrorContainer)
-        try container.encode(self.background, forKey: .background)
-        try container.encode(self.onBackground, forKey: .onBackground)
-        try container.encode(self.surface, forKey: .surface)
-        try container.encode(self.onSurface, forKey: .onSurface)
-        try container.encode(self.surfaceVariant, forKey: .surfaceVariant)
-        try container.encode(self.onSurfaceVariant, forKey: .onSurfaceVariant)
-        try container.encode(self.outline, forKey: .outline)
-        try container.encode(self.outlineVariant, forKey: .outlineVariant)
-        try container.encode(self.shadow, forKey: .shadow)
-        try container.encode(self.scrim, forKey: .scrim)
-        try container.encode(self.inverseSurface, forKey: .inverseSurface)
-        try container.encode(self.onInverseSurface, forKey: .onInverseSurface)
-        try container.encode(self.inversePrimary, forKey: .inversePrimary)
+        try container.encode(primary, forKey: .primary)
+        try container.encode(onPrimary, forKey: .onPrimary)
+        try container.encode(primaryContainer, forKey: .primaryContainer)
+        try container.encode(onPrimaryContainer, forKey: .onPrimaryContainer)
+        try container.encode(secondary, forKey: .secondary)
+        try container.encode(onSecondary, forKey: .onSecondary)
+        try container.encode(secondaryContainer, forKey: .secondaryContainer)
+        try container.encode(onSecondaryContainer, forKey: .onSecondaryContainer)
+        try container.encode(tertiary, forKey: .tertiary)
+        try container.encode(onTertiary, forKey: .onTertiary)
+        try container.encode(tertiaryContainer, forKey: .tertiaryContainer)
+        try container.encode(onTertiaryContainer, forKey: .onTertiaryContainer)
+        try container.encode(error, forKey: .error)
+        try container.encode(onError, forKey: .onError)
+        try container.encode(errorContainer, forKey: .errorContainer)
+        try container.encode(onErrorContainer, forKey: .onErrorContainer)
+        try container.encode(background, forKey: .background)
+        try container.encode(onBackground, forKey: .onBackground)
+        try container.encode(surface, forKey: .surface)
+        try container.encode(onSurface, forKey: .onSurface)
+        try container.encode(surfaceVariant, forKey: .surfaceVariant)
+        try container.encode(onSurfaceVariant, forKey: .onSurfaceVariant)
+        try container.encode(outline, forKey: .outline)
+        try container.encode(outlineVariant, forKey: .outlineVariant)
+        try container.encode(shadow, forKey: .shadow)
+        try container.encode(scrim, forKey: .scrim)
+        try container.encode(inverseSurface, forKey: .inverseSurface)
+        try container.encode(onInverseSurface, forKey: .onInverseSurface)
+        try container.encode(inversePrimary, forKey: .inversePrimary)
     }
 }
 
@@ -212,6 +212,40 @@ struct SchemeEntity: Entity {
     var onInverseSurface: Int
     var inversePrimary: Int
 
+    init(scheme: Scheme) {
+        self.primary = scheme.primary
+        self.onPrimary = scheme.onPrimary
+        self.primaryContainer = scheme.primaryContainer
+        self.onPrimaryContainer = scheme.onPrimaryContainer
+        self.secondary = scheme.secondary
+        self.onSecondary = scheme.onSecondary
+        self.secondaryContainer = scheme.secondaryContainer
+        self.onSecondaryContainer = scheme.onSecondaryContainer
+        self.tertiary = scheme.tertiary
+        self.onTertiary = scheme.onTertiary
+        self.tertiaryContainer = scheme.tertiaryContainer
+        self.onTertiaryContainer = scheme.onTertiaryContainer
+        self.error = scheme.error
+        self.onError = scheme.onError
+        self.errorContainer = scheme.errorContainer
+        self.onErrorContainer = scheme.onErrorContainer
+        self.background = scheme.background
+        self.onBackground = scheme.onBackground
+        self.surface = scheme.surface
+        self.onSurface = scheme.onSurface
+        self.surfaceVariant = scheme.surfaceVariant
+        self.onSurfaceVariant = scheme.onSurfaceVariant
+        self.outline = scheme.outline
+        self.outlineVariant = scheme.outlineVariant
+        self.shadow = scheme.shadow
+        self.scrim = scheme.scrim
+        self.inverseSurface = scheme.inverseSurface
+        self.onInverseSurface = scheme.onInverseSurface
+        self.inversePrimary = scheme.inversePrimary
+    }
+
+    // MARK: Entity
+
     init(object: SchemeObject, isLinkedObject: Bool = false) {
         self.primary = object.primary
         self.onPrimary = object.onPrimary
@@ -244,36 +278,38 @@ struct SchemeEntity: Entity {
         self.inversePrimary = object.inversePrimary
     }
 
-    init(scheme: Scheme) {
-        self.primary = scheme.primary
-        self.onPrimary = scheme.onPrimary
-        self.primaryContainer = scheme.primaryContainer
-        self.onPrimaryContainer = scheme.onPrimaryContainer
-        self.secondary = scheme.secondary
-        self.onSecondary = scheme.onSecondary
-        self.secondaryContainer = scheme.secondaryContainer
-        self.onSecondaryContainer = scheme.onSecondaryContainer
-        self.tertiary = scheme.tertiary
-        self.onTertiary = scheme.onTertiary
-        self.tertiaryContainer = scheme.tertiaryContainer
-        self.onTertiaryContainer = scheme.onTertiaryContainer
-        self.error = scheme.error
-        self.onError = scheme.onError
-        self.errorContainer = scheme.errorContainer
-        self.onErrorContainer = scheme.onErrorContainer
-        self.background = scheme.background
-        self.onBackground = scheme.onBackground
-        self.surface = scheme.surface
-        self.onSurface = scheme.onSurface
-        self.surfaceVariant = scheme.surfaceVariant
-        self.onSurfaceVariant = scheme.onSurfaceVariant
-        self.outline = scheme.outline
-        self.outlineVariant = scheme.outlineVariant
-        self.shadow = scheme.shadow
-        self.scrim = scheme.scrim
-        self.inverseSurface = scheme.inverseSurface
-        self.onInverseSurface = scheme.onInverseSurface
-        self.inversePrimary = scheme.inversePrimary
+    func toObject() -> SchemeObject {
+        let object = SchemeObject()
+        object.primary = primary
+        object.onPrimary = onPrimary
+        object.primaryContainer = primaryContainer
+        object.onPrimaryContainer = onPrimaryContainer
+        object.secondary = secondary
+        object.onSecondary = onSecondary
+        object.secondaryContainer = secondaryContainer
+        object.onSecondaryContainer = onSecondaryContainer
+        object.tertiary = tertiary
+        object.onTertiary = onTertiary
+        object.tertiaryContainer = tertiaryContainer
+        object.onTertiaryContainer = onTertiaryContainer
+        object.error = error
+        object.onError = onError
+        object.errorContainer = errorContainer
+        object.onErrorContainer = onErrorContainer
+        object.background = background
+        object.onBackground = onBackground
+        object.surface = surface
+        object.onSurface = onSurface
+        object.surfaceVariant = surfaceVariant
+        object.onSurfaceVariant = onSurfaceVariant
+        object.outline = outline
+        object.outlineVariant = outlineVariant
+        object.shadow = shadow
+        object.scrim = scrim
+        object.inverseSurface = inverseSurface
+        object.onInverseSurface = onInverseSurface
+        object.inversePrimary = inversePrimary
+        return object
     }
 
     static func random(count: Int) -> [SchemeEntity] {

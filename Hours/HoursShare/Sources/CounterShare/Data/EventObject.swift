@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2024/3/8.
 //
 
+import AppIntents
 import Foundation
 import RealmSwift
 
@@ -154,6 +155,8 @@ public struct EventEntity: Entity, HexEntityColors {
         self.isSystem = isSystem
     }
 
+    // MARK: Entity
+
     public init(object: EventObject, isLinkedObject: Bool = false) {
         self._id = object._id
         self.emoji = object.emoji
@@ -174,6 +177,22 @@ public struct EventEntity: Entity, HexEntityColors {
 
         self.milliseconds = object.milliseconds
         self.time = object.time
+    }
+
+    public func toObject() -> EventObject {
+        let object = EventObject()
+        object._id = self._id
+        object.emoji = self.emoji
+        object.name = self.name
+        object.hex = self.hex?.toObject()
+        object.items.append(objectsIn: self.items.map { $0.toObject() })
+        object.createdAt = self.createdAt
+        object.isSystem = self.isSystem
+        object.deletedAt = self.deletedAt
+        object.archivedAt = self.archivedAt
+        object.milliseconds = self.milliseconds
+        object.time = self.time
+        return object
     }
 
     public static func random(count: Int) -> [EventEntity] {

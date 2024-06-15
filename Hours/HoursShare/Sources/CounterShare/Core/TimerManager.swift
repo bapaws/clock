@@ -11,15 +11,16 @@ import Foundation
 public class TimerManager: ClockShare.TimerBaseManager {
     public static let shared = TimerManager()
 
+    public let timerStart = Notification.Name("TimerStart")
     public let timerStop = Notification.Name("TimerStop")
 
     // MARK: Event
 
-    public func start(of event: EventObject) {
+    public func start(of event: EventEntity) {
         super.start()
 
-        Storage.default.currentTimerTime = time
-        Storage.default.currentTimerEventID = event._id.stringValue
+        let entity = TimingEntity(event: event, time: time)
+        Storage.default.currentTimingEntity = entity
 
         if #available(iOS 16.1, *) {
             TimerActivity.shared.start(attributes: TimerActivityAttributes(event: event), time: time)
@@ -29,20 +30,23 @@ public class TimerManager: ClockShare.TimerBaseManager {
     override public func pause() {
         super.pause()
 
-        Storage.default.currentTimerTime = time
+        guard var entity = Storage.default.currentTimingEntity else { return }
+        entity.time = time
+        Storage.default.currentTimingEntity = entity
     }
 
     override public func resume() {
         super.resume()
 
-        Storage.default.currentTimerTime = time
+        guard var entity = Storage.default.currentTimingEntity else { return }
+        entity.time = time
+        Storage.default.currentTimingEntity = entity
     }
 
     override public func stop() {
         super.stop()
 
-        Storage.default.currentTimerTime = nil
-        Storage.default.currentTimerEventID = nil
+        Storage.default.currentTimingEntity = nil
 
         if #available(iOS 16.1, *) {
             TimerActivity.shared.stop()

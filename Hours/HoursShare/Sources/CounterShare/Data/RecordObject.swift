@@ -110,7 +110,7 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
 // MARK: Entity
 
 public struct RecordEntity: Entity {
-    public var _id: ObjectId = .generate()
+    public var _id: ObjectId
 
     /// 任务计时类型：倒计时 or 正计时
     public var creationMode: RecordCreationMode
@@ -141,7 +141,40 @@ public struct RecordEntity: Entity {
 
     public private(set) var time: TimeLength
 
+    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int) {
+        self._id = .generate()
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.milliseconds = milliseconds
+        self.endAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
+
+        self.time = milliseconds.time
+    }
+
+    public init(creationMode: RecordCreationMode, startAt: Date, endAt: Date) {
+        self._id = .generate()
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.endAt = endAt
+        self.milliseconds = Int(startAt.distance(to: endAt) * 1000)
+
+        self.time = milliseconds.time
+    }
+
+    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int, endAt: Date) {
+        self._id = .generate()
+        self.creationMode = creationMode
+        self.startAt = startAt
+        self.milliseconds = milliseconds
+        self.endAt = endAt
+
+        self.time = milliseconds.time
+    }
+
+    // MARK: Entity
+
     public init(object: RecordObject, isLinkedObject: Bool = false) {
+        self._id = object._id
         self.creationMode = object.creationMode
         self.milliseconds = object.milliseconds
         self.startAt = object.startAt
@@ -156,31 +189,18 @@ public struct RecordEntity: Entity {
         self.time = milliseconds.time
     }
 
-    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int) {
-        self.creationMode = creationMode
-        self.startAt = startAt
-        self.milliseconds = milliseconds
-        self.endAt = startAt.addingTimeInterval(TimeInterval(milliseconds) / 1000)
-
-        self.time = milliseconds.time
-    }
-
-    public init(creationMode: RecordCreationMode, startAt: Date, endAt: Date) {
-        self.creationMode = creationMode
-        self.startAt = startAt
-        self.endAt = endAt
-        self.milliseconds = Int(startAt.distance(to: endAt) * 1000)
-
-        self.time = milliseconds.time
-    }
-
-    public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int, endAt: Date) {
-        self.creationMode = creationMode
-        self.startAt = startAt
-        self.milliseconds = milliseconds
-        self.endAt = endAt
-
-        self.time = milliseconds.time
+    public func toObject() -> RecordObject {
+        let object = RecordObject()
+        object._id = _id
+        object.creationMode = creationMode
+        // 设置 endAt 时会自动设置，目前 milliseconds 和 endAt 是关联的
+//        object.milliseconds = milliseconds
+        object.startAt = startAt
+        object.endAt = endAt
+        object.notes = notes
+        object.calendarEventIdentifier = calendarEventIdentifier
+        object.healthSampleUUIDString = healthSampleUUIDString
+        return object
     }
 
     public static func random(count: Int) -> [RecordEntity] {

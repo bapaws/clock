@@ -16,7 +16,7 @@ struct SelectEventView: View {
     )
     private var categories
 
-    @Binding var selectedEvent: EventObject?
+    @Binding var selectedEvent: EventEntity?
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -25,15 +25,16 @@ struct SelectEventView: View {
                 ForEach(categories) { category in
                     Section {
                         ForEach(category.events) { event in
-                            EventItemView(event: event)
+                            let entity = EventEntity(object: event)
+                            EventItemView(event: entity)
                                 .onTapGesture {
-                                    selectedEvent = event
+                                    selectedEvent = entity
                                     dismiss()
                                 }
                         }
                     } header: {
                         HStack {
-                            CategoryView(category: category)
+                            CategoryView(category: CategoryEntity(object: category))
                             Spacer()
                         }
                         .padding(.vertical, .small)
@@ -50,5 +51,5 @@ struct SelectEventView: View {
 }
 
 #Preview {
-    SelectEventView(selectedEvent: .constant(EventObject()))
+    SelectEventView(selectedEvent: .constant(EventEntity.random()))
 }

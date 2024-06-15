@@ -15,16 +15,17 @@ struct SelectCategoryView: View {
     @ObservedResults(CategoryObject.self, where: { $0.archivedAt == nil })
     private var categories
 
-    @Binding var selectedCategory: CategoryObject?
+    @Binding var selectedCategory: CategoryEntity?
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
         ScrollView {
             HFlow(spacing: 12) {
                 ForEach(categories) { category in
-                    CategoryView(category: category)
+                    let entity = CategoryEntity(object: category)
+                    CategoryView(category: entity)
                         .onTapGesture {
-                            selectedCategory = category
+                            selectedCategory = entity
                             dismiss()
                         }
                 }
@@ -38,5 +39,5 @@ struct SelectCategoryView: View {
 }
 
 #Preview {
-    SelectCategoryView(selectedCategory: .constant(CategoryObject()))
+    SelectCategoryView(selectedCategory: .constant(CategoryEntity.random()))
 }

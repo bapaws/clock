@@ -179,6 +179,10 @@ public extension HexObject {
     var inversePrimary: Color {
         Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.inversePrimary : self.light!.inversePrimary) })
     }
+
+    static var random: HexObject {
+        HexObject(rgb: UIColor.random.argb)
+    }
 }
 
 // MARK: Hex
@@ -201,8 +205,10 @@ public struct HexEntity: Entity {
         self.init(rgb: Int(hex: hex))
     }
 
+    // MARK: Entity
+
     public init(object: HexObject, isLinkedObject: Bool = false) {
-        self._id = .generate()
+        self._id = object._id
         self.rgb = object.rgb
         if let light = object.light {
             self.light = SchemeEntity(object: light)
@@ -210,6 +216,15 @@ public struct HexEntity: Entity {
         if let dark = object.dark {
             self.dark = SchemeEntity(object: dark)
         }
+    }
+
+    public func toObject() -> HexObject {
+        let object = HexObject()
+        object._id = .generate()
+        object.rgb = rgb
+        object.light = light?.toObject()
+        object.dark = dark?.toObject()
+        return object
     }
 
     public static func random(count: Int) -> [Self] {
@@ -344,5 +359,9 @@ public extension HexEntity {
 
     var inversePrimary: Color {
         Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.inversePrimary : self.light!.inversePrimary) })
+    }
+
+    static var random: HexEntity {
+        HexEntity(rgb: UIColor.random.argb)
     }
 }

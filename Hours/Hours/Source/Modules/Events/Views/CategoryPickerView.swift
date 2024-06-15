@@ -10,7 +10,7 @@ import RealmSwift
 import SwiftUI
 
 struct CategoryIconView: View {
-    let category: CategoryObject
+    let category: CategoryEntity
     var padding: CGFloat = 4
 
     var body: some View {
@@ -33,7 +33,7 @@ struct CategoryIconView: View {
 }
 
 struct CategoryView: View {
-    let category: CategoryObject
+    let category: CategoryEntity
     var padding: CGFloat = 4
 
     var body: some View {
@@ -63,8 +63,8 @@ struct CategoryView: View {
 }
 
 struct CategoryPickerView: View {
-    var categorys: Results<CategoryObject>
-    var onTap: (CategoryObject) -> Void
+    var categorys: [CategoryEntity]
+    var onTap: (CategoryEntity) -> Void
 
     var rows: [GridItem] {
         categorys.count > 6 ? [
@@ -101,5 +101,5 @@ struct CategoryPickerView: View {
 #Preview {
     let realm = try! Realm()
     let categorys = realm.objects(CategoryObject.self)
-    return CategoryPickerView(categorys: categorys, onTap: { _ in })
+    return CategoryPickerView(categorys: CategoryEntity.random(count: 10), onTap: { _ in })
 }

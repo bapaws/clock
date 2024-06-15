@@ -13,7 +13,7 @@ import SwiftUIX
 import UIKit
 
 struct TimerView: View {
-    let event: EventObject
+    let event: EventEntity
 
     var time: Time { manager.time }
 
@@ -127,17 +127,14 @@ struct TimerView: View {
         dismiss()
 
         guard time.milliseconds > Int(app.minimumRecordedTime * 1000) else { return }
-        guard let event = event.thaw(), let realm = event.realm else { return }
 
-        realm.writeAsync {
+        Task {
             let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
-            let newRecord = RecordObject(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
+            var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
             // 同步到日历应用
             let eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
             newRecord.calendarEventIdentifier = eventIdendtifier
-            realm.add(newRecord)
-
-            event.items.append(newRecord)
+            await AppRealm.shared.writeRecord(newRecord, addTo: event)
         }
 
         // 发起 App Store 评论请求
@@ -146,6 +143,6 @@ struct TimerView: View {
 }
 
 #Preview {
-    TimerView(event: EventObject(emoji: "👌", name: "Work", hex: HexObject(hex: "#757573")))
+    TimerView(event: EventEntity(emoji: "👌", name: "Work", hex: HexEntity(hex: "#757573")))
         .environmentObject(TimerManager.shared)
 }

@@ -15,14 +15,14 @@ struct TimerView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     private let time: Time
-    private let event: EventObject
+    private let event: EventEntity
 
     init(context: ActivityViewContext<TimerActivityAttributes>) {
         self.time = context.state.time
         self.event = context.attributes.event
     }
 
-    init(time: Time, event: EventObject) {
+    init(time: Time, event: EventEntity) {
         self.time = time
         self.event = event
     }
@@ -54,7 +54,7 @@ struct TimerView: View {
         }
     }
 
-    @ViewBuilder func stopButton(for event: EventObject) -> some View {
+    @ViewBuilder func stopButton(for event: EventEntity) -> some View {
         if #available(iOSApplicationExtension 17.0, *) {
             Button(intent: StopTimerLiveActivityIntent(), label: {
                 Image(systemName: "stop.fill")
@@ -103,7 +103,7 @@ struct TimerView: View {
     if #available(iOSApplicationExtension 16.1, *) {
         return TimerView(
             time: Time(),
-            event: EventObject(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexObject(hex: "C9D8CD"), isSystem: true)
+            event: EventEntity(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexEntity(hex: "C9D8CD"), isSystem: true)
         )
     } else {
         return EmptyView()

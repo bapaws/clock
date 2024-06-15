@@ -17,8 +17,7 @@ public extension Storage.Key {
     static let isAutoSyncSleep = "isAutoSyncSleep"
     static let lastSyncSleepDate = "lastSyncSleepDate"
 
-    static let currentTimerTime = "currentTimerTime"
-    static let currentTimerEventID = "currentTimerEventID"
+    static let currentTimingEntity = "currentTimingEntity"
 }
 
 public extension Storage {
@@ -36,12 +35,8 @@ public extension Storage {
     }
 
     var onboardingVersion: Int {
-        set {
-            store.set(newValue, forKey: Key.onboardingVersion)
-        }
-        get {
-            store.integer(forKey: Key.onboardingVersion)
-        }
+        set { store.set(newValue, forKey: Key.onboardingVersion) }
+        get { store.integer(forKey: Key.onboardingVersion) }
     }
 
     var lastSyncWorkoutDate: Date? {
@@ -54,23 +49,18 @@ public extension Storage {
         get { store.object(forKey: Key.lastSyncSleepDate) as? Date }
     }
 
-    var currentTimerTime: Time? {
+    var currentTimingEntity: TimingEntity? {
         set {
             if let time = newValue {
                 let data = try? JSONEncoder().encode(time)
-                store.set(data, forKey: Key.currentTimerTime)
+                store.set(data, forKey: Key.currentTimingEntity)
             } else {
-                store.removeObject(forKey: Key.currentTimerTime)
+                store.removeObject(forKey: Key.currentTimingEntity)
             }
         }
         get {
-            guard let data = store.object(forKey: Key.currentTimerTime) as? Data else { return nil }
-            return try? JSONDecoder().decode(Time.self, from: data)
+            guard let data = store.object(forKey: Key.currentTimingEntity) as? Data else { return nil }
+            return try? JSONDecoder().decode(TimingEntity.self, from: data)
         }
-    }
-
-    var currentTimerEventID: String? {
-        set { store.set(newValue, forKey: Key.currentTimerEventID) }
-        get { store.string(forKey: Key.currentTimerEventID) }
     }
 }

@@ -16,9 +16,9 @@ struct TimelineView: View {
     @ObservedResults(RecordObject.self, sortDescriptor: SortDescriptor(keyPath: \RecordObject.endAt, ascending: false))
     var records
 
-    @Binding var selectedRecord: RecordObject?
+    @Binding var selectedRecord: RecordEntity?
 
-    init(date: Date, selectedRecord: Binding<RecordObject?>) {
+    init(date: Date, selectedRecord: Binding<RecordEntity?>) {
         self._selectedRecord = selectedRecord
 
         let startOfDay = date.dateAtStartOf(.day)
@@ -37,7 +37,7 @@ struct TimelineView: View {
                 } else {
                     LazyVStack(spacing: 0) {
                         ForEach(0 ..< records.count, id: \.self) { index in
-                            let record = records[index]
+                            let record = RecordEntity(object: records[index])
                             TimelineItemView(index: index, record: record, isLast: index == records.count - 1)
                                 .onTapGesture {
                                     selectedRecord = record
@@ -52,5 +52,5 @@ struct TimelineView: View {
 }
 
 #Preview {
-    TimelineView(date: Date(), selectedRecord: Binding<RecordObject?>.constant(nil))
+    TimelineView(date: Date(), selectedRecord: Binding<RecordEntity?>.constant(nil))
 }

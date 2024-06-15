@@ -13,5 +13,9 @@ import WidgetKit
 struct WidgetsBundle: WidgetBundle {
     var body: some Widget {
         TimerLiveActivity()
+
+        if #available(iOSApplicationExtension 17.0, *) {
+            EventsLargeWidget()
+        }
     }
 }

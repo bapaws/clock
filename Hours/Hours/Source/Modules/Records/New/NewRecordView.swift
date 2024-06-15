@@ -13,9 +13,9 @@ import SwiftUIX
 import UIKit
 
 struct NewRecordView: View {
-    @State private var record: RecordObject?
+    @State private var record: RecordEntity?
 
-    @State private var event: EventObject?
+    @State private var event: EventEntity?
     @State private var startAt: Date
     @State private var endAt: Date
 
@@ -27,13 +27,13 @@ struct NewRecordView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    init(event: EventObject? = nil, startAt: Date, endAt: Date) {
+    init(event: EventEntity? = nil, startAt: Date, endAt: Date) {
         self.event = event
         self.startAt = startAt
         self.endAt = endAt
     }
 
-    init(record: RecordObject) {
+    init(record: RecordEntity) {
         self.record = record
 
         self.event = record.event
@@ -48,7 +48,7 @@ struct NewRecordView: View {
                     .font(.title)
                     .foregroundStyle(ui.primary)
                 Spacer()
-                if let category = event?.categorys.first {
+                if let category = event?.category {
                     CategoryView(category: category)
                 }
             }
@@ -153,25 +153,20 @@ struct NewRecordView: View {
     }
 
     func newRecord() {
-        guard let event = event?.thaw(), let realm = event.realm else {
+        guard let event else {
             createAttempts += 1
             return
         }
-
-        realm.writeAsync {
-            let newRecord = RecordObject(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
-
-            var identifier: String?
-            if let thawedRecord = record?.thaw() {
-                identifier = AppManager.shared.syncToCalendar(for: event, record: thawedRecord)
-                realm.delete(thawedRecord)
+        Task {
+            var newRecord = RecordEntity(creationMode: record?.creationMode ?? .enter, startAt: startAt, endAt: endAt)
+            newRecord.event = record?.event
+            if let record {
+                newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: record)
+                await AppRealm.shared.deleteRecord(record)
             } else {
-                identifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+                newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
             }
-            newRecord.calendarEventIdentifier = identifier
-            realm.add(newRecord)
-
-            event.items.append(newRecord)
+            await AppRealm.shared.writeRecord(newRecord, addTo: event)
         }
 
         dismiss()
@@ -182,5 +177,5 @@ struct NewRecordView: View {
 }
 
 #Preview {
-    NewRecordView(event: EventObject(emoji: "👌", name: "Programing", hex: HexObject(hex: "#757573")), startAt: .init(), endAt: .init())
+    NewRecordView(event: EventEntity(emoji: "👌", name: "Programing", hex: HexEntity(hex: "#757573")), startAt: .init(), endAt: .init())
 }

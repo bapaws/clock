@@ -10,9 +10,6 @@ import SwiftUI
 public extension View {
     var ui: UIManager { UIManager.shared }
 
-    var app: AppManager { AppManager.shared }
-    var today: Date { app.today }
-
     func pushView<Destination: View>(_ content: Destination, title: String? = nil, animated: Bool = true) {
         UIApplication.shared.pushView(content, title: title, animated: animated)
     }

@@ -9,7 +9,7 @@ import SwiftUI
 import HoursShare
 
 struct EventRecordsItemView: View {
-    let record: RecordObject
+    let record: RecordEntity
 
     var body: some View {
         HStack(alignment: .top) {
@@ -46,5 +46,5 @@ struct EventRecordsItemView: View {
 }
 
 #Preview {
-    EventRecordsItemView(record: RecordObject())
+    EventRecordsItemView(record: RecordEntity.random())
 }

@@ -125,7 +125,25 @@ public struct CategoryEntity: Entity, HexEntityColors {
     /// 归档时间
     public var archivedAt: Date?
 
-    public init(object: CategoryObject, isLinkedObject: Bool) {
+    public init(hex: HexEntity?, emoji: String, name: String, events: [EventEntity] = []) {
+        self._id = ObjectId.generate()
+        self.hex = hex
+        self.emoji = emoji
+        self.name = name
+        self.events = events
+    }
+
+    public init(hex: HexEntity?, icon: String, name: String, events: [EventEntity] = []) {
+        self._id = ObjectId.generate()
+        self.hex = hex
+        self.icon = icon
+        self.name = name
+        self.events = events
+    }
+
+    // MARK: Entity
+
+    public init(object: CategoryObject, isLinkedObject: Bool = false) {
         self._id = object._id
         if let hex = object.hex {
             self.hex = HexEntity(object: hex)
@@ -147,20 +165,20 @@ public struct CategoryEntity: Entity, HexEntityColors {
         self.archivedAt = object.archivedAt
     }
 
-    public init(hex: HexEntity?, emoji: String, name: String, events: [EventEntity] = []) {
-        self._id = ObjectId.generate()
-        self.hex = hex
-        self.emoji = emoji
-        self.name = name
-        self.events = events
-    }
-
-    public init(hex: HexEntity?, icon: String, name: String, events: [EventEntity] = []) {
-        self._id = ObjectId.generate()
-        self.hex = hex
-        self.icon = icon
-        self.name = name
-        self.events = events
+    public func toObject() -> CategoryObject {
+        let object = CategoryObject()
+        object._id = _id
+        object.hex = hex?.toObject()
+        object.emoji = emoji
+        object.icon = icon
+        object.name = name
+        object.events.append(objectsIn: events.map { $0.toObject() })
+        object.calendarIdentifier = calendarIdentifier
+        object.index = index
+        object.createdAt = createdAt
+        object.deletedAt = deletedAt
+        object.archivedAt = archivedAt
+        return object
     }
 
     public static func random(count: Int) -> [CategoryEntity] {

@@ -22,20 +22,13 @@ struct NewRecordAppIntent: AppIntent {
     var endAt: Date
 
     @MainActor func perform() async throws -> some IntentResult {
-        let event = DBManager.default.events.first { $0._id.stringValue == eventID }
-        guard let event = event?.thaw(), let realm = event.realm else {
-            return .result(value: "")
-        }
+        guard let event = await AppRealm.shared.getEvent(by: eventID) else { return .result() }
 
-        realm.writeAsync {
-            let newRecord = RecordObject(creationMode: .shortcut, startAt: startAt, endAt: endAt)
-            let identifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
-            newRecord.calendarEventIdentifier = identifier
-            realm.add(newRecord)
+        var newRecord = RecordEntity(creationMode: .shortcut, startAt: startAt, endAt: endAt)
+        let identifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+        newRecord.calendarEventIdentifier = identifier
+        await AppRealm.shared.writeRecord(newRecord, addTo: event)
 
-            event.items.append(newRecord)
-        }
-
-        return .result(value: "")
+        return .result()
     }
 }

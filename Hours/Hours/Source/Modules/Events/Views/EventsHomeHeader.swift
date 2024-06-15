@@ -9,8 +9,8 @@ import HoursShare
 import SwiftUI
 
 struct EventsHeaderView: View {
-    var category: CategoryObject
-    var newEventAction: ((CategoryObject) -> Void)?
+    var category: CategoryEntity
+    var newEventAction: ((CategoryEntity) -> Void)?
 
     var body: some View {
         HStack {
@@ -30,5 +30,5 @@ struct EventsHeaderView: View {
 }
 
 #Preview {
-    EventsHeaderView(category: CategoryObject()) { _ in }
+    EventsHeaderView(category: CategoryEntity.random()) { _ in }
 }
