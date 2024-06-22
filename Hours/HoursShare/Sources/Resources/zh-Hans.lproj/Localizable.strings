@@ -14,6 +14,8 @@
 "Minutes" = "分钟";
 "Seconds" = "秒";
 
+"Loading" = "加载中...";
+
 // MARK: Category
 
 "Study" = "学习";

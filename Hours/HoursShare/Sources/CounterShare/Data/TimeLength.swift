@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TimeLength: Codable, Equatable {
+public struct TimeLength: Codable, Equatable, Hashable {
     public let day: Int
     public let hour: Int
     public let minute: Int

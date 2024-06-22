@@ -6,45 +6,58 @@
 //
 
 import ClockShare
+import ComposableArchitecture
 import HoursShare
 import SwiftDate
 import SwiftUI
 import SwiftUIX
 
 struct ArchivedEventsView: View {
-    @StateObject private var vm = ArchivedEventsViewModel()
+    @Perception.Bindable var store: StoreOf<ArchivedEventsFeature>
 
     // MARK: Timer
 
     @Binding var timerSelectEvent: EventEntity?
 
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
-                ForEach(vm.categories.keys) { category in
-                    if let events = vm.categories[category] {
+        WithPerceptionTracking {
+            ScrollView {
+                LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
+                    ForEach(store.categories) { category in
                         Section {
-                            ForEach(events) { event in
-                                ArchivedEventsItemView(event: event, unarchiveEvent: vm.unarchiveEvent)
-                                    .onTapGesture {
-                                        let view = EventDetailView(event: EventEntity(object: event), timerSelectEvent: $timerSelectEvent)
-                                        pushView(view, title: event.name)
-                                    }
+                            ForEach(category.events) { event in
+                                ArchivedEventsItemView(event: event) {
+                                    store.send(.unarchiveEvent($0), animation: .bouncy)
+                                }
+                                .onTapGesture {
+                                    store.send(.onEventTapped(event))
+
+                                    guard let store = store.scope(state: \.eventDetail, action: \.eventDetail) else { return }
+                                    let view = EventDetailView(store: store, timerSelectEvent: $timerSelectEvent)
+                                    pushView(view, title: event.name)
+                                }
                             }
                         } header: {
-                            EventsHeaderView(category: CategoryEntity(object: category))
+                            EventsHeaderView(category: category)
                         }
                     }
                 }
+                .padding()
+                .emptyStyle(isEmpty: store.categories.isEmpty)
             }
-            .padding()
-            .emptyStyle(isEmpty: vm.categories.isEmpty)
+            .background(ui.background)
+            .navigationTitle(R.string.localizable.archived())
+            .toolbarRole(.editor)
+            .onAppear {
+                store.send(.onAppear)
+            }
         }
-        .background(ui.background)
-        .navigationTitle(R.string.localizable.archived())
     }
 }
 
 #Preview {
-    ArchivedEventsView(timerSelectEvent: .constant(EventEntity.random()))
+    ArchivedEventsView(
+        store: StoreOf<ArchivedEventsFeature>(initialState: .init(), reducer: { ArchivedEventsFeature() }),
+        timerSelectEvent: .constant(EventEntity.random())
+    )
 }

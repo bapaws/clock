@@ -78,10 +78,11 @@ struct StatisticsDay: StatisticsOverallReducer, StatisticsTimeDistributionReduce
             case .onAppear:
                 // 数据量小，这里无需将 state.records 设置为 nil，让界面进入 loading 状态
                 // 刷新肉眼几乎不可见
+                state.records = nil
+                state.compositions.removeAll(keepingCapacity: true)
                 return .run { [startAt = state.startAt, endAt = state.endAt] send in
-                    let realm = try await StatisticsDailyRealm()
-                    let results = await realm.getRecordEntitiesEndAt(from: startAt, to: endAt)
-                    await send(.onRecordsChanged(results))
+                    let results = await AppRealm.shared.getRecordsEndAt(from: startAt, to: endAt)
+                    await send(.onRecordsChanged(results), animation: .default)
                 }
 
             case .onRecordsChanged(let results):

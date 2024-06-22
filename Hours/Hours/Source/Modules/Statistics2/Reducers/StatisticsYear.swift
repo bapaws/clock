@@ -72,9 +72,8 @@ struct StatisticsYear: StatisticsOverallReducer, StatisticsTimeDistributionReduc
 
             case .onAppear:
                 return .run { [startAt = state.startAt, endAt = state.endAt] send in
-                    let realm = try await StatisticsDailyRealm()
-                    let results = await realm.getRecordEntitiesEndAt(from: startAt, to: endAt)
-                    await send(.onRecordsChanged(results))
+                    let results = await AppRealm.shared.getRecordsEndAt(from: startAt, to: endAt)
+                    await send(.onRecordsChanged(results), animation: .default)
                 }
 
             case .onRecordsChanged(let results):

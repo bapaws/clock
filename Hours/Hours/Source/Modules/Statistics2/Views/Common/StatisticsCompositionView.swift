@@ -10,6 +10,49 @@ import ComposableArchitecture
 import SwiftUI
 import SwiftUIX
 
+struct StatisticsCompositionShape: Shape {
+    let compositions: IdentifiedArrayOf<StatisticsOverallDay>
+    var angle: Double
+
+    private let height: CGFloat = 250
+    private let lineWidth: CGFloat = 20.0
+
+    func path(in rect: CGRect) -> Path {
+        let radius = height / 2 - lineWidth / 2
+        let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
+
+        var path = Path()
+        for item in compositions {
+            if item.startAngle > angle { return path }
+
+            if item.endAngle > angle {
+                path.addArc(
+                    center: center,
+                    radius: radius,
+                    startAngle: .degrees(item.startAngle),
+                    endAngle: .degrees(angle),
+                    clockwise: false
+                )
+                return path
+            }
+
+            path.addArc(
+                center: center,
+                radius: radius,
+                startAngle: .degrees(item.startAngle),
+                endAngle: .degrees(item.endAngle),
+                clockwise: false
+            )
+        }
+        return path
+    }
+
+    var animatableData: Double {
+        get { angle }
+        set { angle = newValue }
+    }
+}
+
 struct StatisticsCompositionView: View {
     let compositions: IdentifiedArrayOf<StatisticsOverallDay>
     let totalMilliseconds: Int
@@ -37,6 +80,7 @@ struct StatisticsCompositionView: View {
                             )
                         }
                     }
+                    .animation(.default, value: compositions)
                 } else {
                     Circle()
                         .stroke(ui.background, style: StrokeStyle(lineWidth: lineWidth))

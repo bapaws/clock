@@ -11,7 +11,7 @@ import RevenueCat
 import SwiftUI
 import SwiftUIX
 
-struct PaywallView: View {
+@MainActor struct PaywallView: View {
     @State var packages: [Package] = ProManager.default.availablePackages
 
     @State var selectedPackage: Package? = ProManager.default.availablePackages.first

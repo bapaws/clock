@@ -8,14 +8,10 @@
 import Foundation
 import SwiftDate
 
-extension DateFormatter {
-    static let shared = DateFormatter()
-}
-
 public extension Date {
     func to(format: String, locale: String? = nil) -> String {
-        let formatter = DateFormatter.shared
-        formatter.locale = SwiftDate.defaultRegion.locale
+        let region = SwiftDate.defaultRegion
+        let formatter = DateFormatter.sharedFormatter(forRegion: region)
         formatter.setLocalizedDateFormatFromTemplate(format)
         return formatter.string(from: self)
     }

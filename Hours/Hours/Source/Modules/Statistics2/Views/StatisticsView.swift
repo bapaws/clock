@@ -50,5 +50,5 @@ struct StatisticsView: View {
 }
 
 #Preview {
-    StatisticsView(store: StoreManager.default.store)
+    StatisticsView(store: .init(initialState: .init(), reducer: { Statistics() }))
 }

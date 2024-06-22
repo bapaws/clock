@@ -72,9 +72,8 @@ struct StatisticsMonth: StatisticsOverallReducer, StatisticsTimeDistributionRedu
             case .onAppear:
                 // 数据量不小也不是特别大，经过测试也无需设置 state.records = nil
                 return .run { [startAt = state.startAt, endAt = state.endAt] send in
-                    let realm = try await StatisticsDailyRealm()
-                    let results = await realm.getRecordEntitiesEndAt(from: startAt, to: endAt)
-                    await send(.onRecordsChanged(results))
+                    let results = await AppRealm.shared.getRecordsEndAt(from: startAt, to: endAt)
+                    await send(.onRecordsChanged(results), animation: .default)
                 }
 
             case .onRecordsChanged(let results):

@@ -10,8 +10,8 @@ import HoursShare
 import SwiftUI
 
 struct ArchivedEventsItemView: View {
-    let event: EventObject
-    let unarchiveEvent: (EventObject) -> Void
+    let event: EventEntity
+    let unarchiveEvent: (EventEntity) -> Void
 
     var body: some View {
         HStack {

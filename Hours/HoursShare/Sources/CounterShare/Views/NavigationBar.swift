@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 public struct NavigationBar<Title: View, Trailing: View>: View {
     let title: Title
@@ -27,6 +28,7 @@ public struct NavigationBar<Title: View, Trailing: View>: View {
             trailing
         }
         .padding(.horizontal)
+        .padding(.leading, .extraSmall)
         .height(48)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-public protocol Entity: Identifiable, Equatable, Codable {
+public protocol Entity: Identifiable, Equatable, Codable, Hashable {
     associatedtype Object = RealmSwift.Object
     var _id: ObjectId { get }
 

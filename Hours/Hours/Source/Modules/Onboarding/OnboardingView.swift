@@ -5,6 +5,7 @@
 //  Created by 张敏超 on 2024/5/13.
 //
 
+import ComposableArchitecture
 import ClockShare
 import Foundation
 import HealthKitUI
@@ -158,8 +159,12 @@ struct OnboardingView: View {
         guard let window = UIApplication.shared.firstKeyWindow else {
             return
         }
-
-        let main = MainViewController(isPaywallPresented: isPaywallPresented)
+        let store = StoreOf<MainFeature>(
+            initialState: .init(),
+            reducer: { MainFeature() }
+        )
+        let main = MainViewController(store: store)
+//        let main = MainViewController(isPaywallPresented: isPaywallPresented)
         let root = UINavigationController(rootViewController: main)
         window.rootViewController = root
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})

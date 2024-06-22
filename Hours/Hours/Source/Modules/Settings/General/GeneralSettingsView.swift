@@ -36,24 +36,26 @@ struct GeneralSettingsView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        scrollView
-            .navigationTitle(R.string.localizable.settings())
-            .background(ui.background)
+        VStack {
+            NavigationBar(R.string.localizable.settings())
+            scrollView
+        }
+        .background(ui.background)
 
-            // MARK: Other
+        // MARK: Other
 
-            .sheet(isPresented: $isOnboardingPresented) {
-                let indices = app.isHealthAvailable ? OnboardingIndices.allCases : [.welcome, .appScreenTime, .calendar, .health]
-                OnboardingView(onboardingIndices: indices) {
-                    isOnboardingPresented.toggle()
-                }
+        .sheet(isPresented: $isOnboardingPresented) {
+            let indices = app.isHealthAvailable ? OnboardingIndices.allCases : [.welcome, .appScreenTime, .calendar, .health]
+            OnboardingView(onboardingIndices: indices) {
+                isOnboardingPresented.toggle()
             }
-            .sheet(isPresented: $isAboutPresented) {
-                AboutView(isPresented: $isAboutPresented)
-            }
-            .sheet(isPresented: $isFeedbackPresented) {
-                FeedbackView()
-            }
+        }
+        .sheet(isPresented: $isAboutPresented) {
+            AboutView(isPresented: $isAboutPresented)
+        }
+        .sheet(isPresented: $isFeedbackPresented) {
+            FeedbackView()
+        }
     }
 
     var scrollView: some View {

@@ -176,8 +176,6 @@ struct EventsProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<QuickTimelineEntry>) -> ()) {
         Task {
-            try? await AppRealm.shared.setup()
-
             var timelineEntry = QuickTimelineEntry(context: context)
 
             if let entity = Storage.default.currentTimingEntity {

@@ -73,6 +73,7 @@ struct StatisticsDayHeatMapView: View {
                 }
                 .frame(height: rowHeight)
             }
+            .animation(.default, value: heatMaps)
         }
     }
 }

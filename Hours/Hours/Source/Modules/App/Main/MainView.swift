@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import ComposableArchitecture
 import HoursShare
 import SwiftUI
 import SwiftUIIntrospect
@@ -17,73 +18,63 @@ enum MainTabTag: Int, Identifiable {
 }
 
 struct MainView: View {
-    @StateObject var ui: UIManager = .shared
-    @StateObject var app: AppManager = .shared
+    @Perception.Bindable var store: StoreOf<MainFeature>
 
-    #if DEBUG
-    @State private var selectionValue: MainTabTag = .statistics
-    #else
-    @State private var selectionValue: MainTabTag = .events
-    #endif
-
-    // MARK: Paywall
-
-    @State var isPaywallPresented: Bool
-
-    init(isPaywallPresented: Bool = false) {
-        self._isPaywallPresented = .init(initialValue: isPaywallPresented)
-    }
+    let ui: UIManager = .shared
+    let app: AppManager = .shared
 
     var body: some View {
-        TabView(selection: $selectionValue) {
+        WithPerceptionTracking {
             NavigationStack {
-                EventsHomeView()
-            }
-            .tag(MainTabTag.events)
-            .tabItem {
-                Image(image: R.image.events()!)
-            }
+                TabView(selection: $store.selection) {
+                    EventsHomeView(
+                        store: store.scope(state: \.eventsHome, action: \.eventsHome)
+                    )
+                    .tag(MainTabTag.events)
+                    .tabItem {
+                        Image(image: R.image.events()!)
+                    }
 
-            RecordsView()
-                .tag(MainTabTag.records)
-                .tabItem {
-                    Image(image: R.image.records()!)
+                    RecordsView(
+                        store: store.scope(state: \.recordsHome, action: \.recordsHome)
+                    )
+                    .tag(MainTabTag.records)
+                    .tabItem {
+                        Image(image: R.image.records()!)
+                    }
+
+                    StatisticsView(
+                        store: store.scope(state: \.statistics, action: \.statistics)
+                    )
+                    .tag(MainTabTag.statistics)
+                    .tabItem {
+                        Image(image: R.image.statistics()!)
+                    }
+
+                    GeneralSettingsView(isPaywallPresented: $store.isPaywallPresented)
+                        .tag(MainTabTag.settings)
+                        .tabItem {
+                            Image(image: R.image.settings()!)
+                        }
                 }
-
-            NavigationStack {
-                StatisticsView(
-                    store: StoreManager.default.store
-                )
-            }
-            .tag(MainTabTag.statistics)
-            .tabItem {
-                Image(image: R.image.statistics()!)
+                .accentColor(ui.primary)
+                .tint(ui.primary)
+                .background(ui.background)
+                .foregroundStyle(ui.label)
             }
 
-            NavigationStack {
-                GeneralSettingsView(isPaywallPresented: $isPaywallPresented)
-            }
-            .tag(MainTabTag.settings)
-            .tabItem {
-                Image(image: R.image.settings()!)
+            // MARK: Paywall
+
+            .fullScreenCover(isPresented: $store.isPaywallPresented) {
+                PaywallView()
             }
         }
-        .accentColor(ui.primary)
-        .tint(ui.primary)
-        .background(ui.background)
-        .foregroundStyle(ui.label)
         .environmentObject(ui)
         .environmentObject(app)
-
-        // MARK: Paywall
-
-        .fullScreenCover(isPresented: $isPaywallPresented) {
-            PaywallView()
-        }
     }
 
     var navigationTitle: String {
-        switch selectionValue {
+        switch store.selection {
         case .events:
             R.string.localizable.events()
         case .records:
@@ -97,5 +88,9 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(
+        store: .init(initialState: .init()) {
+            MainFeature()
+        }
+    )
 }

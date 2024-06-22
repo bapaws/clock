@@ -49,58 +49,55 @@ struct StatisticsDayView: View {
     }
 
     @ViewBuilder var scrollView: some View {
-        if let records = store.records {
+//        if let records = store.records {
             ScrollView {
-                contentView(for: records)
+                LazyVStack {
+                    HStack(spacing: 16) {
+                        let iconForegroundColor = store.compositions.first?.event.primary ?? .white
+                        let fillColor = store.compositions.first?.event.primaryContainer ?? ui.primary
+                        StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
+                            Text("\(store.totalCount)")
+                                .font(.title, weight: .bold)
+                                .foregroundStyle(Color.label)
+                        }
+
+                        StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
+                            StatisticsTimeView(time: store.totalMilliseconds.time)
+                        }
+                    }
+
+                    StatisticsSection(title: R.string.localizable.overall()) {
+                        StatisticsCompositionView(
+                            compositions: store.compositions,
+                            totalMilliseconds: store.totalMilliseconds,
+                            isOverallDayExpanded: $store.isOverallDayExpanded.animation()
+                        )
+                        .proMask(isPreview: store.isToday || store.isYesterday)
+                    }
+
+                    StatisticsSection(title: R.string.localizable.heatMap()) {
+                        StatisticsDayHeatMapView(heatMaps: store.heatMaps)
+                            .proMask(isPreview: store.isToday || store.isYesterday)
+                    }
+
+                    StatisticsSection(title: R.string.localizable.timeDistribution()) {
+                        StatisticsDayTimeDistributionView(timeDistributions: store.timeDistributions)
+                            .proMask(isPreview: store.isToday || store.isYesterday)
+                    }
+                }
+                .padding()
             }
-        } else {
-            VStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .tint(ui.label)
-                Spacer()
-            }
-        }
+//        } else {
+//            VStack {
+//                Spacer()
+//                ProgressView()
+//                    .progressViewStyle(.circular)
+//                    .tint(ui.label)
+//                Spacer()
+//            }
+//        }
     }
 
-    func contentView(for records: [RecordEntity]) -> some View {
-        LazyVStack {
-            HStack(spacing: 16) {
-                let iconForegroundColor = store.compositions.first?.event.primary ?? .white
-                let fillColor = store.compositions.first?.event.primaryContainer ?? ui.primary
-                StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
-                    Text("\(store.totalCount)")
-                        .font(.title, weight: .bold)
-                        .foregroundStyle(Color.label)
-                }
-
-                StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
-                    StatisticsTimeView(time: store.totalMilliseconds.time)
-                }
-            }
-
-            StatisticsSection(title: R.string.localizable.overall()) {
-                StatisticsCompositionView(
-                    compositions: store.compositions,
-                    totalMilliseconds: store.totalMilliseconds,
-                    isOverallDayExpanded: $store.isOverallDayExpanded.animation()
-                )
-                .proMask(isPreview: store.isToday || store.isYesterday)
-            }
-
-            StatisticsSection(title: R.string.localizable.heatMap()) {
-                StatisticsDayHeatMapView(heatMaps: store.heatMaps)
-                    .proMask(isPreview: store.isToday || store.isYesterday)
-            }
-
-            StatisticsSection(title: R.string.localizable.timeDistribution()) {
-                StatisticsDayTimeDistributionView(timeDistributions: store.timeDistributions)
-                    .proMask(isPreview: store.isToday || store.isYesterday)
-            }
-        }
-        .padding()
-    }
 }
 
 #Preview {

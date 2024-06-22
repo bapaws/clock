@@ -12,11 +12,12 @@
 "Save" = "Save";
 "Warning" = "⚠️Warning";
 "Congratulations" = "🎉Congratulations🎉";
-"PleaseSelect" = "Select...";
-"PleaseEnter" = "Enter...";
+"PleaseSelect" = "Please select...";
+"PleaseEnter" = "Please enter...";
 "ShowAll" = "Show All";
 "Edit" = "Edit";
 "Continue" = "Continue";
+"Back" = "1";
 
 // MARK: Onboarding
 
@@ -54,6 +55,7 @@
 
 "Category" = "Category";
 "SelectCategory" = "Select Category";
+"SelectEmoji" = "Select Emoji";
 
 // MARK: New Category
 

@@ -52,6 +52,7 @@ struct StatisticsYearHeatMapView: View {
                         }
                         .frame(width: rowHeight, height: rowHeight)
                     }
+                    .animation(.default, value: contributions)
                 }
             }
             .scrollIndicators(.never)

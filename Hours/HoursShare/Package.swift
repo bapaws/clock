@@ -27,6 +27,10 @@ let package = Package(
         .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift.git", from: "20.0.0"),
         .package(url: "https://github.com/realm/realm-swift.git", from: "10.47.0"),
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.0.0"),
+        .package(
+            url: "https://github.com/pointfreeco/swift-composable-architecture",
+            from: "1.0.0"
+        ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -42,6 +46,10 @@ let package = Package(
                 .product(name: "RealmSwift", package: "realm-swift"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "RswiftLibrary", package: "R.swift"),
+                .product(
+                    name: "ComposableArchitecture",
+                    package: "swift-composable-architecture"
+                ),
             ],
             plugins: [
                 .plugin(name: "RswiftGeneratePublicResources", package: "R.swift"),

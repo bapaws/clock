@@ -42,6 +42,7 @@ struct StatisticsMonthHeatMapView: View {
                 }
                 .frame(width: rowHeight, height: rowHeight)
             }
+            .animation(.default, value: contributions)
         }
         .font(.footnote)
         .foregroundStyle(ui.secondaryLabel)

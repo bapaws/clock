@@ -13,7 +13,8 @@ struct NewRecordTimeView: View {
     let title: String
     @Binding var dateTime: Date
     var range: PartialRangeFrom<Date>?
-    @Binding var isPresented: Bool
+
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack {
@@ -47,7 +48,7 @@ struct NewRecordTimeView: View {
 
             HStack(spacing: 16) {
                 Button(action: {
-                    isPresented = false
+                    dismiss()
                 }, label: {
                     Text(R.string.localizable.cancel())
                         .padding(.vertical, .small)
@@ -58,7 +59,7 @@ struct NewRecordTimeView: View {
                 .cornerRadius(16)
 
                 Button(action: {
-                    isPresented = false
+                    dismiss()
                 }, label: {
                     Text(R.string.localizable.save())
                         .padding(.vertical, .small)
@@ -81,5 +82,5 @@ struct NewRecordTimeView: View {
 }
 
 #Preview {
-    NewRecordTimeView(title: "Start Time", dateTime: .constant(.now), isPresented: .constant(false))
+    NewRecordTimeView(title: "Start Time", dateTime: .constant(.now))
 }

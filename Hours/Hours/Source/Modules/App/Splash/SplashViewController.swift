@@ -6,11 +6,17 @@
 //
 
 import ClockShare
+import ComposableArchitecture
 import HoursShare
 import SwiftUI
 import UIKit
 
 class SplashViewController: UIHostingController<SplashView> {
+    let store = StoreOf<MainFeature>(
+        initialState: .init(),
+        reducer: { MainFeature() }
+    )
+
     var ui: UIManager { UIManager.shared }
 
     init() {
@@ -31,28 +37,37 @@ class SplashViewController: UIHostingController<SplashView> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+        store.send(.didLoad)
+
+        observe { [weak self] in
+            guard let self, store.isLoadCompleted else { return }
+
             if AppManager.shared.onboardingIndices.isEmpty {
-                self?.replaceRootViewController()
+                self.replaceRootViewController()
             } else {
-                self?.replaceOnboardingView()
+                self.replaceOnboardingView()
             }
         }
     }
 
     func replaceOnboardingView() {
-        guard let window = UIApplication.shared.firstKeyWindow else {
-            return
-        }
-        window.rootViewController = UIHostingController(rootView: OnboardingView())
-        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})
+        #if DEBUG
+        let view = OnboardingView(onboardingIndices: OnboardingIndices.allCases, onFinished: replaceRootViewController)
+        #else
+        let view = OnboardingView(onFinished: replaceRootViewController)
+        #endif
+        let controller = UIHostingController(rootView: view)
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .custom
+        present(controller, animated: true)
     }
 
     func replaceRootViewController() {
         guard let window = UIApplication.shared.firstKeyWindow else {
             return
         }
-        let main = MainViewController()
+
+        let main = MainViewController(store: store)
         let root = UINavigationController(rootViewController: main)
         window.rootViewController = root
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})

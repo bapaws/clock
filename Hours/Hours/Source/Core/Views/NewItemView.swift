@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct NewItemView<Content: View>: View {
     let title: String

@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import ComposableArchitecture
 import DeviceActivity
 import FamilyControls
 import HoursShare
@@ -28,15 +29,7 @@ private enum EventDetailViewSelectionType: Int, Identifiable, CaseIterable {
 }
 
 struct EventDetailView: View {
-    var event: EventEntity
-
-    @State var selectedRecord: RecordEntity?
-
-    @State var isEditPresented: Bool = false
-
-    // MARK: Record
-
-    @State var newRecordSelectEvent: EventEntity?
+    @Perception.Bindable var store: StoreOf<EventDetailFeature>
 
     // MARK: Timer
 
@@ -52,11 +45,11 @@ struct EventDetailView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        Group {
+        WithPerceptionTracking {
             VStack(spacing: 0) {
                 scrollView
 
-                if event.archivedAt == nil {
+                if store.event.archivedAt == nil {
                     footer
                         .padding(.horizontal)
                         .padding(.vertical, .small)
@@ -65,54 +58,65 @@ struct EventDetailView: View {
                     ui.background.height(safeAreaInsets.bottom)
                 }
             }
-        }
-        .ignoresSafeArea(.container, edges: .bottom)
-        .navigationTitle(event.name)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    Button(R.string.localizable.edit(), systemImage: "pencil", role: nil) {
-                        isEditPresented = true
-                    }
-                    Button(event.archivedAt == nil ? R.string.localizable.archive() : R.string.localizable.unarchive(), systemImage: event.archivedAt == nil ? "archivebox" : "archivebox.fill", role: nil, action: archiveEvent)
+            .ignoresSafeArea(.container, edges: .bottom)
+            .navigationTitle(store.event.title)
+            .toolbarRole(.editor)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button(R.string.localizable.edit(), systemImage: "pencil", role: nil) {
+                            store.send(.newEventTapped)
+                        }
+
+                        Button(
+                            store.event.archivedAt == nil ? R.string.localizable.archive() : R.string.localizable.unarchive(),
+                            systemImage: store.event.archivedAt == nil ? "archivebox" : "archivebox.fill",
+                            role: nil
+                        ) {
+                            store.send(.archiveEvent)
+                        }
                         .controlSize(.regular)
-                    Divider()
-                    Button(R.string.localizable.delete(), systemImage: "trash", role: .destructive) {
-                        isDeletePresented = true
+
+                        Divider()
+
+                        Button(R.string.localizable.delete(), systemImage: "trash", role: .destructive) {
+                            isDeletePresented = true
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .padding(.leading)
+                            .padding(.vertical)
+                            .foregroundStyle(ui.label)
                     }
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .padding(.leading)
-                        .padding(.vertical)
-                        .foregroundStyle(ui.label)
                 }
             }
-        }
-        .background(ui.background)
+            .background(ui.background)
 
-        // MARK: New Record
+            // MARK: New Record
 
-        .sheet(item: $selectedRecord) {
-            NewRecordView(record: $0)
-                .sheetStyle()
-        }
-        .sheet(item: $newRecordSelectEvent) { event in
-            NewRecordView(event: event, startAt: newRecordStartAt, endAt: newRecordEndAt)
-                .sheetStyle()
-        }
+            .sheet(item: $store.scope(state: \.newRecord, action: \.newRecord)) {
+                NewRecordView(store: $0)
+                    .sheetStyle()
+            }
 
-        // MARK: Event
+            // MARK: New Event
 
-        .sheet(isPresented: $isEditPresented) {
-            NewEventView(event: event)
-                .sheetStyle()
+            .sheet(item: $store.scope(state: \.newEvent, action: \.newEvent)) {
+                NewEventView(store: $0)
+                    .sheetStyle()
+            }
+
+            // MARK: Delete Event
+
+            .alert(R.string.localizable.warning(), isPresented: $isDeletePresented, actions: {
+                Button(R.string.localizable.cancel(), role: .cancel) {}
+                Button(R.string.localizable.delete(), role: .destructive) {
+                    store.send(.deleteEvent)
+                }
+            }, message: {
+                Text(R.string.localizable.deleteEventWarning(store.event.name, store.event.name))
+            })
         }
-        .alert(R.string.localizable.warning(), isPresented: $isDeletePresented, actions: {
-            Button(R.string.localizable.cancel(), role: .cancel) {}
-            Button(R.string.localizable.delete(), role: .destructive, action: deleteEvent)
-        }, message: {
-            Text(R.string.localizable.deleteEventWarning(event.name, event.name))
-        })
     }
 
     var scrollView: some View {
@@ -121,8 +125,10 @@ struct EventDetailView: View {
                 number
 
                 // Records
-                EventRecordsView(event: event, editRecord: $selectedRecord)
-                    .emptyStyle(isEmpty: event.items.isEmpty)
+                EventRecordsView(records: store.records) {
+                    store.send(.newRecordTapped($0))
+                }
+                .emptyStyle(isEmpty: store.records.isEmpty)
             }
             .padding()
         }
@@ -130,9 +136,9 @@ struct EventDetailView: View {
 
     @ViewBuilder var footer: some View {
         HStack(spacing: 16) {
-            Button(action: {
-                newRecordSelectEvent = event
-            }) {
+            Button {
+                store.send(.newRecordTapped(nil))
+            } label: {
                 HStack {
                     Image(systemName: "plus")
                     Text(R.string.localizable.newRecord())
@@ -143,12 +149,12 @@ struct EventDetailView: View {
             .buttonStyle(BorderedButtonStyle())
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 54, maxHeight: 54)
 
-            Button(action: { timerSelectEvent = event }) {
+            Button(action: { timerSelectEvent = store.event }) {
                 Image(systemName: "play.fill")
                     .font(.system(.callout, design: .rounded))
-                    .foregroundStyle(event.primary)
+                    .foregroundStyle(store.event.primary)
                     .frame(width: 54, height: 54)
-                    .background(event.primaryContainer)
+                    .background(store.event.primaryContainer)
                     .cornerRadius(16)
             }
             .frame(width: 54, height: 54)
@@ -158,45 +164,21 @@ struct EventDetailView: View {
     @ViewBuilder var number: some View {
         HStack(spacing: 16) {
             StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), iconBackgound: ui.primary) {
-                Text("\(event.items.count)")
+                Text("\(store.recordCount)")
                     .font(.title, weight: .bold)
                     .foregroundStyle(Color.label)
             }
 
             StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), iconBackgound: ui.primary) {
-                StatisticsTimeView(time: event.time)
+                StatisticsTimeView(time: store.event.time)
             }
-        }
-    }
-
-    // MARK: New Record
-
-    var newRecordStartAt: Date {
-        let date = DBManager.default.getRecordEndAt(for: today)
-        return date ?? today.dateBySet(hour: 9, min: 0, secs: 0)!
-    }
-
-    var newRecordEndAt: Date {
-        return newRecordStartAt.addingTimeInterval(3600)
-    }
-
-    private func deleteEvent() {
-        dismiss()
-        Task {
-            await AppRealm.shared.deleteEvent(event)
-        }
-    }
-
-    private func archiveEvent() {
-        Task {
-            await AppRealm.shared.archiveEvent(event)
         }
     }
 }
 
 #Preview {
     EventDetailView(
-        event: EventEntity(name: "iPhone"),
+        store: StoreOf<EventDetailFeature>(initialState: .init(event: .random()), reducer: { EventDetailFeature() }),
         timerSelectEvent: .constant(EventEntity.random())
     )
 }
