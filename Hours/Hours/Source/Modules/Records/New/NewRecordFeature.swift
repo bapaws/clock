@@ -21,6 +21,7 @@ struct NewRecordFeature {
 
         @Presents var selectEvent: SelectEventFeature.State?
 
+        var isLoading = false
         var createAttempts = 0
 
         init(event: EventEntity? = nil, startAt: Date, endAt: Date) {
@@ -49,7 +50,7 @@ struct NewRecordFeature {
 
         case cancel
         case save
-        case saveCompletion(RecordEntity)
+        case saveCompleted(RecordEntity)
     }
 
     @Dependency(\.isPresented) var isPresented
@@ -86,6 +87,7 @@ struct NewRecordFeature {
                     state.createAttempts += 1
                     return .none
                 }
+                state.isLoading = true
                 return .run { [state] send in
                     var newRecord = RecordEntity(creationMode: state.record?.creationMode ?? .enter, startAt: state.startAt, endAt: state.endAt)
                     newRecord.event = event
@@ -97,11 +99,10 @@ struct NewRecordFeature {
                     }
                     await AppRealm.shared.writeRecord(newRecord, addTo: event)
 
-                    await send(.saveCompletion(newRecord))
+                    await send(.saveCompleted(newRecord))
                 }
 
-            case .saveCompletion(let entity):
-                state.record = entity
+            case .saveCompleted(let entity):
                 return .run { _ in
                     if isPresented {
                         await dismiss()

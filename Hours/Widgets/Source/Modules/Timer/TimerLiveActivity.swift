@@ -37,6 +37,7 @@ struct TimerLiveActivity: Widget {
             } compactTrailing: {
                 let event = context.attributes.event
                 let time = context.state.time
+
                 Text(timerInterval: time.date ... time.date.addingTimeInterval(6 * 60 * 60), countsDown: false)
                     .font(.system(size: 17, weight: .bold, design: .rounded))
                     .frame(minWidth: 36, maxWidth: 54, alignment: .leading)

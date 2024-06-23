@@ -19,6 +19,7 @@ struct NewCategoryFeature {
         var emoji: String = ""
         var title: String = ""
 
+        var isLoading = false
         var createAttempts = 0
     }
 
@@ -52,6 +53,7 @@ struct NewCategoryFeature {
                     return .none.animation()
                 }
 
+                state.isLoading = true
                 return .run { [state] send in
                     if var category = state.category {
                         category.emoji = state.emoji

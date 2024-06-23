@@ -1,5 +1,5 @@
 //
-//  RecordsFeature.swift
+//  RecordsHomeFeature.swift
 //  Hours
 //
 //  Created by 张敏超 on 2024/6/16.
@@ -12,7 +12,7 @@ import RealmSwift
 import SwiftDate
 
 @Reducer
-struct RecordsFeature {
+struct RecordsHomeFeature {
     @ObservableState
     struct State: Equatable {
         @Shared(.recordsHomeCurrentState) var home = RecordsHomeCurrentState()
@@ -82,19 +82,11 @@ struct RecordsFeature {
                 state.newRecord = newRecordState
                 return .none
 
-            case .newRecord(let presentation):
-                if case .dismiss = presentation, let newRecord = state.newRecord, newRecord.record != nil {
-                    return .run { send in
-                        // 如果同一天，则更新当天的数据，如果不是直接更新两天的数据
-                        if newRecord.startAt.compare(.isSameDay(newRecord.endAt)) {
-                            await send(.timeline(.onRecordLoaded(newRecord.startAt)), animation: .default)
-                        } else {
-                            await send(.timeline(.onRecordLoaded(newRecord.startAt)), animation: .default)
-                            await send(.timeline(.onRecordLoaded(newRecord.endAt)), animation: .default)
-                        }
-                    }
+            case .newRecord(.presented(.saveCompleted(let entity))):
+                return .run { send in
+                    // 如果同一天，则更新当天的数据，如果不是直接更新两天的数据
+                    await send(.timeline(.onRecordLoaded(entity.endAt)))
                 }
-                return .none
 
             default:
                 return .none

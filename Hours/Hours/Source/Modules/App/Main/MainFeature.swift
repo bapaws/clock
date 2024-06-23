@@ -16,7 +16,7 @@ struct MainFeature {
     struct State: Equatable {
         var eventsHome: EventsHomeFeature.State = .init()
         var statistics: Statistics.State = .init()
-        var recordsHome: RecordsFeature.State = .init()
+        var recordsHome: RecordsHomeFeature.State = .init()
 
         var isLoadCompleted: Bool = false
 
@@ -39,7 +39,7 @@ struct MainFeature {
         case statistics(Statistics.Action)
         case didStatisticsHomeLoad([CategoryEntity])
 
-        case recordsHome(RecordsFeature.Action)
+        case recordsHome(RecordsHomeFeature.Action)
         case didRecordsHomeLoad(Date, [RecordEntity])
     }
 
@@ -55,7 +55,7 @@ struct MainFeature {
             Statistics()
         }
         Scope(state: \.recordsHome, action: \.recordsHome) {
-            RecordsFeature()
+            RecordsHomeFeature()
         }
 
         Reduce { state, action in

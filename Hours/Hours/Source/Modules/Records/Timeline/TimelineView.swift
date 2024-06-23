@@ -18,25 +18,27 @@ struct TimelineView: View {
     let onRecordTapped: (RecordEntity?) -> Void
 
     var body: some View {
-        ScrollView {
-            if let records, !records.isEmpty {
-                LazyVStack(spacing: 0) {
-                    ForEach(0 ..< records.count, id: \.self) { index in
-                        let record = records[index]
-                        TimelineItemView(index: index, record: record, isLast: index == records.count - 1)
-                            .onTapGesture {
-                                onRecordTapped(record)
-                            }
+        ScrollViewReader { proxy in
+            ScrollView {
+                if let records, !records.isEmpty {
+                    LazyVStack(spacing: 0) {
+                        ForEach(0 ..< records.count, id: \.self) { index in
+                            let record = records[index]
+                            TimelineItemView(index: index, record: record, isLast: index == records.count - 1)
+                                .onTapGesture {
+                                    onRecordTapped(record)
+                                }
+                        }
                     }
+                    .padding()
+                } else {
+                    Image("NotFound")
+                        .padding(.large)
+                        .padding(.top, .large)
+                        .onTapGesture {
+                            onRecordTapped(nil)
+                        }
                 }
-                .padding()
-            } else {
-                Image("NotFound")
-                    .padding(.large)
-                    .padding(.top, .large)
-                    .onTapGesture {
-                        onRecordTapped(nil)
-                    }
             }
         }
     }

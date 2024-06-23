@@ -97,7 +97,7 @@ struct NewEventView: View {
                     .foregroundStyle(Color.white)
                     .buttonStyle(.borderedProminent)
                     .cornerRadius(16)
-                    .disabled(store.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(store.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || store.isLoading)
                 }
                 .padding(.top)
 

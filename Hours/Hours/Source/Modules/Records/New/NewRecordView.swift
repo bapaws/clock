@@ -94,7 +94,7 @@ struct NewRecordView: View {
                     .foregroundStyle(Color.white)
                     .buttonStyle(.borderedProminent)
                     .cornerRadius(16)
-                    .disabled(store.event == nil)
+                    .disabled(store.event == nil || store.isLoading)
                 }
                 .padding(.top)
 

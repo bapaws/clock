@@ -194,13 +194,9 @@ struct EventsHomeFeature {
                         return .none
                     }
                 }
-                for (index, category) in state.otherCategories.enumerated() {
-                    if category.id == entity.category?.id {
-                        state.otherCategories[index].events.append(entity)
-                        return .none
-                    }
+                return .run { send in
+                    await send(.onAppear)
                 }
-                return .none
 
             case .saveCategoryCompleted(let entity):
                 if let index = state.categories.firstIndex(where: { $0.id == entity.id }) {

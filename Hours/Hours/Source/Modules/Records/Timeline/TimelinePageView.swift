@@ -32,6 +32,7 @@ struct TimelinePageView: View {
             .onAppear {
                 store.send(.onRecordLoaded(store.home.date))
             }
+            .onChange(of: store.home.date) { _ in }
         }
     }
 }

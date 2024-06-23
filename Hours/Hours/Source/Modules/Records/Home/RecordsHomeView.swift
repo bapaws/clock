@@ -1,5 +1,5 @@
 //
-//  RecordsView.swift
+//  RecordsHomeView.swift
 //  Hours
 //
 //  Created by 张敏超 on 2024/3/10.
@@ -15,8 +15,8 @@ import SwiftUI
 import SwiftUIPager
 import SwiftUIX
 
-struct RecordsView: View {
-    @Perception.Bindable var store: StoreOf<RecordsFeature>
+struct RecordsHomeView: View {
+    @Perception.Bindable var store: StoreOf<RecordsHomeFeature>
 
     @State var currentDate: Date = AppManager.shared.today
 
@@ -100,7 +100,7 @@ struct RecordsView: View {
 }
 
 #Preview {
-    RecordsView(
-        store: .init(initialState: .init(), reducer: { RecordsFeature() })
+    RecordsHomeView(
+        store: .init(initialState: .init(), reducer: { RecordsHomeFeature() })
     )
 }

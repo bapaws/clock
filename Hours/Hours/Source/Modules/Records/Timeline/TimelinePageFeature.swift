@@ -73,6 +73,8 @@ struct TimelinePageFeature {
                 state.items[id: date] = TimelinePageItem(date: date, records: entities)
                 return .none
 
+
+
             default:
                 return .none
             }

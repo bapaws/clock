@@ -58,6 +58,7 @@ struct EventDetailFeature {
         case newRecordTapped(RecordEntity?)
         case newRecord(PresentationAction<NewRecordFeature.Action>)
         case updateNewRecordState(NewRecordFeature.State)
+        case saveRecordCompleted(RecordEntity)
     }
 
     @Dependency(\.application) private var application
@@ -120,6 +121,11 @@ struct EventDetailFeature {
             case .updateNewRecordState(let newRecordState):
                 state.newRecord = newRecordState
                 return .none
+
+            case .newRecord(.presented(.saveCompleted)):
+                return .run { send in
+                    await send(.onAppear)
+                }
 
             default:
                 return .none

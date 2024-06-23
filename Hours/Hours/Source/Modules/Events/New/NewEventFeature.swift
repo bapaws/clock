@@ -21,6 +21,7 @@ struct NewEventFeature {
 
         @Presents var selectCategory: SelectCategoryFeature.State?
 
+        var isLoading = false
         var createNameAttempts = 0
         var createCategoryAttempts = 0
 
@@ -68,6 +69,7 @@ struct NewEventFeature {
                     return .none
                 }
 
+                state.isLoading = true
                 return .run { [state] send in
                     if var event = state.event {
                         event.emoji = state.emoji
@@ -85,6 +87,7 @@ struct NewEventFeature {
                         // 完成保存后，设置正确的 category，保证后面 Action 中数据正确
                         event.category = category
 
+                        // 发送保存成功同志
                         await send(.saveCompleted(event))
                     }
 

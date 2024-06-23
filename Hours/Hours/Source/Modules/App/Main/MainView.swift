@@ -35,7 +35,7 @@ struct MainView: View {
                         Image(image: R.image.events()!)
                     }
 
-                    RecordsView(
+                    RecordsHomeView(
                         store: store.scope(state: \.recordsHome, action: \.recordsHome)
                     )
                     .tag(MainTabTag.records)

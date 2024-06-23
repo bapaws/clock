@@ -43,6 +43,8 @@ struct AppDidCloseAppIntent: AppIntent {
                 record.calendarEventIdentifier = identifier
 
                 await AppRealm.shared.updateRecord(record)
+
+                return .result()
             }
         }
 
