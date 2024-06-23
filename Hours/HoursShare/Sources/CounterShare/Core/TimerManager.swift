@@ -16,14 +16,12 @@ public class TimerManager: ClockShare.TimerBaseManager {
 
     // MARK: Event
 
-    public func start(of event: EventEntity) {
-        super.start()
+    public func start(of entity: TimingEntity) {
+        super.start(time: entity.time)
 
-        let entity = TimingEntity(event: event, time: time)
         Storage.default.currentTimingEntity = entity
-
         if #available(iOS 16.1, *) {
-            TimerActivity.shared.start(attributes: TimerActivityAttributes(event: event), time: time)
+            TimerActivity.shared.start(attributes: TimerActivityAttributes(event: entity), time: time)
         }
     }
 

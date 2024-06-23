@@ -17,9 +17,9 @@ struct QuickTimerView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     private let date: Date
-    private let event: EventEntity
+    private let event: TimingEntity
 
-    init(date: Date, event: EventEntity) {
+    init(date: Date, event: TimingEntity) {
         self.date = date
         self.event = event
     }
@@ -54,7 +54,7 @@ struct QuickTimerView: View {
         .background(linearGradient)
     }
 
-    @ViewBuilder func stopButton(for event: EventEntity) -> some View {
+    @ViewBuilder func stopButton(for event: TimingEntity) -> some View {
         Button(intent: QuickStopTimerAppIntent(), label: {
             Image(systemName: "stop.fill")
                 .font(.title2)
@@ -90,7 +90,7 @@ struct QuickTimerView: View {
 
 #Preview {
     if #available(iOSApplicationExtension 17.0, *) {
-        return QuickTimerView(date: .now, event: EventEntity.random())
+        return QuickTimerView(date: .now, event: TimingEntity.random())
     } else {
         return EmptyView()
     }

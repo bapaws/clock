@@ -15,14 +15,14 @@ struct TimerView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     private let time: Time
-    private let event: EventEntity
+    private let event: TimingEntity
 
     init(context: ActivityViewContext<TimerActivityAttributes>) {
         self.time = context.state.time
         self.event = context.attributes.event
     }
 
-    init(time: Time, event: EventEntity) {
+    init(time: Time, event: TimingEntity) {
         self.time = time
         self.event = event
     }
@@ -41,7 +41,7 @@ struct TimerView: View {
                 Spacer()
             }
             HStack {
-                Text(timerInterval: time.date ... time.date.addingTimeInterval(6 * 60 * 60), countsDown: false)
+                Text(timerInterval: time.initialDate ... time.date.addingTimeInterval(6 * 60 * 60), countsDown: false)
                     .contentTransition(.numericText(countsDown: false))
                     .font(.system(size: 54, weight: .bold, design: .rounded))
                     .foregroundStyle(event.darkPrimary)
@@ -54,7 +54,7 @@ struct TimerView: View {
         }
     }
 
-    @ViewBuilder func stopButton(for event: EventEntity) -> some View {
+    @ViewBuilder func stopButton(for event: TimingEntity) -> some View {
         if #available(iOSApplicationExtension 17.0, *) {
             Button(intent: StopTimerLiveActivityIntent(), label: {
                 Image(systemName: "stop.fill")
@@ -103,7 +103,7 @@ struct TimerView: View {
     if #available(iOSApplicationExtension 16.1, *) {
         return TimerView(
             time: Time(),
-            event: EventEntity(emoji: "🛌", name: R.string.localizable.sleep(), hex: HexEntity(hex: "C9D8CD"), isSystem: true)
+            event: TimingEntity.random()
         )
     } else {
         return EmptyView()

@@ -26,11 +26,12 @@ struct QuickStartTimerAppIntent: AppIntent {
 
     func perform() async throws -> some IntentResult {
         guard let eventEntity = await AppRealm.shared.getEvent(by: eventID) else { return .result() }
-//        Storage.default.currentTimingEntity = TimingEntity(event: eventEntity, time: .zero)
+        let entity = TimingEntity(event: eventEntity, time: .zero)
+        Storage.default.currentTimingEntity = entity
 
-//        NotificationCenter.default.post(name: TimerManager.shared.timerStart, object: nil)
+        NotificationCenter.default.post(name: TimerManager.shared.timerStart, object: nil)
 
-        TimerManager.shared.start(of: eventEntity)
+        TimerManager.shared.start(of: entity)
         return .result()
     }
 }

@@ -291,46 +291,41 @@ public extension AppManager {
     }
 
     private func saveSleep(_ samples: [HKCategorySample], completionHandler: (() -> Void)? = nil) {
-        let realm = DBManager.default.realm
-        let category: CategoryObject = healthCategory
-
-        let name = R.string.localizable.sleep()
-        let emoji = "🛌"
-        var event: EventObject
-        if let eventObject = realm.objects(EventObject.self).first(where: { $0.name == name && $0.emoji == emoji }) {
-            event = eventObject
-        } else {
-            event = EventObject(emoji: emoji, name: name, hex: DBManager.default.nextHex, isSystem: true)
-            try? realm.write {
-                category.events.append(event)
-            }
-        }
-
-        var records = [RecordObject]()
-
-        for item in samples {
-            guard let type = HKCategoryValueSleepAnalysis(rawValue: item.value), type == .inBed else { continue }
-
-            guard !realm.objects(RecordObject.self).contains(where: { $0.startAt <= item.startDate && $0.endAt >= item.endDate }) else { continue }
-
-            // 当睡眠数据非连续时，进行合并，让数据完整
-            if let last = records.last, last.endAt.distance(to: item.startDate) < 90 * 60 {
-                last.endAt = item.endDate
+        Task {
+            let category = await AppRealm.shared.healthCategory()
+            let name = R.string.localizable.sleep()
+            let emoji = "🛌"
+            var event: EventEntity
+            if let entity = await AppRealm.shared.getEvent(by: name, emoji: emoji) {
+                event = entity
             } else {
-                let record = RecordObject(creationMode: .health, startAt: item.startDate, endAt: item.endDate)
-                record.healthSampleUUIDString = item.uuid.uuidString
-                records.append(record)
+                event = EventEntity(emoji: emoji, name: name, hex: await AppRealm.shared.nextHex, isSystem: true)
+                await AppRealm.shared.writeEvent(event, addTo: category)
             }
-        }
 
-        realm.writeAsync {
+            var records = [RecordEntity]()
+            for item in samples {
+                guard let type = HKCategoryValueSleepAnalysis(rawValue: item.value), type == .inBed else { continue }
+
+                let isContains = await AppRealm.shared.containsRecord { $0.startAt <= item.startDate && $0.endAt >= item.endDate }
+                guard !isContains else { continue }
+
+                // 当睡眠数据非连续时，进行合并，让数据完整
+                if let last = records.last, last.endAt.distance(to: item.startDate) < 90 * 60 {
+                    records[records.count - 1].endAt = item.endDate
+                } else {
+                    var record = RecordEntity(creationMode: .health, startAt: item.startDate, endAt: item.endDate)
+                    record.healthSampleUUIDString = item.uuid.uuidString
+                    records.append(record)
+                }
+            }
             // 过滤掉时间非连续，并且时长小于 5 分的数据
             let filtedRecord = records.filter { $0.milliseconds > 300 * 1000 }
-            event.items.append(objectsIn: filtedRecord)
-        }
+            await AppRealm.shared.writeRecords(filtedRecord, addTo: event)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            completionHandler?()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                completionHandler?()
+            }
         }
     }
 }

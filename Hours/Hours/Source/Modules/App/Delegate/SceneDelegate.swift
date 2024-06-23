@@ -46,7 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         AppManager.shared.startTimer()
 
         if let entity = Storage.default.currentTimingEntity {
-            TimerManager.shared.start(of: entity.event)
+            TimerManager.shared.start(of: entity)
         }
     }
 

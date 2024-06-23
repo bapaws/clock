@@ -66,7 +66,7 @@ struct TimerView: View {
         .padding(.vertical, .extraExtraLarge)
         .background(linearGradient)
         .onAppear {
-            manager.start(of: event)
+            manager.start(of: TimingEntity(event: event))
         }
         .onDisappear {
             manager.stop()

@@ -17,7 +17,7 @@ struct EventsLargeWidgetEntryView: View {
     var entry: EventsProvider.Entry
 
     var body: some View {
-        if let timingEvent = entry.timing?.event {
+        if let timingEvent = entry.timing {
             if entry.family == .systemMedium {
                 QuickTimerView(date: entry.date, event: timingEvent)
             } else {

@@ -19,7 +19,6 @@ public actor AppRealm {
 
     public let schemaVersion: UInt64 = 7
     public let fileName = "default"
-    public let config = Realm.Configuration(schemaVersion: 7)
 
     private var _realm: Realm?
     public var realm: Realm {
@@ -39,10 +38,11 @@ public actor AppRealm {
                     try fileManager.moveItem(at: originalFileURL, to: fileURL)
                 }
 
-                Realm.Configuration.defaultConfiguration = Realm.Configuration(
+                let config = Realm.Configuration(
                     fileURL: fileURL,
                     schemaVersion: schemaVersion
                 )
+                Realm.Configuration.defaultConfiguration = config
                 _realm = try await Realm(configuration: config, actor: self)
             } catch {
                 debugPrint(error)
@@ -213,9 +213,16 @@ public extension AppRealm {
     }
 
     private func getEvent(by id: String) async -> EventObject? {
-        let realm = await realm
-        return realm.objects(EventObject.self)
-            .first { $0._id.stringValue == id && $0.deletedAt == nil }
+        do {
+            let objectId = try ObjectId(string: id)
+            let realm = await realm
+            return realm.objects(EventObject.self)
+                .where { $0._id == objectId && $0.deletedAt == nil }
+                .first
+        } catch {
+            debugPrint(error)
+            return nil
+        }
     }
 
     func getEvent(by id: String) async -> EventEntity? {
@@ -244,6 +251,20 @@ public extension AppRealm {
             try await realm.asyncWrite {
                 let object = entity.toObject()
                 eventObject.items.append(object)
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func writeRecords(_ entities: [RecordEntity], addTo event: EventEntity) async {
+        do {
+            guard let eventObject: EventObject = await getEvent(by: event.id) else { return }
+            try await realm.asyncWrite {
+                for entity in entities {
+                    let object = entity.toObject()
+                    eventObject.items.append(object)
+                }
             }
         } catch {
             debugPrint(error)

@@ -12,7 +12,7 @@ import Foundation
 import SwiftUI
 
 open class TimerBaseManager: ObservableObject {
-    @Published public private(set) var time: Time = .zero
+    @Published public var time: Time = .zero
     @Published public private(set) var isStarted: Bool = false
     @Published public private(set) var isPaused: Bool = false
 
@@ -31,9 +31,10 @@ open class TimerBaseManager: ObservableObject {
 
     // MARK: - Timer
 
-    open func start() {
+    open func start(time: Time = .zero) {
         stop()
 
+        self.time = time
         timer = Timer(timeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             withAnimation {
                 self?.time++

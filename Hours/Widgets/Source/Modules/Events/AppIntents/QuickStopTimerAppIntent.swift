@@ -18,12 +18,14 @@ struct QuickStopTimerAppIntent: AppIntent {
     init() {}
 
     func perform() async throws -> some IntentResult {
-        guard let entity = Storage.default.currentTimingEntity else { return .result() }
+        guard let entity = Storage.default.currentTimingEntity, let event = await AppRealm.shared.getEvent(by: entity.id) else {
+            return .result()
+        }
 
         let time = entity.time
         let milliseconds = min(time.milliseconds, Int(AppManager.shared.maximumRecordedTime * 1000))
         let newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
-        try await AppRealm.shared.writeRecord(newRecord, addTo: entity.event)
+        await AppRealm.shared.writeRecord(newRecord, addTo: event)
 
         NotificationCenter.default.post(name: TimerManager.shared.timerStop, object: nil)
 

@@ -52,34 +52,35 @@ struct QuickCategoryEntryView: View {
             Divider().frame(width: 1)
 
             LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
-                let events = (entry.selection ?? entry.categories[0]).events
-                ForEach(0 ..< min(entry.maxEventCount, events.count), id: \.self) { index in
-                    let event = events[index]
-                    let content = VStack {
-                        Spacer()
-                        if let emoji = event.emoji {
-                            Text(emoji)
+                if let events = (entry.selection ?? entry.categories.first)?.events {
+                    ForEach(0 ..< min(entry.maxEventCount, events.count), id: \.self) { index in
+                        let event = events[index]
+                        let content = VStack {
+                            Spacer()
+                            if let emoji = event.emoji {
+                                Text(emoji)
+                            }
+                            Spacer()
+                            Text(event.name)
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.5)
+                                .font(.subheadline)
+                                .foregroundStyle(event.primary)
+                            Spacer()
                         }
-                        Spacer()
-                        Text(event.name)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.5)
-                            .font(.subheadline)
-                            .foregroundStyle(event.primary)
-                        Spacer()
-                    }
-                    .padding(entry.padding)
-                    .frame(width: entry.dimension, height: entry.dimension, alignment: .center)
-                    .background(event.primaryContainer)
-                    .cornerRadius(16)
+                        .padding(entry.padding)
+                        .frame(width: entry.dimension, height: entry.dimension, alignment: .center)
+                        .background(event.primaryContainer)
+                        .cornerRadius(16)
 
-                    if isClickEnabled {
-                        Button(intent: QuickStartTimerAppIntent(eventID: event.id)) {
+                        if isClickEnabled {
+                            Button(intent: QuickStartTimerAppIntent(eventID: event.id)) {
+                                content
+                            }
+                            .buttonStyle(.borderless)
+                        } else {
                             content
                         }
-                        .buttonStyle(.borderless)
-                    } else {
-                        content
                     }
                 }
             }
