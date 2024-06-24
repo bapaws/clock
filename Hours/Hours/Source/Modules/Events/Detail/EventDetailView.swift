@@ -91,6 +91,11 @@ struct EventDetailView: View {
                 }
             }
             .background(ui.background)
+            .onChange(of: timerSelectEvent) { newValue in
+                guard newValue == nil else { return }
+
+                store.send(.onAppear)
+            }
 
             // MARK: New Record
 
@@ -127,6 +132,8 @@ struct EventDetailView: View {
                 // Records
                 EventRecordsView(records: store.records) {
                     store.send(.newRecordTapped($0))
+                } onRecordDeleted: {
+                    store.send(.deleteRecord($0))
                 }
                 .emptyStyle(isEmpty: store.records.isEmpty)
             }

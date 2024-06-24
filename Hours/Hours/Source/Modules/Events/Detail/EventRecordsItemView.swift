@@ -5,11 +5,12 @@
 //  Created by 张敏超 on 2024/4/10.
 //
 
-import SwiftUI
 import HoursShare
+import SwiftUI
 
 struct EventRecordsItemView: View {
     let record: RecordEntity
+    let onRecordDeleted: (RecordEntity) -> Void
 
     var body: some View {
         HStack(alignment: .top) {
@@ -30,7 +31,7 @@ struct EventRecordsItemView: View {
 
             VStack {
                 HStack {
-                    Text(record.startAt.to(format: "HH:mm") + "~" +  record.endAt.to(format: "HH:mm"))
+                    Text(record.startAt.to(format: "HH:mm") + "~" + record.endAt.to(format: "HH:mm"))
                     Spacer()
                     Text(record.milliseconds.timeLengthText)
                         .font(.callout)
@@ -39,6 +40,11 @@ struct EventRecordsItemView: View {
             }
             .padding()
             .background(ui.secondaryBackground)
+            .contextMenu {
+                Button(R.string.localizable.delete(), systemImage: "trash", role: .destructive) {
+                    onRecordDeleted(record)
+                }
+            }
             .cornerRadius(16)
             .padding(.vertical, .small)
         }
@@ -46,5 +52,5 @@ struct EventRecordsItemView: View {
 }
 
 #Preview {
-    EventRecordsItemView(record: RecordEntity.random())
+    EventRecordsItemView(record: RecordEntity.random()) { _ in }
 }

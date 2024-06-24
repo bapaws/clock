@@ -59,6 +59,9 @@ struct EventDetailFeature {
         case newRecord(PresentationAction<NewRecordFeature.Action>)
         case updateNewRecordState(NewRecordFeature.State)
         case saveRecordCompleted(RecordEntity)
+
+        case deleteRecord(RecordEntity)
+        case deleteRecordCompleted(RecordEntity)
     }
 
     @Dependency(\.application) private var application
@@ -126,6 +129,16 @@ struct EventDetailFeature {
                 return .run { send in
                     await send(.onAppear)
                 }
+
+            case .deleteRecord(let entity):
+                return .run { send in
+                    await AppRealm.shared.deleteRecord(entity)
+                    await send(.deleteRecordCompleted(entity), animation: .default)
+                }
+
+            case .deleteRecordCompleted(let entity):
+                state.records[entity.endAt.dateAt(.startOfDay)]?.removeAll { $0.id == entity.id }
+                return .none
 
             default:
                 return .none

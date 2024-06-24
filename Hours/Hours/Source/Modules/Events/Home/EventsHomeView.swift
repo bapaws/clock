@@ -34,8 +34,6 @@ struct EventsHomeView: View {
 
     @State private var timerSelectEvent: EventEntity?
 
-//    @StateObject private var vm = EventsHomeViewModel()
-
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
@@ -52,10 +50,12 @@ struct EventsHomeView: View {
                                     Section {
                                         ForEach(category.events) { event in
                                             EventItemView(event: event, playAction: presentTimer)
+                                                // 先调用 menu 的修改器，长按时不会出现圆角的情况
+                                                .contextMenu { menuItems(for: event) }
                                                 .onTapGesture {
                                                     store.send(.onEventTapped(event))
                                                 }
-                                                .contextMenu { menuItems(for: event) }
+                                                .cornerRadius(16)
                                         }
 
                                         ui.background
@@ -158,13 +158,6 @@ struct EventsHomeView: View {
             Button(R.string.localizable.archived(), systemImage: "archivebox.fill", role: nil) {
                 // 先发送 action，再获取 store 进行 push
                 store.send(.onArchivedEventsTapped)
-
-//                guard let store = store.scope(state: \.archivedEvents, action: \.archivedEvents) else { return }
-//                let view = ArchivedEventsView(
-//                    store: store,
-//                    timerSelectEvent: $timerSelectEvent
-//                )
-//                pushView(view, title: R.string.localizable.archived())
             }
         } label: {
             Image(systemName: "ellipsis")

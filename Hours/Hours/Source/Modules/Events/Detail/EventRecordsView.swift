@@ -13,6 +13,7 @@ import SwiftUI
 struct EventRecordsView: View {
     let records: OrderedDictionary<Date, [RecordEntity]>
     let onRecordTapped: (RecordEntity) -> Void
+    let onRecordDeleted: (RecordEntity) -> Void
 
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
@@ -20,7 +21,7 @@ struct EventRecordsView: View {
                 let (key, value) = records.elements[index]
                 Section {
                     ForEach(value) { record in
-                        EventRecordsItemView(record: record)
+                        EventRecordsItemView(record: record, onRecordDeleted: onRecordDeleted)
                             .onTapGesture {
                                 onRecordTapped(record)
                             }
@@ -38,5 +39,7 @@ struct EventRecordsView: View {
 }
 
 #Preview {
-    EventRecordsView(records: [.now: RecordEntity.random(count: 10)]) { _ in }
+    EventRecordsView(records: [.now: RecordEntity.random(count: 10)]) { _ in
+    } onRecordDeleted: { _ in
+    }
 }

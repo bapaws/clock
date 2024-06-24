@@ -46,7 +46,6 @@ struct EventItemView: View {
         .padding(.trailing)
         .frame(height: cellHeight)
         .background(ui.secondaryBackground)
-        .cornerRadius(16)
     }
 }
 
