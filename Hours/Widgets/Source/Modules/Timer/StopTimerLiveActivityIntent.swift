@@ -23,7 +23,10 @@ struct StopTimerLiveActivityIntent: LiveActivityIntent {
             return .result()
         }
 
-        let time = entity.time
+        var time = entity.time
+        // 这里先调用 ++，相当于计时
+        time++
+
         let milliseconds = min(time.milliseconds, Int(AppManager.shared.maximumRecordedTime * 1000))
         let newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
         await AppRealm.shared.writeRecord(newRecord, addTo: event)
