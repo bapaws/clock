@@ -179,6 +179,10 @@ struct EventsHomeFeature {
                 for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
                     if let firstIndex = category.events.firstIndex(where: { $0.id == entity.id }) {
                         state.categories[index].events.remove(at: firstIndex)
+                        if state.categories[index].events.isEmpty {
+                            let entity = state.categories.remove(at: index)
+                            state.otherCategories.insert(entity, at: 0)
+                        }
                         return .none
                     }
                 }
