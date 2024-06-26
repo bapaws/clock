@@ -168,17 +168,18 @@ public extension AppRealm {
     func writeEvent(_ entity: EventEntity, addTo category: CategoryEntity) async {
         do {
             let realm = await realm
-            // 从老的 category 中删除
-            if let eventCategory = entity.category,
-               let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: eventCategory._id),
-               let index = categoryObject.events.firstIndex(where: { $0._id == entity._id })
-            {
-                categoryObject.events.remove(at: index)
-            }
-            let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: category._id)
             try await realm.asyncWrite {
-                let object = entity.toObject()
-                categoryObject?.events.append(object)
+                var eventObject = entity.toObject()
+                // 从老的 category 中删除
+                if let eventCategory = entity.category,
+                   let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: eventCategory._id),
+                   let index = categoryObject.events.firstIndex(where: { $0._id == entity._id })
+                {
+                    eventObject = categoryObject.events[index]
+                    categoryObject.events.remove(at: index)
+                }
+                let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: category._id)
+                categoryObject?.events.append(eventObject)
             }
         } catch {
             debugPrint(error)

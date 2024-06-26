@@ -98,6 +98,10 @@ struct NewEventFeature {
                 state.selectCategory = SelectCategoryFeature.State(selectedCategory: state.category)
                 return .none
 
+            case .selectCategory(.presented(.didSelectedCategory(let entity))):
+                state.category = entity
+                return .none
+
             default:
                 return .none
             }
