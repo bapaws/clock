@@ -99,6 +99,10 @@ struct EventDetailFeature {
                 state.newEvent = .init(event: state.event)
                 return .none
 
+            case .newEvent(.presented(.saveCompleted(let entity))):
+                state.event = entity
+                return .none
+
             case .newRecordTapped(let entity):
                 return .run { [event = state.event] send in
                     if let entity {

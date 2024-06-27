@@ -165,6 +165,9 @@ struct EventsHomeFeature {
                 state.isLoading = false
                 return .none
 
+            case .eventDetail(.presented(.newEvent(.presented(.saveCompleted(let entity))))):
+                return .run { send in await send(.saveEventCompleted(entity), animation: .default) }
+
             // MARK: New Callback
 
             case .newCategory(.presented(.saveCompleted(let entity))):

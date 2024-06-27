@@ -8,6 +8,7 @@
 import ComposableArchitecture
 import Foundation
 import HoursShare
+import RealmSwift
 
 @Reducer
 struct NewEventFeature {
@@ -40,6 +41,8 @@ struct NewEventFeature {
         case cancel
         case save
         case saveCompleted(EventEntity)
+
+        case updateCalendarRecords(EventEntity)
 
         case selectCategoryTapped
         case selectCategory(PresentationAction<SelectCategoryFeature.Action>)
@@ -76,8 +79,7 @@ struct NewEventFeature {
                         event.name = state.title
                         await AppRealm.shared.writeEvent(event, addTo: category)
 
-                        AppManager.shared.updateCalendarEvents(by: event)
-
+                        await send(.updateCalendarRecords(event))
                         await send(.saveCompleted(event))
                     } else {
                         // 保存创建任务对象
@@ -92,6 +94,14 @@ struct NewEventFeature {
                     }
 
                     await dismiss()
+                }
+
+            case .updateCalendarRecords(let entity):
+                return .run { _ in
+                    var event = entity
+                    let items = await AppRealm.shared.getRecords(where: { $0.events._id == event._id })
+                    event.items = items
+                    AppManager.shared.updateCalendarEvents(by: event)
                 }
 
             case .selectCategoryTapped:

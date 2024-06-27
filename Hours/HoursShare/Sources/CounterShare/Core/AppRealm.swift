@@ -177,6 +177,10 @@ public extension AppRealm {
                 {
                     eventObject = categoryObject.events[index]
                     categoryObject.events.remove(at: index)
+
+                    eventObject.name = entity.name
+                    eventObject.emoji = entity.emoji
+                    eventObject.hex = entity.hex?.toObject()
                 }
                 let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: category._id)
                 categoryObject?.events.append(eventObject)
