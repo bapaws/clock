@@ -38,6 +38,9 @@ public class AppManager: HoursShare.AppManager {
     private lazy var healthStore = HKHealthStore()
     public private(set) var healthAccessGranted = false
 
+    private var isSyncingSleep = false
+    private var isSyncingWorkout = false
+
     // MARK: BackgroundTask
 
     private var observer: NSObjectProtocol?
@@ -154,12 +157,12 @@ public extension AppManager {
     }
 
     func autoSyncWorkout(completionHandler: (() -> Void)? = nil) {
-        guard isAutoSyncSleep else {
+        guard isAutoSyncWorkout, isSyncingWorkout else {
             completionHandler?()
             return
         }
 
-        let from = Storage.default.lastSyncWorkoutDate?.addingTimeInterval(-3 * 24 * 3600) ?? initialDate
+        let from = Storage.default.lastSyncWorkoutDate?.addingTimeInterval(5 * 3600) ?? initialDate
         let to = Date()
 
         if from.distance(to: to) < 30 {
@@ -168,11 +171,18 @@ public extension AppManager {
         }
         Storage.default.lastSyncWorkoutDate = to
 
-        syncWorkout(from: from, to: to, completionHandler: completionHandler)
+        isSyncingWorkout = true
+        syncWorkout(from: from, to: to) { [weak self] in
+            self?.isSyncingWorkout = false
+            completionHandler?()
+        }
     }
 
     private func syncWorkout(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else {
+            completionHandler?()
+            return
+        }
 
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
@@ -255,7 +265,7 @@ public extension AppManager {
     }
 
     func autoSyncSleep(completionHandler: (() -> Void)? = nil) {
-        guard isAutoSyncSleep else {
+        guard isAutoSyncSleep, isSyncingSleep else {
             completionHandler?()
             return
         }
@@ -269,11 +279,18 @@ public extension AppManager {
         }
         Storage.default.lastSyncSleepDate = to
 
-        syncSleep(from: from, to: to, completionHandler: completionHandler)
+        isSyncingSleep = true
+        syncSleep(from: from, to: to) { [weak self] in
+            self?.isSyncingSleep = false
+            completionHandler?()
+        }
     }
 
     private func syncSleep(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else {
+            completionHandler?()
+            return
+        }
 
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
