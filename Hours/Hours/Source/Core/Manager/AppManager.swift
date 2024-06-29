@@ -157,7 +157,7 @@ public extension AppManager {
     }
 
     func autoSyncWorkout(completionHandler: (() -> Void)? = nil) {
-        guard isAutoSyncWorkout, isSyncingWorkout else {
+        guard isAutoSyncWorkout, !isSyncingWorkout else {
             completionHandler?()
             return
         }
@@ -171,11 +171,7 @@ public extension AppManager {
         }
         Storage.default.lastSyncWorkoutDate = to
 
-        isSyncingWorkout = true
-        syncWorkout(from: from, to: to) { [weak self] in
-            self?.isSyncingWorkout = false
-            completionHandler?()
-        }
+        syncWorkout(from: from, to: to, completionHandler: completionHandler)
     }
 
     private func syncWorkout(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
@@ -184,9 +180,14 @@ public extension AppManager {
             return
         }
 
+        // 数据同步结束
+        isSyncingSleep = true
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: .workoutType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
+            // 数据同步结束
+            self?.isSyncingSleep = false
+
             guard error == nil, let workouts = samples as? [HKWorkout], !workouts.isEmpty else {
                 completionHandler?()
                 return
@@ -265,7 +266,7 @@ public extension AppManager {
     }
 
     func autoSyncSleep(completionHandler: (() -> Void)? = nil) {
-        guard isAutoSyncSleep, isSyncingSleep else {
+        guard isAutoSyncSleep, !isSyncingSleep else {
             completionHandler?()
             return
         }
@@ -279,11 +280,7 @@ public extension AppManager {
         }
         Storage.default.lastSyncSleepDate = to
 
-        isSyncingSleep = true
-        syncSleep(from: from, to: to) { [weak self] in
-            self?.isSyncingSleep = false
-            completionHandler?()
-        }
+        syncSleep(from: from, to: to, completionHandler: completionHandler)
     }
 
     private func syncSleep(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
@@ -291,10 +288,14 @@ public extension AppManager {
             completionHandler?()
             return
         }
-
+        // 开始同步数据
+        isSyncingSleep = true
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
+            // 数据同步结束
+            self?.isSyncingSleep = false
+
             guard error == nil, let items = samples as? [HKCategorySample], !items.isEmpty else {
                 completionHandler?()
                 return
