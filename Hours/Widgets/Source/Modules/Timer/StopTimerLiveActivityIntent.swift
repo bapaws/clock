@@ -28,7 +28,8 @@ struct StopTimerLiveActivityIntent: LiveActivityIntent {
         time++
 
         let milliseconds = min(time.milliseconds, Int(AppManager.shared.maximumRecordedTime * 1000))
-        let newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
+        var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
+        newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
         await AppRealm.shared.writeRecord(newRecord, addTo: event)
 
         NotificationCenter.default.post(name: TimerManager.shared.timerStop, object: nil)

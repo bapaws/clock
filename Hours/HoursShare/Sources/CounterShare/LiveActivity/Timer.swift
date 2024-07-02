@@ -61,8 +61,10 @@ open class TimerActivity {
 
     public func stop() {
         Task {
-            await self.activity?.end(using: nil, dismissalPolicy: .immediate)
-            self.activity = nil
+            let activities = Activity<TimerActivityAttributes>.activities
+            for activitiy in activities {
+                await activitiy.end(using: nil, dismissalPolicy: .immediate)
+            }
         }
     }
 }
