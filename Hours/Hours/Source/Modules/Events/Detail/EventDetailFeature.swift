@@ -62,6 +62,11 @@ struct EventDetailFeature {
 
         case deleteRecord(RecordEntity)
         case deleteRecordCompleted(RecordEntity)
+
+        // MARK: Timer
+
+        case onTimerStarted(EventEntity)
+        case onTimerEnded
     }
 
     @Dependency(\.application) private var application

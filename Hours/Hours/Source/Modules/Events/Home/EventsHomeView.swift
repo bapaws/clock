@@ -16,24 +16,6 @@ import SwiftUIX
 struct EventsHomeView: View {
     @Perception.Bindable var store: StoreOf<EventsHomeFeature>
 
-    // MARK: Category
-
-    @State private var isNewCategoryPresented: Bool = false
-    @State private var newestCategoryID: String? = nil
-
-    // MARK: Event
-
-    @State private var newEventSelectCategory: CategoryEntity?
-    @State private var isNewEventPresented: Bool = false
-
-    // MARK: Record
-
-    @State private var newRecordSelectEvent: EventEntity?
-
-    // MARK: Timer
-
-    @State private var timerSelectEvent: EventEntity?
-
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
@@ -46,16 +28,20 @@ struct EventsHomeView: View {
                         }
                         ScrollView {
                             LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
+                                EventHomeRecentView(store: store.scope(state: \.recent, action: \.recent))
+
                                 ForEach(store.categories) { category in
                                     Section {
                                         ForEach(category.events) { event in
-                                            EventItemView(event: event, playAction: presentTimer)
-                                                // 先调用 menu 的修改器，长按时不会出现圆角的情况
-                                                .contextMenu { menuItems(for: event) }
-                                                .onTapGesture {
-                                                    store.send(.onEventTapped(event))
-                                                }
-                                                .cornerRadius(16)
+                                            EventItemView(event: event) {
+                                                store.send(.onTimerStarted($0))
+                                            }
+                                            // 先调用 menu 的修改器，长按时不会出现圆角的情况
+                                            .contextMenu { menuItems(for: event) }
+                                            .onTapGesture {
+                                                store.send(.onEventTapped(event))
+                                            }
+                                            .cornerRadius(16)
                                         }
 
                                         ui.background
@@ -64,6 +50,7 @@ struct EventsHomeView: View {
                                             store.send(.newEventTapped(category))
                                         }
                                     }
+                                    .padding(.horizontal)
                                 }
 
                                 Button {
@@ -79,6 +66,7 @@ struct EventsHomeView: View {
                                     .padding(.vertical, .large)
                                 }
                                 .id(R.string.localizable.showAll())
+                                .padding(.horizontal)
 
                                 if store.isOtherCategoriesShow {
                                     ForEach(store.otherCategories) { category in
@@ -86,9 +74,9 @@ struct EventsHomeView: View {
                                             store.send(.newEventTapped(category))
                                         }
                                     }
+                                    .padding(.horizontal)
                                 }
                             }
-                            .padding()
                             .onChange(of: store.isOtherCategoriesShow) { newValue in
                                 guard newValue else { return }
 
@@ -107,15 +95,17 @@ struct EventsHomeView: View {
                 }
 
                 .navigationDestination(item: $store.scope(state: \.eventDetail, action: \.eventDetail)) {
-                    EventDetailView(store: $0, timerSelectEvent: $timerSelectEvent)
+                    EventDetailView(store: $0)
                 }
                 .navigationDestination(item: $store.scope(state: \.archivedEvents, action: \.archivedEvents)) {
-                    ArchivedEventsView(store: $0, timerSelectEvent: $timerSelectEvent)
+                    ArchivedEventsView(store: $0)
                 }
 
                 // MARK: Timer
 
-                .fullScreenCover(item: $timerSelectEvent) { event in
+                .fullScreenCover(item: $store.timerSelectEvent, onDismiss: {
+                    store.send(.onTimerEnded)
+                }) { event in
                     TimerView(event: event)
                         .environmentObject(TimerManager.shared)
                 }
@@ -175,7 +165,7 @@ struct EventsHomeView: View {
                 Label(R.string.localizable.newRecord(), systemImage: "plus")
             }
             Button {
-                timerSelectEvent = event
+                store.send(.onTimerStarted(event))
             } label: {
                 Label(R.string.localizable.startTimer(), systemImage: "play")
             }
@@ -189,15 +179,9 @@ struct EventsHomeView: View {
         }
     }
 
-    private func presentTimer(event: EventEntity) {
-        timerSelectEvent = event
-    }
-
     private func toggleOtherCategory(for proxy: ScrollViewProxy) {
         if store.isOtherCategoriesShow {
-            withAnimation {
-                store.send(.toggleOtherCategoriesShow)
-            }
+            store.send(.toggleOtherCategoriesShow, animation: .default)
         } else {
             store.send(.toggleOtherCategoriesShow)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {

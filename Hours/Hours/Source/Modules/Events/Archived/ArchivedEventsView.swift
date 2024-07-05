@@ -15,10 +15,6 @@ import SwiftUIX
 struct ArchivedEventsView: View {
     @Perception.Bindable var store: StoreOf<ArchivedEventsFeature>
 
-    // MARK: Timer
-
-    @Binding var timerSelectEvent: EventEntity?
-
     var body: some View {
         WithPerceptionTracking {
             ScrollView {
@@ -33,7 +29,7 @@ struct ArchivedEventsView: View {
                                     store.send(.onEventTapped(event))
 
                                     guard let store = store.scope(state: \.eventDetail, action: \.eventDetail) else { return }
-                                    let view = EventDetailView(store: store, timerSelectEvent: $timerSelectEvent)
+                                    let view = EventDetailView(store: store)
                                     pushView(view, title: event.name)
                                 }
                             }
@@ -57,7 +53,6 @@ struct ArchivedEventsView: View {
 
 #Preview {
     ArchivedEventsView(
-        store: StoreOf<ArchivedEventsFeature>(initialState: .init(), reducer: { ArchivedEventsFeature() }),
-        timerSelectEvent: .constant(EventEntity.random())
+        store: StoreOf<ArchivedEventsFeature>(initialState: .init(), reducer: { ArchivedEventsFeature() })
     )
 }

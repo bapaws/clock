@@ -21,7 +21,7 @@ let package = Package(
     dependencies: [
         .package(path: "../Palette"),
         .package(path: "../ClockShare"),
-        .package(url: "https://github.com/SwiftUIX/SwiftUIX", from: "0.1.9"),
+        .package(url: "https://github.com/SwiftUIX/SwiftUIX", from: "0.2.1"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/jdg/MBProgressHUD.git", .upToNextMajor(from: "1.2.0")),
         .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift.git", from: "20.0.0"),

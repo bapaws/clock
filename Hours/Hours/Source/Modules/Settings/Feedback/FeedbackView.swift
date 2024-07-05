@@ -40,7 +40,7 @@ struct FeedbackView: View {
                     if let url = URL(string: "weixin://"), UIApplication.shared.canOpenURL(url) {
                         SettingsNavigateCell(title: R.string.localizable.weChat()) {
                             let pasteboard = UIPasteboard.general
-                            pasteboard.string = "wxid_yuo1hb20v39u22"
+                            pasteboard.string = "Bapaws"
 
                             Toast.show(R.string.localizable.weChatCopied())
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
@@ -76,7 +76,7 @@ struct FeedbackView: View {
                 let model = UIDevice.current.model // 设备型号
                 let localizedModel = UIDevice.current.localizedModel
 
-                MailView(recipients: ["dev@bapaws.com"], subject: "\(R.string.localizable.appName)-\(R.string.localizable.feedback())", messageBody: R.string.localizable.emailMessageBody(systemName, systemVersion, localizedModel, majorVersion), isHTML: true, result: $result)
+                MailView(recipients: ["dev@bapaws.com"], subject: "\(R.string.localizable.appName())-\(R.string.localizable.feedback())", messageBody: R.string.localizable.emailMessageBody(systemName, systemVersion, localizedModel, majorVersion), isHTML: true, result: $result)
             }
         }
         .background(ui.background)

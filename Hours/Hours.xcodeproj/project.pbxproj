@@ -167,6 +167,8 @@
 		88F4828F2C0BFD6F00211368 /* StatisticsDailyRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4828E2C0BFD6F00211368 /* StatisticsDailyRatioView.swift */; };
 		88F482932C0C59DE00211368 /* StatisticsPageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F482922C0C59DE00211368 /* StatisticsPageBar.swift */; };
 		88F482972C0C68A400211368 /* StatisticsTimeDistributionLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F482962C0C68A400211368 /* StatisticsTimeDistributionLineView.swift */; };
+		88F514412C378D5C004D9DCA /* EventHomeRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F514402C378D5C004D9DCA /* EventHomeRecentView.swift */; };
+		88F514452C378D9D004D9DCA /* EventHomeRecentFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F514442C378D9D004D9DCA /* EventHomeRecentFeature.swift */; };
 		88FA90B82C1291DE006607B1 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA90B72C1291DE006607B1 /* AppManager.swift */; };
 		88FA90BC2C1293C2006607B1 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA90BB2C1293C2006607B1 /* View.swift */; };
 		88FA90C52C12946F006607B1 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA90BF2C1293FE006607B1 /* AppManager.swift */; };
@@ -369,6 +371,8 @@
 		88F4828E2C0BFD6F00211368 /* StatisticsDailyRatioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticsDailyRatioView.swift; path = Hours/Source/Modules/Statistics/Daily/StatisticsDailyRatioView.swift; sourceTree = SOURCE_ROOT; };
 		88F482922C0C59DE00211368 /* StatisticsPageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsPageBar.swift; sourceTree = "<group>"; };
 		88F482962C0C68A400211368 /* StatisticsTimeDistributionLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTimeDistributionLineView.swift; sourceTree = "<group>"; };
+		88F514402C378D5C004D9DCA /* EventHomeRecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHomeRecentView.swift; sourceTree = "<group>"; };
+		88F514442C378D9D004D9DCA /* EventHomeRecentFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHomeRecentFeature.swift; sourceTree = "<group>"; };
 		88FA90B72C1291DE006607B1 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		88FA90BB2C1293C2006607B1 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		88FA90BF2C1293FE006607B1 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -513,6 +517,8 @@
 			isa = PBXGroup;
 			children = (
 				88D7A51F2BA0427E00FD129F /* EventsHomeView.swift */,
+				88F514402C378D5C004D9DCA /* EventHomeRecentView.swift */,
+				88F514442C378D9D004D9DCA /* EventHomeRecentFeature.swift */,
 				88FCD4BE2C1DCBC0007F1D29 /* EventsHomeFeature.swift */,
 			);
 			path = Home;
@@ -1393,6 +1399,7 @@
 				88F357ED2C1F2F4C00DD106A /* CalendarHeaderPageView.swift in Sources */,
 				88C2DE9F2C09CB3D002CEC16 /* StatisticsDayHeatMapView.swift in Sources */,
 				882B82DB2BF0B60C00B0365A /* SelectCategoryView.swift in Sources */,
+				88F514452C378D9D004D9DCA /* EventHomeRecentFeature.swift in Sources */,
 				88059EA52B9EDC9000C8BF9E /* NewRecordView.swift in Sources */,
 				88D23AEC2B94A26D00E33DE5 /* AppIcons.swift in Sources */,
 				88FCD4BF2C1DCBC0007F1D29 /* EventsHomeFeature.swift in Sources */,
@@ -1440,6 +1447,7 @@
 				88D23B1A2B94A35C00E33DE5 /* SettingsTimerSection.swift in Sources */,
 				880096822BF5A919008AC521 /* SettingsHealthSection.swift in Sources */,
 				88C2DE842C098AE1002CEC16 /* StatisticsWeek.swift in Sources */,
+				88F514412C378D5C004D9DCA /* EventHomeRecentView.swift in Sources */,
 				88D6EB292C24794400970397 /* RecordsHomeCurrentState.swift in Sources */,
 				88E5BE842C0B5A3900AEFA1D /* StatisticsWeekView.swift in Sources */,
 				88D7A5202BA0427E00FD129F /* EventsHomeView.swift in Sources */,
@@ -1843,8 +1851,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
 			requirement = {
-				kind = exactVersion;
-				version = 4.33.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.33.0;
 			};
 		};
 		88D23AD42B949FA000E33DE5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {

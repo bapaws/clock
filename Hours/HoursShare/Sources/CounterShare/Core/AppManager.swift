@@ -20,7 +20,7 @@ open class AppManager: ClockShare.AppBaseManager {
     // MARK: Record
 
     @AppStorage(Storage.Key.minimumRecordedTime, store: Storage.default.store)
-    public var minimumRecordedTime: TimeInterval = 60
+    public var minimumRecordedTime: TimeInterval = 0
 
     /// 最长记录时间，单位小时
     @AppStorage(Storage.Key.maximumRecordedTime, store: Storage.default.store)

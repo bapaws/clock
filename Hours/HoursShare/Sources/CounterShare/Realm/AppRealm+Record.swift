@@ -1,0 +1,102 @@
+//
+//  File.swift
+//
+//
+//  Created by 张敏超 on 2024/7/5.
+//
+
+import ClockShare
+import Foundation
+import IdentifiedCollections
+import OrderedCollections
+import RealmSwift
+
+public extension AppRealm {
+    func writeRecord(_ entity: RecordEntity, addTo event: EventEntity) async {
+        do {
+            guard let eventObject: EventObject = await getEvent(by: event.id) else { return }
+            try await realm.asyncWrite {
+                let object = entity.toObject()
+                eventObject.items.append(object)
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func writeRecords(_ entities: [RecordEntity], addTo event: EventEntity) async {
+        do {
+            guard let eventObject: EventObject = await getEvent(by: event.id) else { return }
+            try await realm.asyncWrite {
+                for entity in entities {
+                    let object = entity.toObject()
+                    eventObject.items.append(object)
+                }
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func updateRecord(_ entity: RecordEntity) async {
+        do {
+            let realm = await realm
+            try await realm.asyncWrite {
+                let object = entity.toObject()
+                realm.add(object, update: .modified)
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func deleteRecord(_ entity: RecordEntity) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: RecordObject.self, forPrimaryKey: entity._id) else { return }
+            try await realm.asyncWrite {
+                realm.delete(object)
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func getRecord(of entity: EventEntity, minEndAt: Date) async -> RecordEntity? {
+        return await getRecords(where: { $0.events._id == entity._id && $0.endAt > minEndAt }).first
+    }
+
+    func getRecords(where: (Query<RecordObject>) -> Query<Bool>, sortedBy areInIncreasingOrder: ((RecordEntity, RecordEntity) -> Bool)? = nil) async -> [RecordEntity] {
+        await realm
+            .objects(RecordObject.self)
+            .where(`where`)
+            .map { RecordEntity(object: $0) }
+            .sorted(by: areInIncreasingOrder ?? { $0.endAt > $1.endAt })
+    }
+
+    func containsRecord(where: (Query<RecordObject>) -> Query<Bool>) async -> Bool {
+        await !getRecords(where: `where`).isEmpty
+    }
+
+    func sectionedRecords<Key: _Persistable & Hashable>(_ entity: EventEntity, by block: @escaping ((RecordObject) -> Key)) async -> OrderedDictionary<Key, [RecordEntity]> {
+        var results = OrderedDictionary<Key, [RecordEntity]>()
+        guard let eventObject: EventObject = await getEvent(by: entity.id) else { return results }
+        let sectionedResults = eventObject.items.sectioned(
+            by: block,
+            sortDescriptors: [SortDescriptor(keyPath: \RecordObject.endAt, ascending: false)]
+        )
+        for result in sectionedResults {
+            let records = result.map { RecordEntity(object: $0) }
+            results[result.key] = records
+        }
+        return results
+    }
+
+    /// 包含结束时间在 startAt 和 endAt 的所有记录
+    func getRecordsEndAt(from: Date, to: Date) async -> [RecordEntity] {
+        await realm.objects(RecordObject.self)
+            .where { $0.endAt >= from && $0.endAt <= to }
+            .sorted(by: \.startAt, ascending: true)
+            .map { RecordEntity(object: $0) }
+    }
+}

@@ -23,6 +23,10 @@ struct EventsHomeFeature {
 
         var isLoading = false
 
+        var timerSelectEvent: EventEntity?
+
+        var recent: EventHomeRecentFeature.State = .init()
+
         @Presents var newCategory: NewCategoryFeature.State?
         @Presents var newEvent: NewEventFeature.State?
         @Presents var newRecord: NewRecordFeature.State?
@@ -40,6 +44,13 @@ struct EventsHomeFeature {
 
         case deleteEvent(EventEntity)
         case archiveEvent(EventEntity)
+
+        case recent(EventHomeRecentFeature.Action)
+
+        // MARK: Timer
+
+        case onTimerStarted(EventEntity)
+        case onTimerEnded
 
         // MARK: State
 
@@ -80,12 +91,19 @@ struct EventsHomeFeature {
 
     var body: some Reducer<State, Action> {
         BindingReducer()
+
+        Scope(state: \.recent, action: \.recent) {
+            EventHomeRecentFeature()
+        }
+
         Reduce { state, action in
             switch action {
             case .onAppear:
                 return .run { send in
                     let entities = await AppRealm.shared.getAllUnarchivedCategories()
                     await send(.updateCategories(entities), animation: .default)
+
+                    await send(.recent(.onAppear))
                 }
 
             case .updateCategories(let entities):
@@ -168,13 +186,33 @@ struct EventsHomeFeature {
             case .eventDetail(.presented(.newEvent(.presented(.saveCompleted(let entity))))):
                 return .run { send in await send(.saveEventCompleted(entity), animation: .default) }
 
+            case .eventDetail(.presented(.onTimerStarted(let entity))),
+                 .recent(.onEventTapped(let entity)),
+                 .onTimerStarted(let entity):
+                state.timerSelectEvent = entity
+                return .none
+
+            case .onTimerEnded:
+                return .run { [state] send in
+                    if state.eventDetail != nil {
+                        // 如果是详情页，需要刷新页面
+                        await send(.eventDetail(.presented(.onAppear)))
+
+                        // 重新加载最近
+                        await send(.recent(.onAppear), animation: .default)
+                    }
+                }
+
             // MARK: New Callback
 
             case .newCategory(.presented(.saveCompleted(let entity))):
                 return .run { send in await send(.saveCategoryCompleted(entity), animation: .default) }
 
             case .newEvent(.presented(.saveCompleted(let entity))):
-                return .run { send in await send(.saveEventCompleted(entity), animation: .default) }
+                return .run { send in
+                    await send(.saveEventCompleted(entity), animation: .default)
+                    await send(.recent(.onAppear), animation: .default)
+                }
 
             // MARK: Update State
 

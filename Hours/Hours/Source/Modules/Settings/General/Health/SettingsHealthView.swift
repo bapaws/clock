@@ -54,7 +54,7 @@ struct SettingsHealthView: View {
             }
             .padding()
             .background(ui.background)
-            .navigationTitle(R.string.localizable.appScreenTime())
+            .navigationTitle(R.string.localizable.health())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { dismiss() }) {

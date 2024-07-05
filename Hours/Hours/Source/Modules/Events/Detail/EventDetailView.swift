@@ -33,7 +33,7 @@ struct EventDetailView: View {
 
     // MARK: Timer
 
-    @Binding var timerSelectEvent: EventEntity?
+//    @Binding var timerSelectEvent: EventEntity?
 
     // MARK: Delete
 
@@ -91,11 +91,6 @@ struct EventDetailView: View {
                 }
             }
             .background(ui.background)
-            .onChange(of: timerSelectEvent) { newValue in
-                guard newValue == nil else { return }
-
-                store.send(.onAppear)
-            }
 
             // MARK: New Record
 
@@ -156,7 +151,9 @@ struct EventDetailView: View {
             .buttonStyle(BorderedButtonStyle())
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 54, maxHeight: 54)
 
-            Button(action: { timerSelectEvent = store.event }) {
+            Button(action: {
+                store.send(.onTimerStarted(store.event))
+            }) {
                 Image(systemName: "play.fill")
                     .font(.system(.callout, design: .rounded))
                     .foregroundStyle(store.event.primary)
@@ -185,7 +182,6 @@ struct EventDetailView: View {
 
 #Preview {
     EventDetailView(
-        store: StoreOf<EventDetailFeature>(initialState: .init(event: .random()), reducer: { EventDetailFeature() }),
-        timerSelectEvent: .constant(EventEntity.random())
+        store: StoreOf<EventDetailFeature>(initialState: .init(event: .random()), reducer: { EventDetailFeature() })
     )
 }
