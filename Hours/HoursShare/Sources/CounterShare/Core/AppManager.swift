@@ -139,6 +139,7 @@ public extension AppManager {
             event.location = record.milliseconds.timeLengthText
             event.startDate = record.startAt
             event.endDate = record.endAt
+            event.notes = record.notes
             event.calendar = calendar ?? eventStore.defaultCalendarForNewEvents
             try eventStore.save(event, span: .thisEvent, commit: false)
 

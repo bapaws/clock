@@ -74,7 +74,7 @@ struct NewRecordTimeView: View {
             Spacer()
         }
         .padding()
-        .padding(.vertical, .extraLarge)
+        .padding(.vertical, .large)
         .presentationDetents([.medium])
         .presentationDragIndicator(.visible)
         .background(ui.background)

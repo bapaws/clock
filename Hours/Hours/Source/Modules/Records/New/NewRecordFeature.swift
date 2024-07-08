@@ -19,6 +19,8 @@ struct NewRecordFeature {
         var startAt: Date
         var endAt: Date
 
+        var notes: String = ""
+
         @Presents var selectEvent: SelectEventFeature.State?
 
         var isLoading = false
@@ -36,6 +38,7 @@ struct NewRecordFeature {
             self.event = record.event
             self.startAt = record.startAt
             self.endAt = record.endAt
+            self.notes = record.notes ?? ""
         }
     }
 
@@ -90,6 +93,7 @@ struct NewRecordFeature {
                 state.isLoading = true
                 return .run { [state] send in
                     var newRecord = RecordEntity(creationMode: state.record?.creationMode ?? .enter, startAt: state.startAt, endAt: state.endAt)
+                    newRecord.notes = state.notes
                     newRecord.event = event
                     if let record = state.record {
                         newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: record)

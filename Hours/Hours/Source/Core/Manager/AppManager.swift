@@ -162,7 +162,7 @@ public extension AppManager {
             return
         }
 
-        let from = Storage.default.lastSyncWorkoutDate?.addingTimeInterval(5 * 3600) ?? initialDate
+        let from = Storage.default.lastSyncWorkoutDate?.addingTimeInterval(-12 * 3600) ?? initialDate
         let to = Date()
 
         if from.distance(to: to) < 30 {

@@ -56,46 +56,12 @@ struct RecordsHomeView: View {
             .background(ui.background)
             .sheet(item: $store.scope(state: \.newRecord, action: \.newRecord)) {
                 NewRecordView(store: $0)
-                    .sheetStyle()
+                    .sheetStyle(detents: [.height(640)])
             }
             .onChange(of: AppManager.shared.today) { newValue in
                 currentDate = newValue
             }
         }
-    }
-
-    // MARK: New Record
-
-    var newRecordStartAt: Date {
-        let date = DBManager.default.getRecordEndAt(for: currentDate)
-        return date ?? currentDate.dateBySet(hour: 9, min: 0, secs: 0)!
-    }
-
-    var newRecordEndAt: Date {
-        let startAt = newRecordStartAt
-        var endAt = startAt.addingTimeInterval(3600)
-        if currentDate.compare(.isSameDay(today)) {
-            endAt = Date.now < startAt ? startAt.addingTimeInterval(3600) : Date.now
-        }
-        return endAt
-    }
-
-    func presentNewRecord(for record: RecordEntity? = nil) -> some View {
-        var store: StoreOf<NewRecordFeature>
-        if let record {
-            store = StoreOf<NewRecordFeature>(
-                initialState: .init(record: record),
-                reducer: { NewRecordFeature() }
-            )
-
-        } else {
-            store = StoreOf<NewRecordFeature>(
-                initialState: .init(startAt: newRecordStartAt, endAt: newRecordEndAt),
-                reducer: { NewRecordFeature() }
-            )
-        }
-
-        return NewRecordView(store: store).sheetStyle()
     }
 }
 

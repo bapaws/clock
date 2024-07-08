@@ -9,9 +9,11 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct SheetStyleModifier: ViewModifier {
+    let detents: Set<PresentationDetent>
+
     public func body(content: Content) -> some View {
         let view = content
-            .presentationDetents([.medium])
+            .presentationDetents(detents)
             .presentationDragIndicator(.visible)
             .labelsHidden()
         if #available(iOS 16.4, *) {
@@ -26,7 +28,7 @@ struct SheetStyleModifier: ViewModifier {
 
 public extension View {
     @available(iOS 16.0, *)
-    func sheetStyle() -> some View {
-        modifier(SheetStyleModifier())
+    func sheetStyle(detents: Set<PresentationDetent> = [.medium]) -> some View {
+        modifier(SheetStyleModifier(detents: detents))
     }
 }

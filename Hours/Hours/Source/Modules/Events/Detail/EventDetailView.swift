@@ -96,7 +96,7 @@ struct EventDetailView: View {
 
             .sheet(item: $store.scope(state: \.newRecord, action: \.newRecord)) {
                 NewRecordView(store: $0)
-                    .sheetStyle()
+                    .sheetStyle(detents: [.height(640)])
             }
 
             // MARK: New Event
