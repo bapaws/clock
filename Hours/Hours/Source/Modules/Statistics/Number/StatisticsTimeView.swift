@@ -21,7 +21,7 @@ struct StatisticsTimeView: View {
                     Text("\(time.day)")
                         .font(numberFont, weight: numberWeight)
                         .foregroundStyle(Color.label)
-                    Text(R.string.localizable.days())
+                    Text(L10n.days)
                         .font(unitFont)
                         .foregroundStyle(Color.tertiaryLabel)
                 }
@@ -32,7 +32,7 @@ struct StatisticsTimeView: View {
                     Text("\(time.hour)")
                         .font(numberFont, weight: numberWeight)
                         .foregroundStyle(Color.label)
-                    Text(R.string.localizable.hours())
+                    Text(L10n.hours)
                         .font(unitFont)
                         .foregroundStyle(Color.tertiaryLabel)
                 }
@@ -43,7 +43,7 @@ struct StatisticsTimeView: View {
                     Text("\(time.minute)")
                         .font(numberFont, weight: numberWeight)
                         .foregroundStyle(Color.label)
-                    Text(R.string.localizable.minutes())
+                    Text(L10n.minutes)
                         .font(unitFont)
                         .foregroundStyle(Color.tertiaryLabel)
                 }
@@ -54,7 +54,7 @@ struct StatisticsTimeView: View {
                     Text("\(time.second)")
                         .font(numberFont, weight: numberWeight)
                         .foregroundStyle(Color.label)
-                    Text(R.string.localizable.seconds())
+                    Text(L10n.seconds)
                         .font(unitFont)
                         .foregroundStyle(Color.tertiaryLabel)
                 }

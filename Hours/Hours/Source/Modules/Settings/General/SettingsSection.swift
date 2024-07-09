@@ -68,7 +68,7 @@ extension SettingsSection {
 }
 
 #Preview {
-    SettingsSection(title: R.string.localizable.appearance()) {
+    SettingsSection(title: L10n.appearance) {
         SettingsToggleCell(title: "Title", isOn: Binding<Bool>.constant(true))
         SettingsToggleCell(title: "Title", isOn: Binding<Bool>.constant(false))
         SettingsCheckCell(title: "Title", isPro: true, isChecked: false, action: {})

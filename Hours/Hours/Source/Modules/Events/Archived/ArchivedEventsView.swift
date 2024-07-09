@@ -42,7 +42,7 @@ struct ArchivedEventsView: View {
                 .emptyStyle(isEmpty: store.categories.isEmpty)
             }
             .background(ui.background)
-            .navigationTitle(R.string.localizable.archived())
+            .navigationTitle(L10n.archived)
             .toolbarRole(.editor)
             .onAppear {
                 store.send(.onAppear)

@@ -27,7 +27,7 @@ struct ProMask: ViewModifier {
                     Image(systemName: "crown.fill")
                         .font(.system(size: 48), weight: .light)
                         .foregroundStyle(Color.systemOrange)
-                    Text(R.string.localizable.tryFree())
+                    Text(L10n.tryFree)
                         .foregroundStyle(Color.systemOrange)
                         .font(.body)
                         .padding(.horizontal)

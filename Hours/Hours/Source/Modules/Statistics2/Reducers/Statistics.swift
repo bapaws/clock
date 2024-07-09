@@ -21,13 +21,13 @@ struct Statistics {
             var description: String {
                 switch self {
                 case .day:
-                    R.string.localizable.day()
+                    L10n.day
                 case .week:
-                    R.string.localizable.week()
+                    L10n.week
                 case .month:
-                    R.string.localizable.month()
+                    L10n.month
                 case .year:
-                    R.string.localizable.year()
+                    L10n.year
                 }
             }
         }

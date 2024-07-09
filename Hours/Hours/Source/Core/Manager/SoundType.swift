@@ -14,25 +14,25 @@ public extension SoundType {
     var value: String {
         switch self {
         case .tick:
-            R.string.localizable.tick()
+            L10n.tick
         case .second:
-            R.string.localizable.secondHand()
+            L10n.secondHand
         case .drip:
-            R.string.localizable.drip()
+            L10n.drip
         }
 //        switch self {
 //        case .card:
-//            R.string.localizable.card()
+//            L10n.card
 //        case .drip:
-//            R.string.localizable.drip()
+//            L10n.drip
 //        case .muyu:
-//            R.string.localizable.muyu()
+//            L10n.muyu
 //        case .pendulum:
-//            R.string.localizable.pendulum()
+//            L10n.pendulum
 //        case .switch:
-//            R.string.localizable.switch()
+//            L10n.switch
 //        case .tick:
-//            R.string.localizable.tick()
+//            L10n.tick
 //        }
     }
 }

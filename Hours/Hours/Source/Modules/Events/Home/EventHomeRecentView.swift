@@ -51,7 +51,7 @@ struct EventHomeRecentView: View {
 
             } header: {
                 HStack {
-                    Text(R.string.localizable.recent())
+                    Text(L10n.recent)
                     Spacer()
                 }
                 .font(.footnote)

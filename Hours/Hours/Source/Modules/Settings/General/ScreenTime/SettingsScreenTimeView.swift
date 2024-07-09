@@ -27,24 +27,24 @@ struct SettingsScreenTimeView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                SettingsNavigateCell(title: R.string.localizable.autoRecordSetupGuide()) {
+                SettingsNavigateCell(title: L10n.autoRecordSetupGuide) {
                     isGuidePresented = true
                 }
 
                 SettingsStepperCell(
-                    title: R.string.localizable.minimumRecordedTime() + " (s)",
+                    title: L10n.minimumRecordedTime + " (s)",
                     value: app.$minimumRecordedScreenTime,
                     minimumValue: 0,
                     maximumValue: 300,
                     stepValue: 5
                 )
 
-                SettingsSection(title: R.string.localizable.adjacentRecords()) {
-                    SettingsToggleCell(title: R.string.localizable.autoMergeAdjacentRecords(), isOn: app.$isAutoMergeAdjacentRecords.animation())
+                SettingsSection(title: L10n.adjacentRecords) {
+                    SettingsToggleCell(title: L10n.autoMergeAdjacentRecords, isOn: app.$isAutoMergeAdjacentRecords.animation())
 
                     if app.isAutoMergeAdjacentRecords {
                         SettingsStepperCell(
-                            title: R.string.localizable.interval() + " (s)",
+                            title: L10n.interval + " (s)",
                             value: app.$autoMergeAdjacentRecordsInterval,
                             minimumValue: 0,
                             maximumValue: 300,
@@ -57,7 +57,7 @@ struct SettingsScreenTimeView: View {
             }
             .padding()
             .background(ui.background)
-            .navigationTitle(R.string.localizable.appScreenTime())
+            .navigationTitle(L10n.appScreenTime)
             .sheet(isPresented: $isGuidePresented) {
                 SafariView(url: URL(string: "https://zytllepnl6.feishu.cn/docx/PFtQdUY04og6rbxvbsHciiHNnZd")!)
             }

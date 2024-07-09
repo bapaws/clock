@@ -18,7 +18,7 @@ struct AboutView: View {
             VStack {
                 Color.clear
                     .height(64)
-                Image(R.image.launchImage)
+                Image(asset: Asset.launchImage)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200)
@@ -29,7 +29,7 @@ struct AboutView: View {
                 if let displayName = infoDictionary?["CFBundleDisplayName"] as? String {
                     Text(displayName)
                 } else {
-                    Text(R.string.localizable.appName())
+                    Text(L10n.appName)
                 }
                 if let majorVersion = infoDictionary?["CFBundleShortVersionString"] as? String,
                    let minorVersion = infoDictionary?["CFBundleVersion"] as? String
@@ -47,17 +47,17 @@ struct AboutView: View {
                     Button {
                         urlString = "https://privacy.bapaws.com/Hours/terms.html"
                     } label: {
-                        Text(R.string.localizable.terms())
+                        Text(L10n.terms)
                             .font(.caption)
                             .foregroundColor(.tertiaryLabel)
                     }
-                    Text(R.string.localizable.and())
+                    Text(L10n.and)
                         .font(.caption)
                         .foregroundColor(.tertiaryLabel)
                     Button {
                         urlString = "https://privacy.bapaws.com/Hours/privacy.html"
                     } label: {
-                        Text(R.string.localizable.privacy())
+                        Text(L10n.privacy)
                             .font(.caption)
                             .foregroundColor(.tertiaryLabel)
                     }
@@ -66,7 +66,7 @@ struct AboutView: View {
             .padding()
             .frame(.greedy)
             .background(ui.background)
-            .navigationTitle(R.string.localizable.about())
+            .navigationTitle(L10n.about)
             .navigationBarItems(trailing: Button(action: {
                 isPresented = false
             }, label: {

@@ -43,12 +43,12 @@ struct StatisticsDayHeatMapView: View {
     private var header: some View {
         HStack {
             Spacer()
-            Text(R.string.localizable.aM())
+            Text(L10n.am)
             Spacer()
             ui.secondaryBackground
                 .frame(width: hourWidth)
             Spacer()
-            Text(R.string.localizable.pM())
+            Text(L10n.pm)
             Spacer()
         }
         .padding(.vertical, .small)

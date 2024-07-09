@@ -14,8 +14,8 @@ struct SettingsScreenTimeSection: View {
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        SettingsSection(title: R.string.localizable.appScreenTime()) {
-            SettingsNavigateCell(title: R.string.localizable.appScreenTime()) {
+        SettingsSection(title: L10n.appScreenTime) {
+            SettingsNavigateCell(title: L10n.appScreenTime) {
                 isAppScreenTimePresented = true
             }
         }

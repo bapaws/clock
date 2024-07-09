@@ -35,7 +35,7 @@ struct StatisticsDayView: View {
             Group {
                 if store.isToday || store.isYesterday {
                     VStack {
-                        Text(store.isToday ? R.string.localizable.today() : R.string.localizable.yesterday())
+                        Text(store.isToday ? L10n.today : L10n.yesterday)
                             .font(.headline)
                         Text(store.startAt.toString(.date(.medium)))
                             .font(.subheadline)
@@ -55,18 +55,18 @@ struct StatisticsDayView: View {
                     HStack(spacing: 16) {
                         let iconForegroundColor = store.compositions.first?.event.primary ?? .white
                         let fillColor = store.compositions.first?.event.primaryContainer ?? ui.primary
-                        StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
+                        StatisticsNumberView(imageName: "list.clipboard", title: L10n.records, subtitle: L10n.total, iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
                             Text("\(store.totalCount)")
                                 .font(.title, weight: .bold)
                                 .foregroundStyle(Color.label)
                         }
 
-                        StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
+                        StatisticsNumberView(imageName: "hourglass", title: L10n.timeInvest, subtitle: L10n.total, iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
                             StatisticsTimeView(time: store.totalMilliseconds.time)
                         }
                     }
 
-                    StatisticsSection(title: R.string.localizable.overall()) {
+                    StatisticsSection(title: L10n.overall) {
                         StatisticsCompositionView(
                             compositions: store.compositions,
                             totalMilliseconds: store.totalMilliseconds,
@@ -75,12 +75,12 @@ struct StatisticsDayView: View {
                         .proMask(isPreview: store.isToday || store.isYesterday)
                     }
 
-                    StatisticsSection(title: R.string.localizable.heatMap()) {
+                    StatisticsSection(title: L10n.heatMap) {
                         StatisticsDayHeatMapView(heatMaps: store.heatMaps)
                             .proMask(isPreview: store.isToday || store.isYesterday)
                     }
 
-                    StatisticsSection(title: R.string.localizable.timeDistribution()) {
+                    StatisticsSection(title: L10n.timeDistribution) {
                         StatisticsDayTimeDistributionView(timeDistributions: store.timeDistributions)
                             .proMask(isPreview: store.isToday || store.isYesterday)
                     }

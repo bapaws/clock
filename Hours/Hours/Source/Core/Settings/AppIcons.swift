@@ -10,15 +10,15 @@ import Foundation
 
 public extension AppIconType {
     static var title: String {
-        R.string.localizable.appIcon()
+        L10n.appIcon
     }
 
     var value: String {
         switch self {
         case .lightClassic:
-            R.string.localizable.lightClassic()
+            L10n.lightClassic
         case .darkClassic:
-            R.string.localizable.darkClassic()
+            L10n.darkClassic
         default:
             fatalError("Not support")
         }

@@ -27,11 +27,11 @@ struct OnboardingStatisticsView: View {
 
         ui.background.height(48)
 
-        Text(R.string.localizable.statisticsTitle())
+        Text(L10n.statisticsTitle)
             .font(.title)
             .height(36)
 
-        Text(R.string.localizable.statisticsDesc())
+        Text(L10n.statisticsDesc)
             .multilineTextAlignment(.center)
             .foregroundStyle(ui.secondaryLabel)
 

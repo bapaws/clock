@@ -203,10 +203,10 @@ public extension AppManager {
     private var healthCategory: CategoryObject {
         let realm = DBManager.default.realm
 
-        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == R.string.localizable.health() }) {
+        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == L10n.health }) {
             return health
         } else {
-            let category = CategoryObject(hex: DBManager.default.nextHex, emoji: "❤️", name: R.string.localizable.health())
+            let category = CategoryObject(hex: DBManager.default.nextHex, emoji: "❤️", name: L10n.health)
             realm.writeAsync {
                 realm.add(category)
             }
@@ -311,7 +311,7 @@ public extension AppManager {
     private func saveSleep(_ samples: [HKCategorySample], completionHandler: (() -> Void)? = nil) {
         Task {
             let category = await AppRealm.shared.healthCategory()
-            let name = R.string.localizable.sleep()
+            let name = L10n.sleep
             let emoji = "🛌"
             var event: EventEntity
             if let entity = await AppRealm.shared.getEvent(by: name, emoji: emoji) {

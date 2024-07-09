@@ -86,7 +86,7 @@ struct OnboardingView: View {
             Button {
                 `continue`()
             } label: {
-                Text(R.string.localizable.continue())
+                Text(L10n.continue)
                     .font(.system(.body, design: .default, weight: .bold))
                     .padding(.horizontal, .extraLarge)
                     .frame(height: 54)
@@ -104,7 +104,7 @@ struct OnboardingView: View {
                 Button {
                     setupLater()
                 } label: {
-                    Text(R.string.localizable.setupLater())
+                    Text(L10n.setupLater)
                         .padding(.horizontal, .extraLarge)
                         .frame(height: 54)
                         .foregroundStyle(ui.label)
@@ -122,7 +122,7 @@ struct OnboardingView: View {
                     AppManager.shared.isAutoSyncSleep = true
                     AppManager.shared.isAutoSyncWorkout = true
                 } else {
-                    Toast.show(R.string.localizable.healthNotAccess())
+                    Toast.show(L10n.healthNotAccess)
                 }
                 setupLater()
             }
@@ -131,7 +131,7 @@ struct OnboardingView: View {
                 if granted {
                     AppManager.shared.isSyncRecordsToCalendar = true
                 } else {
-                    Toast.show(R.string.localizable.calendarNotAccess())
+                    Toast.show(L10n.calendarNotAccess)
                 }
                 setupLater()
             }

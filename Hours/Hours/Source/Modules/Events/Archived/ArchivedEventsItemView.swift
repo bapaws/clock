@@ -26,7 +26,7 @@ struct ArchivedEventsItemView: View {
 
                 if let archivedAt = event.archivedAt {
                     let date = archivedAt.toString(.dateTimeMixed(dateStyle: .medium, timeStyle: .short))
-                    Text(R.string.localizable.archivedAt(date))
+                    Text(L10n.archivedAt(date))
                         .font(.callout)
                         .foregroundStyle(ui.secondaryLabel)
                 }
@@ -39,7 +39,7 @@ struct ArchivedEventsItemView: View {
             Button {
                 unarchiveEvent(event)
             } label: {
-                Text(R.string.localizable.unarchive())
+                Text(L10n.unarchive)
                     .font(.callout)
                     .padding(.small)
                     .overlay {

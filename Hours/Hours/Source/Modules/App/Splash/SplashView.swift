@@ -23,7 +23,7 @@ struct SplashView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 72, height: 72)
-                Text(R.string.localizable.appName())
+                Text(L10n.appName)
                     .foregroundColor(.secondaryLabel)
                     .font(.system(size: 20, weight: .thin))
                 Spacer()

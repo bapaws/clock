@@ -12,9 +12,9 @@ import SwiftUIX
 public extension EventObject {
     var sectionTitle: String {
         if createdAt.isToday {
-            return R.string.localizable.today()
+            return L10n.today
         } else if createdAt.isYesterday {
-            return R.string.localizable.yesterday()
+            return L10n.yesterday
         } else {
             return createdAt.formatted(date: .complete, time: .omitted)
         }
@@ -50,16 +50,16 @@ public extension Int {
         let time = time
         var text = ""
         if time.second != 0 {
-            text = "\(time.second)" + R.string.localizable.seconds()
+            text = "\(time.second)" + L10n.seconds
         }
         if time.minute != 0 {
-            text = "\(time.minute)" + R.string.localizable.minutes() + text
+            text = "\(time.minute)" + L10n.minutes + text
         }
         if time.hour != 0 {
-            text = "\(time.hour)" + R.string.localizable.hours() + text
+            text = "\(time.hour)" + L10n.hours + text
         }
         if time.day != 0 {
-            text = "\(time.day)" + R.string.localizable.days() + text
+            text = "\(time.day)" + L10n.days + text
         }
         return text
     }
@@ -67,7 +67,7 @@ public extension Int {
     var shortTimeLengthText: String {
         let seconds = Double(self) / 1000
         if seconds < 60 {
-            return "\(Int(seconds.rounded()))" + R.string.localizable.seconds()
+            return "\(Int(seconds.rounded()))" + L10n.seconds
         }
 
         let formatter = NumberFormatter()
@@ -77,15 +77,15 @@ public extension Int {
 
         let minutes = seconds / 60
         if minutes < 60 {
-            return (formatter.string(from: NSNumber(value: minutes)) ?? "0") + R.string.localizable.minutes()
+            return (formatter.string(from: NSNumber(value: minutes)) ?? "0") + L10n.minutes
         }
 
         let hours = minutes / 60
         if hours < 24 {
-            return (formatter.string(from: NSNumber(value: hours)) ?? "0") + R.string.localizable.hours()
+            return (formatter.string(from: NSNumber(value: hours)) ?? "0") + L10n.hours
         }
 
         let days = hours / 24
-        return (formatter.string(from: NSNumber(value: days)) ?? "0") + R.string.localizable.days()
+        return (formatter.string(from: NSNumber(value: days)) ?? "0") + L10n.days
     }
 }

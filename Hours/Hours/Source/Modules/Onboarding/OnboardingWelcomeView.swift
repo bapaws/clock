@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingWelcomeView: View {
     var body: some View {
-        Text(R.string.localizable.welcomeTo())
+        Text(L10n.welcomeTo)
             .font(.largeTitle)
             .height(48)
 
@@ -19,12 +19,12 @@ struct OnboardingWelcomeView: View {
             Image("LaunchImage")
                 .resizable()
                 .frame(width: 48, height: 48)
-            Text(R.string.localizable.appName())
+            Text(L10n.appName)
                 .font(.title)
                 .height(36)
         }
 
-        Text(R.string.localizable.welcomeText())
+        Text(L10n.welcomeText)
             .multilineTextAlignment(.center)
             .foregroundStyle(ui.secondaryLabel)
 

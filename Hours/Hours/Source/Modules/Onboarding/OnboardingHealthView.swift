@@ -30,11 +30,11 @@ struct OnboardingHealthView: View {
 
         ui.background.height(48)
 
-        Text(R.string.localizable.healthTitle())
+        Text(L10n.healthTitle)
             .font(.title)
             .height(36)
 
-        Text(R.string.localizable.healthDesc())
+        Text(L10n.healthDesc)
             .multilineTextAlignment(.center)
             .foregroundStyle(ui.secondaryLabel)
 

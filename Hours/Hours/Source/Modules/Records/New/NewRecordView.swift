@@ -24,7 +24,7 @@ struct NewRecordView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack {
-                        Text(store.record == nil ? R.string.localizable.newRecord() : R.string.localizable.editRecord())
+                        Text(store.record == nil ? L10n.newRecord : L10n.editRecord)
                             .font(.title)
                             .foregroundStyle(ui.primary)
                         Spacer()
@@ -34,7 +34,7 @@ struct NewRecordView: View {
                     }
                     .padding()
 
-                    NewItemView(title: R.string.localizable.event()) {
+                    NewItemView(title: L10n.event) {
                         WithPerceptionTracking {
                             if let event = store.event {
                                 RoundedRectangle(cornerRadius: 2)
@@ -42,7 +42,7 @@ struct NewRecordView: View {
                                     .width(4)
                                 Text(event.name)
                             } else {
-                                Text(R.string.localizable.pleaseSelect())
+                                Text(L10n.pleaseSelect)
                                     .foregroundStyle(Color.placeholderText)
                             }
                         }
@@ -52,7 +52,7 @@ struct NewRecordView: View {
                     }
                     .changeEffect(.shake(rate: .fast), value: store.createAttempts)
 
-                    NewItemView(title: R.string.localizable.startTime()) {
+                    NewItemView(title: L10n.startTime) {
                         WithPerceptionTracking {
                             Text(store.startAt.to(format: "MMMddHH:mm"))
                                 .monospacedDigit()
@@ -62,7 +62,7 @@ struct NewRecordView: View {
                         isStartTimePresented = true
                     }
 
-                    NewItemView(title: R.string.localizable.endTime()) {
+                    NewItemView(title: L10n.endTime) {
                         WithPerceptionTracking {
                             Text(store.endAt.to(format: "MMMddHH:mm"))
                                 .monospacedDigit()
@@ -72,7 +72,7 @@ struct NewRecordView: View {
                         isEndTimePresented = true
                     }
 
-                    TextField(R.string.localizable.note(), text: $store.notes, axis: .vertical)
+                    TextField(L10n.note, text: $store.notes, axis: .vertical)
                         .lineLimit(5 ... 10)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 16).fill(ui.secondaryBackground))
@@ -81,7 +81,7 @@ struct NewRecordView: View {
                         Button {
                             store.send(.cancel)
                         } label: {
-                            Text(R.string.localizable.cancel())
+                            Text(L10n.cancel)
                                 .padding(.vertical, .small)
                                 .frame(maxWidth: .infinity)
                         }
@@ -92,7 +92,7 @@ struct NewRecordView: View {
                         Button {
                             store.send(.save)
                         } label: {
-                            Text(R.string.localizable.save())
+                            Text(L10n.save)
                                 .padding(.vertical, .small)
                                 .frame(maxWidth: .infinity)
                         }

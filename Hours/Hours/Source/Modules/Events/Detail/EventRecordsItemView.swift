@@ -41,7 +41,7 @@ struct EventRecordsItemView: View {
             .padding()
             .background(ui.secondaryBackground)
             .contextMenu {
-                Button(R.string.localizable.delete(), systemImage: "trash", role: .destructive) {
+                Button(L10n.delete, systemImage: "trash", role: .destructive) {
                     onRecordDeleted(record)
                 }
             }

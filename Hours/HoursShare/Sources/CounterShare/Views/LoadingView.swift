@@ -28,7 +28,7 @@ public struct LoadingView<Content: View>: View {
                     .controlSize(.large)
                     .tint(.systemGray)
 
-                Text(R.string.localizable.loading())
+                Text(L10n.loading)
                     .font(.headline)
                     .foregroundStyle(Color.label)
             }

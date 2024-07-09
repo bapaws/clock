@@ -18,7 +18,7 @@ struct SettingsHealthView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                SettingsToggleCell(title: R.string.localizable.healthAutoSyncSleep(), isOn: $isAutoSyncSleep)
+                SettingsToggleCell(title: L10n.healthAutoSyncSleep, isOn: $isAutoSyncSleep)
                     .onChange(of: isAutoSyncSleep) { isAutoSyncSleep in
                         if !isAutoSyncSleep {
                             AppManager.shared.isAutoSyncSleep = false
@@ -34,7 +34,7 @@ struct SettingsHealthView: View {
                         }
                     }
                 
-                SettingsToggleCell(title: R.string.localizable.healthAutoSyncWorkout(), isOn: $isAutoSyncWorkout)
+                SettingsToggleCell(title: L10n.healthAutoSyncWorkout, isOn: $isAutoSyncWorkout)
                     .onChange(of: isAutoSyncWorkout) { isAutoSyncWorkout in
                         if !isAutoSyncWorkout {
                             AppManager.shared.isAutoSyncWorkout = false
@@ -54,7 +54,7 @@ struct SettingsHealthView: View {
             }
             .padding()
             .background(ui.background)
-            .navigationTitle(R.string.localizable.health())
+            .navigationTitle(L10n.health)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { dismiss() }) {

@@ -21,10 +21,10 @@ import SwiftUIX
     @Environment(\.dismiss) var dismiss
 
     private let infos = [
-        R.string.localizable.proInfo1(),
-        R.string.localizable.proInfo2(),
-        R.string.localizable.proInfo3(),
-        R.string.localizable.proInfo4(),
+        L10n.proInfo1,
+        L10n.proInfo2,
+        L10n.proInfo3,
+        L10n.proInfo4,
     ]
 
     @Environment(\.colorScheme) var colorScheme
@@ -66,13 +66,11 @@ import SwiftUIX
     @ViewBuilder var scrollView: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
-                if let image = R.image.hourglass() {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                }
+                Image(asset: Asset.hourglass)
+                    .resizable()
+                    .scaledToFit()
 
-                Text(R.string.localizable.premium())
+                Text(L10n.premium)
                     .font(.title)
                     .padding(.top, .large)
                     .padding(.bottom)
@@ -89,7 +87,7 @@ import SwiftUIX
                 }
                 .padding(.horizontal)
 
-                Text(R.string.localizable.subscriptionWarning())
+                Text(L10n.subscriptionWarning)
                     .font(.footnote)
                     .foregroundColor(.tertiaryLabel)
                     .padding(.vertical, .large)
@@ -102,17 +100,17 @@ import SwiftUIX
                     Button {
                         urlString = "https://privacy.bapaws.com/hours/terms.html"
                     } label: {
-                        Text(R.string.localizable.terms())
+                        Text(L10n.terms)
                     }
                     Text("|")
                     Button {
                         urlString = "https://privacy.bapaws.com/hours/privacy.html"
                     } label: {
-                        Text(R.string.localizable.privacy())
+                        Text(L10n.privacy)
                     }
                     Text("|")
                     Button(action: restore) {
-                        Text(R.string.localizable.restore())
+                        Text(L10n.restore)
                     }
                     Spacer()
                 }
@@ -134,11 +132,11 @@ import SwiftUIX
         VStack {
             Button(action: purchase) {
                 VStack {
-                    Text(R.string.localizable.getPro())
+                    Text(L10n.getPro)
                         .font(.headline)
                         .frame(width: .greedy)
                         .foregroundStyle(.white)
-                    Text(R.string.localizable.sale())
+                    Text(L10n.sale)
                         .font(.footnote)
                         .foregroundColor(ui.background)
                 }
@@ -163,7 +161,7 @@ import SwiftUIX
                 Toast.show(error.localizedDescription)
             } else {
                 dismiss()
-                Toast.show(R.string.localizable.congratulations())
+                Toast.show(L10n.congratulations)
             }
         }
     }
@@ -177,7 +175,7 @@ import SwiftUIX
                 Toast.show(error.localizedDescription)
             } else {
                 dismiss()
-                Toast.show(R.string.localizable.congratulations())
+                Toast.show(L10n.congratulations)
             }
         }
     }

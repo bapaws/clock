@@ -31,7 +31,7 @@ struct StatisticsMonthView: View {
             next: store.isThisMonth ? nil : { store.send(.next, animation: .default) }
         ) {
             let monthString = store.startAt.to(format: "yyyyMMM")
-            let thisMonthString = R.string.localizable.thisMonth(monthString)
+            let thisMonthString = L10n.thisMonth(monthString)
             return Text(store.isThisMonth ? thisMonthString : monthString)
                 .font(.headline)
                 .frame(.greedy)
@@ -59,18 +59,18 @@ struct StatisticsMonthView: View {
             HStack(spacing: 16) {
                 let iconForegroundColor = store.compositions.first?.event.primary ?? .white
                 let fillColor = store.compositions.first?.event.primaryContainer ?? ui.primary
-                StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
+                StatisticsNumberView(imageName: "list.clipboard", title: L10n.records, subtitle: L10n.total, iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
                     Text("\(store.totalCount)")
                         .font(.title, weight: .bold)
                         .foregroundStyle(Color.label)
                 }
 
-                StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
+                StatisticsNumberView(imageName: "hourglass", title: L10n.timeInvest, subtitle: L10n.total, iconForegroundColor: iconForegroundColor, iconBackgound: fillColor) {
                     StatisticsTimeView(time: store.totalMilliseconds.time)
                 }
             }
 
-            StatisticsSection(title: R.string.localizable.overall()) {
+            StatisticsSection(title: L10n.overall) {
                 StatisticsCompositionView(
                     compositions: store.compositions,
                     totalMilliseconds: store.totalMilliseconds,
@@ -79,7 +79,7 @@ struct StatisticsMonthView: View {
                 .proMask()
             }
 
-            StatisticsSection(title: R.string.localizable.heatMap()) {
+            StatisticsSection(title: L10n.heatMap) {
                 StatisticsMonthHeatMapView(
                     contributions: store.contributions,
                     maxMilliseconds: store.contributionMaxMilliseconds
@@ -87,7 +87,7 @@ struct StatisticsMonthView: View {
                 .proMask()
             }
 
-            StatisticsSection(title: R.string.localizable.timeDistribution()) {
+            StatisticsSection(title: L10n.timeDistribution) {
                 StatisticsMonthTimeDistributionView(
                     timeDistributions: store.timeDistributions
                 )

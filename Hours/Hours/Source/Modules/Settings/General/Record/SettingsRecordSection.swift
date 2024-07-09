@@ -19,12 +19,12 @@ struct SettingsRecordSection: View {
     @EnvironmentObject var app: AppManager
 
     var body: some View {
-        SettingsSection(title: R.string.localizable.records()) {
-            SettingsNavigateCell(title: R.string.localizable.timer()) {
+        SettingsSection(title: L10n.records) {
+            SettingsNavigateCell(title: L10n.timer) {
                 isTimerPresented.toggle()
             }
 
-            SettingsToggleCell(title: R.string.localizable.syncRecordsToCalendar(), isNew: true, isOn: $isSyncRecordsToCalendar)
+            SettingsToggleCell(title: L10n.syncRecordsToCalendar, isNew: true, isOn: $isSyncRecordsToCalendar)
                 .onChange(of: isSyncRecordsToCalendar) { isSyncRecordsToCalendar in
                     if !isSyncRecordsToCalendar {
                         AppManager.shared.isSyncRecordsToCalendar = false
@@ -41,12 +41,12 @@ struct SettingsRecordSection: View {
                     }
                 }
 
-            SettingsNavigateCell(title: R.string.localizable.appScreenTime(), isNew: true) {
+            SettingsNavigateCell(title: L10n.appScreenTime, isNew: true) {
                 isAppScreenTimePresented.toggle()
             }
 
             if app.isHealthAvailable {
-                SettingsNavigateCell(title: R.string.localizable.health(), isNew: true) {
+                SettingsNavigateCell(title: L10n.health, isNew: true) {
                     isHealthPresented.toggle()
                 }
             }

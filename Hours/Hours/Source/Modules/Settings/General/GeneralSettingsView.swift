@@ -37,7 +37,7 @@ struct GeneralSettingsView: View {
 
     var body: some View {
         VStack {
-            NavigationBar(R.string.localizable.settings())
+            NavigationBar(L10n.settings)
             scrollView
         }
         .background(ui.background)
@@ -77,15 +77,15 @@ struct GeneralSettingsView: View {
 
                 // MARK: Other
 
-                SettingsSection(title: R.string.localizable.other()) {
-                    SettingsNavigateCell(title: R.string.localizable.onboarding()) {
+                SettingsSection(title: L10n.other) {
+                    SettingsNavigateCell(title: L10n.onboarding) {
                         isOnboardingPresented.toggle()
                     }
-                    SettingsNavigateCell(title: R.string.localizable.rate(), action: goToRate)
-                    SettingsNavigateCell(title: R.string.localizable.feedback()) {
+                    SettingsNavigateCell(title: L10n.rate, action: goToRate)
+                    SettingsNavigateCell(title: L10n.feedback) {
                         isFeedbackPresented = true
                     }
-                    SettingsNavigateCell(title: R.string.localizable.about()) {
+                    SettingsNavigateCell(title: L10n.about) {
                         isAboutPresented = true
                     }
                 }

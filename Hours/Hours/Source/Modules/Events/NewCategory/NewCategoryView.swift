@@ -22,15 +22,15 @@ struct NewCategoryView: View {
     var body: some View {
         WithPerceptionTracking {
             VStack(alignment: .leading, spacing: 16) {
-                Text(R.string.localizable.newCategory())
+                Text(L10n.newCategory)
                     .font(.title)
                     .foregroundStyle(ui.primary)
                     .padding()
 
-                NewItemView(title: R.string.localizable.emoji()) {
+                NewItemView(title: L10n.emoji) {
                     WithPerceptionTracking {
                         if store.emoji.isEmpty {
-                            Text(R.string.localizable.pleaseSelect())
+                            Text(L10n.pleaseSelect)
                                 .foregroundStyle(Color.placeholderText)
                         } else {
                             Text(store.emoji)
@@ -49,9 +49,9 @@ struct NewCategoryView: View {
                     }
                 }
 
-                NewItemView(title: R.string.localizable.categoryName()) {
+                NewItemView(title: L10n.categoryName) {
                     WithPerceptionTracking {
-                        TextField(R.string.localizable.pleaseEnter(), text: $store.title)
+                        TextField(L10n.pleaseEnter, text: $store.title)
                             .focused($isFocused)
                     }
                 }
@@ -71,7 +71,7 @@ struct NewCategoryView: View {
                     Button {
                         store.send(.cancel)
                     } label: {
-                        Text(R.string.localizable.cancel())
+                        Text(L10n.cancel)
                             .padding(.vertical, .small)
                             .frame(maxWidth: .infinity)
                     }
@@ -82,7 +82,7 @@ struct NewCategoryView: View {
                     Button {
                         store.send(.save)
                     } label: {
-                        Text(R.string.localizable.save())
+                        Text(L10n.save)
                             .padding(.vertical, .small)
                             .frame(maxWidth: .infinity)
                     }

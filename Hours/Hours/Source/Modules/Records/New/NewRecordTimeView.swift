@@ -50,7 +50,7 @@ struct NewRecordTimeView: View {
                 Button(action: {
                     dismiss()
                 }, label: {
-                    Text(R.string.localizable.cancel())
+                    Text(L10n.cancel)
                         .padding(.vertical, .small)
                         .frame(maxWidth: .infinity)
                 })
@@ -61,7 +61,7 @@ struct NewRecordTimeView: View {
                 Button(action: {
                     dismiss()
                 }, label: {
-                    Text(R.string.localizable.save())
+                    Text(L10n.save)
                         .padding(.vertical, .small)
                         .frame(maxWidth: .infinity)
                 })

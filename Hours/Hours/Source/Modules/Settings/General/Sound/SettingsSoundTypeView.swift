@@ -15,7 +15,7 @@ struct SettingsSoundTypeView: View {
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        SettingsSection(title: R.string.localizable.backgroundSound()) {
+        SettingsSection(title: L10n.backgroundSound) {
             ForEach(SoundType.allCases, id: \.self) { type in
                 SettingsCheckCell(title: type.value, isChecked: AppManager.shared.soundType == type) {
                     AppManager.shared.soundType = type

@@ -14,8 +14,8 @@ struct SettingsHealthSection: View {
     @EnvironmentObject private var ui: UIManager
 
     var body: some View {
-        SettingsSection(title: R.string.localizable.health()) {
-            SettingsNavigateCell(title: R.string.localizable.health()) {
+        SettingsSection(title: L10n.health) {
+            SettingsNavigateCell(title: L10n.health) {
                 isHealthPresented = true
             }
         }

@@ -9,17 +9,17 @@ import ClockShare
 
 public extension DarkMode {
     static var title: String {
-        R.string.localizable.darkMode()
+        L10n.darkMode
     }
 
     var value: String {
         switch self {
         case .light:
-            R.string.localizable.light()
+            L10n.light
         case .dark:
-            R.string.localizable.dark()
+            L10n.dark
         default:
-            R.string.localizable.modeAuto()
+            L10n.modeAuto
         }
     }
 }

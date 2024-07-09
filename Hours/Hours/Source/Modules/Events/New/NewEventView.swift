@@ -21,17 +21,17 @@ struct NewEventView: View {
     var body: some View {
         WithPerceptionTracking {
             VStack(alignment: .leading, spacing: 16) {
-                Text(store.event == nil ? R.string.localizable.newEvent() : R.string.localizable.editEvent())
+                Text(store.event == nil ? L10n.newEvent : L10n.editEvent)
                     .font(.title)
                     .foregroundStyle(ui.primary)
                     .padding()
 
-                NewItemView(title: R.string.localizable.category()) {
+                NewItemView(title: L10n.category) {
                     WithPerceptionTracking {
                         if let category = store.category {
                             CategoryView(category: category)
                         } else {
-                            Text(R.string.localizable.selectCategory())
+                            Text(L10n.selectCategory)
                                 .foregroundStyle(Color.placeholderText)
                         }
                     }
@@ -41,10 +41,10 @@ struct NewEventView: View {
                     store.send(.selectCategoryTapped)
                 }
 
-                NewItemView(title: R.string.localizable.emoji()) {
+                NewItemView(title: L10n.emoji) {
                     WithPerceptionTracking {
                         if store.emoji.isEmpty {
-                            Text(R.string.localizable.pleaseSelect())
+                            Text(L10n.pleaseSelect)
                                 .foregroundStyle(Color.placeholderText)
                         } else {
                             Text(store.emoji)
@@ -63,9 +63,9 @@ struct NewEventView: View {
                     }
                 }
 
-                NewItemView(title: R.string.localizable.eventName()) {
+                NewItemView(title: L10n.eventName) {
                     WithPerceptionTracking {
-                        TextField(R.string.localizable.pleaseEnter(), text: $store.title)
+                        TextField(L10n.pleaseEnter, text: $store.title)
                             .focused($isFocused)
                     }
                 }
@@ -78,7 +78,7 @@ struct NewEventView: View {
                     Button {
                         store.send(.cancel)
                     } label: {
-                        Text(R.string.localizable.cancel())
+                        Text(L10n.cancel)
                             .padding(.vertical, .small)
                             .frame(maxWidth: .infinity)
                     }
@@ -89,7 +89,7 @@ struct NewEventView: View {
                     Button {
                         store.send(.save)
                     } label: {
-                        Text(R.string.localizable.save())
+                        Text(L10n.save)
                             .padding(.vertical, .small)
                             .frame(maxWidth: .infinity)
                     }

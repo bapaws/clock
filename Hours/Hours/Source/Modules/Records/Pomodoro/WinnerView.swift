@@ -32,12 +32,12 @@ struct WinnerView: View {
                     .scaledToFit()
                     .padding(.horizontal)
 
-                Text(R.string.localizable.congratulations())
+                Text(L10n.congratulations)
                     .font(.body)
                     .padding(.vertical)
 
                 HStack(spacing: 16) {
-                    Button(R.string.localizable.leave()) {
+                    Button(L10n.leave) {
                         onFinish()
                     }
                     .buttonStyle(.plain)
@@ -51,7 +51,7 @@ struct WinnerView: View {
                     }
                     .cornerRadius(12)
 
-                    Button(R.string.localizable.startBreak()) {
+                    Button(L10n.startBreak) {
                         onBreak()
                     }
                     .buttonStyle(.plain)

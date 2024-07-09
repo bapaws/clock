@@ -15,20 +15,20 @@ struct SettingsPaywallView: View {
         HStack {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
-                    Text(R.string.localizable.appName())
+                    Text(L10n.appName)
                     Image(systemName: "crown.fill")
                         .foregroundStyle(.orange)
                 }
                 .font(.title3)
 
-                Text(ProManager.default.isPro ? R.string.localizable.slogan() : R.string.localizable.unlockPro())
+                Text(ProManager.default.isPro ? L10n.slogan : L10n.unlockPro)
             }
             .foregroundStyle(.white)
 
             Spacer()
 
             Button(action: action) {
-                Text(ProManager.default.purchasedProduct?.localizedTitle ?? R.string.localizable.tryFree())
+                Text(ProManager.default.purchasedProduct?.localizedTitle ?? L10n.tryFree)
                     .font(.headline)
                     .padding()
                     .foregroundStyle(ui.colors.primary)

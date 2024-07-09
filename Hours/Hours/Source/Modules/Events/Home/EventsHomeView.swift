@@ -23,7 +23,7 @@ struct EventsHomeView: View {
             WithPerceptionTracking {
                 LoadingView(isLoading: $store.isLoading) {
                     VStack {
-                        NavigationBar(R.string.localizable.events()) {
+                        NavigationBar(L10n.events) {
                             menu
                         }
                         ScrollView {
@@ -57,7 +57,7 @@ struct EventsHomeView: View {
                                     toggleOtherCategory(for: proxy)
                                 } label: {
                                     HStack {
-                                        Text(R.string.localizable.showAll())
+                                        Text(L10n.showAll)
                                         Image(systemName: "chevron.forward")
                                             .animation(.easeInOut, value: store.isOtherCategoriesShow)
                                             .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
@@ -65,7 +65,7 @@ struct EventsHomeView: View {
                                     .foregroundStyle(ui.secondaryLabel)
                                     .padding(.vertical, .large)
                                 }
-                                .id(R.string.localizable.showAll())
+                                .id(L10n.showAll)
                                 .padding(.horizontal)
 
                                 if store.isOtherCategoriesShow {
@@ -82,7 +82,7 @@ struct EventsHomeView: View {
 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                                     withAnimation {
-                                        proxy.scrollTo(R.string.localizable.showAll(), anchor: .top)
+                                        proxy.scrollTo(L10n.showAll, anchor: .top)
                                     }
                                 }
                             }
@@ -136,16 +136,16 @@ struct EventsHomeView: View {
 
     private var menu: some View {
         Menu {
-            Button(R.string.localizable.newEvent(), systemImage: "plus", role: nil) {
+            Button(L10n.newEvent, systemImage: "plus", role: nil) {
                 store.send(.newEventTapped(nil))
             }
-            Button(R.string.localizable.newCategory(), systemImage: "folder.badge.plus", role: nil) {
+            Button(L10n.newCategory, systemImage: "folder.badge.plus", role: nil) {
                 store.send(.newCategoryTapped)
             }
 
             Divider()
 
-            Button(R.string.localizable.archived(), systemImage: "archivebox.fill", role: nil) {
+            Button(L10n.archived, systemImage: "archivebox.fill", role: nil) {
                 // 先发送 action，再获取 store 进行 push
                 store.send(.onArchivedEventsTapped)
             }
@@ -162,19 +162,19 @@ struct EventsHomeView: View {
             Button {
                 store.send(.newRecordTapped(event))
             } label: {
-                Label(R.string.localizable.newRecord(), systemImage: "plus")
+                Label(L10n.newRecord, systemImage: "plus")
             }
             Button {
                 store.send(.onTimerStarted(event))
             } label: {
-                Label(R.string.localizable.startTimer(), systemImage: "play")
+                Label(L10n.startTimer, systemImage: "play")
             }
             Divider()
 
             Button(action: {
                 store.send(.archiveEvent(event))
             }) {
-                Label(R.string.localizable.archive(), systemImage: "archivebox")
+                Label(L10n.archive, systemImage: "archivebox")
             }
         }
     }
@@ -186,7 +186,7 @@ struct EventsHomeView: View {
             store.send(.toggleOtherCategoriesShow)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 withAnimation {
-                    proxy.scrollTo(R.string.localizable.showAll(), anchor: .top)
+                    proxy.scrollTo(L10n.showAll, anchor: .top)
                 }
             }
         }

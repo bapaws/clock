@@ -88,7 +88,7 @@ struct StatisticsCompositionView: View {
                 }
 
                 VStack {
-                    Text(R.string.localizable.totalInvest())
+                    Text(L10n.totalInvest)
                         .font(.footnote)
                         .foregroundStyle(Color.secondaryLabel)
                     Text(totalMilliseconds.shortTimeLengthText)
@@ -109,7 +109,7 @@ struct StatisticsCompositionView: View {
                 } label: {
                     HStack(spacing: 4) {
                         Spacer()
-                        Text(isOverallDayExpanded ? R.string.localizable.collapse() : R.string.localizable.expand())
+                        Text(isOverallDayExpanded ? L10n.collapse : L10n.expand)
                         Image(systemName: "chevron.forward")
                             .rotationEffect(isOverallDayExpanded ? .degrees(-90) : .zero)
                         Spacer()

@@ -52,7 +52,7 @@ struct StatisticsDatePicker<Center: View>: View {
 #Preview {
     StatisticsDatePicker(previous: {}, next: nil) {
         VStack {
-            Text(R.string.localizable.today())
+            Text(L10n.today)
                 .font(.headline)
             Text(Date().toString(.date(.medium)))
                 .font(.subheadline)

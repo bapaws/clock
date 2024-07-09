@@ -16,7 +16,7 @@ struct StatisticsView: View {
     var body: some View {
         WithPerceptionTracking {
             VStack {
-                NavigationBar(R.string.localizable.statistics())
+                NavigationBar(L10n.statistics)
                 StatisticsPageBar(Statistics.State.PageIndex.allCases, selection: $store.pageIndex.animation()) {
                     if store.pageIndex == $0 {
                         Text("\($0)")

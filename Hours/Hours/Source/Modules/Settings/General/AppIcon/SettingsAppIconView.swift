@@ -51,7 +51,7 @@ struct SettingsAppIconView: View {
                 .padding()
             }
             .background(ui.background)
-            .navigationTitle(R.string.localizable.appIcon())
+            .navigationTitle(L10n.appIcon)
             .navigationBarItems(trailing: Button(action: {
                 dismiss()
             }, label: {

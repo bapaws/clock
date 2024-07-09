@@ -30,11 +30,11 @@ struct OnboardingAppScreenTimeView: View {
 
         ui.background.height(48)
 
-        Text(R.string.localizable.appScreenTimeTitle())
+        Text(L10n.appScreenTimeTitle)
             .font(.title)
             .height(36)
 
-        Text(R.string.localizable.appScreenTimeDesc())
+        Text(L10n.appScreenTimeDesc)
             .multilineTextAlignment(.center)
             .foregroundStyle(ui.secondaryLabel)
 
@@ -42,7 +42,7 @@ struct OnboardingAppScreenTimeView: View {
             isGuidePresented.toggle()
         } label: {
             HStack(spacing: 2) {
-                Text(R.string.localizable.autoRecordSetupGuide())
+                Text(L10n.autoRecordSetupGuide)
                 Image(systemName: "chevron.forward")
             }
             .padding(.small)

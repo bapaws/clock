@@ -29,17 +29,17 @@ struct SettingsTimerSection: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                SettingsToggleCell(title: R.string.localizable.showHour(), isOn: isShowed)
+                SettingsToggleCell(title: L10n.showHour, isOn: isShowed)
 
-                SettingsStepperCell(title: R.string.localizable.minimumRecordedTime() + " (s)", value: app.$minimumRecordedTime, minimumValue: 0, maximumValue: 300, stepValue: 30)
+                SettingsStepperCell(title: L10n.minimumRecordedTime + " (s)", value: app.$minimumRecordedTime, minimumValue: 0, maximumValue: 300, stepValue: 30)
 
-                SettingsStepperCell(title: R.string.localizable.maximumRecordedTime() + " (h)", value: maximumRecordedTime, minimumValue: 1, maximumValue: 24, stepValue: 1)
+                SettingsStepperCell(title: L10n.maximumRecordedTime + " (h)", value: maximumRecordedTime, minimumValue: 1, maximumValue: 24, stepValue: 1)
 
                 Spacer()
             }
             .padding()
             .background(ui.background)
-            .navigationTitle(R.string.localizable.timer())
+            .navigationTitle(L10n.timer)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { dismiss() }) {

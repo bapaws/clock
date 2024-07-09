@@ -32,7 +32,7 @@ struct MainView: View {
                     )
                     .tag(MainTabTag.events)
                     .tabItem {
-                        Image(image: R.image.events()!)
+                        Image(asset: Asset.Tab.events)
                     }
 
                     RecordsHomeView(
@@ -40,7 +40,7 @@ struct MainView: View {
                     )
                     .tag(MainTabTag.records)
                     .tabItem {
-                        Image(image: R.image.records()!)
+                        Image(asset: Asset.Tab.records)
                     }
 
                     StatisticsView(
@@ -48,13 +48,13 @@ struct MainView: View {
                     )
                     .tag(MainTabTag.statistics)
                     .tabItem {
-                        Image(image: R.image.statistics()!)
+                        Image(asset: Asset.Tab.statistics)
                     }
 
                     GeneralSettingsView(isPaywallPresented: $store.isPaywallPresented)
                         .tag(MainTabTag.settings)
                         .tabItem {
-                            Image(image: R.image.settings()!)
+                            Image(asset: Asset.Tab.settings)
                         }
                 }
                 .accentColor(ui.primary)
@@ -76,13 +76,13 @@ struct MainView: View {
     var navigationTitle: String {
         switch store.selection {
         case .events:
-            R.string.localizable.events()
+            L10n.events
         case .records:
-            R.string.localizable.records()
+            L10n.records
         case .statistics:
-            R.string.localizable.statistics()
+            L10n.statistics
         case .settings:
-            R.string.localizable.settings()
+            L10n.settings
         }
     }
 }

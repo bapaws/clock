@@ -56,7 +56,7 @@ struct EventsLargeWidget: Widget {
                 }
         }
         .disableContentMarginsIfNeeded()
-        .configurationDisplayName(R.string.localizable.quickTiming())
+        .configurationDisplayName(L10n.quickTiming)
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

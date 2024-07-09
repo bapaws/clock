@@ -19,7 +19,7 @@ struct FeedbackView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    SettingsNavigateCell(title: R.string.localizable.sendEmail(), value: "dev@bapaws.com") {
+                    SettingsNavigateCell(title: L10n.sendEmail, value: "dev@bapaws.com") {
                         if MFMailComposeViewController.canSendMail() {
                             isEmailPresented.toggle()
                         } else if let url = emailURL, UIApplication.shared.canOpenURL(url) {
@@ -27,22 +27,22 @@ struct FeedbackView: View {
                         } else {
                             let pasteboard = UIPasteboard.general
                             pasteboard.string = "dev@bapaws.com"
-                            Toast.show(R.string.localizable.emailCopied())
+                            Toast.show(L10n.emailCopied)
                         }
                     }
 
                     if let url = URL(string: "twitter://user?screen_name=minchaozhang"), UIApplication.shared.canOpenURL(url) {
-                        SettingsNavigateCell(title: R.string.localizable.x()) {
+                        SettingsNavigateCell(title: L10n.x) {
                             UIApplication.shared.open(url)
                         }
                     }
 
                     if let url = URL(string: "weixin://"), UIApplication.shared.canOpenURL(url) {
-                        SettingsNavigateCell(title: R.string.localizable.weChat()) {
+                        SettingsNavigateCell(title: L10n.weChat) {
                             let pasteboard = UIPasteboard.general
                             pasteboard.string = "Bapaws"
 
-                            Toast.show(R.string.localizable.weChatCopied())
+                            Toast.show(L10n.weChatCopied)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                                 UIApplication.shared.open(url)
                             }
@@ -50,7 +50,7 @@ struct FeedbackView: View {
                     }
 
                     if let url = URL(string: "xhsdiscover://user/6481492100000000120342c4"), UIApplication.shared.canOpenURL(url) {
-                        SettingsNavigateCell(title: R.string.localizable.redBook()) {
+                        SettingsNavigateCell(title: L10n.redBook) {
                             UIApplication.shared.open(url)
                         }
                     }
@@ -60,7 +60,7 @@ struct FeedbackView: View {
                 .padding()
             }
             .background(ui.background)
-            .navigationTitle(R.string.localizable.feedback())
+            .navigationTitle(L10n.feedback)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { dismiss() }) {
@@ -76,14 +76,14 @@ struct FeedbackView: View {
                 let model = UIDevice.current.model // 设备型号
                 let localizedModel = UIDevice.current.localizedModel
 
-                MailView(recipients: ["dev@bapaws.com"], subject: "\(R.string.localizable.appName())-\(R.string.localizable.feedback())", messageBody: R.string.localizable.emailMessageBody(systemName, systemVersion, localizedModel, majorVersion), isHTML: true, result: $result)
+                MailView(recipients: ["dev@bapaws.com"], subject: "\(L10n.appName)-\(L10n.feedback)", messageBody: L10n.emailMessageBody(systemName, systemVersion, localizedModel, majorVersion), isHTML: true, result: $result)
             }
         }
         .background(ui.background)
     }
 
     var emailURL: URL? {
-        let subject = "\(R.string.localizable.appName)-\(R.string.localizable.feedback())"
+        let subject = "\(L10n.appName)-\(L10n.feedback)"
 
         let infoDictionary = Bundle.main.infoDictionary
         let majorVersion = infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
@@ -91,7 +91,7 @@ struct FeedbackView: View {
         let systemVersion = UIDevice.current.systemVersion // ios版本
         let model = UIDevice.current.model // 设备型号
         let localizedModel = UIDevice.current.localizedModel
-        let body = R.string.localizable.emailMessageBody(systemName, systemVersion, localizedModel, majorVersion)
+        let body = L10n.emailMessageBody(systemName, systemVersion, localizedModel, majorVersion)
 
         guard
             let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),

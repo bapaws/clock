@@ -18,7 +18,7 @@ struct SettingsAppearanceSection: View {
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        SettingsSection(title: R.string.localizable.appearance()) {
+        SettingsSection(title: L10n.appearance) {
             SettingsNavigateCell(title: DarkMode.title, value: ui.darkMode.value) {
                 isDarkModePresented = true
             }

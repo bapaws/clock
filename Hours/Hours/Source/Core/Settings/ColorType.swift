@@ -10,19 +10,19 @@ import SwiftUI
 
 public extension ColorType {
     static var title: String {
-        R.string.localizable.colorThemes()
+        L10n.colorThemes
     }
 
     var value: String {
         switch self {
         case .classic:
-            R.string.localizable.classic()
+            L10n.classic
         case .pink:
-            R.string.localizable.pink()
+            L10n.pink
         case .orange:
-            R.string.localizable.orange()
+            L10n.orange
         case .purple:
-            R.string.localizable.purple()
+            L10n.purple
         }
     }
 }

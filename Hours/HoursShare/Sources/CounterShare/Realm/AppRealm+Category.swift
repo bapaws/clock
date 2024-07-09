@@ -99,10 +99,10 @@ public extension AppRealm {
 
     func healthCategory() async -> CategoryEntity {
         let realm = await realm
-        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == R.string.localizable.health() }) {
+        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == L10n.health }) {
             return CategoryEntity(object: health)
         } else {
-            let category = await CategoryEntity(hex: nextHex, emoji: "❤️", name: R.string.localizable.health())
+            let category = await CategoryEntity(hex: nextHex, emoji: "❤️", name: L10n.health)
             try? await realm.asyncWrite {
                 realm.add(category.toObject())
             }

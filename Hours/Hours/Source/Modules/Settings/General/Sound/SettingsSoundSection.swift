@@ -15,8 +15,8 @@ struct SettingsSoundSection: View {
     @EnvironmentObject var app: AppManager
 
     var body: some View {
-        SettingsSection(title: R.string.localizable.sound()) {
-            SettingsToggleCell(title: R.string.localizable.mute(), isOn: $isMute)
+        SettingsSection(title: L10n.sound) {
+            SettingsToggleCell(title: L10n.mute, isOn: $isMute)
                 .onChange(of: isMute) { isMute in
                     AppManager.shared.isMute = isMute
                 }

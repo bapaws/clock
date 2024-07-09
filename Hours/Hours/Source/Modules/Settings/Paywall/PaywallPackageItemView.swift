@@ -40,7 +40,7 @@ struct PaywallPackageItemView: View {
                     Text(package.localizedPriceString)
                         .font(.title2)
                     if let days = freeTrialDays(package: package) {
-                        Text(R.string.localizable.freeTrialDays("\(days)"))
+                        Text(L10n.FreeTrial.days("\(days)"))
                             .background(ui.secondary)
                             .foregroundColor(Color.white)
                             .font(.footnote)

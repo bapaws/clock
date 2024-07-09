@@ -21,9 +21,9 @@ private enum EventDetailViewSelectionType: Int, Identifiable, CaseIterable {
     var title: String {
         switch self {
         case .statistics:
-            R.string.localizable.statistics()
+            L10n.statistics
         case .records:
-            R.string.localizable.records()
+            L10n.records
         }
     }
 }
@@ -64,12 +64,12 @@ struct EventDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Button(R.string.localizable.edit(), systemImage: "pencil", role: nil) {
+                        Button(L10n.edit, systemImage: "pencil", role: nil) {
                             store.send(.newEventTapped)
                         }
 
                         Button(
-                            store.event.archivedAt == nil ? R.string.localizable.archive() : R.string.localizable.unarchive(),
+                            store.event.archivedAt == nil ? L10n.archive : L10n.unarchive,
                             systemImage: store.event.archivedAt == nil ? "archivebox" : "archivebox.fill",
                             role: nil
                         ) {
@@ -79,7 +79,7 @@ struct EventDetailView: View {
 
                         Divider()
 
-                        Button(R.string.localizable.delete(), systemImage: "trash", role: .destructive) {
+                        Button(L10n.delete, systemImage: "trash", role: .destructive) {
                             isDeletePresented = true
                         }
                     } label: {
@@ -108,13 +108,13 @@ struct EventDetailView: View {
 
             // MARK: Delete Event
 
-            .alert(R.string.localizable.warning(), isPresented: $isDeletePresented, actions: {
-                Button(R.string.localizable.cancel(), role: .cancel) {}
-                Button(R.string.localizable.delete(), role: .destructive) {
+            .alert(L10n.warning, isPresented: $isDeletePresented, actions: {
+                Button(L10n.cancel, role: .cancel) {}
+                Button(L10n.delete, role: .destructive) {
                     store.send(.deleteEvent)
                 }
             }, message: {
-                Text(R.string.localizable.deleteEventWarning(store.event.name, store.event.name))
+                Text(L10n.deleteEventWarning(store.event.name, store.event.name))
             })
         }
     }
@@ -143,7 +143,7 @@ struct EventDetailView: View {
             } label: {
                 HStack {
                     Image(systemName: "plus")
-                    Text(R.string.localizable.newRecord())
+                    Text(L10n.newRecord)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 39, maxHeight: 39)
             }
@@ -167,13 +167,13 @@ struct EventDetailView: View {
 
     @ViewBuilder var number: some View {
         HStack(spacing: 16) {
-            StatisticsNumberView(imageName: "list.clipboard", title: R.string.localizable.records(), subtitle: R.string.localizable.total(), iconBackgound: ui.primary) {
+            StatisticsNumberView(imageName: "list.clipboard", title: L10n.records, subtitle: L10n.total, iconBackgound: ui.primary) {
                 Text("\(store.recordCount)")
                     .font(.title, weight: .bold)
                     .foregroundStyle(Color.label)
             }
 
-            StatisticsNumberView(imageName: "hourglass", title: R.string.localizable.timeInvest(), subtitle: R.string.localizable.total(), iconBackgound: ui.primary) {
+            StatisticsNumberView(imageName: "hourglass", title: L10n.timeInvest, subtitle: L10n.total, iconBackgound: ui.primary) {
                 StatisticsTimeView(time: store.event.time)
             }
         }

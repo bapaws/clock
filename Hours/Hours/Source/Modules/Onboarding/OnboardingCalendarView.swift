@@ -42,11 +42,11 @@ struct OnboardingCalendarView: View {
 
         ui.background.height(48)
 
-        Text(R.string.localizable.calendarTitle())
+        Text(L10n.calendarTitle)
             .font(.title)
             .height(36)
 
-        Text(R.string.localizable.calendarDesc())
+        Text(L10n.calendarDesc)
             .multilineTextAlignment(.center)
             .foregroundStyle(ui.secondaryLabel)
 
