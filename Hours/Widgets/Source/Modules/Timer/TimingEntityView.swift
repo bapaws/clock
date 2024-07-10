@@ -15,7 +15,7 @@ struct TimingEntityView: View {
         let label = VStack {
             Spacer()
 
-            HStack {
+            HStack(spacing: 0) {
                 if let emoji = entity.emoji {
                     Text(emoji)
                         .font(.footnote)
@@ -27,13 +27,14 @@ struct TimingEntityView: View {
 
             Spacer()
 
-            HStack(spacing: 4) {
+            HStack(spacing: 0) {
                 Image(systemName: "stop.fill")
                     .font(.system(.callout, design: .rounded))
 
                 Text(timerInterval: entity.timerInterval, countsDown: false)
                     .contentTransition(.numericText(countsDown: false))
                     .font(.system(.callout, design: .rounded, weight: .bold))
+                    .minimumScaleFactor(0.5)
                     .monospacedDigit()
             }
             .foregroundStyle(entity.primary)

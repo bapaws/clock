@@ -30,7 +30,6 @@ struct QuickTimingItemView: View {
             HStack(spacing: 0) {
                 Image(systemName: "stop.fill")
                     .font(.system(.caption, design: .rounded))
-
                 Text(timerInterval: entity.timerInterval, countsDown: false)
                     .contentTransition(.numericText(countsDown: false))
                     .font(.system(.caption, design: .rounded, weight: .bold))

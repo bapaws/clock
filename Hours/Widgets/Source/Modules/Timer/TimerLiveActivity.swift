@@ -37,17 +37,21 @@ struct TimerLiveActivity: Widget {
                     }
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    let space: CGFloat = 8
-                    GeometryReader { proxy in
-                        let dimensions = (proxy.size.width - space * 3) / 4
-                        HStack(spacing: space) {
-                            ForEach(entities) { entity in
-                                TimingEntityView(entity: entity, dimensions: dimensions)
+                    if entities.count == 1 {
+                        TimerView(context: context)
+                    } else {
+                        let space: CGFloat = 8
+                        GeometryReader { proxy in
+                            let dimensions = (proxy.size.width - space * 3) / 4
+                            HStack(spacing: space) {
+                                ForEach(entities) { entity in
+                                    TimingEntityView(entity: entity, dimensions: dimensions)
+                                }
+                                Spacer()
                             }
-                            Spacer()
                         }
+                        .frame(height: .greedy)
                     }
-                    .frame(height: .greedy)
                 }
             } compactLeading: {
                 if let emoji = context.state.first?.emoji {

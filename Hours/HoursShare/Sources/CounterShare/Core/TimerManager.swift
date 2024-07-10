@@ -38,6 +38,13 @@ public class TimerManager: ObservableObject {
     init() {
         if let timingEntities = Storage.default.currentTimingEntities {
             self.timingEntities = timingEntities
+
+            // 更新小组件
+            WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+            // 重启后，重新启动实时活动
+            if #available(iOS 16.1, *) {
+                startActivity()
+            }
         } else {
             self.timingEntities = []
         }
@@ -52,30 +59,37 @@ public class TimerManager: ObservableObject {
         WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
 
         if #available(iOS 16.1, *) {
-            // Copy timingEntities
-            let timingEntities = timingEntities
-            Task {
-                let activities = Activity<TimingEntityActivityAttributes>.activities
-                if activities.isEmpty {
-                    let attributes = TimingEntityActivityAttributes()
-                    do {
-                        if #available(iOS 16.2, *) {
-                            let content = ActivityContent(state: timingEntities, staleDate: nil)
-                            _ = try Activity.request(attributes: attributes, content: content, pushType: .token)
-                        } else {
-                            _ = try Activity.request(attributes: attributes, contentState: timingEntities, pushType: .token)
-                        }
-                    } catch {
-                        print(error.localizedDescription)
+            startActivity()
+        }
+    }
+
+    @available(iOS 16.1, *)
+    private func startActivity() {
+        // Copy timingEntities
+        let timingEntities = timingEntities
+        if timingEntities.isEmpty { return }
+
+        Task {
+            let activities = Activity<TimingEntityActivityAttributes>.activities
+            if activities.isEmpty {
+                let attributes = TimingEntityActivityAttributes()
+                do {
+                    if #available(iOS 16.2, *) {
+                        let content = ActivityContent(state: timingEntities, staleDate: nil)
+                        _ = try Activity.request(attributes: attributes, content: content, pushType: .token)
+                    } else {
+                        _ = try Activity.request(attributes: attributes, contentState: timingEntities, pushType: .token)
                     }
-                } else {
-                    for activitiy in activities {
-                        if #available(iOS 16.2, *) {
-                            let content = ActivityContent(state: timingEntities, staleDate: nil)
-                            await activitiy.update(content)
-                        } else {
-                            await activitiy.update(using: timingEntities)
-                        }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            } else {
+                for activitiy in activities {
+                    if #available(iOS 16.2, *) {
+                        let content = ActivityContent(state: timingEntities, staleDate: nil)
+                        await activitiy.update(content)
+                    } else {
+                        await activitiy.update(using: timingEntities)
                     }
                 }
             }
@@ -110,5 +124,3 @@ public class TimerManager: ObservableObject {
         }
     }
 }
-
-

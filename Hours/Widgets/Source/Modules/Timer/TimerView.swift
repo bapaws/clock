@@ -27,30 +27,81 @@ struct TimerView: View {
     }
 
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text(R.string.localizable.tracking("\(entities.count)"))
-                    .font(.headline)
-
-                Spacer()
-                if let icon = R.image.icon() {
-                    Image(uiImage: icon)
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .cornerRadius(4)
-                }
-            }
-
-            GeometryReader { proxy in
-                let dimensions = (proxy.size.width - space * 3) / 4
-                HStack(spacing: space) {
-                    ForEach(entities) { entity in
-                        TimingEntityView(entity: entity, dimensions: dimensions)
+        if entities.count == 1, let event = entities.first {
+            VStack(spacing: 8) {
+                HStack {
+                    if let emoji = event.emoji {
+                        Text(emoji)
+                            .font(.title3)
                     }
+                    Text(event.name)
+                        .font(.title2)
+                        .foregroundStyle(event.lightPrimary)
                     Spacer()
                 }
+
+                HStack {
+                    Text(timerInterval: event.timerInterval, countsDown: false)
+                        .contentTransition(.numericText(countsDown: false))
+                        .font(.system(size: 54, weight: .bold, design: .rounded))
+                        .foregroundStyle(event.darkPrimary)
+                        .monospacedDigit()
+                    Spacer()
+                    stopButton(for: event)
+                }
             }
-            .frame(height: .greedy)
+            .padding(.horizontal)
+
+        } else {
+            VStack(spacing: 12) {
+                HStack {
+                    Text(R.string.localizable.tracking("\(entities.count)"))
+                        .font(.headline)
+
+                    Spacer()
+                    if let icon = R.image.icon() {
+                        Image(uiImage: icon)
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .cornerRadius(4)
+                    }
+                }
+
+                GeometryReader { proxy in
+                    let dimensions = (proxy.size.width - space * 3) / 4
+                    HStack(spacing: space) {
+                        ForEach(entities) { entity in
+                            TimingEntityView(entity: entity, dimensions: dimensions)
+                        }
+                        Spacer()
+                    }
+                }
+                .frame(height: .greedy)
+            }
+        }
+    }
+
+    @ViewBuilder func stopButton(for event: TimingEntity) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            Button(intent: QuickStopTimerAppIntent(eventID: event.id), label: {
+                Image(systemName: "stop.fill")
+                    .font(.system(.title2, design: .rounded))
+                    .foregroundStyle(event.primary)
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(event.primaryContainer)
+                    }
+            })
+            .background(.clear)
+            .buttonStyle(BorderlessButtonStyle())
+        } else {
+            Image(systemName: "stop.fill")
+                .font(.title2)
+                .frame(width: 60, height: 60)
+                .foregroundStyle(event.darkPrimary)
+                .background(event.darkOnPrimary)
+                .cornerRadius(30)
         }
     }
 }

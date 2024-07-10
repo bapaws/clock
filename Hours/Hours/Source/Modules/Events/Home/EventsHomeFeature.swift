@@ -112,11 +112,15 @@ struct EventsHomeFeature {
 
                     var categories: [CategoryEntity] = []
                     var otherCategories: [CategoryEntity] = []
-                    for entity in entities {
-                        if entity.events.isEmpty {
-                            otherCategories.append(entity)
-                        } else if !timingEntities.contains(where: { $0.id == entity.id }) {
-                            categories.append(entity)
+                    for var category in entities {
+                        if category.events.isEmpty {
+                            otherCategories.append(category)
+                        } else {
+                            // 移除正在计时的事件
+                            category.events.removeAll { event in
+                                timingEntities.contains(where: { $0.id == event.id })
+                            }
+                            categories.append(category)
                         }
                     }
                     await send(.updateCategories(categories), animation: .default)
@@ -209,9 +213,16 @@ struct EventsHomeFeature {
             case .eventDetail(.presented(.onTimerStarted(let entity))),
                  .recent(.onEventTapped(let entity)),
                  .onTimerStarted(let entity):
-                let timingEntity = TimingEntity(event: entity)
-                // 更新首页的当前的计时
-                state.timing.entities.append(timingEntity)
+                var timingEntity: TimingEntity
+                // 如果已经是正在计时，获取后直接进入
+                if let entity = TimerManager.shared.timingEntities.first(where: { $0.id == entity.id }) {
+                    timingEntity = entity
+                } else {
+                    timingEntity = TimingEntity(event: entity)
+                    // 更新首页的当前的计时
+                    state.timing.entities.append(timingEntity)
+                }
+
                 // 进入计时页面
                 state.timer = TimerFeature.State(entity: timingEntity)
 
