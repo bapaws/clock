@@ -7,6 +7,7 @@
 
 import Dependencies
 import Foundation
+import SwiftDate
 import WidgetKit
 
 public struct Time: Equatable, Codable, Hashable, TimelineEntry {
@@ -24,7 +25,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
 
     public private(set) var date: Date
     public init(date: Date = Date()) {
-        self.initialDate = date
+        initialDate = date
         self.date = date
 
         let components = Calendar.current.dateComponents([.hour, .minute, .second, .nanosecond], from: date)
@@ -35,7 +36,7 @@ public struct Time: Equatable, Codable, Hashable, TimelineEntry {
     }
 
     public init(date: Date = Date(), hour: Int, minute: Int, second: Int, millisecond: Int = 0) {
-        self.initialDate = date
+        initialDate = date
         self.date = date
 
         self.millisecond = millisecond % 1000
