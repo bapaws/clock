@@ -114,6 +114,10 @@ struct TimingEventsFeature {
                 }
                 .cancellable(id: CancelID.remainingTime, cancelInFlight: true)
 
+//            case .onTimingTapped(let entity):
+//                state.timer = TimerFeature.State(entity: entity)
+//                return .none
+
             default:
                 return .none
             }

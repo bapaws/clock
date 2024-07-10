@@ -45,6 +45,8 @@ struct TimerFeature {
         case minimize
     }
 
+    enum CancelID { case startTimer }
+
     @Dependency(\.dismiss) var dismiss
 
     var body: some Reducer<State, Action> {
@@ -59,11 +61,11 @@ struct TimerFeature {
                         await send(.timerTick)
                     }
                 }
+                .cancellable(id: CancelID.startTimer, cancelInFlight: true)
+
             case .stopTimer:
                 state.isStop = true
-                return .run { send in
-                    await send(.startTimer)
-                }
+                return .cancel(id: CancelID.startTimer)
 
             case .timerTick:
                 state.entity.time++

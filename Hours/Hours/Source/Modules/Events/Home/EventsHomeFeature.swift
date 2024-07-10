@@ -212,8 +212,7 @@ struct EventsHomeFeature {
 
             case .eventDetail(.presented(.onTimerStarted(let entity))),
                  .recent(.onEventTapped(let entity)),
-                 .onTimerStarted(let entity),
-                 .timing(.onTimingTapped(let entity)):
+                 .onTimerStarted(let entity):
                 var timingEntity: TimingEntity
                 // 如果已经是正在计时，获取后直接进入
                 if let entity = TimerManager.shared.timingEntities.first(where: { $0.id == entity.id }) {
@@ -233,7 +232,13 @@ struct EventsHomeFeature {
 
                 return .none
 
-            case .timer(.presented(.onStopped)), .timing(.stopTimer):
+            case .timing(.onTimingTapped(let entity)):
+                // 进入计时页面
+                state.timer = TimerFeature.State(entity: entity)
+                return .none
+
+            case .timer(.presented(.onDismissed)),
+                 .timing(.stopTimer):
                 return .run { [state] send in
                     if state.eventDetail != nil {
                         // 如果是详情页，需要刷新页面
