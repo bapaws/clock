@@ -212,7 +212,8 @@ struct EventsHomeFeature {
 
             case .eventDetail(.presented(.onTimerStarted(let entity))),
                  .recent(.onEventTapped(let entity)),
-                 .onTimerStarted(let entity):
+                 .onTimerStarted(let entity),
+                 .timing(.onTimingTapped(let entity)):
                 var timingEntity: TimingEntity
                 // 如果已经是正在计时，获取后直接进入
                 if let entity = TimerManager.shared.timingEntities.first(where: { $0.id == entity.id }) {
