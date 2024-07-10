@@ -387,3 +387,11 @@ public extension AppManager {
         }
     }
 }
+
+// MARK: - TimingEntity
+
+public extension TimingEntity {
+    var timerInterval: ClosedRange<Date> {
+        time.initialDate ... date.addingTimeInterval(AppManager.shared.maximumRecordedTime)
+    }
+}

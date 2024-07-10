@@ -11,6 +11,7 @@ import HoursShare
 import SwiftUI
 import SwiftUIIntrospect
 import SwiftUIX
+import UIKit
 
 enum MainTabTag: Int, Identifiable {
     case events, records, statistics, settings
@@ -19,6 +20,8 @@ enum MainTabTag: Int, Identifiable {
 
 struct MainView: View {
     @Perception.Bindable var store: StoreOf<MainFeature>
+
+    let didBecomeActive = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
 
     let ui: UIManager = .shared
     let app: AppManager = .shared
@@ -67,6 +70,19 @@ struct MainView: View {
 
             .fullScreenCover(isPresented: $store.isPaywallPresented) {
                 PaywallView()
+            }
+            .onReceive(didBecomeActive) { _ in
+                switch store.selection {
+                case .events:
+                    store.send(.eventsHome(.onAppear))
+
+                case .records:
+                    @Dependency(\.date.now) var now
+                    store.send(.recordsHome(.timeline(.onRecordLoaded(now))))
+
+                default:
+                    break
+                }
             }
         }
         .environmentObject(ui)

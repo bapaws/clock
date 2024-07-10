@@ -199,6 +199,8 @@
 
 "Finish" = "完成";
 
+"Tracking" = "%@ 个计时中";
+
 // MARK: - Main
 
 "Pomodoro" = "番茄钟";

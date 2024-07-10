@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import ComposableArchitecture
 import HoursShare
 import RealmSwift
 import SwiftUI
@@ -13,79 +14,91 @@ import SwiftUIX
 import UIKit
 
 struct TimerView: View {
-    let event: EventEntity
-
-    var time: Time { manager.time }
+//    let entity: TimingEntity
+    @Perception.Bindable var store: StoreOf<TimerFeature>
 
     // Timer Stop from live activity
     let timerStop = NotificationCenter.default
         .publisher(for: TimerManager.shared.timerStop)
 
-    @EnvironmentObject var manager: HoursShare.TimerManager
+    var manager: HoursShare.TimerManager = .shared
     @Environment(\.dismiss) var dismiss
 
     @Environment(\.colorScheme) var colorScheme
 
     @EnvironmentObject var app: AppManager
 
+    var entity: TimingEntity { store.entity }
+    var time: Time { entity.time }
+
     var body: some View {
-        VStack {
-            Text(event.title)
-                .font(.title)
-                .frame(width: .greedy)
-                .foregroundStyle(event.primary)
-
-            Spacer()
-
-            HStack {
-                let seconds = time.seconds
-                if manager.hourStyle != .none || time.hour > 0 {
-                    Text("\(time.hourTens)\(time.hourOnes)")
-                        .foregroundColor(seconds < 3600 ? zeroNumberColor : numberColor)
-                    Text(":")
-                        .foregroundColor(seconds < 3600 ? zeroNumberColor : numberColor)
+        WithPerceptionTracking {
+            VStack {
+                HStack {
+                    Button {
+                        store.send(.minimize)
+                    } label: {
+                        Image(systemName: "pip")
+                            .foregroundStyle(entity.primary)
+                            .padding()
+                    }
+                    Spacer()
                 }
 
-                Text("\(time.minuteTens)\(time.minuteOnes)")
-                    .foregroundColor(seconds < 60 ? zeroNumberColor : numberColor)
-                Text(":")
-                    .foregroundColor(seconds < 60 ? zeroNumberColor : numberColor)
-                Text("\(time.secondTens)\(time.secondOnes)")
-                    .foregroundColor(seconds == 0 ? zeroNumberColor : numberColor)
-            }
-            .contentTransition(.numericText(countsDown: true))
-            .font(.system(size: 66, design: .rounded), weight: .bold)
-            .monospacedDigit()
+                Text(entity.title)
+                    .font(.title)
+                    .foregroundStyle(entity.primary)
+                    .padding(.vertical, .large)
 
-            Spacer()
+                Spacer()
 
-            stopButton
-                .frame(width: 64, height: 64)
-        }
-        .padding(.vertical, .extraLarge)
-        .padding(.vertical, .extraExtraLarge)
-        .background(linearGradient)
-        .onAppear {
-            manager.start(of: TimingEntity(event: event))
-        }
-        .onDisappear {
-            manager.stop()
-        }
-        .onChange(of: manager.time.seconds) { newValue in
-            if newValue >= Int(app.maximumRecordedTime) {
-                onFinished()
-            } else {
-                AppManager.shared.playTimer()
+                HStack {
+                    let seconds = entity.time.seconds
+                    if manager.hourStyle != .none || entity.time.hour > 0 {
+                        Text("\(time.hourTens)\(time.hourOnes)")
+                            .foregroundColor(seconds < 3600 ? zeroNumberColor : numberColor)
+                        Text(":")
+                            .foregroundColor(seconds < 3600 ? zeroNumberColor : numberColor)
+                    }
+
+                    Text("\(time.minuteTens)\(time.minuteOnes)")
+                        .foregroundColor(seconds < 60 ? zeroNumberColor : numberColor)
+                    Text(":")
+                        .foregroundColor(seconds < 60 ? zeroNumberColor : numberColor)
+                    Text("\(time.secondTens)\(time.secondOnes)")
+                        .foregroundColor(seconds == 0 ? zeroNumberColor : numberColor)
+                }
+                .contentTransition(.numericText(countsDown: true))
+                .font(.system(size: 66, design: .rounded), weight: .bold)
+                .monospacedDigit()
+
+                Spacer()
+
+                stopButton
+                    .frame(width: 64, height: 64)
+
+                Spacer()
             }
-        }
-        .onReceive(timerStop) { _ in
-            dismiss()
+            .background(linearGradient)
+            .onAppear {
+                store.send(.startTimer)
+            }
+            .onChange(of: store.entity.time.seconds) { newValue in
+                if newValue >= Int(app.maximumRecordedTime) {
+                    store.send(.onStopped)
+                } else {
+                    AppManager.shared.playTimer()
+                }
+            }
+            .onReceive(timerStop) { _ in
+                store.send(.onStopped)
+            }
         }
     }
 
     var stopButton: some View {
         Button {
-            onFinished()
+            store.send(.onStopped)
         } label: {
             buttonLabel(systemName: "stop")
         }
@@ -95,11 +108,11 @@ struct TimerView: View {
         Image(systemName: systemName)
             .font(.title3)
             .padding().padding(.small)
-            .foregroundStyle(colorScheme == .dark ? event.onPrimary : event.primary)
+            .foregroundStyle(colorScheme == .dark ? entity.onPrimary : entity.primary)
             .background {
                 Circle()
                     .stroke(style: StrokeStyle(lineWidth: 8, lineCap: .round))
-                    .foregroundStyle(colorScheme == .dark ? event.onPrimaryContainer : event.primaryContainer)
+                    .foregroundStyle(colorScheme == .dark ? entity.onPrimaryContainer : entity.primaryContainer)
             }
     }
 
@@ -108,41 +121,25 @@ struct TimerView: View {
     }
 
     var numberColor: Color {
-        colorScheme == .dark ? event.onPrimary : event.primary
+        colorScheme == .dark ? entity.onPrimary : entity.primary
     }
 
     var linearGradient: LinearGradient {
         if colorScheme == .dark {
-            LinearGradient(gradient: Gradient(colors: [event.onPrimary, event.onPrimaryContainer]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [entity.onPrimary, entity.onPrimaryContainer]), startPoint: .top, endPoint: .bottom)
         } else {
-            LinearGradient(gradient: Gradient(colors: [event.primaryContainer, event.background]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [entity.primaryContainer, entity.background]), startPoint: .top, endPoint: .bottom)
         }
-    }
-
-    func onFinished() {
-        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-        impactMed.impactOccurred()
-
-        manager.pause()
-        dismiss()
-
-        guard time.milliseconds > Int(app.minimumRecordedTime * 1000) else { return }
-
-        Task {
-            let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
-            var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
-            // 同步到日历应用
-            let eventIdendtifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
-            newRecord.calendarEventIdentifier = eventIdendtifier
-            await AppRealm.shared.writeRecord(newRecord, addTo: event)
-        }
-
-        // 发起 App Store 评论请求
-        AppManager.shared.requestReview(delay: 2)
     }
 }
 
 #Preview {
-    TimerView(event: EventEntity(emoji: "👌", name: "Work", hex: HexEntity(hex: "#757573")))
-        .environmentObject(TimerManager.shared)
+    TimerView(
+        store: StoreOf<TimerFeature>.init(
+            initialState: .init(event: EventEntity.random()),
+            reducer: {
+                TimerFeature()
+            }
+        )
+    )
 }

@@ -23,9 +23,8 @@ struct EventsHomeFeature {
 
         var isLoading = false
 
-        var timerSelectEvent: EventEntity?
-
         var recent: EventHomeRecentFeature.State = .init()
+        var timing: TimingEventsFeature.State = .init()
 
         @Presents var newCategory: NewCategoryFeature.State?
         @Presents var newEvent: NewEventFeature.State?
@@ -33,12 +32,15 @@ struct EventsHomeFeature {
 
         @Presents var archivedEvents: ArchivedEventsFeature.State?
         @Presents var eventDetail: EventDetailFeature.State?
+
+        @Presents var timer: TimerFeature.State?
     }
 
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case onAppear
         case updateCategories([CategoryEntity])
+        case updateOtherCategories([CategoryEntity])
 
         case toggleOtherCategoriesShow
 
@@ -46,11 +48,12 @@ struct EventsHomeFeature {
         case archiveEvent(EventEntity)
 
         case recent(EventHomeRecentFeature.Action)
+        case timing(TimingEventsFeature.Action)
 
         // MARK: Timer
 
         case onTimerStarted(EventEntity)
-        case onTimerEnded
+        case timer(PresentationAction<TimerFeature.Action>)
 
         // MARK: State
 
@@ -96,26 +99,43 @@ struct EventsHomeFeature {
             EventHomeRecentFeature()
         }
 
+        Scope(state: \.timing, action: \.timing) {
+            TimingEventsFeature()
+        }
+
         Reduce { state, action in
             switch action {
             case .onAppear:
                 return .run { send in
                     let entities = await AppRealm.shared.getAllUnarchivedCategories()
-                    await send(.updateCategories(entities), animation: .default)
+                    let timingEntities = TimerManager.shared.timingEntities
 
-                    await send(.recent(.onAppear))
+                    var categories: [CategoryEntity] = []
+                    var otherCategories: [CategoryEntity] = []
+                    for entity in entities {
+                        if entity.events.isEmpty {
+                            otherCategories.append(entity)
+                        } else if !timingEntities.contains(where: { $0.id == entity.id }) {
+                            categories.append(entity)
+                        }
+                    }
+                    await send(.updateCategories(categories), animation: .default)
+                    await send(.updateOtherCategories(otherCategories), animation: .default)
+
+                    // 重新加载正在计时中的事件
+                    await send(.timing(.onAppear), animation: .default)
+                    // 重新加载最近
+                    await send(.recent(.onAppear), animation: .default)
                 }
 
             case .updateCategories(let entities):
                 state.categories.removeAll()
+                state.categories.append(contentsOf: entities)
+                return .none
+
+            case .updateOtherCategories(let entities):
                 state.otherCategories.removeAll()
-                for entity in entities {
-                    if entity.events.isEmpty {
-                        state.otherCategories.append(entity)
-                    } else {
-                        state.categories.append(entity)
-                    }
-                }
+                state.otherCategories.append(contentsOf: entities)
                 return .none
 
             case .toggleOtherCategoriesShow:
@@ -189,18 +209,31 @@ struct EventsHomeFeature {
             case .eventDetail(.presented(.onTimerStarted(let entity))),
                  .recent(.onEventTapped(let entity)),
                  .onTimerStarted(let entity):
-                state.timerSelectEvent = entity
+                let timingEntity = TimingEntity(event: entity)
+                // 更新首页的当前的计时
+                state.timing.entities.append(timingEntity)
+                // 进入计时页面
+                state.timer = TimerFeature.State(entity: timingEntity)
+
+                for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
+                    state.categories[index].events.removeAll { $0.id == entity.id }
+                }
+
                 return .none
 
-            case .onTimerEnded:
+            case .timer(.presented(.onStopped)), .timing(.stopTimer):
                 return .run { [state] send in
                     if state.eventDetail != nil {
                         // 如果是详情页，需要刷新页面
                         await send(.eventDetail(.presented(.onAppear)))
-
-                        // 重新加载最近
-                        await send(.recent(.onAppear), animation: .default)
                     }
+                    await send(.onAppear)
+                }
+
+            case .timer(.presented(.minimize)):
+                return .run { send in
+                    // 重新加载正在计时中的事件
+                    await send(.timing(.onAppear), animation: .default)
                 }
 
             // MARK: New Callback
@@ -272,6 +305,9 @@ struct EventsHomeFeature {
         }
         .ifLet(\.$eventDetail, action: \.eventDetail) {
             EventDetailFeature()
+        }
+        .ifLet(\.$timer, action: \.timer) {
+            TimerFeature()
         }
     }
 }

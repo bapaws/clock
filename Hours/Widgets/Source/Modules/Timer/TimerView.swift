@@ -14,96 +14,54 @@ import WidgetKit
 struct TimerView: View {
     @Environment(\.colorScheme) private var colorScheme
 
-    private let time: Time
-    private let event: TimingEntity
+    private let entities: [TimingEntity]
 
-    init(context: ActivityViewContext<TimerActivityAttributes>) {
-        self.time = context.state.time
-        self.event = context.attributes.event
+    private let space: CGFloat = 8
+
+    init(context: ActivityViewContext<TimingEntityActivityAttributes>) {
+        self.entities = context.state
     }
 
-    init(time: Time, event: TimingEntity) {
-        self.time = time
-        self.event = event
+    init(entities: [TimingEntity]) {
+        self.entities = entities
     }
 
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 12) {
             HStack {
-                if let emoji = event.emoji {
-                    Text(emoji)
-                        .font(.title2)
+                Text(R.string.localizable.tracking("\(entities.count)"))
+                    .font(.headline)
+
+                Spacer()
+                if let icon = R.image.icon() {
+                    Image(uiImage: icon)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .cornerRadius(4)
                 }
-                Text(event.name)
-                    .font(.title2)
-                    .minimumScaleFactor(0.7)
-                    .foregroundStyle(event.lightPrimary)
-                Spacer()
             }
-            HStack {
-                Text(timerInterval: time.initialDate ... time.date.addingTimeInterval(6 * 60 * 60), countsDown: false)
-                    .contentTransition(.numericText(countsDown: false))
-                    .font(.system(size: 54, weight: .bold, design: .rounded))
-                    .foregroundStyle(event.darkPrimary)
-                    .monospacedDigit()
 
-                Spacer()
-
-                stopButton(for: event)
+            GeometryReader { proxy in
+                let dimensions = (proxy.size.width - space * 3) / 4
+                HStack(spacing: space) {
+                    ForEach(entities) { entity in
+                        TimingEntityView(entity: entity, dimensions: dimensions)
+                    }
+                    Spacer()
+                }
             }
+            .frame(height: .greedy)
         }
     }
-
-    @ViewBuilder func stopButton(for event: TimingEntity) -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
-            Button(intent: StopTimerLiveActivityIntent(), label: {
-                Image(systemName: "stop.fill")
-                    .font(.title2)
-                    .frame(width: 60, height: 60)
-                    .foregroundStyle(event.darkPrimary)
-                    .background(event.darkOnPrimary)
-                    .cornerRadius(30)
-            })
-            .background(.clear)
-            .buttonStyle(BorderlessButtonStyle())
-        } else {
-            Image(systemName: "stop.fill")
-                .font(.title2)
-                .frame(width: 60, height: 60)
-                .foregroundStyle(event.darkPrimary)
-                .background(event.darkOnPrimary)
-                .cornerRadius(30)
-        }
-    }
-
-    private func buttonLabel(systemName: String) -> some View {
-        Image(systemName: systemName)
-            .font(.title3)
-            .padding().padding(.small)
-            .foregroundStyle(colorScheme == .dark ? event.onPrimary : event.primary)
-            .background {
-                Circle()
-                    .stroke(style: StrokeStyle(lineWidth: 8, lineCap: .round))
-                    .foregroundStyle(colorScheme == .dark ? event.onPrimaryContainer : event.primaryContainer)
-            }
-    }
-
-    private var linearGradient: LinearGradient {
-        if colorScheme == .dark {
-            LinearGradient(gradient: Gradient(colors: [event.onPrimary, event.onPrimaryContainer]), startPoint: .leading, endPoint: .trailing)
-        } else {
-            LinearGradient(gradient: Gradient(colors: [event.primaryContainer, event.background]), startPoint: .leading, endPoint: .trailing)
-        }
-    }
-
-    private func onFinished() {}
 }
 
 #Preview {
     if #available(iOSApplicationExtension 16.1, *) {
         return TimerView(
-            time: Time(),
-            event: TimingEntity.random()
+            entities: [
+                TimingEntity(event: EventEntity.random()),
+                TimingEntity(event: EventEntity.random())
+            ]
         )
     } else {
         return EmptyView()

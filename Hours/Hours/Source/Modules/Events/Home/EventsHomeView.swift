@@ -30,11 +30,13 @@ struct EventsHomeView: View {
                             LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
                                 EventHomeRecentView(store: store.scope(state: \.recent, action: \.recent))
 
+                                TimingEventsView(store: store.scope(state: \.timing, action: \.timing))
+
                                 ForEach(store.categories) { category in
                                     Section {
                                         ForEach(category.events) { event in
                                             EventItemView(event: event) {
-                                                store.send(.onTimerStarted($0))
+                                                store.send(.onTimerStarted($0), animation: .default)
                                             }
                                             // 先调用 menu 的修改器，长按时不会出现圆角的情况
                                             .contextMenu { menuItems(for: event) }
@@ -103,11 +105,8 @@ struct EventsHomeView: View {
 
                 // MARK: Timer
 
-                .fullScreenCover(item: $store.timerSelectEvent, onDismiss: {
-                    store.send(.onTimerEnded)
-                }) { event in
-                    TimerView(event: event)
-                        .environmentObject(TimerManager.shared)
+                .fullScreenCover(item: $store.scope(state: \.timer, action: \.timer)) { store in
+                    TimerView(store: store)
                 }
 
                 // MARK: New Record

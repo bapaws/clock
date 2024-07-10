@@ -12,33 +12,14 @@ import SwiftUI
 import SwiftUIX
 import WidgetKit
 
-@available(iOSApplicationExtension 17.0, *)
-struct EventsLargeWidgetEntryView: View {
-    var entry: EventsProvider.Entry
-
-    var body: some View {
-        if let timingEvent = entry.timing {
-            if entry.family == .systemMedium {
-                QuickTimerView(date: entry.date, event: timingEvent)
-            } else {
-                ZStack {
-                    if let category = entry.category {
-                        QuickCategoryEntryView(entry: category, isClickEnabled: false)
-                            .blur(radius: 6)
-                    }
-                    Color.clear
-                        .frame(entry.displaySize)
-                        .allowsHitTesting(false)
-                    QuickTimerView(date: entry.date, event: timingEvent)
-                        .frame(width: entry.displaySize.width * 0.9, height: entry.displaySize.width * 0.4)
-                        .cornerRadius(20, style: .circular)
-                }
-            }
-        } else if let category = entry.category {
-            QuickCategoryEntryView(entry: category)
-        }
-    }
-}
+//@available(iOSApplicationExtension 17.0, *)
+//struct EventsLargeWidgetEntryView: View {
+//    var entry: EventsProvider.Entry
+//
+//    var body: some View {
+//        QuickCategoryEntryView(entry: category)
+//    }
+//}
 
 @available(iOSApplicationExtension 17.0, *)
 struct EventsLargeWidget: Widget {
@@ -48,7 +29,7 @@ struct EventsLargeWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: EventsProvider()) { entry in
-            EventsLargeWidgetEntryView(entry: entry)
+            QuickCategoryEntryView(entry: entry)
                 .environmentObject(ui)
                 .containerBackground(ui.background)
                 .onAppear {

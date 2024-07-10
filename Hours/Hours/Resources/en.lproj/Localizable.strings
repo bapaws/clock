@@ -200,6 +200,8 @@
 
 "Finish" = "Finish";
 
+"Tracking" = "%@ Tracking";
+
 // MARK: - Main
 
 "Pomodoro" = "Pomodoro";
