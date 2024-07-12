@@ -39,8 +39,6 @@
 		88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88201AC62B94B8DB00D4D187 /* SoundType.swift */; };
 		8827A56A2BEC63550010FC4C /* AppDidOpenAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A5692BEC63550010FC4C /* AppDidOpenAppIntent.swift */; };
 		8827A56C2BEC6E600010FC4C /* AppDidCloseAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A56B2BEC6E600010FC4C /* AppDidCloseAppIntent.swift */; };
-		8827A56F2BEC6EAD0010FC4C /* CategoryAppEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A56E2BEC6EAD0010FC4C /* CategoryAppEntity.swift */; };
-		8827A5722BEC73C70010FC4C /* EventAppEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A5712BEC73C70010FC4C /* EventAppEntity.swift */; };
 		8827A5742BEC854E0010FC4C /* AppShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A5732BEC854E0010FC4C /* AppShortcutsProvider.swift */; };
 		8827A5772BEC85BE0010FC4C /* NewRecordAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A5762BEC85BE0010FC4C /* NewRecordAppIntent.swift */; };
 		8827A5792BEC85D40010FC4C /* EventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A5782BEC85D40010FC4C /* EventProvider.swift */; };
@@ -254,8 +252,6 @@
 		88201AC62B94B8DB00D4D187 /* SoundType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundType.swift; sourceTree = "<group>"; };
 		8827A5692BEC63550010FC4C /* AppDidOpenAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDidOpenAppIntent.swift; sourceTree = "<group>"; };
 		8827A56B2BEC6E600010FC4C /* AppDidCloseAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDidCloseAppIntent.swift; sourceTree = "<group>"; };
-		8827A56E2BEC6EAD0010FC4C /* CategoryAppEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAppEntity.swift; sourceTree = "<group>"; };
-		8827A5712BEC73C70010FC4C /* EventAppEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppEntity.swift; sourceTree = "<group>"; };
 		8827A5732BEC854E0010FC4C /* AppShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcutsProvider.swift; sourceTree = "<group>"; };
 		8827A5762BEC85BE0010FC4C /* NewRecordAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordAppIntent.swift; sourceTree = "<group>"; };
 		8827A5782BEC85D40010FC4C /* EventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProvider.swift; sourceTree = "<group>"; };
@@ -500,8 +496,6 @@
 				8827A56B2BEC6E600010FC4C /* AppDidCloseAppIntent.swift */,
 				8827A5692BEC63550010FC4C /* AppDidOpenAppIntent.swift */,
 				8827A5732BEC854E0010FC4C /* AppShortcutsProvider.swift */,
-				8827A56E2BEC6EAD0010FC4C /* CategoryAppEntity.swift */,
-				8827A5712BEC73C70010FC4C /* EventAppEntity.swift */,
 				8827A5782BEC85D40010FC4C /* EventProvider.swift */,
 				8827A5762BEC85BE0010FC4C /* NewRecordAppIntent.swift */,
 			);
@@ -1416,7 +1410,6 @@
 				880326A52B98769400E6653A /* PomodoroView.swift in Sources */,
 				88059EA82B9F4F6500C8BF9E /* NewRecordTimeView.swift in Sources */,
 				8801DCB62B9FE437003DE039 /* NewEventView.swift in Sources */,
-				8827A5722BEC73C70010FC4C /* EventAppEntity.swift in Sources */,
 				88F357ED2C1F2F4C00DD106A /* CalendarHeaderPageView.swift in Sources */,
 				88C2DE9F2C09CB3D002CEC16 /* StatisticsDayHeatMapView.swift in Sources */,
 				882B82DB2BF0B60C00B0365A /* SelectCategoryView.swift in Sources */,
@@ -1473,7 +1466,6 @@
 				88D6EB292C24794400970397 /* RecordsHomeCurrentState.swift in Sources */,
 				88E5BE842C0B5A3900AEFA1D /* StatisticsWeekView.swift in Sources */,
 				88D7A5202BA0427E00FD129F /* EventsHomeView.swift in Sources */,
-				8827A56F2BEC6EAD0010FC4C /* CategoryAppEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1536,7 +1528,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1565,7 +1557,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1725,7 +1717,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1763,7 +1755,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -15,6 +15,9 @@ struct QuickStartTimerAppIntent: AppIntent, LiveActivityStartingIntent {
     static var title: LocalizedStringResource = "QuickTiming"
     static var description = IntentDescription("Quick Timing")
 
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+    static var isDiscoverable: Bool { return false }
+
     @Parameter(title: "EventID")
     var eventID: String
 
