@@ -34,7 +34,7 @@ struct MainFeature {
         case didLoad
 
         case eventsHome(EventsHomeFeature.Action)
-        case didEventsHomeLoad([CategoryEntity])
+        case didEventsHomeLoad
 
         case statistics(Statistics.Action)
         case didStatisticsHomeLoad([CategoryEntity])
@@ -63,29 +63,20 @@ struct MainFeature {
             case .didLoad:
                 return .run { send in
                     debugPrint(Date.now.timeIntervalSince1970)
-                    // Events Home
-                    let entities = await AppRealm.shared.getAllUnarchivedCategories()
-                    await send(.didEventsHomeLoad(entities), animation: .default)
+                    await send(.eventsHome(.onAppear))
 
                     // Records Home
                     let startOfDay = now.dateAtStartOf(.day)
                     let endOfDay = now.dateAtEndOf(.day)
                     let records = await AppRealm.shared.getRecords { $0.endAt >= startOfDay && $0.endAt <= endOfDay }
                     await send(.didRecordsHomeLoad(startOfDay, records))
+
+                    await send(.didEventsHomeLoad)
                 }
 
-            case let .didEventsHomeLoad(entities):
+            case .didEventsHomeLoad:
                 debugPrint(Date.now.timeIntervalSince1970)
                 state.isLoadCompleted = true
-                state.eventsHome.categories.removeAll()
-                state.eventsHome.otherCategories.removeAll()
-                for entity in entities {
-                    if entity.events.isEmpty {
-                        state.eventsHome.otherCategories.append(entity)
-                    } else {
-                        state.eventsHome.categories.append(entity)
-                    }
-                }
                 return .none
 
             case let .didRecordsHomeLoad(date, entities):

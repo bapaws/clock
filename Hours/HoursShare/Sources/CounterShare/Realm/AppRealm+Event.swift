@@ -96,16 +96,17 @@ public extension AppRealm {
     func getRecentEvents(count: Int = 15) async -> [EventEntity] {
         let realm = await realm
         let objects = realm.objects(EventObject.self)
+            .where { $0.archivedAt == nil }
             .sorted { obj1, obj2 in
                 var value1 = obj1.createdAt.timeIntervalSinceNow * 0.4
-                value1 += Double(obj1.items.count) * 24 * 3600 * 0.2
+                value1 -= Double(obj1.items.count) * 24 * 3600 * 0.2
                 if let end = obj1.items.last?.endAt.timeIntervalSinceNow {
                     value1 += end * 0.4
                 } else {
                     value1 *= 2
                 }
                 var value2 = obj2.createdAt.timeIntervalSinceNow * 0.5
-                value2 += Double(obj2.items.count) * 24 * 3600 * 0.2
+                value2 -= Double(obj2.items.count) * 24 * 3600 * 0.2
                 if let end = obj2.items.last?.endAt.timeIntervalSinceNow {
                     value2 += end * 0.4
                 } else {

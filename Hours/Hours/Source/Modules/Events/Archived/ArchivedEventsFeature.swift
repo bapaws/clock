@@ -37,7 +37,7 @@ struct ArchivedEventsFeature {
             case .onAppear:
                 return .run { send in
                     let categories = await AppRealm.shared.getAllArchivedCategories()
-                    await send(.updateCategories(categories))
+                    await send(.updateCategories(categories), animation: .default)
                 }
 
             case .unarchiveEvent(let entity):

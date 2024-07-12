@@ -16,12 +16,12 @@ import SwiftDate
 struct EventsHomeFeature {
     @ObservableState
     struct State: Equatable {
-        var categories: [CategoryEntity] = []
-        var otherCategories: [CategoryEntity] = []
-
         var isOtherCategoriesShow = false
 
         var isLoading = false
+
+        var categories: EventsHomeCategoriesFeature.State = .init()
+        var otherCategories: EventsHomeOtherCategoriesFeature.State = .init()
 
         var recent: EventHomeRecentFeature.State = .init()
         var timing: TimingEventsFeature.State = .init()
@@ -39,28 +39,18 @@ struct EventsHomeFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case onAppear
-        case updateCategories([CategoryEntity])
-        case updateOtherCategories([CategoryEntity])
 
         case toggleOtherCategoriesShow
 
-        case deleteEvent(EventEntity)
-        case archiveEvent(EventEntity)
+        case categories(EventsHomeCategoriesFeature.Action)
+        case otherCategories(EventsHomeOtherCategoriesFeature.Action)
 
         case recent(EventHomeRecentFeature.Action)
         case timing(TimingEventsFeature.Action)
 
         // MARK: Timer
 
-        case onTimerStarted(EventEntity)
         case timer(PresentationAction<TimerFeature.Action>)
-
-        // MARK: State
-
-        // 从列表中删除事件
-        case removeEvent(EventEntity)
-        case saveEventCompleted(EventEntity)
-        case saveCategoryCompleted(CategoryEntity)
 
         // MARK: New Category
 
@@ -86,8 +76,6 @@ struct EventsHomeFeature {
         // MARK: Event Detail
 
         case eventDetail(PresentationAction<EventDetailFeature.Action>)
-        case onEventTapped(EventEntity)
-        case onEventDetailLoaded(EventDetailFeature.State)
     }
 
     @Dependency(\.date.now) private var now
@@ -95,10 +83,15 @@ struct EventsHomeFeature {
     var body: some Reducer<State, Action> {
         BindingReducer()
 
+        Scope(state: \.categories, action: \.categories) {
+            EventsHomeCategoriesFeature()
+        }
+        Scope(state: \.otherCategories, action: \.otherCategories) {
+            EventsHomeOtherCategoriesFeature()
+        }
         Scope(state: \.recent, action: \.recent) {
             EventHomeRecentFeature()
         }
-
         Scope(state: \.timing, action: \.timing) {
             TimingEventsFeature()
         }
@@ -123,8 +116,8 @@ struct EventsHomeFeature {
                             categories.append(category)
                         }
                     }
-                    await send(.updateCategories(categories), animation: .default)
-                    await send(.updateOtherCategories(otherCategories), animation: .default)
+                    await send(.categories(.update(categories)), animation: .default)
+                    await send(.otherCategories(.update(otherCategories)), animation: .default)
 
                     // 重新加载正在计时中的事件
                     await send(.timing(.onAppear), animation: .default)
@@ -132,41 +125,19 @@ struct EventsHomeFeature {
                     await send(.recent(.onAppear), animation: .default)
                 }
 
-            case .updateCategories(let entities):
-                state.categories.removeAll()
-                state.categories.append(contentsOf: entities)
-                return .none
-
-            case .updateOtherCategories(let entities):
-                state.otherCategories.removeAll()
-                state.otherCategories.append(contentsOf: entities)
-                return .none
-
             case .toggleOtherCategoriesShow:
                 state.isOtherCategoriesShow.toggle()
                 return .none
 
-            case .deleteEvent(let entity):
-                return .run { send in
-                    await AppRealm.shared.deleteEvent(entity)
-                    await send(.removeEvent(entity), animation: .default)
-                }
+                // MARK: Categories
 
-            case .archiveEvent(let entity):
-                return .run { send in
-                    await AppRealm.shared.archiveEvent(entity)
-                    await send(.removeEvent(entity), animation: .default)
-                }
-
-            case .newCategoryTapped:
-                state.newCategory = .init()
-                return .none
-
-            case .newEventTapped(let category):
+            case .newEventTapped(let category),
+                    .categories(.newEventTapped(let category)),
+                 .otherCategories(.newEventTapped(let category)):
                 state.newEvent = .init(category: category)
                 return .none
 
-            case .newRecordTapped(let event):
+            case .categories(.newRecordTapped(let event)):
                 return .run { send in
                     guard let event else { return }
                     let startOfDay = now.dateAtStartOf(.day)
@@ -182,37 +153,46 @@ struct EventsHomeFeature {
                     await send(.updateNewRecordState(state))
                 }
 
-            case .updateNewRecordState(let newRecordState):
-                state.newRecord = newRecordState
-                return .none
-
-            case .onArchivedEventsTapped:
-                state.archivedEvents = .init()
-                return .none
-
-            case .onEventTapped(let entity):
+            case .categories(.onEventTapped):
                 state.isLoading = true
-                // 先加载再进入详情页面
-                return .run { send in
-                    let records = await AppRealm.shared.sectionedRecords(entity, by: { $0.endAt.dateAt(.startOfDay) })
+                return .none
 
-                    var eventDetail = EventDetailFeature.State(event: entity)
-                    eventDetail.records = records
-                    eventDetail.recordCount = records.reduce(0) { $0 + $1.value.count }
-                    await send(.onEventDetailLoaded(eventDetail))
-                }
-
-            case .onEventDetailLoaded(let eventDetail):
+            case .categories(.onEventDetailLoaded(let eventDetail)):
                 state.eventDetail = eventDetail
                 state.isLoading = false
                 return .none
 
+            case .categories(.moveToOther(let entity)):
+                state.otherCategories.categories.insert(entity, at: 0)
+                return .none
+
+                // MARK: NewCategory
+
+            case .newCategoryTapped:
+                state.newCategory = .init()
+                return .none
+
+            case .newCategory(.presented(.saveCompleted(let entity))):
+                if let index = state.categories.categories.firstIndex(where: { $0.id == entity.id }) {
+                    state.categories.categories[index] = entity
+                } else if let index = state.otherCategories.categories.firstIndex(where: { $0.id == entity.id }) {
+                    state.otherCategories.categories[index] = entity
+                } else {
+                    state.otherCategories.categories.insert(entity, at: 0)
+                    state.isOtherCategoriesShow = true
+                }
+                return .none
+
+                // MARK: EventDetail
+
             case .eventDetail(.presented(.newEvent(.presented(.saveCompleted(let entity))))):
-                return .run { send in await send(.saveEventCompleted(entity), animation: .default) }
+                return .run { send in
+                    await send(.categories(.saveEventCompleted(entity)), animation: .default)
+                }
 
             case .eventDetail(.presented(.onTimerStarted(let entity))),
                  .recent(.onEventTapped(let entity)),
-                 .onTimerStarted(let entity):
+                 .categories(.onTimerStarted(let entity)):
                 var timingEntity: TimingEntity
                 // 如果已经是正在计时，获取后直接进入
                 if let entity = TimerManager.shared.timingEntities.first(where: { $0.id == entity.id }) {
@@ -226,11 +206,29 @@ struct EventsHomeFeature {
                 // 进入计时页面
                 state.timer = TimerFeature.State(entity: timingEntity)
 
-                for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
-                    state.categories[index].events.removeAll { $0.id == entity.id }
+                return .none
+
+                // MARK: NewEvent
+
+            case .newEvent(.presented(.saveCompleted(let entity))):
+                return .run { send in
+                    // 创建事件可能是分类里，也可能是其他里，情况多，直接重新刷新
+                    await send(.onAppear)
                 }
 
+                // MARK: Archived
+
+            case .onArchivedEventsTapped:
+                state.archivedEvents = .init()
                 return .none
+
+                // MARK: Record
+
+            case .updateNewRecordState(let newRecordState):
+                state.newRecord = newRecordState
+                return .none
+
+                // MARK: Timing
 
             case .timing(.onTimingTapped(let entity)):
                 // 进入计时页面
@@ -252,57 +250,6 @@ struct EventsHomeFeature {
                     // 重新加载正在计时中的事件
                     await send(.timing(.onAppear), animation: .default)
                 }
-
-            // MARK: New Callback
-
-            case .newCategory(.presented(.saveCompleted(let entity))):
-                return .run { send in await send(.saveCategoryCompleted(entity), animation: .default) }
-
-            case .newEvent(.presented(.saveCompleted(let entity))):
-                return .run { send in
-                    await send(.saveEventCompleted(entity), animation: .default)
-                    await send(.recent(.onAppear), animation: .default)
-                }
-
-            // MARK: Update State
-
-            case .removeEvent(let entity):
-                for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
-                    if let firstIndex = category.events.firstIndex(where: { $0.id == entity.id }) {
-                        state.categories[index].events.remove(at: firstIndex)
-                        if state.categories[index].events.isEmpty {
-                            let entity = state.categories.remove(at: index)
-                            state.otherCategories.insert(entity, at: 0)
-                        }
-                        return .none
-                    }
-                }
-                return .none
-
-            case .saveEventCompleted(let entity):
-                for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
-                    if let firstIndex = category.events.firstIndex(where: { $0.id == entity.id }) {
-                        state.categories[index].events[firstIndex] = entity
-                        return .none
-                    } else {
-                        state.categories[index].events.append(entity)
-                        return .none
-                    }
-                }
-                return .run { send in
-                    await send(.onAppear)
-                }
-
-            case .saveCategoryCompleted(let entity):
-                if let index = state.categories.firstIndex(where: { $0.id == entity.id }) {
-                    state.categories[index] = entity
-                } else if let index = state.otherCategories.firstIndex(where: { $0.id == entity.id }) {
-                    state.otherCategories[index] = entity
-                } else {
-                    state.otherCategories.insert(entity, at: 0)
-                    state.isOtherCategoriesShow = true
-                }
-                return .none
 
             default:
                 return .none

@@ -32,28 +32,7 @@ struct EventsHomeView: View {
 
                                 TimingEventsView(store: store.scope(state: \.timing, action: \.timing))
 
-                                ForEach(store.categories) { category in
-                                    Section {
-                                        ForEach(category.events) { event in
-                                            EventItemView(event: event) {
-                                                store.send(.onTimerStarted($0), animation: .default)
-                                            }
-                                            // 先调用 menu 的修改器，长按时不会出现圆角的情况
-                                            .contextMenu { menuItems(for: event) }
-                                            .onTapGesture {
-                                                store.send(.onEventTapped(event))
-                                            }
-                                            .cornerRadius(16)
-                                        }
-
-                                        ui.background
-                                    } header: {
-                                        EventsHeaderView(category: category) { category in
-                                            store.send(.newEventTapped(category))
-                                        }
-                                    }
-                                    .padding(.horizontal)
-                                }
+                                EventsHomeCategoriesView(store: store.scope(state: \.categories, action: \.categories))
 
                                 Button {
                                     toggleOtherCategory(for: proxy)
@@ -71,12 +50,9 @@ struct EventsHomeView: View {
                                 .padding(.horizontal)
 
                                 if store.isOtherCategoriesShow {
-                                    ForEach(store.otherCategories) { category in
-                                        EventsHeaderView(category: category) { category in
-                                            store.send(.newEventTapped(category))
-                                        }
-                                    }
-                                    .padding(.horizontal)
+                                    EventsHomeOtherCategoriesView(
+                                        store: store.scope(state: \.otherCategories, action: \.otherCategories)
+                                    )
                                 }
                             }
                             .onChange(of: store.isOtherCategoriesShow) { newValue in
@@ -153,28 +129,6 @@ struct EventsHomeView: View {
                 .padding(.leading)
                 .padding(.vertical)
                 .font(.title3)
-        }
-    }
-
-    @ViewBuilder func menuItems(for event: EventEntity) -> some View {
-        WithPerceptionTracking {
-            Button {
-                store.send(.newRecordTapped(event))
-            } label: {
-                Label(R.string.localizable.newRecord(), systemImage: "plus")
-            }
-            Button {
-                store.send(.onTimerStarted(event))
-            } label: {
-                Label(R.string.localizable.startTimer(), systemImage: "play")
-            }
-            Divider()
-
-            Button(action: {
-                store.send(.archiveEvent(event))
-            }) {
-                Label(R.string.localizable.archive(), systemImage: "archivebox")
-            }
         }
     }
 
