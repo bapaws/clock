@@ -200,20 +200,6 @@ public extension AppManager {
         healthStore.execute(query)
     }
 
-    private var healthCategory: CategoryObject {
-        let realm = DBManager.default.realm
-
-        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == R.string.localizable.health() }) {
-            return health
-        } else {
-            let category = CategoryObject(hex: DBManager.default.nextHex, emoji: "❤️", name: R.string.localizable.health())
-            realm.writeAsync {
-                realm.add(category)
-            }
-            return category
-        }
-    }
-
     private func saveWorkouts(_ workouts: [HKWorkout], completionHandler: (() -> Void)? = nil) {
         Task {
             let category = await AppRealm.shared.healthCategory()
