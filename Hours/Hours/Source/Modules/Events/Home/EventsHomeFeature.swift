@@ -11,6 +11,7 @@ import HoursShare
 import OrderedCollections
 import RealmSwift
 import SwiftDate
+import WidgetKit
 
 @Reducer
 struct EventsHomeFeature {
@@ -39,6 +40,7 @@ struct EventsHomeFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case onAppear
+        case loadCompleted
 
         case toggleOtherCategoriesShow
 
@@ -64,7 +66,6 @@ struct EventsHomeFeature {
 
         // MARK: New Record
 
-        case newRecordTapped(EventEntity?)
         case newRecord(PresentationAction<NewRecordFeature.Action>)
         case updateNewRecordState(NewRecordFeature.State)
 
@@ -123,6 +124,9 @@ struct EventsHomeFeature {
                     await send(.timing(.onAppear), animation: .default)
                     // 重新加载最近
                     await send(.recent(.onAppear), animation: .default)
+
+                    // 发送加载完成消息，首页让 splash 页面消失
+                    await send(.loadCompleted)
                 }
 
             case .toggleOtherCategoriesShow:
@@ -132,7 +136,7 @@ struct EventsHomeFeature {
                 // MARK: Categories
 
             case .newEventTapped(let category),
-                    .categories(.newEventTapped(let category)),
+                 .categories(.newEventTapped(let category)),
                  .otherCategories(.newEventTapped(let category)):
                 state.newEvent = .init(category: category)
                 return .none
@@ -210,10 +214,12 @@ struct EventsHomeFeature {
 
                 // MARK: NewEvent
 
-            case .newEvent(.presented(.saveCompleted(let entity))):
+            case .newEvent(.presented(.saveCompleted(_))):
                 return .run { send in
                     // 创建事件可能是分类里，也可能是其他里，情况多，直接重新刷新
                     await send(.onAppear)
+
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
                 }
 
                 // MARK: Archived
@@ -273,5 +279,6 @@ struct EventsHomeFeature {
         .ifLet(\.$timer, action: \.timer) {
             TimerFeature()
         }
+        ._printChanges(.actionLabels)
     }
 }

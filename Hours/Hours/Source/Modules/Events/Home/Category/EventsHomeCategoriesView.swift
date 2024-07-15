@@ -7,174 +7,101 @@
 
 import ComposableArchitecture
 import HoursShare
-import RealmSwift
 import SwiftUI
+import SwiftUIX
 
-@Reducer
-struct EventsHomeCategoriesFeature {
-    @ObservableState
-    struct State: Equatable {
-        var categories: [CategoryEntity] = []
-
-        @Presents var newRecord: NewRecordFeature.State?
-
-        @Presents var archivedEvents: ArchivedEventsFeature.State?
-        @Presents var eventDetail: EventDetailFeature.State?
+struct DragRelocateDelegate: DropDelegate {
+    enum Move: Int {
+        case up, down
     }
 
-    enum Action: BindableAction {
-        case binding(BindingAction<State>)
+    var updated: (Move) -> Void
 
-        case update([CategoryEntity])
-
-        case deleteEvent(EventEntity)
-        case archiveEvent(EventEntity)
-
-        case onTimerStarted(EventEntity)
-
-        case saveEventCompleted(EventEntity)
-
-        // 从列表中删除事件
-        case removeEvent(EventEntity)
-        case moveToOther(CategoryEntity)
-
-        // MARK: New Event
-
-        case newEventTapped(CategoryEntity?)
-
-        // MARK: New Record
-
-        case newRecordTapped(EventEntity?)
-        case newRecord(PresentationAction<NewRecordFeature.Action>)
-        case updateNewRecordState(NewRecordFeature.State)
-
-        // MARK: Archived Events
-
-        case onArchivedEventsTapped
-        case archivedEvents(PresentationAction<ArchivedEventsFeature.Action>)
-
-        // MARK: Event Detail
-
-        case eventDetail(PresentationAction<EventDetailFeature.Action>)
-        case onEventTapped(EventEntity)
-        case onEventDetailLoaded(EventDetailFeature.State)
+    func dropEntered(info: DropInfo) {
+        debugPrint("dropEntered")
     }
 
-    @Dependency(\.date.now) var now
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        print("update location.x is \(info.location.x)")
 
-    var body: some Reducer<State, Action> {
-        BindingReducer()
-        Reduce { state, action in
-            switch action {
-            case .update(let entities):
-                state.categories.removeAll()
-                state.categories.append(contentsOf: entities)
-                return .none
-
-            case .newRecordTapped(let event):
-                return .run { send in
-                    guard let event else { return }
-                    let startOfDay = now.dateAtStartOf(.day)
-                    let endOfDay = now.dateAtEndOf(.day)
-                    let records = await AppRealm.shared.getRecords(
-                        where: { $0.events._id == event._id && $0.endAt >= startOfDay && $0.endAt <= endOfDay }
-                    )
-                    let record = records.first
-
-                    let startAt = record?.endAt ?? now.addingTimeInterval(-3600)
-                    let endAt = startAt.addingTimeInterval(3600)
-                    let state = NewRecordFeature.State(event: event, startAt: startAt, endAt: endAt)
-                    await send(.updateNewRecordState(state))
-                }
-
-            case .onEventTapped(let entity):
-                return .run { send in
-                    let records = await AppRealm.shared.sectionedRecords(entity, by: { $0.endAt.dateAt(.startOfDay) })
-
-                    var eventDetail = EventDetailFeature.State(event: entity)
-                    eventDetail.records = records
-                    eventDetail.recordCount = records.reduce(0) { $0 + $1.value.count }
-                    await send(.onEventDetailLoaded(eventDetail))
-                }
-
-            case .deleteEvent(let entity):
-                return .run { send in
-                    await AppRealm.shared.deleteEvent(entity)
-                    await send(.removeEvent(entity), animation: .default)
-                }
-
-            case .archiveEvent(let entity):
-                return .run { send in
-                    await AppRealm.shared.archiveEvent(entity)
-                    await send(.removeEvent(entity), animation: .default)
-                }
-
-            case .removeEvent(let entity):
-                for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
-                    if let firstIndex = category.events.firstIndex(where: { $0.id == entity.id }) {
-                        state.categories[index].events.remove(at: firstIndex)
-                        if state.categories[index].events.isEmpty {
-                            let entity = state.categories.remove(at: index)
-                            return .run { send in
-                                await send(.moveToOther(entity))
-                            }
-                        }
-                        return .none
-                    }
-                }
-                return .none
-
-            case .saveEventCompleted(let entity):
-                for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
-                    if let firstIndex = category.events.firstIndex(where: { $0.id == entity.id }) {
-                        state.categories[index].events[firstIndex] = entity
-                        return .none
-                    } else {
-                        state.categories[index].events.append(entity)
-                        return .none
-                    }
-                }
-                return .none
-
-            case .onTimerStarted(let entity):
-                for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
-                    state.categories[index].events.removeAll { $0.id == entity.id }
-                }
-                return .none
-
-            default:
-                return .none
-            }
+        if info.location.y < cellHeight / 2 {
+            updated(.up)
+        } else {
+            updated(.down)
         }
+
+        return DropProposal(operation: .move)
+    }
+
+    func performDrop(info: DropInfo) -> Bool {
+        true
     }
 }
 
 struct EventsHomeCategoriesView: View {
     @Perception.Bindable var store: StoreOf<EventsHomeCategoriesFeature>
+
     var body: some View {
         WithPerceptionTracking {
             ForEach(store.categories) { category in
                 Section {
                     ForEach(category.events) { event in
-                        EventItemView(event: event) {
-                            store.send(.onTimerStarted($0), animation: .default)
-                        }
-                        // 先调用 menu 的修改器，长按时不会出现圆角的情况
-                        .contextMenu { menuItems(for: event) }
-                        .onTapGesture {
-                            store.send(.onEventTapped(event))
-                        }
-                        .cornerRadius(16)
+                        itemView(for: event)
                     }
+                    .padding(.horizontal)
 
-                    ui.background
+                    // 在尾部添加一定的空间区域，让界面和谐
+                    ui.background.height(8)
                 } header: {
-                    EventsHeaderView(category: category) { category in
-                        store.send(.newEventTapped(category))
-                    }
+                    header(for: category)
                 }
-                .padding(.horizontal)
             }
+        }
+    }
+
+    func header(for category: CategoryEntity) -> some View {
+        EventsHeaderView(category: category) { category in
+            store.send(.newEventTapped(category))
+        }
+        .contentShape(Rectangle())
+        // 先调用 menu 的修改器，长按时不会出现圆角的情况
+        .contextMenu { menuItems(for: category) }
+        .onDrag {
+            store.send(.onCategoryDrag(category))
+            return NSItemProvider(object: category.id as NSString)
+        }
+        .onDrop(
+            of: [.directory],
+            delegate: DragRelocateDelegate {
+                store.send(.onCategoryDropUpdate(category, $0), animation: .default)
+            }
+        )
+        .cornerRadius(16)
+    }
+
+    func itemView(for event: EventEntity) -> some View {
+        WithPerceptionTracking {
+            EventItemView(event: event) {
+                store.send(.onTimerStarted($0), animation: .default)
+            }
+            // 先调用 menu 的修改器，长按时不会出现圆角的情况
+            .contextMenu { menuItems(for: event) }
+            .onTapGesture {
+                store.send(.onEventTapped(event))
+            }
+            .onDrag {
+                store.send(.onEventDrag(event))
+                return NSItemProvider(object: event.id as NSString)
+            }
+            .onDrop(
+                of: [.text],
+                delegate: DragRelocateDelegate {
+                    store.send(.onEventDropUpdate(event, $0), animation: .default)
+                }
+            )
+            .cornerRadius(16)
+
+            .alert($store.scope(state: \.alert, action: \.alert))
         }
     }
 
@@ -197,6 +124,37 @@ struct EventsHomeCategoriesView: View {
             }) {
                 Label(R.string.localizable.archive(), systemImage: "archivebox")
             }
+
+            Button(role: .destructive) {
+                store.send(.deleteEvent(event))
+            } label: {
+                Label(R.string.localizable.delete(), systemImage: "trash")
+            }
+        }
+    }
+
+    @ViewBuilder func menuItems(for category: CategoryEntity) -> some View {
+        WithPerceptionTracking {
+            Button {
+                store.send(.newEventTapped(category))
+            } label: {
+                Label(R.string.localizable.newEvent(), systemImage: "plus")
+            }
+            Divider()
+
+            Button(action: {
+                store.send(.archiveCategory(category), animation: .default)
+            }) {
+                Label(R.string.localizable.archive(), systemImage: "archivebox")
+            }
+
+            Button(role: .destructive) {} label: {
+                Label(R.string.localizable.delete(), systemImage: "trash")
+                if !category.events.isEmpty {
+                    Text(R.string.localizable.deleteEventsFirst())
+                }
+            }
+            .disabled(!category.events.isEmpty)
         }
     }
 }

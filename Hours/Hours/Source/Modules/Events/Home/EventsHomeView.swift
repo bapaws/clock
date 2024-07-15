@@ -26,28 +26,36 @@ struct EventsHomeView: View {
                         NavigationBar(R.string.localizable.events()) {
                             menu
                         }
+
                         ScrollView {
                             LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
-                                EventHomeRecentView(store: store.scope(state: \.recent, action: \.recent))
+                                EventHomeRecentView(
+                                    store: store.scope(state: \.recent, action: \.recent)
+                                )
 
-                                TimingEventsView(store: store.scope(state: \.timing, action: \.timing))
+                                TimingEventsView(
+                                    store: store.scope(state: \.timing, action: \.timing)
+                                )
 
-                                EventsHomeCategoriesView(store: store.scope(state: \.categories, action: \.categories))
+                                EventsHomeCategoriesView(
+                                    store: store.scope(state: \.categories, action: \.categories)
+                                )
 
-                                Button {
-                                    toggleOtherCategory(for: proxy)
-                                } label: {
-                                    HStack {
-                                        Text(R.string.localizable.showAll())
-                                        Image(systemName: "chevron.forward")
-                                            .animation(.easeInOut, value: store.isOtherCategoriesShow)
-                                            .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
-                                    }
-                                    .foregroundStyle(ui.secondaryLabel)
-                                    .padding(.vertical, .large)
+                                HStack {
+                                    Spacer()
+                                    Text(R.string.localizable.showAll())
+                                    Image(systemName: "chevron.forward")
+                                        .animation(.easeInOut, value: store.isOtherCategoriesShow)
+                                        .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
+                                    Spacer()
                                 }
+                                .foregroundStyle(ui.secondaryLabel)
+                                .padding(.vertical, .large)
                                 .id(R.string.localizable.showAll())
                                 .padding(.horizontal)
+                                .onTapGesture {
+                                    toggleOtherCategory(for: proxy)
+                                }
 
                                 if store.isOtherCategoriesShow {
                                     EventsHomeOtherCategoriesView(
@@ -55,13 +63,14 @@ struct EventsHomeView: View {
                                     )
                                 }
                             }
-                            .onChange(of: store.isOtherCategoriesShow) { newValue in
-                                guard newValue else { return }
+                        }
+                        .background(ui.background)
+                        .onChange(of: store.isOtherCategoriesShow) { newValue in
+                            guard newValue else { return }
 
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                    withAnimation {
-                                        proxy.scrollTo(R.string.localizable.showAll(), anchor: .top)
-                                    }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                withAnimation {
+                                    proxy.scrollTo(R.string.localizable.showAll(), anchor: .top)
                                 }
                             }
                         }

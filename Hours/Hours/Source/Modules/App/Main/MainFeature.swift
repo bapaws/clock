@@ -34,7 +34,6 @@ struct MainFeature {
         case didLoad
 
         case eventsHome(EventsHomeFeature.Action)
-        case didEventsHomeLoad
 
         case statistics(Statistics.Action)
         case didStatisticsHomeLoad([CategoryEntity])
@@ -70,12 +69,11 @@ struct MainFeature {
                     let endOfDay = now.dateAtEndOf(.day)
                     let records = await AppRealm.shared.getRecords { $0.endAt >= startOfDay && $0.endAt <= endOfDay }
                     await send(.didRecordsHomeLoad(startOfDay, records))
-
-                    await send(.didEventsHomeLoad)
                 }
 
-            case .didEventsHomeLoad:
+            case .eventsHome(.loadCompleted):
                 debugPrint(Date.now.timeIntervalSince1970)
+                if state.isLoadCompleted { return .none }
                 state.isLoadCompleted = true
                 return .none
 

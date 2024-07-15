@@ -57,7 +57,20 @@ public extension AppRealm {
             let realm = await realm
             guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else { return }
             try await realm.asyncWrite {
-                object.archivedAt = object.archivedAt == nil ? .init() : nil
+                object.archivedAt = .init()
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func unarchiveEvent(_ entity: EventEntity) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else { return }
+            try await realm.asyncWrite {
+                object.archivedAt = nil
+                object.category.archivedAt = nil
             }
         } catch {
             debugPrint(error)
@@ -118,6 +131,33 @@ public extension AppRealm {
             return objects[0 ..< count].map { EventEntity(object: $0) }
         } else {
             return objects.map { EventEntity(object: $0) }
+        }
+    }
+
+    func reorder(by entities: [EventEntity], in _: CategoryEntity) async throws {
+        let realm = await realm
+        try? await realm.asyncWrite {
+            for (index, entity) in entities.enumerated() {
+                let objectId = try ObjectId(string: entity.id)
+                guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: objectId) else { continue }
+
+                // 判断是否更改了分类
+                if let categoryID = entity.category?.id,
+                   object.category._id.stringValue != categoryID,
+                   let index = object.category.events.firstIndex(where: { $0._id == objectId })
+                {
+                    // 从原来的分类中移除
+                    let eventObject = object.category.events[index]
+                    object.category.events.remove(at: index)
+
+                    // 添加到新的分类中
+                    let categoryObjectId = try ObjectId(string: categoryID)
+                    let category = realm.object(ofType: CategoryObject.self, forPrimaryKey: categoryObjectId)
+                    category?.events.append(eventObject)
+                }
+
+                object.index = index
+            }
         }
     }
 }

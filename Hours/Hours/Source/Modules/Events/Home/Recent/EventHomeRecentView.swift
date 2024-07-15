@@ -45,10 +45,9 @@ struct EventHomeRecentView: View {
                         }
                     }
                     .padding(.horizontal)
+                    .padding(.bottom)
                 }
                 .scrollIndicators(.hidden)
-                .padding(.bottom)
-
             } header: {
                 HStack {
                     Text(R.string.localizable.recent())
@@ -56,7 +55,6 @@ struct EventHomeRecentView: View {
                 }
                 .font(.footnote)
                 .padding(horizontal: .regular, vertical: .extraSmall)
-                .padding(.top)
                 .background(ui.background)
             }
         }

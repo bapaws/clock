@@ -114,10 +114,6 @@ struct TimingEventsFeature {
                 }
                 .cancellable(id: CancelID.remainingTime, cancelInFlight: true)
 
-//            case .onTimingTapped(let entity):
-//                state.timer = TimerFeature.State(entity: entity)
-//                return .none
-
             default:
                 return .none
             }
@@ -131,64 +127,60 @@ struct TimingEventsFeature {
 struct TimingEventsView: View {
     @Perception.Bindable var store: StoreOf<TimingEventsFeature>
 
-    @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var app: AppManager
-
     var body: some View {
         WithPerceptionTracking {
             if !store.entities.isEmpty {
                 Section {
-                    VStack {
-                        ForEach(store.entities) { event in
-                            HStack(spacing: 16) {
-                                HStack(spacing: 12) {
-                                    RoundedRectangle(cornerRadius: 2)
-                                        .fill(event.primary)
-                                        .frame(width: 4)
-                                    if let emoji = event.emoji {
-                                        Text(emoji)
-                                            .padding(.small)
-                                    }
-                                    Text(event.name)
-                                        .font(.body, weight: .regular)
+                    // 这里需要单独设置 id，因为可能会和正常的重复，导致 view 重用
+                    ForEach(store.entities, id: { $0.id + "Timing" }) { event in
+                        HStack(spacing: 16) {
+                            HStack(spacing: 12) {
+                                RoundedRectangle(cornerRadius: 2)
+                                    .fill(event.primary)
+                                    .frame(width: 4)
+                                if let emoji = event.emoji {
+                                    Text(emoji)
+                                        .padding(.small)
                                 }
-                                .padding(.leading)
-                                .padding(.vertical)
-
-                                Spacer()
-
-                                Text(timerInterval: event.timerInterval, countsDown: false)
-                                    .contentTransition(.numericText(countsDown: false))
-                                    .font(.system(.body, design: .rounded, weight: .bold))
-                                    .monospacedDigit()
-                                    .foregroundStyle(event.primary)
-
-                                Button {
-                                    store.send(.stopTimer(event))
-                                } label: {
-                                    Image(systemName: "stop.fill")
-                                        .font(.system(.callout, design: .rounded))
-                                        .foregroundStyle(event.primary)
-                                        .padding(12)
-                                        .background {
-                                            RoundedRectangle(cornerRadius: 16)
-                                                .fill(event.primaryContainer)
-                                        }
-                                }
+                                Text(event.name)
+                                    .font(.body, weight: .regular)
                             }
-                            .padding(.trailing)
-                            .frame(height: cellHeight)
-                            .background(ui.secondaryBackground)
-                            .cornerRadius(16)
-                            .onTapGesture {
-                                store.send(.onTimingTapped(event))
+                            .padding(.leading)
+                            .padding(.vertical)
+
+                            Spacer()
+
+                            Text(timerInterval: event.timerInterval, countsDown: false)
+                                .contentTransition(.numericText(countsDown: false))
+                                .font(.system(.body, design: .rounded, weight: .bold))
+                                .monospacedDigit()
+                                .foregroundStyle(event.primary)
+
+                            Button {
+                                store.send(.stopTimer(event))
+                            } label: {
+                                Image(systemName: "stop.fill")
+                                    .font(.system(.callout, design: .rounded))
+                                    .foregroundStyle(event.primary)
+                                    .padding(12)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(event.primaryContainer)
+                                    }
                             }
                         }
+                        .padding(.trailing)
                         .frame(height: cellHeight)
+                        .background(ui.secondaryBackground)
+                        .cornerRadius(16)
+                        .onTapGesture {
+                            store.send(.onTimingTapped(event))
+                        }
                     }
+                    .frame(height: cellHeight)
                     .padding(.horizontal)
-                    .padding(.bottom)
 
+                    ui.background.height(8)
                 } header: {
                     HStack {
                         Text(R.string.localizable.tracking("\(store.entities.count)"))
@@ -198,37 +190,7 @@ struct TimingEventsView: View {
                     .padding(horizontal: .regular, vertical: .extraSmall)
                     .background(ui.background)
                 }
-
-                // MARK: Timer
-
-                .fullScreenCover(item: $store.scope(state: \.timer, action: \.timer)) { store in
-                    TimerView(store: store)
-                }
             }
-        }
-    }
-
-    func stopButton(of entity: TimingEntity) -> some View {
-        Button {
-//            store.send(.onStopped)
-        } label: {
-            Image(systemName: "stop.fill")
-                .font(.body)
-                .padding(.horizontal).padding(.small)
-                .foregroundStyle(colorScheme == .dark ? entity.onPrimary : entity.primary)
-                .background {
-                    Capsule()
-                        .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                        .foregroundStyle(colorScheme == .dark ? entity.onPrimaryContainer : entity.primaryContainer)
-                }
-        }
-    }
-
-    func getLinearGradient(of entity: TimingEntity) -> LinearGradient {
-        if colorScheme == .dark {
-            LinearGradient(gradient: Gradient(colors: [entity.onPrimary, entity.onPrimaryContainer]), startPoint: .leading, endPoint: .trailing)
-        } else {
-            LinearGradient(gradient: Gradient(colors: [entity.primaryContainer, entity.background]), startPoint: .leading, endPoint: .trailing)
         }
     }
 }

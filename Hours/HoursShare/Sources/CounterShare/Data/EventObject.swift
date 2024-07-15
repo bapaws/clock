@@ -36,6 +36,8 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexObjectColor
     /// 归档时间
     @Persisted public var archivedAt: Date?
 
+    @Persisted public var index: Int = 0
+
     /// 事件的分类
     public var category: CategoryObject { self.categorys[0] }
 

@@ -23,6 +23,7 @@ struct ArchivedEventsFeature {
         case onAppear
 
         case unarchiveEvent(EventEntity)
+        case unarchiveCategory(CategoryEntity)
 
         case updateCategories([CategoryEntity])
 
@@ -42,7 +43,13 @@ struct ArchivedEventsFeature {
 
             case .unarchiveEvent(let entity):
                 return .run { send in
-                    await AppRealm.shared.archiveEvent(entity)
+                    await AppRealm.shared.unarchiveEvent(entity)
+                    await send(.onAppear)
+                }
+
+            case .unarchiveCategory(let entity):
+                return .run { send in
+                    await AppRealm.shared.unarchiveCategory(entity)
                     await send(.onAppear)
                 }
 

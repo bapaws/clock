@@ -74,6 +74,10 @@
 
 "Delete" = "删除";
 "DeleteEventWarning" = "您确认删除“%@“吗？ \n “%@“的所有记录也会一起删除。";
+"DeleteCategoryWarning" = "您确认删除“%@“吗？ \n “%@“的所有事件和记录也会一起删除。";
+"ArchivedEvents" = "%@ 已归档事件";
+"UnarchivedEvents" = "%@ 事件";
+"DeleteEventsFirst" = "请先删除所有事件。";
 
 "PlayButtonTipTitle" = "开始计时或番茄钟";
 "PlayButtonTipMessage" = "通过计时器或番茄钟来添加记录";

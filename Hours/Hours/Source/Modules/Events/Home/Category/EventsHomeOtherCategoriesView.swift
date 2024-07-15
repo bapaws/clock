@@ -10,56 +10,49 @@ import HoursShare
 import SwiftUI
 import SwiftUIX
 
-@Reducer
-struct EventsHomeOtherCategoriesFeature {
-    @ObservableState
-    struct State: Equatable {
-        var categories: [CategoryEntity] = []
-    }
-
-    enum Action: BindableAction {
-        case binding(BindingAction<State>)
-
-        case update([CategoryEntity])
-
-        case newCategory(CategoryEntity)
-        case removeEvent(EventEntity)
-
-        // MARK: New Event
-
-        case newEventTapped(CategoryEntity?)
-    }
-
-    var body: some Reducer<State, Action> {
-        BindingReducer()
-        Reduce { state, action in
-            switch action {
-            case .update(let entities):
-                state.categories.removeAll()
-                state.categories.append(contentsOf: entities)
-                return .none
-
-            case .newCategory(let entity):
-                state.categories.append(entity)
-                return .none
-
-            default:
-                return .none
-            }
-        }
-    }
-}
-
 struct EventsHomeOtherCategoriesView: View {
     @Perception.Bindable var store: StoreOf<EventsHomeOtherCategoriesFeature>
     var body: some View {
         WithPerceptionTracking {
             ForEach(store.categories) { category in
-                EventsHeaderView(category: category) { category in
-                    store.send(.newEventTapped(category))
+                WithPerceptionTracking {
+                    EventsHeaderView(category: category) { category in
+                        store.send(.newEventTapped(category))
+                    }
+                    // 先调用 menu 的修改器，长按时不会出现圆角的情况
+                    .contextMenu { menuItems(for: category) }
+                    .cornerRadius(16)
+                    .padding(.bottom)
+                    .alert($store.scope(state: \.alert, action: \.alert))
                 }
             }
-            .padding(.horizontal)
+        }
+    }
+
+    @ViewBuilder func menuItems(for category: CategoryEntity) -> some View {
+        WithPerceptionTracking {
+            Button {
+                store.send(.newEventTapped(category))
+            } label: {
+                Label(R.string.localizable.newRecord(), systemImage: "plus")
+            }
+            Divider()
+
+            Button(action: {
+                store.send(.archiveCategory(category))
+            }) {
+                Label(R.string.localizable.archive(), systemImage: "archivebox")
+            }
+
+            Button(role: .destructive) {
+                store.send(.deleteCategory(category))
+            } label: {
+                Label(R.string.localizable.delete(), systemImage: "trash")
+                if !category.events.isEmpty {
+                    Text(R.string.localizable.deleteEventsFirst())
+                }
+            }
+            .disabled(!category.events.isEmpty)
         }
     }
 }

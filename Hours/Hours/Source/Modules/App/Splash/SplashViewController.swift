@@ -16,6 +16,7 @@ class SplashViewController: UIHostingController<SplashView> {
         initialState: .init(),
         reducer: { MainFeature() }
     )
+       
 
     var ui: UIManager { UIManager.shared }
 
