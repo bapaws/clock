@@ -11,9 +11,12 @@ import Foundation
 import HoursShare
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *)
-struct QuickStartTimerAppIntent: AppIntent {
+struct QuickStartTimerAppIntent: AppIntent, LiveActivityStartingIntent {
     static var title: LocalizedStringResource = "QuickTiming"
     static var description = IntentDescription("Quick Timing")
+
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+    static var isDiscoverable: Bool { return false }
 
     @Parameter(title: "EventID")
     var eventID: String
@@ -26,12 +29,11 @@ struct QuickStartTimerAppIntent: AppIntent {
 
     func perform() async throws -> some IntentResult {
         guard let eventEntity = await AppRealm.shared.getEvent(by: eventID) else { return .result() }
+
         let entity = TimingEntity(event: eventEntity, time: .zero)
-        Storage.default.currentTimingEntity = entity
+        TimerManager.shared.start(of: entity)
 
         NotificationCenter.default.post(name: TimerManager.shared.timerStart, object: nil)
-
-        TimerManager.shared.start(of: entity)
         return .result()
     }
 }

@@ -31,10 +31,6 @@ private enum EventDetailViewSelectionType: Int, Identifiable, CaseIterable {
 struct EventDetailView: View {
     @Perception.Bindable var store: StoreOf<EventDetailFeature>
 
-    // MARK: Timer
-
-//    @Binding var timerSelectEvent: EventEntity?
-
     // MARK: Delete
 
     @State private var isDeletePresented = false

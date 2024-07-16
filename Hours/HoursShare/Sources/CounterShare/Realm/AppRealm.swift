@@ -17,7 +17,7 @@ public actor AppRealm {
 
     // MARK: Realm
 
-    public let schemaVersion: UInt64 = 7
+    public let schemaVersion: UInt64 = 8
     public let fileName = "default"
 
     private var _realm: Realm?

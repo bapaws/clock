@@ -30,10 +30,6 @@ struct EventDetailFeature {
 
         var newRecordSelectEvent: EventEntity?
 
-        // MARK: Timer
-
-        var timerSelectEvent: EventEntity?
-
         // MARK: Delete
 
         var isDeletePresented = false

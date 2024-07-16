@@ -26,7 +26,6 @@ let package = Package(
         .package(url: "https://github.com/jdg/MBProgressHUD.git", .upToNextMajor(from: "1.2.0")),
         .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift.git", from: "20.0.0"),
         .package(url: "https://github.com/realm/realm-swift.git", from: "10.47.0"),
-        .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.0.0"),
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture",
             from: "1.0.0"
@@ -45,14 +44,10 @@ let package = Package(
                 "MBProgressHUD",
                 .product(name: "RealmSwift", package: "realm-swift"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
-                .product(name: "RswiftLibrary", package: "R.swift"),
                 .product(
                     name: "ComposableArchitecture",
                     package: "swift-composable-architecture"
                 ),
-            ],
-            plugins: [
-                .plugin(name: "RswiftGeneratePublicResources", package: "R.swift"),
             ]
         ),
         .testTarget(

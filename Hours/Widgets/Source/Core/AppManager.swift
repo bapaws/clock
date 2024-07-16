@@ -15,3 +15,11 @@ public class AppManager: HoursShare.AppManager {
         super.init()
     }
 }
+
+// MARK: - TimingEntity
+
+public extension TimingEntity {
+    var timerInterval: ClosedRange<Date> {
+        time.initialDate ... date.addingTimeInterval(AppManager.shared.maximumRecordedTime)
+    }
+}

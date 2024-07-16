@@ -17,7 +17,10 @@ public extension Storage.Key {
     static let isAutoSyncSleep = "isAutoSyncSleep"
     static let lastSyncSleepDate = "lastSyncSleepDate"
 
+    @available(*, deprecated, renamed: "currentTimingEntities")
     static let currentTimingEntity = "currentTimingEntity"
+
+    static let currentTimingEntities = "currentTimingEntities"
 }
 
 public extension Storage {
@@ -49,6 +52,7 @@ public extension Storage {
         get { store.object(forKey: Key.lastSyncSleepDate) as? Date }
     }
 
+    @available(*, deprecated, renamed: "currentTimingEntities")
     var currentTimingEntity: TimingEntity? {
         set {
             if let time = newValue {
@@ -61,6 +65,21 @@ public extension Storage {
         get {
             guard let data = store.object(forKey: Key.currentTimingEntity) as? Data else { return nil }
             return try? JSONDecoder().decode(TimingEntity.self, from: data)
+        }
+    }
+
+    var currentTimingEntities: [TimingEntity]? {
+        set {
+            if let newValue {
+                let data = try? JSONEncoder().encode(newValue)
+                store.set(data, forKey: Key.currentTimingEntities)
+            } else {
+                store.removeObject(forKey: Key.currentTimingEntities)
+            }
+        }
+        get {
+            guard let data = store.object(forKey: Key.currentTimingEntities) as? Data else { return nil }
+            return try? JSONDecoder().decode([TimingEntity].self, from: data)
         }
     }
 }

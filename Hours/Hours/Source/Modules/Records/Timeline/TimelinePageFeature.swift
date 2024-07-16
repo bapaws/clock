@@ -29,7 +29,6 @@ struct TimelinePageFeature {
 
     enum Action: BindableAction {
         case binding(BindingAction<State>)
-        case onAppear
 
         case onRecordLoaded(Date)
         case updateRecords(Date, [RecordEntity])
@@ -72,8 +71,6 @@ struct TimelinePageFeature {
             case .updateRecords(let date, let entities):
                 state.items[id: date] = TimelinePageItem(date: date, records: entities)
                 return .none
-
-
 
             default:
                 return .none

@@ -44,10 +44,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         AppManager.shared.autoSyncHealth()
         AppManager.shared.startTimer()
-
-        if let entity = Storage.default.currentTimingEntity {
-            TimerManager.shared.start(of: entity)
-        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

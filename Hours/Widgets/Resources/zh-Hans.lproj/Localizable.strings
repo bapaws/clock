@@ -7,6 +7,7 @@
 */
 
 "QuickTiming" = "快速计时";
+"Tracking" = "%@ 个计时中";
 
 // 工作
 "Work" = "上班";

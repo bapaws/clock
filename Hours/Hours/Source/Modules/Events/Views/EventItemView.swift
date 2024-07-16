@@ -41,6 +41,7 @@ struct EventItemView: View {
                                 .fill(event.primaryContainer)
                         }
                 }
+                .buttonStyle(.borderless)
             }
         }
         .padding(.trailing)

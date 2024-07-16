@@ -44,16 +44,18 @@ public extension AppRealm {
                 }
                 categories = realm.objects(CategoryObject.self)
             }
-            categories = categories.where { $0.archivedAt == nil && $0.deletedAt == nil }
+            categories = categories
+                .where { $0.archivedAt == nil && $0.deletedAt == nil }
+                .sorted(by: \.index)
 
             var entities = [CategoryEntity]()
             for category in categories {
-                let events: [EventEntity] = category.events
-                    .where { $0.deletedAt == nil && $0.archivedAt == nil }
-                    .map { EventEntity(object: $0, isLinkedObject: true) }
-
                 var entity = CategoryEntity(object: category, isLinkedObject: true)
-                entity.events = events
+                entity.eventTotalCount = category.events.count
+                entity.events = category.events
+                    .where { $0.deletedAt == nil && $0.archivedAt == nil }
+                    .sorted(by: \.index)
+                    .map { EventEntity(object: $0, isLinkedObject: true) }
                 entities.append(entity)
             }
 
@@ -69,11 +71,13 @@ public extension AppRealm {
         let categories = realm
             .objects(CategoryObject.self)
             .where { $0.deletedAt == nil }
+            .sorted(by: \.index)
 
         var entities = [CategoryEntity]()
         for category in categories {
             let events: [EventEntity] = category.events
                 .where { $0.deletedAt == nil && $0.archivedAt != nil }
+                .sorted(by: \.index)
                 .map { EventEntity(object: $0, isLinkedObject: true) }
             if events.isEmpty { continue }
 
@@ -97,6 +101,52 @@ public extension AppRealm {
         }
     }
 
+    func deleteCategory(_ entity: CategoryEntity) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) else { return }
+            try await realm.asyncWrite {
+                for event in object.events {
+                    realm.delete(event.items)
+                    realm.delete(event)
+                }
+                realm.delete(object)
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func archiveCategory(_ entity: CategoryEntity) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) else { return }
+            try await realm.asyncWrite {
+                for event in object.events where object.archivedAt == nil {
+                    event.archivedAt = .init()
+                }
+                object.archivedAt = .init()
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func unarchiveCategory(_ entity: CategoryEntity) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) else { return }
+            try await realm.asyncWrite {
+                for event in object.events {
+                    event.archivedAt = nil
+                }
+                object.archivedAt = nil
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
     func healthCategory() async -> CategoryEntity {
         let realm = await realm
         if let health = realm.objects(CategoryObject.self).first(where: { $0.name == L10n.health }) {
@@ -107,6 +157,17 @@ public extension AppRealm {
                 realm.add(category.toObject())
             }
             return category
+        }
+    }
+
+    func reorder(by entities: [CategoryEntity]) async throws {
+        let realm = await realm
+        try? await realm.asyncWrite {
+            for (index, entity) in entities.enumerated() {
+                let objectId = try ObjectId(string: entity.id)
+                let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: objectId)
+                object?.index = index
+            }
         }
     }
 }

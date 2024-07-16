@@ -49,6 +49,10 @@ internal enum L10n {
   internal static let sleep = L10n.tr("Localizable", "Sleep", fallback: "Sleep")
   /// Swimming
   internal static let swimming = L10n.tr("Localizable", "Swimming", fallback: "Swimming")
+  /// %@ Tracking
+  internal static func tracking(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "Tracking", String(describing: p1), fallback: "%@ Tracking")
+  }
   /// Travel
   internal static let travel = L10n.tr("Localizable", "Travel", fallback: "Travel")
   /// Video

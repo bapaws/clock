@@ -59,6 +59,7 @@
 // MARK: New Category
 
 "NewCategory" = "New Category";
+"EditCategory" = "Edit Category";
 "Emoji" = "Emoji";
 "CategoryName" = "Category Name";
 
@@ -74,6 +75,10 @@
 
 "Delete" = "Delete";
 "DeleteEventWarning" = "Are you sure you want to delete \"%@\"? \n All records of \"%@\" will also be deleted together.";
+"DeleteCategoryWarning" = "Are you sure you want to delete \"%@\"? \n All events & records of \"%@\" will also be deleted together.";
+"ArchivedEvents" = "%@ Archived Events";
+"UnarchivedEvents" = "%@ Events";
+"DeleteEventsFirst" = "Delete all events first.";
 
 "PlayButtonTipTitle" = "Start a timer or pomodoro";
 "PlayButtonTipMessage" = "Add records via timer or pomodoro.";
@@ -199,6 +204,8 @@
 // MARK: Timer
 
 "Finish" = "Finish";
+
+"Tracking" = "%@ Tracking";
 
 // MARK: - Main
 

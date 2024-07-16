@@ -190,7 +190,7 @@ public extension HexObject {
 public struct HexEntity: Entity {
     public let _id: ObjectId
 
-    private var rgb: Int
+    public private(set) var rgb: Int
     var light: SchemeEntity?
     var dark: SchemeEntity?
 

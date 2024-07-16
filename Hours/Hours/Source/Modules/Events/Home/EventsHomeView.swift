@@ -26,64 +26,50 @@ struct EventsHomeView: View {
                         NavigationBar(L10n.events) {
                             menu
                         }
+
                         ScrollView {
                             LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
-                                EventHomeRecentView(store: store.scope(state: \.recent, action: \.recent))
+                                EventHomeRecentView(
+                                    store: store.scope(state: \.recent, action: \.recent)
+                                )
 
-                                ForEach(store.categories) { category in
-                                    Section {
-                                        ForEach(category.events) { event in
-                                            EventItemView(event: event) {
-                                                store.send(.onTimerStarted($0))
-                                            }
-                                            // 先调用 menu 的修改器，长按时不会出现圆角的情况
-                                            .contextMenu { menuItems(for: event) }
-                                            .onTapGesture {
-                                                store.send(.onEventTapped(event))
-                                            }
-                                            .cornerRadius(16)
-                                        }
+                                TimingEventsView(
+                                    store: store.scope(state: \.timing, action: \.timing)
+                                )
 
-                                        ui.background
-                                    } header: {
-                                        EventsHeaderView(category: category) { category in
-                                            store.send(.newEventTapped(category))
-                                        }
-                                    }
-                                    .padding(.horizontal)
+                                EventsHomeCategoriesView(
+                                    store: store.scope(state: \.categories, action: \.categories)
+                                )
+
+                                HStack {
+                                    Spacer()
+                                    Text(L10n.showAll)
+                                    Image(systemName: "chevron.forward")
+                                        .animation(.easeInOut, value: store.isOtherCategoriesShow)
+                                        .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
+                                    Spacer()
                                 }
-
-                                Button {
-                                    toggleOtherCategory(for: proxy)
-                                } label: {
-                                    HStack {
-                                        Text(L10n.showAll)
-                                        Image(systemName: "chevron.forward")
-                                            .animation(.easeInOut, value: store.isOtherCategoriesShow)
-                                            .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
-                                    }
-                                    .foregroundStyle(ui.secondaryLabel)
-                                    .padding(.vertical, .large)
-                                }
+                                .foregroundStyle(ui.secondaryLabel)
+                                .padding(.vertical, .large)
                                 .id(L10n.showAll)
                                 .padding(.horizontal)
+                                .onTapGesture {
+                                    toggleOtherCategory(for: proxy)
+                                }
 
                                 if store.isOtherCategoriesShow {
-                                    ForEach(store.otherCategories) { category in
-                                        EventsHeaderView(category: category) { category in
-                                            store.send(.newEventTapped(category))
-                                        }
-                                    }
-                                    .padding(.horizontal)
+                                    EventsHomeOtherCategoriesView(
+                                        store: store.scope(state: \.otherCategories, action: \.otherCategories)
+                                    )
                                 }
                             }
-                            .onChange(of: store.isOtherCategoriesShow) { newValue in
-                                guard newValue else { return }
-
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                    withAnimation {
-                                        proxy.scrollTo(L10n.showAll, anchor: .top)
-                                    }
+                        }
+                        .background(ui.background)
+                        .onChange(of: store.isOtherCategoriesShow) { newValue in
+                            guard newValue else { return }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                withAnimation {
+                                    proxy.scrollTo(L10n.showAll, anchor: .top)
                                 }
                             }
                         }
@@ -103,11 +89,8 @@ struct EventsHomeView: View {
 
                 // MARK: Timer
 
-                .fullScreenCover(item: $store.timerSelectEvent, onDismiss: {
-                    store.send(.onTimerEnded)
-                }) { event in
-                    TimerView(event: event)
-                        .environmentObject(TimerManager.shared)
+                .fullScreenCover(item: $store.scope(state: \.timer, action: \.timer)) { store in
+                    TimerView(store: store)
                 }
 
                 // MARK: New Record
@@ -154,28 +137,6 @@ struct EventsHomeView: View {
                 .padding(.leading)
                 .padding(.vertical)
                 .font(.title3)
-        }
-    }
-
-    @ViewBuilder func menuItems(for event: EventEntity) -> some View {
-        WithPerceptionTracking {
-            Button {
-                store.send(.newRecordTapped(event))
-            } label: {
-                Label(L10n.newRecord, systemImage: "plus")
-            }
-            Button {
-                store.send(.onTimerStarted(event))
-            } label: {
-                Label(L10n.startTimer, systemImage: "play")
-            }
-            Divider()
-
-            Button(action: {
-                store.send(.archiveEvent(event))
-            }) {
-                Label(L10n.archive, systemImage: "archivebox")
-            }
         }
     }
 

@@ -33,12 +33,31 @@ struct ArchivedEventsView: View {
                                     pushView(view, title: event.name)
                                 }
                             }
+
+                            ui.background.frame(height: 8)
                         } header: {
-                            EventsHeaderView(category: category)
+                            HStack {
+                                CategoryView(category: category)
+                                Spacer()
+
+                                if category.archivedAt != nil {
+                                    Button {
+                                        store.send(.unarchiveCategory(category))
+                                    } label: {
+                                        Text(L10n.unarchive)
+                                            .font(.callout)
+                                            .padding(.small)
+                                    }
+                                    .buttonStyle(.borderless)
+                                    .foregroundStyle(ui.primary)
+                                }
+                            }
+                            .padding(.horizontal)
+                            .background(ui.background)
                         }
                     }
                 }
-                .padding()
+                .padding(.vertical)
                 .emptyStyle(isEmpty: store.categories.isEmpty)
             }
             .background(ui.background)

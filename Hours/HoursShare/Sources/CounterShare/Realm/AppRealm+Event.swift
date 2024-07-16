@@ -42,9 +42,7 @@ public extension AppRealm {
             let realm = await realm
             guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else { return }
             try await realm.asyncWrite {
-                for item in object.items {
-                    realm.delete(item)
-                }
+                realm.delete(object.items)
                 realm.delete(object)
             }
         } catch {
@@ -57,7 +55,20 @@ public extension AppRealm {
             let realm = await realm
             guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else { return }
             try await realm.asyncWrite {
-                object.archivedAt = object.archivedAt == nil ? .init() : nil
+                object.archivedAt = .init()
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func unarchiveEvent(_ entity: EventEntity) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else { return }
+            try await realm.asyncWrite {
+                object.archivedAt = nil
+                object.category?.archivedAt = nil
             }
         } catch {
             debugPrint(error)
@@ -96,18 +107,21 @@ public extension AppRealm {
     func getRecentEvents(count: Int = 15) async -> [EventEntity] {
         let realm = await realm
         let objects = realm.objects(EventObject.self)
+            .where { $0.archivedAt == nil && $0.categorys.archivedAt == nil }
             .sorted { obj1, obj2 in
-                var value1 = obj1.createdAt.timeIntervalSinceNow * 0.4
-                value1 += Double(obj1.items.count) * 24 * 3600 * 0.2
-                if let end = obj1.items.last?.endAt.timeIntervalSinceNow {
-                    value1 += end * 0.4
+                var value1 = obj1.createdAt.timeIntervalSinceNow * 0.45
+                value1 -= Double(obj1.items.count) * 24 * 3600 * 0.1
+                let lastItem1 = obj1.items.last(where: { $0.creationMode == .timer || $0.creationMode == .enter })
+                if let end = lastItem1?.endAt.timeIntervalSinceNow {
+                    value1 += end * 0.45
                 } else {
                     value1 *= 2
                 }
-                var value2 = obj2.createdAt.timeIntervalSinceNow * 0.5
-                value2 += Double(obj2.items.count) * 24 * 3600 * 0.2
-                if let end = obj2.items.last?.endAt.timeIntervalSinceNow {
-                    value2 += end * 0.4
+                var value2 = obj2.createdAt.timeIntervalSinceNow * 0.45
+                value2 -= Double(obj2.items.count) * 24 * 3600 * 0.1
+                let lastItem2 = obj2.items.last(where: { $0.creationMode == .timer || $0.creationMode == .enter })
+                if let end = lastItem2?.endAt.timeIntervalSinceNow {
+                    value2 += end * 0.45
                 } else {
                     value2 *= 2
                 }
@@ -117,6 +131,34 @@ public extension AppRealm {
             return objects[0 ..< count].map { EventEntity(object: $0) }
         } else {
             return objects.map { EventEntity(object: $0) }
+        }
+    }
+
+    func reorder(by entities: [EventEntity], in _: CategoryEntity) async throws {
+        let realm = await realm
+        try? await realm.asyncWrite {
+            for (index, entity) in entities.enumerated() {
+                let objectId = try ObjectId(string: entity.id)
+                guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: objectId) else { continue }
+
+                // 判断是否更改了分类
+                if let categoryID = entity.category?.id,
+                   let categoryObject = object.category,
+                   categoryObject._id.stringValue != categoryID,
+                   let index = categoryObject.events.firstIndex(where: { $0._id == objectId })
+                {
+                    // 从原来的分类中移除
+                    let eventObject = categoryObject.events[index]
+                    categoryObject.events.remove(at: index)
+
+                    // 添加到新的分类中
+                    let categoryObjectId = try ObjectId(string: categoryID)
+                    let category = realm.object(ofType: CategoryObject.self, forPrimaryKey: categoryObjectId)
+                    category?.events.append(eventObject)
+                }
+
+                object.index = index
+            }
         }
     }
 }

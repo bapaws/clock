@@ -120,18 +120,18 @@ struct QuickCategoryEntity {
 }
 
 struct QuickTimelineEntry: TimelineEntry {
-    var date: Date { timing?.date ?? .now }
+    var date: Date = .now
 
-    var category: QuickCategoryEntity?
+    var category: QuickCategoryEntity
 
-    var timing: TimingEntity?
+    var timingEntities: [TimingEntity] = []
 
     public let family: WidgetFamily
     public let isPreview: Bool
     public let displaySize: CGSize
 
-    var selection: CategoryEntity? { category?.selection }
-    var categories: [CategoryEntity]? { category?.categories }
+    var selection: CategoryEntity? { category.selection }
+    var categories: [CategoryEntity]? { category.categories }
 
     init(context: TimelineProviderContext, categories: [CategoryEntity]) {
         self.family = context.family
@@ -141,26 +141,12 @@ struct QuickTimelineEntry: TimelineEntry {
         self.category = QuickCategoryEntity(context: context, categories: categories)
     }
 
-    init(context: TimelineProviderContext, timing: TimingEntity) {
-        self.family = context.family
-        self.isPreview = context.isPreview
-        self.displaySize = context.displaySize
-
-        self.timing = timing
-    }
-
     init(categories: [CategoryEntity]) {
         self.family = .systemLarge
         self.isPreview = true
         self.displaySize = CGSize(width: 100, height: 200)
 
         self.category = QuickCategoryEntity(categories: categories)
-    }
-
-    init(context: TimelineProviderContext) {
-        self.family = context.family
-        self.isPreview = context.isPreview
-        self.displaySize = context.displaySize
     }
 }
 
@@ -176,14 +162,11 @@ struct EventsProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<QuickTimelineEntry>) -> ()) {
         Task {
-            var timelineEntry = QuickTimelineEntry(context: context)
-
-            if let entity = Storage.default.currentTimingEntity {
-                timelineEntry.timing = entity
-            }
-
             let categories = await AppRealm.shared.getAllUnarchivedCategories()
-            timelineEntry.category = QuickCategoryEntity(context: context, categories: categories)
+            var timelineEntry = QuickTimelineEntry(context: context, categories: categories)
+            if let entities = Storage.default.currentTimingEntities {
+                timelineEntry.timingEntities = entities
+            }
 
             let timeline = Timeline(
                 entries: [timelineEntry],

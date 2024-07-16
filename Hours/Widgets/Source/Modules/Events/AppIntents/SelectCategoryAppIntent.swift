@@ -16,6 +16,9 @@ struct SelectCategoryAppIntent: AppIntent {
     static var title: LocalizedStringResource = "Select Category"
     static var description = IntentDescription("Select Category")
 
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+    static var isDiscoverable: Bool { return false }
+
     @Parameter(title: "CategoryID")
     var categoryID: String
 

@@ -200,20 +200,6 @@ public extension AppManager {
         healthStore.execute(query)
     }
 
-    private var healthCategory: CategoryObject {
-        let realm = DBManager.default.realm
-
-        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == L10n.health }) {
-            return health
-        } else {
-            let category = CategoryObject(hex: DBManager.default.nextHex, emoji: "❤️", name: L10n.health)
-            realm.writeAsync {
-                realm.add(category)
-            }
-            return category
-        }
-    }
-
     private func saveWorkouts(_ workouts: [HKWorkout], completionHandler: (() -> Void)? = nil) {
         Task {
             let category = await AppRealm.shared.healthCategory()
@@ -385,5 +371,13 @@ public extension AppManager {
         task.expirationHandler = {
             task.setTaskCompleted(success: false)
         }
+    }
+}
+
+// MARK: - TimingEntity
+
+public extension TimingEntity {
+    var timerInterval: ClosedRange<Date> {
+        time.initialDate ... date.addingTimeInterval(AppManager.shared.maximumRecordedTime)
     }
 }

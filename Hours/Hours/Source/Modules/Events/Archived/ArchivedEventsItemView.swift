@@ -47,9 +47,12 @@ struct ArchivedEventsItemView: View {
                             .stroke(ui.primary, lineWidth: 1)
                     }
             }
+            .buttonStyle(.borderless)
+            .foregroundStyle(ui.primary)
         }
         .padding(.trailing)
         .background(ui.secondaryBackground)
         .cornerRadius(16)
+        .padding(.horizontal)
     }
 }
