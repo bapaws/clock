@@ -58,6 +58,8 @@ struct EventsHomeCategoriesFeature {
         case onCategoryDrag(CategoryEntity)
         case onCategoryDropUpdate(CategoryEntity, DragRelocateDelegate.Move)
 
+        case newCategoryTapped(CategoryEntity?)
+
         // MARK: New Event
 
         case newEventTapped(CategoryEntity?)
@@ -118,9 +120,14 @@ struct EventsHomeCategoriesFeature {
                 return .none
 
             case .alert(.presented(.deleteEvent(let entity))):
+                if let categoryIndex = state.categories.firstIndex(where: { $0.id == entity.category?.id }) {
+                    state.categories[categoryIndex].eventTotalCount -= 1
+                }
                 return .run { send in
                     await AppRealm.shared.deleteEvent(entity)
                     await send(.removeEvent(entity), animation: .default)
+
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
                 }
 
             case .archiveEvent(let entity):
@@ -173,12 +180,14 @@ struct EventsHomeCategoriesFeature {
 
             case .onEventDropUpdate(let entity, let direction):
                 guard state.dragCategory == nil, var dragEvent = state.dragEvent, dragEvent.id != entity.id else {
+                    debugPrint("--------")
                     return .none
                 }
 
                 guard let categoryIndex = state.categories.firstIndex(where: { $0.id == dragEvent.category?.id }),
                       let eventIndex = state.categories[categoryIndex].events.firstIndex(where: { $0.id == dragEvent.id })
                 else {
+                    debugPrint("=====")
                     return .none
                 }
                 state.categories[categoryIndex].events.remove(at: eventIndex)
@@ -186,6 +195,7 @@ struct EventsHomeCategoriesFeature {
                 guard let categoryIndex = state.categories.firstIndex(where: { $0.id == entity.category?.id }),
                       let eventIndex = state.categories[categoryIndex].events.firstIndex(where: { $0.id == entity.id })
                 else {
+                    debugPrint("++++++")
                     return .none
                 }
                 var category = state.categories[categoryIndex]

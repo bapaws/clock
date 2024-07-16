@@ -59,6 +59,7 @@
 // MARK: New Category
 
 "NewCategory" = "新建分类";
+"EditCategory" = "编辑分类";
 "Emoji" = "Emoji";
 "CategoryName" = "分类名";
 

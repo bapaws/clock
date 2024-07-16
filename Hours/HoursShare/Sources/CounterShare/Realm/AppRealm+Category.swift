@@ -50,13 +50,12 @@ public extension AppRealm {
 
             var entities = [CategoryEntity]()
             for category in categories {
-                let events: [EventEntity] = category.events
+                var entity = CategoryEntity(object: category, isLinkedObject: true)
+                entity.eventTotalCount = category.events.count
+                entity.events = category.events
                     .where { $0.deletedAt == nil && $0.archivedAt == nil }
                     .sorted(by: \.index)
                     .map { EventEntity(object: $0, isLinkedObject: true) }
-
-                var entity = CategoryEntity(object: category, isLinkedObject: true)
-                entity.events = events
                 entities.append(entity)
             }
 
@@ -108,9 +107,7 @@ public extension AppRealm {
             guard let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) else { return }
             try await realm.asyncWrite {
                 for event in object.events {
-                    for item in event.items {
-                        realm.delete(item)
-                    }
+                    realm.delete(event.items)
                     realm.delete(event)
                 }
                 realm.delete(object)

@@ -115,6 +115,10 @@ public struct CategoryEntity: Entity, HexEntityColors {
     public var calendarIdentifier: String?
 
     public var events: [EventEntity]
+    /// 事件的总数，包括已归档的事件和未归档的事件
+    ///
+    /// ⚠️现在项目里只在首页中判断是否能删除使用，其他情况下没有设置这个值
+    public var eventTotalCount: Int = 0
 
     public var index: Int = 0
 

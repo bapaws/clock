@@ -57,6 +57,7 @@ struct ArchivedEventsView: View {
                         }
                     }
                 }
+                .padding(.vertical)
                 .emptyStyle(isEmpty: store.categories.isEmpty)
             }
             .background(ui.background)

@@ -176,6 +176,11 @@ struct EventsHomeFeature {
                 state.newCategory = .init()
                 return .none
 
+            case .categories(.newCategoryTapped(let entity)),
+                 .otherCategories(.newCategoryTapped(let entity)):
+                state.newCategory = .init(category: entity)
+                return .none
+
             case .newCategory(.presented(.saveCompleted(let entity))):
                 if let index = state.categories.categories.firstIndex(where: { $0.id == entity.id }) {
                     state.categories.categories[index] = entity

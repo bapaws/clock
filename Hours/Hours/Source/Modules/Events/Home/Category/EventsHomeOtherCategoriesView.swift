@@ -34,7 +34,12 @@ struct EventsHomeOtherCategoriesView: View {
             Button {
                 store.send(.newEventTapped(category))
             } label: {
-                Label(R.string.localizable.newRecord(), systemImage: "plus")
+                Label(R.string.localizable.newEvent(), systemImage: "plus")
+            }
+            Button {
+                store.send(.newCategoryTapped(category))
+            } label: {
+                Label(R.string.localizable.editCategory(), systemImage: "pencil")
             }
             Divider()
 

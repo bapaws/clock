@@ -22,7 +22,7 @@ struct DragRelocateDelegate: DropDelegate {
     }
 
     func dropUpdated(info: DropInfo) -> DropProposal? {
-        print("update location.x is \(info.location.x)")
+//        print("update location.x is \(info.location.x)")
 
         if info.location.y < cellHeight / 2 {
             updated(.up)
@@ -45,7 +45,9 @@ struct EventsHomeCategoriesView: View {
         WithPerceptionTracking {
             ForEach(store.categories) { category in
                 Section {
-                    ForEach(category.events) { event in
+                    // 如果只是用 event 的 id 作为 view 的 id，会造成重用时不刷新 view
+                    // 导致分类不对等不符合预期的结果
+                    ForEach(category.events, id: { $0.id + category.id }) { event in
                         itemView(for: event)
                     }
                     .padding(.horizontal)
@@ -139,6 +141,11 @@ struct EventsHomeCategoriesView: View {
                 store.send(.newEventTapped(category))
             } label: {
                 Label(R.string.localizable.newEvent(), systemImage: "plus")
+            }
+            Button {
+                store.send(.newCategoryTapped(category))
+            } label: {
+                Label(R.string.localizable.editCategory(), systemImage: "pencil")
             }
             Divider()
 

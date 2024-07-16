@@ -21,6 +21,12 @@ struct NewCategoryFeature {
 
         var isLoading = false
         var createAttempts = 0
+
+        init(category: CategoryEntity? = nil) {
+            self.category = category
+            self.emoji = category?.emoji ?? ""
+            self.title = category?.name ?? ""
+        }
     }
 
     enum Action: BindableAction {
@@ -59,6 +65,10 @@ struct NewCategoryFeature {
                         category.emoji = state.emoji
                         category.name = state.title
                         await AppRealm.shared.writeCategory(category)
+
+                        if let calendarIdentifier = category.calendarIdentifier {
+                            AppManager.shared.updateCalendar(by: category)
+                        }
 
                         await send(.saveCompleted(category))
                     } else {

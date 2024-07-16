@@ -29,7 +29,7 @@ struct EventsHomeOtherCategoriesFeature {
 
         case update([CategoryEntity])
 
-        case newCategory(CategoryEntity)
+        case newCategoryTapped(CategoryEntity?)
         case deleteCategory(CategoryEntity)
         case archiveCategory(CategoryEntity)
 
@@ -47,10 +47,6 @@ struct EventsHomeOtherCategoriesFeature {
             case .update(let entities):
                 state.categories.removeAll()
                 state.categories.append(contentsOf: entities)
-                return .none
-
-            case .newCategory(let entity):
-                state.categories.append(entity)
                 return .none
 
             case .deleteCategory(let entity):

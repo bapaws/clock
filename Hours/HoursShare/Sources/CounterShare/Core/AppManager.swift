@@ -187,6 +187,16 @@ public extension AppManager {
             print(error)
         }
     }
+
+    func updateCalendar(by category: CategoryEntity) {
+        do {
+            guard let calendarIdentifier = category.calendarIdentifier else { return }
+            guard let calendar = eventStore.calendar(withIdentifier: calendarIdentifier) else { return }
+            calendar.title = category.title
+            calendar.cgColor = category.color.cgColor
+            try eventStore.saveCalendar(calendar, commit: true)
+        } catch {
+            print(error)
+        }
+    }
 }
-
-
