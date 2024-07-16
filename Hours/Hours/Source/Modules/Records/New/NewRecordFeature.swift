@@ -96,7 +96,10 @@ struct NewRecordFeature {
                     newRecord.notes = state.notes
                     newRecord.event = event
                     if let record = state.record {
-                        newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: record)
+                        // 在刷新日历前先赋值旧 id，可以在同步时用于删除日历上的记录
+                        newRecord.calendarEventIdentifier = record.calendarEventIdentifier
+                        // 重新设置日历记录的 id
+                        newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
                         await AppRealm.shared.deleteRecord(record)
                     } else {
                         newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)

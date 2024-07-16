@@ -15,9 +15,12 @@ public extension AppRealm {
     func writeCategory(_ entity: CategoryEntity) async {
         do {
             let realm = await realm
-            if realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) != nil {
+            if let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) {
                 try await realm.asyncWrite {
-                    realm.add(entity.toObject(), update: .modified)
+                    object.emoji = entity.emoji
+                    object.name = entity.name
+                    object.icon = entity.icon
+                    object.index = entity.index
                 }
             } else {
                 try await realm.asyncWrite {

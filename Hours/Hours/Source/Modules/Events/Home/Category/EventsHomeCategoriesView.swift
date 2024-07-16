@@ -53,7 +53,7 @@ struct EventsHomeCategoriesView: View {
                     .padding(.horizontal)
 
                     // 在尾部添加一定的空间区域，让界面和谐
-                    ui.background.height(8)
+                    ui.background.height(12)
                 } header: {
                     header(for: category)
                 }

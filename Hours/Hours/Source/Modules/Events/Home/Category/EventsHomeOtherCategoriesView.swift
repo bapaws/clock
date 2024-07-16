@@ -22,7 +22,7 @@ struct EventsHomeOtherCategoriesView: View {
                     // 先调用 menu 的修改器，长按时不会出现圆角的情况
                     .contextMenu { menuItems(for: category) }
                     .cornerRadius(16)
-                    .padding(.bottom)
+                    .padding(.bottom, .small)
                     .alert($store.scope(state: \.alert, action: \.alert))
                 }
             }
