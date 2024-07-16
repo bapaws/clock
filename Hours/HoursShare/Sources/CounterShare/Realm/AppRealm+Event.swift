@@ -68,7 +68,7 @@ public extension AppRealm {
             guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else { return }
             try await realm.asyncWrite {
                 object.archivedAt = nil
-                object.category.archivedAt = nil
+                object.category?.archivedAt = nil
             }
         } catch {
             debugPrint(error)
@@ -143,12 +143,13 @@ public extension AppRealm {
 
                 // 判断是否更改了分类
                 if let categoryID = entity.category?.id,
-                   object.category._id.stringValue != categoryID,
-                   let index = object.category.events.firstIndex(where: { $0._id == objectId })
+                   let categoryObject = object.category,
+                   categoryObject._id.stringValue != categoryID,
+                   let index = categoryObject.events.firstIndex(where: { $0._id == objectId })
                 {
                     // 从原来的分类中移除
-                    let eventObject = object.category.events[index]
-                    object.category.events.remove(at: index)
+                    let eventObject = categoryObject.events[index]
+                    categoryObject.events.remove(at: index)
 
                     // 添加到新的分类中
                     let categoryObjectId = try ObjectId(string: categoryID)

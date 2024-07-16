@@ -39,7 +39,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexObjectColor
     @Persisted public var index: Int = 0
 
     /// 事件的分类
-    public var category: CategoryObject { self.categorys[0] }
+    public var category: CategoryObject? { self.categorys.first }
 
     public lazy var milliseconds: Int = items.sum(of: \.milliseconds)
 
@@ -175,7 +175,9 @@ public struct EventEntity: Entity, HexEntityColors {
         self.isSystem = object.isSystem
         self.deletedAt = object.deletedAt
         self.archivedAt = object.archivedAt
-        self.category = CategoryEntity(object: object.category, isLinkedObject: true)
+        if let category = object.category {
+            self.category = CategoryEntity(object: category, isLinkedObject: true)
+        }
 
         self.milliseconds = object.milliseconds
         self.time = object.time
