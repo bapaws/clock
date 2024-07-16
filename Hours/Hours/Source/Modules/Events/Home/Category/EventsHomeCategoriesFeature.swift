@@ -120,6 +120,7 @@ struct EventsHomeCategoriesFeature {
                 return .none
 
             case .alert(.presented(.deleteEvent(let entity))):
+                /// 维护设置 eventTotalCount
                 if let categoryIndex = state.categories.firstIndex(where: { $0.id == entity.category?.id }) {
                     state.categories[categoryIndex].eventTotalCount -= 1
                 }

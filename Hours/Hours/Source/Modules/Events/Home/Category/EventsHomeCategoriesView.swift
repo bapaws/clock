@@ -157,11 +157,11 @@ struct EventsHomeCategoriesView: View {
 
             Button(role: .destructive) {} label: {
                 Label(R.string.localizable.delete(), systemImage: "trash")
-                if !category.events.isEmpty {
+                if category.eventTotalCount != 0 {
                     Text(R.string.localizable.deleteEventsFirst())
                 }
             }
-            .disabled(!category.events.isEmpty)
+            .disabled(category.eventTotalCount != 0)
         }
     }
 }
