@@ -66,6 +66,8 @@ struct SelectEventView: View {
                                         store.send(.didSelectedEvent(event))
                                     }
                             }
+
+                            ui.background.frame(height: 16)
                         } header: {
                             HStack {
                                 CategoryView(category: category)
@@ -74,11 +76,10 @@ struct SelectEventView: View {
                             .padding(.vertical, .small)
                             .background(ui.background)
                         }
-
-                        ui.background
                     }
                 }
                 .padding()
+                .padding(.vertical)
             }
             .background(ui.background)
             .onAppear {

@@ -180,7 +180,7 @@ struct TimingEventsView: View {
                     .frame(height: cellHeight)
                     .padding(.horizontal)
 
-                    ui.background.height(8)
+                    ui.background.height(12)
                 } header: {
                     HStack {
                         Text(L10n.tracking("\(store.entities.count)"))

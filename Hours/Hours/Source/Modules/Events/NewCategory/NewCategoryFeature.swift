@@ -66,9 +66,8 @@ struct NewCategoryFeature {
                         category.name = state.title
                         await AppRealm.shared.writeCategory(category)
 
-                        if let calendarIdentifier = category.calendarIdentifier {
-                            AppManager.shared.updateCalendar(by: category)
-                        }
+                        // 更新日历
+                        AppManager.shared.updateCalendar(by: category)
 
                         await send(.saveCompleted(category))
                     } else {
