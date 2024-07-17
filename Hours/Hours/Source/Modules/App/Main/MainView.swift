@@ -35,7 +35,7 @@ struct MainView: View {
                     )
                     .tag(MainTabTag.events)
                     .tabItem {
-                        Image(asset: Asset.Tab.events)
+                        Image(uiImage: Asset.Tab.events.image)
                     }
 
                     RecordsHomeView(
@@ -43,7 +43,7 @@ struct MainView: View {
                     )
                     .tag(MainTabTag.records)
                     .tabItem {
-                        Image(asset: Asset.Tab.records)
+                        Image(uiImage: Asset.Tab.records.image)
                     }
 
                     StatisticsView(
@@ -51,13 +51,13 @@ struct MainView: View {
                     )
                     .tag(MainTabTag.statistics)
                     .tabItem {
-                        Image(asset: Asset.Tab.statistics)
+                        Image(uiImage: Asset.Tab.statistics.image)
                     }
 
                     GeneralSettingsView(isPaywallPresented: $store.isPaywallPresented)
                         .tag(MainTabTag.settings)
                         .tabItem {
-                            Image(asset: Asset.Tab.settings)
+                            Image(uiImage: Asset.Tab.settings.image)
                         }
                 }
                 .accentColor(ui.primary)
