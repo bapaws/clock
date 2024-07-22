@@ -109,7 +109,7 @@ struct NewRecordFeature {
                     await send(.saveCompleted(newRecord))
                 }
 
-            case .saveCompleted(let entity):
+            case .saveCompleted(_):
                 return .run { _ in
                     if isPresented {
                         await dismiss()

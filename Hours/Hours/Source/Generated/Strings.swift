@@ -197,6 +197,12 @@ internal enum L10n {
   internal static let housework = L10n.tr("Localizable", "Housework", fallback: "Housework")
   /// Icon
   internal static let icon = L10n.tr("Localizable", "Icon", fallback: "Icon")
+  /// Import From Calendar
+  internal static let importFromCalendar = L10n.tr("Localizable", "ImportFromCalendar", fallback: "Import From Calendar")
+  /// Importing...
+  internal static let importing = L10n.tr("Localizable", "Importing", fallback: "Importing...")
+  /// Import Records
+  internal static let importRecords = L10n.tr("Localizable", "ImportRecords", fallback: "Import Records")
   /// Interval
   internal static let interval = L10n.tr("Localizable", "Interval", fallback: "Interval")
   /// Last 7 Days
@@ -211,6 +217,8 @@ internal enum L10n {
   internal static let lightClassic = L10n.tr("Localizable", "LightClassic", fallback: "Classic Light")
   /// Light Mode
   internal static let lightMode = L10n.tr("Localizable", "LightMode", fallback: "Light Mode")
+  /// Loading...
+  internal static let loading = L10n.tr("Localizable", "Loading", fallback: "Loading...")
   /// Long Break Duration
   internal static let longBreakDuration = L10n.tr("Localizable", "LongBreakDuration", fallback: "Long Break Duration")
   /// Math
@@ -309,6 +317,8 @@ internal enum L10n {
   internal static let secondHand = L10n.tr("Localizable", "SecondHand", fallback: "Second Hand")
   /// s
   internal static let seconds = L10n.tr("Localizable", "Seconds", fallback: "s")
+  /// Select All
+  internal static let selectAll = L10n.tr("Localizable", "Select All", fallback: "Select All")
   /// Select Category
   internal static let selectCategory = L10n.tr("Localizable", "SelectCategory", fallback: "Select Category")
   /// Select Emoji
@@ -341,6 +351,8 @@ internal enum L10n {
   internal static let sports = L10n.tr("Localizable", "Sports", fallback: "Sports")
   /// Start Break
   internal static let startBreak = L10n.tr("Localizable", "StartBreak", fallback: "Start Break")
+  /// Start Importing
+  internal static let startImporting = L10n.tr("Localizable", "StartImporting", fallback: "Start Importing")
   /// Start Pomodoro
   internal static let startPomodoro = L10n.tr("Localizable", "StartPomodoro", fallback: "Start Pomodoro")
   /// Start Time
@@ -419,6 +431,8 @@ internal enum L10n {
   }
   /// Unlock all premium features.
   internal static let unlockPro = L10n.tr("Localizable", "UnlockPro", fallback: "Unlock all premium features.")
+  /// Unselect All
+  internal static let unselectAll = L10n.tr("Localizable", "Unselect All", fallback: "Unselect All")
   /// Upgrade
   internal static let upgrade = L10n.tr("Localizable", "Upgrade", fallback: "Upgrade")
   /// Video

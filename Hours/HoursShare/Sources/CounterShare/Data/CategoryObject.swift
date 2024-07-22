@@ -145,6 +145,24 @@ public struct CategoryEntity: Entity, HexEntityColors {
         self.events = events
     }
 
+    public init(hex: HexEntity?, title: String) {
+        self._id = ObjectId.generate()
+        self.hex = hex
+        let contents = title.split(separator: " ")
+        if contents.count == 2 {
+            let emoji = String(contents[0])
+            if emoji.isEmoji {
+                self.emoji = emoji
+                self.name = String(contents[1])
+            } else {
+                self.name = title
+            }
+        } else {
+            self.name = title
+        }
+        self.events = []
+    }
+
     // MARK: Entity
 
     public init(object: CategoryObject, isLinkedObject: Bool = false) {
@@ -188,7 +206,8 @@ public struct CategoryEntity: Entity, HexEntityColors {
     public static func random(count: Int) -> [CategoryEntity] {
         var entities = [Self]()
         for index in 0 ..< count {
-            let entity = CategoryEntity(hex: HexEntity.random(), emoji: randomEmoji(), name: "\(index)")
+            var entity = CategoryEntity(hex: HexEntity.random(), emoji: randomEmoji(), name: "\(index)")
+            entity.events = EventEntity.random(count: Int.random(in: 1 ... 10))
             entities.append(entity)
         }
         return entities

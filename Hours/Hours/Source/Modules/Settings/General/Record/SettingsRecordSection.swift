@@ -12,7 +12,7 @@ import SwiftUI
 struct SettingsRecordSection: View {
     @Binding var isPaywallPresented: Bool
     @State private var isTimerPresented: Bool = false
-    @State private var isSyncRecordsToCalendar = AppManager.shared.isSyncRecordsToCalendar
+    @State private var isSyncRecordsToCalendar = AppManager.shared.calendarAccessGranted
     @State private var isAppScreenTimePresented: Bool = false
     @State private var isHealthPresented: Bool = false
 
@@ -25,15 +25,10 @@ struct SettingsRecordSection: View {
             }
 
             SettingsToggleCell(title: L10n.syncRecordsToCalendar, isNew: true, isOn: $isSyncRecordsToCalendar)
-                .onChange(of: isSyncRecordsToCalendar) { isSyncRecordsToCalendar in
-                    if !isSyncRecordsToCalendar {
-                        AppManager.shared.isSyncRecordsToCalendar = false
-                        return
-                    }
+                .onChange(of: isSyncRecordsToCalendar) { newValue in
                     // 请求权限
                     app.requestCalendarAccess { granted in
                         self.isSyncRecordsToCalendar = granted
-                        AppManager.shared.isSyncRecordsToCalendar = granted
 
                         guard !granted else { return }
                         guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }

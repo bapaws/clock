@@ -31,6 +31,8 @@ struct RecordsHomeFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
 
+        case onAppear
+
         case calendar(CalendarHeaderPageFeature.Action)
         case timeline(TimelinePageFeature.Action)
 
@@ -53,6 +55,11 @@ struct RecordsHomeFeature {
 
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                return .run { send in
+                    await send(.timeline(.onRecordLoaded(now)))
+                }
+
             case .onNewRecordTapped(let entity):
                 return .run { [currentDate = state.home.date] send in
                     if let entity {

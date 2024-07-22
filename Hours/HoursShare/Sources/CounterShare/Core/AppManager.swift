@@ -26,9 +26,6 @@ open class AppManager: ClockShare.AppBaseManager {
     @AppStorage(Storage.Key.maximumRecordedTime, store: Storage.default.store)
     public var maximumRecordedTime: TimeInterval = 6 * 60 * 60
 
-    @AppStorage(Storage.Key.isSyncRecordsToCalendar, store: Storage.default.store)
-    public var isSyncRecordsToCalendar: Bool = false
-
     @AppStorage(Storage.Key.isAutoSyncSleep, store: Storage.default.store)
     public var isAutoSyncSleep: Bool = false
 
@@ -48,9 +45,9 @@ open class AppManager: ClockShare.AppBaseManager {
 
     // MARK: Calendar
 
-    private let eventStore = EKEventStore()
-    public private(set) var calendarAccessGranted: Bool = false
-    private var deleteEventIdentifiers = Map<String, Int>()
+    let eventStore = EKEventStore()
+    @Published public var calendarAccessGranted: Bool = false
+    var deleteEventIdentifiers = Map<String, Int>()
 
     /// 可以记录的初始时间
     public let initialDate = Date(year: 2023, month: 1, day: 1, hour: 0, minute: 0)
@@ -62,141 +59,6 @@ open class AppManager: ClockShare.AppBaseManager {
         isPomodoroStopped = false
         isTimerStopped = false
 
-        if isSyncRecordsToCalendar {
-            requestCalendarAccess()
-        }
-    }
-}
-
-// MARK: Calendar
-
-public extension AppManager {
-    func requestCalendarAccess(completion: ((Bool) -> Void)? = nil) {
-        let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, _ in
-            self?.calendarAccessGranted = granted
-
-            DispatchQueue.main.async {
-                completion?(granted)
-            }
-        }
-        if #available(iOS 17.0, *) {
-            eventStore.requestFullAccessToEvents(completion: completionHandler)
-        } else {
-            eventStore.requestAccess(to: .event, completion: completionHandler)
-        }
-    }
-
-//    func createCalendars(for result: Results<CategoryObject>) {
-//        let calendars = eventStore.calendars(for: .event)
-//        for category in result {
-//            findOrCreateCalendar(for: category, calendars: calendars)
-//        }
-//        try? eventStore.commit()
-//    }
-
-    private func writeCalendarIdentifier(_ id: String, for entity: CategoryEntity) {
-        Task {
-            await AppRealm.shared.writeCalendarIdentifier(id, for: entity)
-        }
-    }
-
-    @discardableResult
-    private func findOrCreateCalendar(for category: CategoryEntity?, calendars: [EKCalendar]? = nil) -> EKCalendar? {
-        guard let category = category else { return nil }
-
-        let title = "\(category.emoji ?? "") \(category.name)"
-        let calendars = calendars ?? eventStore.calendars(for: .event)
-        if let calendar = calendars.first(where: { $0.title == title }) {
-            if calendar.calendarIdentifier != category.calendarIdentifier {
-                writeCalendarIdentifier(calendar.calendarIdentifier, for: category)
-            }
-            return calendar
-        } else {
-            let calendar = EKCalendar(for: .event, eventStore: eventStore)
-            calendar.title = title
-            calendar.cgColor = category.color.cgColor
-            calendar.source = eventStore.sources.first(where: { $0.sourceType == .calDAV && $0.title == "iCloud" }) ?? eventStore.defaultCalendarForNewEvents?.source
-            try? eventStore.saveCalendar(calendar, commit: false)
-
-            writeCalendarIdentifier(calendar.calendarIdentifier, for: category)
-            return calendar
-        }
-    }
-
-    func syncToCalendar(for eventObject: EventEntity, record: RecordEntity) -> String? {
-        guard calendarAccessGranted, isSyncRecordsToCalendar else { return nil }
-
-        do {
-            // 如果是修改记录，现删除记录
-            if let eventIdentifier = record.calendarEventIdentifier {
-                deleteCalendarEvent(for: eventIdentifier)
-            }
-
-            let calendar: EKCalendar? = findOrCreateCalendar(for: eventObject.category)
-
-            let event = EKEvent(eventStore: eventStore)
-            event.title = eventObject.title
-            event.location = record.milliseconds.timeLengthText
-            event.startDate = record.startAt
-            event.endDate = record.endAt
-            event.notes = record.notes
-            event.calendar = calendar ?? eventStore.defaultCalendarForNewEvents
-            try eventStore.save(event, span: .thisEvent, commit: false)
-
-            try eventStore.commit()
-
-            return event.eventIdentifier
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-
-    func deleteCalendarEvent(for identifier: String) {
-        if let event = eventStore.event(withIdentifier: identifier) {
-            try? eventStore.remove(event, span: .thisEvent)
-        } else {
-            let count = deleteEventIdentifiers[identifier] ?? 3
-            if count == 0 {
-                deleteEventIdentifiers.removeObject(for: identifier)
-                return
-            }
-            deleteEventIdentifiers[identifier] = count - 1
-            DispatchQueue.global().asyncAfter(deadline: .now() + 5) { [weak self] in
-                self?.deleteCalendarEvent(for: identifier)
-            }
-        }
-    }
-
-    func updateCalendarEvents(by eventObject: EventEntity) {
-        do {
-            let calendar: EKCalendar? = findOrCreateCalendar(for: eventObject.category)
-
-            for record in eventObject.items {
-                guard let calendarEventIdentifier = record.calendarEventIdentifier else { continue }
-
-                if let event = eventStore.event(withIdentifier: calendarEventIdentifier) {
-                    event.title = eventObject.title
-                    event.calendar = calendar ?? eventStore.defaultCalendarForNewEvents
-                    try eventStore.save(event, span: .thisEvent, commit: false)
-                }
-            }
-
-            try eventStore.commit()
-        } catch {
-            print(error)
-        }
-    }
-
-    func updateCalendar(by category: CategoryEntity) {
-        do {
-            guard let calendarIdentifier = category.calendarIdentifier else { return }
-            guard let calendar = eventStore.calendar(withIdentifier: calendarIdentifier) else { return }
-            calendar.title = category.title
-            calendar.cgColor = category.color.cgColor
-            try eventStore.saveCalendar(calendar, commit: true)
-        } catch {
-            print(error)
-        }
+        requestCalendarAccess()
     }
 }

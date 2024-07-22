@@ -64,21 +64,13 @@ struct MainFeature {
                     debugPrint(Date.now.timeIntervalSince1970)
                     await send(.eventsHome(.onAppear))
 
-                    // Records Home
-                    let startOfDay = now.dateAtStartOf(.day)
-                    let endOfDay = now.dateAtEndOf(.day)
-                    let records = await AppRealm.shared.getRecords { $0.endAt >= startOfDay && $0.endAt <= endOfDay }
-                    await send(.didRecordsHomeLoad(startOfDay, records))
+                    await send(.recordsHome(.onAppear))
                 }
 
             case .eventsHome(.loadCompleted):
                 debugPrint(Date.now.timeIntervalSince1970)
                 if state.isLoadCompleted { return .none }
                 state.isLoadCompleted = true
-                return .none
-
-            case let .didRecordsHomeLoad(date, entities):
-                state.recordsHome.timeline.items[id: date] = TimelinePageItem(date: date, records: entities)
                 return .none
 
             default:

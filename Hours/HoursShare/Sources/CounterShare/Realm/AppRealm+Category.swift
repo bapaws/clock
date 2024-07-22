@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import EventKit
 import Foundation
 import IdentifiedCollections
 import OrderedCollections
@@ -89,6 +90,22 @@ public extension AppRealm {
             entities.append(entity)
         }
         return entities
+    }
+
+    func getCategories(where: (Query<CategoryObject>) -> Query<Bool>) async -> [CategoryEntity] {
+        await realm
+            .objects(CategoryObject.self)
+            .where(`where`)
+            .map { CategoryEntity(object: $0) }
+    }
+
+    func getCategory(by calendar: EKCalendar) async -> CategoryEntity? {
+        await realm.objects(CategoryObject.self).first {
+            $0.calendarIdentifier == calendar.calendarIdentifier ||
+                $0.title == calendar.title ||
+                $0.name == calendar.title
+        }
+        .map { CategoryEntity(object: $0) }
     }
 
     func writeCalendarIdentifier(_ id: String, for entity: CategoryEntity) async {

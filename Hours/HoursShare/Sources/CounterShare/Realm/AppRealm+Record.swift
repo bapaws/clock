@@ -14,7 +14,12 @@ import RealmSwift
 public extension AppRealm {
     func writeRecord(_ entity: RecordEntity, addTo event: EventEntity) async {
         do {
+            // 防止某些情况下会重复写入数据
+            if await containsRecord(entity, of: event) { return }
+
             guard let eventObject: EventObject = await getEvent(by: event.id) else { return }
+
+            let realm = await realm
             try await realm.asyncWrite {
                 let object = entity.toObject()
                 eventObject.items.append(object)
@@ -60,6 +65,19 @@ public extension AppRealm {
         } catch {
             debugPrint(error)
         }
+    }
+
+    func containsRecord(_ entity: RecordEntity, of event: EventEntity) async -> Bool {
+        let realm = await realm
+        return !realm.objects(RecordObject.self)
+            .where {
+                $0.creationMode == entity.creationMode &&
+                    $0.notes == entity.notes &&
+                    $0.startAt == entity.startAt &&
+                    $0.endAt == entity.endAt &&
+                    $0.events._id == event._id
+            }
+            .isEmpty
     }
 
     func getRecord(of entity: EventEntity, minEndAt: Date) async -> RecordEntity? {

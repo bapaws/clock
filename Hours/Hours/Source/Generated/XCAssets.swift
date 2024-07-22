@@ -28,6 +28,7 @@ internal enum Asset {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let launchBackground = ColorAsset(name: "LaunchBackground")
   }
+  internal static let empty = ImageAsset(name: "Empty")
   internal static let hourglass = ImageAsset(name: "Hourglass")
   internal static let launchImage = ImageAsset(name: "LaunchImage")
   internal static let notFound = ImageAsset(name: "NotFound")

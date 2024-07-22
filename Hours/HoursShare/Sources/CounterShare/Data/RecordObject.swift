@@ -12,7 +12,7 @@ import SwiftDate
 // MARK: - RecordObject
 
 public enum RecordCreationMode: Int, PersistableEnum, Codable {
-    case pomodoro, timer, enter, shortcut, health
+    case pomodoro, timer, enter, shortcut, health, calendar
 }
 
 public class RecordObject: Object, ObjectKeyIdentifiable, Codable {

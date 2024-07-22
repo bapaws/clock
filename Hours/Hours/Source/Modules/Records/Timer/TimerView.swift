@@ -91,7 +91,7 @@ struct TimerView: View {
                 }
             }
             .onReceive(timerStop) { _ in
-                store.send(.onStopped)
+                store.send(.onDismissed)
             }
         }
     }

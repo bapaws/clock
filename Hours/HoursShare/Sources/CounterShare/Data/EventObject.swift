@@ -157,6 +157,24 @@ public struct EventEntity: Entity, HexEntityColors {
         self.isSystem = isSystem
     }
 
+    public init(hex: HexEntity?, title: String) {
+        self._id = ObjectId.generate()
+        self.hex = hex
+        let contents = title.split(separator: " ")
+        if contents.count == 2 {
+            let emoji = String(contents[0])
+            if emoji.isEmoji {
+                self.emoji = emoji
+                self.name = String(contents[1])
+            } else {
+                self.name = title
+            }
+        } else {
+            self.name = title
+        }
+        self.items = []
+    }
+
     // MARK: Entity
 
     public init(object: EventObject, isLinkedObject: Bool = false) {

@@ -10,6 +10,7 @@ import Foundation
 import IdentifiedCollections
 import OrderedCollections
 import RealmSwift
+import EventKit
 
 public extension AppRealm {
     func writeEvent(_ entity: EventEntity, addTo category: CategoryEntity) async {
@@ -102,6 +103,12 @@ public extension AppRealm {
             return nil
         }
         return EventEntity(object: object)
+    }
+
+    func getEvent(by event: EKEvent) async -> EventEntity? {
+        await realm.objects(EventObject.self)
+            .first { $0.title == event.title || $0.name == event.title }
+            .map { EventEntity(object: $0) }
     }
 
     func getRecentEvents(count: Int = 15) async -> [EventEntity] {

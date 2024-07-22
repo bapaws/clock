@@ -25,7 +25,8 @@ struct TimelinePageView: View {
                 WithPerceptionTracking {
                     TimelineView(
                         records: store.items[id: date]?.records,
-                        onRecordTapped: onRecordTapped
+                        onRecordTapped: { store.send(.onRecordTapped($0)) },
+                        onRecordDeleted: { store.send(.deleteRecord($0)) }
                     )
                 }
             }

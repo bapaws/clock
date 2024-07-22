@@ -16,18 +16,21 @@ import SwiftUIX
 struct TimelineView: View {
     let records: [RecordEntity]?
     let onRecordTapped: (RecordEntity?) -> Void
+    let onRecordDeleted: (RecordEntity) -> Void
 
     var body: some View {
-        ScrollViewReader { proxy in
+        ScrollViewReader { _ in
             ScrollView {
                 if let records, !records.isEmpty {
                     LazyVStack(spacing: 0) {
                         ForEach(0 ..< records.count, id: \.self) { index in
                             let record = records[index]
-                            TimelineItemView(index: index, record: record, isLast: index == records.count - 1)
-                                .onTapGesture {
-                                    onRecordTapped(record)
-                                }
+                            TimelineItemView(index: index, record: record, isLast: index == records.count - 1) {
+                                onRecordDeleted(record)
+                            }
+                            .onTapGesture {
+                                onRecordTapped(record)
+                            }
                         }
                     }
                     .padding()
@@ -46,6 +49,6 @@ struct TimelineView: View {
 
 #Preview {
     TimelineView(
-        records: [], onRecordTapped: { _ in }
+        records: [], onRecordTapped: { _ in }, onRecordDeleted: { _ in }
     )
 }

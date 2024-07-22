@@ -128,9 +128,7 @@ struct OnboardingView: View {
             }
         case .calendar:
             AppManager.shared.requestCalendarAccess { granted in
-                if granted {
-                    AppManager.shared.isSyncRecordsToCalendar = true
-                } else {
+                if !granted {
                     Toast.show(L10n.calendarNotAccess)
                 }
                 setupLater()

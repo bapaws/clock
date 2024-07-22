@@ -19,85 +19,20 @@ struct EventsHomeView: View {
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        ScrollViewReader { proxy in
+        ScrollViewReader { _ in
             WithPerceptionTracking {
-                LoadingView(isLoading: $store.isLoading) {
-                    VStack {
-                        NavigationBar(L10n.events) {
-                            menu
-                        }
+                VStack {
+                    NavigationBar(L10n.events) { menu }
 
-                        ScrollView {
-                            LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
-                                EventHomeRecentView(
-                                    store: store.scope(state: \.recent, action: \.recent)
-                                )
-
-                                TimingEventsView(
-                                    store: store.scope(state: \.timing, action: \.timing)
-                                )
-
-                                EventsHomeCategoriesView(
-                                    store: store.scope(state: \.categories, action: \.categories)
-                                )
-
-                                HStack {
-                                    Spacer()
-                                    Text(L10n.showAll)
-                                    Image(systemName: "chevron.forward")
-                                        .animation(.easeInOut, value: store.isOtherCategoriesShow)
-                                        .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
-                                    Spacer()
-                                }
-                                .foregroundStyle(ui.secondaryLabel)
-                                .padding(.vertical, .large)
-                                .id(L10n.showAll)
-                                .padding(.horizontal)
-                                .onTapGesture {
-                                    toggleOtherCategory(for: proxy)
-                                }
-
-                                if store.isOtherCategoriesShow {
-                                    EventsHomeOtherCategoriesView(
-                                        store: store.scope(state: \.otherCategories, action: \.otherCategories)
-                                    )
-                                }
-                            }
-                        }
-                        .background(ui.background)
-                        .onChange(of: store.isOtherCategoriesShow) { newValue in
-                            guard newValue else { return }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                withAnimation {
-                                    proxy.scrollTo(L10n.showAll, anchor: .top)
-                                }
-                            }
-                        }
-                    }
-                    .background(ui.background)
-                    .onAppear {
-                        store.send(.onAppear)
-                    }
+                    EventsHomeListView(store: store.scope(state: \.list, action: \.list))
+                }
+                .background(ui.background)
+                .onAppear {
+                    store.send(.onAppear)
                 }
 
-                .navigationDestination(item: $store.scope(state: \.eventDetail, action: \.eventDetail)) {
-                    EventDetailView(store: $0)
-                }
                 .navigationDestination(item: $store.scope(state: \.archivedEvents, action: \.archivedEvents)) {
                     ArchivedEventsView(store: $0)
-                }
-
-                // MARK: Timer
-
-                .fullScreenCover(item: $store.scope(state: \.timer, action: \.timer)) { store in
-                    TimerView(store: store)
-                }
-
-                // MARK: New Record
-
-                .sheet(item: $store.scope(state: \.newRecord, action: \.newRecord)) {
-                    NewRecordView(store: $0)
-                        .sheetStyle(detents: [.height(640)])
                 }
 
                 // MARK: New Event
@@ -112,6 +47,9 @@ struct EventsHomeView: View {
                 .sheet(item: $store.scope(state: \.newCategory, action: \.newCategory)) {
                     NewCategoryView(store: $0)
                         .sheetStyle()
+                }
+                .sheet(item: $store.scope(state: \.calendarEvents, action: \.calendarEvents)) {
+                    CalendarEventsView(store: $0)
                 }
             }
         }
@@ -128,6 +66,12 @@ struct EventsHomeView: View {
 
             Divider()
 
+            Button(L10n.importFromCalendar, systemImage: "calendar.badge.plus", role: nil) {
+                store.send(.onImportCalendarEventsTapped)
+            }
+
+            Divider()
+
             Button(L10n.archived, systemImage: "archivebox.fill", role: nil) {
                 // 先发送 action，再获取 store 进行 push
                 store.send(.onArchivedEventsTapped)
@@ -137,19 +81,6 @@ struct EventsHomeView: View {
                 .padding(.leading)
                 .padding(.vertical)
                 .font(.title3)
-        }
-    }
-
-    private func toggleOtherCategory(for proxy: ScrollViewProxy) {
-        if store.isOtherCategoriesShow {
-            store.send(.toggleOtherCategoriesShow, animation: .default)
-        } else {
-            store.send(.toggleOtherCategoriesShow)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                withAnimation {
-                    proxy.scrollTo(L10n.showAll, anchor: .top)
-                }
-            }
         }
     }
 }

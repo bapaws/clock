@@ -12,6 +12,7 @@ struct TimelineItemView: View {
     let index: Int
     let record: RecordEntity
     let isLast: Bool
+    let onRecordDeleted: () -> Void
 
     var body: some View {
         HStack(alignment: .top) {
@@ -66,6 +67,13 @@ struct TimelineItemView: View {
                 .padding()
                 .background(ui.secondaryBackground)
                 .cornerRadius(16)
+                .contextMenu {
+                    Button(role: .destructive) {
+                        onRecordDeleted()
+                    } label: {
+                        Label(L10n.delete, systemImage: "trash")
+                    }
+                }
                 .padding(.bottom)
             }
         }
@@ -74,7 +82,7 @@ struct TimelineItemView: View {
 
 #Preview {
     VStack {
-        TimelineItemView(index: 0, record: RecordEntity(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: false)
-        TimelineItemView(index: 0, record: RecordEntity(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: true)
+        TimelineItemView(index: 0, record: RecordEntity(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: false) {}
+        TimelineItemView(index: 0, record: RecordEntity(creationMode: .enter, startAt: Date.now, milliseconds: 1000), isLast: true) {}
     }
 }

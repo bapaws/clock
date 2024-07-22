@@ -13,7 +13,7 @@ import SwiftDate
 
 struct TimelinePageItem: Identifiable, Equatable {
     let date: Date
-    let records: [RecordEntity]
+    var records: [RecordEntity]
 
     var id: Date { date }
 }
@@ -32,6 +32,10 @@ struct TimelinePageFeature {
 
         case onRecordLoaded(Date)
         case updateRecords(Date, [RecordEntity])
+
+        case onRecordTapped(RecordEntity?)
+        
+        case deleteRecord(RecordEntity)
 
         case cacheRecords(Date)
     }
@@ -71,6 +75,12 @@ struct TimelinePageFeature {
             case .updateRecords(let date, let entities):
                 state.items[id: date] = TimelinePageItem(date: date, records: entities)
                 return .none
+
+            case .deleteRecord(let entity):
+                state.items[id: state.home.date]?.records.removeAll(where: { $0 == entity })
+                return .run { _ in
+                    await AppRealm.shared.deleteRecord(entity)
+                }
 
             default:
                 return .none

@@ -17,6 +17,7 @@
 "ShowAll" = "Show All";
 "Edit" = "Edit";
 "Continue" = "Continue";
+"Loading" = "Loading...";
 
 // MARK: Onboarding
 
@@ -55,6 +56,13 @@
 "Category" = "Category";
 "SelectCategory" = "Select Category";
 "SelectEmoji" = "Select Emoji";
+
+"ImportFromCalendar" = "Import From Calendar";
+"ImportRecords" = "Import Records";
+"Select All" = "Select All";
+"Unselect All" = "Unselect All";
+"StartImporting" = "Start Importing";
+"Importing" = "Importing...";
 
 // MARK: New Category
 
