@@ -26,10 +26,15 @@ protocol StatisticsOverallState {
     var startAt: Date { get }
     var endAt: Date { get }
 
+    var maxAngularCount: Int { get }
     var totalMilliseconds: Int { get }
 
     var compositions: IdentifiedArrayOf<StatisticsOverallDay> { get set }
     var isOverallDayExpanded: Bool { get set }
+}
+
+extension StatisticsOverallState {
+    var maxAngularCount: Int { 21 }
 }
 
 // MARK: -
@@ -57,8 +62,11 @@ extension StatisticsOverallReducer {
         compositions.sort { $0.totalMilliseconds > $1.totalMilliseconds }
 
         var startAngle: Double = -90
-        let angularInset: Double = 15
-        var millisecondOfAngle = (360 - Double(compositions.count <= 1 ? 0 : compositions.count) * angularInset) / Double(state.totalMilliseconds)
+        var angularInset: Double = 15
+        if compositions.count >= state.maxAngularCount {
+            angularInset = 0
+        }
+        let millisecondOfAngle = (360 - Double(compositions.count <= 1 ? 0 : compositions.count) * angularInset) / Double(state.totalMilliseconds)
         for index in 0 ..< compositions.count {
             compositions[index].startAngle = startAngle
             let endAngle = startAngle + Double(compositions[index].totalMilliseconds) * millisecondOfAngle

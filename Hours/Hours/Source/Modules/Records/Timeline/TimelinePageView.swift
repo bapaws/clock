@@ -13,7 +13,6 @@ import SwiftUI
 
 struct TimelinePageView: View {
     @Perception.Bindable var store: StoreOf<TimelinePageFeature>
-    let onRecordTapped: (RecordEntity?) -> Void
 
     var body: some View {
         WithPerceptionTracking {
@@ -26,7 +25,7 @@ struct TimelinePageView: View {
                     TimelineView(
                         records: store.items[id: date]?.records,
                         onRecordTapped: { store.send(.onRecordTapped($0)) },
-                        onRecordDeleted: { store.send(.deleteRecord($0)) }
+                        onRecordDeleted: { store.send(.deleteRecord($0), animation: .default) }
                     )
                 }
             }

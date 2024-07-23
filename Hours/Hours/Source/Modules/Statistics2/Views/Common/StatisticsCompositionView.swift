@@ -56,6 +56,7 @@ struct StatisticsCompositionShape: Shape {
 struct StatisticsCompositionView: View {
     let compositions: IdentifiedArrayOf<StatisticsOverallDay>
     let totalMilliseconds: Int
+    let maxAngularCount: Int
     @Binding var isOverallDayExpanded: Bool
 
     var body: some View {
@@ -75,7 +76,7 @@ struct StatisticsCompositionView: View {
                                 item.event.primaryContainer,
                                 style: StrokeStyle(
                                     lineWidth: lineWidth,
-                                    lineCap: .round
+                                    lineCap: compositions.count > maxAngularCount ? .square : .round
                                 )
                             )
                         }
@@ -146,6 +147,7 @@ struct StatisticsCompositionView: View {
     StatisticsCompositionView(
         compositions: IdentifiedArrayOf<StatisticsOverallDay>(),
         totalMilliseconds: 100,
+        maxAngularCount: 21,
         isOverallDayExpanded: .constant(false)
     )
 }

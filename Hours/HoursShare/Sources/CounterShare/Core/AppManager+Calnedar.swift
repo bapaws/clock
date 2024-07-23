@@ -72,7 +72,7 @@ public extension AppManager {
         let predicate = eventStore.predicateForEvents(withStart: startAt, end: endAt, calendars: [calendar])
         let events = eventStore.events(matching: predicate)
 
-        var category = await AppRealm.shared.getCategory(by: calendar) ?? entity
+        let category = await AppRealm.shared.getCategory(by: calendar) ?? entity
         for event in events {
             // 获取事件
             guard let title = event.title, let importEvent = entity.events.first(where: { $0.name == title || $0.title == title }) else { continue }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 @available(iOS 16.0, *)
 struct EmptyStyleModifier: ViewModifier {
@@ -15,6 +16,7 @@ struct EmptyStyleModifier: ViewModifier {
             Image("NotFound")
                 .padding(.large)
                 .padding(.top, .large)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         } else {
             content
         }

@@ -65,17 +65,10 @@ public struct TimingEntity: Identifiable, Codable, HexEntityColors, Hashable {
     }
 }
 
-public extension TimingEntity {
-    var date: Date { self.time.date }
+extension TimingEntity: TitleEntity {
+    public var date: Date { self.time.date }
 
-    var title: String {
-        if let emoji = emoji {
-            return emoji + " " + self.name
-        }
-        return self.name
-    }
-
-    static func random() -> TimingEntity {
+    public static func random() -> TimingEntity {
         TimingEntity(
             event: EventEntity.random(),
             time: .zero

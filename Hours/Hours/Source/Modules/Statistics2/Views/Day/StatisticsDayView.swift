@@ -70,6 +70,7 @@ struct StatisticsDayView: View {
                         StatisticsCompositionView(
                             compositions: store.compositions,
                             totalMilliseconds: store.totalMilliseconds,
+                            maxAngularCount: store.maxAngularCount,
                             isOverallDayExpanded: $store.isOverallDayExpanded.animation()
                         )
                         .proMask(isPreview: store.isToday || store.isYesterday)

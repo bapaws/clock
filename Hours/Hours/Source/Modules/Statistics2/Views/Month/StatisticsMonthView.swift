@@ -74,6 +74,7 @@ struct StatisticsMonthView: View {
                 StatisticsCompositionView(
                     compositions: store.compositions,
                     totalMilliseconds: store.totalMilliseconds,
+                    maxAngularCount: store.maxAngularCount,
                     isOverallDayExpanded: $store.isOverallDayExpanded.animation()
                 )
                 .proMask()

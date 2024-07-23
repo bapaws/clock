@@ -35,7 +35,7 @@ public class CategoryObject: Object, ObjectKeyIdentifiable, Codable, HexObjectCo
     @Persisted public var archivedAt: Date?
 
     public var title: String {
-        if let emoji = emoji {
+        if let emoji = emoji, !emoji.isEmpty {
             return emoji + " " + name
         }
         return name
@@ -214,11 +214,4 @@ public struct CategoryEntity: Entity, HexEntityColors {
     }
 }
 
-public extension CategoryEntity {
-    var title: String {
-        if let emoji = emoji {
-            return emoji + " " + name
-        }
-        return name
-    }
-}
+extension CategoryEntity: TitleEntity {}

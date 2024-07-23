@@ -32,7 +32,7 @@ struct EventHomeRecentFeature {
             case .onAppear:
                 return .run { send in
                     let events = await AppRealm.shared.getRecentEvents()
-                    await send(.updateEvents(events))
+                    await send(.updateEvents(events), animation: .default)
                 }
 
             case let .updateEvents(entities):

@@ -34,7 +34,7 @@ struct TimelinePageFeature {
         case updateRecords(Date, [RecordEntity])
 
         case onRecordTapped(RecordEntity?)
-        
+
         case deleteRecord(RecordEntity)
 
         case cacheRecords(Date)
@@ -80,6 +80,9 @@ struct TimelinePageFeature {
                 state.items[id: state.home.date]?.records.removeAll(where: { $0 == entity })
                 return .run { _ in
                     await AppRealm.shared.deleteRecord(entity)
+                    if let calendarEventIdentifier = entity.calendarEventIdentifier {
+                        AppManager.shared.deleteCalendarEvent(for: calendarEventIdentifier)
+                    }
                 }
 
             default:

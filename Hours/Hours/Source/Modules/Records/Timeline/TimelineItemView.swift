@@ -74,6 +74,7 @@ struct TimelineItemView: View {
                         Label(L10n.delete, systemImage: "trash")
                     }
                 }
+                .cornerRadius(16)
                 .padding(.bottom)
             }
         }

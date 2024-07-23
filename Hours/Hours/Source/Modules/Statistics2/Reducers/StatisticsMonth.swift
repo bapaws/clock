@@ -81,9 +81,9 @@ struct StatisticsMonth: StatisticsOverallReducer, StatisticsTimeDistributionRedu
                 state.totalCount = results.count
                 state.totalMilliseconds = results.reduce(0) { $0 + $1.milliseconds }
                 return .run { send in
-                    await send(.updateOverallDayComposition)
-                    await send(.updateTimeDistribution)
-                    await send(.updateContribution)
+                    await send(.updateOverallDayComposition, animation: .default)
+                    await send(.updateTimeDistribution, animation: .default)
+                    await send(.updateContribution, animation: .default)
                 }
 
             case .updateOverallDayComposition:

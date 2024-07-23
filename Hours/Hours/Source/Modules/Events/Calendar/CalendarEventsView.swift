@@ -17,6 +17,8 @@ struct CalendarEventsView: View {
         WithPerceptionTracking {
             NavigationStack {
                 ZStack(alignment: .bottom) {
+                    ui.background
+
                     VStack(spacing: 0) {
                         HStack {
                             VStack(alignment: .leading) {
@@ -99,7 +101,6 @@ struct CalendarEventsView: View {
                                 }
                             }
                         }
-//                        .contentMargins(.bottom, 96, for: .scrollContent)
                         .emptyStyle(isEmpty: store.categories.isEmpty)
                         .listStyle(.insetGrouped)
                         .scrollContentBackground(.hidden)
@@ -156,15 +157,11 @@ struct CalendarEventsView: View {
                             Button {
                                 store.send(.onImportRecordsToggle)
                             } label: {
-                                Group {
-                                    if store.isImportRecords {
-                                        Label(L10n.importRecords, systemImage: "checkmark")
-                                    } else {
-                                        Text(L10n.importRecords)
-                                    }
+                                if store.isImportRecords {
+                                    Label(L10n.importRecords, systemImage: "checkmark")
+                                } else {
+                                    Text(L10n.importRecords)
                                 }
-                                .padding(.vertical)
-                                .padding(.leading)
                             }
                             Divider()
 
@@ -176,7 +173,8 @@ struct CalendarEventsView: View {
                             }
                         } label: {
                             Image(systemName: "slider.horizontal.3")
-                                .padding()
+                                .padding(.vertical)
+                                .padding(.leading)
                         }
                     }
                 }

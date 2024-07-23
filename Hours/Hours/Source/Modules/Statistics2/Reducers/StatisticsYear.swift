@@ -82,9 +82,9 @@ struct StatisticsYear: StatisticsOverallReducer, StatisticsTimeDistributionReduc
                 state.totalMilliseconds = results.reduce(0) { $0 + $1.milliseconds }
                 return .run { send in
                     await withTaskGroup(of: Void.self) { group in
-                        group.addTask { await send(.updateOverallDayComposition) }
-                        group.addTask { await send(.updateTimeDistribution) }
-                        group.addTask { await send(.updateContribution) }
+                        group.addTask { await send(.updateOverallDayComposition, animation: .default) }
+                        group.addTask { await send(.updateTimeDistribution, animation: .default) }
+                        group.addTask { await send(.updateContribution, animation: .default) }
                     }
                 }
 

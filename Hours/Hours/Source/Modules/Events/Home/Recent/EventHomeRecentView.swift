@@ -26,8 +26,8 @@ struct EventHomeRecentView: View {
                                 Spacer()
                                 if let emoji = event.emoji {
                                     Text(emoji)
+                                    Spacer()
                                 }
-                                Spacer()
                                 Text(event.name)
                                     .lineLimit(2)
                                     .minimumScaleFactor(0.5)

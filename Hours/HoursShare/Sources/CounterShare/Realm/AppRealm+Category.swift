@@ -100,10 +100,11 @@ public extension AppRealm {
     }
 
     func getCategory(by calendar: EKCalendar) async -> CategoryEntity? {
-        await realm.objects(CategoryObject.self).first {
+        let title = calendar.title.trimmingCharacters(in: .whitespacesAndNewlines)
+        return await realm.objects(CategoryObject.self).first {
             $0.calendarIdentifier == calendar.calendarIdentifier ||
-                $0.title == calendar.title ||
-                $0.name == calendar.title
+                $0.title == title ||
+                $0.name == title
         }
         .map { CategoryEntity(object: $0) }
     }

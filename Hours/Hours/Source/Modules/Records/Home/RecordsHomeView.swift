@@ -46,9 +46,7 @@ struct RecordsHomeView: View {
                     store.send(.onNewRecordTapped(nil))
                 }
 
-                TimelinePageView(store: store.scope(state: \.timeline, action: \.timeline)) {
-                    store.send(.onNewRecordTapped($0))
-                }
+                TimelinePageView(store: store.scope(state: \.timeline, action: \.timeline)) 
             }
             .onChange(of: store.home.date) { newValue in
                 store.send(.timeline(.onRecordLoaded(newValue)))

@@ -38,19 +38,22 @@ struct CategoryView: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            Group {
-                if let icon = category.icon {
-                    Image(systemName: icon)
+            if category.icon?.isEmpty == false || category.emoji?.isEmpty == false {
+                Group {
+                    if let icon = category.icon {
+                        Image(systemName: icon)
+                    }
+                    if let emoji = category.emoji {
+                        Text(emoji)
+                    }
                 }
-                if let emoji = category.emoji {
-                    Text(emoji)
-                }
+                .font(.body)
+                .frame(width: 25, height: 25, alignment: .center)
             }
-            .font(.body)
-            .frame(width: 25, height: 25, alignment: .center)
 
             Text(category.name)
                 .font(.footnote)
+                .frame(height: 25)
         }
         .foregroundStyle(category.onSecondaryContainer)
         .padding(.horizontal, .small)

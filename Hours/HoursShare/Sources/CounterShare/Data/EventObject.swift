@@ -228,15 +228,8 @@ public struct EventEntity: Entity, HexEntityColors {
     }
 }
 
-public extension EventEntity {
+extension EventEntity: TitleEntity {
     var hours: Int { self.time.hour }
     var minutes: Int { self.time.minute }
     var seconds: Int { self.time.second }
-
-    var title: String {
-        if let emoji = emoji {
-            return emoji + " " + self.name
-        }
-        return self.name
-    }
 }

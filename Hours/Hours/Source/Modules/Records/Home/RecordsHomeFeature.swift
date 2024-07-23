@@ -60,7 +60,8 @@ struct RecordsHomeFeature {
                     await send(.timeline(.onRecordLoaded(now)))
                 }
 
-            case .onNewRecordTapped(let entity):
+            case .onNewRecordTapped(let entity),
+                 .timeline(.onRecordTapped(let entity)):
                 return .run { [currentDate = state.home.date] send in
                     if let entity {
                         let state = NewRecordFeature.State(record: entity)
