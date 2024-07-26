@@ -7,6 +7,7 @@
 
 import ClockShare
 import Foundation
+import IceCream
 import IdentifiedCollections
 import OrderedCollections
 import RealmSwift
@@ -15,9 +16,11 @@ import SwiftUIX
 public actor AppRealm {
     public static let shared = AppRealm()
 
+    private var syncEngine: SyncEngine?
+
     // MARK: Realm
 
-    public let schemaVersion: UInt64 = 8
+    public let schemaVersion: UInt64 = 12
     public let fileName = "default"
 
     private var _realm: Realm?
@@ -30,6 +33,7 @@ public actor AppRealm {
                 let fileManager = FileManager.default
 
                 guard let fileURL = Storage.default.groupURL?.appendingPathComponent(fileName) else {
+                    Realm.Configuration.defaultConfiguration = originalConfig
                     _realm = try await Realm(configuration: originalConfig, actor: self)
                     return _realm!
                 }
@@ -41,7 +45,13 @@ public actor AppRealm {
                 let config = Realm.Configuration(
                     fileURL: fileURL,
                     schemaVersion: schemaVersion
-                )
+                ) { migration, oldSchemaVersion in
+                    if oldSchemaVersion <= 8 {
+                        migration.enumerateObjects(ofType: SchemeObject.className()) { _, newObject in
+                            newObject?["_id"] = ObjectId.generate()
+                        }
+                    }
+                }
                 Realm.Configuration.defaultConfiguration = config
                 _realm = try await Realm(configuration: config, actor: self)
             } catch {
@@ -50,6 +60,35 @@ public actor AppRealm {
 
             return _realm!
         }
+    }
+
+    public func setupSyncCloud() async {
+        // 设置 Realm
+        let realm = await realm
+        syncEngine = SyncEngine(objects: [
+            SyncObject(
+                realmConfiguration: realm.configuration,
+                type: SchemeObject.self
+            ),
+            SyncObject(
+                realmConfiguration: realm.configuration,
+                type: HexObject.self
+            ),
+            SyncObject(
+                realmConfiguration: realm.configuration,
+                type: RecordObject.self
+            ),
+            SyncObject(
+                realmConfiguration: realm.configuration,
+                type: EventObject.self,
+                uListElementType: RecordObject.self
+            ),
+            SyncObject(
+                realmConfiguration: realm.configuration,
+                type: CategoryObject.self,
+                uListElementType: EventObject.self
+            ),
+        ])
     }
 
     // MARK: HEX

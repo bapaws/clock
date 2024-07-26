@@ -32,6 +32,7 @@ struct MainFeature {
         case binding(BindingAction<State>)
 
         case didLoad
+        case loadSelectionHomePage
 
         case eventsHome(EventsHomeFeature.Action)
 
@@ -65,6 +66,20 @@ struct MainFeature {
                     await send(.eventsHome(.onAppear))
 
                     await send(.recordsHome(.onAppear))
+                }
+
+            case .loadSelectionHomePage:
+                return .run { [selection = state.selection] send in
+                    switch selection {
+                    case .events:
+                        await send(.eventsHome(.onAppear))
+
+                    case .records:
+                        await send(.recordsHome(.timeline(.onRecordLoaded(nil))))
+
+                    default:
+                        break
+                    }
                 }
 
             case .eventsHome(.loadCompleted):

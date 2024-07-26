@@ -23,22 +23,6 @@ struct RecordsHomeView: View {
     @EnvironmentObject var app: AppManager
     @EnvironmentObject var ui: UIManager
 
-    var today: Date { app.today }
-    var initialDate: Date { app.initialDate }
-
-    @State private var isDatePickerPresented: Bool = false
-
-    @State private var selectedRecord: RecordEntity?
-    @State private var isNewRecordPresented: Bool = false
-
-    var pageIndex: Binding<Int> {
-        Binding<Int>(get: {
-            currentDate.difference(in: .day, from: initialDate)!
-        }, set: { newValue in
-            currentDate = initialDate.dateByAdding(newValue, .day).date
-        })
-    }
-
     var body: some View {
         WithPerceptionTracking {
             VStack(spacing: 0) {
@@ -46,7 +30,7 @@ struct RecordsHomeView: View {
                     store.send(.onNewRecordTapped(nil))
                 }
 
-                TimelinePageView(store: store.scope(state: \.timeline, action: \.timeline)) 
+                TimelinePageView(store: store.scope(state: \.timeline, action: \.timeline))
             }
             .onChange(of: store.home.date) { newValue in
                 store.send(.timeline(.onRecordLoaded(newValue)))

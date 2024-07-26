@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import CloudKit
 import EventKit
 import Foundation
 import IdentifiedCollections
@@ -18,10 +19,17 @@ public extension AppRealm {
             let realm = await realm
             if let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) {
                 try await realm.asyncWrite {
+                    if object.hex?._id != entity.hex?._id {
+                        object.hex = entity.hex?.toObject()
+                    }
                     object.emoji = entity.emoji
-                    object.name = entity.name
                     object.icon = entity.icon
+                    object.name = entity.name
+                    object.calendarIdentifier = entity.calendarIdentifier
                     object.index = entity.index
+                    object.createdAt = entity.createdAt
+                    object.deletedAt = entity.deletedAt
+                    object.archivedAt = entity.archivedAt
                 }
             } else {
                 try await realm.asyncWrite {
@@ -33,6 +41,11 @@ public extension AppRealm {
         }
     }
 
+    func createOrUpdateCategory(by record: CKRecord) async throws {
+        let entity = try CategoryEntity(ckRecord: record)
+        await AppRealm.shared.writeCategory(entity)
+    }
+
     /// 应用首页调用这个方法，没有分类或者事件时，重新写入
     func getAllUnarchivedCategories() async -> [CategoryEntity] {
         do {
@@ -40,13 +53,13 @@ public extension AppRealm {
             var categories = realm.objects(CategoryObject.self)
             if categories.isEmpty {
                 // 写入默认的分类
-                try await realm.asyncWrite {
-                    let defaluts = CategoryObject.defaults
-                    for item in defaluts {
-                        realm.add(item)
-                    }
-                }
-                categories = realm.objects(CategoryObject.self)
+//                try await realm.asyncWrite {
+//                    let defaluts = CategoryObject.defaults
+//                    for item in defaluts {
+//                        realm.add(item)
+//                    }
+//                }
+//                categories = realm.objects(CategoryObject.self)
             }
             categories = categories
                 .where { $0.archivedAt == nil && $0.deletedAt == nil }
@@ -92,6 +105,11 @@ public extension AppRealm {
         return entities
     }
 
+    func getCategory(by id: ObjectId) async -> CategoryEntity? {
+        guard let object = await realm.object(ofType: CategoryObject.self, forPrimaryKey: id) else { return nil }
+        return CategoryEntity(object: object)
+    }
+
     func getCategories(where: (Query<CategoryObject>) -> Query<Bool>) async -> [CategoryEntity] {
         await realm
             .objects(CategoryObject.self)
@@ -109,26 +127,37 @@ public extension AppRealm {
         .map { CategoryEntity(object: $0) }
     }
 
-    func writeCalendarIdentifier(_ id: String, for entity: CategoryEntity) async {
-        let realm = await realm
-        guard let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) else { return }
-
-        do {
-            try await realm.asyncWrite {
-                object.calendarIdentifier = id
-            }
-        } catch {
-            debugPrint(error)
-        }
-    }
-
+    /// Soft delete
     func deleteCategory(_ entity: CategoryEntity) async {
         do {
             let realm = await realm
             guard let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) else { return }
             try await realm.asyncWrite {
                 for event in object.events {
-                    realm.delete(event.items)
+                    for item in event.items {
+                        item.deletedAt = .now
+                    }
+                    event.hex?.deletedAt = .now
+                    event.deletedAt = .now
+                }
+                object.hex?.deletedAt = .now
+                object.deletedAt = .now
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    /// Delete from realm
+    func deleteCategory(by id: ObjectId) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: id) else { return }
+            try await realm.asyncWrite {
+                for event in object.events {
+                    for item in event.items {
+                        realm.delete(item)
+                    }
                     realm.delete(event)
                 }
                 realm.delete(object)
@@ -136,6 +165,11 @@ public extension AppRealm {
         } catch {
             debugPrint(error)
         }
+    }
+
+    func deleteCategory(by id: String) async throws {
+        let objectId = try ObjectId(string: id)
+        await deleteCategory(by: objectId)
     }
 
     func archiveCategory(_ entity: CategoryEntity) async {

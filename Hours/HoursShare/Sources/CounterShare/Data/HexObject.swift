@@ -19,6 +19,14 @@ public class HexObject: Object, ObjectKeyIdentifiable, Codable {
     @Persisted var light: SchemeObject?
     @Persisted var dark: SchemeObject?
 
+    /// CKRecordConvertible & CKRecordRecoverable
+    @Persisted public var deletedAt: Date? {
+        didSet {
+            light?.deletedAt = deletedAt
+            dark?.deletedAt = deletedAt
+        }
+    }
+
     override public init() {
         super.init()
     }
@@ -191,8 +199,8 @@ public struct HexEntity: Entity {
     public let _id: ObjectId
 
     public private(set) var rgb: Int
-    var light: SchemeEntity?
-    var dark: SchemeEntity?
+    var light: SchemeEntity
+    var dark: SchemeEntity
 
     public init(rgb: Int) {
         self._id = .generate()
@@ -212,9 +220,13 @@ public struct HexEntity: Entity {
         self.rgb = object.rgb
         if let light = object.light {
             self.light = SchemeEntity(object: light)
+        } else {
+            self.light = Self.default.light
         }
         if let dark = object.dark {
             self.dark = SchemeEntity(object: dark)
+        } else {
+            self.dark = Self.default.dark
         }
     }
 
@@ -222,8 +234,8 @@ public struct HexEntity: Entity {
         let object = HexObject()
         object._id = .generate()
         object.rgb = rgb
-        object.light = light?.toObject()
-        object.dark = dark?.toObject()
+        object.light = light.toObject()
+        object.dark = dark.toObject()
         return object
     }
 
@@ -238,6 +250,8 @@ public struct HexEntity: Entity {
         }
         return entities
     }
+
+    public static let `default` = HexEntity(rgb: 0xFF000000)
 }
 
 // MARK: Color
@@ -246,119 +260,119 @@ public extension HexEntity {
     var color: Color { Color(rgb: rgb) }
 
     var primary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.primary : self.light!.primary) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.primary : self.light.primary) })
     }
 
     var onPrimary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onPrimary : self.light!.onPrimary) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onPrimary : self.light.onPrimary) })
     }
 
     var primaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.primaryContainer : self.light!.primaryContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.primaryContainer : self.light.primaryContainer) })
     }
 
     var onPrimaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onPrimaryContainer : self.light!.onPrimaryContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onPrimaryContainer : self.light.onPrimaryContainer) })
     }
 
     var secondary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.secondary : self.light!.secondary) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.secondary : self.light.secondary) })
     }
 
     var onSecondary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onSecondary : self.light!.onSecondary) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSecondary : self.light.onSecondary) })
     }
 
     var secondaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.secondaryContainer : self.light!.secondaryContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.secondaryContainer : self.light.secondaryContainer) })
     }
 
     var onSecondaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onSecondaryContainer : self.light!.onSecondaryContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSecondaryContainer : self.light.onSecondaryContainer) })
     }
 
     var tertiary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.tertiary : self.light!.tertiary) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.tertiary : self.light.tertiary) })
     }
 
     var onTertiary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onTertiary : self.light!.onTertiary) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onTertiary : self.light.onTertiary) })
     }
 
     var tertiaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.tertiaryContainer : self.light!.tertiaryContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.tertiaryContainer : self.light.tertiaryContainer) })
     }
 
     var onTertiaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onTertiaryContainer : self.light!.onTertiaryContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onTertiaryContainer : self.light.onTertiaryContainer) })
     }
 
     var error: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.error : self.light!.error) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.error : self.light.error) })
     }
 
     var onError: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onError : self.light!.onError) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onError : self.light.onError) })
     }
 
     var errorContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.errorContainer : self.light!.errorContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.errorContainer : self.light.errorContainer) })
     }
 
     var onErrorContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onErrorContainer : self.light!.onErrorContainer) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onErrorContainer : self.light.onErrorContainer) })
     }
 
     var background: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.background : self.light!.background) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.background : self.light.background) })
     }
 
     var onBackground: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onBackground : self.light!.onBackground) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onBackground : self.light.onBackground) })
     }
 
     var surface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.surface : self.light!.surface) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.surface : self.light.surface) })
     }
 
     var onSurface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onSurface : self.light!.onSurface) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSurface : self.light.onSurface) })
     }
 
     var surfaceVariant: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.surfaceVariant : self.light!.surfaceVariant) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.surfaceVariant : self.light.surfaceVariant) })
     }
 
     var onSurfaceVariant: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onSurfaceVariant : self.light!.onSurfaceVariant) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSurfaceVariant : self.light.onSurfaceVariant) })
     }
 
     var outline: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.outline : self.light!.outline) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.outline : self.light.outline) })
     }
 
     var outlineVariant: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.outlineVariant : self.light!.outlineVariant) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.outlineVariant : self.light.outlineVariant) })
     }
 
     var shadow: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.shadow : self.light!.shadow) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.shadow : self.light.shadow) })
     }
 
     var scrim: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.scrim : self.light!.scrim) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.scrim : self.light.scrim) })
     }
 
     var inverseSurface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.inverseSurface : self.light!.inverseSurface) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.inverseSurface : self.light.inverseSurface) })
     }
 
     var onInverseSurface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.onInverseSurface : self.light!.onInverseSurface) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onInverseSurface : self.light.onInverseSurface) })
     }
 
     var inversePrimary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark!.inversePrimary : self.light!.inversePrimary) })
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.inversePrimary : self.light.inversePrimary) })
     }
 
     static var random: HexEntity {

@@ -30,7 +30,7 @@ struct TimelinePageFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
 
-        case onRecordLoaded(Date)
+        case onRecordLoaded(Date?)
         case updateRecords(Date, [RecordEntity])
 
         case onRecordTapped(RecordEntity?)
@@ -46,10 +46,15 @@ struct TimelinePageFeature {
         Reduce { state, action in
             switch action {
             case .onRecordLoaded(let date):
-                return .run { send in
+                return .run { [home = state.home] send in
+                    let date = date ?? home.date
                     let startOfDay = date.dateAtStartOf(.day)
                     let endOfDay = date.dateAtEndOf(.day)
-                    let records = await AppRealm.shared.getRecords { $0.endAt >= startOfDay && $0.endAt <= endOfDay }
+                    let records = await AppRealm.shared.getRecords {
+                        $0.endAt >= startOfDay &&
+                            $0.endAt <= endOfDay &&
+                            $0.deletedAt == nil
+                    }
                     // 使用开始时间进行数据刷新
                     await send(.updateRecords(startOfDay, records), animation: .default)
 
@@ -61,13 +66,21 @@ struct TimelinePageFeature {
                 return .run { send in
                     let startOfYesterday = date.dateAt(.yesterdayAtStart)
                     let endOfYesterday = startOfYesterday.dateAt(.endOfDay)
-                    let yesterdayRecords = await AppRealm.shared.getRecords { $0.endAt >= startOfYesterday && $0.endAt <= endOfYesterday }
+                    let yesterdayRecords = await AppRealm.shared.getRecords {
+                        $0.endAt >= startOfYesterday &&
+                            $0.endAt <= endOfYesterday &&
+                            $0.deletedAt == nil
+                    }
                     // 使用开始时间进行数据刷新
                     await send(.updateRecords(startOfYesterday, yesterdayRecords))
 
                     let startOfTomorrow = date.dateAt(.tomorrowAtStart)
                     let endOfTomorrow = startOfTomorrow.dateAt(.endOfDay)
-                    let tomorrowRecords = await AppRealm.shared.getRecords { $0.endAt >= startOfTomorrow && $0.endAt <= endOfTomorrow }
+                    let tomorrowRecords = await AppRealm.shared.getRecords {
+                        $0.endAt >= startOfTomorrow &&
+                            $0.endAt <= endOfTomorrow &&
+                            $0.deletedAt == nil
+                    }
                     // 使用开始时间进行数据刷新
                     await send(.updateRecords(startOfTomorrow, tomorrowRecords))
                 }

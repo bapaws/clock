@@ -216,7 +216,7 @@ public extension AppManager {
 
                 if let event = await AppRealm.shared.getEvent(by: name, emoji: emoji) {
                     // 同步到日历
-                    newRecord.calendarEventIdentifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+                    newRecord.calendarEventIdentifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
                     await AppRealm.shared.writeRecord(newRecord, addTo: event)
                 } else {
                     let event = await EventEntity(emoji: emoji, name: name, hex: AppRealm.shared.nextHex, isSystem: true)

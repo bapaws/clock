@@ -38,6 +38,9 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
 
     @Persisted public var notes: String?
 
+    /// 删除时间
+    @Persisted public var deletedAt: Date?
+
     @Persisted(originProperty: "items") public var events: LinkingObjects<EventObject>
     public var event: EventObject? { events.first }
 
@@ -115,7 +118,7 @@ public struct RecordEntity: Entity {
     /// 任务计时类型：倒计时 or 正计时
     public var creationMode: RecordCreationMode
     /// 持续时间
-    public private(set) var milliseconds: Int {
+    public var milliseconds: Int {
         didSet {
             time = milliseconds.time
         }
@@ -132,6 +135,9 @@ public struct RecordEntity: Entity {
 
     public var notes: String?
 
+    /// 删除时间
+    public var deletedAt: Date?
+
     public var event: EventEntity?
 
     /// 同步到苹果系统日历事件的 eventIdentifier
@@ -139,7 +145,7 @@ public struct RecordEntity: Entity {
 
     public var healthSampleUUIDString: String?
 
-    public private(set) var time: TimeLength
+    public var time: TimeLength
 
     public init(creationMode: RecordCreationMode, startAt: Date, milliseconds: Int) {
         self._id = .generate()
@@ -180,6 +186,7 @@ public struct RecordEntity: Entity {
         self.startAt = object.startAt
         self.endAt = object.endAt
         self.notes = object.notes
+        self.deletedAt = object.deletedAt
         if let event = object.event {
             self.event = EventEntity(object: event, isLinkedObject: true)
         }
@@ -198,6 +205,7 @@ public struct RecordEntity: Entity {
         object.startAt = startAt
         object.endAt = endAt
         object.notes = notes
+        object.deletedAt = deletedAt
         object.calendarEventIdentifier = calendarEventIdentifier
         object.healthSampleUUIDString = healthSampleUUIDString
         return object

@@ -8,6 +8,7 @@
 import ClockShare
 import ComposableArchitecture
 import HoursShare
+import IceCream
 import OrderedCollections
 import RealmSwift
 import SwiftUI
@@ -16,41 +17,48 @@ import SwiftUIX
 struct EventsHomeView: View {
     @Perception.Bindable var store: StoreOf<EventsHomeFeature>
 
+    let pub = NotificationCenter.default
+        .publisher(for: Notifications.cloudKitFetchChangesDidCompleted.name)
+
     @EnvironmentObject var ui: UIManager
 
     var body: some View {
-        ScrollViewReader { _ in
-            WithPerceptionTracking {
-                VStack {
-                    NavigationBar(L10n.events) { menu }
+        WithPerceptionTracking {
+            VStack {
+                NavigationBar(L10n.events) { menu }
 
-                    EventsHomeListView(store: store.scope(state: \.list, action: \.list))
-                }
-                .background(ui.background)
-                .onAppear {
-                    store.send(.onAppear)
-                }
+                EventsHomeListView(store: store.scope(state: \.list, action: \.list))
+            }
+            .background(ui.background)
+            .onAppear {
+                store.send(.onAppear)
+            }
 
-                .navigationDestination(item: $store.scope(state: \.archivedEvents, action: \.archivedEvents)) {
-                    ArchivedEventsView(store: $0)
-                }
+            .navigationDestination(item: $store.scope(state: \.archivedEvents, action: \.archivedEvents)) {
+                ArchivedEventsView(store: $0)
+            }
 
-                // MARK: New Event
+            // MARK: New Event
 
-                .sheet(item: $store.scope(state: \.newEvent, action: \.newEvent)) {
-                    NewEventView(store: $0)
-                        .sheetStyle()
-                }
+            .sheet(item: $store.scope(state: \.newEvent, action: \.newEvent)) {
+                NewEventView(store: $0)
+                    .sheetStyle()
+            }
 
-                // MARK: New Category
+            // MARK: New Category
 
-                .sheet(item: $store.scope(state: \.newCategory, action: \.newCategory)) {
-                    NewCategoryView(store: $0)
-                        .sheetStyle()
-                }
-                .sheet(item: $store.scope(state: \.calendarEvents, action: \.calendarEvents)) {
-                    CalendarEventsView(store: $0)
-                }
+            .sheet(item: $store.scope(state: \.newCategory, action: \.newCategory)) {
+                NewCategoryView(store: $0)
+                    .sheetStyle()
+            }
+            .sheet(item: $store.scope(state: \.calendarEvents, action: \.calendarEvents)) {
+                CalendarEventsView(store: $0)
+            }
+
+            // MARK: CloudKit
+
+            .onReceive(pub) { (output) in
+                store.send(.onAppear)
             }
         }
     }

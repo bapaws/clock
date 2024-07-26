@@ -90,7 +90,7 @@ struct TimerFeature {
                     let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
                     var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
                     // 同步到日历应用
-                    let eventIdendtifier = app.syncToCalendar(for: event, record: newRecord)
+                    let eventIdendtifier = await app.syncToCalendar(for: event, record: newRecord)
                     newRecord.calendarEventIdentifier = eventIdendtifier
                     await AppRealm.shared.writeRecord(newRecord, addTo: event)
 

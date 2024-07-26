@@ -10,6 +10,11 @@ import Palette
 import RealmSwift
 
 class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
+    @Persisted(primaryKey: true) var _id: ObjectId = .generate()
+
+    /// CKRecordConvertible & CKRecordRecoverable
+    @Persisted public var deletedAt: Date?
+
     @Persisted var primary: Int
     @Persisted var onPrimary: Int
     @Persisted var primaryContainer: Int

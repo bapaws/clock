@@ -152,6 +152,7 @@
 		88E5BE872C0B5A5100AEFA1D /* StatisticsMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BE862C0B5A5100AEFA1D /* StatisticsMonthView.swift */; };
 		88E5BE892C0B5A5A00AEFA1D /* StatisticsYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BE882C0B5A5A00AEFA1D /* StatisticsYearView.swift */; };
 		88E5BE8E2C0B6EE600AEFA1D /* StatisticsCompositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BE8D2C0B6EE600AEFA1D /* StatisticsCompositionView.swift */; };
+		88ECC6932C524859002FF861 /* IceCream in Frameworks */ = {isa = PBXBuildFile; productRef = 88ECC6922C524859002FF861 /* IceCream */; };
 		88ED03032C0F1BE800B55445 /* StatisticsYearTimeDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED03022C0F1BE800B55445 /* StatisticsYearTimeDistributionView.swift */; };
 		88ED03072C0F41E900B55445 /* StatisticsMonthHeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED03062C0F41E900B55445 /* StatisticsMonthHeatMapView.swift */; };
 		88EEF8052C4679DA004E8247 /* XCAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EEF8042C4679DA004E8247 /* XCAssets.swift */; };
@@ -369,6 +370,7 @@
 		88E5BE862C0B5A5100AEFA1D /* StatisticsMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsMonthView.swift; sourceTree = "<group>"; };
 		88E5BE882C0B5A5A00AEFA1D /* StatisticsYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsYearView.swift; sourceTree = "<group>"; };
 		88E5BE8D2C0B6EE600AEFA1D /* StatisticsCompositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCompositionView.swift; sourceTree = "<group>"; };
+		88ECC6912C524821002FF861 /* IceCream */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = IceCream; path = ../IceCream; sourceTree = "<group>"; };
 		88ED03022C0F1BE800B55445 /* StatisticsYearTimeDistributionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsYearTimeDistributionView.swift; sourceTree = "<group>"; };
 		88ED03062C0F41E900B55445 /* StatisticsMonthHeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsMonthHeatMapView.swift; sourceTree = "<group>"; };
 		88EEF8042C4679DA004E8247 /* XCAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCAssets.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				882B82DF2BF0B68A00B0365A /* Flow in Frameworks */,
 				88D6EB1D2C24246D00970397 /* SwiftUIPager in Frameworks */,
 				8888F7632BEF047700E5E646 /* MCEmojiPicker in Frameworks */,
+				88ECC6932C524859002FF861 /* IceCream in Frameworks */,
 				88D23AD32B949F1000E33DE5 /* RevenueCat in Frameworks */,
 				88059EA22B9EBA2100C8BF9E /* HoursShare in Frameworks */,
 			);
@@ -867,6 +870,7 @@
 			isa = PBXGroup;
 			children = (
 				886CF0F22C11AA24009B5A29 /* WidgetsExtension.entitlements */,
+				88ECC6912C524821002FF861 /* IceCream */,
 				8814503A2BA437DD00058F7F /* Palette */,
 				88D23ACB2B949DA500E33DE5 /* ClockShare */,
 				88059EA02B9EB8C900C8BF9E /* HoursShare */,
@@ -1299,6 +1303,7 @@
 				8800967A2BF59972008AC521 /* ScalingHeaderScrollView */,
 				88D53AE92C09636E003C02DC /* ComposableArchitecture */,
 				88D6EB1C2C24246D00970397 /* SwiftUIPager */,
+				88ECC6922C524859002FF861 /* IceCream */,
 			);
 			productName = Counter;
 			productReference = 88D23ABA2B949D9700E33DE5 /* Hours.app */;
@@ -2058,6 +2063,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88D6EB1B2C24246D00970397 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
 			productName = SwiftUIPager;
+		};
+		88ECC6922C524859002FF861 /* IceCream */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IceCream;
 		};
 		88FCD4BA2C1DC875007F1D29 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -18,44 +18,46 @@ struct EventHomeRecentView: View {
 
     var body: some View {
         WithPerceptionTracking {
-            Section {
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(store.events) { event in
-                            VStack {
-                                Spacer()
-                                if let emoji = event.emoji {
-                                    Text(emoji)
+            if !store.events.isEmpty {
+                Section {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(store.events) { event in
+                                VStack {
+                                    Spacer()
+                                    if let emoji = event.emoji {
+                                        Text(emoji)
+                                        Spacer()
+                                    }
+                                    Text(event.name)
+                                        .lineLimit(2)
+                                        .minimumScaleFactor(0.5)
+                                        .font(.subheadline)
+                                        .foregroundStyle(event.primary)
                                     Spacer()
                                 }
-                                Text(event.name)
-                                    .lineLimit(2)
-                                    .minimumScaleFactor(0.5)
-                                    .font(.subheadline)
-                                    .foregroundStyle(event.primary)
-                                Spacer()
-                            }
-                            .padding(.small)
-                            .frame(width: dimension, height: dimension, alignment: .center)
-                            .background(event.primaryContainer)
-                            .cornerRadius(16)
-                            .onTapGesture {
-                                store.send(.onEventTapped(event))
+                                .padding(.small)
+                                .frame(width: dimension, height: dimension, alignment: .center)
+                                .background(event.primaryContainer)
+                                .cornerRadius(16)
+                                .onTapGesture {
+                                    store.send(.onEventTapped(event))
+                                }
                             }
                         }
+                        .padding(.horizontal)
+                        .padding(.bottom)
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom)
+                    .scrollIndicators(.hidden)
+                } header: {
+                    HStack {
+                        Text(L10n.recent)
+                        Spacer()
+                    }
+                    .font(.footnote)
+                    .padding(horizontal: .regular, vertical: .extraSmall)
+                    .background(ui.background)
                 }
-                .scrollIndicators(.hidden)
-            } header: {
-                HStack {
-                    Text(L10n.recent)
-                    Spacer()
-                }
-                .font(.footnote)
-                .padding(horizontal: .regular, vertical: .extraSmall)
-                .background(ui.background)
             }
         }
     }

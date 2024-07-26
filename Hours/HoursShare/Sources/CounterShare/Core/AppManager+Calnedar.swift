@@ -97,7 +97,7 @@ public extension AppManager {
         if let category = await AppRealm.shared.getCategory(by: calendar) {
             for event in events {
                 // 如果已经存在记录，说明数据已导入
-                if !(await AppRealm.shared.getRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).isEmpty) {
+                if await !AppRealm.shared.getRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).isEmpty {
                     continue
                 }
 
@@ -121,7 +121,7 @@ public extension AppManager {
         var category = entity
         for event in events {
             // 如果已经存在记录，说明数据已导入
-            if !(await AppRealm.shared.getRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).isEmpty) {
+            if await !AppRealm.shared.getRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).isEmpty {
                 continue
             }
 
@@ -139,36 +139,35 @@ public extension AppManager {
 // MARK: Update
 
 public extension AppManager {
-    private func writeCalendarIdentifier(_ id: String, for entity: CategoryEntity) {
-        Task {
-            await AppRealm.shared.writeCalendarIdentifier(id, for: entity)
-        }
-    }
 
     @discardableResult
-    private func findOrCreateCalendar(for category: CategoryEntity?, calendars: [EKCalendar]? = nil) -> EKCalendar? {
-        guard let category = category else { return nil }
+    private func findOrCreateCalendar(for category: CategoryEntity?, calendars: [EKCalendar]? = nil) async -> EKCalendar? {
+        guard var category = category else { return nil }
 
-        let title = "\(category.emoji ?? "") \(category.name)"
         let calendars = calendars ?? eventStore.calendars(for: .event)
-        if let calendar = calendars.first(where: { $0.title == title }) {
+        if let calendar = calendars.first(where: { $0.title == category.title || $0.title == category.name }) {
             if calendar.calendarIdentifier != category.calendarIdentifier {
-                writeCalendarIdentifier(calendar.calendarIdentifier, for: category)
+                // 更新分类
+                category.calendarIdentifier = calendar.calendarIdentifier
+                await AppRealm.shared.writeCategory(category)
             }
             return calendar
         } else {
             let calendar = EKCalendar(for: .event, eventStore: eventStore)
-            calendar.title = title
+            calendar.title = category.title
             calendar.cgColor = category.color.cgColor
             calendar.source = eventStore.sources.first(where: { $0.sourceType == .calDAV && $0.title == "iCloud" }) ?? eventStore.defaultCalendarForNewEvents?.source
             try? eventStore.saveCalendar(calendar, commit: false)
 
-            writeCalendarIdentifier(calendar.calendarIdentifier, for: category)
+            // 更新分类
+            category.calendarIdentifier = calendar.calendarIdentifier
+            await AppRealm.shared.writeCategory(category)
+
             return calendar
         }
     }
 
-    func syncToCalendar(for eventObject: EventEntity, record: RecordEntity) -> String? {
+    func syncToCalendar(for eventObject: EventEntity, record: RecordEntity) async -> String? {
         guard calendarAccessGranted else { return nil }
 
         do {
@@ -177,7 +176,7 @@ public extension AppManager {
                 deleteCalendarEvent(for: eventIdentifier)
             }
 
-            let calendar: EKCalendar? = findOrCreateCalendar(for: eventObject.category)
+            let calendar: EKCalendar? = await findOrCreateCalendar(for: eventObject.category)
 
             let event = EKEvent(eventStore: eventStore)
             event.title = eventObject.title
@@ -213,9 +212,9 @@ public extension AppManager {
         }
     }
 
-    func updateCalendarEvents(by eventObject: EventEntity) {
+    func updateCalendarEvents(by eventObject: EventEntity) async {
         do {
-            let calendar: EKCalendar? = findOrCreateCalendar(for: eventObject.category)
+            let calendar: EKCalendar? = await findOrCreateCalendar(for: eventObject.category)
 
             for record in eventObject.items {
                 guard let calendarEventIdentifier = record.calendarEventIdentifier else { continue }

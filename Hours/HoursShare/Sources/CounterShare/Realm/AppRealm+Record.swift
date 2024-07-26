@@ -6,6 +6,7 @@
 //
 
 import ClockShare
+import CloudKit
 import Foundation
 import IdentifiedCollections
 import OrderedCollections
@@ -17,9 +18,9 @@ public extension AppRealm {
             // 防止某些情况下会重复写入数据
             if await containsRecord(entity, of: event) { return }
 
-            guard let eventObject: EventObject = await getEvent(by: event.id) else { return }
-
             let realm = await realm
+            guard let eventObject = realm.object(ofType: EventObject.self, forPrimaryKey: event._id) else { return }
+
             try await realm.asyncWrite {
                 let object = entity.toObject()
                 eventObject.items.append(object)
@@ -55,16 +56,61 @@ public extension AppRealm {
         }
     }
 
+    func createOrUpdateRecord(by ckRecord: CKRecord) async throws {
+        let entity = try RecordEntity(ckRecord: ckRecord)
+        let realm = await AppRealm.shared.realm
+        guard
+            let eventID = entity.event?._id,
+            let event = realm.object(ofType: EventObject.self, forPrimaryKey: eventID)
+        else {
+            return
+        }
+
+        if let object = realm.object(ofType: RecordObject.self, forPrimaryKey: entity._id) {
+            try await realm.asyncWrite {
+                object.creationMode = entity.creationMode
+                object.startAt = entity.startAt
+                object.endAt = entity.endAt
+                object.notes = entity.notes
+                object.deletedAt = entity.deletedAt
+                object.calendarEventIdentifier = entity.calendarEventIdentifier
+                object.healthSampleUUIDString = entity.healthSampleUUIDString
+            }
+        } else {
+            try await realm.asyncWrite {
+                let object = entity.toObject()
+                event.items.append(object)
+            }
+        }
+    }
+
     func deleteRecord(_ entity: RecordEntity) async {
         do {
             let realm = await realm
             guard let object = realm.object(ofType: RecordObject.self, forPrimaryKey: entity._id) else { return }
+            try await realm.asyncWrite {
+                object.deletedAt = .now
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func deleteRecord(by id: ObjectId) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: RecordObject.self, forPrimaryKey: id) else { return }
             try await realm.asyncWrite {
                 realm.delete(object)
             }
         } catch {
             debugPrint(error)
         }
+    }
+
+    func deleteRecord(by id: String) async throws {
+        let objectId = try ObjectId(string: id)
+        await deleteRecord(by: objectId)
     }
 
     func containsRecord(_ entity: RecordEntity, of event: EventEntity) async -> Bool {
@@ -81,13 +127,19 @@ public extension AppRealm {
     }
 
     func getRecord(of entity: EventEntity, minEndAt: Date) async -> RecordEntity? {
-        return await getRecords(where: { $0.events._id == entity._id && $0.endAt > minEndAt }).first
+        await getRecords {
+            $0.events._id == entity._id &&
+                $0.endAt > minEndAt &&
+                $0.deletedAt == nil
+        }
+        .first
     }
 
     func getRecords(where: (Query<RecordObject>) -> Query<Bool>, sortedBy areInIncreasingOrder: ((RecordEntity, RecordEntity) -> Bool)? = nil) async -> [RecordEntity] {
         await realm
             .objects(RecordObject.self)
             .where(`where`)
+            .where { $0.deletedAt == nil }
             .map { RecordEntity(object: $0) }
             .sorted(by: areInIncreasingOrder ?? { $0.endAt > $1.endAt })
     }

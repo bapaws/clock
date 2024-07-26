@@ -101,7 +101,7 @@ struct NewEventFeature {
                     var event = entity
                     let items = await AppRealm.shared.getRecords(where: { $0.events._id == event._id })
                     event.items = items
-                    AppManager.shared.updateCalendarEvents(by: event)
+                    await AppManager.shared.updateCalendarEvents(by: event)
                 }
 
             case .selectCategoryTapped:

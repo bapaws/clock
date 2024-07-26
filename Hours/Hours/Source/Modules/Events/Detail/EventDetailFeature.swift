@@ -114,9 +114,12 @@ struct EventDetailFeature {
 
                     let startOfDay = now.dateAtStartOf(.day)
                     let endOfDay = now.dateAtEndOf(.day)
-                    let records = await AppRealm.shared.getRecords(
-                        where: { $0.events._id == event._id && $0.endAt >= startOfDay && $0.endAt <= endOfDay }
-                    )
+                    let records = await AppRealm.shared.getRecords {
+                        $0.events._id == event._id &&
+                            $0.endAt >= startOfDay &&
+                            $0.endAt <= endOfDay &&
+                            $0.deletedAt == nil
+                    }
 
                     let record = records.first
 

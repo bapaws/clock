@@ -25,7 +25,7 @@ struct NewRecordAppIntent: AppIntent {
         guard let event = await AppRealm.shared.getEvent(by: eventID) else { return .result() }
 
         var newRecord = RecordEntity(creationMode: .shortcut, startAt: startAt, endAt: endAt)
-        let identifier = AppManager.shared.syncToCalendar(for: event, record: newRecord)
+        let identifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
         newRecord.calendarEventIdentifier = identifier
         await AppRealm.shared.writeRecord(newRecord, addTo: event)
 

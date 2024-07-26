@@ -6,11 +6,12 @@
 //
 
 import ClockShare
+import CloudKit
+import EventKit
 import Foundation
 import IdentifiedCollections
 import OrderedCollections
 import RealmSwift
-import EventKit
 
 public extension AppRealm {
     func writeEvent(_ entity: EventEntity, addTo category: CategoryEntity) async {
@@ -28,7 +29,12 @@ public extension AppRealm {
 
                     eventObject.name = entity.name
                     eventObject.emoji = entity.emoji
-                    eventObject.hex = entity.hex?.toObject()
+                    if eventObject.hex?._id != entity.hex?._id {
+                        eventObject.hex = entity.hex?.toObject()
+                    }
+                    eventObject.isSystem = entity.isSystem
+                    eventObject.deletedAt = entity.deletedAt
+                    eventObject.archivedAt = entity.archivedAt
                 }
                 let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: category._id)
                 categoryObject?.events.append(eventObject)
@@ -38,17 +44,51 @@ public extension AppRealm {
         }
     }
 
+    func createOrUpdateEvent(by record: CKRecord) async throws {
+        let entity = try EventEntity(ckRecord: record)
+        guard
+            let categoryID = entity.categoryID,
+            let category = await AppRealm.shared.getCategory(by: categoryID)
+        else {
+            return
+        }
+        await AppRealm.shared.writeEvent(entity, addTo: category)
+    }
+
     func deleteEvent(_ entity: EventEntity) async {
         do {
             let realm = await realm
             guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else { return }
             try await realm.asyncWrite {
-                realm.delete(object.items)
+                object.hex?.deletedAt = .now
+                object.deletedAt = .now
+                for item in object.items {
+                    item.deletedAt = .now
+                }
+            }
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    func deleteEvent(by id: ObjectId) async {
+        do {
+            let realm = await realm
+            guard let object = realm.object(ofType: EventObject.self, forPrimaryKey: id) else { return }
+            try await realm.asyncWrite {
+                for item in object.items {
+                    realm.delete(item)
+                }
                 realm.delete(object)
             }
         } catch {
             debugPrint(error)
         }
+    }
+
+    func deleteEvent(by id: String) async throws {
+        let objectId = try ObjectId(string: id)
+        await deleteEvent(by: objectId)
     }
 
     func archiveEvent(_ entity: EventEntity) async {
@@ -97,7 +137,11 @@ public extension AppRealm {
     func getEvent(by name: String, emoji: String) async -> EventEntity? {
         let realm = await realm
         guard let object: EventObject = realm.objects(EventObject.self)
-            .where({ $0.name == name && $0.emoji == emoji })
+            .where({
+                $0.name == name &&
+                    $0.emoji == emoji &&
+                    $0.deletedAt == nil
+            })
             .first
         else {
             return nil
@@ -114,7 +158,11 @@ public extension AppRealm {
     func getRecentEvents(count: Int = 15) async -> [EventEntity] {
         let realm = await realm
         let objects = realm.objects(EventObject.self)
-            .where { $0.archivedAt == nil && $0.categorys.archivedAt == nil }
+            .where {
+                $0.archivedAt == nil &&
+                    $0.categorys.archivedAt == nil &&
+                    $0.deletedAt == nil
+            }
             .sorted { obj1, obj2 in
                 var value1 = obj1.createdAt.timeIntervalSinceNow * 0.45
                 value1 -= Double(obj1.items.count) * 24 * 3600 * 0.1

@@ -6,14 +6,16 @@
 //
 
 import ClockShare
+import CloudKit
 import HoursShare
+import IceCream
 import RealmSwift
 import SwiftDate
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+@MainActor class AppDelegate: UIResponder, UIApplicationDelegate {
+    @MainActor func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Setup Date local
         SwiftDate.defaultRegion = .local
 
@@ -22,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         ProManager.setup()
+
+        application.registerForRemoteNotifications()
 
 //        #if DEBUG
 //        if #available(iOS 17.0, *) {
@@ -32,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            try? Tips.configure()
 //        }
 //        #endif
+
+        Task {
+            await AppRealm.shared.setupSyncCloud()
+        }
 
         AppManager.shared.enableObservedSleepAnalysis()
         AppManager.shared.enableObservedWorkout()
@@ -61,5 +69,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return .portrait
         }
         return UIManager.shared.landspaceMode.support
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let notification = CKNotification(fromRemoteNotificationDictionary: userInfo),
+           let subscriptionID = notification.subscriptionID,
+           IceCreamSubscription.allIDs.contains(subscriptionID)
+        {
+            NotificationCenter.default.post(
+                name: Notifications.cloudKitDataDidChangeRemotely.name,
+                object: nil,
+                userInfo: userInfo
+            )
+            return completionHandler(.newData)
+        }
+
+        return completionHandler(.noData)
     }
 }

@@ -56,8 +56,8 @@ struct RecordsHomeFeature {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                return .run { send in
-                    await send(.timeline(.onRecordLoaded(now)))
+                return .run { [date = state.home.date] send in
+                    await send(.timeline(.onRecordLoaded(date)))
                 }
 
             case .onNewRecordTapped(let entity),
@@ -71,7 +71,11 @@ struct RecordsHomeFeature {
 
                     let startOfDay = currentDate.dateAtStartOf(.day)
                     let endOfDay = currentDate.dateAtEndOf(.day)
-                    let records = await AppRealm.shared.getRecords(where: { $0.endAt >= startOfDay && $0.endAt <= endOfDay })
+                    let records = await AppRealm.shared.getRecords {
+                        $0.endAt >= startOfDay &&
+                        $0.endAt <= endOfDay &&
+                        $0.deletedAt == nil
+                    }
 
                     var startAt: Date
                     if let endAt = records.first?.endAt {

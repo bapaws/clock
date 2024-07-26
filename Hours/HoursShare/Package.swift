@@ -21,6 +21,7 @@ let package = Package(
     dependencies: [
         .package(path: "../Palette"),
         .package(path: "../ClockShare"),
+        .package(path: "../IceCream"),
         .package(url: "https://github.com/SwiftUIX/SwiftUIX", from: "0.2.1"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/jdg/MBProgressHUD.git", .upToNextMajor(from: "1.2.0")),
@@ -39,6 +40,7 @@ let package = Package(
             dependencies: [
                 "Palette",
                 "ClockShare",
+                "IceCream",
                 "SwiftUIX",
                 "KeychainSwift",
                 "MBProgressHUD",
