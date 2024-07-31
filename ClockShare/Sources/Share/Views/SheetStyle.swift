@@ -28,7 +28,7 @@ struct SheetStyleModifier: ViewModifier {
 
 public extension View {
     @available(iOS 16.0, *)
-    func sheetStyle(detents: Set<PresentationDetent> = [.medium]) -> some View {
+    func sheetStyle(detents: Set<PresentationDetent> = [.height(560)]) -> some View {
         modifier(SheetStyleModifier(detents: detents))
     }
 }

@@ -55,7 +55,7 @@ public final class SyncEngine {
                 self.databaseManager.startObservingRemoteChanges()
                 self.databaseManager.startObservingTermination()
                 self.databaseManager.createDatabaseSubscriptionIfHaveNot()
-            case .couldNotDetermine:
+            case .couldNotDetermine, .temporarilyUnavailable:
                 break
             @unknown default:
                 break

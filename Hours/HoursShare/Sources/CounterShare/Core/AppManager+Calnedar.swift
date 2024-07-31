@@ -63,25 +63,25 @@ public extension AppManager {
         return categories
     }
 
-    func importEventsFromCalendar(by entity: CategoryEntity, startAt: Date? = nil, endAt: Date = Date()) async {
-        let startAt = startAt ?? endAt.dateAt(.prevYear).date
-
+    func importEventsFromCalendar(by entity: CategoryEntity) async {
         guard let calendarIdentifier = entity.calendarIdentifier else { return }
         guard let calendar = eventStore.calendar(withIdentifier: calendarIdentifier) else { return }
 
-        let predicate = eventStore.predicateForEvents(withStart: startAt, end: endAt, calendars: [calendar])
-        let events = eventStore.events(matching: predicate)
-
-        let category = await AppRealm.shared.getCategory(by: calendar) ?? entity
-        for event in events {
-            // 获取事件
-            guard let title = event.title, let importEvent = entity.events.first(where: { $0.name == title || $0.title == title }) else { continue }
-            // 已存在事件，导入记录
-            if await AppRealm.shared.getEvent(by: event) == nil {
-                await AppRealm.shared.writeEvent(importEvent, addTo: category)
+        if let category = await AppRealm.shared.getCategory(by: calendar) {
+            for event in entity.events {
+                if var eventEntity = category.events.first(where: { $0.title == event.title || $0.name == event.title }) {
+                    // 存在数据，但是已被删除
+                    if eventEntity.deletedAt != nil {
+                        eventEntity.deletedAt = nil
+                        await AppRealm.shared.writeEvent(eventEntity, addTo: category)
+                    }
+                } else {
+                    await AppRealm.shared.writeEvent(event, addTo: category)
+                }
             }
+        } else {
+            await AppRealm.shared.writeCategory(entity)
         }
-        await AppRealm.shared.writeCategory(category)
     }
 
     func importRecordsFromCalendar(by entity: CategoryEntity, startAt: Date? = nil, endAt: Date = Date()) async {
@@ -90,56 +90,61 @@ public extension AppManager {
         guard let calendarIdentifier = entity.calendarIdentifier else { return }
         guard let calendar = eventStore.calendar(withIdentifier: calendarIdentifier) else { return }
 
+        /// 先导入所有的分类和事件
+        await importEventsFromCalendar(by: entity)
+        /// 上一部中导入了所有的分类和事件，这里正常能获取到分类
+        guard let category = await AppRealm.shared.getCategory(by: calendar) else { return }
+
         let predicate = eventStore.predicateForEvents(withStart: startAt, end: endAt, calendars: [calendar])
         let events = eventStore.events(matching: predicate)
 
         // 如果已导入，或者名称相同，则直接导入事件和记录
-        if let category = await AppRealm.shared.getCategory(by: calendar) {
-            for event in events {
-                // 如果已经存在记录，说明数据已导入
-                if await !AppRealm.shared.getRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).isEmpty {
-                    continue
-                }
-
-                // 获取事件
-                guard let title = event.title, let importEvent = entity.events.first(where: { $0.name == title || $0.title == title }) else { continue }
-
-                var recordEntity = RecordEntity(creationMode: .calendar, startAt: event.startDate, endAt: event.endDate)
-                recordEntity.notes = event.notes
-                // 已存在事件，导入记录
-                if let event = await AppRealm.shared.getEvent(by: event) {
-                    await AppRealm.shared.writeRecord(recordEntity, addTo: event)
-                } else {
-                    await AppRealm.shared.writeEvent(importEvent, addTo: category)
-                    await AppRealm.shared.writeRecord(recordEntity, addTo: importEvent)
-                }
-            }
-
-            return
-        }
-
-        var category = entity
+        var eventEntities: IdentifiedArrayOf<EventEntity> = []
         for event in events {
             // 如果已经存在记录，说明数据已导入
-            if await !AppRealm.shared.getRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).isEmpty {
+            if var record = await AppRealm.shared.findRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).first {
+                if record.deletedAt != nil {
+                    record.deletedAt = nil
+                    await AppRealm.shared.updateRecord(record)
+                }
                 continue
             }
 
             // 获取事件
-            guard let title = event.title, let eventIndex = entity.events.firstIndex(where: { $0.name == title || $0.title == title }) else { continue }
+            guard let title = event.title, let importEventEntity = entity.events.first(where: { $0.name == title || $0.title == title }) else { continue }
 
             var recordEntity = RecordEntity(creationMode: .calendar, startAt: event.startDate, endAt: event.endDate)
             recordEntity.notes = event.notes
-            category.events[eventIndex].items.append(recordEntity)
+            recordEntity.calendarEventIdentifier = event.eventIdentifier
+
+            let eventEntity: EventEntity = await AppRealm.shared.getEvent(by: event) ?? importEventEntity
+            if eventEntities[id: eventEntity.id] == nil {
+                eventEntities.append(eventEntity)
+            }
+            eventEntities[id: eventEntity.id]?.items.append(recordEntity)
+
+            /// 分页写入数据：
+            /// 如果一条一条写入记录量大，导致大量的 CloudKit 请求发送
+            /// 如果一次性写入所有记录，导致单次请求数据超过限制
+            if let eventEntity = eventEntities[id: eventEntity.id], eventEntity.items.count > 15 {
+                await AppRealm.shared.writeRecords(eventEntity.items, addTo: eventEntity)
+                eventEntities.remove(id: eventEntity.id)
+            }
         }
-        await AppRealm.shared.writeCategory(category)
+        /// 写入剩余不足一页的记录
+        for entity in eventEntities {
+            if let eventEntity: EventEntity = await AppRealm.shared.getEvent(by: entity.id) {
+                await AppRealm.shared.writeRecords(entity.items, addTo: eventEntity)
+            } else {
+                await AppRealm.shared.writeEvent(entity, addTo: category)
+            }
+        }
     }
 }
 
 // MARK: Update
 
 public extension AppManager {
-
     @discardableResult
     private func findOrCreateCalendar(for category: CategoryEntity?, calendars: [EKCalendar]? = nil) async -> EKCalendar? {
         guard var category = category else { return nil }

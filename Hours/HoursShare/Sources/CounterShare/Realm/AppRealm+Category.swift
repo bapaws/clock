@@ -68,9 +68,10 @@ public extension AppRealm {
             var entities = [CategoryEntity]()
             for category in categories {
                 var entity = CategoryEntity(object: category, isLinkedObject: true)
-                entity.eventTotalCount = category.events.count
-                entity.events = category.events
-                    .where { $0.deletedAt == nil && $0.archivedAt == nil }
+                let events = category.events.where { $0.deletedAt == nil }
+                entity.eventTotalCount = events.count
+                entity.events = events
+                    .where { $0.archivedAt == nil }
                     .sorted(by: \.index)
                     .map { EventEntity(object: $0, isLinkedObject: true) }
                 entities.append(entity)
@@ -207,7 +208,7 @@ public extension AppRealm {
         if let health = realm.objects(CategoryObject.self).first(where: { $0.name == L10n.health }) {
             return CategoryEntity(object: health)
         } else {
-            let category = await CategoryEntity(hex: nextHex, emoji: "❤️", name: L10n.health)
+            let category = CategoryEntity(hex: .random, emoji: "❤️", name: L10n.health)
             try? await realm.asyncWrite {
                 realm.add(category.toObject())
             }

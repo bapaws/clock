@@ -70,6 +70,7 @@
 "EditCategory" = "编辑分类";
 "Emoji" = "Emoji";
 "CategoryName" = "分类名";
+"Color" = "颜色";
 
 // MARK: Events
 

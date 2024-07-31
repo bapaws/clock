@@ -24,6 +24,9 @@ public extension AppRealm {
                    let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: eventCategory._id),
                    let index = categoryObject.events.firstIndex(where: { $0._id == entity._id })
                 {
+                    // 防止数据导入时，category 被删除
+                    categoryObject.deletedAt = nil
+
                     eventObject = categoryObject.events[index]
                     categoryObject.events.remove(at: index)
 
@@ -33,8 +36,10 @@ public extension AppRealm {
                         eventObject.hex = entity.hex?.toObject()
                     }
                     eventObject.isSystem = entity.isSystem
-                    eventObject.deletedAt = entity.deletedAt
                     eventObject.archivedAt = entity.archivedAt
+
+                    // 写入时，业务上只能是将删除标记设置成 nil
+                    eventObject.deletedAt = nil
                 }
                 let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: category._id)
                 categoryObject?.events.append(eventObject)
@@ -120,9 +125,7 @@ public extension AppRealm {
         do {
             let objectId = try ObjectId(string: id)
             let realm = await realm
-            return realm.objects(EventObject.self)
-                .where { $0._id == objectId && $0.deletedAt == nil }
-                .first
+            return realm.object(ofType: EventObject.self, forPrimaryKey: objectId)
         } catch {
             debugPrint(error)
             return nil
@@ -152,7 +155,7 @@ public extension AppRealm {
     func getEvent(by event: EKEvent) async -> EventEntity? {
         await realm.objects(EventObject.self)
             .first { $0.title == event.title || $0.name == event.title }
-            .map { EventEntity(object: $0) }
+            .map { EventEntity(object: $0, isLinkedObject: true) }
     }
 
     func getRecentEvents(count: Int = 15) async -> [EventEntity] {
@@ -161,6 +164,7 @@ public extension AppRealm {
             .where {
                 $0.archivedAt == nil &&
                     $0.categorys.archivedAt == nil &&
+                    $0.categorys.deletedAt == nil &&
                     $0.deletedAt == nil
             }
             .sorted { obj1, obj2 in

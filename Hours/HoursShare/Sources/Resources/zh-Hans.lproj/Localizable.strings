@@ -65,3 +65,17 @@
 // 家务
 "Cleaning" = "打扫";
 "Cooking" = "做饭";
+
+
+// MARK: Color
+
+"Red" = "红";
+"Orange" = "橙";
+"Yellow" = "黄";
+"Green" = "绿";
+"Cyan" = "青";
+"Blue" = "蓝";
+"Purple" = "紫";
+
+
+

@@ -12,6 +12,8 @@ import Foundation
 internal enum L10n {
   /// Afternoon Tea
   internal static let afternoonTea = L10n.tr("Localizable", "AfternoonTea", fallback: "Afternoon Tea")
+  /// Blue
+  internal static let blue = L10n.tr("Localizable", "Blue", fallback: "Blue")
   /// Break
   internal static let `break` = L10n.tr("Localizable", "Break", fallback: "Break")
   /// Cleaning
@@ -20,6 +22,8 @@ internal enum L10n {
   internal static let coding = L10n.tr("Localizable", "Coding", fallback: "Coding")
   /// Cooking
   internal static let cooking = L10n.tr("Localizable", "Cooking", fallback: "Cooking")
+  /// Cyan
+  internal static let cyan = L10n.tr("Localizable", "Cyan", fallback: "Cyan")
   /// d
   internal static let days = L10n.tr("Localizable", "Days", fallback: "d")
   /// Dota2
@@ -34,6 +38,8 @@ internal enum L10n {
   internal static let game = L10n.tr("Localizable", "Game", fallback: "Game")
   /// Genshin
   internal static let genshin = L10n.tr("Localizable", "Genshin", fallback: "Genshin")
+  /// Green
+  internal static let green = L10n.tr("Localizable", "Green", fallback: "Green")
   /// Health
   internal static let health = L10n.tr("Localizable", "Health", fallback: "Health")
   /// h
@@ -52,10 +58,16 @@ internal enum L10n {
   internal static let music = L10n.tr("Localizable", "Music", fallback: "Music")
   /// Nap
   internal static let nap = L10n.tr("Localizable", "Nap", fallback: "Nap")
+  /// Orange
+  internal static let orange = L10n.tr("Localizable", "Orange", fallback: "Orange")
   /// Personal Grooming
   internal static let personalGrooming = L10n.tr("Localizable", "PersonalGrooming", fallback: "Personal Grooming")
+  /// Purple
+  internal static let purple = L10n.tr("Localizable", "Purple", fallback: "Purple")
   /// Reading
   internal static let reading = L10n.tr("Localizable", "Reading", fallback: "Reading")
+  /// Red
+  internal static let red = L10n.tr("Localizable", "Red", fallback: "Red")
   /// Running
   internal static let running = L10n.tr("Localizable", "Running", fallback: "Running")
   /// s
@@ -81,6 +93,8 @@ internal enum L10n {
   internal static let video = L10n.tr("Localizable", "Video", fallback: "Video")
   /// Work
   internal static let work = L10n.tr("Localizable", "Work", fallback: "Work")
+  /// Yellow
+  internal static let yellow = L10n.tr("Localizable", "Yellow", fallback: "Yellow")
   /// Yesterday
   internal static let yesterday = L10n.tr("Localizable", "Yesterday", fallback: "Yesterday")
 }

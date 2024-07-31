@@ -219,7 +219,7 @@ public extension AppManager {
                     newRecord.calendarEventIdentifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
                     await AppRealm.shared.writeRecord(newRecord, addTo: event)
                 } else {
-                    let event = await EventEntity(emoji: emoji, name: name, hex: AppRealm.shared.nextHex, isSystem: true)
+                    let event = EventEntity(emoji: emoji, name: name, hex: .random, isSystem: true)
                     await AppRealm.shared.writeEvent(event, addTo: category)
 
                     await AppRealm.shared.writeRecord(newRecord, addTo: event)
@@ -303,7 +303,7 @@ public extension AppManager {
             if let entity = await AppRealm.shared.getEvent(by: name, emoji: emoji) {
                 event = entity
             } else {
-                event = EventEntity(emoji: emoji, name: name, hex: await AppRealm.shared.nextHex, isSystem: true)
+                event = EventEntity(emoji: emoji, name: name, hex: .random, isSystem: true)
                 await AppRealm.shared.writeEvent(event, addTo: category)
             }
 

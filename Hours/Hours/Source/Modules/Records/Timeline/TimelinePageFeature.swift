@@ -52,8 +52,7 @@ struct TimelinePageFeature {
                     let endOfDay = date.dateAtEndOf(.day)
                     let records = await AppRealm.shared.getRecords {
                         $0.endAt >= startOfDay &&
-                            $0.endAt <= endOfDay &&
-                            $0.deletedAt == nil
+                            $0.endAt <= endOfDay
                     }
                     // 使用开始时间进行数据刷新
                     await send(.updateRecords(startOfDay, records), animation: .default)

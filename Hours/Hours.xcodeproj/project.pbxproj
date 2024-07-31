@@ -31,6 +31,9 @@
 		88059EA82B9F4F6500C8BF9E /* NewRecordTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88059EA72B9F4F6500C8BF9E /* NewRecordTimeView.swift */; };
 		880B1F4F2BCA25B000519C4C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 881059122BB845B500DCA648 /* PrivacyInfo.xcprivacy */; };
 		880B1F532BCAC35D00519C4C /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 880B1F522BCAC35D00519C4C /* SwiftUIIntrospect */; };
+		880F5D022C589BC9008DE579 /* ColorPickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880F5D012C589BC9008DE579 /* ColorPickView.swift */; };
+		880F5D042C589BE1008DE579 /* ColorPickFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880F5D032C589BE1008DE579 /* ColorPickFeature.swift */; };
+		880F5D062C58E0C4008DE579 /* ColorIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880F5D052C58E0C4008DE579 /* ColorIconView.swift */; };
 		8811F00E2C3CCEDD00974F80 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811F00D2C3CCEDD00974F80 /* Strings.swift */; };
 		8811F01A2C3CD99100974F80 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811F0112C3CD65C00974F80 /* Strings.swift */; };
 		8814503C2BA437FF00058F7F /* Palette in Frameworks */ = {isa = PBXBuildFile; productRef = 8814503B2BA437FF00058F7F /* Palette */; };
@@ -141,6 +144,7 @@
 		88D5C63C2C109EBB00B8E9AE /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63B2C109EBB00B8E9AE /* EventsView.swift */; };
 		88D5C63E2C109F0000B8E9AE /* EventsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63D2C109F0000B8E9AE /* EventsProvider.swift */; };
 		88D5C6452C10A4C600B8E9AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88D5C6432C10A4C600B8E9AE /* Localizable.strings */; };
+		88D5D2982C59E10D00495A53 /* RGBPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2972C59E10D00495A53 /* RGBPicker.swift */; };
 		88D6EB1D2C24246D00970397 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 88D6EB1C2C24246D00970397 /* SwiftUIPager */; };
 		88D6EB212C242F8A00970397 /* TimelinePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6EB202C242F8A00970397 /* TimelinePageView.swift */; };
 		88D6EB252C242F9700970397 /* TimelinePageFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6EB242C242F9700970397 /* TimelinePageFeature.swift */; };
@@ -254,6 +258,9 @@
 		88059EA02B9EB8C900C8BF9E /* HoursShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HoursShare; sourceTree = "<group>"; };
 		88059EA42B9EDC9000C8BF9E /* NewRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordView.swift; sourceTree = "<group>"; };
 		88059EA72B9F4F6500C8BF9E /* NewRecordTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordTimeView.swift; sourceTree = "<group>"; };
+		880F5D012C589BC9008DE579 /* ColorPickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickView.swift; sourceTree = "<group>"; };
+		880F5D032C589BE1008DE579 /* ColorPickFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickFeature.swift; sourceTree = "<group>"; };
+		880F5D052C58E0C4008DE579 /* ColorIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorIconView.swift; sourceTree = "<group>"; };
 		881059122BB845B500DCA648 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8811F00D2C3CCEDD00974F80 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		8811F0112C3CD65C00974F80 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -360,6 +367,7 @@
 		88D5C63D2C109F0000B8E9AE /* EventsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProvider.swift; sourceTree = "<group>"; };
 		88D5C6442C10A4C600B8E9AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88D5C6462C10A4CB00B8E9AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88D5D2972C59E10D00495A53 /* RGBPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBPicker.swift; sourceTree = "<group>"; };
 		88D6EB202C242F8A00970397 /* TimelinePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageView.swift; sourceTree = "<group>"; };
 		88D6EB242C242F9700970397 /* TimelinePageFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageFeature.swift; sourceTree = "<group>"; };
 		88D6EB282C24794400970397 /* RecordsHomeCurrentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsHomeCurrentState.swift; sourceTree = "<group>"; };
@@ -514,6 +522,17 @@
 				880326AC2B98A1DD00E6653A /* WinnerView.swift */,
 			);
 			path = Pomodoro;
+			sourceTree = "<group>";
+		};
+		880F5D002C589BAB008DE579 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				880F5D012C589BC9008DE579 /* ColorPickView.swift */,
+				880F5D032C589BE1008DE579 /* ColorPickFeature.swift */,
+				880F5D052C58E0C4008DE579 /* ColorIconView.swift */,
+				88D5D2972C59E10D00495A53 /* RGBPicker.swift */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 		8811F0072C3CCD0E00974F80 /* Generated */ = {
@@ -1074,6 +1093,7 @@
 		88D50FD12B974B150065C4AA /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				880F5D002C589BAB008DE579 /* Color */,
 				88BCA9C32C4767100019F0F6 /* Calendar */,
 				882B82CF2BF0AD0A00B0365A /* Archived */,
 				882B82D22BF0AD5100B0365A /* Detail */,
@@ -1420,6 +1440,8 @@
 				8801DCBA2B9FE4EF003DE039 /* NewItemView.swift in Sources */,
 				882D01672BBCF4400058D834 /* EventDetailView.swift in Sources */,
 				88C2DE892C098AFE002CEC16 /* StatisticsYear.swift in Sources */,
+				880F5D042C589BE1008DE579 /* ColorPickFeature.swift in Sources */,
+				88D5D2982C59E10D00495A53 /* RGBPicker.swift in Sources */,
 				8827A5792BEC85D40010FC4C /* EventProvider.swift in Sources */,
 				8802CBBD2BAB0CF700F0091E /* PaywallFeatureItemView.swift in Sources */,
 				88CF103B2C3CE4F500A98DA4 /* XCAssets.swift in Sources */,
@@ -1445,6 +1467,7 @@
 				88D23B142B94A35C00E33DE5 /* SettingsCheckCell.swift in Sources */,
 				889011222C476F770075970C /* CalendarEventsFeature.swift in Sources */,
 				88FBAE732C0D571F00C45F29 /* StatisticsWeekTimeDistributionView.swift in Sources */,
+				880F5D062C58E0C4008DE579 /* ColorIconView.swift in Sources */,
 				88393E642B9DDE13007F2F18 /* RecordsHomeView.swift in Sources */,
 				880326AD2B98A1DD00E6653A /* WinnerView.swift in Sources */,
 				8827A57D2BED08500010FC4C /* SettingsScreenTimeView.swift in Sources */,
@@ -1502,6 +1525,7 @@
 				88D23AEC2B94A26D00E33DE5 /* AppIcons.swift in Sources */,
 				88FCD4BF2C1DCBC0007F1D29 /* EventsHomeFeature.swift in Sources */,
 				8802CBC02BAB16C900F0091E /* LogoView.swift in Sources */,
+				880F5D022C589BC9008DE579 /* ColorPickView.swift in Sources */,
 				88C2DE872C098AF2002CEC16 /* StatisticsMonth.swift in Sources */,
 				88D454B42BA8675900584FAD /* SettingsRecordSection.swift in Sources */,
 				88CB58BF2BEE60A0000A2BF7 /* MainViewController.swift in Sources */,

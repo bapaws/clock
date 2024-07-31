@@ -65,3 +65,13 @@
 // 家务
 "Cleaning" = "Cleaning";
 "Cooking" = "Cooking";
+
+// MARK: Color
+
+"Red" = "Red";
+"Orange" = "Orange";
+"Yellow" = "Yellow";
+"Green" = "Green";
+"Cyan" = "Cyan";
+"Blue" = "Blue";
+"Purple" = "Purple";

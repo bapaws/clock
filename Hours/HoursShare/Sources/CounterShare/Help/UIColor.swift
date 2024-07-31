@@ -28,4 +28,11 @@ extension UIColor {
         let trait = UITraitCollection(userInterfaceStyle: style)
         return colors[index].resolvedColor(with: trait)
     }
+
+    public var hue: CGFloat {
+        var hue: CGFloat = 0
+        // 获取HSB值
+        getHue(&hue, saturation: nil, brightness: nil, alpha: nil)
+        return hue
+    }
 }

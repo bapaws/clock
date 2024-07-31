@@ -87,6 +87,8 @@ internal enum L10n {
   internal static let coding = L10n.tr("Localizable", "Coding", fallback: "Coding")
   /// Collapse
   internal static let collapse = L10n.tr("Localizable", "Collapse", fallback: "Collapse")
+  /// Color
+  internal static let color = L10n.tr("Localizable", "Color", fallback: "Color")
   /// Color Themes
   internal static let colorThemes = L10n.tr("Localizable", "ColorThemes", fallback: "Color Themes")
   /// Congratulations! 👏👏👏

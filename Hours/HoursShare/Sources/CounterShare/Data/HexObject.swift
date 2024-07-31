@@ -213,6 +213,13 @@ public struct HexEntity: Entity {
         self.init(rgb: Int(hex: hex))
     }
 
+    public init(red: CGFloat, green: CGFloat, blue: CGFloat) {
+        let red = Int(red * 255) << 16 & 0xFF0000
+        let green = Int(green * 255) << 8 & 0xFF00
+        let blue = Int(blue * 255) & 0xFF
+        self.init(rgb: red | green | blue)
+    }
+
     // MARK: Entity
 
     public init(object: HexObject, isLinkedObject: Bool = false) {
@@ -241,7 +248,7 @@ public struct HexEntity: Entity {
 
     public static func random(count: Int) -> [Self] {
         var entities = [Self]()
-        for _ in 0 ..< count {
+        for _ in 0..<count {
             let red = arc4random_uniform(256)
             let green = arc4random_uniform(256)
             let blue = arc4random_uniform(256)
@@ -252,130 +259,133 @@ public struct HexEntity: Entity {
     }
 
     public static let `default` = HexEntity(rgb: 0xFF000000)
+
+    public var red: CGFloat { CGFloat(rgb >> 16 & 0xFF) / 255 }
+    public var green: CGFloat { CGFloat(rgb >> 8 & 0xFF) / 255 }
+    public var blue: CGFloat { CGFloat(rgb & 0xFF) / 255 }
 }
 
 // MARK: Color
 
 public extension HexEntity {
-    var color: Color { Color(rgb: rgb) }
-
-    var primary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.primary : self.light.primary) })
-    }
-
-    var onPrimary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onPrimary : self.light.onPrimary) })
-    }
-
-    var primaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.primaryContainer : self.light.primaryContainer) })
-    }
-
-    var onPrimaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onPrimaryContainer : self.light.onPrimaryContainer) })
-    }
-
-    var secondary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.secondary : self.light.secondary) })
-    }
-
-    var onSecondary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSecondary : self.light.onSecondary) })
-    }
-
-    var secondaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.secondaryContainer : self.light.secondaryContainer) })
-    }
-
-    var onSecondaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSecondaryContainer : self.light.onSecondaryContainer) })
-    }
-
-    var tertiary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.tertiary : self.light.tertiary) })
-    }
-
-    var onTertiary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onTertiary : self.light.onTertiary) })
-    }
-
-    var tertiaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.tertiaryContainer : self.light.tertiaryContainer) })
-    }
-
-    var onTertiaryContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onTertiaryContainer : self.light.onTertiaryContainer) })
-    }
-
-    var error: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.error : self.light.error) })
-    }
-
-    var onError: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onError : self.light.onError) })
-    }
-
-    var errorContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.errorContainer : self.light.errorContainer) })
-    }
-
-    var onErrorContainer: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onErrorContainer : self.light.onErrorContainer) })
-    }
-
-    var background: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.background : self.light.background) })
-    }
-
-    var onBackground: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onBackground : self.light.onBackground) })
-    }
-
-    var surface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.surface : self.light.surface) })
-    }
-
-    var onSurface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSurface : self.light.onSurface) })
-    }
-
-    var surfaceVariant: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.surfaceVariant : self.light.surfaceVariant) })
-    }
-
-    var onSurfaceVariant: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onSurfaceVariant : self.light.onSurfaceVariant) })
-    }
-
-    var outline: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.outline : self.light.outline) })
-    }
-
-    var outlineVariant: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.outlineVariant : self.light.outlineVariant) })
-    }
-
-    var shadow: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.shadow : self.light.shadow) })
-    }
-
-    var scrim: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.scrim : self.light.scrim) })
-    }
-
-    var inverseSurface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.inverseSurface : self.light.inverseSurface) })
-    }
-
-    var onInverseSurface: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onInverseSurface : self.light.onInverseSurface) })
-    }
-
-    var inversePrimary: Color {
-        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.inversePrimary : self.light.inversePrimary) })
-    }
-
     static var random: HexEntity {
-        HexEntity(rgb: UIColor.random.argb)
+        let red: CGFloat = .random(in: 0 ... 1)
+        let green: CGFloat = .random(in: 0 ... 1)
+        let blue: CGFloat = .random(in: 0 ... 1)
+        return HexEntity(red: red, green: green, blue: blue)
+    }
+}
+
+// MARK: HSB
+
+public extension HexEntity {
+    enum HueCategory: Int, CaseIterable, Hashable {
+        case red
+        case orange
+        case yellow
+        case green
+//        case cyan
+        case blue
+        case purple
+
+        public var hueRange: Range<Int> {
+            switch self {
+            case .red: -30..<30
+            case .orange: 30..<60
+            case .yellow: 60..<90
+//            case .green: 90..<150
+//            case .cyan: 150..<210
+            case .green: 90..<210
+            case .blue: 210..<270
+            case .purple: 270..<330
+            }
+        }
+
+        public init(uiColor: UIColor) {
+            var hue: CGFloat = 0
+            uiColor.getHue(&hue, saturation: nil, brightness: nil, alpha: nil)
+            let normalizedHue = hue.truncatingRemainder(dividingBy: 1) * 360 - 30
+            switch normalizedHue {
+            case -30..<30: self = .red
+            case 30..<60: self = .orange
+            case 60..<90: self = .yellow
+//            case 90..<150: self = .green
+//            case 150..<210: self = .cyan
+            case 90..<210: self = .green
+            case 210..<270: self = .blue
+            case 270..<330: self = .purple
+            default: self = .red
+            }
+        }
+
+        public init(color: Color) {
+            self.init(uiColor: UIColor(color))
+        }
+
+        public var title: String {
+            switch self {
+            case .red: L10n.red
+            case .orange: L10n.orange
+            case .yellow: L10n.yellow
+            case .green: L10n.green
+            case .blue: L10n.blue
+//            case .cyan: L10n.cyan
+            case .purple: L10n.purple
+            }
+        }
+    }
+
+    internal func getRGB() -> (red: CGFloat, green: CGFloat, blue: CGFloat) {
+        let red = CGFloat((rgb >> 16) & 0xFF) / 255.0
+        let green = CGFloat((rgb >> 8) & 0xFF) / 255.0
+        let blue = CGFloat(rgb & 0xFF) / 255.0
+        return (red, green, blue)
+    }
+
+    internal func rgbToHSB(red: CGFloat, green: CGFloat, blue: CGFloat) -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+        let maxColor = max(red, green, blue)
+        let minColor = min(red, green, blue)
+        let delta = maxColor - minColor
+
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = maxColor
+
+        if maxColor == minColor {
+            hue = 0
+        } else {
+            if maxColor == red {
+                hue = (60 * ((green - blue) / delta).truncatingRemainder(dividingBy: 360)) / 360
+            } else if maxColor == green {
+                hue = (60 * (blue - red) / delta) / 360 + 2
+            } else {
+                hue = (60 * (red - green) / delta) / 360 + 4
+            }
+
+            if hue < 0 {
+                hue += 1
+            }
+        }
+
+        if maxColor == 0 {
+            saturation = 0
+        } else {
+            saturation = delta / maxColor
+        }
+
+        return (hue, saturation, brightness)
+    }
+
+    var hue: CGFloat {
+        let value = getRGB()
+        return rgbToHSB(red: value.red, green: value.green, blue: value.blue).hue
+    }
+
+    var hueCategory: HueCategory? {
+        let normalizedHue = Int(hue.truncatingRemainder(dividingBy: 1) * 360)
+        for category in HueCategory.allCases where category.hueRange.contains(normalizedHue) {
+            return category
+        }
+        return nil
     }
 }

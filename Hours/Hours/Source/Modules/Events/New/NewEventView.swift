@@ -41,6 +41,15 @@ struct NewEventView: View {
                     store.send(.selectCategoryTapped)
                 }
 
+                NewItemView(title: L10n.eventName) {
+                    WithPerceptionTracking {
+                        ColorIconView(hex: store.hex)
+                    }
+                }
+                .onTapGesture {
+                    store.send(.onColorPicked)
+                }
+
                 NewItemView(title: L10n.emoji) {
                     WithPerceptionTracking {
                         if store.emoji.isEmpty {
@@ -109,6 +118,11 @@ struct NewEventView: View {
 
             .sheet(item: $store.scope(state: \.selectCategory, action: \.selectCategory)) { store in
                 SelectCategoryView(store: store)
+                    .sheetStyle()
+            }
+
+            .sheet(item: $store.scope(state: \.colorPick, action: \.colorPick)) { store in
+                RGBPicker(store: store)
                     .sheetStyle()
             }
         }

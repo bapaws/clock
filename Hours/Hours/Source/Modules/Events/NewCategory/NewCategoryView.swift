@@ -49,6 +49,15 @@ struct NewCategoryView: View {
                     }
                 }
 
+                NewItemView(title: L10n.eventName) {
+                    WithPerceptionTracking {
+                        ColorIconView(hex: store.hex)
+                    }
+                }
+                .onTapGesture {
+                    store.send(.onColorPicked)
+                }
+
                 NewItemView(title: L10n.categoryName) {
                     WithPerceptionTracking {
                         TextField(L10n.pleaseEnter, text: $store.title)
@@ -99,6 +108,11 @@ struct NewCategoryView: View {
             .padding()
             .padding(.vertical, .extraLarge)
             .background(ui.background)
+
+            .sheet(item: $store.scope(state: \.colorPick, action: \.colorPick)) { store in
+                ColorPickView(store: store)
+                    .sheetStyle()
+            }
         }
     }
 }

@@ -18,9 +18,11 @@ struct NewEventFeature {
 
         var emoji: String = ""
         var title: String
+        var hex: HexEntity
         var category: CategoryEntity?
 
         @Presents var selectCategory: SelectCategoryFeature.State?
+        @Presents var colorPick: ColorPickFeature.State?
 
         var isLoading = false
         var createNameAttempts = 0
@@ -30,6 +32,7 @@ struct NewEventFeature {
             self.event = event
             self.emoji = event?.emoji ?? ""
             self.title = event?.name ?? ""
+            self.hex = event?.hex ?? .random
             self.category = category ?? event?.category
         }
     }
@@ -46,6 +49,9 @@ struct NewEventFeature {
 
         case selectCategoryTapped
         case selectCategory(PresentationAction<SelectCategoryFeature.Action>)
+
+        case onColorPicked
+        case colorPick(PresentationAction<ColorPickFeature.Action>)
     }
 
     @Dependency(\.dismiss) private var dismiss
@@ -77,14 +83,14 @@ struct NewEventFeature {
                     if var event = state.event {
                         event.emoji = state.emoji
                         event.name = state.title
+                        event.hex = state.hex
                         await AppRealm.shared.writeEvent(event, addTo: category)
 
                         await send(.updateCalendarRecords(event))
                         await send(.saveCompleted(event))
                     } else {
                         // 保存创建任务对象
-                        let hex = await AppRealm.shared.nextHex
-                        var event = EventEntity(emoji: state.emoji, name: state.title, hex: hex)
+                        var event = EventEntity(emoji: state.emoji, name: state.title, hex: state.hex)
                         await AppRealm.shared.writeEvent(event, addTo: category)
                         // 完成保存后，设置正确的 category，保证后面 Action 中数据正确
                         event.category = category
@@ -112,12 +118,23 @@ struct NewEventFeature {
                 state.category = entity
                 return .none
 
+            case .onColorPicked:
+                state.colorPick = ColorPickFeature.State(hex: state.hex)
+                return .none
+
+            case .colorPick(.presented(.didSelectHex(let entity))):
+                state.hex = entity
+                return .none
+
             default:
                 return .none
             }
         }
         .ifLet(\.$selectCategory, action: \.selectCategory) {
             SelectCategoryFeature()
+        }
+        .ifLet(\.$colorPick, action: \.colorPick) {
+            ColorPickFeature()
         }
     }
 }

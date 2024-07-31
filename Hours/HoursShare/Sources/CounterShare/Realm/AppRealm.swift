@@ -68,7 +68,13 @@ public actor AppRealm {
         syncEngine = SyncEngine(objects: [
             SyncObject(
                 realmConfiguration: realm.configuration,
-                type: SchemeObject.self
+                type: CategoryObject.self,
+                uListElementType: EventObject.self
+            ),
+            SyncObject(
+                realmConfiguration: realm.configuration,
+                type: EventObject.self,
+                uListElementType: RecordObject.self
             ),
             SyncObject(
                 realmConfiguration: realm.configuration,
@@ -80,13 +86,7 @@ public actor AppRealm {
             ),
             SyncObject(
                 realmConfiguration: realm.configuration,
-                type: EventObject.self,
-                uListElementType: RecordObject.self
-            ),
-            SyncObject(
-                realmConfiguration: realm.configuration,
-                type: CategoryObject.self,
-                uListElementType: EventObject.self
+                type: SchemeObject.self
             ),
         ])
     }
@@ -99,47 +99,47 @@ public actor AppRealm {
     }
 }
 
-// MARK: HEX
-
-extension AppRealm {
-    private func writeHexes() async {
-        let realm = await realm
-
-        let nipponColorsKey = "NipponColors"
-        let userDefaults = UserDefaults.standard
-        if userDefaults.bool(forKey: nipponColorsKey) { return }
-
-        guard let jsonData = nipponColors.data(using: .utf8) else { return }
-        do {
-            let decoder = JSONDecoder()
-            let colors = try decoder.decode([OneColor].self, from: jsonData)
-            let hexs = colors.map { HexObject(hex: $0.hex) }
-            try await realm.asyncWrite {
-                realm.add(hexs)
-            }
-
-            userDefaults.set(true, forKey: nipponColorsKey)
-        } catch {
-            debugPrint(error)
-        }
-    }
-
-    public var nextHex: HexEntity {
-        get async {
-            if hexs.isEmpty {
-                await writeHexes()
-
-                let realm = await realm
-                let entities = realm.objects(HexObject.self)
-                    .map { HexEntity(object: $0) }
-                hexs.append(contentsOf: entities)
-            }
-
-            guard !hexs.isEmpty else { return HexEntity.random }
-
-            let hex = hexs[hexIndex % hexs.count]
-            hexIndex += 1
-            return hex
-        }
-    }
-}
+//// MARK: HEX
+//
+//extension AppRealm {
+//    private func writeHexes() async {
+//        let realm = await realm
+//
+//        let nipponColorsKey = "NipponColors"
+//        let userDefaults = UserDefaults.standard
+//        if userDefaults.bool(forKey: nipponColorsKey) { return }
+//
+//        guard let jsonData = nipponColors.data(using: .utf8) else { return }
+//        do {
+//            let decoder = JSONDecoder()
+//            let colors = try decoder.decode([OneColor].self, from: jsonData)
+//            let hexs = colors.map { HexObject(hex: $0.hex) }
+//            try await realm.asyncWrite {
+//                realm.add(hexs)
+//            }
+//
+//            userDefaults.set(true, forKey: nipponColorsKey)
+//        } catch {
+//            debugPrint(error)
+//        }
+//    }
+//
+//    public var nextHex: HexEntity {
+//        get async {
+//            if hexs.isEmpty {
+//                await writeHexes()
+//
+//                let realm = await realm
+//                let entities = realm.objects(HexObject.self)
+//                    .map { HexEntity(object: $0) }
+//                hexs.append(contentsOf: entities)
+//            }
+//
+//            guard !hexs.isEmpty else { return HexEntity.random }
+//
+//            let hex = hexs[hexIndex % hexs.count]
+//            hexIndex += 1
+//            return hex
+//        }
+//    }
+//}

@@ -73,8 +73,7 @@ struct RecordsHomeFeature {
                     let endOfDay = currentDate.dateAtEndOf(.day)
                     let records = await AppRealm.shared.getRecords {
                         $0.endAt >= startOfDay &&
-                        $0.endAt <= endOfDay &&
-                        $0.deletedAt == nil
+                            $0.endAt <= endOfDay
                     }
 
                     var startAt: Date

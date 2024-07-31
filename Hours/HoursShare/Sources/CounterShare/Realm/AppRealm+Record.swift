@@ -22,6 +22,8 @@ public extension AppRealm {
             guard let eventObject = realm.object(ofType: EventObject.self, forPrimaryKey: event._id) else { return }
 
             try await realm.asyncWrite {
+                eventObject.deletedAt = nil
+
                 let object = entity.toObject()
                 eventObject.items.append(object)
             }
@@ -34,6 +36,7 @@ public extension AppRealm {
         do {
             guard let eventObject: EventObject = await getEvent(by: event.id) else { return }
             try await realm.asyncWrite {
+                eventObject.deletedAt = nil
                 for entity in entities {
                     let object = entity.toObject()
                     eventObject.items.append(object)
@@ -129,8 +132,7 @@ public extension AppRealm {
     func getRecord(of entity: EventEntity, minEndAt: Date) async -> RecordEntity? {
         await getRecords {
             $0.events._id == entity._id &&
-                $0.endAt > minEndAt &&
-                $0.deletedAt == nil
+                $0.endAt > minEndAt
         }
         .first
     }
@@ -144,13 +146,23 @@ public extension AppRealm {
             .sorted(by: areInIncreasingOrder ?? { $0.endAt > $1.endAt })
     }
 
+    /// 和 getRecords 的主要区别是包含已删除的记录（deletedAt != nil）
+    func findRecords(where: (Query<RecordObject>) -> Query<Bool>) async -> [RecordEntity] {
+        await realm
+            .objects(RecordObject.self)
+            .where(`where`)
+            .map { RecordEntity(object: $0) }
+    }
+
     func containsRecord(where: (Query<RecordObject>) -> Query<Bool>) async -> Bool {
         await !getRecords(where: `where`).isEmpty
     }
 
     func sectionedRecords<Key: _Persistable & Hashable>(_ entity: EventEntity, by block: @escaping ((RecordObject) -> Key)) async -> OrderedDictionary<Key, [RecordEntity]> {
         var results = OrderedDictionary<Key, [RecordEntity]>()
-        guard let eventObject: EventObject = await getEvent(by: entity.id) else { return results }
+        guard let eventObject = await realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else {
+            return results
+        }
         let sectionedResults = eventObject.items.sectioned(
             by: block,
             sortDescriptors: [SortDescriptor(keyPath: \RecordObject.endAt, ascending: false)]

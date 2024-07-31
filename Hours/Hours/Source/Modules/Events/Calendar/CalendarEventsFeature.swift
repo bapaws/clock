@@ -184,11 +184,7 @@ struct CalendarEventsFeature {
                                 endAt: state.endAt
                             )
                         } else {
-                            await AppManager.shared.importEventsFromCalendar(
-                                by: category,
-                                startAt: state.startAt,
-                                endAt: state.endAt
-                            )
+                            await AppManager.shared.importEventsFromCalendar(by: category)
                         }
                     }
 
