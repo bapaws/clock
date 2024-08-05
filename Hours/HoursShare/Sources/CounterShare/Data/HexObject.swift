@@ -239,7 +239,7 @@ public struct HexEntity: Entity {
 
     public func toObject() -> HexObject {
         let object = HexObject()
-        object._id = .generate()
+        object._id = _id
         object.rgb = rgb
         object.light = light.toObject()
         object.dark = dark.toObject()

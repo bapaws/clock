@@ -31,7 +31,6 @@
 		88059EA82B9F4F6500C8BF9E /* NewRecordTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88059EA72B9F4F6500C8BF9E /* NewRecordTimeView.swift */; };
 		880B1F4F2BCA25B000519C4C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 881059122BB845B500DCA648 /* PrivacyInfo.xcprivacy */; };
 		880B1F532BCAC35D00519C4C /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 880B1F522BCAC35D00519C4C /* SwiftUIIntrospect */; };
-		880F5D022C589BC9008DE579 /* ColorPickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880F5D012C589BC9008DE579 /* ColorPickView.swift */; };
 		880F5D042C589BE1008DE579 /* ColorPickFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880F5D032C589BE1008DE579 /* ColorPickFeature.swift */; };
 		880F5D062C58E0C4008DE579 /* ColorIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880F5D052C58E0C4008DE579 /* ColorIconView.swift */; };
 		8811F00E2C3CCEDD00974F80 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811F00D2C3CCEDD00974F80 /* Strings.swift */; };
@@ -145,6 +144,9 @@
 		88D5C63E2C109F0000B8E9AE /* EventsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63D2C109F0000B8E9AE /* EventsProvider.swift */; };
 		88D5C6452C10A4C600B8E9AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88D5C6432C10A4C600B8E9AE /* Localizable.strings */; };
 		88D5D2982C59E10D00495A53 /* RGBPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2972C59E10D00495A53 /* RGBPicker.swift */; };
+		88D5D29A2C5A672F00495A53 /* EventsHomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2992C5A672F00495A53 /* EventsHomeEmptyView.swift */; };
+		88D5D29F2C5A774700495A53 /* ImportDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D29E2C5A774700495A53 /* ImportDefaultView.swift */; };
+		88D5D2A12C5A7C8300495A53 /* ImportDefaultFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2A02C5A7C8300495A53 /* ImportDefaultFeature.swift */; };
 		88D6EB1D2C24246D00970397 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 88D6EB1C2C24246D00970397 /* SwiftUIPager */; };
 		88D6EB212C242F8A00970397 /* TimelinePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6EB202C242F8A00970397 /* TimelinePageView.swift */; };
 		88D6EB252C242F9700970397 /* TimelinePageFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6EB242C242F9700970397 /* TimelinePageFeature.swift */; };
@@ -258,7 +260,6 @@
 		88059EA02B9EB8C900C8BF9E /* HoursShare */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HoursShare; sourceTree = "<group>"; };
 		88059EA42B9EDC9000C8BF9E /* NewRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordView.swift; sourceTree = "<group>"; };
 		88059EA72B9F4F6500C8BF9E /* NewRecordTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordTimeView.swift; sourceTree = "<group>"; };
-		880F5D012C589BC9008DE579 /* ColorPickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickView.swift; sourceTree = "<group>"; };
 		880F5D032C589BE1008DE579 /* ColorPickFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickFeature.swift; sourceTree = "<group>"; };
 		880F5D052C58E0C4008DE579 /* ColorIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorIconView.swift; sourceTree = "<group>"; };
 		881059122BB845B500DCA648 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -368,6 +369,9 @@
 		88D5C6442C10A4C600B8E9AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88D5C6462C10A4CB00B8E9AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		88D5D2972C59E10D00495A53 /* RGBPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBPicker.swift; sourceTree = "<group>"; };
+		88D5D2992C5A672F00495A53 /* EventsHomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeEmptyView.swift; sourceTree = "<group>"; };
+		88D5D29E2C5A774700495A53 /* ImportDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDefaultView.swift; sourceTree = "<group>"; };
+		88D5D2A02C5A7C8300495A53 /* ImportDefaultFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDefaultFeature.swift; sourceTree = "<group>"; };
 		88D6EB202C242F8A00970397 /* TimelinePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageView.swift; sourceTree = "<group>"; };
 		88D6EB242C242F9700970397 /* TimelinePageFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageFeature.swift; sourceTree = "<group>"; };
 		88D6EB282C24794400970397 /* RecordsHomeCurrentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsHomeCurrentState.swift; sourceTree = "<group>"; };
@@ -527,7 +531,6 @@
 		880F5D002C589BAB008DE579 /* Color */ = {
 			isa = PBXGroup;
 			children = (
-				880F5D012C589BC9008DE579 /* ColorPickView.swift */,
 				880F5D032C589BE1008DE579 /* ColorPickFeature.swift */,
 				880F5D052C58E0C4008DE579 /* ColorIconView.swift */,
 				88D5D2972C59E10D00495A53 /* RGBPicker.swift */,
@@ -577,6 +580,7 @@
 		882B82CC2BF0ACED00B0365A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				88D5D29B2C5A75B400495A53 /* Empty */,
 				88BABAF82C47C9E000E3B93A /* List */,
 				88F19CAC2C40C46C003C5DC1 /* Category */,
 				88CF10542C3D74AF00A98DA4 /* Timing */,
@@ -1129,6 +1133,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		88D5D29B2C5A75B400495A53 /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				88D5D2992C5A672F00495A53 /* EventsHomeEmptyView.swift */,
+				88D5D29E2C5A774700495A53 /* ImportDefaultView.swift */,
+				88D5D2A02C5A7C8300495A53 /* ImportDefaultFeature.swift */,
+			);
+			path = Empty;
+			sourceTree = "<group>";
+		};
 		88E038152B95C9B2002BDC9B /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -1466,6 +1480,7 @@
 				88D23AE42B94A24400E33DE5 /* ProManager.swift in Sources */,
 				88D23B142B94A35C00E33DE5 /* SettingsCheckCell.swift in Sources */,
 				889011222C476F770075970C /* CalendarEventsFeature.swift in Sources */,
+				88D5D29F2C5A774700495A53 /* ImportDefaultView.swift in Sources */,
 				88FBAE732C0D571F00C45F29 /* StatisticsWeekTimeDistributionView.swift in Sources */,
 				880F5D062C58E0C4008DE579 /* ColorIconView.swift in Sources */,
 				88393E642B9DDE13007F2F18 /* RecordsHomeView.swift in Sources */,
@@ -1512,6 +1527,7 @@
 				88861D352BC690F5001DAE8E /* EventRecordsView.swift in Sources */,
 				88FE051D2BADCA3B002B990A /* ProMask.swift in Sources */,
 				88B8DAA22BF1B44C00249EAE /* SplashViewController.swift in Sources */,
+				88D5D29A2C5A672F00495A53 /* EventsHomeEmptyView.swift in Sources */,
 				88D454B02BA84BB500584FAD /* SettingsCell.swift in Sources */,
 				88CB58C72BEE6A1A000A2BF7 /* NewCategoryView.swift in Sources */,
 				880326A52B98769400E6653A /* PomodoroView.swift in Sources */,
@@ -1525,13 +1541,13 @@
 				88D23AEC2B94A26D00E33DE5 /* AppIcons.swift in Sources */,
 				88FCD4BF2C1DCBC0007F1D29 /* EventsHomeFeature.swift in Sources */,
 				8802CBC02BAB16C900F0091E /* LogoView.swift in Sources */,
-				880F5D022C589BC9008DE579 /* ColorPickView.swift in Sources */,
 				88C2DE872C098AF2002CEC16 /* StatisticsMonth.swift in Sources */,
 				88D454B42BA8675900584FAD /* SettingsRecordSection.swift in Sources */,
 				88CB58BF2BEE60A0000A2BF7 /* MainViewController.swift in Sources */,
 				8811F00E2C3CCEDD00974F80 /* Strings.swift in Sources */,
 				8802CBD42BAB2CF700F0091E /* SettingsAppIconView.swift in Sources */,
 				88F19CAE2C40C5C2003C5DC1 /* EventsHomeCategoriesView.swift in Sources */,
+				88D5D2A12C5A7C8300495A53 /* ImportDefaultFeature.swift in Sources */,
 				8827A5772BEC85BE0010FC4C /* NewRecordAppIntent.swift in Sources */,
 				88F357CA2C1E8C0700DD106A /* NewRecordFeature.swift in Sources */,
 				88FBAE912C0E09E400C45F29 /* StatisticsYearHeatMapView.swift in Sources */,

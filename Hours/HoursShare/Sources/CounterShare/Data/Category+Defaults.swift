@@ -107,7 +107,7 @@ public extension CategoryEntity {
 
         var healthEvents = [EventEntity]()
         healthEvents.append(EventEntity(emoji: "🛌", name: L10n.sleep, hex: HexEntity(hex: "C9D8CD"), isSystem: true))
-        let health = CategoryEntity(hex: HexEntity(hex: "#FF4033"), emoji: "❤️", name: L10n.health)
+        let health = CategoryEntity(hex: HexEntity(hex: "#FF4033"), emoji: "❤️", name: L10n.health, events: healthEvents)
         entities.append(health)
 
         return entities

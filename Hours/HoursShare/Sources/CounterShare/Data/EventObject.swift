@@ -143,12 +143,18 @@ public struct EventEntity: Entity, HexEntityColors {
     public var time: TimeLength = .zero
 
     public init(
+        id: String? = nil,
         emoji: String? = nil,
         name: String,
         hex: HexEntity? = nil,
         items: [RecordEntity] = [],
         isSystem: Bool = false
     ) {
+        if let id, let _id = try? ObjectId(string: id) {
+            self._id = _id
+        } else {
+            self._id = .generate()
+        }
         self.emoji = emoji
         self.name = name
         self.hex = hex

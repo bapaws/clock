@@ -63,6 +63,7 @@ struct EventsHomeCategoriesFeature {
         // MARK: New Event
 
         case newEventTapped(CategoryEntity?)
+        case editEventTapped(EventEntity?)
 
         // MARK: New Record
 

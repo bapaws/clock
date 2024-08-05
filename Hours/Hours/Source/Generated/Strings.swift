@@ -199,6 +199,10 @@ internal enum L10n {
   internal static let housework = L10n.tr("Localizable", "Housework", fallback: "Housework")
   /// Icon
   internal static let icon = L10n.tr("Localizable", "Icon", fallback: "Icon")
+  /// Import
+  internal static let `import` = L10n.tr("Localizable", "Import", fallback: "Import")
+  /// Import Default
+  internal static let importDefault = L10n.tr("Localizable", "ImportDefault", fallback: "Import Default")
   /// Import From Calendar
   internal static let importFromCalendar = L10n.tr("Localizable", "ImportFromCalendar", fallback: "Import From Calendar")
   /// Importing...

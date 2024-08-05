@@ -122,10 +122,18 @@ struct EventsHomeCategoriesView: View {
             Divider()
 
             Button(action: {
+                store.send(.editEventTapped(event))
+            }) {
+                Label(L10n.editEvent, systemImage: "pencil")
+            }
+
+            Button(action: {
                 store.send(.archiveEvent(event))
             }) {
                 Label(L10n.archive, systemImage: "archivebox")
             }
+
+            Divider()
 
             Button(role: .destructive) {
                 store.send(.deleteEvent(event))

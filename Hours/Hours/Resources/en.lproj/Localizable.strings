@@ -57,6 +57,8 @@
 "SelectCategory" = "Select Category";
 "SelectEmoji" = "Select Emoji";
 
+"Import" = "Import";
+"ImportDefault" = "Import Default";
 "ImportFromCalendar" = "Import From Calendar";
 "ImportRecords" = "Import Records";
 "Select All" = "Select All";

@@ -26,14 +26,6 @@ struct ColorPickFeature {
         var green: CGFloat
         var blue: CGFloat
 
-//        init(red: CGFloat = .random(in: 0 ... 1), green: CGFloat = .random(in: 0 ... 1), blue: CGFloat = .random(in: 0 ... 1)) {
-//            self.red = red
-//            self.green = green
-//            self.blue = blue
-//
-//            hex = HexEntity(red: red, green: green, blue: blue)
-//        }
-
         init(hex: HexEntity) {
             self.initialHex = hex
             self.hex = hex
@@ -125,7 +117,7 @@ struct ColorPickFeature {
                 return .none
 
             case .random:
-                let hex  = HexEntity.random
+                let hex = HexEntity.random
                 state.hex = hex
                 state.red = hex.red
                 state.green = hex.green

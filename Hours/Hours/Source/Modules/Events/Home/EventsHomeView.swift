@@ -27,7 +27,17 @@ struct EventsHomeView: View {
             VStack {
                 NavigationBar(L10n.events) { menu }
 
-                EventsHomeListView(store: store.scope(state: \.list, action: \.list))
+                if store.list.isEmpty {
+                    EventsHomeEmptyView {
+                        store.send(.newCategoryTapped)
+                    } importDefault: {
+                        store.send(.onImportDefaultTapped)
+                    } importFromCalendar: {
+                        store.send(.onImportCalendarEventsTapped)
+                    }
+                } else {
+                    EventsHomeListView(store: store.scope(state: \.list, action: \.list))
+                }
             }
             .background(ui.background)
             .onAppear {
@@ -54,10 +64,13 @@ struct EventsHomeView: View {
             .sheet(item: $store.scope(state: \.calendarEvents, action: \.calendarEvents)) {
                 CalendarEventsView(store: $0)
             }
+            .sheet(item: $store.scope(state: \.importDefault, action: \.importDefault)) {
+                ImportDefaultView(store: $0)
+            }
 
             // MARK: CloudKit
 
-            .onReceive(pub) { (output) in
+            .onReceive(pub) { _ in
                 store.send(.onAppear)
             }
         }
@@ -76,6 +89,10 @@ struct EventsHomeView: View {
 
             Button(L10n.importFromCalendar, systemImage: "calendar.badge.plus", role: nil) {
                 store.send(.onImportCalendarEventsTapped)
+            }
+
+            Button(L10n.importDefault, systemImage: "plus", role: nil) {
+                store.send(.onImportDefaultTapped)
             }
 
             Divider()

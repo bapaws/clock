@@ -137,7 +137,7 @@ public extension AppRealm {
         return EventEntity(object: object)
     }
 
-    func getEvent(by name: String, emoji: String) async -> EventEntity? {
+    func getEvent(by name: String, emoji: String?) async -> EventEntity? {
         let realm = await realm
         guard let object: EventObject = realm.objects(EventObject.self)
             .where({

@@ -48,40 +48,24 @@ public extension AppRealm {
 
     /// 应用首页调用这个方法，没有分类或者事件时，重新写入
     func getAllUnarchivedCategories() async -> [CategoryEntity] {
-        do {
-            let realm = await realm
-            var categories = realm.objects(CategoryObject.self)
-            if categories.isEmpty {
-                // 写入默认的分类
-//                try await realm.asyncWrite {
-//                    let defaluts = CategoryObject.defaults
-//                    for item in defaluts {
-//                        realm.add(item)
-//                    }
-//                }
-//                categories = realm.objects(CategoryObject.self)
-            }
-            categories = categories
-                .where { $0.archivedAt == nil && $0.deletedAt == nil }
+        let realm = await realm
+        let categories = realm.objects(CategoryObject.self)
+            .where { $0.archivedAt == nil && $0.deletedAt == nil }
+            .sorted(by: \.index)
+
+        var entities = [CategoryEntity]()
+        for category in categories {
+            var entity = CategoryEntity(object: category, isLinkedObject: true)
+            let events = category.events.where { $0.deletedAt == nil }
+            entity.eventTotalCount = events.count
+            entity.events = events
+                .where { $0.archivedAt == nil }
                 .sorted(by: \.index)
-
-            var entities = [CategoryEntity]()
-            for category in categories {
-                var entity = CategoryEntity(object: category, isLinkedObject: true)
-                let events = category.events.where { $0.deletedAt == nil }
-                entity.eventTotalCount = events.count
-                entity.events = events
-                    .where { $0.archivedAt == nil }
-                    .sorted(by: \.index)
-                    .map { EventEntity(object: $0, isLinkedObject: true) }
-                entities.append(entity)
-            }
-
-            return entities
-        } catch {
-            debugPrint(error)
-            return []
+                .map { EventEntity(object: $0, isLinkedObject: true) }
+            entities.append(entity)
         }
+
+        return entities
     }
 
     func getAllArchivedCategories() async -> [CategoryEntity] {

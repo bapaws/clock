@@ -15,40 +15,44 @@ struct EventsHomeListView: View {
         ScrollViewReader { proxy in
             WithPerceptionTracking {
                 LoadingView(isLoading: $store.isLoading) {
-                    ScrollView {
-                        LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
-                            EventHomeRecentView(
-                                store: store.scope(state: \.recent, action: \.recent)
-                            )
-                            
-                            TimingEventsView(
-                                store: store.scope(state: \.timing, action: \.timing)
-                            )
-                            
-                            EventsHomeCategoriesView(
-                                store: store.scope(state: \.categories, action: \.categories)
-                            )
-                            
-                            HStack {
-                                Spacer()
-                                Text(L10n.showAll)
-                                Image(systemName: "chevron.forward")
-                                    .animation(.easeInOut, value: store.isOtherCategoriesShow)
-                                    .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
-                                Spacer()
-                            }
-                            .foregroundStyle(ui.secondaryLabel)
-                            .padding(.vertical, .large)
-                            .id(L10n.showAll)
-                            .padding(.horizontal)
-                            .onTapGesture {
-                                toggleOtherCategory(for: proxy)
-                            }
-                            
-                            if store.isOtherCategoriesShow {
-                                EventsHomeOtherCategoriesView(
-                                    store: store.scope(state: \.otherCategories, action: \.otherCategories)
+                    WithPerceptionTracking {
+                        ScrollView {
+                            LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
+                                EventHomeRecentView(
+                                    store: store.scope(state: \.recent, action: \.recent)
                                 )
+
+                                TimingEventsView(
+                                    store: store.scope(state: \.timing, action: \.timing)
+                                )
+
+                                EventsHomeCategoriesView(
+                                    store: store.scope(state: \.categories, action: \.categories)
+                                )
+
+                                if !store.categories.categories.isEmpty || !store.otherCategories.categories.isEmpty {
+                                    HStack {
+                                        Spacer()
+                                        Text(L10n.showAll)
+                                        Image(systemName: "chevron.forward")
+                                            .animation(.easeInOut, value: store.isOtherCategoriesShow)
+                                            .rotationEffect(store.isOtherCategoriesShow ? .degrees(90) : .zero)
+                                        Spacer()
+                                    }
+                                    .foregroundStyle(ui.secondaryLabel)
+                                    .padding(.vertical, .large)
+                                    .id(L10n.showAll)
+                                    .padding(.horizontal)
+                                    .onTapGesture {
+                                        toggleOtherCategory(for: proxy)
+                                    }
+                                }
+
+                                if store.isOtherCategoriesShow {
+                                    EventsHomeOtherCategoriesView(
+                                        store: store.scope(state: \.otherCategories, action: \.otherCategories)
+                                    )
+                                }
                             }
                         }
                     }
@@ -65,15 +69,15 @@ struct EventsHomeListView: View {
                 .navigationDestination(item: $store.scope(state: \.eventDetail, action: \.eventDetail)) {
                     EventDetailView(store: $0)
                 }
-                
+
                 // MARK: Timer
-                
+
                 .fullScreenCover(item: $store.scope(state: \.timer, action: \.timer)) { store in
                     TimerView(store: store)
                 }
-                
+
                 // MARK: New Record
-                
+
                 .sheet(item: $store.scope(state: \.newRecord, action: \.newRecord)) {
                     NewRecordView(store: $0)
                         .sheetStyle(detents: [.height(640)])

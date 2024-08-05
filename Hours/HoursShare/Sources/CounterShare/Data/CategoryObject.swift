@@ -129,8 +129,18 @@ public struct CategoryEntity: Entity, HexEntityColors {
     /// 归档时间
     public var archivedAt: Date?
 
-    public init(hex: HexEntity?, emoji: String, name: String, events: [EventEntity] = []) {
-        self._id = ObjectId.generate()
+    public init(
+        id: String? = nil,
+        hex: HexEntity?,
+        emoji: String,
+        name: String,
+        events: [EventEntity] = []
+    ) {
+        if let id, let _id = try? ObjectId(string: id) {
+            self._id = _id
+        } else {
+            self._id = .generate()
+        }
         self.hex = hex
         self.emoji = emoji
         self.name = name

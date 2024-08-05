@@ -25,6 +25,7 @@ struct EventsHomeFeature {
         @Presents var archivedEvents: ArchivedEventsFeature.State?
 
         @Presents var calendarEvents: CalendarEventsFeature.State?
+        @Presents var importDefault: ImportDefaultFeature.State?
     }
 
     enum Action: BindableAction {
@@ -53,6 +54,9 @@ struct EventsHomeFeature {
 
         case onImportCalendarEventsTapped
         case calendarEvents(PresentationAction<CalendarEventsFeature.Action>)
+
+        case onImportDefaultTapped
+        case importDefault(PresentationAction<ImportDefaultFeature.Action>)
     }
 
     @Dependency(\.date.now) private var now
@@ -74,12 +78,16 @@ struct EventsHomeFeature {
                     await send(.loadCompleted)
                 }
 
-                // MARK: Categories
+                // MARK: Event
 
             case .newEventTapped(let category),
                  .list(.categories(.newEventTapped(let category))),
                  .list(.otherCategories(.newEventTapped(let category))):
                 state.newEvent = .init(category: category)
+                return .none
+
+            case .list(.categories(.editEventTapped(let entity))):
+                state.newEvent = .init(event: entity)
                 return .none
 
                 // MARK: NewCategory
@@ -123,6 +131,10 @@ struct EventsHomeFeature {
                 state.calendarEvents = .init()
                 return .none
 
+            case .onImportDefaultTapped:
+                state.importDefault = .init()
+                return .none
+
             default:
                 return .none
             }
@@ -138,6 +150,9 @@ struct EventsHomeFeature {
         }
         .ifLet(\.$calendarEvents, action: \.calendarEvents) {
             CalendarEventsFeature()
+        }
+        .ifLet(\.$importDefault, action: \.importDefault) {
+            ImportDefaultFeature()
         }
         ._printChanges(.actionLabels)
     }

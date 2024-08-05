@@ -57,6 +57,8 @@
 "SelectCategory" = "选择分类";
 "SelectEmoji" = "选择 Emoji";
 
+"Import" = "导入";
+"ImportDefault" = "导入默认事件";
 "ImportFromCalendar" = "从日历导入";
 "ImportRecords" = "导入记录";
 "Select All" = "选择全部";

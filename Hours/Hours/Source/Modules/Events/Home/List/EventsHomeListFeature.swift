@@ -30,6 +30,10 @@ struct EventsHomeListFeature {
         @Presents var eventDetail: EventDetailFeature.State?
 
         @Presents var timer: TimerFeature.State?
+
+        var isEmpty: Bool {
+            categories.categories.isEmpty && otherCategories.categories.isEmpty
+        }
     }
 
     enum Action: BindableAction {

@@ -110,7 +110,7 @@ struct NewCategoryView: View {
             .background(ui.background)
 
             .sheet(item: $store.scope(state: \.colorPick, action: \.colorPick)) { store in
-                ColorPickView(store: store)
+                RGBPicker(store: store)
                     .sheetStyle()
             }
         }
