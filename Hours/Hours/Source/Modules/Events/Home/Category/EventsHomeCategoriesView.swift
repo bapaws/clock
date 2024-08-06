@@ -124,7 +124,7 @@ struct EventsHomeCategoriesView: View {
             Button(action: {
                 store.send(.editEventTapped(event))
             }) {
-                Label(L10n.editEvent, systemImage: "pencil")
+                Label(L10n.edit, systemImage: "pencil")
             }
 
             Button(action: {

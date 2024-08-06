@@ -44,6 +44,10 @@ import UIKit
         AppManager.shared.enableObservedSleepAnalysis()
         AppManager.shared.enableObservedWorkout()
 
+        #if DEBUG
+        sendCloudKitDataDidChangeRemotely()
+        #endif
+
         return true
     }
 
@@ -86,4 +90,19 @@ import UIKit
 
         return completionHandler(.noData)
     }
+
+    #if DEBUG
+        func sendCloudKitDataDidChangeRemotely() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak self] in
+                NotificationCenter.default.post(
+                    name: Notifications.cloudKitDataDidChangeRemotely.name,
+                    object: nil,
+                    userInfo: nil
+                )
+                DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak self] in
+                    self?.sendCloudKitDataDidChangeRemotely()
+                }
+            }
+        }
+    #endif
 }

@@ -106,7 +106,8 @@ struct EventsHomeFeature {
                     await send(.list(.newCategoryCompleted(entity)))
                 }
 
-            case .calendarEvents(.dismiss):
+            case .calendarEvents(.dismiss),
+                 .list(.categories(.removeEvent(_))):
                 return .run { send in
                     await send(.list(.onAppear))
                 }
