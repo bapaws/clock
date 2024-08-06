@@ -25,7 +25,7 @@ struct ImportDefaultFeature {
             var isEnable: Bool = true
 
             var isSelected: Bool = false
-            var isAllEventSelected: Bool { selectedEventIDs.count == category.events.count }
+            var isAllEventSelected: Bool { selectedEventIDs.count + disableEventIDs.count == category.events.count }
             var isAllEventDisable: Bool { disableEventIDs.count == category.events.count }
 
             var disableEventIDs: Set<String> = []
@@ -110,12 +110,15 @@ struct ImportDefaultFeature {
             case .onCategoryTapped(let entity):
                 if state.isImporting { return .none }
 
-                if state.selectedCategories[id: entity.id] == nil {
-                    var selected: State.CategorySelected = .init(category: entity)
-                    selected.selectedEventIDs = Set(entity.events.map { $0.id })
-                    state.selectedCategories.append(selected)
-                } else {
-                    state.selectedCategories.remove(id: entity.id)
+                if var selected = state.selectedCategories[id: entity.id] {
+                    if selected.selectedEventIDs.isEmpty {
+                        let ids = entity.events.filter { !selected.disableEventIDs.contains($0.id) }
+                            .map { $0.id }
+                        selected.selectedEventIDs = Set(ids)
+                    } else {
+                        selected.selectedEventIDs.removeAll()
+                    }
+                    state.selectedCategories[id: entity.id] = selected
                 }
                 return .none
 
@@ -129,16 +132,10 @@ struct ImportDefaultFeature {
                 if var selected = state.selectedCategories[id: category.id] {
                     if selected.selectedEventIDs.contains(entity.id) {
                         selected.selectedEventIDs.remove(entity.id)
-                        // 没有选中的事件，删除选中的分类
-                        if selected.selectedEventIDs.isEmpty {
-                            state.selectedCategories.remove(id: category.id)
-                        } else {
-                            state.selectedCategories[id: category.id] = selected
-                        }
                     } else {
                         selected.selectedEventIDs.insert(entity.id)
-                        state.selectedCategories[id: category.id] = selected
                     }
+                    state.selectedCategories[id: category.id] = selected
                 } else {
                     var selected: State.CategorySelected = .init(category: category)
                     selected.selectedEventIDs.insert(entity.id)
@@ -176,13 +173,14 @@ struct ImportDefaultFeature {
             case .startImporting:
                 state.isImporting = true
                 return .run { [state] send in
+                    var categories = [CategoryEntity]()
                     for var category in state.categories {
                         guard let selected = state.selectedCategories[id: category.id] else { continue }
-
                         category.events = category.events.filter { selected.selectedEventIDs.contains($0.id) }
-
-                        await AppRealm.shared.writeCategory(category)
+                        categories.append(category)
                     }
+                    
+                    await AppRealm.shared.importDefaults(categories: categories)
 
                     await send(.close)
                 }

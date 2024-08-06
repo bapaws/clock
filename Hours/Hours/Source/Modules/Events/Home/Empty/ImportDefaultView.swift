@@ -33,6 +33,10 @@ struct ImportDefaultView: View {
                                     Image(systemName: "checkmark.circle.fill")
                                         .foregroundStyle(category.primary)
                                     Text(category.title)
+                                } else if let selected, !selected.selectedEventIDs.isEmpty {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundStyle(Color.tertiaryLabel)
+                                    Text(category.title)
                                 } else {
                                     Image(systemName: "circle")
                                     Text(category.title)

@@ -113,7 +113,8 @@ struct EventsHomeFeature {
 
                 // MARK: NewEvent
 
-            case .newEvent(.presented(.saveCompleted(_))):
+            case .newEvent(.presented(.saveCompleted(_))),
+                 .importDefault(.presented(.close)):
                 return .run { send in
                     // 创建事件可能是分类里，也可能是其他里，情况多，直接重新刷新
                     await send(.onAppear)
