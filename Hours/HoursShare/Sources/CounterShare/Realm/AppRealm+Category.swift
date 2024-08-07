@@ -41,11 +41,6 @@ public extension AppRealm {
         }
     }
 
-    func createOrUpdateCategory(by record: CKRecord) async throws {
-        let entity = try CategoryEntity(ckRecord: record)
-        await AppRealm.shared.writeCategory(entity)
-    }
-
     /// 应用首页调用这个方法，没有分类或者事件时，重新写入
     func getAllUnarchivedCategories() async -> [CategoryEntity] {
         let realm = await realm

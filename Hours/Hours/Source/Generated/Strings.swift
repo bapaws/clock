@@ -39,6 +39,8 @@ internal enum L10n {
   internal static let appScreenTime = L10n.tr("Localizable", "AppScreenTime", fallback: "App Screen Time")
   /// Auto-record your screen time. Just set up the Shortcuts app on iOS to listen for our app's open and close events. It's that simple!
   internal static let appScreenTimeDesc = L10n.tr("Localizable", "AppScreenTimeDesc", fallback: "Auto-record your screen time. Just set up the Shortcuts app on iOS to listen for our app's open and close events. It's that simple!")
+  /// https://bapaws.super.site/使用指南/应用屏幕时间自动记录
+  internal static let appScreenTimeHelpURL = L10n.tr("Localizable", "AppScreenTimeHelpURL", fallback: "https://bapaws.super.site/使用指南/应用屏幕时间自动记录")
   /// Record App Screen Time
   internal static let appScreenTimeTitle = L10n.tr("Localizable", "AppScreenTimeTitle", fallback: "Record App Screen Time")
   /// Archive
@@ -475,8 +477,6 @@ internal enum L10n {
   internal static let yearly = L10n.tr("Localizable", "Yearly", fallback: "Yearly")
   /// Yesterday
   internal static let yesterday = L10n.tr("Localizable", "Yesterday", fallback: "Yesterday")
-  /// Haaaaa
-  internal static let zaaaaa = L10n.tr("Localizable", "Zaaaaa", fallback: "Haaaaa")
   internal enum AppIsClosed {
     /// App is closed. Create a record for ${eventID}
     internal static let createARecordForEventID = L10n.tr("Localizable", "App is closed. Create a record for ${eventID}", fallback: "App is closed. Create a record for ${eventID}")

@@ -59,7 +59,7 @@ struct SettingsScreenTimeView: View {
             .background(ui.background)
             .navigationTitle(L10n.appScreenTime)
             .sheet(isPresented: $isGuidePresented) {
-                SafariView(url: URL(string: "https://zytllepnl6.feishu.cn/docx/PFtQdUY04og6rbxvbsHciiHNnZd")!)
+                SafariView(url: URL(string: L10n.appScreenTimeHelpURL)!)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

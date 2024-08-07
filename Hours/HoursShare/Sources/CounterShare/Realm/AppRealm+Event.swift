@@ -49,17 +49,6 @@ public extension AppRealm {
         }
     }
 
-    func createOrUpdateEvent(by record: CKRecord) async throws {
-        let entity = try EventEntity(ckRecord: record)
-        guard
-            let categoryID = entity.categoryID,
-            let category = await AppRealm.shared.getCategory(by: categoryID)
-        else {
-            return
-        }
-        await AppRealm.shared.writeEvent(entity, addTo: category)
-    }
-
     func deleteEvent(_ entity: EventEntity) async {
         do {
             let realm = await realm

@@ -59,34 +59,6 @@ public extension AppRealm {
         }
     }
 
-    func createOrUpdateRecord(by ckRecord: CKRecord) async throws {
-        let entity = try RecordEntity(ckRecord: ckRecord)
-        let realm = await AppRealm.shared.realm
-        guard
-            let eventID = entity.event?._id,
-            let event = realm.object(ofType: EventObject.self, forPrimaryKey: eventID)
-        else {
-            return
-        }
-
-        if let object = realm.object(ofType: RecordObject.self, forPrimaryKey: entity._id) {
-            try await realm.asyncWrite {
-                object.creationMode = entity.creationMode
-                object.startAt = entity.startAt
-                object.endAt = entity.endAt
-                object.notes = entity.notes
-                object.deletedAt = entity.deletedAt
-                object.calendarEventIdentifier = entity.calendarEventIdentifier
-                object.healthSampleUUIDString = entity.healthSampleUUIDString
-            }
-        } else {
-            try await realm.asyncWrite {
-                let object = entity.toObject()
-                event.items.append(object)
-            }
-        }
-    }
-
     func deleteRecord(_ entity: RecordEntity) async {
         do {
             let realm = await realm
@@ -178,6 +150,7 @@ public extension AppRealm {
     func getRecordsEndAt(from: Date, to: Date) async -> [RecordEntity] {
         await realm.objects(RecordObject.self)
             .where { $0.endAt >= from && $0.endAt <= to }
+            .where { $0.deletedAt == nil }
             .sorted(by: \.startAt, ascending: true)
             .map { RecordEntity(object: $0) }
     }
