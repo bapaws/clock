@@ -135,10 +135,12 @@ public extension AppRealm {
         guard let eventObject = await realm.object(ofType: EventObject.self, forPrimaryKey: entity._id) else {
             return results
         }
-        let sectionedResults = eventObject.items.sectioned(
-            by: block,
-            sortDescriptors: [SortDescriptor(keyPath: \RecordObject.endAt, ascending: false)]
-        )
+        let sectionedResults = eventObject.items
+            .where { $0.deletedAt == nil }
+            .sectioned(
+                by: block,
+                sortDescriptors: [SortDescriptor(keyPath: \RecordObject.endAt, ascending: false)]
+            )
         for result in sectionedResults {
             let records = result.map { RecordEntity(object: $0) }
             results[result.key] = records
