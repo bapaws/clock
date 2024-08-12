@@ -54,6 +54,10 @@ public class AppManager: HoursShare.AppManager {
         if isAutoSyncSleep || isAutoSyncWorkout {
             requestHealthAccess()
         }
+
+        if !onboardingIndices.contains(.calendar) {
+            requestCalendarAccess()
+        }
     }
 
     // MARK: Timer
@@ -70,6 +74,28 @@ public class AppManager: HoursShare.AppManager {
         timer = Timer.scheduledTimer(withTimeInterval: distance, repeats: false) { [weak self] _ in
             self?.today = Date().dateAt(.startOfDay)
             self?.startTimer()
+        }
+    }
+}
+
+// MARK: Version
+
+public extension AppManager {
+    func fetchAppStoreVersion() async -> String? {
+        guard
+            let bundleID = Bundle.main.bundleIdentifier,
+            let url = URL(string: "https://itunes.apple.com/cn/lookup?bundleId=\(bundleID)")
+        else {
+            return nil
+        }
+
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let result = try JSONDecoder().decode(ItunesLookupResult.self, from: data)
+            return result.version
+        } catch {
+            debugPrint(error)
+            return nil
         }
     }
 }

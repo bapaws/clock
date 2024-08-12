@@ -9,37 +9,13 @@ import ComposableArchitecture
 import HoursShare
 import SwiftUI
 
-@Reducer
-struct MessageItem {
-    @ObservableState
-    struct State: Equatable {
-        var emoji: String
-        var title: String
-    }
-
-    enum Action: BindableAction {
-        case binding(BindingAction<State>)
-        case onAppear
-    }
-
-    var body: some Reducer<State, Action> {
-        BindingReducer()
-        Reduce { state, action in
-            switch action {
-            case .onAppear:
-                return .none
-            default:
-                return .none
-            }
-        }
-    }
-}
-
 struct MessageItemView: View {
+    let item: MessageItem
+    let close: () -> Void
     var body: some View {
-        HStack {
-            Text("✉️")
-            Text("App Store 五🌟好评，可获得包月会员～")
+        HStack(alignment: .center) {
+            Text(item.emoji)
+            Text(item.title)
                 .font(.footnote)
                 .foregroundStyle(ui.label)
             Spacer()
@@ -57,6 +33,13 @@ struct MessageItemView: View {
 }
 
 #Preview {
-    MessageItemView()
-        .background(Color.systemGray6)
+    MessageItemView(
+        item: .init(
+            id: 0,
+            emoji: "✉️",
+            title: "App Store 五🌟好评，可获得包月会员～"
+        ),
+        close: {}
+    )
+    .background(Color.systemGray6)
 }

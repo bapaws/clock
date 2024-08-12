@@ -17,8 +17,21 @@ struct EventDetailFeature {
     struct State: Equatable {
         var event: EventEntity
         // 当前事件的所有记录：key 为当天的开始时间；value 是当天的所有记录
-        var records: OrderedDictionary<Date, [RecordEntity]> = [:]
-        var recordCount: Int = 0
+        var records: OrderedDictionary<Date, [RecordEntity]> = [:] {
+            didSet {
+                var recordCount = 0
+                var recordMilliseconds = 0
+                for record in records {
+                    recordCount += record.value.count
+                    recordMilliseconds += record.value.reduce(0) { $0 + $1.milliseconds }
+                }
+                self.recordCount = recordCount
+                self.recordTimeLength = recordMilliseconds.time
+            }
+        }
+
+        private(set) var recordCount: Int = 0
+        private(set) var recordTimeLength: TimeLength = .zero
 
         var selectedRecord: RecordEntity?
         var isEditPresented: Bool = false
@@ -81,7 +94,6 @@ struct EventDetailFeature {
 
             case .updateRecords(let entities):
                 state.records = entities
-                state.recordCount = entities.reduce(0) { $0 + $1.value.count }
                 return .none
 
             case .deleteEvent:
@@ -117,7 +129,7 @@ struct EventDetailFeature {
                     let records = await AppRealm.shared.getRecords {
                         $0.events._id == event._id &&
                             $0.endAt >= startOfDay &&
-                            $0.endAt <= endOfDay 
+                            $0.endAt <= endOfDay
                     }
 
                     let record = records.first

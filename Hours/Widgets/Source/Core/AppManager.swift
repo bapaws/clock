@@ -13,6 +13,8 @@ public class AppManager: HoursShare.AppManager {
 
     override private init() {
         super.init()
+
+        requestCalendarAccess()
     }
 }
 

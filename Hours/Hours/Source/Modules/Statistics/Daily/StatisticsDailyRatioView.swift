@@ -31,7 +31,7 @@ struct StatisticsDailyRatioView: View {
                 if let icon = icon {
                     Image(systemName: icon)
                 }
-                if let emoji = emoji {
+                if let emoji = emoji, !emoji.isEmpty {
                     Text(emoji)
                 }
                 Text(title)

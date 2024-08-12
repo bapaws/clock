@@ -82,7 +82,7 @@ struct MainFeature {
                     }
                 }
 
-            case .eventsHome(.loadCompleted):
+            case .eventsHome(.list(.loadCompleted)):
                 debugPrint(Date.now.timeIntervalSince1970)
                 if state.isLoadCompleted { return .none }
                 state.isLoadCompleted = true
@@ -92,5 +92,6 @@ struct MainFeature {
                 return .none
             }
         }
+        ._printChanges(.actionLabels)
     }
 }

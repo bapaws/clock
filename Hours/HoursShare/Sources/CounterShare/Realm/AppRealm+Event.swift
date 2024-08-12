@@ -15,20 +15,26 @@ import RealmSwift
 
 public extension AppRealm {
     func writeEvent(_ entity: EventEntity, addTo category: CategoryEntity) async {
+        let realm = await realm
+        let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: category._id)
+        await AppRealm.shared.writeEvent(entity, addTo: categoryObject)
+    }
+
+    func writeEvent(_ entity: EventEntity, addTo categoryObject: CategoryObject?) async {
         do {
             let realm = await realm
             try await realm.asyncWrite {
                 var eventObject = entity.toObject()
                 // 从老的 category 中删除
                 if let eventCategory = entity.category,
-                   let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: eventCategory._id),
-                   let index = categoryObject.events.firstIndex(where: { $0._id == entity._id })
+                   let oldCategoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: eventCategory._id),
+                   let index = oldCategoryObject.events.firstIndex(where: { $0._id == entity._id })
                 {
                     // 防止数据导入时，category 被删除
-                    categoryObject.deletedAt = nil
+                    oldCategoryObject.deletedAt = nil
 
-                    eventObject = categoryObject.events[index]
-                    categoryObject.events.remove(at: index)
+                    eventObject = oldCategoryObject.events[index]
+                    oldCategoryObject.events.remove(at: index)
 
                     eventObject.name = entity.name
                     eventObject.emoji = entity.emoji
@@ -41,7 +47,6 @@ public extension AppRealm {
                     // 写入时，业务上只能是将删除标记设置成 nil
                     eventObject.deletedAt = nil
                 }
-                let categoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: category._id)
                 categoryObject?.events.append(eventObject)
             }
         } catch {

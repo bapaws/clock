@@ -13,8 +13,11 @@ public extension AppRealm {
         let realm = await realm
         for category in categories {
             if let object = realm.objects(CategoryObject.self).where({ $0.name == category.name && $0.emoji == category.emoji }).first {
-                try? await realm.asyncWrite {
-                    object.events.append(objectsIn: category.events.map { $0.toObject() })
+                for event in category.events {
+                    try? await realm.asyncWrite {
+                        object.deletedAt = nil
+                    }
+                    await AppRealm.shared.writeEvent(event, addTo: object)
                 }
             } else {
                 try? await realm.asyncWrite {

@@ -16,7 +16,7 @@ struct TimingEntityView: View {
             Spacer()
 
             HStack(spacing: 0) {
-                if let emoji = entity.emoji {
+                if let emoji = entity.emoji, !emoji.isEmpty {
                     Text(emoji)
                         .font(.footnote)
                 }

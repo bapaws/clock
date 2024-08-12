@@ -110,16 +110,16 @@ struct ImportDefaultFeature {
             case .onCategoryTapped(let entity):
                 if state.isImporting { return .none }
 
-                if var selected = state.selectedCategories[id: entity.id] {
-                    if selected.selectedEventIDs.isEmpty {
-                        let ids = entity.events.filter { !selected.disableEventIDs.contains($0.id) }
-                            .map { $0.id }
-                        selected.selectedEventIDs = Set(ids)
-                    } else {
-                        selected.selectedEventIDs.removeAll()
-                    }
-                    state.selectedCategories[id: entity.id] = selected
+                var selected: State.CategorySelected = state.selectedCategories[id: entity.id] ?? .init(category: entity)
+                if selected.selectedEventIDs.isEmpty {
+                    let ids = entity.events.filter { !selected.disableEventIDs.contains($0.id) }
+                        .map { $0.id }
+                    selected.selectedEventIDs = Set(ids)
+                } else {
+                    selected.selectedEventIDs.removeAll()
                 }
+                state.selectedCategories[id: entity.id] = selected
+
                 return .none
 
             case .onEventTapped(let category, let entity):
@@ -179,7 +179,7 @@ struct ImportDefaultFeature {
                         category.events = category.events.filter { selected.selectedEventIDs.contains($0.id) }
                         categories.append(category)
                     }
-                    
+
                     await AppRealm.shared.importDefaults(categories: categories)
 
                     await send(.close)

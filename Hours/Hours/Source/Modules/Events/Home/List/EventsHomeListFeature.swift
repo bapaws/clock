@@ -39,6 +39,7 @@ struct EventsHomeListFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case onAppear
+        case loadCompleted
 
         case toggleOtherCategoriesShow
 
@@ -109,6 +110,9 @@ struct EventsHomeListFeature {
                     await send(.timing(.onAppear), animation: .default)
                     // 重新加载最近
                     await send(.recent(.onAppear), animation: .default)
+
+                    // 发送加载完成消息，首页让 splash 页面消失
+                    await send(.loadCompleted)
                 }
 
             case .toggleOtherCategoriesShow:
@@ -125,7 +129,7 @@ struct EventsHomeListFeature {
                     let records = await AppRealm.shared.getRecords {
                         $0.events._id == event._id &&
                             $0.endAt >= startOfDay &&
-                            $0.endAt <= endOfDay 
+                            $0.endAt <= endOfDay
                     }
 
                     let record = records.first

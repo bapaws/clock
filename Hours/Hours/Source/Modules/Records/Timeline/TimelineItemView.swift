@@ -47,7 +47,7 @@ struct TimelineItemView: View {
             if let event = record.event {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack {
-                        if let emoji = event.emoji {
+                        if let emoji = event.emoji, !emoji.isEmpty {
                             Text(emoji)
                                 .font(.headline, weight: .regular)
                         }

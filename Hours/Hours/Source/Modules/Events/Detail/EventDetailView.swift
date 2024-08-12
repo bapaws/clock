@@ -170,7 +170,7 @@ struct EventDetailView: View {
             }
 
             StatisticsNumberView(imageName: "hourglass", title: L10n.timeInvest, subtitle: L10n.total, iconBackgound: ui.primary) {
-                StatisticsTimeView(time: store.event.time)
+                StatisticsTimeView(time: store.recordTimeLength)
             }
         }
     }

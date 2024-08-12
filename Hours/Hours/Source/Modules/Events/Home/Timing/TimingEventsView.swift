@@ -138,7 +138,7 @@ struct TimingEventsView: View {
                                 RoundedRectangle(cornerRadius: 2)
                                     .fill(event.primary)
                                     .frame(width: 4)
-                                if let emoji = event.emoji {
+                                if let emoji = event.emoji, !emoji.isEmpty {
                                     Text(emoji)
                                         .padding(.small)
                                 }

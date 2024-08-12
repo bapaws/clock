@@ -31,7 +31,6 @@ struct EventsHomeFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case onAppear
-        case loadCompleted
 
         case list(EventsHomeListFeature.Action)
 
@@ -73,9 +72,6 @@ struct EventsHomeFeature {
             case .onAppear:
                 return .run { send in
                     await send(.list(.onAppear))
-
-                    // 发送加载完成消息，首页让 splash 页面消失
-                    await send(.loadCompleted)
                 }
 
                 // MARK: Event
@@ -156,6 +152,5 @@ struct EventsHomeFeature {
         .ifLet(\.$importDefault, action: \.importDefault) {
             ImportDefaultFeature()
         }
-        ._printChanges(.actionLabels)
     }
 }

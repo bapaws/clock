@@ -28,7 +28,7 @@ struct PomodoroView: View {
     var body: some View {
         VStack {
             HStack {
-                if let emoji = event.categorys.first?.emoji {
+                if let emoji = event.categorys.first?.emoji, !emoji.isEmpty {
                     Text(emoji)
                         .font(.largeTitle, weight: .black)
                     Text("•")

@@ -18,7 +18,7 @@ struct CategoryIconView: View {
             if let icon = category.icon {
                 Image(systemName: icon)
             }
-            if let emoji = category.emoji {
+            if let emoji = category.emoji, !emoji.isEmpty {
                 Text(emoji)
             }
         }
@@ -43,7 +43,7 @@ struct CategoryView: View {
                     if let icon = category.icon {
                         Image(systemName: icon)
                     }
-                    if let emoji = category.emoji {
+                    if let emoji = category.emoji, !emoji.isEmpty {
                         Text(emoji)
                     }
                 }

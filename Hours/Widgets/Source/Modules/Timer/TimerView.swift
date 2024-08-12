@@ -30,7 +30,7 @@ struct TimerView: View {
         if entities.count == 1, let event = entities.first {
             VStack(spacing: 8) {
                 HStack {
-                    if let emoji = event.emoji {
+                    if let emoji = event.emoji, !emoji.isEmpty {
                         Text(emoji)
                             .font(.title3)
                     }

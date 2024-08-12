@@ -16,7 +16,7 @@ struct QuickEventItemView: View {
     var body: some View {
         let label = VStack {
             Spacer()
-            if let emoji = event.emoji {
+            if let emoji = event.emoji, !emoji.isEmpty {
                 Text(emoji)
             }
             Spacer()

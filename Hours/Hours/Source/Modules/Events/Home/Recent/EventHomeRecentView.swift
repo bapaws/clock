@@ -25,7 +25,7 @@ struct EventHomeRecentView: View {
                             ForEach(store.events) { event in
                                 VStack {
                                     Spacer()
-                                    if let emoji = event.emoji {
+                                    if let emoji = event.emoji, !emoji.isEmpty {
                                         Text(emoji)
                                         Spacer()
                                     }

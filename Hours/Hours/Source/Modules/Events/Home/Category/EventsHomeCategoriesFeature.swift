@@ -93,7 +93,6 @@ struct EventsHomeCategoriesFeature {
 
                     var eventDetail = EventDetailFeature.State(event: entity)
                     eventDetail.records = records
-                    eventDetail.recordCount = records.reduce(0) { $0 + $1.value.count }
                     await send(.onEventDetailLoaded(eventDetail))
                 }
 

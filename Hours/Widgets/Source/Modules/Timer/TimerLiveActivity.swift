@@ -52,7 +52,7 @@ struct TimerLiveActivity: Widget {
                     }
                 }
             } compactLeading: {
-                if let emoji = context.state.first?.emoji {
+                if let emoji = context.state.first?.emoji, !emoji.isEmpty {
                     Text(emoji)
                 } else {
                     Image(asset: Asset.icon)
@@ -73,7 +73,7 @@ struct TimerLiveActivity: Widget {
                 .frame(minWidth: 36, maxWidth: 54, alignment: .leading)
                 .monospacedDigit()
             } minimal: {
-                if let emoji = context.state.first?.emoji {
+                if let emoji = context.state.first?.emoji, !emoji.isEmpty {
                     Text(emoji)
                 } else {
                     Image(asset: Asset.icon)

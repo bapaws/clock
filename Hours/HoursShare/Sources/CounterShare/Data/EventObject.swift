@@ -49,7 +49,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexObjectColor
     public var seconds: Int { self.time.second }
 
     public var title: String {
-        if let emoji = emoji {
+        if let emoji = emoji, !emoji.isEmpty {
             return emoji + " " + self.name
         }
         return self.name
@@ -139,8 +139,11 @@ public struct EventEntity: Entity, HexEntityColors {
     /// 事件的分类
     public var category: CategoryEntity?
 
-    public var milliseconds: Int = 0
-    public var time: TimeLength = .zero
+    public var milliseconds: Int = 0 {
+        didSet { self.time = self.milliseconds.time }
+    }
+
+    public private(set) var time: TimeLength = .zero
 
     public init(
         id: String? = nil,
@@ -204,7 +207,6 @@ public struct EventEntity: Entity, HexEntityColors {
         }
 
         self.milliseconds = object.milliseconds
-        self.time = object.time
     }
 
     public func toObject() -> EventObject {

@@ -58,7 +58,5 @@ open class AppManager: ClockShare.AppBaseManager {
 
         isPomodoroStopped = false
         isTimerStopped = false
-
-        requestCalendarAccess()
     }
 }
