@@ -69,6 +69,7 @@ struct NewCategoryFeature {
                 state.isLoading = true
                 return .run { [state] send in
                     if var category = state.category {
+                        category.hex = state.hex
                         category.emoji = state.emoji
                         category.name = state.title
                         await AppRealm.shared.writeCategory(category)

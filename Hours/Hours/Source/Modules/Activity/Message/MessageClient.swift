@@ -19,6 +19,7 @@ struct MessageItem: Equatable, Identifiable {
     var openURL: String?
     var openTitle: String?
     var illustration: String?
+    var receiveWay: String?
     var isNotPro: Bool = true
     var startAt: Date?
     var endAt: Date?
@@ -49,13 +50,24 @@ extension MessageClient: DependencyKey {
                 languageCode: "zh",
                 content: """
                 **App Store 五🌟好评，可免费领取包月会员～**\n
-                1. 点击「[https://apps.apple.com/cn/app/id6479001202](https://apps.apple.com/cn/app/id6479001202)」，打开 App Store。\n
-                2. 给「**时间记录**」一个五🌟好评，也可以同时写下使用体验。
+                1. 点击「[**时间记录**](https://apps.apple.com/app/id6479001202?action=write-review)」，打开 App Store。\n
+                2. 给「[**时间记录**](https://apps.apple.com/app/id6479001202?action=write-review)」一个五🌟好评，也可以同时写下使用体验。
                 """,
                 contentURL: "https://bapaws.super.site/活动消息/免费领取月费会员",
                 openURL: "https://apps.apple.com/app/id6479001202?action=write-review",
                 openTitle: "去写评论",
-                illustration: "Success"
+                illustration: "Success",
+                receiveWay: """
+                🔴小红书\n
+                  1. 打开小红书，🔍搜索开发者小红书账户：[6481492100000000120342c4](xhsdiscover://user/6481492100000000120342c4)。点击❤️关注。
+                  2. 点击私信页面，将「**你的评分与评论**」页面的截图发送给账户。
+                  3. 我们将在 24 小时内，私信会员兑换码。\n
+                🟢微信\n
+                  1. 添加「**时间记录**」客服账户：[**Bapaws**](weixin://)。
+                  2. 将「**你的评分与评论**」页面的截图发送给客服账户。
+                  3. 将在 24 小时内，发送会员兑换码。\n
+                **👉由于会员码的限制，只能在 App Store 兑换一次。**\n
+                """
             ),
             MessageItem(
                 id: 1,
@@ -76,6 +88,17 @@ extension MessageClient: DependencyKey {
                 openURL: "xhsdiscover://user/6481492100000000120342c4",
                 openTitle: "打开小红书",
                 illustration: "Send",
+                receiveWay: """
+                🔴小红书\n
+                  1. 打开小红书，🔍搜索开发者小红书账户：[6481492100000000120342c4](xhsdiscover://user/6481492100000000120342c4)。点击❤️关注。
+                  2. 点击私信页面，将您的笔记分享给账户。
+                  3. 我们将在 24 小时内，私信会员兑换码。\n
+                🟢微信\n
+                  1. 微信添加「**时间记录**」客服账户：[**Bapaws**](weixin://)。
+                  2. 将您的笔记分享给客服的微信账户。
+                  3. 将在 24 小时内，发送会员兑换码。\n
+                **👉由于会员码的限制，只能在 App Store 兑换一次。**\n
+                """,
                 endAt: Date(year: 2024, month: 4, day: 7, hour: 20, minute: 0)
             ),
         ]

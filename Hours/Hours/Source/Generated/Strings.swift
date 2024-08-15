@@ -313,6 +313,8 @@ internal enum L10n {
   internal static let rate = L10n.tr("Localizable", "Rate", fallback: "Rate Our App")
   /// Reading
   internal static let reading = L10n.tr("Localizable", "Reading", fallback: "Reading")
+  /// Get It Now
+  internal static let receiveWay = L10n.tr("Localizable", "ReceiveWay", fallback: "Get It Now")
   /// Recent
   internal static let recent = L10n.tr("Localizable", "Recent", fallback: "Recent")
   /// Record Count
