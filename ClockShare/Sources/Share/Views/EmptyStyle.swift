@@ -13,10 +13,13 @@ struct EmptyStyleModifier: ViewModifier {
     let isEmpty: Bool
     public func body(content: Content) -> some View {
         if isEmpty {
-            Image("NotFound")
-                .padding(.large)
-                .padding(.top, .large)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+            VStack {
+                Spacer()
+                Image("NotFound")
+                Spacer()
+            }
+            .padding(.large)
+            .padding(.bottom, .large)
         } else {
             content
         }

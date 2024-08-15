@@ -27,6 +27,8 @@ struct EventsHomeView: View {
             VStack {
                 NavigationBar(L10n.events) { menu }
 
+                MessageView(store: store.scope(state: \.message, action: \.message))
+
                 if store.list.isEmpty {
                     EventsHomeEmptyView {
                         store.send(.newCategoryTapped)

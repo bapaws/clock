@@ -19,6 +19,8 @@ struct EventsHomeFeature {
     struct State: Equatable {
         var list: EventsHomeListFeature.State = .init()
 
+        var message: Message.State = .init()
+
         @Presents var newCategory: NewCategoryFeature.State?
         @Presents var newEvent: NewEventFeature.State?
 
@@ -31,6 +33,8 @@ struct EventsHomeFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case onAppear
+        
+        case message(Message.Action)
 
         case list(EventsHomeListFeature.Action)
 
@@ -63,6 +67,9 @@ struct EventsHomeFeature {
     var body: some Reducer<State, Action> {
         BindingReducer()
 
+        Scope(state: \.message, action: \.message) {
+            Message()
+        }
         Scope(state: \.list, action: \.list) {
             EventsHomeListFeature()
         }
@@ -72,6 +79,7 @@ struct EventsHomeFeature {
             case .onAppear:
                 return .run { send in
                     await send(.list(.onAppear))
+                    await send(.message(.onAppear), animation: .default)
                 }
 
                 // MARK: Event

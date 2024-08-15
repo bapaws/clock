@@ -12,6 +12,10 @@ import Foundation
 internal enum L10n {
   /// About
   internal static let about = L10n.tr("Localizable", "About", fallback: "About")
+  /// Activities
+  internal static let activities = L10n.tr("Localizable", "Activities", fallback: "Activities")
+  /// Details
+  internal static let activityDetail = L10n.tr("Localizable", "ActivityDetail", fallback: "Details")
   /// Adjacent Records
   internal static let adjacentRecords = L10n.tr("Localizable", "AdjacentRecords", fallback: "Adjacent Records")
   /// Afternoon Tea
@@ -259,6 +263,10 @@ internal enum L10n {
   internal static let newRecord = L10n.tr("Localizable", "NewRecord", fallback: "New Record")
   /// Note
   internal static let note = L10n.tr("Localizable", "Note", fallback: "Note")
+  /// Not Interested
+  internal static let notInterested = L10n.tr("Localizable", "NotInterested", fallback: "Not Interested")
+  /// OK
+  internal static let ok = L10n.tr("Localizable", "OK", fallback: "OK")
   /// Onboarding
   internal static let onboarding = L10n.tr("Localizable", "Onboarding", fallback: "Onboarding")
   /// Orange
@@ -313,6 +321,8 @@ internal enum L10n {
   internal static let records = L10n.tr("Localizable", "Records", fallback: "Records")
   /// RED
   internal static let redBook = L10n.tr("Localizable", "RedBook", fallback: "RED")
+  /// Reminder Later
+  internal static let reminderLater = L10n.tr("Localizable", "ReminderLater", fallback: "Reminder Later")
   /// Restore
   internal static let restore = L10n.tr("Localizable", "Restore", fallback: "Restore")
   /// Running

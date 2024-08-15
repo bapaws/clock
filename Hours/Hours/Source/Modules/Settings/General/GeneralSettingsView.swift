@@ -6,55 +6,123 @@
 //
 
 import ClockShare
+import ComposableArchitecture
 import HoursShare
 import PopupView
 import RevenueCat
 import SwiftUI
 import SwiftUIX
 
+@Reducer
+struct GeneralSettingsFeature {
+    @ObservableState
+    struct State: Equatable {
+        var isDarkModePresented: Bool = false
+        var isLandspaceModePresented: Bool = false
+        var isAppIconPresented: Bool = false
+
+        // MARK: Other
+
+        var isOnboardingPresented = false
+        var isAboutPresented = false
+        var isFeedbackPresented = false
+
+        @Presents var activityList: ActivityListFeature.State?
+    }
+
+    enum Action: BindableAction {
+        case binding(BindingAction<State>)
+        case onAppear
+
+        case onDarkModeTapped
+        case onLandspaceModeTapped
+        case onAppIconTapped
+
+        case onOnboardingTapped
+        case onActivityTapped
+        case onAboutTapped
+        case onFeedbackTapped
+
+        case onActivityListTapped
+        case activityList(PresentationAction<ActivityListFeature.Action>)
+    }
+
+    var body: some Reducer<State, Action> {
+        BindingReducer()
+        Reduce { state, action in
+            switch action {
+            case .onAppear:
+                return .none
+
+            case .onDarkModeTapped:
+                state.isDarkModePresented.toggle()
+                return .none
+            case .onLandspaceModeTapped:
+                state.isLandspaceModePresented.toggle()
+                return .none
+            case .onAppIconTapped:
+                state.isAppIconPresented.toggle()
+                return .none
+            case .onOnboardingTapped:
+                state.isOnboardingPresented.toggle()
+                return .none
+            case .onActivityTapped:
+                state.activityList = .init()
+                return .none
+            case .onAboutTapped:
+                state.isAboutPresented.toggle()
+                return .none
+            case .onFeedbackTapped:
+                state.isFeedbackPresented.toggle()
+                return .none
+
+            default:
+                return .none
+            }
+        }
+        .ifLet(\.$activityList, action: \.activityList) {
+            ActivityListFeature()
+        }
+    }
+}
+
 struct GeneralSettingsView: View {
     // MARK: Paywall
 
     @Binding var isPaywallPresented: Bool
 
-    // MARK: Appearance
-
-    @State var isDarkModePresented: Bool = false
-    @State var isLandspaceModePresented: Bool = false
-    @State var isAppIconPresented: Bool = false
-
-    // MAKR: Sound
-    @State var isSoundTypePresented: Bool = false
-
-    // MARK: Other
-
-    @State var isOnboardingPresented = false
-    @State var isAboutPresented = false
-    @State var isFeedbackPresented = false
-
     @EnvironmentObject var ui: UIManager
     @Environment(\.colorScheme) var colorScheme
 
+    @Perception.Bindable var store: StoreOf<GeneralSettingsFeature>
+
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
-        VStack {
-            NavigationBar(L10n.settings)
-            scrollView
-        }
-        .background(ui.background)
-
-        // MARK: Other
-
-        .sheet(isPresented: $isOnboardingPresented) {
-            let indices = app.isHealthAvailable ? OnboardingIndices.allCases : [.welcome, .appScreenTime, .calendar, .health]
-            OnboardingView(onboardingIndices: indices) {
-                isOnboardingPresented.toggle()
+        WithPerceptionTracking {
+            VStack {
+                NavigationBar(L10n.settings)
+                scrollView
             }
-        }
-        .sheet(isPresented: $isAboutPresented) {
-            AboutView(isPresented: $isAboutPresented)
-        }
-        .sheet(isPresented: $isFeedbackPresented) {
-            FeedbackView()
+            .background(ui.background)
+
+            // MARK: Other
+
+            .sheet(isPresented: $store.isOnboardingPresented) {
+                let indices = app.isHealthAvailable ? OnboardingIndices.allCases : [.welcome, .appScreenTime, .calendar, .health]
+                OnboardingView(onboardingIndices: indices) {
+                    dismiss()
+                }
+            }
+            .sheet(isPresented: $store.isAboutPresented) {
+                AboutView()
+            }
+            .sheet(isPresented: $store.isFeedbackPresented) {
+                FeedbackView()
+            }
+            .sheet(item: $store.scope(state: \.activityList, action: \.activityList)) {
+                ActivityListView(store: $0)
+            }
         }
     }
 
@@ -79,14 +147,20 @@ struct GeneralSettingsView: View {
 
                 SettingsSection(title: L10n.other) {
                     SettingsNavigateCell(title: L10n.onboarding) {
-                        isOnboardingPresented.toggle()
+                        store.send(.onOnboardingTapped)
                     }
+                    if !ProManager.default.isPro {
+                        SettingsNavigateCell(title: L10n.activities) {
+                            store.send(.onActivityTapped)
+                        }
+                    }
+
                     SettingsNavigateCell(title: L10n.rate, action: goToRate)
                     SettingsNavigateCell(title: L10n.feedback) {
-                        isFeedbackPresented = true
+                        store.send(.onFeedbackTapped)
                     }
                     SettingsNavigateCell(title: L10n.about) {
-                        isAboutPresented = true
+                        store.send(.onAboutTapped)
                     }
                 }
             }
@@ -101,5 +175,11 @@ struct GeneralSettingsView: View {
 }
 
 #Preview {
-    GeneralSettingsView(isPaywallPresented: .constant(false))
+    GeneralSettingsView(
+        isPaywallPresented: .constant(false),
+        store: StoreOf<GeneralSettingsFeature>.init(
+            initialState: .init(),
+            reducer: { GeneralSettingsFeature() }
+        )
+    )
 }

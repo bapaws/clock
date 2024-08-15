@@ -8,7 +8,13 @@
 import Foundation
 
 // MARK: - Result
+
 struct ItunesLookupResult: Codable {
+    let resultCount: Int?
+    let results: [ItunesLookupAppResult]?
+}
+
+struct ItunesLookupAppResult: Codable {
     let isGameCenterEnabled: Bool?
     let screenshotUrls, ipadScreenshotUrls: [String]?
     let appletvScreenshotUrls: [String]?
@@ -18,7 +24,7 @@ struct ItunesLookupResult: Codable {
     let artworkUrl60, artworkUrl100: String?
     let features: [String]?
     let kind: String?
-    let releaseDate, currentVersionReleaseDate: Date?
+//    let releaseDate, currentVersionReleaseDate: Date?
     let languageCodesISO2A: [String]?
     let averageUserRatingForCurrentVersion: Double?
     let fileSizeBytes, formattedPrice: String?
@@ -45,7 +51,8 @@ struct ItunesLookupResult: Codable {
     enum CodingKeys: String, CodingKey {
         case isGameCenterEnabled, screenshotUrls, ipadScreenshotUrls, appletvScreenshotUrls, artworkUrl512, supportedDevices, advisories
         case artistViewURL = "artistViewUrl"
-        case artworkUrl60, artworkUrl100, features, kind, releaseDate, currentVersionReleaseDate, languageCodesISO2A, averageUserRatingForCurrentVersion, fileSizeBytes, formattedPrice, userRatingCountForCurrentVersion, trackContentRating, averageUserRating
+        case artworkUrl60, artworkUrl100, features, kind, languageCodesISO2A, averageUserRatingForCurrentVersion, fileSizeBytes, formattedPrice, userRatingCountForCurrentVersion, trackContentRating, averageUserRating
+//        case releaseDate, currentVersionReleaseDate
         case artistID = "artistId"
         case artistName, genres, price, description
         case bundleID = "bundleId"

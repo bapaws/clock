@@ -18,9 +18,8 @@ import UIKit
 public extension AppManager {
     func requestCalendarAccess(completion: ((Bool) -> Void)? = nil) {
         let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, _ in
-            self?.calendarAccessGranted = granted
-
             DispatchQueue.main.async {
+                self?.calendarAccessGranted = granted
                 completion?(granted)
             }
         }

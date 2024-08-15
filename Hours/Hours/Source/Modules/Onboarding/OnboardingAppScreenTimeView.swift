@@ -50,9 +50,8 @@ struct OnboardingAppScreenTimeView: View {
             .foregroundStyle(Color.systemPink)
         }
         .sheet(isPresented: $isGuidePresented) {
-            SafariView(url: URL(string: "https://zytllepnl6.feishu.cn/docx/PFtQdUY04og6rbxvbsHciiHNnZd")!)
+            SafariView(url: URL(string: L10n.appScreenTimeHelpURL)!)
         }
-
 
         Spacer()
     }

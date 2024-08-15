@@ -59,11 +59,14 @@ struct MainView: View {
                         Image(uiImage: Asset.Tab.statistics.image)
                     }
 
-                    GeneralSettingsView(isPaywallPresented: $store.isPaywallPresented)
-                        .tag(MainTabTag.settings)
-                        .tabItem {
-                            Image(uiImage: Asset.Tab.settings.image)
-                        }
+                    GeneralSettingsView(
+                        isPaywallPresented: $store.isPaywallPresented,
+                        store: store.scope(state: \.settings, action: \.settings)
+                    )
+                    .tag(MainTabTag.settings)
+                    .tabItem {
+                        Image(uiImage: Asset.Tab.settings.image)
+                    }
                 }
                 .accentColor(ui.primary)
                 .tint(ui.primary)

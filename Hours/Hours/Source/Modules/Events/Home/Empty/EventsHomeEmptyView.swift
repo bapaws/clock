@@ -17,7 +17,7 @@ struct EventsHomeEmptyView: View {
             Menu {
                 menuContent
             } label: {
-                Image(asset: Asset.empty)
+                Image(asset: Asset.Illustrations.empty)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
             }
 

@@ -9,9 +9,9 @@ import SwiftUI
 import SwiftUIX
 
 struct AboutView: View {
-    @Binding var isPresented: Bool
-
     @State var urlString: String?
+
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationView {
@@ -45,7 +45,7 @@ struct AboutView: View {
                 Spacer()
                 HStack {
                     Button {
-                        urlString = "https://privacy.bapaws.com/Hours/terms.html"
+                        urlString = "https://bapaws.super.site/隐私政策/用户协议"
                     } label: {
                         Text(L10n.terms)
                             .font(.caption)
@@ -55,7 +55,7 @@ struct AboutView: View {
                         .font(.caption)
                         .foregroundColor(.tertiaryLabel)
                     Button {
-                        urlString = "https://privacy.bapaws.com/Hours/privacy.html"
+                        urlString = "https://bapaws.super.site/隐私政策/隐私协议"
                     } label: {
                         Text(L10n.privacy)
                             .font(.caption)
@@ -68,7 +68,7 @@ struct AboutView: View {
             .background(ui.background)
             .navigationTitle(L10n.about)
             .navigationBarItems(trailing: Button(action: {
-                isPresented = false
+                dismiss()
             }, label: {
                 Image(systemName: "xmark")
                     .font(.subheadline)
@@ -81,5 +81,5 @@ struct AboutView: View {
 }
 
 #Preview {
-    AboutView(isPresented: Binding<Bool>.constant(true))
+    AboutView()
 }

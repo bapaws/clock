@@ -18,6 +18,7 @@
 "Edit" = "编辑";
 "Continue" = "继续";
 "Loading" = "加载中...";
+"OK" = "好的";
 
 // MARK: Onboarding
 
@@ -96,6 +97,10 @@
 
 "StartTimer" = "启动计时器";
 "StartPomodoro" = "启动番茄钟";
+
+"ReminderLater" = "稍后提醒";
+"ActivityDetail" = "活动详情";
+"NotInterested" = "不用了";
 
 // 工作
 "Work" = "上班";
@@ -260,6 +265,7 @@
 // MARK: Other
 
 "Other" = "其他";
+"Activities" = "奖励活动";
 "Rate" = "鼓励一下";
 "Upgrade" = "检查更新";
 "About" = "关于";

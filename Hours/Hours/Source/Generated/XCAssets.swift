@@ -28,10 +28,15 @@ internal enum Asset {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let launchBackground = ColorAsset(name: "LaunchBackground")
   }
-  internal static let empty = ImageAsset(name: "Empty")
   internal static let hourglass = ImageAsset(name: "Hourglass")
+  internal enum Illustrations {
+    internal static let empty = ImageAsset(name: "Empty")
+    internal static let notFound = ImageAsset(name: "NotFound")
+    internal static let send = ImageAsset(name: "Send")
+    internal static let success = ImageAsset(name: "Success")
+    internal static let winner = ImageAsset(name: "Winner")
+  }
   internal static let launchImage = ImageAsset(name: "LaunchImage")
-  internal static let notFound = ImageAsset(name: "NotFound")
   internal enum Onboarding {
     internal static let welcome = ImageAsset(name: "Welcome")
   }
@@ -41,7 +46,6 @@ internal enum Asset {
     internal static let settings = ImageAsset(name: "Settings")
     internal static let statistics = ImageAsset(name: "Statistics")
   }
-  internal static let winner = ImageAsset(name: "Winner")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

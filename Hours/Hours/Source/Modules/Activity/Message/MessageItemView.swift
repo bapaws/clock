@@ -11,24 +11,28 @@ import SwiftUI
 
 struct MessageItemView: View {
     let item: MessageItem
-    let close: () -> Void
+    let onClosed: () -> Void
+    let onTapped: () -> Void
     var body: some View {
         HStack(alignment: .center) {
             Text(item.emoji)
             Text(item.title)
-                .font(.footnote)
                 .foregroundStyle(ui.label)
             Spacer()
-            Button {} label: {
+            Button(action: onClosed) {
                 Image(systemName: "xmark")
-                    .font(.footnote)
                     .foregroundStyle(Color.placeholderText)
+                    .padding(.extraSmall)
             }
         }
+        .font(.callout)
+        .animation(.bouncy, value: item)
+        .contentTransition(.numericText())
         .padding(.small)
         .background(ui.secondaryBackground)
         .cornerRadius(16)
         .padding()
+        .onTapGesture(perform: onTapped)
     }
 }
 
@@ -39,7 +43,8 @@ struct MessageItemView: View {
             emoji: "✉️",
             title: "App Store 五🌟好评，可获得包月会员～"
         ),
-        close: {}
+        onClosed: {},
+        onTapped: {}
     )
     .background(Color.systemGray6)
 }

@@ -17,6 +17,7 @@ struct MainFeature {
         var eventsHome: EventsHomeFeature.State = .init()
         var statistics: Statistics.State = .init()
         var recordsHome: RecordsHomeFeature.State = .init()
+        var settings: GeneralSettingsFeature.State = .init()
 
         var isLoadCompleted: Bool = false
 
@@ -41,6 +42,8 @@ struct MainFeature {
 
         case recordsHome(RecordsHomeFeature.Action)
         case didRecordsHomeLoad(Date, [RecordEntity])
+
+        case settings(GeneralSettingsFeature.Action)
     }
 
     @Dependency(\.date.now) var now
@@ -56,6 +59,9 @@ struct MainFeature {
         }
         Scope(state: \.recordsHome, action: \.recordsHome) {
             RecordsHomeFeature()
+        }
+        Scope(state: \.settings, action: \.settings) {
+            GeneralSettingsFeature()
         }
 
         Reduce { state, action in

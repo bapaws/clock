@@ -18,6 +18,7 @@
 "Edit" = "Edit";
 "Continue" = "Continue";
 "Loading" = "Loading...";
+"OK" = "OK";
 
 // MARK: Onboarding
 
@@ -96,6 +97,10 @@
 
 "StartTimer" = "Start Timer";
 "StartPomodoro" = "Start Pomodoro";
+
+"ReminderLater" = "Reminder Later";
+"ActivityDetail" = "Details";
+"NotInterested" = "Not Interested";
 
 // 工作
 "Work" = "Work";
@@ -261,6 +266,7 @@
 // MARK: Other
 
 "Other" = "Other";
+"Activities" = "Activities";
 "Rate" = "Rate Our App";
 "Upgrade" = "Upgrade";
 "About" = "About";

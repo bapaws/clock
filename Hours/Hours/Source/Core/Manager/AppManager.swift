@@ -92,7 +92,7 @@ public extension AppManager {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let result = try JSONDecoder().decode(ItunesLookupResult.self, from: data)
-            return result.version
+            return result.results?.first?.version
         } catch {
             debugPrint(error)
             return nil
