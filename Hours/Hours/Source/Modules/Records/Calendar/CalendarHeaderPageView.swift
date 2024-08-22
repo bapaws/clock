@@ -81,7 +81,7 @@ struct CalendarHeaderPageView: View {
                 }
 
                 InfinitePageView(
-                    selection: $store.home.date.animation(),
+                    selection: $store.home.date,
                     backward: { $0.dateAt(.startOfWeek).dateAt(.yesterdayAtStart) },
                     forward: { $0.dateAt(.endOfWeek).dateAt(.tomorrowAtStart) }
                 ) { date in

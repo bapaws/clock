@@ -59,6 +59,7 @@
 		882B82DF2BF0B68A00B0365A /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 882B82DE2BF0B68A00B0365A /* Flow */; };
 		882D01672BBCF4400058D834 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D01662BBCF4400058D834 /* EventDetailView.swift */; };
 		88393E642B9DDE13007F2F18 /* RecordsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88393E632B9DDE13007F2F18 /* RecordsHomeView.swift */; };
+		8843A6402C7777D7008C5295 /* NewRecordEndAtPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843A63F2C7777D7008C5295 /* NewRecordEndAtPickerView.swift */; };
 		885FF83F2C183FDD00F4796E /* QuickStartTimerAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF0F52C11BB7C009B5A29 /* QuickStartTimerAppIntent.swift */; };
 		8863CEDB2B9A09B3000BA47D /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8863CEDA2B9A09B3000BA47D /* Charts.framework */; };
 		8867985A2BEA602500E55B2C /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886798592BEA602500E55B2C /* FeedbackView.swift */; };
@@ -297,6 +298,7 @@
 		882B82DA2BF0B60C00B0365A /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
 		882D01662BBCF4400058D834 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		88393E632B9DDE13007F2F18 /* RecordsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsHomeView.swift; sourceTree = "<group>"; };
+		8843A63F2C7777D7008C5295 /* NewRecordEndAtPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordEndAtPickerView.swift; sourceTree = "<group>"; };
 		8863CEDA2B9A09B3000BA47D /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
 		886798592BEA602500E55B2C /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		886905F12BCCB607006865DD /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 			children = (
 				88059EA42B9EDC9000C8BF9E /* NewRecordView.swift */,
 				88059EA72B9F4F6500C8BF9E /* NewRecordTimeView.swift */,
+				8843A63F2C7777D7008C5295 /* NewRecordEndAtPickerView.swift */,
 				88F357C92C1E8C0700DD106A /* NewRecordFeature.swift */,
 			);
 			path = New;
@@ -1610,6 +1613,7 @@
 				8802CBD42BAB2CF700F0091E /* SettingsAppIconView.swift in Sources */,
 				88F19CAE2C40C5C2003C5DC1 /* EventsHomeCategoriesView.swift in Sources */,
 				88D5D2A12C5A7C8300495A53 /* ImportDefaultFeature.swift in Sources */,
+				8843A6402C7777D7008C5295 /* NewRecordEndAtPickerView.swift in Sources */,
 				8827A5772BEC85BE0010FC4C /* NewRecordAppIntent.swift in Sources */,
 				88F357CA2C1E8C0700DD106A /* NewRecordFeature.swift in Sources */,
 				88FBAE912C0E09E400C45F29 /* StatisticsYearHeatMapView.swift in Sources */,
@@ -1712,7 +1716,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1741,7 +1745,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1901,7 +1905,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1939,7 +1943,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

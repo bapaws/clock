@@ -47,6 +47,12 @@ public class AppManager: HoursShare.AppManager {
     private let identifier = "cn.com.nostudio.napnap.backgroundFetch.identifier"
     private let operationQueue: OperationQueue = .init()
 
+    // MARK: New Record Duration Picker(min)
+
+    public var recordDurations: [Int] {
+        [5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 360, 480, 600]
+    }
+
     override private init() {
         super.init()
 

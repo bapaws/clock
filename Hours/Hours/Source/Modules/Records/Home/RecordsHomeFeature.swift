@@ -57,7 +57,7 @@ struct RecordsHomeFeature {
             switch action {
             case .onAppear:
                 return .run { [date = state.home.date] send in
-                    await send(.timeline(.onRecordLoaded(date)))
+                    await send(.timeline(.onRecordLoaded(date)), animation: .default)
                 }
 
             case .onNewRecordTapped(let entity),
