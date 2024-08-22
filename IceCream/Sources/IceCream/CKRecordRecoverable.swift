@@ -8,7 +8,7 @@
 import CloudKit
 import RealmSwift
 
-public protocol CKRecordRecoverable {}
+public protocol CKRecordRecoverable: CreamCKAsset {}
 
 extension CKRecordRecoverable where Self: Object {
     static func parseFromRecord<U: Object, V: Object, W: Object>(
@@ -161,6 +161,11 @@ extension CKRecordRecoverable where Self: Object {
                 o.setValue(recordValue, forKey: prop.name)
             }
         }
+
+        if let name = o.assetPropertyName, let asset = record.value(forKey: name) as? CKAsset {
+            o.parse(ckAsset: asset)
+        }
+
         return o
     }
 

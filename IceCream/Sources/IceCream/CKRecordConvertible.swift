@@ -10,7 +10,7 @@ import Foundation
 import Realm
 import RealmSwift
 
-public protocol CKRecordConvertible {
+public protocol CKRecordConvertible: CreamCKAsset {
     static var recordType: String { get }
     static var zoneID: CKRecordZone.ID { get }
     static var databaseScope: CKDatabase.Scope { get }
@@ -185,6 +185,11 @@ public extension CKRecordConvertible where Self: Object {
                 break
             }
         }
+
+        if let assetPropertyName, let asset {
+            r[assetPropertyName] = asset
+        }
+
         return r
     }
 }
