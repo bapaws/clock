@@ -11,6 +11,8 @@ import Foundation
 extension Storage.Key {
     static let messageNotShowAgain = "messageNotShowAgain"
     static let messageShowLater = "messageShowLater"
+
+    static let isReleaseVersion = "isReleaseVersion"
 }
 
 extension Storage {
@@ -32,6 +34,15 @@ extension Storage {
             store.set(date, forKey: key)
         } else {
             store.removeObject(forKey: key)
+        }
+    }
+
+    var isReleaseVersion: Bool {
+        set {
+            store.set(newValue, forKey: Key.isReleaseVersion)
+        }
+        get {
+            store.bool(forKey: Key.isReleaseVersion)
         }
     }
 }

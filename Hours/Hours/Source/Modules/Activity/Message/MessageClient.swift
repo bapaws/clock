@@ -105,6 +105,10 @@ extension MessageClient: DependencyKey {
     }
 
     private static func isValidVersion() async -> Bool {
+        if Storage.default.isReleaseVersion {
+            return true
+        }
+
         let infoDictionary = Bundle.main.infoDictionary
         guard let majorVersion = infoDictionary?["CFBundleShortVersionString"] as? String else {
             return false
@@ -114,8 +118,13 @@ extension MessageClient: DependencyKey {
         return true
         #else
         let appStoreVersion = await AppManager.shared.fetchAppStoreVersion()
-        return majorVersion != appStoreVersion
+        if majorVersion != appStoreVersion {
+            return false
+        }
         #endif
+
+        Storage.default.isReleaseVersion = true
+        return true
     }
 
     private static var languageCode: String {

@@ -18,8 +18,8 @@ struct QuickEventItemView: View {
             Spacer()
             if let emoji = event.emoji, !emoji.isEmpty {
                 Text(emoji)
+                Spacer()
             }
-            Spacer()
             Text(event.name)
                 .lineLimit(2)
                 .minimumScaleFactor(0.5)

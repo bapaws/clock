@@ -96,7 +96,8 @@ public extension AppManager {
         }
 
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let session = URLSession(configuration: .ephemeral)
+            let (data, _) = try await session.data(from: url)
             let result = try JSONDecoder().decode(ItunesLookupResult.self, from: data)
             return result.results?.first?.version
         } catch {
