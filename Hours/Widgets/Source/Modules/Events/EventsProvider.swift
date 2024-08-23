@@ -163,6 +163,7 @@ struct EventsProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<QuickTimelineEntry>) -> ()) {
         Task {
             let categories = await AppRealm.shared.getAllUnarchivedCategories()
+                .filter { !$0.events.isEmpty }
             var timelineEntry = QuickTimelineEntry(context: context, categories: categories)
             if let entities = Storage.default.currentTimingEntities {
                 timelineEntry.timingEntities = entities
