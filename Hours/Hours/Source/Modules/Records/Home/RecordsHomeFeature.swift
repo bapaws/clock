@@ -18,13 +18,13 @@ struct RecordsHomeFeature {
         @Shared(.recordsHomeCurrentState) var home = RecordsHomeCurrentState()
 
         var calendar: CalendarHeaderPageFeature.State
-        var timeline: TimelinePageFeature.State
+        var timelinePage: TimelinePageFeature.State
 
         @Presents var newRecord: NewRecordFeature.State?
 
         init() {
             calendar = .init()
-            timeline = .init()
+            timelinePage = .init()
         }
     }
 
@@ -34,7 +34,7 @@ struct RecordsHomeFeature {
         case onAppear
 
         case calendar(CalendarHeaderPageFeature.Action)
-        case timeline(TimelinePageFeature.Action)
+        case timelinePage(TimelinePageFeature.Action)
 
         case onNewRecordTapped(RecordEntity?)
         case updateNewRecordState(NewRecordFeature.State)
@@ -49,7 +49,7 @@ struct RecordsHomeFeature {
         Scope(state: \.calendar, action: \.calendar) {
             CalendarHeaderPageFeature()
         }
-        Scope(state: \.timeline, action: \.timeline) {
+        Scope(state: \.timelinePage, action: \.timelinePage) {
             TimelinePageFeature()
         }
 
@@ -57,11 +57,12 @@ struct RecordsHomeFeature {
             switch action {
             case .onAppear:
                 return .run { [date = state.home.date] send in
-                    await send(.timeline(.onRecordLoaded(date)), animation: .default)
+                    await send(.timelinePage(.onRecordLoaded(date)), animation: .default)
                 }
 
             case .onNewRecordTapped(let entity),
-                 .timeline(.onRecordTapped(let entity)):
+                 .timelinePage(.onRecordTapped(let entity)),
+                 .timelinePage(.timelines(.element(id: _, action: .onRecordTapped(let entity)))):
                 return .run { [currentDate = state.home.date] send in
                     if let entity {
                         let state = NewRecordFeature.State(record: entity)
@@ -96,7 +97,7 @@ struct RecordsHomeFeature {
             case .newRecord(.presented(.saveCompleted(let entity))):
                 return .run { send in
                     // 如果同一天，则更新当天的数据，如果不是直接更新两天的数据
-                    await send(.timeline(.onRecordLoaded(entity.endAt)))
+                    await send(.timelinePage(.onRecordLoaded(entity.endAt)))
                 }
 
             default:

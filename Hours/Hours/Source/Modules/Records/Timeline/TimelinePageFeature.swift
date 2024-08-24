@@ -24,7 +24,7 @@ struct TimelinePageFeature {
     struct State: Equatable {
         @Shared(.recordsHomeCurrentState) var home = .init()
 
-        var items: IdentifiedArrayOf<TimelinePageItem> = .init()
+        var timelines: IdentifiedArrayOf<TimelineFeature.State> = []
     }
 
     enum Action: BindableAction {
@@ -32,6 +32,8 @@ struct TimelinePageFeature {
 
         case onRecordLoaded(Date?)
         case updateRecords(Date, [RecordEntity])
+
+        case timelines(IdentifiedActionOf<TimelineFeature>)
 
         case onRecordTapped(RecordEntity?)
 
@@ -46,60 +48,33 @@ struct TimelinePageFeature {
         Reduce { state, action in
             switch action {
             case .onRecordLoaded(let date):
-                return .run { [home = state.home] send in
-                    let date = date ?? home.date
-                    let startOfDay = date.dateAtStartOf(.day)
-                    let endOfDay = date.dateAtEndOf(.day)
-                    let records = await AppRealm.shared.getRecords {
-                        $0.endAt >= startOfDay &&
-                            $0.endAt <= endOfDay
-                    }
-                    // 使用开始时间进行数据刷新
-                    await send(.updateRecords(startOfDay, records), animation: .default)
-
-                    // 缓存昨天和明天的数据
-                    await send(.cacheRecords(date))
+                let date = (date ?? state.home.date).dateAt(.startOfDay)
+                if state.timelines[id: date] == nil {
+                    state.timelines.append(TimelineFeature.State(date: date))
                 }
 
-            case .cacheRecords(let date):
+                let startOfYesterday = date.dateAt(.yesterdayAtStart)
+                if state.timelines[id: startOfYesterday] == nil {
+                    state.timelines.append(TimelineFeature.State(date: startOfYesterday))
+                }
+
+                let startOfTomorrow = date.dateAt(.tomorrowAtStart)
+                if state.timelines[id: startOfTomorrow] == nil {
+                    state.timelines.append(TimelineFeature.State(date: startOfTomorrow))
+                }
+
                 return .run { send in
-                    let startOfYesterday = date.dateAt(.yesterdayAtStart)
-                    let endOfYesterday = startOfYesterday.dateAt(.endOfDay)
-                    let yesterdayRecords = await AppRealm.shared.getRecords {
-                        $0.endAt >= startOfYesterday &&
-                            $0.endAt <= endOfYesterday &&
-                            $0.deletedAt == nil
-                    }
-                    // 使用开始时间进行数据刷新
-                    await send(.updateRecords(startOfYesterday, yesterdayRecords))
-
-                    let startOfTomorrow = date.dateAt(.tomorrowAtStart)
-                    let endOfTomorrow = startOfTomorrow.dateAt(.endOfDay)
-                    let tomorrowRecords = await AppRealm.shared.getRecords {
-                        $0.endAt >= startOfTomorrow &&
-                            $0.endAt <= endOfTomorrow &&
-                            $0.deletedAt == nil
-                    }
-                    // 使用开始时间进行数据刷新
-                    await send(.updateRecords(startOfTomorrow, tomorrowRecords))
-                }
-
-            case .updateRecords(let date, let entities):
-                state.items[id: date] = TimelinePageItem(date: date, records: entities)
-                return .none
-
-            case .deleteRecord(let entity):
-                state.items[id: state.home.date]?.records.removeAll(where: { $0 == entity })
-                return .run { _ in
-                    await AppRealm.shared.deleteRecord(entity)
-                    if let calendarEventIdentifier = entity.calendarEventIdentifier {
-                        AppManager.shared.deleteCalendarEvent(for: calendarEventIdentifier)
-                    }
+                    await send(.timelines(.element(id: date, action: .onAppear)))
+                    await send(.timelines(.element(id: startOfYesterday, action: .onAppear)))
+                    await send(.timelines(.element(id: startOfTomorrow, action: .onAppear)))
                 }
 
             default:
                 return .none
             }
+        }
+        .forEach(\.timelines, action: \.timelines) {
+            TimelineFeature()
         }
     }
 }

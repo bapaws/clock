@@ -34,30 +34,24 @@ struct CategoryIconView: View {
 
 struct CategoryView: View {
     let category: CategoryEntity
-    var padding: CGFloat = 4
 
     var body: some View {
         HStack(spacing: 4) {
             if category.icon?.isEmpty == false || category.emoji?.isEmpty == false {
-                Group {
-                    if let icon = category.icon {
-                        Image(systemName: icon)
-                    }
-                    if let emoji = category.emoji, !emoji.isEmpty {
-                        Text(emoji)
-                    }
+                if let icon = category.icon {
+                    Image(systemName: icon)
                 }
-                .font(.body)
-                .frame(width: 25, height: 25, alignment: .center)
+                if let emoji = category.emoji, !emoji.isEmpty {
+                    Text(emoji)
+                }
             }
 
             Text(category.name)
-                .font(.footnote)
-                .frame(height: 25)
         }
+        .font(.footnote)
         .foregroundStyle(category.onSecondaryContainer)
         .padding(.horizontal, .small)
-        .padding(.vertical, .extraSmall)
+        .padding(.vertical, .small)
         .background {
             Capsule()
                 .fill(category.secondaryContainer)

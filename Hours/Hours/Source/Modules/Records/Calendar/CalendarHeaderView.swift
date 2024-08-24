@@ -87,6 +87,7 @@ struct CalendarHeaderView: View {
                         }
                     }
                     .foregroundStyle(isCurrent ? ui.primary : ui.secondaryLabel)
+                    .animation(.easeInOut, value: isCurrent)
                     .onTapGesture {
                         currentDate = date
                     }

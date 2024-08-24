@@ -81,7 +81,7 @@ struct MainFeature {
                         await send(.eventsHome(.onAppear))
 
                     case .records:
-                        await send(.recordsHome(.timeline(.onRecordLoaded(nil))))
+                        await send(.recordsHome(.timelinePage(.onRecordLoaded(nil))))
 
                     default:
                         break

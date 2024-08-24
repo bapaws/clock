@@ -18,11 +18,6 @@ import SwiftUIX
 struct RecordsHomeView: View {
     @Perception.Bindable var store: StoreOf<RecordsHomeFeature>
 
-    @State var currentDate: Date = AppManager.shared.today
-
-    @EnvironmentObject var app: AppManager
-    @EnvironmentObject var ui: UIManager
-
     var body: some View {
         WithPerceptionTracking {
             VStack(spacing: 0) {
@@ -30,18 +25,15 @@ struct RecordsHomeView: View {
                     store.send(.onNewRecordTapped(nil))
                 }
 
-                TimelinePageView(store: store.scope(state: \.timeline, action: \.timeline))
+                TimelinePageView(store: store.scope(state: \.timelinePage, action: \.timelinePage))
             }
             .onChange(of: store.home.date) { newValue in
-                store.send(.timeline(.onRecordLoaded(newValue)))
+                store.send(.timelinePage(.onRecordLoaded(newValue)))
             }
             .background(ui.background)
             .sheet(item: $store.scope(state: \.newRecord, action: \.newRecord)) {
                 NewRecordView(store: $0)
                     .sheetStyle(detents: [.height(640)])
-            }
-            .onChange(of: AppManager.shared.today) { newValue in
-                currentDate = newValue
             }
         }
     }

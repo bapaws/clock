@@ -29,7 +29,7 @@ struct NewRecordEndAtPickerView: View {
                 LazyHStack {
                     ForEach(app.recordDurations, id: \.self) { duration in
                         Button {
-                            dateTime = dateTime.addingTimeInterval(TimeInterval(duration * 60))
+                            dateTime = startAt.addingTimeInterval(TimeInterval(duration * 60))
                             dismiss()
                         } label: {
                             Text((duration * 60 * 1000).shortTimeLengthText)

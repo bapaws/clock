@@ -121,10 +121,10 @@ extension MessageClient: DependencyKey {
         if majorVersion != appStoreVersion {
             return false
         }
-        #endif
 
         Storage.default.isReleaseVersion = true
         return true
+        #endif
     }
 
     private static var languageCode: String {

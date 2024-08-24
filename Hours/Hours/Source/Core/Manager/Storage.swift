@@ -13,6 +13,7 @@ extension Storage.Key {
     static let messageShowLater = "messageShowLater"
 
     static let isReleaseVersion = "isReleaseVersion"
+    static let appStoreVersion = "appStoreVersion"
 }
 
 extension Storage {
@@ -43,6 +44,15 @@ extension Storage {
         }
         get {
             store.bool(forKey: Key.isReleaseVersion)
+        }
+    }
+
+    var appStoreVersion: String? {
+        set {
+            store.set(newValue, forKey: Key.appStoreVersion)
+        }
+        get {
+            store.string(forKey: Key.appStoreVersion)
         }
     }
 }

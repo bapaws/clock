@@ -126,9 +126,9 @@ struct NewRecordView: View {
 
             // MARK: End Time
 
-            .sheet(isPresented: $isEndTimePresented) {
+            .sheet(isPresented: $isEndTimePresented) { [startAt = store.startAt] in
                 WithPerceptionTracking {
-                    NewRecordEndAtPickerView(startAt: store.startAt, dateTime: $store.endAt)
+                    NewRecordEndAtPickerView(startAt: startAt, dateTime: $store.endAt)
                         .sheetStyle()
                 }
             }

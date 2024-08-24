@@ -88,17 +88,17 @@ struct CalendarHeaderPageView: View {
                     WithPerceptionTracking {
                         if store.currentDate > date {
                             CalendarHeaderView(
-                                currentDate: $store.home.date.animation(),
+                                currentDate: $store.home.date,
                                 days: store.previousDays
                             )
                         } else if store.currentDate < date {
                             CalendarHeaderView(
-                                currentDate: $store.home.date.animation(),
+                                currentDate: $store.home.date,
                                 days: store.nextDays
                             )
                         } else {
                             CalendarHeaderView(
-                                currentDate: $store.home.date.animation(),
+                                currentDate: $store.home.date,
                                 days: store.currentDays
                             )
                         }

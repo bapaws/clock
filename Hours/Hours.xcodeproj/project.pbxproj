@@ -44,7 +44,6 @@
 		88128CC42C69A14500CDFE50 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88128CC32C69A14500CDFE50 /* Storage.swift */; };
 		8814503C2BA437FF00058F7F /* Palette in Frameworks */ = {isa = PBXBuildFile; productRef = 8814503B2BA437FF00058F7F /* Palette */; };
 		881450402BA4789400058F7F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814503F2BA4789400058F7F /* Category.swift */; };
-		8816E5B62BA988E100A68B71 /* TimelineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816E5B52BA988E100A68B71 /* TimelineItemView.swift */; };
 		88201AB62B94B58C00D4D187 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 88201AB52B94B58C00D4D187 /* PopupView */; };
 		88201ABD2B94B65000D4D187 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88201ABF2B94B65000D4D187 /* Localizable.strings */; };
 		88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88201AC62B94B8DB00D4D187 /* SoundType.swift */; };
@@ -161,7 +160,9 @@
 		88D6EB292C24794400970397 /* RecordsHomeCurrentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6EB282C24794400970397 /* RecordsHomeCurrentState.swift */; };
 		88D7A5202BA0427E00FD129F /* EventsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D7A51F2BA0427E00FD129F /* EventsHomeView.swift */; };
 		88DE84802C6DFA06000C72B3 /* AppStoreVersionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE847F2C6DFA06000C72B3 /* AppStoreVersionClient.swift */; };
-		88E23AD42B9C9D3600C421DB /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E23AD32B9C9D3600C421DB /* TimelineView.swift */; };
+		88E18FC22C7970DB00470AC6 /* TimelineRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E18FC12C7970DB00470AC6 /* TimelineRecordView.swift */; };
+		88E18FC42C79966500470AC6 /* TimelineTimeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E18FC32C79966500470AC6 /* TimelineTimeIntervalView.swift */; };
+		88E18FC62C79D35300470AC6 /* TimelineSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E18FC52C79D35300470AC6 /* TimelineSpaceView.swift */; };
 		88E5BE7F2C0B0DA500AEFA1D /* StatisticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BE7E2C0B0DA500AEFA1D /* StatisticsSection.swift */; };
 		88E5BE842C0B5A3900AEFA1D /* StatisticsWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BE832C0B5A3900AEFA1D /* StatisticsWeekView.swift */; };
 		88E5BE872C0B5A5100AEFA1D /* StatisticsMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E5BE862C0B5A5100AEFA1D /* StatisticsMonthView.swift */; };
@@ -174,6 +175,7 @@
 		88F19CAE2C40C5C2003C5DC1 /* EventsHomeCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F19CAD2C40C5C2003C5DC1 /* EventsHomeCategoriesView.swift */; };
 		88F19CB02C40C643003C5DC1 /* EventsHomeOtherCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F19CAF2C40C643003C5DC1 /* EventsHomeOtherCategoriesView.swift */; };
 		88F19CBA2C41735B003C5DC1 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F19CB92C41735B003C5DC1 /* ListRow.swift */; };
+		88F1A3582C787ED800FA86BF /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1A3572C787ED800FA86BF /* TimelineView.swift */; };
 		88F357C22C1E823B00DD106A /* EventDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F357C12C1E823B00DD106A /* EventDetailFeature.swift */; };
 		88F357C62C1E830300DD106A /* NewEventFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F357C52C1E830300DD106A /* NewEventFeature.swift */; };
 		88F357CA2C1E8C0700DD106A /* NewRecordFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F357C92C1E8C0700DD106A /* NewRecordFeature.swift */; };
@@ -283,7 +285,6 @@
 		88128CC32C69A14500CDFE50 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8814503A2BA437DD00058F7F /* Palette */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Palette; path = ../Palette; sourceTree = "<group>"; };
 		8814503F2BA4789400058F7F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		8816E5B52BA988E100A68B71 /* TimelineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineItemView.swift; sourceTree = "<group>"; };
 		88201AB72B94B5BB00D4D187 /* Hours.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hours.entitlements; sourceTree = "<group>"; };
 		88201ABE2B94B65000D4D187 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88201AC02B94B65300D4D187 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -394,7 +395,9 @@
 		88D6EB282C24794400970397 /* RecordsHomeCurrentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsHomeCurrentState.swift; sourceTree = "<group>"; };
 		88D7A51F2BA0427E00FD129F /* EventsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeView.swift; sourceTree = "<group>"; };
 		88DE847F2C6DFA06000C72B3 /* AppStoreVersionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreVersionClient.swift; sourceTree = "<group>"; };
-		88E23AD32B9C9D3600C421DB /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		88E18FC12C7970DB00470AC6 /* TimelineRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimelineRecordView.swift; path = Hours/Source/Modules/Records/Timeline2/TimelineRecordView.swift; sourceTree = SOURCE_ROOT; };
+		88E18FC32C79966500470AC6 /* TimelineTimeIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTimeIntervalView.swift; sourceTree = "<group>"; };
+		88E18FC52C79D35300470AC6 /* TimelineSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineSpaceView.swift; sourceTree = "<group>"; };
 		88E5BE7E2C0B0DA500AEFA1D /* StatisticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsSection.swift; sourceTree = "<group>"; };
 		88E5BE832C0B5A3900AEFA1D /* StatisticsWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsWeekView.swift; sourceTree = "<group>"; };
 		88E5BE862C0B5A5100AEFA1D /* StatisticsMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsMonthView.swift; sourceTree = "<group>"; };
@@ -407,6 +410,7 @@
 		88F19CAD2C40C5C2003C5DC1 /* EventsHomeCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeCategoriesView.swift; sourceTree = "<group>"; };
 		88F19CAF2C40C643003C5DC1 /* EventsHomeOtherCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeOtherCategoriesView.swift; sourceTree = "<group>"; };
 		88F19CB92C41735B003C5DC1 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
+		88F1A3572C787ED800FA86BF /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		88F357C12C1E823B00DD106A /* EventDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailFeature.swift; sourceTree = "<group>"; };
 		88F357C52C1E830300DD106A /* NewEventFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventFeature.swift; sourceTree = "<group>"; };
 		88F357C92C1E8C0700DD106A /* NewRecordFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordFeature.swift; sourceTree = "<group>"; };
@@ -1214,6 +1218,7 @@
 		88E23AD22B9C9C4700C421DB /* Records */ = {
 			isa = PBXGroup;
 			children = (
+				88F1A3562C787E2400FA86BF /* Timeline2 */,
 				88F6C6982C1FC1A700FB4A01 /* Home */,
 				88F357E32C1F22CA00DD106A /* Timeline */,
 				880326A02B98769400E6653A /* Pomodoro */,
@@ -1265,11 +1270,20 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		88F1A3562C787E2400FA86BF /* Timeline2 */ = {
+			isa = PBXGroup;
+			children = (
+				88F1A3572C787ED800FA86BF /* TimelineView.swift */,
+				88E18FC12C7970DB00470AC6 /* TimelineRecordView.swift */,
+				88E18FC32C79966500470AC6 /* TimelineTimeIntervalView.swift */,
+				88E18FC52C79D35300470AC6 /* TimelineSpaceView.swift */,
+			);
+			path = Timeline2;
+			sourceTree = "<group>";
+		};
 		88F357E32C1F22CA00DD106A /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				88E23AD32B9C9D3600C421DB /* TimelineView.swift */,
-				8816E5B52BA988E100A68B71 /* TimelineItemView.swift */,
 				88D6EB202C242F8A00970397 /* TimelinePageView.swift */,
 				88D6EB242C242F9700970397 /* TimelinePageFeature.swift */,
 			);
@@ -1515,6 +1529,7 @@
 				88C2DE892C098AFE002CEC16 /* StatisticsYear.swift in Sources */,
 				880F5D042C589BE1008DE579 /* ColorPickFeature.swift in Sources */,
 				88D5D2982C59E10D00495A53 /* RGBPicker.swift in Sources */,
+				88E18FC22C7970DB00470AC6 /* TimelineRecordView.swift in Sources */,
 				8827A5792BEC85D40010FC4C /* EventProvider.swift in Sources */,
 				8802CBBD2BAB0CF700F0091E /* PaywallFeatureItemView.swift in Sources */,
 				88CF103B2C3CE4F500A98DA4 /* XCAssets.swift in Sources */,
@@ -1537,6 +1552,7 @@
 				88FBAE942C0E0E5600C45F29 /* StatisticsContribution.swift in Sources */,
 				88E5BE892C0B5A5A00AEFA1D /* StatisticsYearView.swift in Sources */,
 				88861D382BC69130001DAE8E /* EventRecordsItemView.swift in Sources */,
+				88E18FC62C79D35300470AC6 /* TimelineSpaceView.swift in Sources */,
 				88D23AE42B94A24400E33DE5 /* ProManager.swift in Sources */,
 				88D23B142B94A35C00E33DE5 /* SettingsCheckCell.swift in Sources */,
 				889011222C476F770075970C /* CalendarEventsFeature.swift in Sources */,
@@ -1546,7 +1562,6 @@
 				88393E642B9DDE13007F2F18 /* RecordsHomeView.swift in Sources */,
 				880326AD2B98A1DD00E6653A /* WinnerView.swift in Sources */,
 				8827A57D2BED08500010FC4C /* SettingsScreenTimeView.swift in Sources */,
-				88E23AD42B9C9D3600C421DB /* TimelineView.swift in Sources */,
 				88C2DE7D2C097FD0002CEC16 /* StatisticsDay.swift in Sources */,
 				88E5BE8E2C0B6EE600AEFA1D /* StatisticsCompositionView.swift in Sources */,
 				8803269B2B98565500E6653A /* EventItemView.swift in Sources */,
@@ -1578,7 +1593,6 @@
 				88FBAE8B2C0DF8D500C45F29 /* StatisticsDatePicker.swift in Sources */,
 				881450402BA4789400058F7F /* Category.swift in Sources */,
 				88F357CE2C1EB87700DD106A /* NewCategoryFeature.swift in Sources */,
-				8816E5B62BA988E100A68B71 /* TimelineItemView.swift in Sources */,
 				88D23B1B2B94A35C00E33DE5 /* GeneralSettingsView.swift in Sources */,
 				880703022C6C5B5E00CDAD03 /* ActivityListView.swift in Sources */,
 				8827A56C2BEC6E600010FC4C /* AppDidCloseAppIntent.swift in Sources */,
@@ -1615,6 +1629,7 @@
 				88D5D2A12C5A7C8300495A53 /* ImportDefaultFeature.swift in Sources */,
 				8843A6402C7777D7008C5295 /* NewRecordEndAtPickerView.swift in Sources */,
 				8827A5772BEC85BE0010FC4C /* NewRecordAppIntent.swift in Sources */,
+				88E18FC42C79966500470AC6 /* TimelineTimeIntervalView.swift in Sources */,
 				88F357CA2C1E8C0700DD106A /* NewRecordFeature.swift in Sources */,
 				88FBAE912C0E09E400C45F29 /* StatisticsYearHeatMapView.swift in Sources */,
 				88B8DAAC2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift in Sources */,
@@ -1628,6 +1643,7 @@
 				88F4828F2C0BFD6F00211368 /* StatisticsDailyRatioView.swift in Sources */,
 				88F19CBA2C41735B003C5DC1 /* ListRow.swift in Sources */,
 				880805562C68B51600CC8271 /* MessageView.swift in Sources */,
+				88F1A3582C787ED800FA86BF /* TimelineView.swift in Sources */,
 				88B9DA5D2BF2FE9F000979EE /* OnboardingStatisticsView.swift in Sources */,
 				880096842BF5ABFD008AC521 /* SettingsHealthView.swift in Sources */,
 				88A9B6592BA150C100385800 /* TitleView.swift in Sources */,
