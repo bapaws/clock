@@ -46,9 +46,12 @@ struct EventsHomeCategoriesFeature {
 
         case saveEventCompleted(EventEntity)
 
-        // 从列表中删除事件
+        /// 从列表中删除事件，如果分类不包含事件，触发 moveToOther
         case removeEvent(EventEntity)
+        /// 将分类移到其他
         case moveToOther(CategoryEntity)
+        /// 从列表中删除事件
+        case removeEventOnly(EventEntity)
 
         // MARK: Drag & Drop
 
@@ -168,7 +171,7 @@ struct EventsHomeCategoriesFeature {
                 }
                 return .none
 
-            case .onTimerStarted(let entity):
+            case .removeEventOnly(let entity):
                 for (index, category) in state.categories.enumerated() where category.id == entity.category?.id {
                     state.categories[index].events.removeAll { $0.id == entity.id }
                 }

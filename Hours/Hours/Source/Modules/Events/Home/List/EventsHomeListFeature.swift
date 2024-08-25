@@ -182,11 +182,11 @@ struct EventsHomeListFeature {
                     // 更新首页的当前的计时
                     state.timing.entities.append(timingEntity)
                 }
-
                 // 进入计时页面
                 state.timer = TimerFeature.State(entity: timingEntity)
-
-                return .none
+                return .run { send in
+                    await send(.categories(.removeEventOnly(entity)), animation: .default)
+                }
 
                 // MARK: Record
 
