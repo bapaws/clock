@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8800967B2BF59972008AC521 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 8800967A2BF59972008AC521 /* ScalingHeaderScrollView */; };
 		880096802BF5A6A5008AC521 /* SettingsScreenTimeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800967F2BF5A6A5008AC521 /* SettingsScreenTimeSection.swift */; };
-		880096822BF5A919008AC521 /* SettingsHealthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096812BF5A919008AC521 /* SettingsHealthSection.swift */; };
-		880096842BF5ABFD008AC521 /* SettingsHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096832BF5ABFD008AC521 /* SettingsHealthView.swift */; };
 		880096862BF5BACC008AC521 /* SettingsNewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096852BF5BACC008AC521 /* SettingsNewTagView.swift */; };
 		8801DCB62B9FE437003DE039 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DCB52B9FE437003DE039 /* NewEventView.swift */; };
 		8801DCBA2B9FE4EF003DE039 /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DCB92B9FE4EF003DE039 /* NewItemView.swift */; };
@@ -254,8 +252,6 @@
 
 /* Begin PBXFileReference section */
 		8800967F2BF5A6A5008AC521 /* SettingsScreenTimeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenTimeSection.swift; sourceTree = "<group>"; };
-		880096812BF5A919008AC521 /* SettingsHealthSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHealthSection.swift; sourceTree = "<group>"; };
-		880096832BF5ABFD008AC521 /* SettingsHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHealthView.swift; sourceTree = "<group>"; };
 		880096852BF5BACC008AC521 /* SettingsNewTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNewTagView.swift; sourceTree = "<group>"; };
 		8801DCB52B9FE437003DE039 /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
 		8801DCB92B9FE4EF003DE039 /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
@@ -504,15 +500,6 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
-		8800967D2BF5A613008AC521 /* Health */ = {
-			isa = PBXGroup;
-			children = (
-				880096812BF5A919008AC521 /* SettingsHealthSection.swift */,
-				880096832BF5ABFD008AC521 /* SettingsHealthView.swift */,
-			);
-			path = Health;
-			sourceTree = "<group>";
-		};
 		8801DCB82B9FE4E3003DE039 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,7 +730,6 @@
 		882B82D82BF0AE1200B0365A /* General */ = {
 			isa = PBXGroup;
 			children = (
-				8800967D2BF5A613008AC521 /* Health */,
 				8827A57A2BED07E80010FC4C /* ScreenTime */,
 				88D23AFB2B94A35C00E33DE5 /* Appearance */,
 				8802CBD22BAB2CF700F0091E /* AppIcon */,
@@ -1649,7 +1635,6 @@
 				880805562C68B51600CC8271 /* MessageView.swift in Sources */,
 				88F1A3582C787ED800FA86BF /* TimelineView.swift in Sources */,
 				88B9DA5D2BF2FE9F000979EE /* OnboardingStatisticsView.swift in Sources */,
-				880096842BF5ABFD008AC521 /* SettingsHealthView.swift in Sources */,
 				88A9B6592BA150C100385800 /* TitleView.swift in Sources */,
 				88FBAE792C0D58D000C45F29 /* StatisticsOverallDay.swift in Sources */,
 				88C2DE952C09C6A7002CEC16 /* StatisticsTimeView.swift in Sources */,
@@ -1676,7 +1661,6 @@
 				88D23B202B94A35C00E33DE5 /* SettingsSoundSection.swift in Sources */,
 				88D23B162B94A35C00E33DE5 /* SettingsAppearanceSection.swift in Sources */,
 				88D23B1A2B94A35C00E33DE5 /* SettingsTimerSection.swift in Sources */,
-				880096822BF5A919008AC521 /* SettingsHealthSection.swift in Sources */,
 				88C2DE842C098AE1002CEC16 /* StatisticsWeek.swift in Sources */,
 				88F514412C378D5C004D9DCA /* EventHomeRecentView.swift in Sources */,
 				88D6EB292C24794400970397 /* RecordsHomeCurrentState.swift in Sources */,

@@ -26,12 +26,6 @@ open class AppManager: ClockShare.AppBaseManager {
     @AppStorage(Storage.Key.maximumRecordedTime, store: Storage.default.store)
     public var maximumRecordedTime: TimeInterval = 6 * 60 * 60
 
-    @AppStorage(Storage.Key.isAutoSyncSleep, store: Storage.default.store)
-    public var isAutoSyncSleep: Bool = false
-
-    @AppStorage(Storage.Key.isAutoSyncWorkout, store: Storage.default.store)
-    public var isAutoSyncWorkout: Bool = false
-
     // MARK: App Screen Time
 
     @AppStorage(Storage.Key.minimumRecordedScreenTime, store: Storage.default.store)

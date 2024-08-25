@@ -178,7 +178,7 @@ struct EventDetailFeature {
                 return .none
 
             case .timer(.presented(.onDismissed)):
-                return .run { [state] send in
+                return .run { send in
                     await send(.onAppear)
                 }
 

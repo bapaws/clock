@@ -14,7 +14,6 @@ struct SettingsRecordSection: View {
     @State private var isTimerPresented: Bool = false
     @State private var isSyncRecordsToCalendar = AppManager.shared.calendarAccessGranted
     @State private var isAppScreenTimePresented: Bool = false
-    @State private var isHealthPresented: Bool = false
 
     @EnvironmentObject var app: AppManager
 
@@ -25,12 +24,11 @@ struct SettingsRecordSection: View {
             }
 
             SettingsToggleCell(title: L10n.syncRecordsToCalendar, isNew: true, isOn: $isSyncRecordsToCalendar)
-                .onChange(of: isSyncRecordsToCalendar) { newValue in
+                .onChange(of: isSyncRecordsToCalendar) { _ in
                     // 请求权限
                     app.requestCalendarAccess { granted in
                         self.isSyncRecordsToCalendar = granted
 
-                        guard !granted else { return }
                         guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
                         UIApplication.shared.open(settingsURL)
                     }
@@ -42,7 +40,14 @@ struct SettingsRecordSection: View {
 
             if app.isHealthAvailable {
                 SettingsNavigateCell(title: L10n.health, isNew: true) {
-                    isHealthPresented.toggle()
+                    app.requestHealthAccess { granted in
+                        guard let healthURL = URL(string: "App-prefs:HEALTH&path=SOURCES"), UIApplication.shared.canOpenURL(healthURL) else { return }
+                        if UIApplication.shared.canOpenURL(healthURL) {
+                            UIApplication.shared.open(healthURL)
+                        } else if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(settingsURL)
+                        }
+                    }
                 }
             }
         }
@@ -52,9 +57,6 @@ struct SettingsRecordSection: View {
         }
         .sheet(isPresented: $isAppScreenTimePresented) {
             SettingsScreenTimeView()
-        }
-        .sheet(isPresented: $isHealthPresented) {
-            SettingsHealthView()
         }
     }
 }

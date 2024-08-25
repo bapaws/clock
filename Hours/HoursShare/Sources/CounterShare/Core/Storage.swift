@@ -12,9 +12,7 @@ public extension Storage.Key {
     static let hexIndex = "hexIndex"
     static let onboardingVersion = "onboardingVersion"
 
-    static let isAutoSyncWorkout = "isAutoSyncWorkout"
     static let lastSyncWorkoutDate = "lastSyncWorkoutDate"
-    static let isAutoSyncSleep = "isAutoSyncSleep"
     static let lastSyncSleepDate = "lastSyncSleepDate"
 
     @available(*, deprecated, renamed: "currentTimingEntities")

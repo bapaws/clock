@@ -36,7 +36,6 @@ public class AppManager: HoursShare.AppManager {
     // MARK: HealthKit
 
     private lazy var healthStore = HKHealthStore()
-    public private(set) var healthAccessGranted = false
 
     private var isSyncingSleep = false
     private var isSyncingWorkout = false
@@ -57,7 +56,7 @@ public class AppManager: HoursShare.AppManager {
         super.init()
 
         setupOnboardingIndices()
-        if isAutoSyncSleep || isAutoSyncWorkout {
+        if !onboardingIndices.contains(.health) {
             requestHealthAccess()
         }
 
@@ -134,10 +133,9 @@ public extension AppManager {
             HKCategoryType(.sleepAnalysis),
             HKQuantityType.workoutType(),
         ]
-        healthStore.requestAuthorization(toShare: nil, read: allTypes) { [weak self] granted, _ in
-            self?.healthAccessGranted = granted
-
-            if granted {
+        // 授权回调中，无法判断用户是否授权，回调第一个参数表示是否成功
+        healthStore.requestAuthorization(toShare: nil, read: allTypes) { [weak self] success, _ in
+            if success {
                 self?.enableObservedSleepAnalysis()
                 self?.enableObservedWorkout()
 
@@ -146,13 +144,13 @@ public extension AppManager {
             }
 
             DispatchQueue.main.async {
-                completion?(granted)
+                completion?(success)
             }
         }
     }
 
     func autoSyncHealth(completionHandler: (() -> Void)? = nil) {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else {
+        guard HKHealthStore.isHealthDataAvailable() else {
             completionHandler?()
             return
         }
@@ -174,7 +172,7 @@ public extension AppManager {
     // MARK: Workout
 
     func enableObservedWorkout() {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+        guard HKHealthStore.isHealthDataAvailable() else { return }
 
         let workoutType = HKObjectType.workoutType()
         let query = HKObserverQuery(sampleType: workoutType, predicate: nil) { [weak self] _, completionHandler, error in
@@ -190,7 +188,7 @@ public extension AppManager {
     }
 
     func autoSyncWorkout(completionHandler: (() -> Void)? = nil) {
-        guard isAutoSyncWorkout, !isSyncingWorkout else {
+        guard !isSyncingWorkout else {
             completionHandler?()
             return
         }
@@ -208,7 +206,7 @@ public extension AppManager {
     }
 
     private func syncWorkout(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else {
+        guard HKHealthStore.isHealthDataAvailable() else {
             completionHandler?()
             return
         }
@@ -269,7 +267,7 @@ public extension AppManager {
     // MARK: Sleep
 
     func enableObservedSleepAnalysis() {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else { return }
+        guard HKHealthStore.isHealthDataAvailable() else { return }
 
         let sleepType = HKCategoryType(.sleepAnalysis)
         let query = HKObserverQuery(sampleType: sleepType, predicate: nil) { [weak self] _, completionHandler, error in
@@ -285,7 +283,7 @@ public extension AppManager {
     }
 
     func autoSyncSleep(completionHandler: (() -> Void)? = nil) {
-        guard isAutoSyncSleep, !isSyncingSleep else {
+        guard !isSyncingSleep else {
             completionHandler?()
             return
         }
@@ -303,7 +301,7 @@ public extension AppManager {
     }
 
     private func syncSleep(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
-        guard HKHealthStore.isHealthDataAvailable(), healthAccessGranted else {
+        guard HKHealthStore.isHealthDataAvailable() else {
             completionHandler?()
             return
         }

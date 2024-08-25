@@ -5,8 +5,8 @@
 //  Created by 张敏超 on 2024/5/13.
 //
 
-import ComposableArchitecture
 import ClockShare
+import ComposableArchitecture
 import Foundation
 import HealthKitUI
 import HoursShare
@@ -17,8 +17,6 @@ struct OnboardingView: View {
     private let indicesWidth: CGFloat = 120
 
     @State private var currentPageIndex = 0
-
-    @State private var isHealthPresented = true
 
     var onFinished: (() -> Void)?
 
@@ -116,12 +114,8 @@ struct OnboardingView: View {
     private func `continue`() {
         switch index {
         case .health:
-            isHealthPresented.toggle()
-            AppManager.shared.requestHealthAccess { granted in
-                if granted {
-                    AppManager.shared.isAutoSyncSleep = true
-                    AppManager.shared.isAutoSyncWorkout = true
-                } else {
+            AppManager.shared.requestHealthAccess { success in
+                if !success {
                     Toast.show(L10n.healthNotAccess)
                 }
                 setupLater()

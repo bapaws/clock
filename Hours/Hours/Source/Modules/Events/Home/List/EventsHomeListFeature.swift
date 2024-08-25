@@ -207,12 +207,6 @@ struct EventsHomeListFeature {
                     await send(.onAppear)
                 }
 
-            case .timer(.presented(.minimize)):
-                return .run { send in
-                    // 重新加载正在计时中的事件
-                    await send(.timing(.onAppear), animation: .default)
-                }
-
             default:
                 return .none
             }
