@@ -184,10 +184,17 @@ public extension AppRealm {
 
     func healthCategory() async -> CategoryEntity {
         let realm = await realm
-        if let health = realm.objects(CategoryObject.self).first(where: { $0.name == L10n.health }) {
+        if let id = try? ObjectId(string: AppRealm.healthCategoryID), let health = realm.object(ofType: CategoryObject.self, forPrimaryKey: id) {
+            return CategoryEntity(object: health)
+        } else if let health = realm.objects(CategoryObject.self).first(where: { $0.name == L10n.health }) { // 兼容 1.6.6 之前的版本
             return CategoryEntity(object: health)
         } else {
-            let category = CategoryEntity(hex: .random, emoji: "❤️", name: L10n.health)
+            let category = CategoryEntity(
+                id: AppRealm.healthCategoryID,
+                hex: .random,
+                emoji: "❤️",
+                name: L10n.health
+            )
             try? await realm.asyncWrite {
                 realm.add(category.toObject())
             }

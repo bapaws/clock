@@ -29,6 +29,7 @@ struct SettingsRecordSection: View {
                     app.requestCalendarAccess { granted in
                         self.isSyncRecordsToCalendar = granted
 
+                        guard !granted else { return }
                         guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
                         UIApplication.shared.open(settingsURL)
                     }
@@ -40,12 +41,13 @@ struct SettingsRecordSection: View {
 
             if app.isHealthAvailable {
                 SettingsNavigateCell(title: L10n.health, isNew: true) {
-                    app.requestHealthAccess { granted in
-                        guard let healthURL = URL(string: "App-prefs:HEALTH&path=SOURCES"), UIApplication.shared.canOpenURL(healthURL) else { return }
-                        if UIApplication.shared.canOpenURL(healthURL) {
-                            UIApplication.shared.open(healthURL)
-                        } else if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                            UIApplication.shared.open(settingsURL)
+                    app.getRequestHealthStatus { [weak app] shouldRequest in
+                        if shouldRequest {
+                            app?.requestHealthAccess()
+                        } else {
+                            DispatchQueue.main.async {
+                                app?.openHealthSettings()
+                            }
                         }
                     }
                 }

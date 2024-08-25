@@ -55,6 +55,8 @@ struct EventsHomeCategoriesFeature {
         case onEventDrag(EventEntity)
         case onEventDropUpdate(EventEntity, DragRelocateDelegate.Move)
 
+        case updateCalendarRecords(EventEntity)
+
         case onCategoryDrag(CategoryEntity)
         case onCategoryDropUpdate(CategoryEntity, DragRelocateDelegate.Move)
 
@@ -201,17 +203,31 @@ struct EventsHomeCategoriesFeature {
                 }
                 var category = state.categories[categoryIndex]
                 category.events.removeAll()
+                // 如果分类变化，需要修改日历
+                let shouldUpdateCalendarRecords = dragEvent.category?.id == category.id
+
                 dragEvent.category = category
                 state.dragEvent = dragEvent
                 state.categories[categoryIndex].events.insert(dragEvent, at: eventIndex + direction.rawValue)
 
-                return .run { [events = state.categories[categoryIndex].events, category] _ in
+                return .run { [events = state.categories[categoryIndex].events, category, dragEvent] send in
                     let impactMed = await UIImpactFeedbackGenerator(style: .light)
                     await impactMed.impactOccurred()
 
                     try await AppRealm.shared.reorder(by: events, in: category)
 
                     WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    if shouldUpdateCalendarRecords {
+                        await send(.updateCalendarRecords(dragEvent))
+                    }
+                }
+
+            case .updateCalendarRecords(let entity):
+                return .run { _ in
+                    var event = entity
+                    let items = await AppRealm.shared.getRecords(where: { $0.events._id == event._id })
+                    event.items = items
+                    await AppManager.shared.updateCalendarEvents(by: event)
                 }
 
             case .onCategoryDrag(let category):

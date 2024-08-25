@@ -9,6 +9,9 @@ import Foundation
 import RealmSwift
 
 public extension AppRealm {
+    static let healthCategoryID = "66caf6927d73061e0ec14d3f"
+    static let sleepEventID = "66caf6927d73061e0ec14d40"
+
     func importDefaults(categories: [CategoryEntity]) async {
         let realm = await realm
         for category in categories {

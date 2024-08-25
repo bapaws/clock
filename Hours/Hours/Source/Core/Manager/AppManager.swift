@@ -123,18 +123,58 @@ public extension AppManager {
 public extension AppManager {
     var isHealthAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
 
+    func openHealthSettings() { // 其他情况直接跳转设置，重新设置
+        guard let healthURL = URL(string: "App-prefs:HEALTH&path=SOURCES"),
+              UIApplication.shared.canOpenURL(healthURL)
+        else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(healthURL) {
+            UIApplication.shared.open(healthURL)
+        } else if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(settingsURL)
+        }
+    }
+
+    var healthReadTypes: Set<HKObjectType> {
+        [
+            HKCategoryType(.sleepAnalysis),
+            HKQuantityType.workoutType(),
+        ]
+    }
+
+    func getRequestHealthStatus(completion: ((Bool) -> Void)? = nil) {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            completion?(false)
+            return
+        }
+
+        healthStore.getRequestStatusForAuthorization(toShare: [], read: healthReadTypes) { status, _ in
+            switch status {
+            case .unknown:
+                debugPrint("unknown")
+            case .shouldRequest:
+                debugPrint("shouldRequest")
+            case .unnecessary:
+                debugPrint("unnecessary")
+            @unknown default:
+                debugPrint("@unknown default")
+            }
+            completion?(status == .shouldRequest)
+        }
+    }
+
     func requestHealthAccess(completion: ((Bool) -> Void)? = nil) {
         guard HKHealthStore.isHealthDataAvailable() else {
             completion?(false)
             return
         }
 
-        let allTypes: Set = [
-            HKCategoryType(.sleepAnalysis),
-            HKQuantityType.workoutType(),
-        ]
         // 授权回调中，无法判断用户是否授权，回调第一个参数表示是否成功
-        healthStore.requestAuthorization(toShare: nil, read: allTypes) { [weak self] success, _ in
+        // 无法获取读取权限状态，只能获取写数据状态
+        // https://developer.apple.com/documentation/healthkit/hkhealthstore/1614154-authorizationstatus
+        healthStore.requestAuthorization(toShare: nil, read: healthReadTypes) { [weak self] success, _ in
             if success {
                 self?.enableObservedSleepAnalysis()
                 self?.enableObservedWorkout()
@@ -239,18 +279,22 @@ public extension AppManager {
                 let id = workout.uuid.uuidString
                 guard await !AppRealm.shared.containsRecord(where: { $0.healthSampleUUIDString == id }) else { continue }
 
+                let eventID = workout.workoutActivityType.id
                 let name = workout.workoutActivityType.name
                 let emoji = workout.workoutActivityType.emoji
 
                 var newRecord = RecordEntity(creationMode: .health, startAt: workout.startDate, endAt: workout.endDate)
                 newRecord.healthSampleUUIDString = id
 
-                if let event = await AppRealm.shared.getEvent(by: name, emoji: emoji) {
+                if let eventID, let event = await AppRealm.shared.getEvent(by: eventID) {
+                    newRecord.calendarEventIdentifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
+                    await AppRealm.shared.writeRecord(newRecord, addTo: event)
+                } else if let event = await AppRealm.shared.getEvent(by: name, emoji: emoji) { // 兼容 1.6.6 之前的版本
                     // 同步到日历
                     newRecord.calendarEventIdentifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
                     await AppRealm.shared.writeRecord(newRecord, addTo: event)
                 } else {
-                    let event = EventEntity(emoji: emoji, name: name, hex: .random, isSystem: true)
+                    let event = EventEntity(id: eventID, emoji: emoji, name: name, hex: .random, isSystem: true)
                     await AppRealm.shared.writeEvent(event, addTo: category)
 
                     await AppRealm.shared.writeRecord(newRecord, addTo: event)
@@ -331,10 +375,12 @@ public extension AppManager {
             let name = L10n.sleep
             let emoji = "🛌"
             var event: EventEntity
-            if let entity = await AppRealm.shared.getEvent(by: name, emoji: emoji) {
+            if let entity = await AppRealm.shared.getEvent(by: AppRealm.sleepEventID) {
+                event = entity
+            } else if let entity = await AppRealm.shared.getEvent(by: name, emoji: emoji) { // 兼容 1.6.6 之前的版本
                 event = entity
             } else {
-                event = EventEntity(emoji: emoji, name: name, hex: .random, isSystem: true)
+                event = EventEntity(id: AppRealm.sleepEventID, emoji: emoji, name: name, hex: .random, isSystem: true)
                 await AppRealm.shared.writeEvent(event, addTo: category)
             }
 
