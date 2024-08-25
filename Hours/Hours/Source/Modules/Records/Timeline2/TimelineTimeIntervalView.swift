@@ -23,7 +23,7 @@ struct TimelineTimeIntervalView: View {
                 .fill(Color.secondaryLabel)
                 .frame(width: 16, height: 1)
 
-            Text(duartion.shortTimeLengthText)
+            Text(duartion.timeLengthText)
                 .font(.callout)
                 .padding(.vertical, 24)
 

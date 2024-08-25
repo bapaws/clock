@@ -14,6 +14,8 @@ struct TimelineRecordView: View {
     var onTapped: (() -> Void)?
     var onDeleted: (() -> Void)?
 
+    var onEventTapped: (() -> Void)?
+
     var body: some View {
         HStack(spacing: 12) {
             VStack(spacing: 0) {
@@ -30,24 +32,23 @@ struct TimelineRecordView: View {
                 HStack(alignment: .top) {
                     if let event = record.event {
                         VStack(alignment: .leading, spacing: 16) {
-                            HStack {
-                                if let emoji = event.emoji, !emoji.isEmpty {
-                                    Text(emoji)
+                            Button {
+                                onEventTapped?()
+                            } label: {
+                                HStack {
+                                    if let emoji = event.emoji, !emoji.isEmpty {
+                                        Text(emoji)
+                                    }
+                                    Text(event.name)
                                 }
-                                Text(event.name)
+                                .font(.title3, weight: .medium)
                             }
-                            .font(.title3, weight: .medium)
 
                             if let category = event.category {
                                 CategoryView(category: category)
                             }
 
-                            HStack {
-                                Text(record.startAt.toString(.time(.short)))
-                                Text("~")
-                                Text(record.endAt.toString(.time(.short)))
-                            }
-                            .font(.body)
+                            TimeRangeView(startAt: record.startAt, endAt: record.endAt)
                         }
                     }
                     Spacer()

@@ -171,8 +171,7 @@ struct EventsHomeListFeature {
                     await send(.categories(.saveEventCompleted(entity)), animation: .default)
                 }
 
-            case .eventDetail(.presented(.onTimerStarted(let entity))),
-                 .recent(.onEventTapped(let entity)),
+            case .recent(.onEventTapped(let entity)),
                  .categories(.onTimerStarted(let entity)):
                 var timingEntity: TimingEntity
                 // 如果已经是正在计时，获取后直接进入
@@ -204,11 +203,7 @@ struct EventsHomeListFeature {
 
             case .timer(.presented(.onDismissed)),
                  .timing(.stopTimer):
-                return .run { [state] send in
-                    if state.eventDetail != nil {
-                        // 如果是详情页，需要刷新页面
-                        await send(.eventDetail(.presented(.onAppear)))
-                    }
+                return .run { send in
                     await send(.onAppear)
                 }
 

@@ -26,7 +26,7 @@ struct EventDetailFeature {
                     recordMilliseconds += record.value.reduce(0) { $0 + $1.milliseconds }
                 }
                 self.recordCount = recordCount
-                self.recordTimeLength = recordMilliseconds.time
+                recordTimeLength = recordMilliseconds.time
             }
         }
 
@@ -38,6 +38,8 @@ struct EventDetailFeature {
 
         @Presents var newEvent: NewEventFeature.State?
         @Presents var newRecord: NewRecordFeature.State?
+
+        @Presents var timer: TimerFeature.State?
 
         // MARK: Record
 
@@ -76,6 +78,8 @@ struct EventDetailFeature {
 
         case onTimerStarted(EventEntity)
         case onTimerEnded
+
+        case timer(PresentationAction<TimerFeature.Action>)
     }
 
     @Dependency(\.application) private var application
@@ -159,6 +163,25 @@ struct EventDetailFeature {
                 state.records[entity.endAt.dateAt(.startOfDay)]?.removeAll { $0.id == entity.id }
                 return .none
 
+            case .onTimerStarted(let entity):
+                var timingEntity: TimingEntity
+                // 如果已经是正在计时，获取后直接进入
+                if let entity = TimerManager.shared.timingEntities.first(where: { $0.id == entity.id }) {
+                    timingEntity = entity
+                } else {
+                    timingEntity = TimingEntity(event: entity)
+                }
+
+                // 进入计时页面
+                state.timer = TimerFeature.State(entity: timingEntity)
+
+                return .none
+
+            case .timer(.presented(.onDismissed)):
+                return .run { [state] send in
+                    await send(.onAppear)
+                }
+
             default:
                 return .none
             }
@@ -168,6 +191,9 @@ struct EventDetailFeature {
         }
         .ifLet(\.$newRecord, action: \.newRecord) {
             NewRecordFeature()
+        }
+        .ifLet(\.$timer, action: \.timer) {
+            TimerFeature()
         }
     }
 }

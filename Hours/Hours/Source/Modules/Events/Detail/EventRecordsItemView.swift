@@ -29,12 +29,27 @@ struct EventRecordsItemView: View {
             }
             .width(24)
 
-            VStack {
+            VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text(record.startAt.to(format: "HH:mm") + "~" + record.endAt.to(format: "HH:mm"))
+                    TimeRangeView(
+                        startAt: record.startAt,
+                        endAt: record.endAt,
+                        spacing: 4
+                    )
                     Spacer()
-                    Text(record.milliseconds.timeLengthText)
-                        .font(.callout)
+                    StatisticsTimeView(
+                        time: record.time,
+                        numberFont: .body,
+                        numberWeight: .medium,
+                        numberColor: ui.label,
+                        spacing: 4
+                    )
+                }
+
+                if let notes = record.notes, !notes.isEmpty {
+                    Text(notes)
+                        .lineLimit(1)
+                        .font(.subheadline)
                         .foregroundStyle(ui.secondaryLabel)
                 }
             }

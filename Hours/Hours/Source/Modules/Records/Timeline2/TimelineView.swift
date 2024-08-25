@@ -40,6 +40,7 @@ struct TimelineFeature {
         var itemTypes = [ItemType]()
 
         @Presents var newRecord: NewRecordFeature.State?
+        @Presents var eventDetail: EventDetailFeature.State?
 
         var id: Date { date }
     }
@@ -57,6 +58,11 @@ struct TimelineFeature {
         case newRecord(PresentationAction<NewRecordFeature.Action>)
 
         case onRecordDeleted(RecordEntity)
+
+        // MARK: Event Detail
+
+        case onEventTapped(EventEntity)
+        case eventDetail(PresentationAction<EventDetailFeature.Action>)
     }
 
     @Dependency(\.continuousClock) var clock
@@ -132,12 +138,21 @@ struct TimelineFeature {
                     await send(.onAppear, animation: .default)
                 }
 
+            case .onEventTapped(let entity):
+                state.eventDetail = EventDetailFeature.State(event: entity)
+                return .run { send in
+                    await send(.eventDetail(.presented(.onAppear)))
+                }
+
             default:
                 return .none
             }
         }
         .ifLet(\.$newRecord, action: \.newRecord) {
             NewRecordFeature()
+        }
+        .ifLet(\.$eventDetail, action: \.eventDetail) {
+            EventDetailFeature()
         }
     }
 }
@@ -164,6 +179,9 @@ struct TimelineView: View {
                                             store.send(.onRecordTapped(record))
                                         } onDeleted: {
                                             store.send(.onRecordDeleted(record), animation: .default)
+                                        } onEventTapped: {
+                                            guard let event = record.event else { return }
+                                            store.send(.onEventTapped(event))
                                         }
                                     } else if case .timeInterval(let range) = itemType {
                                         TimelineTimeIntervalView(range: range)
@@ -184,6 +202,9 @@ struct TimelineView: View {
             .sheet(item: $store.scope(state: \.newRecord, action: \.newRecord)) {
                 NewRecordView(store: $0)
                     .sheetStyle(detents: [.height(640)])
+            }
+            .navigationDestination(item: $store.scope(state: \.eventDetail, action: \.eventDetail)) {
+                EventDetailView(store: $0)
             }
         }
     }

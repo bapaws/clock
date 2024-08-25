@@ -112,6 +112,12 @@ struct EventDetailView: View {
             }, message: {
                 Text(L10n.deleteEventWarning(store.event.name, store.event.name))
             })
+
+            // MARK: Timer
+
+            .fullScreenCover(item: $store.scope(state: \.timer, action: \.timer)) { store in
+                TimerView(store: store)
+            }
         }
     }
 
@@ -163,13 +169,25 @@ struct EventDetailView: View {
 
     @ViewBuilder var number: some View {
         HStack(spacing: 16) {
-            StatisticsNumberView(imageName: "list.clipboard", title: L10n.records, subtitle: L10n.total, iconBackgound: ui.primary) {
+            StatisticsNumberView(
+                imageName: "list.clipboard",
+                title: L10n.records,
+                subtitle: L10n.total,
+                iconForegroundColor: store.event.primary,
+                iconBackgound: store.event.primaryContainer
+            ) {
                 Text("\(store.recordCount)")
                     .font(.title, weight: .bold)
                     .foregroundStyle(Color.label)
             }
 
-            StatisticsNumberView(imageName: "hourglass", title: L10n.timeInvest, subtitle: L10n.total, iconBackgound: ui.primary) {
+            StatisticsNumberView(
+                imageName: "hourglass",
+                title: L10n.timeInvest,
+                subtitle: L10n.total,
+                iconForegroundColor: store.event.primary,
+                iconBackgound: store.event.primaryContainer
+            ) {
                 StatisticsTimeView(time: store.recordTimeLength)
             }
         }

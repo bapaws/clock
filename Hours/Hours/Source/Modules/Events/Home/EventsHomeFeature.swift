@@ -33,7 +33,7 @@ struct EventsHomeFeature {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case onAppear
-        
+
         case message(Message.Action)
 
         case list(EventsHomeListFeature.Action)
