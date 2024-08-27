@@ -29,7 +29,6 @@ struct SettingsRecordSection: View {
                     app.requestCalendarAccess { granted in
                         self.isSyncRecordsToCalendar = granted
 
-                        guard !granted else { return }
                         guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
                         UIApplication.shared.open(settingsURL)
                     }
