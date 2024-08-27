@@ -26,6 +26,8 @@ struct OnboardingView: View {
         onboardingIndices[currentPageIndex]
     }
 
+    @Environment(\.dismiss) private var dismiss
+
     init(onboardingIndices: [OnboardingIndices]? = nil, onFinished: (() -> Void)? = nil) {
         self.onboardingIndices = onboardingIndices ?? AppManager.shared.onboardingIndices
 
@@ -142,6 +144,7 @@ struct OnboardingView: View {
             withAnimation { currentPageIndex = newPageIndex }
         } else if let onFinished = onFinished {
             onFinished()
+            dismiss()
         } else {
             replaceRootViewController(isPaywallPresented: isPaywallPresented)
         }

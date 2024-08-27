@@ -11,6 +11,7 @@ import RealmSwift
 public protocol Entity: Identifiable, Equatable, Codable, Hashable {
     associatedtype Object = RealmSwift.Object
     var _id: ObjectId { get }
+    var deletedAt: Date? { get }
 
     init(object: Object, isLinkedObject: Bool)
     func toObject() -> Object
@@ -20,6 +21,7 @@ public protocol Entity: Identifiable, Equatable, Codable, Hashable {
 
 public extension Entity {
     var id: String { _id.stringValue }
+    var isDeleted: Bool { deletedAt != nil }
 
     static func random() -> Self {
         random(count: 1)[0]

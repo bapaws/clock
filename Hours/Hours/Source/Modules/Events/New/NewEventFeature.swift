@@ -95,7 +95,7 @@ struct NewEventFeature {
                         // 完成保存后，设置正确的 category，保证后面 Action 中数据正确
                         event.category = category
 
-                        // 发送保存成功同志
+                        // 发送保存成功通知
                         await send(.saveCompleted(event))
                     }
 

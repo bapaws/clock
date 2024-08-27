@@ -68,6 +68,14 @@ public actor AppRealm {
         syncEngine = SyncEngine(objects: [
             SyncObject(
                 realmConfiguration: realm.configuration,
+                type: SchemeObject.self
+            ),
+            SyncObject(
+                realmConfiguration: realm.configuration,
+                type: HexObject.self
+            ),
+            SyncObject(
+                realmConfiguration: realm.configuration,
                 type: CategoryObject.self,
                 uListElementType: EventObject.self
             ),
@@ -78,15 +86,7 @@ public actor AppRealm {
             ),
             SyncObject(
                 realmConfiguration: realm.configuration,
-                type: HexObject.self
-            ),
-            SyncObject(
-                realmConfiguration: realm.configuration,
                 type: RecordObject.self
-            ),
-            SyncObject(
-                realmConfiguration: realm.configuration,
-                type: SchemeObject.self
             ),
         ])
     }

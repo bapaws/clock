@@ -111,7 +111,11 @@ struct GeneralSettingsView: View {
             .sheet(isPresented: $store.isOnboardingPresented) {
                 let indices = app.isHealthAvailable ? OnboardingIndices.allCases : [.welcome, .appScreenTime, .calendar, .health]
                 OnboardingView(onboardingIndices: indices) {
-                    dismiss()
+                    // 这里调用 dimiss 没有用
+                    // @Environment(\.dismiss) private var dismiss
+                    // 只在需要 dimiss 的页面有效
+                    // dismiss()
+                    // 这里穿空的闭包，在 OnboardingView 里执行了 dimiss()
                 }
             }
             .sheet(isPresented: $store.isAboutPresented) {

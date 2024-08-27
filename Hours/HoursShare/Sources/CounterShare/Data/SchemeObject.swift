@@ -217,6 +217,8 @@ struct SchemeEntity: Entity {
     var onInverseSurface: Int
     var inversePrimary: Int
 
+    var deletedAt: Date?
+
     init(scheme: Scheme) {
         self.primary = scheme.primary
         self.onPrimary = scheme.onPrimary

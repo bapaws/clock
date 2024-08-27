@@ -95,28 +95,40 @@ public extension AppManager {
         guard let category = await AppRealm.shared.getCategory(by: calendar) else { return }
 
         let predicate = eventStore.predicateForEvents(withStart: startAt, end: endAt, calendars: [calendar])
-        let events = eventStore.events(matching: predicate)
+        let calendarEvents = eventStore.events(matching: predicate)
 
         // 如果已导入，或者名称相同，则直接导入事件和记录
         var eventEntities: IdentifiedArrayOf<EventEntity> = []
-        for event in events {
+        for calendarEvent in calendarEvents {
+            /// 记录查询：
+            /// 1. 如果存在 id 相同的，说明存在。（需要判断是否被删除）
+            /// 2. 如果记录的事件与日历事件标题相同 & 开始时间和结束时间相同，也说明存在。
+            let recordWhere: (Query<RecordObject>) -> Query<Bool> = {
+                let isEventIDEqual = $0.calendarEventIdentifier == calendarEvent.eventIdentifier
+                let isEventTitleEqual = $0.events.title == calendarEvent.title || $0.events.name == calendarEvent.title
+                let isDateEqual = $0.startAt == calendarEvent.startDate && $0.endAt == calendarEvent.endDate
+                return isEventIDEqual || (isEventTitleEqual && isDateEqual)
+            }
             // 如果已经存在记录，说明数据已导入
-            if var record = await AppRealm.shared.findRecords(where: { $0.calendarEventIdentifier == event.eventIdentifier }).first {
-                if record.deletedAt != nil {
-                    record.deletedAt = nil
-                    await AppRealm.shared.updateRecord(record)
-                }
+            if var record = await AppRealm.shared.findRecords(where: recordWhere).first {
+                record.calendarEventIdentifier = calendarEvent.eventIdentifier
+                record.deletedAt = nil
+                // 这里为了方便，直接更新记录
+                await AppRealm.shared.updateRecord(record)
                 continue
             }
 
             // 获取事件
-            guard let title = event.title, let importEventEntity = entity.events.first(where: { $0.name == title || $0.title == title }) else { continue }
+            guard let title = calendarEvent.title, let importEventEntity = entity.events.first(where: { $0.name == title || $0.title == title }) else { continue }
 
-            var recordEntity = RecordEntity(creationMode: .calendar, startAt: event.startDate, endAt: event.endDate)
-            recordEntity.notes = event.notes
-            recordEntity.calendarEventIdentifier = event.eventIdentifier
+            var recordEntity = RecordEntity(creationMode: .calendar, startAt: calendarEvent.startDate, endAt: calendarEvent.endDate)
+            recordEntity.notes = calendarEvent.notes
+            recordEntity.calendarEventIdentifier = calendarEvent.eventIdentifier
 
-            let eventEntity: EventEntity = await AppRealm.shared.getEvent(by: event) ?? importEventEntity
+            /// 先从数据库里查询相同标题的事件
+            /// - 存在：表示已导入过，所以数据库已有的事件
+            /// - 不存在：未导入过，所以使用新建的事件
+            let eventEntity: EventEntity = await AppRealm.shared.getEvent(by: calendarEvent) ?? importEventEntity
             if eventEntities[id: eventEntity.id] == nil {
                 eventEntities.append(eventEntity)
             }
@@ -175,7 +187,7 @@ public extension AppManager {
         guard calendarAccessGranted else { return nil }
 
         do {
-            // 如果是修改记录，现删除记录
+            // 如果是修改记录，先删除记录
             if let eventIdentifier = record.calendarEventIdentifier {
                 deleteCalendarEvent(for: eventIdentifier)
             }

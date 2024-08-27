@@ -202,6 +202,8 @@ public struct HexEntity: Entity {
     var light: SchemeEntity
     var dark: SchemeEntity
 
+    public var deletedAt: Date?
+
     public init(rgb: Int) {
         self._id = .generate()
         self.rgb = rgb
