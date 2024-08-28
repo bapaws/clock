@@ -42,6 +42,8 @@
 		88128CC42C69A14500CDFE50 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88128CC32C69A14500CDFE50 /* Storage.swift */; };
 		8814503C2BA437FF00058F7F /* Palette in Frameworks */ = {isa = PBXBuildFile; productRef = 8814503B2BA437FF00058F7F /* Palette */; };
 		881450402BA4789400058F7F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814503F2BA4789400058F7F /* Category.swift */; };
+		8816F6462C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */; };
+		8816F6472C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */; };
 		88201AB62B94B58C00D4D187 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 88201AB52B94B58C00D4D187 /* PopupView */; };
 		88201ABD2B94B65000D4D187 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88201ABF2B94B65000D4D187 /* Localizable.strings */; };
 		88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88201AC62B94B8DB00D4D187 /* SoundType.swift */; };
@@ -282,6 +284,9 @@
 		88128CC32C69A14500CDFE50 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8814503A2BA437DD00058F7F /* Palette */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Palette; path = ../Palette; sourceTree = "<group>"; };
 		8814503F2BA4789400058F7F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		8816F61B2C7F148000A69FF4 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		8816F6262C7F148000A69FF4 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSelectCategoryConfigurationIntent.swift; sourceTree = "<group>"; };
 		88201AB72B94B5BB00D4D187 /* Hours.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hours.entitlements; sourceTree = "<group>"; };
 		88201ABE2B94B65000D4D187 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88201AC02B94B65300D4D187 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -751,6 +756,8 @@
 				88861D222BC6305C001DAE8E /* DeviceActivity.framework */,
 				887CEC552BFDE8F900E56AB5 /* WidgetKit.framework */,
 				887CEC572BFDE8F900E56AB5 /* SwiftUI.framework */,
+				8816F61B2C7F148000A69FF4 /* Intents.framework */,
+				8816F6262C7F148000A69FF4 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -930,7 +937,6 @@
 		88D23AB12B949D9700E33DE5 = {
 			isa = PBXGroup;
 			children = (
-				886CF0F22C11AA24009B5A29 /* WidgetsExtension.entitlements */,
 				88ECC6912C524821002FF861 /* IceCream */,
 				8814503A2BA437DD00058F7F /* Palette */,
 				88D23ACB2B949DA500E33DE5 /* ClockShare */,
@@ -1166,6 +1172,7 @@
 		88D5C6422C10A49C00B8E9AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				886CF0F22C11AA24009B5A29 /* WidgetsExtension.entitlements */,
 				887CEC642BFDE8FA00E56AB5 /* Info.plist */,
 				887CEC622BFDE8FA00E56AB5 /* Assets.xcassets */,
 				88D5C6432C10A4C600B8E9AE /* Localizable.strings */,
@@ -1305,6 +1312,7 @@
 				886CF1022C11D818009B5A29 /* SelectCategoryAppIntent.swift */,
 				886CF0F52C11BB7C009B5A29 /* QuickStartTimerAppIntent.swift */,
 				886CF1102C11F849009B5A29 /* QuickStopTimerAppIntent.swift */,
+				8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */,
 			);
 			path = AppIntents;
 			sourceTree = "<group>";
@@ -1412,7 +1420,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					887CEC532BFDE8F900E56AB5 = {
@@ -1492,6 +1500,7 @@
 			files = (
 				887CEC792BFDECD800E56AB5 /* TimerView.swift in Sources */,
 				88D5C63C2C109EBB00B8E9AE /* EventsView.swift in Sources */,
+				8816F6472C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */,
 				886CF1032C11D818009B5A29 /* SelectCategoryAppIntent.swift in Sources */,
 				886CF1112C11F849009B5A29 /* QuickStopTimerAppIntent.swift in Sources */,
 				887CEC6E2BFDE93600E56AB5 /* TimerLiveActivity.swift in Sources */,
@@ -1628,6 +1637,7 @@
 				8827A56A2BEC63550010FC4C /* AppDidOpenAppIntent.swift in Sources */,
 				88FBAE6F2C0D569F00C45F29 /* StatisticsDayTimeDistributionView.swift in Sources */,
 				88F357D22C1ED3EE00DD106A /* ArchivedEventsFeature.swift in Sources */,
+				8816F6462C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */,
 				88F19CB02C40C643003C5DC1 /* EventsHomeOtherCategoriesView.swift in Sources */,
 				88D23ABE2B949D9700E33DE5 /* CounterApp.swift in Sources */,
 				88F4828F2C0BFD6F00211368 /* StatisticsDailyRatioView.swift in Sources */,
@@ -1706,7 +1716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/WidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GM4766U38W;
@@ -1720,7 +1730,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1735,7 +1745,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/WidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GM4766U38W;
@@ -1749,7 +1759,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1909,7 +1919,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1947,7 +1957,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

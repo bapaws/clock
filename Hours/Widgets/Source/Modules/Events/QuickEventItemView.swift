@@ -22,8 +22,8 @@ struct QuickEventItemView: View {
             }
             Text(event.name)
                 .lineLimit(2)
-                .minimumScaleFactor(0.5)
-                .font(.subheadline)
+                .minimumScaleFactor(0.4)
+                .font(.caption2)
                 .foregroundStyle(event.primary)
             Spacer()
         }

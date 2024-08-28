@@ -103,9 +103,19 @@ public extension AppManager {
             /// 记录查询：
             /// 1. 如果存在 id 相同的，说明存在。（需要判断是否被删除）
             /// 2. 如果记录的事件与日历事件标题相同 & 开始时间和结束时间相同，也说明存在。
+            let titles = calendarEvent.title.split(separator: " ").map { String($0) }
+            var calendarEventEmoji: String?
+            var calendarEventName: String
+            if titles.count == 2, titles[0].isEmoji {
+                calendarEventEmoji = titles[0]
+                calendarEventName = titles[1]
+            } else {
+                calendarEventName = calendarEvent.title
+            }
+
             let recordWhere: (Query<RecordObject>) -> Query<Bool> = {
                 let isEventIDEqual = $0.calendarEventIdentifier == calendarEvent.eventIdentifier
-                let isEventTitleEqual = $0.events.title == calendarEvent.title || $0.events.name == calendarEvent.title
+                let isEventTitleEqual = $0.events.emoji == calendarEventEmoji && $0.events.name == calendarEventName
                 let isDateEqual = $0.startAt == calendarEvent.startDate && $0.endAt == calendarEvent.endDate
                 return isEventIDEqual || (isEventTitleEqual && isDateEqual)
             }

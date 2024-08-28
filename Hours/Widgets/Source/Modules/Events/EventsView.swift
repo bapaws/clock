@@ -12,14 +12,14 @@ import SwiftUI
 import SwiftUIX
 import WidgetKit
 
-//@available(iOSApplicationExtension 17.0, *)
-//struct EventsLargeWidgetEntryView: View {
+// @available(iOSApplicationExtension 17.0, *)
+// struct EventsLargeWidgetEntryView: View {
 //    var entry: EventsProvider.Entry
 //
 //    var body: some View {
 //        QuickCategoryEntryView(entry: category)
 //    }
-//}
+// }
 
 @available(iOSApplicationExtension 17.0, *)
 struct EventsLargeWidget: Widget {
@@ -46,5 +46,5 @@ struct EventsLargeWidget: Widget {
 #Preview(as: .systemLarge) {
     EventsLargeWidget()
 } timeline: {
-    EventsProvider.Entry(categories: CategoryEntity.defaults)
+    EventsProvider.Entry(categories: CategoryEntity.random(count: 10))
 }

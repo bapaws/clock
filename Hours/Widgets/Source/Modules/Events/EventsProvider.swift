@@ -90,9 +90,19 @@ struct QuickCategoryEntity {
         }
     }
 
+    var spacing: CGFloat {
+        let row = CGFloat(maxEventCount / 3)
+        /// 中号小组件使用高计算事件块大小
+        return max(8, (displaySize.height - 32 - dimension * row) / (row - 1))
+    }
+
     var dimension: CGFloat {
-        let maxWidth = floor((displaySize.width - 32 - categoryWidth - 8 - 1 - 8 - 16) / 3)
-        let maxHeight = floor((displaySize.height - 24 - 8) / 2)
+        let row = CGFloat(maxEventCount / 3)
+        /// 小组件宽度 - 边距 32 - 分类宽度 - 分类与事件距离 - 2 个间距（3 列）* 8
+        let maxWidth = floor((displaySize.width - 32 - categoryWidth - 8 - 16) / 3)
+        /// 小组件高 - 边距 16 - 间距
+        /// 边距正常是 32，由于中号小组件太小，所以这里边距减 16
+        let maxHeight = floor((displaySize.height - 16 - (row - 1) * 8) / 2)
         return min(maxWidth, maxHeight)
     }
 
