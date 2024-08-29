@@ -27,15 +27,10 @@ struct QuickTimingItemView: View {
 
             Spacer()
 
-            HStack(spacing: 0) {
-                Image(systemName: "stop.fill")
-                    .font(.system(.caption, design: .rounded))
-                Text(timerInterval: entity.timerInterval, countsDown: false)
-                    .contentTransition(.numericText(countsDown: false))
-                    .font(.system(.caption, design: .rounded, weight: .bold))
-                    .monospacedDigit()
-            }
-            .foregroundStyle(entity.primary)
+            Text(timerInterval: entity.timerInterval, countsDown: false)
+                .contentTransition(.numericText(countsDown: false))
+                .font(.system(.caption, design: .rounded, weight: .regular))
+                .foregroundStyle(entity.primary)
 
             Spacer()
         }

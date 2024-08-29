@@ -70,6 +70,12 @@ class SplashViewController: UIHostingController<SplashView> {
         let main = MainViewController(store: store)
         let root = UINavigationController(rootViewController: main)
         window.rootViewController = root
-        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {}) { _ in
+            /// 除第一次启动新手引导不主动请求权限
+            /// 其他 app 启动，主动去请求权限
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                AppManager.shared.requestAccess()
+            }
+        }
     }
 }

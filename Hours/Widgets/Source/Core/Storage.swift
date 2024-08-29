@@ -13,12 +13,12 @@ extension Storage {
 //        public static let large = "Events.Large"
 //        public static let medium = "Events.Medium"
     var largeWidgetSelectedCategoryID: String? {
-        set { store.set(newValue, forKey: WidgetsKind.Events.large) }
-        get { store.string(forKey: WidgetsKind.Events.large) }
+        set { store.set(newValue, forKey: WidgetsKind.Quick.large) }
+        get { store.string(forKey: WidgetsKind.Quick.large) }
     }
 
     var mediumWidgetSelectedCategoryID: String? {
-        set { store.set(newValue, forKey: WidgetsKind.Events.medium) }
-        get { store.string(forKey: WidgetsKind.Events.medium) }
+        set { store.set(newValue, forKey: WidgetsKind.Quick.medium) }
+        get { store.string(forKey: WidgetsKind.Quick.medium) }
     }
 }

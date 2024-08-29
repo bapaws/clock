@@ -1,5 +1,5 @@
 //
-//  QuickSelectCategoryConfigurationIntent.swift
+//  QuickConfigurationIntent.swift
 //  Hours
 //
 //  Created by 张敏超 on 2024/8/28.
@@ -19,7 +19,7 @@ struct QuickCategoryEntityQuery: EntityQuery {
 
     func suggestedEntities() async throws -> [QuickCategoryAppEntity] {
 //        CategoryEntity.random(count: 12)
-        await AppRealm.shared.getAllArchivedCategories()
+        await AppRealm.shared.getAllUnarchivedCategories()
             .map { QuickCategoryAppEntity(id: $0.id, title: $0.title) }
     }
 
@@ -43,10 +43,10 @@ struct QuickCategoryAppEntity: AppEntity {
 }
 
 @available(iOS 17.0, *)
-struct QuickSelectCategoryConfigurationIntent: WidgetConfigurationIntent {
+struct QuickConfigurationIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Select Categories"
 
-    @Parameter(title: "Categories")
+    @Parameter(title: "Categories", default: [], size: [.systemMedium: 4, .systemLarge: 9])
     var categories: [QuickCategoryAppEntity]
 
     init(categories: [QuickCategoryAppEntity]) {

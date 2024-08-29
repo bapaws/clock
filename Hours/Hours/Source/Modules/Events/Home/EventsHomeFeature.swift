@@ -124,7 +124,7 @@ struct EventsHomeFeature {
                     // 创建事件可能是分类里，也可能是其他里，情况多，直接重新刷新
                     await send(.onAppear)
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                 }
 
                 // MARK: Archived

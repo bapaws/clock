@@ -12,24 +12,19 @@ import SwiftUI
 import SwiftUIX
 import WidgetKit
 
-// @available(iOSApplicationExtension 17.0, *)
-// struct EventsLargeWidgetEntryView: View {
-//    var entry: EventsProvider.Entry
-//
-//    var body: some View {
-//        QuickCategoryEntryView(entry: category)
-//    }
-// }
-
 @available(iOSApplicationExtension 17.0, *)
-struct EventsLargeWidget: Widget {
-    let kind: String = WidgetsKind.Events.large
+struct QuickWidget: Widget {
+    let kind: String = WidgetsKind.Quick.large
 
     let ui = UIManager.shared
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: EventsProvider()) { entry in
-            QuickCategoryEntryView(entry: entry)
+        AppIntentConfiguration(
+            kind: kind,
+            intent: QuickConfigurationIntent.self,
+            provider: QuickProvider()
+        ) { entry in
+            QuickEntryView(entry: entry)
                 .environmentObject(ui)
                 .containerBackground(ui.background)
                 .onAppear {
@@ -42,9 +37,9 @@ struct EventsLargeWidget: Widget {
     }
 }
 
-@available(iOS 17.0, *)
-#Preview(as: .systemLarge) {
-    EventsLargeWidget()
-} timeline: {
-    EventsProvider.Entry(categories: CategoryEntity.random(count: 10))
-}
+// @available(iOS 17.0, *)
+// #Preview(as: .systemLarge) {
+//    QuickWidget()
+// } timeline: {
+//    EventsProvider.Entry(categories: CategoryEntity.random(count: 10))
+// }

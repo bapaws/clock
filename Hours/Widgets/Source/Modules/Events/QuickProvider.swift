@@ -1,5 +1,5 @@
 //
-//  EventsProvider.swift
+//  QuickProvider.swift
 //  WidgetsExtension
 //
 //  Created by 张敏超 on 2024/6/5.
@@ -10,6 +10,24 @@ import Foundation
 import HoursShare
 import RealmSwift
 import WidgetKit
+
+extension WidgetFamily {
+    var quickMaxCategoryCount: Int {
+        switch self {
+        case .systemMedium: 4
+        case .systemLarge: 9
+        default: fatalError("Not support")
+        }
+    }
+
+    var quickMaxEventCount: Int {
+        switch self {
+        case .systemMedium: 6
+        case .systemLarge: 12
+        default: fatalError("Not support")
+        }
+    }
+}
 
 struct QuickCategoryEntity {
     public let family: WidgetFamily
@@ -53,31 +71,8 @@ struct QuickCategoryEntity {
         self.selection = categories.first
     }
 
-    var maxEventCount: Int {
-        switch family {
-        case .systemMedium:
-            return 6
-        case .systemLarge:
-            return 12
-        default:
-            fatalError("Not support")
-        }
-    }
-
-    var maxCategoryCount: Int {
-        switch family {
-        case .systemMedium:
-            4
-        case .systemLarge:
-            9
-        default:
-            fatalError("Not support")
-        }
-    }
-
-    var categoryWidth: CGFloat {
-        return 80
-    }
+    var maxEventCount: Int { family.quickMaxEventCount }
+    var maxCategoryCount: Int { family.quickMaxCategoryCount }
 
     var padding: CGFloat {
         switch family {
@@ -90,7 +85,15 @@ struct QuickCategoryEntity {
         }
     }
 
-    var spacing: CGFloat {
+    var categoryItemHeight: CGFloat {
+        floor((displaySize.height - 32) / CGFloat(maxCategoryCount))
+    }
+
+    var categoryItemSize: CGSize {
+        CGSize(width: 80, height: floor((displaySize.height - 32) / CGFloat(maxCategoryCount)))
+    }
+
+    var eventSpacing: CGFloat {
         let row = CGFloat(maxEventCount / 3)
         /// 中号小组件使用高计算事件块大小
         return max(8, (displaySize.height - 32 - dimension * row) / (row - 1))
@@ -99,7 +102,7 @@ struct QuickCategoryEntity {
     var dimension: CGFloat {
         let row = CGFloat(maxEventCount / 3)
         /// 小组件宽度 - 边距 32 - 分类宽度 - 分类与事件距离 - 2 个间距（3 列）* 8
-        let maxWidth = floor((displaySize.width - 32 - categoryWidth - 8 - 16) / 3)
+        let maxWidth = floor((displaySize.width - 32 - categoryItemSize.width - 8 - 16) / 3)
         /// 小组件高 - 边距 16 - 间距
         /// 边距正常是 32，由于中号小组件太小，所以这里边距减 16
         let maxHeight = floor((displaySize.height - 16 - (row - 1) * 8) / 2)
@@ -109,9 +112,9 @@ struct QuickCategoryEntity {
     var kind: String {
         switch family {
         case .systemMedium:
-            WidgetsKind.Events.medium
+            WidgetsKind.Quick.medium
         case .systemLarge:
-            WidgetsKind.Events.large
+            WidgetsKind.Quick.large
         default:
             fatalError("Not support")
         }
@@ -120,9 +123,9 @@ struct QuickCategoryEntity {
     var widgetURL: URL? {
         switch family {
         case .systemMedium:
-            URL(string: WidgetsKind.Events.selectCategoryPath + "?kind=" + WidgetsKind.Events.medium)
+            URL(string: WidgetsKind.Quick.selectCategoryPath + "?kind=" + WidgetsKind.Quick.medium)
         case .systemLarge:
-            URL(string: WidgetsKind.Events.selectCategoryPath + "?kind=" + WidgetsKind.Events.large)
+            URL(string: WidgetsKind.Quick.selectCategoryPath + "?kind=" + WidgetsKind.Quick.large)
         default:
             nil
         }
@@ -160,30 +163,40 @@ struct QuickTimelineEntry: TimelineEntry {
     }
 }
 
-struct EventsProvider: TimelineProvider {
+@available(iOSApplicationExtension 17.0, *)
+struct QuickProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> QuickTimelineEntry {
         QuickTimelineEntry(context: context, categories: CategoryEntity.defaults)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (QuickTimelineEntry) -> ()) {
-        let entry = QuickTimelineEntry(context: context, categories: CategoryEntity.defaults)
-        completion(entry)
+    func snapshot(for configuration: QuickConfigurationIntent, in context: Context) async -> QuickTimelineEntry {
+        return QuickTimelineEntry(context: context, categories: CategoryEntity.defaults)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<QuickTimelineEntry>) -> ()) {
-        Task {
-            let categories = await AppRealm.shared.getAllUnarchivedCategories()
+    func timeline(for configuration: QuickConfigurationIntent, in context: Context) async -> Timeline<QuickTimelineEntry> {
+        var categories: [CategoryEntity]
+        if configuration.categories.isEmpty {
+            categories = await AppRealm.shared.getAllUnarchivedCategories()
                 .filter { !$0.events.isEmpty }
-            var timelineEntry = QuickTimelineEntry(context: context, categories: categories)
-            if let entities = Storage.default.currentTimingEntities {
-                timelineEntry.timingEntities = entities
+                .suffix(context.family.quickMaxCategoryCount)
+        } else {
+            categories = []
+            for category in configuration.categories {
+                if let id = try? ObjectId(string: category.id),
+                   let entity = await AppRealm.shared.getCategory(by: id)
+                {
+                    categories.append(entity)
+                }
             }
-
-            let timeline = Timeline(
-                entries: [timelineEntry],
-                policy: .after(Date.now.addingTimeInterval(6 * 3600))
-            )
-            completion(timeline)
         }
+        var timelineEntry = QuickTimelineEntry(context: context, categories: categories)
+        if let entities = Storage.default.currentTimingEntities {
+            timelineEntry.timingEntities = entities
+        }
+
+        return Timeline(
+            entries: [timelineEntry],
+            policy: .after(Date.now.addingTimeInterval(6 * 3600))
+        )
     }
 }

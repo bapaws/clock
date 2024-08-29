@@ -25,10 +25,12 @@ struct SettingsRecordSection: View {
 
             SettingsToggleCell(title: L10n.syncRecordsToCalendar, isNew: true, isOn: $isSyncRecordsToCalendar)
                 .onChange(of: isSyncRecordsToCalendar) { _ in
+                    let status = app.calendarAuthorizationStatus
                     // 请求权限
                     app.requestCalendarAccess { granted in
                         self.isSyncRecordsToCalendar = granted
 
+                        if status == .notDetermined { return }
                         guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
                         UIApplication.shared.open(settingsURL)
                     }

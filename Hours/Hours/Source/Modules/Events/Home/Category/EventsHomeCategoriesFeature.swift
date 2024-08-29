@@ -106,7 +106,7 @@ struct EventsHomeCategoriesFeature {
                 return .run { _ in
                     await AppRealm.shared.archiveCategory(entity)
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                 }
 
             case .deleteEvent(let entity):
@@ -133,7 +133,7 @@ struct EventsHomeCategoriesFeature {
                     await AppRealm.shared.deleteEvent(entity)
                     await send(.removeEvent(entity), animation: .default)
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                 }
 
             case .archiveEvent(let entity):
@@ -141,7 +141,7 @@ struct EventsHomeCategoriesFeature {
                     await AppRealm.shared.archiveEvent(entity)
                     await send(.removeEvent(entity), animation: .default)
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                 }
 
             case .removeEvent(let entity):
@@ -219,7 +219,7 @@ struct EventsHomeCategoriesFeature {
 
                     try await AppRealm.shared.reorder(by: events, in: category)
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                     if shouldUpdateCalendarRecords {
                         await send(.updateCalendarRecords(dragEvent))
                     }
@@ -262,7 +262,7 @@ struct EventsHomeCategoriesFeature {
 
                     try await AppRealm.shared.reorder(by: categories)
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                 }
 
             default:

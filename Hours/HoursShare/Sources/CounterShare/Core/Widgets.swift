@@ -12,7 +12,7 @@ public enum WidgetsKind {
 
     public static let widgetPath = "/widget"
 
-    public enum Events {
+    public enum Quick {
         public static let selectCategoryPath = WidgetsKind.scheme + WidgetsKind.widgetPath + "/select/category"
         public static let large = "Events.Large"
         public static let medium = "Events.Medium"

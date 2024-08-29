@@ -32,8 +32,9 @@ struct QuickStartTimerAppIntent: AppIntent, LiveActivityStartingIntent {
 
         let entity = TimingEntity(event: eventEntity, time: .zero)
         TimerManager.shared.start(of: entity)
-
-        NotificationCenter.default.post(name: TimerManager.shared.timerStart, object: nil)
+        // 从保存 TimingEntity 开始，这里无需发送通知
+        // 这个只在点击小组件的事件开始计时时使用，所以发送了通知也无法响应
+        // NotificationCenter.default.post(name: TimerManager.shared.timerStart, object: nil)
         return .result()
     }
 }

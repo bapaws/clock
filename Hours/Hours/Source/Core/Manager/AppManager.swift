@@ -56,6 +56,12 @@ public class AppManager: HoursShare.AppManager {
         super.init()
 
         setupOnboardingIndices()
+    }
+
+    /// 1.6.8 及以前的版本，在 init 方法中调用，导致健康权限弹窗出现较早
+    /// 如果是直接进入 app，会更换 rootViewController ，导致健康权限无法正常显示
+    /// 后面的版本，在 Splash 页面，更换结束时调用
+    public func requestAccess() {
         if !onboardingIndices.contains(.health) {
             requestHealthAccess()
         }

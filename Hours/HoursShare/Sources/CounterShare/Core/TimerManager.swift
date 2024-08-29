@@ -40,7 +40,7 @@ public class TimerManager: ObservableObject {
             self.timingEntities = timingEntities
 
             // 更新小组件
-            WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+            WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
             // 重启后，重新启动实时活动
             if #available(iOS 16.1, *) {
                 startActivity()
@@ -56,7 +56,7 @@ public class TimerManager: ObservableObject {
         timingEntities.removeAll { $0.id == entity.id }
         timingEntities.append(entity)
 
-        WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+        WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
 
         if #available(iOS 16.1, *) {
             startActivity()
@@ -99,7 +99,7 @@ public class TimerManager: ObservableObject {
     public func stop(of entity: TimingEntity) {
         timingEntities.removeAll { $0.id == entity.id }
 
-        WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+        WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
 
         if #available(iOS 16.1, *) {
             // Copy timingEntities

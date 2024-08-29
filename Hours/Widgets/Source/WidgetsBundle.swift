@@ -15,7 +15,7 @@ struct WidgetsBundle: WidgetBundle {
         TimerLiveActivity()
 
         if #available(iOSApplicationExtension 17.0, *) {
-            EventsLargeWidget()
+            QuickWidget()
         }
     }
 }

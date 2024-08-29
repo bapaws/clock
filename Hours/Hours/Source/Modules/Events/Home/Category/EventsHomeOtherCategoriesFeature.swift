@@ -69,7 +69,7 @@ struct EventsHomeOtherCategoriesFeature {
                     await AppRealm.shared.deleteCategory(entity)
                     await send(.removeCategory(entity), animation: .default)
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                 }
 
             case .archiveCategory(let entity):
@@ -77,7 +77,7 @@ struct EventsHomeOtherCategoriesFeature {
                     await AppRealm.shared.archiveCategory(entity)
                     await send(.removeCategory(entity))
 
-                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Events.large)
+                    WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
                 }
 
             case .removeCategory(let entity):

@@ -41,6 +41,7 @@ public actor AppRealm {
                 if let originalFileURL = originalConfig.fileURL, fileManager.fileExists(atPath: originalFileURL.path), !fileManager.fileExists(atPath: fileURL.path) {
                     try fileManager.moveItem(at: originalFileURL, to: fileURL)
                 }
+                debugPrint(fileURL)
 
                 let config = Realm.Configuration(
                     fileURL: fileURL,

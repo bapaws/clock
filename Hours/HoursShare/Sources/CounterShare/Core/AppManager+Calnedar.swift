@@ -16,6 +16,10 @@ import UIKit
 // MARK: Access
 
 public extension AppManager {
+    var calendarAuthorizationStatus: EKAuthorizationStatus {
+        EKEventStore.authorizationStatus(for: .event)
+    }
+
     func requestCalendarAccess(completion: ((Bool) -> Void)? = nil) {
         let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, _ in
             DispatchQueue.main.async {

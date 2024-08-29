@@ -1,5 +1,5 @@
 //
-//  SelectCategoryAppIntent.swift
+//  QuickSelectCategoryAppIntent.swift
 //  WidgetsExtension
 //
 //  Created by 张敏超 on 2024/6/6.
@@ -12,7 +12,7 @@ import HoursShare
 import WidgetKit
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *)
-struct SelectCategoryAppIntent: AppIntent {
+struct QuickSelectCategoryAppIntent: AppIntent {
     static var title: LocalizedStringResource = "Select Category"
     static var description = IntentDescription("Select Category")
 

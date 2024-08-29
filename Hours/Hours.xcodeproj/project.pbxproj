@@ -42,8 +42,8 @@
 		88128CC42C69A14500CDFE50 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88128CC32C69A14500CDFE50 /* Storage.swift */; };
 		8814503C2BA437FF00058F7F /* Palette in Frameworks */ = {isa = PBXBuildFile; productRef = 8814503B2BA437FF00058F7F /* Palette */; };
 		881450402BA4789400058F7F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814503F2BA4789400058F7F /* Category.swift */; };
-		8816F6462C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */; };
-		8816F6472C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */; };
+		8816F6462C7F282E00A69FF4 /* QuickConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickConfigurationIntent.swift */; };
+		8816F6472C7F282E00A69FF4 /* QuickConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickConfigurationIntent.swift */; };
 		88201AB62B94B58C00D4D187 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 88201AB52B94B58C00D4D187 /* PopupView */; };
 		88201ABD2B94B65000D4D187 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88201ABF2B94B65000D4D187 /* Localizable.strings */; };
 		88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88201AC62B94B8DB00D4D187 /* SoundType.swift */; };
@@ -64,8 +64,8 @@
 		8867985A2BEA602500E55B2C /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886798592BEA602500E55B2C /* FeedbackView.swift */; };
 		886905F22BCCB607006865DD /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 886905F12BCCB607006865DD /* InfoPlist.xcstrings */; };
 		886CF1012C11D60E009B5A29 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF1002C11D60E009B5A29 /* Storage.swift */; };
-		886CF1032C11D818009B5A29 /* SelectCategoryAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF1022C11D818009B5A29 /* SelectCategoryAppIntent.swift */; };
-		886CF1072C11F35F009B5A29 /* QuickCategoryEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF1062C11F35F009B5A29 /* QuickCategoryEntryView.swift */; };
+		886CF1032C11D818009B5A29 /* QuickSelectCategoryAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF1022C11D818009B5A29 /* QuickSelectCategoryAppIntent.swift */; };
+		886CF1072C11F35F009B5A29 /* QuickEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF1062C11F35F009B5A29 /* QuickEntryView.swift */; };
 		886CF1112C11F849009B5A29 /* QuickStopTimerAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF1102C11F849009B5A29 /* QuickStopTimerAppIntent.swift */; };
 		887CEC562BFDE8F900E56AB5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887CEC552BFDE8F900E56AB5 /* WidgetKit.framework */; };
 		887CEC582BFDE8F900E56AB5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887CEC572BFDE8F900E56AB5 /* SwiftUI.framework */; };
@@ -147,8 +147,8 @@
 		88D454B42BA8675900584FAD /* SettingsRecordSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D454B32BA8675900584FAD /* SettingsRecordSection.swift */; };
 		88D50FD92B9764490065C4AA /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D50FD82B9764490065C4AA /* CategoryPickerView.swift */; };
 		88D53AEA2C09636E003C02DC /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 88D53AE92C09636E003C02DC /* ComposableArchitecture */; };
-		88D5C63C2C109EBB00B8E9AE /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63B2C109EBB00B8E9AE /* EventsView.swift */; };
-		88D5C63E2C109F0000B8E9AE /* EventsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63D2C109F0000B8E9AE /* EventsProvider.swift */; };
+		88D5C63C2C109EBB00B8E9AE /* QuickWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63B2C109EBB00B8E9AE /* QuickWidget.swift */; };
+		88D5C63E2C109F0000B8E9AE /* QuickProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63D2C109F0000B8E9AE /* QuickProvider.swift */; };
 		88D5C6452C10A4C600B8E9AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88D5C6432C10A4C600B8E9AE /* Localizable.strings */; };
 		88D5D2982C59E10D00495A53 /* RGBPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2972C59E10D00495A53 /* RGBPicker.swift */; };
 		88D5D29A2C5A672F00495A53 /* EventsHomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2992C5A672F00495A53 /* EventsHomeEmptyView.swift */; };
@@ -286,7 +286,7 @@
 		8814503F2BA4789400058F7F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8816F61B2C7F148000A69FF4 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8816F6262C7F148000A69FF4 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSelectCategoryConfigurationIntent.swift; sourceTree = "<group>"; };
+		8816F6452C7F282E00A69FF4 /* QuickConfigurationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickConfigurationIntent.swift; sourceTree = "<group>"; };
 		88201AB72B94B5BB00D4D187 /* Hours.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hours.entitlements; sourceTree = "<group>"; };
 		88201ABE2B94B65000D4D187 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88201AC02B94B65300D4D187 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -308,8 +308,8 @@
 		886CF0F22C11AA24009B5A29 /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
 		886CF0F52C11BB7C009B5A29 /* QuickStartTimerAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickStartTimerAppIntent.swift; sourceTree = "<group>"; };
 		886CF1002C11D60E009B5A29 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		886CF1022C11D818009B5A29 /* SelectCategoryAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryAppIntent.swift; sourceTree = "<group>"; };
-		886CF1062C11F35F009B5A29 /* QuickCategoryEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCategoryEntryView.swift; sourceTree = "<group>"; };
+		886CF1022C11D818009B5A29 /* QuickSelectCategoryAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSelectCategoryAppIntent.swift; sourceTree = "<group>"; };
+		886CF1062C11F35F009B5A29 /* QuickEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickEntryView.swift; sourceTree = "<group>"; };
 		886CF1102C11F849009B5A29 /* QuickStopTimerAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickStopTimerAppIntent.swift; sourceTree = "<group>"; };
 		887CEC542BFDE8F900E56AB5 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		887CEC552BFDE8F900E56AB5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -384,8 +384,8 @@
 		88D454AF2BA84BB500584FAD /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		88D454B32BA8675900584FAD /* SettingsRecordSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRecordSection.swift; sourceTree = "<group>"; };
 		88D50FD82B9764490065C4AA /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
-		88D5C63B2C109EBB00B8E9AE /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
-		88D5C63D2C109F0000B8E9AE /* EventsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProvider.swift; sourceTree = "<group>"; };
+		88D5C63B2C109EBB00B8E9AE /* QuickWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWidget.swift; sourceTree = "<group>"; };
+		88D5C63D2C109F0000B8E9AE /* QuickProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickProvider.swift; sourceTree = "<group>"; };
 		88D5C6442C10A4C600B8E9AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88D5C6462C10A4CB00B8E9AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		88D5D2972C59E10D00495A53 /* RGBPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBPicker.swift; sourceTree = "<group>"; };
@@ -1160,9 +1160,9 @@
 			isa = PBXGroup;
 			children = (
 				88FA90CC2C12A04C006607B1 /* AppIntents */,
-				88D5C63B2C109EBB00B8E9AE /* EventsView.swift */,
-				88D5C63D2C109F0000B8E9AE /* EventsProvider.swift */,
-				886CF1062C11F35F009B5A29 /* QuickCategoryEntryView.swift */,
+				88D5C63B2C109EBB00B8E9AE /* QuickWidget.swift */,
+				88D5C63D2C109F0000B8E9AE /* QuickProvider.swift */,
+				886CF1062C11F35F009B5A29 /* QuickEntryView.swift */,
 				88FA3C042C3E760B009C4273 /* QuickEventItemView.swift */,
 				88FA3C0A2C3E7A9F009C4273 /* QuickTimingItemView.swift */,
 			);
@@ -1309,10 +1309,10 @@
 		88FA90CC2C12A04C006607B1 /* AppIntents */ = {
 			isa = PBXGroup;
 			children = (
-				886CF1022C11D818009B5A29 /* SelectCategoryAppIntent.swift */,
+				886CF1022C11D818009B5A29 /* QuickSelectCategoryAppIntent.swift */,
 				886CF0F52C11BB7C009B5A29 /* QuickStartTimerAppIntent.swift */,
 				886CF1102C11F849009B5A29 /* QuickStopTimerAppIntent.swift */,
-				8816F6452C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift */,
+				8816F6452C7F282E00A69FF4 /* QuickConfigurationIntent.swift */,
 			);
 			path = AppIntents;
 			sourceTree = "<group>";
@@ -1499,9 +1499,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				887CEC792BFDECD800E56AB5 /* TimerView.swift in Sources */,
-				88D5C63C2C109EBB00B8E9AE /* EventsView.swift in Sources */,
-				8816F6472C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */,
-				886CF1032C11D818009B5A29 /* SelectCategoryAppIntent.swift in Sources */,
+				88D5C63C2C109EBB00B8E9AE /* QuickWidget.swift in Sources */,
+				8816F6472C7F282E00A69FF4 /* QuickConfigurationIntent.swift in Sources */,
+				886CF1032C11D818009B5A29 /* QuickSelectCategoryAppIntent.swift in Sources */,
 				886CF1112C11F849009B5A29 /* QuickStopTimerAppIntent.swift in Sources */,
 				887CEC6E2BFDE93600E56AB5 /* TimerLiveActivity.swift in Sources */,
 				8811F01A2C3CD99100974F80 /* Strings.swift in Sources */,
@@ -1513,8 +1513,8 @@
 				887CEC5B2BFDE8F900E56AB5 /* WidgetsBundle.swift in Sources */,
 				886CF1012C11D60E009B5A29 /* Storage.swift in Sources */,
 				88FA3C0B2C3E7A9F009C4273 /* QuickTimingItemView.swift in Sources */,
-				88D5C63E2C109F0000B8E9AE /* EventsProvider.swift in Sources */,
-				886CF1072C11F35F009B5A29 /* QuickCategoryEntryView.swift in Sources */,
+				88D5C63E2C109F0000B8E9AE /* QuickProvider.swift in Sources */,
+				886CF1072C11F35F009B5A29 /* QuickEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1637,7 +1637,7 @@
 				8827A56A2BEC63550010FC4C /* AppDidOpenAppIntent.swift in Sources */,
 				88FBAE6F2C0D569F00C45F29 /* StatisticsDayTimeDistributionView.swift in Sources */,
 				88F357D22C1ED3EE00DD106A /* ArchivedEventsFeature.swift in Sources */,
-				8816F6462C7F282E00A69FF4 /* QuickSelectCategoryConfigurationIntent.swift in Sources */,
+				8816F6462C7F282E00A69FF4 /* QuickConfigurationIntent.swift in Sources */,
 				88F19CB02C40C643003C5DC1 /* EventsHomeOtherCategoriesView.swift in Sources */,
 				88D23ABE2B949D9700E33DE5 /* CounterApp.swift in Sources */,
 				88F4828F2C0BFD6F00211368 /* StatisticsDailyRatioView.swift in Sources */,
@@ -1730,7 +1730,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.8;
+				MARKETING_VERSION = 1.6.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1759,7 +1759,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.8;
+				MARKETING_VERSION = 1.6.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1919,7 +1919,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.8;
+				MARKETING_VERSION = 1.6.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1957,7 +1957,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.8;
+				MARKETING_VERSION = 1.6.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
