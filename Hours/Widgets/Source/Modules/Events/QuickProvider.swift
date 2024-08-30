@@ -74,10 +74,26 @@ struct QuickCategoryEntity {
     var maxEventCount: Int { family.quickMaxEventCount }
     var maxCategoryCount: Int { family.quickMaxCategoryCount }
 
-    var padding: CGFloat {
+    var verticalPadding: CGFloat {
+        switch family {
+        case .systemMedium: 10
+        case .systemLarge: 16
+        default: fatalError("Not support")
+        }
+    }
+
+    var horizontalPadding: CGFloat {
+        switch family {
+        case .systemMedium: 16
+        case .systemLarge: 16
+        default: fatalError("Not support")
+        }
+    }
+
+    var eventPadding: CGFloat {
         switch family {
         case .systemMedium:
-            5
+            4
         case .systemLarge:
             6
         default:
@@ -90,22 +106,22 @@ struct QuickCategoryEntity {
     }
 
     var categoryItemSize: CGSize {
-        CGSize(width: 80, height: floor((displaySize.height - 32) / CGFloat(maxCategoryCount)))
+        CGSize(width: 80, height: floor((displaySize.height - verticalPadding * 2) / CGFloat(maxCategoryCount)))
     }
 
     var eventSpacing: CGFloat {
         let row = CGFloat(maxEventCount / 3)
         /// 中号小组件使用高计算事件块大小
-        return max(8, (displaySize.height - 32 - dimension * row) / (row - 1))
+        return max(8, (displaySize.height - verticalPadding * 2 - dimension * row) / (row - 1))
     }
 
     var dimension: CGFloat {
         let row = CGFloat(maxEventCount / 3)
         /// 小组件宽度 - 边距 32 - 分类宽度 - 分类与事件距离 - 2 个间距（3 列）* 8
-        let maxWidth = floor((displaySize.width - 32 - categoryItemSize.width - 8 - 16) / 3)
+        let maxWidth = floor((displaySize.width - horizontalPadding * 2 - categoryItemSize.width - 8 - 16) / 3)
         /// 小组件高 - 边距 16 - 间距
         /// 边距正常是 32，由于中号小组件太小，所以这里边距减 16
-        let maxHeight = floor((displaySize.height - 16 - (row - 1) * 8) / 2)
+        let maxHeight = floor((displaySize.height - verticalPadding * 2 - (row - 1) * 8) / 2)
         return min(maxWidth, maxHeight)
     }
 
@@ -145,6 +161,8 @@ struct QuickTimelineEntry: TimelineEntry {
 
     var selection: CategoryEntity? { category.selection }
     var categories: [CategoryEntity]? { category.categories }
+    var verticalPadding: CGFloat { category.verticalPadding }
+    var horizontalPadding: CGFloat { category.horizontalPadding }
 
     init(context: TimelineProviderContext, categories: [CategoryEntity]) {
         self.family = context.family
@@ -179,16 +197,27 @@ struct QuickProvider: AppIntentTimelineProvider {
             let array = await AppRealm.shared.getAllUnarchivedCategories()
                 .filter { !$0.events.isEmpty }
                 .prefix(context.family.quickMaxCategoryCount)
-            categories.append(contentsOf: array)
+            for var entity in array {
+                if entity.events.count > context.family.quickMaxEventCount {
+                    let events = entity.events.prefix(context.family.quickMaxEventCount)
+                    entity.events = Array(events)
+                }
+                categories.append(entity)
+            }
         } else {
             for category in configuration.categories {
                 if let id = try? ObjectId(string: category.id),
-                   let entity = await AppRealm.shared.getCategory(by: id)
+                   var entity = await AppRealm.shared.getCategory(by: id)
                 {
+                    if entity.events.count > context.family.quickMaxEventCount {
+                        let events = entity.events.prefix(context.family.quickMaxEventCount)
+                        entity.events = Array(events)
+                    }
                     categories.append(entity)
                 }
             }
         }
+
         var timelineEntry = QuickTimelineEntry(context: context, categories: categories)
         if let entities = Storage.default.currentTimingEntities {
             timelineEntry.timingEntities = entities

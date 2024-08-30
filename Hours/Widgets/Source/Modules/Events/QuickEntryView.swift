@@ -32,7 +32,8 @@ struct QuickEntryView: View {
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
             VStack(alignment: .leading, spacing: 0) {
-                ForEach(quickCategory.categories) { category in
+                ForEach(0 ..< quickCategory.categories.count, id: \.self) { index in
+                    let category = quickCategory.categories[index]
                     let intent = QuickSelectCategoryAppIntent(categoryID: category.id, family: quickCategory.family)
                     Button(intent: intent) {
                         let isSelected = quickCategory.selection == category
@@ -40,7 +41,7 @@ struct QuickEntryView: View {
                         HStack(spacing: 0) {
                             Text(category.title)
                                 .fontWeight(isSelected ? .bold : .regular)
-                                .padding(.vertical, quickCategory.padding)
+                                .padding(.vertical, quickCategory.eventPadding)
                             Spacer()
                             if isSelected {
                                 Capsule()
@@ -56,7 +57,10 @@ struct QuickEntryView: View {
                     }
                     .buttonStyle(BorderlessButtonStyle())
                 }
-                Spacer()
+                // 只有少于最大数量时，才需要填充空间
+                if quickCategory.categories.count < quickCategory.maxCategoryCount {
+                    Spacer()
+                }
             }
             .width(categoryItemSize.width)
 
@@ -69,18 +73,17 @@ struct QuickEntryView: View {
                         } else {
                             QuickEventItemView(
                                 event: event,
-                                padding: quickCategory.padding,
+                                padding: quickCategory.eventPadding,
                                 dimension: dimension
                             )
                         }
                     }
-
-                    Spacer()
                 }
             }
-            .width(entry.displaySize.width - categoryItemSize.width - 8 - 32)
+            .width(entry.displaySize.width - entry.horizontalPadding * 2 - categoryItemSize.width - 8)
         }
-        .padding(16)
+        .padding(.vertical, entry.verticalPadding)
+        .padding(.horizontal, entry.horizontalPadding)
     }
 }
 
