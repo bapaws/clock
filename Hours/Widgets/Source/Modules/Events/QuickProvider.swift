@@ -174,13 +174,13 @@ struct QuickProvider: AppIntentTimelineProvider {
     }
 
     func timeline(for configuration: QuickConfigurationIntent, in context: Context) async -> Timeline<QuickTimelineEntry> {
-        var categories: [CategoryEntity]
+        var categories: [CategoryEntity] = []
         if configuration.categories.isEmpty {
-            categories = await AppRealm.shared.getAllUnarchivedCategories()
+            let array = await AppRealm.shared.getAllUnarchivedCategories()
                 .filter { !$0.events.isEmpty }
-                .suffix(context.family.quickMaxCategoryCount)
+                .prefix(context.family.quickMaxCategoryCount)
+            categories.append(contentsOf: array)
         } else {
-            categories = []
             for category in configuration.categories {
                 if let id = try? ObjectId(string: category.id),
                    let entity = await AppRealm.shared.getCategory(by: id)
