@@ -36,7 +36,7 @@ struct QuickEntryView: View {
                     let category = quickCategory.categories[index]
                     let intent = QuickSelectCategoryAppIntent(categoryID: category.id, family: quickCategory.family)
                     Button(intent: intent) {
-                        let isSelected = quickCategory.selection == category
+                        let isSelected = quickCategory.selection?.id == category.id
 
                         HStack(spacing: 0) {
                             Text(category.title)

@@ -34,11 +34,11 @@
 
 "HealthTitle" = "Record Sleep & Workout";
 "HealthDesc" = "Please allow Hours access to your Health, So that your sleep and workout records can be automatically synchronized.";
-"HealthNotAccess" = "Hours cannot access Health and can be turned on in settings later.";
+"HealthNotAccess" = "Hours cannot access Health data and can be enabled later in settings.";
 
 "CalendarTitle" = "Use with Apple Calendar";
 "CalendarDesc" = "Please allow Hours access to your calendar so that you can see your time consumption in Apple Calendar.";
-"CalendarNotAccess" = "Hours cannot access Calendar and can be turned on in settings later.";
+"CalendarNotAccess" = "Hours cannot access Calendar and can be enabled later in settings.";
 
 "StatisticsTitle" = "Statistics Pro";
 "StatisticsDesc" = "Unlock deep insights into time management, customize your daily productivity, and achieve your goals with our Statistics Pro – making every moment count.";
@@ -59,7 +59,7 @@
 "SelectEmoji" = "Select Emoji";
 
 "Import" = "Import";
-"ImportDefault" = "Import Default";
+"ImportDefault" = "Import Defaults";
 "ImportFromCalendar" = "Import From Calendar";
 "ImportRecords" = "Import Records";
 "Select All" = "Select All";
@@ -86,8 +86,8 @@
 "Yesterday" = "Yesterday";
 
 "Delete" = "Delete";
-"DeleteEventWarning" = "Are you sure you want to delete \"%@\"? \n All records of \"%@\" will also be deleted together.";
-"DeleteCategoryWarning" = "Are you sure you want to delete \"%@\"? \n All events & records of \"%@\" will also be deleted together.";
+"DeleteEventWarning" = "Are you sure you want to delete \"%@\"? \nAll records of \"%@\" will also be deleted.";
+"DeleteCategoryWarning" = "Are you sure you want to delete \"%@\"? \nAll events and records of \"%@\" will also be deleted.";
 "ArchivedEvents" = "%@ Archived Events";
 "UnarchivedEvents" = "%@ Events";
 "DeleteEventsFirst" = "Delete all events first.";

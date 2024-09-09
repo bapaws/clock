@@ -18,10 +18,10 @@ struct HoursAppShortcutsProvider: AppShortcutsProvider {
                 "New Record from \(.applicationName)",
                 "Time tracker from \(.applicationName)"
             ],
-            shortTitle: "Time Tracker",
+            shortTitle: "NewRecord",
             systemImageName: "clock.badge.checkmark.fill"
         )
     }
 
-    static var shortcutTileColor: ShortcutTileColor = .orange
+    static var shortcutTileColor: ShortcutTileColor = .teal
 }
