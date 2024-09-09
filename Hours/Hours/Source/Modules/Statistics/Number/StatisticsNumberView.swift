@@ -35,6 +35,8 @@ struct StatisticsNumberView<Number: View>: View {
                             .foregroundStyle(Color.tertiaryLabel)
                             .font(.footnote)
                     }
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.25)
                     Spacer()
                 }
 
