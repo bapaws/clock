@@ -10,10 +10,6 @@ import SwiftUI
 import UIKit
 
 struct SplashView: View {
-    #if DEBUG
-    @State var isLogoPresented = false
-    #endif
-
     var body: some View {
         VStack {
             Spacer()
@@ -33,12 +29,6 @@ struct SplashView: View {
         }
         .padding(.bottom, 16)
         .background(ui.background)
-
-        #if DEBUG
-            .sheet(isPresented: $isLogoPresented) {
-                LogoView()
-            }
-        #endif
     }
 }
 

@@ -40,8 +40,9 @@ struct TimelineRecordView: View {
                                         Text(emoji)
                                     }
                                     Text(event.name)
+                                        .multilineTextAlignment(.leading)
+                                        .font(.headline, weight: .medium)
                                 }
-                                .font(.title3, weight: .medium)
                             }
 
                             if let category = event.category {
@@ -55,8 +56,8 @@ struct TimelineRecordView: View {
 
                     StatisticsTimeView(
                         time: record.milliseconds.time,
-                        numberFont: .title3,
-                        numberWeight: .regular,
+                        numberFont: .headline,
+                        numberWeight: .medium,
                         numberColor: ui.label,
                         spacing: 4
                     )

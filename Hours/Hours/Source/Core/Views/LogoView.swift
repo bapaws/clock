@@ -24,21 +24,22 @@ struct GradientLine: Shape {
 }
 
 struct LogoView: View {
+    @Environment(\.self) var environment
     @Environment(\.colorScheme) var colorScheme
 
     let length: CGFloat = 1024
     let radius: CGFloat = 360
-    let lineWidth: CGFloat = 10
+    let lineWidth: CGFloat = 18
 
     var body: some View {
         ZStack {
-            Color.systemBackground
-//            Text("\(Color.systemMint.toUIColor()?.argb)")
+//            Color.systemBackground
 
             Circle()
-                .fill(Color(argb: 0xFF00C7BE))
-                .frame(width: radius * 2 - 10, height: radius * 2 - 10, alignment: .center)
-                .offset(x: radius / 8, y: radius / 8)
+//                .fill(Color(argb: 0xFF00C7BE))
+                .fill(Color.systemMint)
+                .frame(width: radius * 2 - lineWidth / 2, height: radius * 2 - lineWidth / 2, alignment: .center)
+                .offset(x: lineWidth * 2, y: lineWidth * 2)
 
             Circle()
                 .stroke(Color.label, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))

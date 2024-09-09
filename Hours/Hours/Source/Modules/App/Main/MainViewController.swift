@@ -40,6 +40,12 @@ class MainViewController: UIHostingController<MainView> {
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
+//#if DEBUG
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            let hosting = UIHostingController(rootView: LogoView())
+//            self.present(hosting, animated: true)
+//        }
+//#endif
 //        store.send(.didLoad)
     }
 

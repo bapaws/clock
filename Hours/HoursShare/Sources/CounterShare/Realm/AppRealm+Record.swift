@@ -153,7 +153,7 @@ public extension AppRealm {
         await realm.objects(RecordObject.self)
             .where { $0.endAt >= from && $0.endAt <= to }
             .where { $0.deletedAt == nil }
-            .sorted(by: \.startAt, ascending: true)
+            .sorted(by: \.endAt, ascending: true)
             .map { RecordEntity(object: $0) }
     }
 }
