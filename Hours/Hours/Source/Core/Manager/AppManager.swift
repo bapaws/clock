@@ -270,9 +270,7 @@ public extension AppManager {
                 return
             }
 
-            DispatchQueue.main.async {
-                self?.saveWorkouts(workouts, completionHandler: completionHandler)
-            }
+            self?.saveWorkouts(workouts, completionHandler: completionHandler)
         }
         healthStore.execute(query)
     }
@@ -368,9 +366,7 @@ public extension AppManager {
                 return
             }
 
-            DispatchQueue.main.async {
-                self?.saveSleep(items, completionHandler: completionHandler)
-            }
+            self?.saveSleep(items, completionHandler: completionHandler)
         }
         healthStore.execute(query)
     }
@@ -393,12 +389,15 @@ public extension AppManager {
             var records = [RecordEntity]()
             for item in samples {
                 guard let type = HKCategoryValueSleepAnalysis(rawValue: item.value), type == .inBed else { continue }
+                /// 数据库里是否包含
+                let isRealmContains = await AppRealm.shared.containsRecord { $0.startAt <= item.startDate && $0.endAt >= item.endDate }
+                /// 当前的数据中是否包含
+                let isContains = records.contains { $0.startAt <= item.startDate && $0.endAt >= item.endDate }
+                if isRealmContains || isContains { continue }
 
-                let isContains = await AppRealm.shared.containsRecord { $0.startAt <= item.startDate && $0.endAt >= item.endDate }
-                guard !isContains else { continue }
-
-                // 当睡眠数据非连续时，进行合并，让数据完整
-                if let last = records.last, last.endAt.distance(to: item.startDate) < 90 * 60 {
+                /// 当睡眠数据非连续时，进行合并，让数据完整
+                /// 之前是 90 分钟，有用户反馈有重复数据，增加到 2 小时
+                if let last = records.last, last.endAt.distance(to: item.startDate) < 2 * 3600 {
                     records[records.count - 1].endAt = item.endDate
                 } else {
                     var record = RecordEntity(creationMode: .health, startAt: item.startDate, endAt: item.endDate)

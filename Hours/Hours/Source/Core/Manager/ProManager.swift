@@ -39,10 +39,7 @@ class ProManager: ClockShare.ProManager, ObservableObject {
         #if DEBUG
         Purchases.logLevel = .error
         #endif
-        Purchases.configure(
-            withAPIKey: "appl_IoRurOtZMJYeGrmeUszwicGFquF",
-            appUserID: AppIdentifier.shared.anonymous
-        )
+        Purchases.configure(withAPIKey: "appl_IoRurOtZMJYeGrmeUszwicGFquF")
 
         // 先信赖本地存储，后面验证
         shared.purchasedProduct = Storage.default.purchasedProduct
