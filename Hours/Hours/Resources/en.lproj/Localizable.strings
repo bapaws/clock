@@ -216,7 +216,6 @@
 "ThisMonth" = "This Month, %@";
 "ThisYear" = "This Year, %@";
 
-
 // MARK: Timer
 
 "Finish" = "Finish";
@@ -316,6 +315,8 @@
 "Privacy" = "Privacy Policy";
 "And" = " and ";
 "Terms" = "Terms of Use";
+"PrivacyAgreementURL" = "https://lowly-centaur-2e4.notion.site/Privacy-Agreement-c7a31934179841e7b647faef3ce8c021";
+"UserAgreementURL" = "https://lowly-centaur-2e4.notion.site/User-Agreement-8a607ea36dcd47058eb4412292f08385";
 
 // MARK: Paywall
 
@@ -367,7 +368,7 @@ Pro member service is an online commodity and virtual commodity, once opened can
 "AutoMergeAdjacentRecords" = "Auto Merge Adjacent Records";
 "Interval" = "Interval";
 
-"AppScreenTimeHelpURL" = "https://bapaws.super.site/使用指南/应用屏幕时间自动记录";
+"AppScreenTimeHelpURL" = "https://lowly-centaur-2e4.notion.site/Automatic-Recording-of-App-Screen-Time-c4d8133a3cc946558547740bbf23a204";
 
 // MARK: Activity
 

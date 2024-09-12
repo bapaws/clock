@@ -43,8 +43,8 @@ internal enum L10n {
   internal static let appScreenTime = L10n.tr("Localizable", "AppScreenTime", fallback: "App Screen Time")
   /// Auto-record your screen time. Just set up the Shortcuts app on iOS to listen for our app's open and close events. It's that simple!
   internal static let appScreenTimeDesc = L10n.tr("Localizable", "AppScreenTimeDesc", fallback: "Auto-record your screen time. Just set up the Shortcuts app on iOS to listen for our app's open and close events. It's that simple!")
-  /// https://bapaws.super.site/使用指南/应用屏幕时间自动记录
-  internal static let appScreenTimeHelpURL = L10n.tr("Localizable", "AppScreenTimeHelpURL", fallback: "https://bapaws.super.site/使用指南/应用屏幕时间自动记录")
+  /// https://lowly-centaur-2e4.notion.site/Automatic-Recording-of-App-Screen-Time-c4d8133a3cc946558547740bbf23a204
+  internal static let appScreenTimeHelpURL = L10n.tr("Localizable", "AppScreenTimeHelpURL", fallback: "https://lowly-centaur-2e4.notion.site/Automatic-Recording-of-App-Screen-Time-c4d8133a3cc946558547740bbf23a204")
   /// Record App Screen Time
   internal static let appScreenTimeTitle = L10n.tr("Localizable", "AppScreenTimeTitle", fallback: "Record App Screen Time")
   /// Archive
@@ -71,8 +71,8 @@ internal enum L10n {
   internal static let breakCompletedNotification = L10n.tr("Localizable", "BreakCompletedNotification", fallback: "Break has finished，Keep fighting!💪💪💪")
   /// Please allow Hours access to your calendar so that you can see your time consumption in Apple Calendar.
   internal static let calendarDesc = L10n.tr("Localizable", "CalendarDesc", fallback: "Please allow Hours access to your calendar so that you can see your time consumption in Apple Calendar.")
-  /// Hours cannot access Calendar and can be turned on in settings later.
-  internal static let calendarNotAccess = L10n.tr("Localizable", "CalendarNotAccess", fallback: "Hours cannot access Calendar and can be turned on in settings later.")
+  /// Hours cannot access Calendar and can be enabled later in settings.
+  internal static let calendarNotAccess = L10n.tr("Localizable", "CalendarNotAccess", fallback: "Hours cannot access Calendar and can be enabled later in settings.")
   /// Use with Apple Calendar
   internal static let calendarTitle = L10n.tr("Localizable", "CalendarTitle", fallback: "Use with Apple Calendar")
   /// Cancel
@@ -120,16 +120,16 @@ internal enum L10n {
   /// Delete
   internal static let delete = L10n.tr("Localizable", "Delete", fallback: "Delete")
   /// Are you sure you want to delete "%@"? 
-  ///  All events & records of "%@" will also be deleted together.
+  /// All events and records of "%@" will also be deleted.
   internal static func deleteCategoryWarning(_ p1: Any, _ p2: Any) -> String {
-    return L10n.tr("Localizable", "DeleteCategoryWarning", String(describing: p1), String(describing: p2), fallback: "Are you sure you want to delete \"%@\"? \n All events & records of \"%@\" will also be deleted together.")
+    return L10n.tr("Localizable", "DeleteCategoryWarning", String(describing: p1), String(describing: p2), fallback: "Are you sure you want to delete \"%@\"? \nAll events and records of \"%@\" will also be deleted.")
   }
   /// Delete all events first.
   internal static let deleteEventsFirst = L10n.tr("Localizable", "DeleteEventsFirst", fallback: "Delete all events first.")
   /// Are you sure you want to delete "%@"? 
-  ///  All records of "%@" will also be deleted together.
+  /// All records of "%@" will also be deleted.
   internal static func deleteEventWarning(_ p1: Any, _ p2: Any) -> String {
-    return L10n.tr("Localizable", "DeleteEventWarning", String(describing: p1), String(describing: p2), fallback: "Are you sure you want to delete \"%@\"? \n All records of \"%@\" will also be deleted together.")
+    return L10n.tr("Localizable", "DeleteEventWarning", String(describing: p1), String(describing: p2), fallback: "Are you sure you want to delete \"%@\"? \nAll records of \"%@\" will also be deleted.")
   }
   /// Dota2
   internal static let dota2 = L10n.tr("Localizable", "Dota2", fallback: "Dota2")
@@ -193,8 +193,8 @@ internal enum L10n {
   internal static let healthAutoSyncWorkout = L10n.tr("Localizable", "HealthAutoSyncWorkout", fallback: "Auto Sync Workout")
   /// Please allow Hours access to your Health, So that your sleep and workout records can be automatically synchronized.
   internal static let healthDesc = L10n.tr("Localizable", "HealthDesc", fallback: "Please allow Hours access to your Health, So that your sleep and workout records can be automatically synchronized.")
-  /// Hours cannot access Health and can be turned on in settings later.
-  internal static let healthNotAccess = L10n.tr("Localizable", "HealthNotAccess", fallback: "Hours cannot access Health and can be turned on in settings later.")
+  /// Hours cannot access Health data and can be enabled later in settings.
+  internal static let healthNotAccess = L10n.tr("Localizable", "HealthNotAccess", fallback: "Hours cannot access Health data and can be enabled later in settings.")
   /// Record Sleep & Workout
   internal static let healthTitle = L10n.tr("Localizable", "HealthTitle", fallback: "Record Sleep & Workout")
   /// Heat Map
@@ -207,8 +207,8 @@ internal enum L10n {
   internal static let icon = L10n.tr("Localizable", "Icon", fallback: "Icon")
   /// Import
   internal static let `import` = L10n.tr("Localizable", "Import", fallback: "Import")
-  /// Import Default
-  internal static let importDefault = L10n.tr("Localizable", "ImportDefault", fallback: "Import Default")
+  /// Import Defaults
+  internal static let importDefault = L10n.tr("Localizable", "ImportDefault", fallback: "Import Defaults")
   /// Import From Calendar
   internal static let importFromCalendar = L10n.tr("Localizable", "ImportFromCalendar", fallback: "Import From Calendar")
   /// Importing...
@@ -297,6 +297,8 @@ internal enum L10n {
   internal static let premium = L10n.tr("Localizable", "Premium", fallback: "Hours Premium")
   /// Privacy Policy
   internal static let privacy = L10n.tr("Localizable", "Privacy", fallback: "Privacy Policy")
+  /// https://lowly-centaur-2e4.notion.site/Privacy-Agreement-c7a31934179841e7b647faef3ce8c021
+  internal static let privacyAgreementURL = L10n.tr("Localizable", "PrivacyAgreementURL", fallback: "https://lowly-centaur-2e4.notion.site/Privacy-Agreement-c7a31934179841e7b647faef3ce8c021")
   /// Unlock statistics features
   internal static let proInfo1 = L10n.tr("Localizable", "ProInfo1", fallback: "Unlock statistics features")
   /// Remove in-app ads
@@ -455,6 +457,8 @@ internal enum L10n {
   internal static let unselectAll = L10n.tr("Localizable", "Unselect All", fallback: "Unselect All")
   /// Upgrade
   internal static let upgrade = L10n.tr("Localizable", "Upgrade", fallback: "Upgrade")
+  /// https://lowly-centaur-2e4.notion.site/User-Agreement-8a607ea36dcd47058eb4412292f08385
+  internal static let userAgreementURL = L10n.tr("Localizable", "UserAgreementURL", fallback: "https://lowly-centaur-2e4.notion.site/User-Agreement-8a607ea36dcd47058eb4412292f08385")
   /// Video
   internal static let video = L10n.tr("Localizable", "Video", fallback: "Video")
   /// ⚠️Warning

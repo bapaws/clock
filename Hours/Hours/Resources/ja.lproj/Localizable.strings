@@ -1,0 +1,330 @@
+/* 
+  Localizable.strings
+  Counter
+
+  Created by 张敏超 on 2024/3/3.
+  
+*/
+
+"AppName" = "時間記録";
+"Slogan" = "時間をより価値あるものにする";
+"Cancel" = "キャンセル";
+"Save" = "保存";
+"Warning" = "⚠️注意";
+"Congratulations" = "🎉Pro会員をアンロックおめでとう🎉";
+"PleaseSelect" = "選択してください";
+"PleaseEnter" = "入力してください";
+"ShowAll" = "全て表示";
+"Edit" = "編集";
+"Continue" = "続ける";
+"Loading" = "読み込み中...";
+"OK" = "はい";
+
+// MARK: Onboarding
+
+"Onboarding" = "新規ガイド";
+"WelcomeTo" = "ご利用いただきありがとうございます";
+"WelcomeText" = "時間の使い道を把握するお手伝いをします";
+"SetupLater" = "後で設定する";
+"AppScreenTimeTitle" = "アプリのスクリーン使用時間を自動記録";
+"AppScreenTimeDesc" = "iOSの「ショートカット」アプリの自動化機能を使って、アプリの開閉自動化を設定するだけで、スクリーン時間を自動記録できます。それだけ簡単です！";
+"HealthTitle" = "睡眠と運動を自動記録";
+"HealthDesc" = "時間記録があなたの健康データにアクセスできるように許可してください。そうすることで、睡眠と運動の記録を自動的に同期できます。";
+"HealthNotAccess" = "時間記録があなたの健康データにアクセスできません。後で設定で有効にできます。";
+"CalendarTitle" = "Appleカレンダーと連携";
+"CalendarDesc" = "時間記録があなたのカレンダーにアクセスできるように許可してください。そうすることで、Appleカレンダーであなたの時間の使い道を確認できます。";
+"CalendarNotAccess" = "時間記録があなたのカレンダーにアクセスできません。後で設定で有効にできます。";
+"StatisticsTitle" = "データ統計Pro";
+"StatisticsDesc" = "データ統計Proを通じて、時間管理の深い洞察を解き放ち、日常をカスタマイズし、効率を向上させ、目標を達成し、すべての瞬間を最大限に活用できます。";
+
+// MARK: Category
+
+"Study" = "勉強";
+"Work" = "仕事";
+"Sports" = "スポーツ";
+"Life" = "生活";
+"Entertainment" = "エンターテイメント";
+"Game" = "ゲーム";
+"Break" = "休憩";
+"Housework" = "家事";
+"Category" = "カテゴリ";
+"SelectCategory" = "カテゴリを選択";
+"SelectEmoji" = "Emojiを選択";
+"Import" = "インポート";
+"ImportDefault" = "デフォルトイベントをインポート";
+"ImportFromCalendar" = "カレンダーからインポート";
+"ImportRecords" = "記録をインポート";
+"Select All" = "全て選択";
+"Unselect All" = "全て選択解除";
+"StartImporting" = "インポート開始";
+"Importing" = "インポート中...";
+
+// MARK: New Category
+
+"NewCategory" = "新規カテゴリ";
+"EditCategory" = "カテゴリ編集";
+"Emoji" = "Emoji";
+"CategoryName" = "カテゴリ名";
+"Color" = "色";
+
+// MARK: Events
+
+"Events" = "イベント";
+"EventName" = "イベント名";
+"Recent" = "最近";
+"Today" = "今日";
+"Yesterday" = "昨日";
+"Delete" = "削除";
+"DeleteEventWarning" = "「%@」を削除しますか？ \n 「%@」のすべての記録も一緒に削除されます。";
+"DeleteCategoryWarning" = "「%@」を削除しますか？ \n 「%@」のすべてのイベントと記録も一緒に削除されます。";
+"ArchivedEvents" = "%@ のアーカイブされたイベント";
+"UnarchivedEvents" = "%@ のイベント";
+"DeleteEventsFirst" = "すべてのイベントを削除する必要があります。";
+"PlayButtonTipTitle" = "タイマーまたはトマトタイマーを開始";
+"PlayButtonTipMessage" = "タイマーまたはトマトタイマーを使って記録を追加します";
+"StartTimer" = "タイマー開始";
+"StartPomodoro" = "トマトタイマー開始";
+"ReminderLater" = "後でリマインダー";
+"ActivityDetail" = "活動詳細";
+"NotInterested" = "興味なし";
+
+// 工作
+"Work" = "出勤";
+"Coding" = "コーディング";
+
+// 生活
+"PersonalGrooming" = "洗面";
+"Travel" = "旅行";
+"Shopping" = "買い物";
+
+// 学习
+"Reading" = "読書";
+"English" = "英語";
+"Math" = "数学";
+"Exam" = "試験";
+
+// 运动
+"Running" = "ランニング";
+"Swimming" = "水泳";
+
+// 娱乐
+"Music" = "音楽を聴く";
+"Video" = "ビデオを見る";
+
+// 游戏
+"Genshin" = "原神";
+"Dota2" = "Dota2";
+
+// 休息
+"MiddayNap" = "昼寝";
+"AfternoonTea" = "午後のお茶";
+"Sleep" = "睡眠";
+
+// 家务
+"Cleaning" = "掃除";
+"Cooking" = "料理";
+
+// MARK: New Record
+
+"NewEvent" = "新規イベント";
+"EditEvent" = "イベント編集";
+"Event" = "イベント";
+"SelectEvent" = "イベントを選択";
+"NewRecord" = "新規記録";
+"EditRecord" = "記録編集";
+"StartTime" = "開始時間";
+"EndTime" = "終了時間";
+"Note" = "備考";
+
+// MARK: Archived Events
+
+"Archive" = "アーカイブ";
+"Archived" = "アーカイブ済み";
+"ArchivedAt" = "アーカイブ日：%@";
+"Unarchive" = "アーカイブ解除";
+
+// MARK: Statistics
+
+"Statistics" = "統計";
+"RecordCount" = "記録数";
+"TimeInvest" = "投入時間";
+"Today" = "今日";
+"Days" = "日";
+"Hours" = "時間";
+"Minutes" = "分";
+"Seconds" = "秒";
+"DailyInput" = "毎日の統計";
+"TimeDistribution" = "時間分布";
+"Duration" = "持続時間";
+"Time" = "時間";
+"Summary" = "まとめ";
+"Total" = "合計";
+"Records" = "記録";
+"TotalInvest" = "総投入";
+"Event" = "イベント";
+"Category" = "カテゴリ";
+"Last7Days" = "直近7日";
+"Weekly" = "毎週";
+"WeekNum" = "第%ld週";
+"Monthly" = "毎月";
+"Yearly" = "毎年";
+"TimeDistribution" = "時間分布";
+"All" = "全て";
+"Day" = "日";
+"Year" = "年";
+"Month" = "月";
+"Week" = "週";
+"Overall" = "全体";
+"Expand" = "展開";
+"Collapse" = "折り畳む";
+"HeatMap" = "ヒートマップ";
+"AM" = "午前";
+"PM" = "午後";
+"ThisWeek" = "今週、%@";
+"WeekOfYear" = "%@ 年、第 %@ 週";
+"ThisMonth" = "今月、%@";
+"ThisYear" = "今年、%@";
+
+// MARK: Timer
+
+"Finish" = "完了";
+"Tracking" = "%@ のタイミング中";
+
+// MARK: - Main
+
+"Pomodoro" = "トマトタイマー";
+"Clock" = "時計";
+"Timer" = "タイマー";
+
+// MARK: - Settings
+
+"Settings" = "設定";
+"TimingMode" = "計時モード";
+"MinimumRecordedTime" = "最短記録時間";
+"MaximumRecordedTime" = "最長記録時間";
+"SyncRecordsToCalendar" = "記録をカレンダーに同期";
+
+// MARK: Appearance
+
+"Appearance" = "外観";
+"ModeAuto" = "システムに従う";
+
+// MARK: App Icon
+
+"Icon" = "アイコン";
+"AppIcon" = "アプリアイコン";
+"LightClassic" = "クラシックホワイト";
+"DarkClassic" = "クラシックブラック";
+"ColorThemes" = "カラーテーマ";
+"Default" = "デフォルト";
+"Classic" = "クラシック";
+"Pink" = "ピンク";
+"Purple" = "パープル";
+"Orange" = "オレンジ";
+"DarkMode" = "ダークモード";
+"LightMode" = "ライトモード";
+"Dark" = "ダーク";
+"Light" = "ライト";
+
+// MARK: Other
+
+"Other" = "その他";
+"Activities" = "報酬活動";
+"Rate" = "評価する";
+"Upgrade" = "アップデートを確認";
+"About" = "について";
+
+// MARK: Clock
+
+"TimeFormat" = "時間形式";
+"ShowSecond" = "秒を表示";
+
+// MARK: Pomodoro
+
+"Congratulations" = "素晴らしい！ 👏👏👏";
+"Leave" = "離れる";
+"StartBreak" = "休憩開始";
+"FocusDuration" = "集中時間";
+"ShortBreakDuration" = "短い休憩";
+"LongBreakDuration" = "長い休憩";
+"FocusCompletedNotification" = "素晴らしい、前進し続けましょう！👏👏👏";
+"BreakCompletedNotification" = "休憩が終わりました、頑張り続けましょう！💪💪💪";
+
+// MARK: Timer
+
+"ShowHour" = "常に時間を表示";
+
+// MARK: Sound
+
+"Sound" = "音";
+"Mute" = "ミュート";
+"Tick" = "チクタク";
+"Pendulum" = "振り子";
+"Card" = "カード";
+"Drip" = "水滴";
+"Switch" = "スイッチ";
+"Muyu" = "木魚";
+"SecondHand" = "秒針";
+"BackgroundSound" = "バックグラウンド音";
+
+// MARK: Health
+
+"Health" = "健康";
+"HealthAutoSyncSleep" = "睡眠を自動同期";
+"HealthAutoSyncWorkout" = "運動を自動同期";
+
+// MARK: About
+
+"Privacy" = "プライバシーポリシー";
+"And" = " と ";
+"Terms" = "利用規約";
+"PrivacyAgreementURL" = "https://lowly-centaur-2e4.notion.site/Privacy-Agreement-c7a31934179841e7b647faef3ce8c021";
+"UserAgreementURL" = "https://lowly-centaur-2e4.notion.site/User-Agreement-8a607ea36dcd47058eb4412292f08385";
+
+// MARK: Paywall
+
+"ProMembership" = "Pro会員";
+"Premium" = "時間記録プレミアム版";
+"UnlockPro" = "すべての高度な機能をアンロック";
+"TryFree" = "無料トライ";
+"ProInfo1" = "すべての統計チャートをアンロック";
+"ProInfo2" = "アプリ内広告を削除";
+"ProInfo3" = "より多くのカスタマイズ設定";
+"ProInfo4" = "今後のより多くの驚きの機能";
+"GetPro" = "プレミアム版を取得";
+"Restore" = "購入を復元";
+"Sale" = "期間限定セール";
+"freeTrial.days" = " %@ 日間無料トライ  ";
+"subscriptionWarning" =  "購入を確認すると、Appleアカウントに請求されます。月間または年間の自動更新プロジェクトを購入すると、自動更新され、Appleアカウントは期間終了の24時間前に料金を請求し、請求が成功すると購読期間が次の購読期間に延長されます。
+自動購読をキャンセルするには、現在の購読期間が終了する24時間前までに自動更新をオフにする必要があります。「設定」で「Apple ID」をクリックし、「Apple IDを表示」を選択し、「購読」をクリックして、デスクトップクロックプレミアム版の購読をキャンセルできます。
+チャージが反映されていない場合は、Apple IDと請求書の証拠をdev@bapaws.comにメールしてください。
+Pro会員の広告なしサービスは、現在、アプリのオープニング広告とバナー広告の削除を含みます。
+Pro会員サービスはネットワーク商品と仮想商品であり、一度開通すると返金できません。ご理解とご支持をお願いいたします。";
+
+// MARK: Feedback
+
+"Feedback" = "問題フィードバック";
+"Email" = "メール";
+"SendEmail" = "メールを送信";
+"EmailMessageBody" = "<p>基本情報：</p><ul><li>システム名：%@</li><li>システムバージョン：%@</li><li>デバイスモデル：%@</li><li>Appバージョン：%@</li></ul><p>フィードバックの問題：</p><p></p>";
+"EmailCopied" = "メールアドレスがコピーされました";
+"X" = "X";
+"RedBook" = "小红书";
+"WeChat" = "微信";
+"WeChatCopied" = "微信のIDがコピーされました。微信で追加してください";
+
+// MARK: App Screen Time
+
+"AppDidOpen" = "アプリが開かれました";
+"AppDidClose" = "アプリが閉じました";
+"App is closed. Create a record for ${eventID}" = "アプリが閉じました。${eventID}の記録を作成します";
+"AppScreenTime" = "アプリのスクリーンタイム";
+"AutoRecordSetupGuide" = "自動記録設定ガイド";
+"AdjacentRecords" = "隣接する記録";
+"AutoMergeAdjacentRecords" = "隣接する記録を自動的にマージ";
+"Interval" = "間隔時間";
+"AppScreenTimeHelpURL" = "https://lowly-centaur-2e4.notion.site/Automatic-Recording-of-App-Screen-Time-c4d8133a3cc946558547740bbf23a204";
+
+// MARK: Activity
+
+"ReceiveWay" = "受け取り方法";

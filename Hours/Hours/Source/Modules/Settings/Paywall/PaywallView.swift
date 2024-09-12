@@ -98,13 +98,13 @@ import SwiftUIX
                 HStack(spacing: 16) {
                     Spacer()
                     Button {
-                        urlString = "https://bapaws.super.site/隐私政策/用户协议"
+                        urlString = L10n.userAgreementURL
                     } label: {
                         Text(L10n.terms)
                     }
                     Text("|")
                     Button {
-                        urlString = "https://bapaws.super.site/隐私政策/隐私协议"
+                        urlString = L10n.privacyAgreementURL
                     } label: {
                         Text(L10n.privacy)
                     }

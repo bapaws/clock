@@ -315,6 +315,8 @@
 "Privacy" = "隐私协议";
 "And" = " 和 ";
 "Terms" = "服务条款";
+"PrivacyAgreementURL" = "https://lowly-centaur-2e4.notion.site/ff5867cb6a9347daa2bf59a8029d2724";
+"UserAgreementURL" = "https://lowly-centaur-2e4.notion.site/6bf7960124294954a854b873a0b73433";
 
 // MARK: Paywall
 

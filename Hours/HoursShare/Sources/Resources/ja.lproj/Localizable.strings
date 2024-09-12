@@ -1,0 +1,77 @@
+/* 
+  Localizable.strings
+  Counter
+
+  Created by 张敏超 on 2024/3/3.
+  
+*/
+
+"Today" = "今日";
+"Yesterday" = "昨日";
+
+"Days" = "日";
+"Hours" = "時間";
+"Minutes" = "分";
+"Seconds" = "秒";
+
+"Loading" = "読み込み中...";
+
+// MARK: Category
+
+"Study" = "勉強";
+"Work" = "仕事";
+"Sports" = "スポーツ";
+"Life" = "生活";
+"Entertainment" = "エンターテイメント";
+"Game" = "ゲーム";
+"Break" = "休憩";
+"Housework" = "家事";
+
+// 健康
+"Health" = "健康";
+"Sleep" = "睡眠";
+
+// 工作
+"Work" = "勤務";
+"Coding" = "コーディング";
+
+// 生活
+"PersonalGrooming" = "身だしなみ";
+"Travel" = "旅行";
+"Shopping" = "買い物";
+
+// 学习
+"Reading" = "読書";
+"English" = "英語";
+"Math" = "数学";
+"Exam" = "試験";
+
+// 运动
+"Running" = "ランニング";
+"Swimming" = "水泳";
+
+// 娱乐
+"Music" = "音楽";
+"Video" = "ビデオ";
+
+// 游戏
+"Genshin" = "原神";
+"Dota2" = "Dota2";
+
+// 休息
+"Nap" = "昼寝";
+"AfternoonTea" = "午後のお茶";
+
+// 家务
+"Cleaning" = "掃除";
+"Cooking" = "料理";
+
+// MARK: Color
+
+"Red" = "赤";
+"Orange" = "オレンジ";
+"Yellow" = "黄";
+"Green" = "緑";
+"Cyan" = "シアン";
+"Blue" = "青";
+"Purple" = "紫";

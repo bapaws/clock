@@ -1,0 +1,46 @@
+/* 
+  Localizable.strings
+  Hours
+
+  Created by 张敏超 on 2024/6/5.
+  
+*/
+
+"QuickTiming" = "クイックタイミング";
+"Tracking" = "%@ トラッキング";
+
+// 工作
+"Work" = "仕事";
+"Coding" = "コーディング";
+
+// 生活
+"PersonalGrooming" = "身だしなみ整え";
+"Travel" = "旅行";
+"Shopping" = "ショッピング";
+
+// 学习
+"Reading" = "読書";
+"English" = "英語";
+"Math" = "数学";
+"Exam" = "試験";
+
+// 运动
+"Running" = "ランニング";
+"Swimming" = "水泳";
+
+// 娱乐
+"Music" = "音楽鑑賞";
+"Video" = "ビデオ視聴";
+
+// 游戏
+"Genshin" = "原神";
+"Dota2" = "Dota2";
+
+// 休息
+"MiddayNap" = "昼寝";
+"AfternoonTea" = "午後のお茶";
+"Sleep" = "睡眠";
+
+// 家务
+"Cleaning" = "掃除";
+"Cooking" = "料理";

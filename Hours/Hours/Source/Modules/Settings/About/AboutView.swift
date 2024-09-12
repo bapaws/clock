@@ -45,7 +45,7 @@ struct AboutView: View {
                 Spacer()
                 HStack {
                     Button {
-                        urlString = "https://bapaws.super.site/隐私政策/用户协议"
+                        urlString = L10n.userAgreementURL
                     } label: {
                         Text(L10n.terms)
                             .font(.caption)
@@ -55,7 +55,7 @@ struct AboutView: View {
                         .font(.caption)
                         .foregroundColor(.tertiaryLabel)
                     Button {
-                        urlString = "https://bapaws.super.site/隐私政策/隐私协议"
+                        urlString = L10n.privacyAgreementURL
                     } label: {
                         Text(L10n.privacy)
                             .font(.caption)
