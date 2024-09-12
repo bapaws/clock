@@ -44,6 +44,12 @@
             "value" : "We need access to your calendar to create and view events."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "私たちはあなたのカレンダーにアクセスして、記録を作成したり閲覧したりする必要があります。"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -61,6 +67,12 @@
             "value" : "We need access to your Health to auto track Sleep or workout events."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "私たちはあなたの健康データにアクセスする必要があります，そうすることで睡眠と運動のイベントを自動的に追跡できます。"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76,6 +88,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "We can synchronize sleep and exercise records to health through your event records."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "私たちはあなたの時間記録を通じて、睡眠と運動の記録を健康アプリに同期できます。"
           }
         },
         "zh-Hans" : {
