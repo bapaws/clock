@@ -96,7 +96,7 @@ struct OnboardingView: View {
             .cornerRadius(28)
         }
 
-        if index == .welcome {
+        if index == .welcome || index == .appScreenTime || index == .statistics {
             ui.background.frame(height: 54)
         } else {
             HStack {
@@ -155,11 +155,10 @@ struct OnboardingView: View {
             return
         }
         let store = StoreOf<MainFeature>(
-            initialState: .init(),
+            initialState: .init(isPaywallPresented: true),
             reducer: { MainFeature() }
         )
         let main = MainViewController(store: store)
-//        let main = MainViewController(isPaywallPresented: isPaywallPresented)
         let root = UINavigationController(rootViewController: main)
         window.rootViewController = root
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})

@@ -19,6 +19,8 @@ class SplashViewController: UIHostingController<SplashView> {
 
     var ui: UIManager { UIManager.shared }
 
+    var observation: ObservationToken?
+
     init() {
         let view = SplashView()
         super.init(rootView: view)
@@ -39,7 +41,7 @@ class SplashViewController: UIHostingController<SplashView> {
 
         store.send(.didLoad)
 
-        observe { [weak self] in
+        observation = observe { [weak self] in
             guard let self, store.isLoadCompleted else { return }
 
             if AppManager.shared.onboardingIndices.isEmpty {
@@ -50,11 +52,16 @@ class SplashViewController: UIHostingController<SplashView> {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        observation?.cancel()
+    }
+
     func replaceOnboardingView() {
         #if DEBUG
-        let view = OnboardingView(onboardingIndices: OnboardingIndices.allCases, onFinished: replaceRootViewController)
+        let view = OnboardingView(onboardingIndices: OnboardingIndices.allCases)
         #else
-        let view = OnboardingView(onFinished: replaceRootViewController)
+        let view = OnboardingView()
         #endif
         let controller = UIHostingController(rootView: view)
         controller.modalTransitionStyle = .crossDissolve
@@ -62,6 +69,7 @@ class SplashViewController: UIHostingController<SplashView> {
         present(controller, animated: true)
     }
 
+    /// 第一次使用有 Onboarding 时，不调用这个方法
     func replaceRootViewController() {
         guard let window = UIApplication.shared.firstKeyWindow else {
             return
