@@ -53,7 +53,11 @@ extension StatisticsHeatMapReducer {
         state.heatMaps.removeAll(keepingCapacity: true)
 
         var startAt = state.startAt
-        let heatMapCount = Int(state.startAt.distance(to: state.endAt) / state.heatMapTimeInterval)
+        /// startAt 是这个时间段的开始时间
+        /// endAt 是时间段的结束时间
+        /// 所以这里求两个时间的距离，需要取结束时间的第二天的开始时间
+        let endAt = state.endAt.dateAt(.tomorrowAtStart)
+        let heatMapCount = Int(state.startAt.distance(to: endAt) / state.heatMapTimeInterval)
         for _ in 0 ..< heatMapCount {
             let endAt = startAt.addingTimeInterval(state.heatMapTimeInterval)
             let range = startAt ..< endAt

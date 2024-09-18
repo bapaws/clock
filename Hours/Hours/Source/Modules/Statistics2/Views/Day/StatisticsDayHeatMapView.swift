@@ -64,7 +64,6 @@ struct StatisticsDayHeatMapView: View {
                         if let event = heatMaps[index].record?.event, let hex = event.hex {
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(hex.primaryContainer)
-
                         } else {
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(ui.background)

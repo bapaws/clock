@@ -44,7 +44,7 @@ public extension AppRealm {
 
             let events = realm.objects(EventObject.self).where { $0.deletedAt == nil && $0.archivedAt == nil }
             if events.isEmpty { return }
-            
+
             var startAt = realm.objects(RecordObject.self)
                 .where { $0.deletedAt == nil }
                 .sorted(by: \.endAt).last?.endAt ??
