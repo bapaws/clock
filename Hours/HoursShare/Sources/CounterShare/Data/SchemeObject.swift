@@ -45,6 +45,8 @@ class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
     @Persisted var onInverseSurface: Int
     @Persisted var inversePrimary: Int
 
+    @Persisted var linkingObjectID: String?
+
     override public init() {
         super.init()
     }
@@ -218,6 +220,7 @@ struct SchemeEntity: Entity {
     var inversePrimary: Int
 
     var deletedAt: Date?
+    var linkingObjectID: String?
 
     init(scheme: Scheme) {
         self.primary = scheme.primary
@@ -283,6 +286,8 @@ struct SchemeEntity: Entity {
         self.inverseSurface = object.inverseSurface
         self.onInverseSurface = object.onInverseSurface
         self.inversePrimary = object.inversePrimary
+        self.deletedAt = object.deletedAt
+        self.linkingObjectID = object.linkingObjectID
     }
 
     func toObject() -> SchemeObject {
@@ -316,6 +321,8 @@ struct SchemeEntity: Entity {
         object.inverseSurface = inverseSurface
         object.onInverseSurface = onInverseSurface
         object.inversePrimary = inversePrimary
+        object.deletedAt = deletedAt
+        object.linkingObjectID = linkingObjectID
         return object
     }
 

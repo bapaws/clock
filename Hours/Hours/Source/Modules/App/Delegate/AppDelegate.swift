@@ -94,16 +94,16 @@ import UIKit
 
     #if DEBUG
         func sendCloudKitDataDidChangeRemotely() {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak self] in
-//                NotificationCenter.default.post(
-//                    name: Notifications.cloudKitDataDidChangeRemotely.name,
-//                    object: nil,
-//                    userInfo: nil
-//                )
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak self] in
-//                    self?.sendCloudKitDataDidChangeRemotely()
-//                }
-//            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak self] in
+                NotificationCenter.default.post(
+                    name: Notifications.cloudKitDataDidChangeRemotely.name,
+                    object: nil,
+                    userInfo: nil
+                )
+                DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak self] in
+                    self?.sendCloudKitDataDidChangeRemotely()
+                }
+            }
         }
     #endif
 }

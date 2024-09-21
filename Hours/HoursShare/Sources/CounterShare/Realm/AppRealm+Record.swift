@@ -25,6 +25,8 @@ public extension AppRealm {
                 eventObject.deletedAt = nil
 
                 let object = entity.toObject()
+                /// 为了排查问题方便，引入了 linkingObjectId，目前没有业务作用
+                object.linkingObjectID = eventObject._id.stringValue
                 eventObject.items.append(object)
             }
         } catch {
@@ -39,6 +41,7 @@ public extension AppRealm {
                 eventObject.deletedAt = nil
                 for entity in entities {
                     let object = entity.toObject()
+                    object.linkingObjectID = eventObject._id.stringValue
                     eventObject.items.append(object)
                 }
             }

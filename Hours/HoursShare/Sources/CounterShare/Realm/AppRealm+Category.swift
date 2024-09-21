@@ -138,7 +138,25 @@ public extension AppRealm {
                     for item in event.items {
                         realm.delete(item)
                     }
+                    if let hex = event.hex {
+                        if let light = hex.light {
+                            realm.delete(light)
+                        }
+                        if let dark = hex.dark {
+                            realm.delete(dark)
+                        }
+                        realm.delete(hex)
+                    }
                     realm.delete(event)
+                }
+                if let hex = object.hex {
+                    if let light = hex.light {
+                        realm.delete(light)
+                    }
+                    if let dark = hex.dark {
+                        realm.delete(dark)
+                    }
+                    realm.delete(hex)
                 }
                 realm.delete(object)
             }

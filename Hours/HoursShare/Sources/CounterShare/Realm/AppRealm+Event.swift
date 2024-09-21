@@ -25,6 +25,8 @@ public extension AppRealm {
             let realm = await realm
             try await realm.asyncWrite {
                 var eventObject = entity.toObject()
+                /// 为了排查问题方便，引入了 linkingObjectId，目前没有业务作用
+                eventObject.linkingObjectID = categoryObject?._id.stringValue
                 // 从老的 category 中删除
                 if let eventCategory = entity.category,
                    let oldCategoryObject = realm.object(ofType: CategoryObject.self, forPrimaryKey: eventCategory._id),
@@ -77,6 +79,15 @@ public extension AppRealm {
             try await realm.asyncWrite {
                 for item in object.items {
                     realm.delete(item)
+                }
+                if let hex = object.hex {
+                    if let light = hex.light {
+                        realm.delete(light)
+                    }
+                    if let dark = hex.dark {
+                        realm.delete(dark)
+                    }
+                    realm.delete(hex)
                 }
                 realm.delete(object)
             }

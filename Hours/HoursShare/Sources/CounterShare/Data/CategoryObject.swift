@@ -200,7 +200,9 @@ public struct CategoryEntity: Entity, HexEntityColors {
     public func toObject() -> CategoryObject {
         let object = CategoryObject()
         object._id = _id
-        object.hex = hex?.toObject()
+        let hex = hex?.toObject()
+        hex?.linkingObjectID = id
+        object.hex = hex
         object.emoji = emoji
         object.icon = icon
         object.name = name

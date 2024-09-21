@@ -8,7 +8,6 @@
 import CloudKit
 
 protocol DatabaseManager: AnyObject {
-    
     /// A conduit for accessing and performing operations on the data of an app container.
     var database: CKDatabase { get }
     
@@ -42,7 +41,6 @@ protocol DatabaseManager: AnyObject {
 }
 
 extension DatabaseManager {
-    
     func prepare() {
         syncObjects.forEach {
             $0.pipeToEngine = { [weak self] recordsToStore, recordIDsToDelete in
@@ -53,13 +51,13 @@ extension DatabaseManager {
     }
     
     func resumeLongLivedOperationIfPossible() {
-        container.fetchAllLongLivedOperationIDs { [weak self]( opeIDs, error) in
+        container.fetchAllLongLivedOperationIDs { [weak self] opeIDs, error in
             guard let self = self, error == nil, let ids = opeIDs else { return }
             for id in ids {
-                self.container.fetchLongLivedOperation(withID: id, completionHandler: { [weak self](ope, error) in
+                self.container.fetchLongLivedOperation(withID: id, completionHandler: { [weak self] ope, error in
                     guard let self = self, error == nil else { return }
                     if let modifyOp = ope as? CKModifyRecordsOperation {
-                        modifyOp.modifyRecordsCompletionBlock = { (_,_,_) in
+                        modifyOp.modifyRecordsCompletionBlock = { _, _, _ in
                             print("Resume modify records success!")
                         }
                         // The Apple's example code in doc(https://developer.apple.com/documentation/cloudkit/ckoperation/#1666033)
@@ -78,7 +76,7 @@ extension DatabaseManager {
     }
     
     func startObservingRemoteChanges() {
-        NotificationCenter.default.addObserver(forName: Notifications.cloudKitDataDidChangeRemotely.name, object: nil, queue: nil, using: { [weak self](_) in
+        NotificationCenter.default.addObserver(forName: Notifications.cloudKitDataDidChangeRemotely.name, object: nil, queue: nil, using: { [weak self] _ in
             guard let self = self else { return }
             DispatchQueue.global(qos: .utility).async {
                 self.fetchChangesInDatabase { error in
@@ -92,7 +90,7 @@ extension DatabaseManager {
     
     /// Sync local data to CloudKit
     /// For more about the savePolicy: https://developer.apple.com/documentation/cloudkit/ckrecordsavepolicy
-    public func syncRecordsToCloudKit(recordsToStore: [CKRecord], recordIDsToDelete: [CKRecord.ID], completion: ((Error?) -> ())? = nil) {
+    public func syncRecordsToCloudKit(recordsToStore: [CKRecord], recordIDsToDelete: [CKRecord.ID], completion: ((Error?) -> Void)? = nil) {
         let modifyOpe = CKModifyRecordsOperation(recordsToSave: recordsToStore, recordIDsToDelete: recordIDsToDelete)
         
         if #available(iOS 11.0, OSX 10.13, tvOS 11.0, watchOS 4.0, *) {
@@ -115,7 +113,7 @@ extension DatabaseManager {
         
         modifyOpe.modifyRecordsCompletionBlock = {
             [weak self]
-            (_, _, error) in
+            _, _, error in
             
             guard let self = self else { return }
             
@@ -142,5 +140,12 @@ extension DatabaseManager {
         
         database.add(modifyOpe)
     }
-    
+
+    func registerLocalDatabase() {
+        syncObjects.forEach { $0.registerLocalDatabase() }
+    }
+
+    func unregisterLocalDatabase() {
+        syncObjects.forEach { $0.unregisterLocalDatabase() }
+    }
 }

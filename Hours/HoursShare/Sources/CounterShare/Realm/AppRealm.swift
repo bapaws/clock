@@ -20,7 +20,7 @@ public actor AppRealm {
 
     // MARK: Realm
 
-    public let schemaVersion: UInt64 = 12
+    public let schemaVersion: UInt64 = 13
     public let fileName = "default"
 
     private var _realm: Realm?
@@ -77,8 +77,7 @@ public actor AppRealm {
             ),
             SyncObject(
                 realmConfiguration: realm.configuration,
-                type: CategoryObject.self,
-                uListElementType: EventObject.self
+                type: RecordObject.self
             ),
             SyncObject(
                 realmConfiguration: realm.configuration,
@@ -87,9 +86,12 @@ public actor AppRealm {
             ),
             SyncObject(
                 realmConfiguration: realm.configuration,
-                type: RecordObject.self
+                type: CategoryObject.self,
+                uListElementType: EventObject.self
             ),
         ])
+//        syncEngine?.pull()
+//        syncEngine?.pushAll()
     }
 
     // MARK: HEX
@@ -102,7 +104,7 @@ public actor AppRealm {
 
 //// MARK: HEX
 //
-//extension AppRealm {
+// extension AppRealm {
 //    private func writeHexes() async {
 //        let realm = await realm
 //
@@ -143,4 +145,4 @@ public actor AppRealm {
 //            return hex
 //        }
 //    }
-//}
+// }

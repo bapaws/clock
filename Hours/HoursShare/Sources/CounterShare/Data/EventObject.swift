@@ -37,6 +37,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexObjectColor
     @Persisted public var archivedAt: Date?
 
     @Persisted public var index: Int = 0
+    @Persisted var linkingObjectID: String?
 
     /// 事件的分类
     public var category: CategoryObject? { self.categorys.first }
@@ -138,6 +139,7 @@ public struct EventEntity: Entity, HexEntityColors {
 
     /// 事件的分类
     public var category: CategoryEntity?
+    public var linkingObjectID: String?
 
     public var milliseconds: Int = 0 {
         didSet { self.time = self.milliseconds.time }
@@ -204,6 +206,7 @@ public struct EventEntity: Entity, HexEntityColors {
         self.archivedAt = object.archivedAt
         if let category = object.category {
             self.category = CategoryEntity(object: category, isLinkedObject: true)
+            self.linkingObjectID = category._id.stringValue
         }
 
         self.milliseconds = object.milliseconds
@@ -214,7 +217,9 @@ public struct EventEntity: Entity, HexEntityColors {
         object._id = self._id
         object.emoji = self.emoji
         object.name = self.name
-        object.hex = self.hex?.toObject()
+        let hex = self.hex?.toObject()
+        hex?.linkingObjectID = id
+        object.hex = hex
         object.items.append(objectsIn: self.items.map { $0.toObject() })
         object.createdAt = self.createdAt
         object.isSystem = self.isSystem
@@ -222,6 +227,7 @@ public struct EventEntity: Entity, HexEntityColors {
         object.archivedAt = self.archivedAt
         object.milliseconds = self.milliseconds
         object.time = self.time
+        object.linkingObjectID = self.linkingObjectID
         return object
     }
 

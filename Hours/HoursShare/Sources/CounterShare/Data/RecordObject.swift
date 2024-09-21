@@ -43,6 +43,9 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
 
     @Persisted(originProperty: "items") public var events: LinkingObjects<EventObject>
     public var event: EventObject? { events.first }
+    /// 为了排查问题方便，在存储中加入了关系 id
+    /// 这里保存了 eventID
+    @Persisted var linkingObjectID: String?
 
     /// 同步到苹果系统日历事件的 eventIdentifier
     @Persisted public var calendarEventIdentifier: String?
@@ -138,7 +141,11 @@ public struct RecordEntity: Entity {
     /// 删除时间
     public var deletedAt: Date?
 
-    public var event: EventEntity?
+    public var event: EventEntity? {
+        didSet { linkingObjectID = event?.id }
+    }
+
+    private var linkingObjectID: String?
 
     /// 同步到苹果系统日历事件的 eventIdentifier
     public var calendarEventIdentifier: String?
@@ -189,6 +196,7 @@ public struct RecordEntity: Entity {
         self.deletedAt = object.deletedAt
         if let event = object.event {
             self.event = EventEntity(object: event, isLinkedObject: true)
+            self.linkingObjectID = event._id.stringValue
         }
         self.calendarEventIdentifier = object.calendarEventIdentifier
         self.healthSampleUUIDString = object.healthSampleUUIDString
@@ -208,6 +216,7 @@ public struct RecordEntity: Entity {
         object.deletedAt = deletedAt
         object.calendarEventIdentifier = calendarEventIdentifier
         object.healthSampleUUIDString = healthSampleUUIDString
+        object.linkingObjectID = linkingObjectID
         return object
     }
 

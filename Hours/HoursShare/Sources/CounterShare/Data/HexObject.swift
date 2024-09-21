@@ -19,6 +19,8 @@ public class HexObject: Object, ObjectKeyIdentifiable, Codable {
     @Persisted var light: SchemeObject?
     @Persisted var dark: SchemeObject?
 
+    @Persisted var linkingObjectID: String?
+
     /// CKRecordConvertible & CKRecordRecoverable
     @Persisted public var deletedAt: Date? {
         didSet {
@@ -37,7 +39,9 @@ public class HexObject: Object, ObjectKeyIdentifiable, Codable {
         self._id = ObjectId.generate()
         self.rgb = rgb
         self.light = SchemeObject(scheme: Scheme.light(argb: rgb))
+        self.light?.linkingObjectID = _id.stringValue
         self.dark = SchemeObject(scheme: Scheme.dark(argb: rgb))
+        self.dark?.linkingObjectID = _id.stringValue
     }
 
     public convenience init(hex: String) {
@@ -203,12 +207,15 @@ public struct HexEntity: Entity {
     var dark: SchemeEntity
 
     public var deletedAt: Date?
+    var linkingObjectID: String?
 
     public init(rgb: Int) {
         self._id = .generate()
         self.rgb = rgb
         self.light = SchemeEntity(scheme: Scheme.light(argb: rgb))
+        self.light.linkingObjectID = _id.stringValue
         self.dark = SchemeEntity(scheme: Scheme.dark(argb: rgb))
+        self.dark.linkingObjectID = _id.stringValue
     }
 
     public init(hex: String) {
@@ -237,6 +244,7 @@ public struct HexEntity: Entity {
         } else {
             self.dark = Self.default.dark
         }
+        self.linkingObjectID = object.linkingObjectID
     }
 
     public func toObject() -> HexObject {
@@ -245,6 +253,7 @@ public struct HexEntity: Entity {
         object.rgb = rgb
         object.light = light.toObject()
         object.dark = dark.toObject()
+        object.linkingObjectID = linkingObjectID
         return object
     }
 
