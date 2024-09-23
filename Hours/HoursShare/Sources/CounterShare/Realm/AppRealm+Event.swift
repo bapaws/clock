@@ -42,6 +42,7 @@ public extension AppRealm {
                     eventObject.emoji = entity.emoji
                     if eventObject.hex?._id != entity.hex?._id {
                         eventObject.hex = entity.hex?.toObject()
+                        eventObject.hex?.linkingObjectID = eventObject._id.stringValue
                     }
                     eventObject.isSystem = entity.isSystem
                     eventObject.archivedAt = entity.archivedAt

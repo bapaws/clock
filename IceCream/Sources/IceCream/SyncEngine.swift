@@ -14,9 +14,8 @@ import CloudKit
 /// 3. it hands over CKRecordZone stuffs to SyncObject so that it can have an effect on local Realm Database
 
 public final class SyncEngine {
-    
     private let databaseManager: DatabaseManager
-    
+
     public convenience init(objects: [Syncable], databaseScope: CKDatabase.Scope = .private, container: CKContainer = .default()) {
         switch databaseScope {
         case .private:
@@ -29,15 +28,15 @@ public final class SyncEngine {
             fatalError("Shared database scope is not supported yet")
         }
     }
-    
+
     private init(databaseManager: DatabaseManager) {
         self.databaseManager = databaseManager
         setup()
     }
-    
+
     private func setup() {
         databaseManager.prepare()
-        databaseManager.container.accountStatus { [weak self] (status, error) in
+        databaseManager.container.accountStatus { [weak self] status, _ in
             guard let self = self else { return }
             switch status {
             case .available:
@@ -62,25 +61,35 @@ public final class SyncEngine {
             }
         }
     }
-    
 }
 
 // MARK: Public Method
-extension SyncEngine {
-    
+
+public extension SyncEngine {
     /// Fetch data on the CloudKit and merge with local
     ///
     /// - Parameter completionHandler: Supported in the `privateCloudDatabase` when the fetch data process completes, completionHandler will be called. The error will be returned when anything wrong happens. Otherwise the error will be `nil`.
-    public func pull(completionHandler: ((Error?) -> Void)? = nil) {
+    func pull(completionHandler: ((Error?) -> Void)? = nil) {
         databaseManager.fetchChangesInDatabase(completionHandler)
     }
-    
+
     /// Push all existing local data to CloudKit
     /// You should NOT to call this method too frequently
-    public func pushAll() {
+    func pushAll() {
         databaseManager.syncObjects.forEach { $0.pushLocalObjectsToCloudKit() }
     }
-    
+
+    var isLocalDatabaseListened: Bool {
+        databaseManager.isLocalDatabaseListened
+    }
+
+    func registerLocalDatabase() {
+        databaseManager.registerLocalDatabase()
+    }
+
+    func unregisterLocalDatabase() {
+        databaseManager.unregisterLocalDatabase()
+    }
 }
 
 public enum Notifications: String, NotificationName {
@@ -92,11 +101,11 @@ public enum IceCreamKey: String {
     /// Tokens
     case databaseChangesTokenKey
     case zoneChangesTokenKey
-    
+
     /// Flags
     case subscriptionIsLocallyCachedKey
     case hasCustomZoneCreatedKey
-    
+
     var value: String {
         return "icecream.keys." + rawValue
     }
@@ -110,11 +119,11 @@ public enum IceCreamKey: String {
 public enum IceCreamSubscription: String, CaseIterable {
     case cloudKitPrivateDatabaseSubscriptionID = "private_changes"
     case cloudKitPublicDatabaseSubscriptionID = "cloudKitPublicDatabaseSubcriptionID"
-    
+
     var id: String {
         return rawValue
     }
-    
+
     public static var allIDs: [String] {
         return IceCreamSubscription.allCases.map { $0.rawValue }
     }

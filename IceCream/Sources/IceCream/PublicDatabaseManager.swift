@@ -19,6 +19,8 @@ final class PublicDatabaseManager: DatabaseManager {
 
     let syncObjects: [Syncable]
 
+    var isLocalDatabaseListened: Bool = false
+
     init(objects: [Syncable], container: CKContainer) {
         self.syncObjects = objects
         self.container = container

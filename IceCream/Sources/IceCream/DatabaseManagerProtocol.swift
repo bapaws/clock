@@ -15,7 +15,8 @@ protocol DatabaseManager: AnyObject {
     var container: CKContainer { get }
     
     var syncObjects: [Syncable] { get }
-    
+    var isLocalDatabaseListened: Bool { get set }
+
     init(objects: [Syncable], container: CKContainer)
     
     func prepare()
@@ -142,10 +143,12 @@ extension DatabaseManager {
     }
 
     func registerLocalDatabase() {
+        isLocalDatabaseListened = true
         syncObjects.forEach { $0.registerLocalDatabase() }
     }
 
     func unregisterLocalDatabase() {
+        isLocalDatabaseListened = false
         syncObjects.forEach { $0.unregisterLocalDatabase() }
     }
 }

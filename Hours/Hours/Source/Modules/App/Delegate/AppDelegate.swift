@@ -38,7 +38,6 @@ import UIKit
 //        #endif
 
         Task {
-            await AppRealm.shared.setupSyncCloud()
             await AppRealm.shared.generateRandomRecords()
         }
 

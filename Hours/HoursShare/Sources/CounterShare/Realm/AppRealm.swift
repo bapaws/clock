@@ -20,13 +20,19 @@ public actor AppRealm {
 
     // MARK: Realm
 
-    public let schemaVersion: UInt64 = 13
+    public let schemaVersion: UInt64 = 14
     public let fileName = "default"
 
     private var _realm: Realm?
     public var realm: Realm {
         get async {
-            if let _realm { return _realm }
+            if let _realm {
+                /// 当未注册本地通知时，注册本地通知
+                if let syncEngine, !syncEngine.isLocalDatabaseListened {
+                    syncEngine.registerLocalDatabase()
+                }
+                return _realm
+            }
             do {
                 // 老版本数据配置
                 let originalConfig = Realm.Configuration(schemaVersion: schemaVersion)
@@ -35,6 +41,10 @@ public actor AppRealm {
                 guard let fileURL = Storage.default.groupURL?.appendingPathComponent(fileName) else {
                     Realm.Configuration.defaultConfiguration = originalConfig
                     _realm = try await Realm(configuration: originalConfig, actor: self)
+
+                    /// 开启 icloud 同步
+                    setupSyncCloud(realmConfiguration: originalConfig)
+
                     return _realm!
                 }
 
@@ -55,6 +65,12 @@ public actor AppRealm {
                 }
                 Realm.Configuration.defaultConfiguration = config
                 _realm = try await Realm(configuration: config, actor: self)
+
+                /// 开启 icloud 同步
+                setupSyncCloud(realmConfiguration: config)
+
+//                let objectId = try! ObjectId(string: "")
+//                _realm?.objects(SchemeObject.self).where { $0._id == objectId }
             } catch {
                 debugPrint(error)
             }
@@ -63,29 +79,27 @@ public actor AppRealm {
         }
     }
 
-    public func setupSyncCloud() async {
-        // 设置 Realm
-        let realm = await realm
+    private func setupSyncCloud(realmConfiguration: Realm.Configuration) {
         syncEngine = SyncEngine(objects: [
             SyncObject(
-                realmConfiguration: realm.configuration,
+                realmConfiguration: realmConfiguration,
                 type: SchemeObject.self
             ),
             SyncObject(
-                realmConfiguration: realm.configuration,
+                realmConfiguration: realmConfiguration,
                 type: HexObject.self
             ),
             SyncObject(
-                realmConfiguration: realm.configuration,
+                realmConfiguration: realmConfiguration,
                 type: RecordObject.self
             ),
             SyncObject(
-                realmConfiguration: realm.configuration,
+                realmConfiguration: realmConfiguration,
                 type: EventObject.self,
                 uListElementType: RecordObject.self
             ),
             SyncObject(
-                realmConfiguration: realm.configuration,
+                realmConfiguration: realmConfiguration,
                 type: CategoryObject.self,
                 uListElementType: EventObject.self
             ),

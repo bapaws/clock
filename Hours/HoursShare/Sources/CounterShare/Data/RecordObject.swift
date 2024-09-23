@@ -51,6 +51,7 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
     @Persisted public var calendarEventIdentifier: String?
 
     @Persisted public var healthSampleUUIDString: String?
+    @Persisted public var sleepSampleUUIDStrings: RealmSwift.MutableSet<String>
 
     public lazy var time: TimeLength = milliseconds.time
     public var hours: Int { time.hour }
@@ -151,6 +152,7 @@ public struct RecordEntity: Entity {
     public var calendarEventIdentifier: String?
 
     public var healthSampleUUIDString: String?
+    public var sleepSampleUUIDStrings: Set<String> = []
 
     public var time: TimeLength
 
@@ -200,6 +202,7 @@ public struct RecordEntity: Entity {
         }
         self.calendarEventIdentifier = object.calendarEventIdentifier
         self.healthSampleUUIDString = object.healthSampleUUIDString
+        self.sleepSampleUUIDStrings = Set(object.sleepSampleUUIDStrings.map { $0 })
 
         self.time = milliseconds.time
     }
@@ -216,6 +219,7 @@ public struct RecordEntity: Entity {
         object.deletedAt = deletedAt
         object.calendarEventIdentifier = calendarEventIdentifier
         object.healthSampleUUIDString = healthSampleUUIDString
+        object.sleepSampleUUIDStrings.insert(objectsIn: sleepSampleUUIDStrings)
         object.linkingObjectID = linkingObjectID
         return object
     }

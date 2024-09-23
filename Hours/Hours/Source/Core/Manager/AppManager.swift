@@ -389,19 +389,26 @@ public extension AppManager {
             var records = [RecordEntity]()
             for item in samples {
                 guard let type = HKCategoryValueSleepAnalysis(rawValue: item.value), type == .inBed else { continue }
+
+                let id = item.uuid.uuidString
+
+                /// 从 realm 的 14 版本开始支持通过 uuid 查询
+                guard await !AppRealm.shared.containsRecord(where: { $0.sleepSampleUUIDStrings.contains(id) }) else { continue }
+                guard !records.contains(where: { $0.sleepSampleUUIDStrings.contains(id) }) else { continue }
+
                 /// 数据库里是否包含
+                /// 从支持 uuid 查询开始，这个条件就没有必要了，兼容几个版本之后可以删除
                 let isRealmContains = await AppRealm.shared.containsRecord { $0.startAt <= item.startDate && $0.endAt >= item.endDate }
-                /// 当前的数据中是否包含
-                let isContains = records.contains { $0.startAt <= item.startDate && $0.endAt >= item.endDate }
-                if isRealmContains || isContains { continue }
+                if isRealmContains { continue }
 
                 /// 当睡眠数据非连续时，进行合并，让数据完整
                 /// 之前是 90 分钟，有用户反馈有重复数据，增加到 2 小时
                 if let last = records.last, last.endAt.distance(to: item.startDate) < 2 * 3600 {
+                    records[records.count - 1].sleepSampleUUIDStrings.insert(item.uuid.uuidString)
                     records[records.count - 1].endAt = item.endDate
                 } else {
                     var record = RecordEntity(creationMode: .health, startAt: item.startDate, endAt: item.endDate)
-                    record.healthSampleUUIDString = item.uuid.uuidString
+                    record.sleepSampleUUIDStrings.insert(item.uuid.uuidString)
                     records.append(record)
                 }
             }

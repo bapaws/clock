@@ -41,7 +41,7 @@ struct NewEventView: View {
                     store.send(.selectCategoryTapped)
                 }
 
-                NewItemView(title: L10n.eventName) {
+                NewItemView(title: L10n.color) {
                     WithPerceptionTracking {
                         ColorIconView(hex: store.hex)
                     }

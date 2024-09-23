@@ -27,6 +27,14 @@ extension RecordObject: CKRecordConvertible, CKRecordRecoverable {
     }
 }
 
-extension HexObject: CKRecordConvertible, CKRecordRecoverable {}
+extension HexObject: CKRecordConvertible, CKRecordRecoverable {
+    public var isDeleted: Bool {
+        deletedAt != nil
+    }
+}
 
-extension SchemeObject: CKRecordConvertible, CKRecordRecoverable {}
+extension SchemeObject: CKRecordConvertible, CKRecordRecoverable {
+    public var isDeleted: Bool {
+        deletedAt != nil
+    }
+}

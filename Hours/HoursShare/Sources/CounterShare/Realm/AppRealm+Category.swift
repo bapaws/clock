@@ -21,6 +21,7 @@ public extension AppRealm {
                 try await realm.asyncWrite {
                     if object.hex?._id != entity.hex?._id {
                         object.hex = entity.hex?.toObject()
+                        object.hex?.linkingObjectID = object._id.stringValue
                     }
                     object.emoji = entity.emoji
                     object.icon = entity.icon

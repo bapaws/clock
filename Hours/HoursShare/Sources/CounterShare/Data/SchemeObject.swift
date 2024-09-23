@@ -10,7 +10,7 @@ import Palette
 import RealmSwift
 
 class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
-    @Persisted(primaryKey: true) var _id: ObjectId = .generate()
+    @Persisted(primaryKey: true) var _id: ObjectId
 
     /// CKRecordConvertible & CKRecordRecoverable
     @Persisted public var deletedAt: Date?
@@ -52,6 +52,8 @@ class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
     }
 
     init(scheme: Scheme) {
+        super.init()
+        self._id = .generate()
         self.primary = scheme.primary
         self.onPrimary = scheme.onPrimary
         self.primaryContainer = scheme.primaryContainer
@@ -82,112 +84,12 @@ class SchemeObject: Object, ObjectKeyIdentifiable, Codable {
         self.onInverseSurface = scheme.onInverseSurface
         self.inversePrimary = scheme.inversePrimary
     }
-
-    // MAKR: Codable
-
-    enum CodingKeys: CodingKey {
-        case primary
-        case onPrimary
-        case primaryContainer
-        case onPrimaryContainer
-        case secondary
-        case onSecondary
-        case secondaryContainer
-        case onSecondaryContainer
-        case tertiary
-        case onTertiary
-        case tertiaryContainer
-        case onTertiaryContainer
-        case error
-        case onError
-        case errorContainer
-        case onErrorContainer
-        case background
-        case onBackground
-        case surface
-        case onSurface
-        case surfaceVariant
-        case onSurfaceVariant
-        case outline
-        case outlineVariant
-        case shadow
-        case scrim
-        case inverseSurface
-        case onInverseSurface
-        case inversePrimary
-    }
-
-    required init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.primary = try container.decode(Int.self, forKey: .primary)
-        self.onPrimary = try container.decode(Int.self, forKey: .onPrimary)
-        self.primaryContainer = try container.decode(Int.self, forKey: .primaryContainer)
-        self.onPrimaryContainer = try container.decode(Int.self, forKey: .onPrimaryContainer)
-        self.secondary = try container.decode(Int.self, forKey: .secondary)
-        self.onSecondary = try container.decode(Int.self, forKey: .onSecondary)
-        self.secondaryContainer = try container.decode(Int.self, forKey: .secondaryContainer)
-        self.onSecondaryContainer = try container.decode(Int.self, forKey: .onSecondaryContainer)
-        self.tertiary = try container.decode(Int.self, forKey: .tertiary)
-        self.onTertiary = try container.decode(Int.self, forKey: .onTertiary)
-        self.tertiaryContainer = try container.decode(Int.self, forKey: .tertiaryContainer)
-        self.onTertiaryContainer = try container.decode(Int.self, forKey: .onTertiaryContainer)
-        self.error = try container.decode(Int.self, forKey: .error)
-        self.onError = try container.decode(Int.self, forKey: .onError)
-        self.errorContainer = try container.decode(Int.self, forKey: .errorContainer)
-        self.onErrorContainer = try container.decode(Int.self, forKey: .onErrorContainer)
-        self.background = try container.decode(Int.self, forKey: .background)
-        self.onBackground = try container.decode(Int.self, forKey: .onBackground)
-        self.surface = try container.decode(Int.self, forKey: .surface)
-        self.onSurface = try container.decode(Int.self, forKey: .onSurface)
-        self.surfaceVariant = try container.decode(Int.self, forKey: .surfaceVariant)
-        self.onSurfaceVariant = try container.decode(Int.self, forKey: .onSurfaceVariant)
-        self.outline = try container.decode(Int.self, forKey: .outline)
-        self.outlineVariant = try container.decode(Int.self, forKey: .outlineVariant)
-        self.shadow = try container.decode(Int.self, forKey: .shadow)
-        self.scrim = try container.decode(Int.self, forKey: .scrim)
-        self.inverseSurface = try container.decode(Int.self, forKey: .inverseSurface)
-        self.onInverseSurface = try container.decode(Int.self, forKey: .onInverseSurface)
-        self.inversePrimary = try container.decode(Int.self, forKey: .inversePrimary)
-    }
-
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(primary, forKey: .primary)
-        try container.encode(onPrimary, forKey: .onPrimary)
-        try container.encode(primaryContainer, forKey: .primaryContainer)
-        try container.encode(onPrimaryContainer, forKey: .onPrimaryContainer)
-        try container.encode(secondary, forKey: .secondary)
-        try container.encode(onSecondary, forKey: .onSecondary)
-        try container.encode(secondaryContainer, forKey: .secondaryContainer)
-        try container.encode(onSecondaryContainer, forKey: .onSecondaryContainer)
-        try container.encode(tertiary, forKey: .tertiary)
-        try container.encode(onTertiary, forKey: .onTertiary)
-        try container.encode(tertiaryContainer, forKey: .tertiaryContainer)
-        try container.encode(onTertiaryContainer, forKey: .onTertiaryContainer)
-        try container.encode(error, forKey: .error)
-        try container.encode(onError, forKey: .onError)
-        try container.encode(errorContainer, forKey: .errorContainer)
-        try container.encode(onErrorContainer, forKey: .onErrorContainer)
-        try container.encode(background, forKey: .background)
-        try container.encode(onBackground, forKey: .onBackground)
-        try container.encode(surface, forKey: .surface)
-        try container.encode(onSurface, forKey: .onSurface)
-        try container.encode(surfaceVariant, forKey: .surfaceVariant)
-        try container.encode(onSurfaceVariant, forKey: .onSurfaceVariant)
-        try container.encode(outline, forKey: .outline)
-        try container.encode(outlineVariant, forKey: .outlineVariant)
-        try container.encode(shadow, forKey: .shadow)
-        try container.encode(scrim, forKey: .scrim)
-        try container.encode(inverseSurface, forKey: .inverseSurface)
-        try container.encode(onInverseSurface, forKey: .onInverseSurface)
-        try container.encode(inversePrimary, forKey: .inversePrimary)
-    }
 }
 
 // MARK: Entity
 
 struct SchemeEntity: Entity {
-    var _id: ObjectId = .generate()
+    var _id: ObjectId
 
     var primary: Int
     var onPrimary: Int
@@ -223,6 +125,7 @@ struct SchemeEntity: Entity {
     var linkingObjectID: String?
 
     init(scheme: Scheme) {
+        self._id = .generate()
         self.primary = scheme.primary
         self.onPrimary = scheme.onPrimary
         self.primaryContainer = scheme.primaryContainer
@@ -257,6 +160,7 @@ struct SchemeEntity: Entity {
     // MARK: Entity
 
     init(object: SchemeObject, isLinkedObject: Bool = false) {
+        self._id = object._id
         self.primary = object.primary
         self.onPrimary = object.onPrimary
         self.primaryContainer = object.primaryContainer
@@ -292,6 +196,7 @@ struct SchemeEntity: Entity {
 
     func toObject() -> SchemeObject {
         let object = SchemeObject()
+        object._id = _id
         object.primary = primary
         object.onPrimary = onPrimary
         object.primaryContainer = primaryContainer
