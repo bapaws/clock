@@ -12,13 +12,13 @@ struct TimingEntityView: View {
     let entity: TimingEntity
     let dimensions: CGFloat
     var body: some View {
-        let label = VStack {
+        let label = VStack(spacing: 0) {
             Spacer()
 
             HStack(spacing: 0) {
                 if let emoji = entity.emoji, !emoji.isEmpty {
                     Text(emoji)
-                        .font(.footnote)
+                        .font(.body)
                 }
                 Text(entity.name)
                     .font(.subheadline)
@@ -27,17 +27,10 @@ struct TimingEntityView: View {
 
             Spacer()
 
-            HStack(spacing: 0) {
-                Image(systemName: "stop.fill")
-                    .font(.system(.callout, design: .rounded))
-
-                Text(timerInterval: entity.timerInterval, countsDown: false)
-                    .contentTransition(.numericText(countsDown: false))
-                    .font(.system(.callout, design: .rounded, weight: .bold))
-                    .minimumScaleFactor(0.5)
-                    .monospacedDigit()
-            }
-            .foregroundStyle(entity.primary)
+            Text(timerInterval: entity.timerInterval, countsDown: false)
+                .contentTransition(.numericText(countsDown: false))
+                .font(.system(.subheadline, design: .rounded, weight: .regular))
+                .foregroundStyle(entity.primary)
 
             Spacer()
         }

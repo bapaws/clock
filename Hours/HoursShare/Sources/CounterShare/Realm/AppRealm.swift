@@ -41,10 +41,6 @@ public actor AppRealm {
                 guard let fileURL = Storage.default.groupURL?.appendingPathComponent(fileName) else {
                     Realm.Configuration.defaultConfiguration = originalConfig
                     _realm = try await Realm(configuration: originalConfig, actor: self)
-
-                    /// 开启 icloud 同步
-                    setupSyncCloud(realmConfiguration: originalConfig)
-
                     return _realm!
                 }
 
@@ -65,12 +61,6 @@ public actor AppRealm {
                 }
                 Realm.Configuration.defaultConfiguration = config
                 _realm = try await Realm(configuration: config, actor: self)
-
-                /// 开启 icloud 同步
-                setupSyncCloud(realmConfiguration: config)
-
-//                let objectId = try! ObjectId(string: "")
-//                _realm?.objects(SchemeObject.self).where { $0._id == objectId }
             } catch {
                 debugPrint(error)
             }
@@ -79,7 +69,8 @@ public actor AppRealm {
         }
     }
 
-    private func setupSyncCloud(realmConfiguration: Realm.Configuration) {
+    public func setupSyncCloud() async {
+        let realmConfiguration = await realm.configuration
         syncEngine = SyncEngine(objects: [
             SyncObject(
                 realmConfiguration: realmConfiguration,

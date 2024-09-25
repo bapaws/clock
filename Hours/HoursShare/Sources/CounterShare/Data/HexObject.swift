@@ -87,12 +87,12 @@ public struct HexEntity: Entity {
         if let light = object.light {
             self.light = SchemeEntity(object: light)
         } else {
-            self.light = Self.default.light
+            self.light = SchemeEntity(scheme: Scheme.light(argb: object.rgb))
         }
         if let dark = object.dark {
             self.dark = SchemeEntity(object: dark)
         } else {
-            self.dark = Self.default.dark
+            self.dark = SchemeEntity(scheme: Scheme.dark(argb: object.rgb))
         }
         self.linkingObjectID = object.linkingObjectID
     }
