@@ -34,6 +34,8 @@ internal enum L10n {
   internal static let music = L10n.tr("Localizable", "Music", fallback: "Music")
   /// Personal Grooming
   internal static let personalGrooming = L10n.tr("Localizable", "PersonalGrooming", fallback: "Personal Grooming")
+  /// Long press to select categories
+  internal static let quickPreviewHint = L10n.tr("Localizable", "QuickPreviewHint", fallback: "Long press to select categories")
   /// Localizable.strings
   ///   Hours
   /// 

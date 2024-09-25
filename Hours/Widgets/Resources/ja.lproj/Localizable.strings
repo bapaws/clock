@@ -44,3 +44,5 @@
 // 家务
 "Cleaning" = "掃除";
 "Cooking" = "料理";
+
+"QuickPreviewHint" = "長押しでカテゴリを選択";

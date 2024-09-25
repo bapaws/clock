@@ -44,3 +44,5 @@
 // 家务
 "Cleaning" = "打扫";
 "Cooking" = "做饭";
+
+"QuickPreviewHint" = "长按可选择分类";

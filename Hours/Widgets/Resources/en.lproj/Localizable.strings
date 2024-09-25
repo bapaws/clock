@@ -44,3 +44,5 @@
 // 家务
 "Cleaning" = "Cleaning";
 "Cooking" = "Cooking";
+
+"QuickPreviewHint" = "Long press to select categories";
