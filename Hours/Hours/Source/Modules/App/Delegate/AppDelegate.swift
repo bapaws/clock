@@ -38,6 +38,9 @@ import UIKit
 //        #endif
 
         Task {
+            if AppManager.shared.isICloudSync {
+                await AppRealm.shared.setupSyncCloud()
+            }
             await AppRealm.shared.generateRandomRecords()
         }
 

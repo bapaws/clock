@@ -19,6 +19,9 @@ open class AppManager: ClockShare.AppBaseManager {
 
     // MARK: Record
 
+    @AppStorage(Storage.Key.isICloudSync, store: Storage.default.store)
+    public var isICloudSync: Bool = true
+
     @AppStorage(Storage.Key.minimumRecordedTime, store: Storage.default.store)
     public var minimumRecordedTime: TimeInterval = 0
 

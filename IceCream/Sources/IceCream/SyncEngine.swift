@@ -106,7 +106,7 @@ public enum IceCreamKey: String {
     case subscriptionIsLocallyCachedKey
     case hasCustomZoneCreatedKey
 
-    var value: String {
+    public var value: String {
         return "icecream.keys." + rawValue
     }
 }

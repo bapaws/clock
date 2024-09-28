@@ -1,5 +1,5 @@
 //
-//  GeneralSettingsView.swift
+//  SettingsHomeView.swift
 //  Hours
 //
 //  Created by 张敏超 on 2024/1/24.
@@ -86,7 +86,7 @@ struct GeneralSettingsFeature {
     }
 }
 
-struct GeneralSettingsView: View {
+struct SettingsHomeView: View {
     // MARK: Paywall
 
     @Binding var isPaywallPresented: Bool
@@ -139,13 +139,9 @@ struct GeneralSettingsView: View {
                 }
                 SettingsRecordSection(isPaywallPresented: $isPaywallPresented)
 
-                // MARK: Sound
-
-                SettingsSoundSection()
-
                 // MARK: Appearance
 
-                SettingsAppearanceSection()
+                SettingsGeneralSection()
 
                 // MARK: Other
 
@@ -179,7 +175,7 @@ struct GeneralSettingsView: View {
 }
 
 #Preview {
-    GeneralSettingsView(
+    SettingsHomeView(
         isPaywallPresented: .constant(false),
         store: StoreOf<GeneralSettingsFeature>.init(
             initialState: .init(),

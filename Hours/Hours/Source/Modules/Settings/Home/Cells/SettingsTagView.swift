@@ -1,5 +1,5 @@
 //
-//  SettingsNewTagView.swift
+//  SettingsTagView.swift
 //  Hours
 //
 //  Created by 张敏超 on 2024/5/16.
@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct SettingsNewTagView: View {
+let newTagTitle = "NEW"
+
+struct SettingsTagView: View {
+    let title: String
+
     var body: some View {
-        Text("NEW")
+        Text(title)
             .font(.footnote, weight: .bold)
             .padding(.vertical, 4)
             .padding(.horizontal, 6)
@@ -26,5 +30,5 @@ struct SettingsNewTagView: View {
 }
 
 #Preview {
-    SettingsNewTagView()
+    SettingsTagView(title: "NEW")
 }

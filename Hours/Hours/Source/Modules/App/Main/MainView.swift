@@ -59,7 +59,7 @@ struct MainView: View {
                         Image(uiImage: Asset.Tab.statistics.image)
                     }
 
-                    GeneralSettingsView(
+                    SettingsHomeView(
                         isPaywallPresented: $store.isPaywallPresented,
                         store: store.scope(state: \.settings, action: \.settings)
                     )

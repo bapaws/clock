@@ -111,6 +111,8 @@ internal enum L10n {
   internal static let darkClassic = L10n.tr("Localizable", "DarkClassic", fallback: "Classic Dark")
   /// Dark Mode
   internal static let darkMode = L10n.tr("Localizable", "DarkMode", fallback: "Dark Mode")
+  /// Data
+  internal static let data = L10n.tr("Localizable", "Data", fallback: "Data")
   /// Day
   internal static let day = L10n.tr("Localizable", "Day", fallback: "Day")
   /// d
@@ -181,8 +183,12 @@ internal enum L10n {
   internal static let focusDuration = L10n.tr("Localizable", "FocusDuration", fallback: "Focus Duration")
   /// Game
   internal static let game = L10n.tr("Localizable", "Game", fallback: "Game")
+  /// General
+  internal static let general = L10n.tr("Localizable", "General", fallback: "General")
   /// Genshin
   internal static let genshin = L10n.tr("Localizable", "Genshin", fallback: "Genshin")
+  /// Get Latest Data
+  internal static let getLatestData = L10n.tr("Localizable", "GetLatestData", fallback: "Get Latest Data")
   /// Get Pro
   internal static let getPro = L10n.tr("Localizable", "GetPro", fallback: "Get Pro")
   /// Health
@@ -203,6 +209,8 @@ internal enum L10n {
   internal static let hours = L10n.tr("Localizable", "Hours", fallback: "h")
   /// Housework
   internal static let housework = L10n.tr("Localizable", "Housework", fallback: "Housework")
+  /// iCloud
+  internal static let iCloud = L10n.tr("Localizable", "iCloud", fallback: "iCloud")
   /// Icon
   internal static let icon = L10n.tr("Localizable", "Icon", fallback: "Icon")
   /// Import
@@ -229,10 +237,14 @@ internal enum L10n {
   internal static let lightClassic = L10n.tr("Localizable", "LightClassic", fallback: "Classic Light")
   /// Light Mode
   internal static let lightMode = L10n.tr("Localizable", "LightMode", fallback: "Light Mode")
+  /// Free Trial
+  internal static let limitedTimeFree = L10n.tr("Localizable", "LimitedTimeFree", fallback: "Free Trial")
   /// Loading...
   internal static let loading = L10n.tr("Localizable", "Loading", fallback: "Loading...")
   /// Long Break Duration
   internal static let longBreakDuration = L10n.tr("Localizable", "LongBreakDuration", fallback: "Long Break Duration")
+  /// Manual
+  internal static let manual = L10n.tr("Localizable", "Manual", fallback: "Manual")
   /// Math
   internal static let math = L10n.tr("Localizable", "Math", fallback: "Math")
   /// Maximum Recorded Time
@@ -311,6 +323,8 @@ internal enum L10n {
   internal static let proMembership = L10n.tr("Localizable", "ProMembership", fallback: "Pro Membership")
   /// Purple
   internal static let purple = L10n.tr("Localizable", "Purple", fallback: "Purple")
+  /// Push Local Data
+  internal static let pushLocalData = L10n.tr("Localizable", "PushLocalData", fallback: "Push Local Data")
   /// Rate Our App
   internal static let rate = L10n.tr("Localizable", "Rate", fallback: "Rate Our App")
   /// Reading

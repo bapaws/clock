@@ -12,7 +12,7 @@ import SwiftUI
 struct SettingsNavigateCell: View {
     let title: String
     var value: String? = nil
-    var isNew: Bool = false
+    var tag: String?
     var isPro: Bool = false
     let action: () -> Void
 
@@ -22,8 +22,9 @@ struct SettingsNavigateCell: View {
         Button(action: action) {
             HStack(spacing: 4) {
                 Text(title)
-                if isNew {
-                    SettingsNewTagView()
+                if let tag {
+                    SettingsTagView(title: tag)
+                        .padding(.leading, 4)
                 }
                 if isPro {
                     Image(systemName: "crown")

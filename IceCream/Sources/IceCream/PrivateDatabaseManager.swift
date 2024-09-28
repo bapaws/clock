@@ -36,8 +36,7 @@ final class PrivateDatabaseManager: DatabaseManager {
         }
 
         changesOperation.fetchDatabaseChangesCompletionBlock = {
-            [weak self]
-            newToken, _, error in
+            [weak self] newToken, _, error in
             guard let self = self else { return }
             switch ErrorHandler.shared.resultType(with: error) {
             case .success:

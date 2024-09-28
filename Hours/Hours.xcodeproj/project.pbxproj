@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8800967B2BF59972008AC521 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 8800967A2BF59972008AC521 /* ScalingHeaderScrollView */; };
 		880096802BF5A6A5008AC521 /* SettingsScreenTimeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800967F2BF5A6A5008AC521 /* SettingsScreenTimeSection.swift */; };
-		880096862BF5BACC008AC521 /* SettingsNewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096852BF5BACC008AC521 /* SettingsNewTagView.swift */; };
+		880096862BF5BACC008AC521 /* SettingsTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880096852BF5BACC008AC521 /* SettingsTagView.swift */; };
 		8801DCB62B9FE437003DE039 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DCB52B9FE437003DE039 /* NewEventView.swift */; };
 		8801DCBA2B9FE4EF003DE039 /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DCB92B9FE4EF003DE039 /* NewItemView.swift */; };
 		8802CBBA2BAAE51100F0091E /* PaywallPackageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8802CBB92BAAE51100F0091E /* PaywallPackageItemView.swift */; };
@@ -130,13 +130,11 @@
 		88D23B122B94A35C00E33DE5 /* SettingsNavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23AF72B94A35C00E33DE5 /* SettingsNavigateCell.swift */; };
 		88D23B132B94A35C00E33DE5 /* SettingsStepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23AF82B94A35C00E33DE5 /* SettingsStepperCell.swift */; };
 		88D23B142B94A35C00E33DE5 /* SettingsCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23AF92B94A35C00E33DE5 /* SettingsCheckCell.swift */; };
-		88D23B162B94A35C00E33DE5 /* SettingsAppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23AFC2B94A35C00E33DE5 /* SettingsAppearanceSection.swift */; };
+		88D23B162B94A35C00E33DE5 /* SettingsGeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23AFC2B94A35C00E33DE5 /* SettingsGeneralSection.swift */; };
 		88D23B182B94A35C00E33DE5 /* SettingsDarkModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23AFE2B94A35C00E33DE5 /* SettingsDarkModeView.swift */; };
 		88D23B192B94A35C00E33DE5 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23AFF2B94A35C00E33DE5 /* SettingsSection.swift */; };
 		88D23B1A2B94A35C00E33DE5 /* SettingsTimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23B012B94A35C00E33DE5 /* SettingsTimerSection.swift */; };
-		88D23B1B2B94A35C00E33DE5 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23B022B94A35C00E33DE5 /* GeneralSettingsView.swift */; };
-		88D23B1F2B94A35C00E33DE5 /* SettingsSoundTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23B092B94A35C00E33DE5 /* SettingsSoundTypeView.swift */; };
-		88D23B202B94A35C00E33DE5 /* SettingsSoundSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23B0A2B94A35C00E33DE5 /* SettingsSoundSection.swift */; };
+		88D23B1B2B94A35C00E33DE5 /* SettingsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23B022B94A35C00E33DE5 /* SettingsHomeView.swift */; };
 		88D23B222B94A35C00E33DE5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23B0E2B94A35C00E33DE5 /* SplashView.swift */; };
 		88D23B232B94A35C00E33DE5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D23B102B94A35C00E33DE5 /* AboutView.swift */; };
 		88D454A32BA82D2300584FAD /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D454A12BA82D2300584FAD /* PaywallView.swift */; };
@@ -157,6 +155,7 @@
 		88D6EB252C242F9700970397 /* TimelinePageFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6EB242C242F9700970397 /* TimelinePageFeature.swift */; };
 		88D6EB292C24794400970397 /* RecordsHomeCurrentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6EB282C24794400970397 /* RecordsHomeCurrentState.swift */; };
 		88D7A5202BA0427E00FD129F /* EventsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D7A51F2BA0427E00FD129F /* EventsHomeView.swift */; };
+		88DE772E2CA8138C00FE93F0 /* SettingsiCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE772D2CA8138C00FE93F0 /* SettingsiCloudView.swift */; };
 		88DE84802C6DFA06000C72B3 /* AppStoreVersionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE847F2C6DFA06000C72B3 /* AppStoreVersionClient.swift */; };
 		88E18FC22C7970DB00470AC6 /* TimelineRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E18FC12C7970DB00470AC6 /* TimelineRecordView.swift */; };
 		88E18FC42C79966500470AC6 /* TimelineTimeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E18FC32C79966500470AC6 /* TimelineTimeIntervalView.swift */; };
@@ -252,7 +251,7 @@
 
 /* Begin PBXFileReference section */
 		8800967F2BF5A6A5008AC521 /* SettingsScreenTimeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenTimeSection.swift; sourceTree = "<group>"; };
-		880096852BF5BACC008AC521 /* SettingsNewTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNewTagView.swift; sourceTree = "<group>"; };
+		880096852BF5BACC008AC521 /* SettingsTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTagView.swift; sourceTree = "<group>"; };
 		8801DCB52B9FE437003DE039 /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
 		8801DCB92B9FE4EF003DE039 /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 		8802CBB92BAAE51100F0091E /* PaywallPackageItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallPackageItemView.swift; sourceTree = "<group>"; };
@@ -367,13 +366,11 @@
 		88D23AF72B94A35C00E33DE5 /* SettingsNavigateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavigateCell.swift; sourceTree = "<group>"; };
 		88D23AF82B94A35C00E33DE5 /* SettingsStepperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStepperCell.swift; sourceTree = "<group>"; };
 		88D23AF92B94A35C00E33DE5 /* SettingsCheckCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCheckCell.swift; sourceTree = "<group>"; };
-		88D23AFC2B94A35C00E33DE5 /* SettingsAppearanceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSection.swift; sourceTree = "<group>"; };
+		88D23AFC2B94A35C00E33DE5 /* SettingsGeneralSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralSection.swift; sourceTree = "<group>"; };
 		88D23AFE2B94A35C00E33DE5 /* SettingsDarkModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDarkModeView.swift; sourceTree = "<group>"; };
 		88D23AFF2B94A35C00E33DE5 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		88D23B012B94A35C00E33DE5 /* SettingsTimerSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTimerSection.swift; sourceTree = "<group>"; };
-		88D23B022B94A35C00E33DE5 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
-		88D23B092B94A35C00E33DE5 /* SettingsSoundTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundTypeView.swift; sourceTree = "<group>"; };
-		88D23B0A2B94A35C00E33DE5 /* SettingsSoundSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSoundSection.swift; sourceTree = "<group>"; };
+		88D23B022B94A35C00E33DE5 /* SettingsHomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHomeView.swift; sourceTree = "<group>"; };
 		88D23B0E2B94A35C00E33DE5 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		88D23B102B94A35C00E33DE5 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		88D23B502B94AF3100E33DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -394,6 +391,7 @@
 		88D6EB242C242F9700970397 /* TimelinePageFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePageFeature.swift; sourceTree = "<group>"; };
 		88D6EB282C24794400970397 /* RecordsHomeCurrentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsHomeCurrentState.swift; sourceTree = "<group>"; };
 		88D7A51F2BA0427E00FD129F /* EventsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeView.swift; sourceTree = "<group>"; };
+		88DE772D2CA8138C00FE93F0 /* SettingsiCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsiCloudView.swift; sourceTree = "<group>"; };
 		88DE847F2C6DFA06000C72B3 /* AppStoreVersionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreVersionClient.swift; sourceTree = "<group>"; };
 		88E18FC12C7970DB00470AC6 /* TimelineRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimelineRecordView.swift; path = Hours/Source/Modules/Records/Timeline2/TimelineRecordView.swift; sourceTree = SOURCE_ROOT; };
 		88E18FC32C79966500470AC6 /* TimelineTimeIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTimeIntervalView.swift; sourceTree = "<group>"; };
@@ -721,21 +719,21 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		882B82D82BF0AE1200B0365A /* General */ = {
+		882B82D82BF0AE1200B0365A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				88DE772F2CA81CA500FE93F0 /* General */,
+				88DE772A2CA8131E00FE93F0 /* iCloud */,
 				8827A57A2BED07E80010FC4C /* ScreenTime */,
-				88D23AFB2B94A35C00E33DE5 /* Appearance */,
 				8802CBD22BAB2CF700F0091E /* AppIcon */,
 				88D23AF52B94A35C00E33DE5 /* Cells */,
 				88D454A42BA839EA00584FAD /* Paywall */,
 				88D454B22BA8671100584FAD /* Record */,
-				88D23B082B94A35C00E33DE5 /* Sound */,
 				88D23B002B94A35C00E33DE5 /* Timer */,
-				88D23B022B94A35C00E33DE5 /* GeneralSettingsView.swift */,
+				88D23B022B94A35C00E33DE5 /* SettingsHomeView.swift */,
 				88D23AFF2B94A35C00E33DE5 /* SettingsSection.swift */,
 			);
-			path = General;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		88433D012B95CEFD0052135E /* Frameworks */ = {
@@ -1042,7 +1040,7 @@
 				88D23B0F2B94A35C00E33DE5 /* About */,
 				886798572BEA5FED00E55B2C /* Feedback */,
 				88D454A22BA82D2300584FAD /* Paywall */,
-				882B82D82BF0AE1200B0365A /* General */,
+				882B82D82BF0AE1200B0365A /* Home */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1052,21 +1050,12 @@
 			children = (
 				88D23AF62B94A35C00E33DE5 /* SettingsToggleCell.swift */,
 				88D23AF72B94A35C00E33DE5 /* SettingsNavigateCell.swift */,
-				880096852BF5BACC008AC521 /* SettingsNewTagView.swift */,
+				880096852BF5BACC008AC521 /* SettingsTagView.swift */,
 				88D23AF82B94A35C00E33DE5 /* SettingsStepperCell.swift */,
 				88D23AF92B94A35C00E33DE5 /* SettingsCheckCell.swift */,
 				88D454AF2BA84BB500584FAD /* SettingsCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		88D23AFB2B94A35C00E33DE5 /* Appearance */ = {
-			isa = PBXGroup;
-			children = (
-				88D23AFC2B94A35C00E33DE5 /* SettingsAppearanceSection.swift */,
-				88D23AFE2B94A35C00E33DE5 /* SettingsDarkModeView.swift */,
-			);
-			path = Appearance;
 			sourceTree = "<group>";
 		};
 		88D23B002B94A35C00E33DE5 /* Timer */ = {
@@ -1075,15 +1064,6 @@
 				88D23B012B94A35C00E33DE5 /* SettingsTimerSection.swift */,
 			);
 			path = Timer;
-			sourceTree = "<group>";
-		};
-		88D23B082B94A35C00E33DE5 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				88D23B092B94A35C00E33DE5 /* SettingsSoundTypeView.swift */,
-				88D23B0A2B94A35C00E33DE5 /* SettingsSoundSection.swift */,
-			);
-			path = Sound;
 			sourceTree = "<group>";
 		};
 		88D23B0D2B94A35C00E33DE5 /* Splash */ = {
@@ -1187,6 +1167,23 @@
 				880805572C68B5A100CC8271 /* MessageClient.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		88DE772A2CA8131E00FE93F0 /* iCloud */ = {
+			isa = PBXGroup;
+			children = (
+				88DE772D2CA8138C00FE93F0 /* SettingsiCloudView.swift */,
+			);
+			path = iCloud;
+			sourceTree = "<group>";
+		};
+		88DE772F2CA81CA500FE93F0 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				88D23AFC2B94A35C00E33DE5 /* SettingsGeneralSection.swift */,
+				88D23AFE2B94A35C00E33DE5 /* SettingsDarkModeView.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 		88E038152B95C9B2002BDC9B /* Data */ = {
@@ -1525,6 +1522,7 @@
 				88C2DE752C097745002CEC16 /* StatisticsView.swift in Sources */,
 				88D23AEE2B94A26D00E33DE5 /* DarkMode.swift in Sources */,
 				88B8DA9D2BF1B0A800249EAE /* OnboardingView.swift in Sources */,
+				88DE772E2CA8138C00FE93F0 /* SettingsiCloudView.swift in Sources */,
 				8803C37D2C637103000F0E6F /* ItunesLookupResult.swift in Sources */,
 				88FBAE812C0D6EBF00C45F29 /* StatisticsWeekHeatMapView.swift in Sources */,
 				8827A5742BEC854E0010FC4C /* AppShortcutsProvider.swift in Sources */,
@@ -1579,12 +1577,11 @@
 				88FBAE8B2C0DF8D500C45F29 /* StatisticsDatePicker.swift in Sources */,
 				881450402BA4789400058F7F /* Category.swift in Sources */,
 				88F357CE2C1EB87700DD106A /* NewCategoryFeature.swift in Sources */,
-				88D23B1B2B94A35C00E33DE5 /* GeneralSettingsView.swift in Sources */,
+				88D23B1B2B94A35C00E33DE5 /* SettingsHomeView.swift in Sources */,
 				880703022C6C5B5E00CDAD03 /* ActivityListView.swift in Sources */,
 				8827A56C2BEC6E600010FC4C /* AppDidCloseAppIntent.swift in Sources */,
 				88CB58B92BEE5B4F000A2BF7 /* SceneDelegate.swift in Sources */,
 				88ED03072C0F41E900B55445 /* StatisticsMonthHeatMapView.swift in Sources */,
-				88D23B1F2B94A35C00E33DE5 /* SettingsSoundTypeView.swift in Sources */,
 				88D23AC02B949D9700E33DE5 /* MainView.swift in Sources */,
 				88BCA9C52C47672C0019F0F6 /* CalendarEventsView.swift in Sources */,
 				88861D352BC690F5001DAE8E /* EventRecordsView.swift in Sources */,
@@ -1640,7 +1637,7 @@
 				8802CBBA2BAAE51100F0091E /* PaywallPackageItemView.swift in Sources */,
 				88CB58B82BEE5B4F000A2BF7 /* AppDelegate.swift in Sources */,
 				8888F7692BEF73BB00E5E646 /* ArchivedEventsItemView.swift in Sources */,
-				880096862BF5BACC008AC521 /* SettingsNewTagView.swift in Sources */,
+				880096862BF5BACC008AC521 /* SettingsTagView.swift in Sources */,
 				88CF10562C3D74C600A98DA4 /* TimingEventsView.swift in Sources */,
 				88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */,
 				88FBAE772C0D58BC00C45F29 /* StatisticsTimeDistribution.swift in Sources */,
@@ -1655,8 +1652,7 @@
 				88FBAE882C0DF11E00C45F29 /* StatisticsMonthTimeDistributionView.swift in Sources */,
 				880A5A2E2C6B12CE0094F5B6 /* ActivityContent.swift in Sources */,
 				88C2DE7A2C097F93002CEC16 /* StatisticsDayView.swift in Sources */,
-				88D23B202B94A35C00E33DE5 /* SettingsSoundSection.swift in Sources */,
-				88D23B162B94A35C00E33DE5 /* SettingsAppearanceSection.swift in Sources */,
+				88D23B162B94A35C00E33DE5 /* SettingsGeneralSection.swift in Sources */,
 				88D23B1A2B94A35C00E33DE5 /* SettingsTimerSection.swift in Sources */,
 				88C2DE842C098AE1002CEC16 /* StatisticsWeek.swift in Sources */,
 				88F514412C378D5C004D9DCA /* EventHomeRecentView.swift in Sources */,
@@ -1719,7 +1715,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1748,7 +1744,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1908,7 +1904,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1946,7 +1942,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

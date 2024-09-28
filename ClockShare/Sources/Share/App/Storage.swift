@@ -41,6 +41,8 @@ public class Storage {
         public static let minimumRecordedTime = "minimumRecordedTime"
         public static let maximumRecordedTime = "maximumRecordedTime"
 
+        public static let isICloudSync = "isICloudSync"
+
         // MARK: App Screen Time
 
         public static let minimumRecordedScreenTime = "minimumRecordedScreenTime"

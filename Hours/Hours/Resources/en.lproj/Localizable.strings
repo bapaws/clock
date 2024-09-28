@@ -231,12 +231,23 @@
 // MARK: - Settings
 
 "Settings" = "Settings";
+"General" = "General";
 
 "TimingMode" = "Timing Mode";
 "MinimumRecordedTime" = "Minimum Recorded Time";
 "MaximumRecordedTime" = "Maximum Recorded Time";
 
 "SyncRecordsToCalendar" = "Sync records to Calendar";
+
+// MARK: iCloud
+
+"Data" = "Data";
+"iCloud" = "iCloud";
+"Manual" = "Manual";
+"PushLocalData" = "Push Local Data";
+"GetLatestData" = "Get Latest Data";
+
+"LimitedTimeFree" = "Free Trial";
 
 // MARK: Appearance
 

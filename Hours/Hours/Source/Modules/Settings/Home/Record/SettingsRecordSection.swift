@@ -11,19 +11,33 @@ import SwiftUI
 
 struct SettingsRecordSection: View {
     @Binding var isPaywallPresented: Bool
-    @State private var isTimerPresented: Bool = false
     @State private var isSyncRecordsToCalendar = AppManager.shared.calendarAccessGranted
     @State private var isAppScreenTimePresented: Bool = false
+    @State private var isiCloudPresented: Bool = false
 
     @EnvironmentObject var app: AppManager
 
     var body: some View {
         SettingsSection(title: L10n.records) {
-            SettingsNavigateCell(title: L10n.timer) {
-                isTimerPresented.toggle()
+            SettingsNavigateCell(title: L10n.appScreenTime, tag: newTagTitle) {
+                isAppScreenTimePresented.toggle()
             }
 
-            SettingsToggleCell(title: L10n.syncRecordsToCalendar, isNew: true, isOn: $isSyncRecordsToCalendar)
+            if app.isHealthAvailable {
+                SettingsNavigateCell(title: L10n.health, tag: newTagTitle) {
+                    app.getRequestHealthStatus { [weak app] shouldRequest in
+                        if shouldRequest {
+                            app?.requestHealthAccess()
+                        } else {
+                            DispatchQueue.main.async {
+                                app?.openHealthSettings()
+                            }
+                        }
+                    }
+                }
+            }
+
+            SettingsToggleCell(title: L10n.syncRecordsToCalendar, tag: newTagTitle, isOn: $isSyncRecordsToCalendar)
                 .onChange(of: isSyncRecordsToCalendar) { _ in
                     let status = app.calendarAuthorizationStatus
                     // 请求权限
@@ -36,27 +50,12 @@ struct SettingsRecordSection: View {
                     }
                 }
 
-            SettingsNavigateCell(title: L10n.appScreenTime, isNew: true) {
-                isAppScreenTimePresented.toggle()
-            }
-
-            if app.isHealthAvailable {
-                SettingsNavigateCell(title: L10n.health, isNew: true) {
-                    app.getRequestHealthStatus { [weak app] shouldRequest in
-                        if shouldRequest {
-                            app?.requestHealthAccess()
-                        } else {
-                            DispatchQueue.main.async {
-                                app?.openHealthSettings()
-                            }
-                        }
-                    }
-                }
+            SettingsNavigateCell(title: L10n.iCloud, tag: L10n.limitedTimeFree) {
+                isiCloudPresented.toggle()
             }
         }
-        .sheet(isPresented: $isTimerPresented) {
-            SettingsTimerSection()
-                .environmentObject(TimerManager.shared)
+        .sheet(isPresented: $isiCloudPresented) {
+            SettingsiCloudView()
         }
         .sheet(isPresented: $isAppScreenTimePresented) {
             SettingsScreenTimeView()

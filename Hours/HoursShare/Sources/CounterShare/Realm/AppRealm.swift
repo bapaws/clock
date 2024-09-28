@@ -69,7 +69,18 @@ public actor AppRealm {
         }
     }
 
-    public func setupSyncCloud() async {
+    // MARK: HEX
+
+    public lazy var hexs: [HexEntity] = []
+    private lazy var hexIndex = Storage.default.hexIndex ?? 27 {
+        didSet { Storage.default.hexIndex = hexIndex }
+    }
+}
+
+// MARK: Sync
+
+public extension AppRealm {
+    func setupSyncCloud() async {
         let realmConfiguration = await realm.configuration
         syncEngine = SyncEngine(objects: [
             SyncObject(
@@ -95,15 +106,16 @@ public actor AppRealm {
                 uListElementType: EventObject.self
             ),
         ])
-//        syncEngine?.pull()
-//        syncEngine?.pushAll()
     }
 
-    // MARK: HEX
+    func pushAll() {
+        syncEngine?.pushAll()
+    }
 
-    public lazy var hexs: [HexEntity] = []
-    private lazy var hexIndex = Storage.default.hexIndex ?? 27 {
-        didSet { Storage.default.hexIndex = hexIndex }
+    func pullAll() {
+        // 手动删除 token，强制 iCloud 重新获取全部数据
+        UserDefaults.standard.removeObject(forKey: IceCreamKey.databaseChangesTokenKey.value)
+        syncEngine?.pull()
     }
 }
 

@@ -13,17 +13,18 @@ let cellHeight: CGFloat = 64
 
 struct SettingsToggleCell: View {
     var title: String
-    var isNew: Bool = false
+    var tag: String?
     var isPro: Bool = false
     @Binding var isOn: Bool
 
     @EnvironmentObject var ui: UIManager
-    
+
     var body: some View {
         HStack(spacing: 4) {
             Text(title)
-            if isNew {
-                SettingsNewTagView()
+            if let tag {
+                SettingsTagView(title: tag)
+                    .padding(.leading, 4)
             }
             if isPro {
                 Image(systemName: "crown")

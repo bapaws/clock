@@ -199,10 +199,21 @@
 // MARK: - Settings
 
 "Settings" = "設定";
+"General" = "共通";
 "TimingMode" = "計時モード";
 "MinimumRecordedTime" = "最短記録時間";
 "MaximumRecordedTime" = "最長記録時間";
 "SyncRecordsToCalendar" = "記録をカレンダーに同期";
+
+// MARK: iCloud
+
+"Data" = "データ";
+"iCloud" = "iCloud";
+"Manual" = "手動";
+"PushLocalData" = "ローカルデータを送信";
+"GetLatestData" = "最新データを取得";
+
+"LimitedTimeFree" = "無料中";
 
 // MARK: Appearance
 
