@@ -20,6 +20,8 @@ public extension AppRealm {
             if let object = realm.object(ofType: CategoryObject.self, forPrimaryKey: entity._id) {
                 try await realm.asyncWrite {
                     if object.hex?._id != entity.hex?._id {
+                        object.hex?.deletedAt = Date.now
+
                         object.hex = entity.hex?.toObject()
                         object.hex?.linkingObjectID = object._id.stringValue
                     }

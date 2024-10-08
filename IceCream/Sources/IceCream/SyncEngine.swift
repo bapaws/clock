@@ -79,6 +79,10 @@ public extension SyncEngine {
         databaseManager.syncObjects.forEach { $0.pushLocalObjectsToCloudKit() }
     }
 
+    func clearTokens() {
+        databaseManager.clearTokens()
+    }
+
     var isLocalDatabaseListened: Bool {
         databaseManager.isLocalDatabaseListened
     }

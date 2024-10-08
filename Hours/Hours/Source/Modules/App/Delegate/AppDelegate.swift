@@ -41,7 +41,7 @@ import UIKit
             if AppManager.shared.isICloudSync {
                 await AppRealm.shared.setupSyncCloud()
             }
-            await AppRealm.shared.generateRandomRecords()
+//            await AppRealm.shared.generateRandomRecords()
         }
 
         AppManager.shared.enableObservedSleepAnalysis()

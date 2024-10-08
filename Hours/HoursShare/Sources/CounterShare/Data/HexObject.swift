@@ -19,7 +19,7 @@ public class HexObject: Object, ObjectKeyIdentifiable, Codable {
     @Persisted var light: SchemeObject?
     @Persisted var dark: SchemeObject?
 
-    @Persisted var linkingObjectID: String?
+    @Persisted public var linkingObjectID: String?
 
     /// CKRecordConvertible & CKRecordRecoverable
     @Persisted public var deletedAt: Date? {
@@ -87,12 +87,22 @@ public struct HexEntity: Entity {
         if let light = object.light {
             self.light = SchemeEntity(object: light)
         } else {
+#if DEBUG
+            /// 1.7.7 之前的版本中，存在数据关联错误的问题，颜色数据最明显
+            /// 非 DEBUG 模式下，用下面的代码可以直接修复问题
+            self.light = HexEntity.default.light
+#else
             self.light = SchemeEntity(scheme: Scheme.light(argb: object.rgb))
+#endif
         }
         if let dark = object.dark {
             self.dark = SchemeEntity(object: dark)
         } else {
+#if DEBUG
+            self.dark = HexEntity.default.dark
+#else
             self.dark = SchemeEntity(scheme: Scheme.dark(argb: object.rgb))
+#endif
         }
         self.linkingObjectID = object.linkingObjectID
     }

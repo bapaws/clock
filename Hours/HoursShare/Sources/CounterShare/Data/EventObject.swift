@@ -37,7 +37,7 @@ public class EventObject: Object, ObjectKeyIdentifiable, Codable, HexObjectColor
     @Persisted public var archivedAt: Date?
 
     @Persisted public var index: Int = 0
-    @Persisted var linkingObjectID: String?
+    @Persisted public var linkingObjectID: String?
 
     /// 事件的分类
     public var category: CategoryObject? { self.categorys.first }

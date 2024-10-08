@@ -45,7 +45,7 @@ public class RecordObject: Object, ObjectKeyIdentifiable, Codable {
     public var event: EventObject? { events.first }
     /// 为了排查问题方便，在存储中加入了关系 id
     /// 这里保存了 eventID
-    @Persisted var linkingObjectID: String?
+    @Persisted public var linkingObjectID: String?
 
     /// 同步到苹果系统日历事件的 eventIdentifier
     @Persisted public var calendarEventIdentifier: String?

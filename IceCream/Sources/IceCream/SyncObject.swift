@@ -7,6 +7,7 @@
 
 import CloudKit
 import Foundation
+import Realm
 import RealmSwift
 
 /// SyncObject is for each model you want to sync.
@@ -77,13 +78,9 @@ extension SyncObject: Syncable {
         }
     }
 
-    private var queue: DispatchQueue {
-        BackgroundWorker.shared.queue
-    }
-
     public func add(record: CKRecord) {
-        queue.async { [weak self] in
-            guard let self, let realm = try? Realm(configuration: self.realmConfiguration, queue: self.queue) else { return }
+        BackgroundWorker.shared.start { [weak self] in
+            guard let self, let realm = try? Realm(configuration: self.realmConfiguration) else { return }
 
             guard let object = T.parseFromRecord(
                 record: record,
@@ -113,8 +110,8 @@ extension SyncObject: Syncable {
     }
 
     public func delete(recordID: CKRecord.ID) {
-        queue.async { [weak self] in
-            guard let self, let realm = try? Realm(configuration: self.realmConfiguration, queue: self.queue) else { return }
+        BackgroundWorker.shared.start { [weak self] in
+            guard let self, let realm = try? Realm(configuration: self.realmConfiguration) else { return }
 
             guard let object = realm.object(ofType: T.self, forPrimaryKey: T.primaryKeyForRecordID(recordID: recordID)) else {
                 // Not found in local realm database
@@ -134,10 +131,10 @@ extension SyncObject: Syncable {
     /// When you commit a write transaction to a Realm, all other instances of that Realm will be notified, and be updated automatically.
     /// For more: https://realm.io/docs/swift/latest/#writes
     public func registerLocalDatabase() {
-        queue.async { [weak self] in
+        BackgroundWorker.shared.start { [weak self] in
             guard let self, self.notificationToken == nil else { return }
 
-            guard let realm = try? Realm(configuration: self.realmConfiguration, queue: self.queue) else { return }
+            guard let realm = try? Realm(configuration: self.realmConfiguration) else { return }
 
             self.notificationToken = realm.objects(T.self).observe { [weak self] changes in
                 guard let self = self else { return }
@@ -158,23 +155,49 @@ extension SyncObject: Syncable {
     }
 
     public func unregisterLocalDatabase() {
-        queue.async { [weak self] in
+        BackgroundWorker.shared.start { [weak self] in
             self?.notificationToken?.invalidate()
             self?.notificationToken = nil
         }
     }
 
     public func resolvePendingRelationships() {
-        queue.async { [weak self] in
-            self?.pendingUTypeRelationshipsWorker.resolvePendingListElements()
-            self?.pendingVTypeRelationshipsWorker.resolvePendingListElements()
-            self?.pendingWTypeRelationshipsWorker.resolvePendingListElements()
+        pendingUTypeRelationshipsWorker.resolvePendingListElements()
+        pendingVTypeRelationshipsWorker.resolvePendingListElements()
+        pendingWTypeRelationshipsWorker.resolvePendingListElements()
+
+        BackgroundWorker.shared.start { [weak self] in
+            /// 原因：由于 iCloud 数据返回顺序可能不一定，关联的属性对象没有提前返回时，无法获取数据导致数据为空，此时进行数据修复操作
+            /// 创建 Realm 对象用于数据修复
+            guard let self, let realm = try? Realm(configuration: self.realmConfiguration) else { return }
+
+            realm.beginWrite()
+            let relationships = realm.objects(PendingRelationshipObject.self)
+            for relationship in relationships {
+                // 获取属性的动态对象
+                guard let propertyID = try? ObjectId(string: relationship.propertyID), let propertyDynamicObject = realm.dynamicObject(ofType: relationship.propertyObjectClassName, forPrimaryKey: propertyID) else {
+                    continue
+                }
+                // 获取对象
+                guard let objectID = try? ObjectId(string: relationship.objectID), let object = realm.dynamicObject(ofType: relationship.objectClassName, forPrimaryKey: objectID) else {
+                    continue
+                }
+                // 写入数据
+                object[relationship.propertyName] = propertyDynamicObject
+                // 删除已经写入的关系数据
+                realm.delete(relationship)
+            }
+            if let token = self.notificationToken {
+                try? realm.commitWrite(withoutNotifying: [token])
+            } else {
+                try? realm.commitWrite()
+            }
         }
     }
 
     public func cleanUp() {
-        queue.async { [weak self] in
-            guard let self, let realm = try? Realm(configuration: self.realmConfiguration, queue: self.queue) else { return }
+        BackgroundWorker.shared.start { [weak self] in
+            guard let self, let realm = try? Realm(configuration: self.realmConfiguration) else { return }
             let objects = realm.objects(T.self).filter { $0.isDeleted }
 
             var tokens: [NotificationToken] = []
@@ -188,8 +211,8 @@ extension SyncObject: Syncable {
     }
 
     public func pushLocalObjectsToCloudKit() {
-        queue.async { [weak self] in
-            guard let self, let realm = try? Realm(configuration: self.realmConfiguration, queue: self.queue) else { return }
+        BackgroundWorker.shared.start { [weak self] in
+            guard let self, let realm = try? Realm(configuration: self.realmConfiguration) else { return }
 
             let recordsToStore: [CKRecord] = realm.objects(T.self).filter { !$0.isDeleted }.map { $0.record }
             self.pipeToEngine?(recordsToStore, [])

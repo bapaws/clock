@@ -12,9 +12,7 @@ import RealmSwift
 // Tweaked a little by Yue Cai
 
 class BackgroundWorker: NSObject {
-    
     static let shared = BackgroundWorker()
-    let queue = DispatchQueue(label: "com.IceCream.BackgroundWorker")
 
     private var thread: Thread?
     private var block: (() -> Void)?
@@ -28,7 +26,7 @@ class BackgroundWorker: NSObject {
                     Thread.exit()
                     return
                 }
-                while (!th.isCancelled) {
+                while !th.isCancelled {
                     RunLoop.current.run(
                         mode: .default,
                         before: Date.distantFuture)

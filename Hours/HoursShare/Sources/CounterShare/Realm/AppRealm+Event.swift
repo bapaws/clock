@@ -41,6 +41,8 @@ public extension AppRealm {
                     eventObject.name = entity.name
                     eventObject.emoji = entity.emoji
                     if eventObject.hex?._id != entity.hex?._id {
+                        eventObject.hex?.deletedAt = Date.now
+
                         eventObject.hex = entity.hex?.toObject()
                         eventObject.hex?.linkingObjectID = eventObject._id.stringValue
                     }

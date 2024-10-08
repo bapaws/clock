@@ -206,7 +206,12 @@ public struct CategoryEntity: Entity, HexEntityColors {
         object.emoji = emoji
         object.icon = icon
         object.name = name
-        object.events.append(objectsIn: events.map { $0.toObject() })
+        let events = events.map { entity in
+            let object = entity.toObject()
+            object.linkingObjectID = id
+            return object
+        }
+        object.events.append(objectsIn: events)
         object.calendarIdentifier = calendarIdentifier
         object.index = index
         object.createdAt = createdAt

@@ -214,6 +214,13 @@ extension PrivateDatabaseManager {
         }
     }
 
+    func clearTokens() {
+        databaseChangeToken = nil
+        for object in self.syncObjects {
+            object.zoneChangesToken = nil
+        }
+    }
+
     var subscriptionIsLocallyCached: Bool {
         get {
             guard let flag = UserDefaults.standard.object(forKey: IceCreamKey.subscriptionIsLocallyCachedKey.value) as? Bool else { return false }

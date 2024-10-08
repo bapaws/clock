@@ -8,7 +8,14 @@
 import CloudKit
 import RealmSwift
 
-public protocol CKRecordRecoverable: CreamCKAsset {}
+public protocol CKRecordRecoverable: CreamCKAsset {
+    var linkingObjectID: String? { get }
+}
+
+public extension CKRecordRecoverable where Self: Object {
+    static var linkingObjectIDPropertyName: String { "linkingObjectID" }
+    var linkingObjectID: String? { nil }
+}
 
 extension CKRecordRecoverable where Self: Object {
     static func parseFromRecord<U: Object, V: Object, W: Object>(
@@ -147,12 +154,22 @@ extension CKRecordRecoverable where Self: Object {
                     recordValue = CreamAsset.parse(from: prop.name, record: record, asset: asset)
                 } else if let owner = record.value(forKey: prop.name) as? CKRecord.Reference,
                           let ownerType = prop.objectClassName,
-                          let schema = realm.schema.objectSchema.first(where: { $0.className == ownerType })
+                          let schema = realm.schema.objectSchema.first(where: { $0.className == ownerType }),
+                          let primaryKey = primaryKeyForRecordID(recordID: owner.recordID, schema: schema)
                 {
-                    primaryKeyForRecordID(recordID: owner.recordID, schema: schema).flatMap {
-                        recordValue = realm.dynamicObject(ofType: ownerType, forPrimaryKey: $0)
+                    if let dynamicObject = realm.dynamicObject(ofType: ownerType, forPrimaryKey: primaryKey) {
+                        recordValue = dynamicObject
+                    } else if let objectID = record.value(forKey: "object_id__") as? String {
+                        /// 当动态对象不存在时，暂时保存数据关联关系
+                        /// 用于 iCloud 同步结束回调时修复数据错误
+                        let object = PendingRelationshipObject()
+                        object.objectID = objectID
+                        object.objectClassName = Self.className()
+                        object.propertyID = owner.recordID.recordName
+                        object.propertyObjectClassName = ownerType
+                        object.propertyName = prop.name
+                        try? realm.write { realm.add(object) }
                     }
-                    // Because we use the primaryKey as recordName when object converting to CKRecord
                 }
             default:
                 print("Other types will be supported in the future.")

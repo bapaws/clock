@@ -64,6 +64,8 @@ final class PublicDatabaseManager: DatabaseManager {
         #endif
     }
 
+    func clearTokens() {}
+
     // MARK: - Private Methods
 
     private func excuteQueryOperation(queryOperation: CKQueryOperation, on syncObject: Syncable, callback: ((Error?) -> Void)? = nil) {

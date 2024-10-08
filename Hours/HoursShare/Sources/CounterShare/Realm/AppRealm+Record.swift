@@ -116,7 +116,10 @@ public extension AppRealm {
         await realm
             .objects(RecordObject.self)
             .where(`where`)
-            .where { $0.deletedAt == nil }
+            /// 这里的筛选 events 不为空，由于未知原因导致某些数据存在 events 为空的情况出现
+            /// 猜测的原因是由于 iCloud 同步数据时存在问题
+            /// 目前简单直接屏蔽这样的数据
+            .where { $0.deletedAt == nil && $0.events.count > 0 }
             .map { RecordEntity(object: $0) }
             .sorted(by: areInIncreasingOrder ?? { $0.endAt > $1.endAt })
     }
@@ -155,7 +158,7 @@ public extension AppRealm {
     func getRecordsEndAt(from: Date, to: Date) async -> [RecordEntity] {
         await realm.objects(RecordObject.self)
             .where { $0.endAt >= from && $0.endAt <= to }
-            .where { $0.deletedAt == nil }
+            .where { $0.deletedAt == nil && $0.events.count > 0 }
             .sorted(by: \.endAt, ascending: true)
             .map { RecordEntity(object: $0) }
     }

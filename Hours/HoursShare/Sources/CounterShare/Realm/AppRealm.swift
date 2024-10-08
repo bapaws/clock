@@ -20,7 +20,7 @@ public actor AppRealm {
 
     // MARK: Realm
 
-    public let schemaVersion: UInt64 = 14
+    public let schemaVersion: UInt64 = 15
     public let fileName = "default"
 
     private var _realm: Realm?
@@ -112,10 +112,10 @@ public extension AppRealm {
         syncEngine?.pushAll()
     }
 
-    func pullAll() {
+    func pullAll(completionHandler: ((Error?) -> Void)? = nil) {
         // 手动删除 token，强制 iCloud 重新获取全部数据
-        UserDefaults.standard.removeObject(forKey: IceCreamKey.databaseChangesTokenKey.value)
-        syncEngine?.pull()
+        syncEngine?.clearTokens()
+        syncEngine?.pull(completionHandler: completionHandler)
     }
 }
 
