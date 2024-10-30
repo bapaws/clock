@@ -83,6 +83,7 @@
 		889011222C476F770075970C /* CalendarEventsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889011212C476F770075970C /* CalendarEventsFeature.swift */; };
 		88A9B6592BA150C100385800 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B6582BA150C100385800 /* TitleView.swift */; };
 		88A9B6712BA1E12F00385800 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 88A9B6702BA1E12F00385800 /* Collections */; };
+		88AEDE182CD2379800564184 /* QuickConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickConfigurationIntent.swift */; };
 		88B8DA9D2BF1B0A800249EAE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DA9C2BF1B0A800249EAE /* OnboardingView.swift */; };
 		88B8DAA22BF1B44C00249EAE /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA12BF1B44C00249EAE /* SplashViewController.swift */; };
 		88B8DAA42BF20BEF00249EAE /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8DAA32BF20BEF00249EAE /* OnboardingWelcomeView.swift */; };
@@ -1531,6 +1532,7 @@
 				88D50FD92B9764490065C4AA /* CategoryPickerView.swift in Sources */,
 				88ED03032C0F1BE800B55445 /* StatisticsYearTimeDistributionView.swift in Sources */,
 				88CB58C32BEE68C0000A2BF7 /* ArchivedEventsView.swift in Sources */,
+				88AEDE182CD2379800564184 /* QuickConfigurationIntent.swift in Sources */,
 				88BABAFC2C47FB6000E3B93A /* EventsHomeListView.swift in Sources */,
 				88CFE2A22B9B2B0A00912C53 /* OneColor.swift in Sources */,
 				88FBAE942C0E0E5600C45F29 /* StatisticsContribution.swift in Sources */,
