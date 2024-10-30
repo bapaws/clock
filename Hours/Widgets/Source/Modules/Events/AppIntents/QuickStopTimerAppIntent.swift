@@ -32,11 +32,12 @@ struct QuickStopTimerAppIntent: AppIntent, LiveActivityIntent {
         guard let entity = TimerManager.shared.timingEntities.first(where: { $0.id == eventID }) else {
             return .result()
         }
-        var time = entity.time
-        // 这里先调用 ++，相当于计时
-        time++
 
         Task {
+            var time = entity.time
+            // 这里先调用 ++，相当于计时
+            time++
+
             guard let event = await AppRealm.shared.getEvent(by: eventID) else {
                 return
             }
