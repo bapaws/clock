@@ -15,7 +15,7 @@ import HoursShare
 struct QuickStopTimerAppIntent: AppIntent, LiveActivityIntent {
     static var title: LocalizedStringResource = "QuickTiming"
     static var description = IntentDescription("Quick Timing")
-    
+
     @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
     static var isDiscoverable: Bool { return false }
 
@@ -29,24 +29,26 @@ struct QuickStopTimerAppIntent: AppIntent, LiveActivityIntent {
     }
 
     func perform() async throws -> some IntentResult {
-        guard let event = await AppRealm.shared.getEvent(by: eventID),
-              let entity = TimerManager.shared.timingEntities.first(where: { $0.id == eventID })
-        else {
+        guard let entity = TimerManager.shared.timingEntities.first(where: { $0.id == eventID }) else {
             return .result()
         }
-
         var time = entity.time
         // 这里先调用 ++，相当于计时
         time++
 
-        let milliseconds = min(time.milliseconds, Int(AppManager.shared.maximumRecordedTime * 1000))
-        var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
-        newRecord.calendarEventIdentifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
-        await AppRealm.shared.writeRecord(newRecord, addTo: event)
+        Task {
+            guard let event = await AppRealm.shared.getEvent(by: eventID) else {
+                return
+            }
+
+            let milliseconds = min(time.milliseconds, Int(AppManager.shared.maximumRecordedTime * 1000))
+            var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
+            newRecord.calendarEventIdentifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
+            await AppRealm.shared.writeRecord(newRecord, addTo: event)
+        }
 
         NotificationCenter.default.post(name: TimerManager.shared.timerStop, object: nil)
-
-        TimerManager.shared.stop(of: entity)
+        TimerManager.shared.stop(of: entity, reloadTimelines: false)
 
         return .result()
     }

@@ -12,7 +12,7 @@ import SwiftUI
 import SwiftUIX
 import WidgetKit
 
-@available(iOSApplicationExtension 17.0, *)
+@available(iOS 17.0, *)
 struct QuickWidget: Widget {
     let kind: String = WidgetsKind.Quick.large
 

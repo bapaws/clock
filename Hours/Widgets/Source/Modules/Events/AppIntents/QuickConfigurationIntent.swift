@@ -18,15 +18,15 @@ struct QuickCategoryEntityQuery: EntityQuery {
     }
 
     func suggestedEntities() async throws -> [QuickCategoryAppEntity] {
-//        CategoryEntity.random(count: 12)
         await AppRealm.shared.getAllUnarchivedCategories()
             .map { QuickCategoryAppEntity(id: $0.id, title: $0.title) }
     }
 
     func defaultResult() async -> QuickCategoryAppEntity? {
-        try? await suggestedEntities().first
-//        let entity = CategoryEntity.random()
-//        return QuickCategoryAppEntity(id: entity.id, title: entity.title)
+        if let first = await AppRealm.shared.getAllUnarchivedCategories().first {
+            return QuickCategoryAppEntity(id: first.id, title: first.title)
+        }
+        return nil
     }
 }
 
@@ -48,6 +48,8 @@ struct QuickConfigurationIntent: WidgetConfigurationIntent {
 
     @Parameter(title: "Categories", default: [], size: [.systemMedium: 4, .systemLarge: 9])
     var categories: [QuickCategoryAppEntity]
+
+    static var isDiscoverable: Bool { false }
 
     init(categories: [QuickCategoryAppEntity]) {
         self.categories = categories

@@ -96,10 +96,12 @@ public class TimerManager: ObservableObject {
         }
     }
 
-    public func stop(of entity: TimingEntity) {
+    public func stop(of entity: TimingEntity, reloadTimelines: Bool = true) {
         timingEntities.removeAll { $0.id == entity.id }
 
-        WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
+        if reloadTimelines {
+            WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
+        }
 
         if #available(iOS 16.1, *) {
             // Copy timingEntities

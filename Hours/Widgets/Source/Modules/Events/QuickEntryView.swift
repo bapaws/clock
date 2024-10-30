@@ -49,6 +49,7 @@ struct QuickEntryView: View {
                                     .frame(width: 2, height: 18)
                             }
                         }
+                        .widgetAccentable(isSelected)
                         .font(isSelected ? .footnote : .caption2)
                         .foregroundStyle(isSelected ? category.primary : ui.secondaryLabel)
                         .minimumScaleFactor(0.2)

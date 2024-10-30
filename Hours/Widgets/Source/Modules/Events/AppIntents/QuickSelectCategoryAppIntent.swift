@@ -43,7 +43,7 @@ struct QuickSelectCategoryAppIntent: AppIntent {
         default:
             break
         }
-
+        
         return .result()
     }
 }

@@ -181,8 +181,9 @@ struct QuickTimelineEntry: TimelineEntry {
     }
 }
 
-@available(iOSApplicationExtension 17.0, *)
+@available(iOS 17.0, *)
 struct QuickProvider: AppIntentTimelineProvider {
+    // struct QuickProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> QuickTimelineEntry {
         QuickTimelineEntry(context: context, categories: CategoryEntity.defaults)
     }

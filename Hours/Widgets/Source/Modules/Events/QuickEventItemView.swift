@@ -13,6 +13,8 @@ struct QuickEventItemView: View {
     var padding: CGFloat
     var dimension: CGFloat
 
+    @Environment(\.widgetRenderingMode) var widgetRenderingMode
+
     var body: some View {
         let label = VStack {
             Spacer()
@@ -29,7 +31,11 @@ struct QuickEventItemView: View {
         }
         .padding(padding)
         .frame(width: dimension, height: dimension, alignment: .center)
+        .widgetAccentable()
         .background(event.primaryContainer)
+        .modify(if: \.widgetRenderingMode, equals: .accented) {
+            $0.luminanceToAlpha()
+        }
         .cornerRadius(16)
 
         if #available(iOSApplicationExtension 17.0, *) {
