@@ -18,12 +18,12 @@ struct QuickCategoryEntityQuery: EntityQuery {
     }
 
     func suggestedEntities() async throws -> [QuickCategoryAppEntity] {
-        await AppRealm.shared.getAllUnarchivedCategories()
+        await AppRealm.shared.getAllUnarchivedCategories(isContainsEvents: false)
             .map { QuickCategoryAppEntity(id: $0.id, title: $0.title) }
     }
 
     func defaultResult() async -> QuickCategoryAppEntity? {
-        if let first = await AppRealm.shared.getAllUnarchivedCategories().first {
+        if let first = await AppRealm.shared.getFirstUnarchivedCategories() {
             return QuickCategoryAppEntity(id: first.id, title: first.title)
         }
         return nil

@@ -45,7 +45,7 @@ public extension AppRealm {
     }
 
     /// 应用首页调用这个方法，没有分类或者事件时，重新写入
-    func getAllUnarchivedCategories() async -> [CategoryEntity] {
+    func getAllUnarchivedCategories(isContainsEvents: Bool = true) async -> [CategoryEntity] {
         let realm = await realm
         let categories = realm.objects(CategoryObject.self)
             .where { $0.archivedAt == nil && $0.deletedAt == nil }
@@ -54,16 +54,29 @@ public extension AppRealm {
         var entities = [CategoryEntity]()
         for category in categories {
             var entity = CategoryEntity(object: category, isLinkedObject: true)
-            let events = category.events.where { $0.deletedAt == nil }
-            entity.eventTotalCount = events.count
-            entity.events = events
-                .where { $0.archivedAt == nil }
-                .sorted(by: \.index)
-                .map { EventEntity(object: $0, isLinkedObject: true) }
+            if isContainsEvents {
+                let events = category.events.where { $0.deletedAt == nil }
+                entity.eventTotalCount = events.count
+                entity.events = events
+                    .where { $0.archivedAt == nil }
+                    .sorted(by: \.index)
+                    .map { EventEntity(object: $0, isLinkedObject: true) }
+            }
             entities.append(entity)
         }
 
         return entities
+    }
+
+    /// 在小组件上使用，降低内存消耗
+    func getFirstUnarchivedCategories() async -> CategoryEntity? {
+        let realm = await realm
+        let category = realm.objects(CategoryObject.self)
+            .where { $0.archivedAt == nil && $0.deletedAt == nil }
+            .sorted(by: \.index)
+            .first
+        guard let category else { return nil }
+        return CategoryEntity(object: category, isLinkedObject: true)
     }
 
     func getAllArchivedCategories() async -> [CategoryEntity] {
