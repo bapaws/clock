@@ -299,7 +299,7 @@ public struct QuickHexEntity: QuickEntity {
 #if DEBUG
             self.dark = QuickHexEntity.default.dark
 #else
-            self.dark = QuickHexEntity(scheme: Scheme.dark(argb: object.rgb))
+            self.dark = QuickSchemeEntity(scheme: Scheme.dark(argb: object.rgb))
 #endif
         }
     }
