@@ -11,6 +11,8 @@ import HoursShare
 import RealmSwift
 
 struct QuickCategoryEntityQuery: EntityQuery {
+    static var suggestedCategories: [QuickCategoryAppEntity]? = nil
+
     func entities(for identifiers: [String]) async throws -> [QuickCategoryAppEntity] {
         let objectIds = identifiers.compactMap { try? ObjectId(string: $0.id) }
         return await AppRealm.shared.getCategories { $0._id.in(objectIds) }
@@ -18,14 +20,15 @@ struct QuickCategoryEntityQuery: EntityQuery {
     }
 
     func suggestedEntities() async throws -> [QuickCategoryAppEntity] {
-        await AppRealm.shared.getAllUnarchivedCategories(isContainsEvents: false)
+        if let suggestedCategories = QuickCategoryEntityQuery.suggestedCategories {
+            return suggestedCategories
+        }
+        QuickCategoryEntityQuery.suggestedCategories = await AppRealm.shared.getAllUnarchivedCategories(isContainsEvents: false)
             .map { QuickCategoryAppEntity(id: $0.id, title: $0.title) }
+        return QuickCategoryEntityQuery.suggestedCategories!
     }
 
     func defaultResult() async -> QuickCategoryAppEntity? {
-        if let first = await AppRealm.shared.getFirstUnarchivedCategories() {
-            return QuickCategoryAppEntity(id: first.id, title: first.title)
-        }
         return nil
     }
 }

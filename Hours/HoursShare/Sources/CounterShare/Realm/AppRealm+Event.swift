@@ -140,6 +140,18 @@ public extension AppRealm {
         }
     }
 
+    /// 在小组件上使用，降低内存消耗
+    func getQuickEvents(categoryID: String, maxCount: Int) async -> [QuickEventEntity] {
+        guard let categoryObjectID = try? ObjectId(string: categoryID) else { return [] }
+        let realm = await realm
+        guard let category = realm.object(ofType: CategoryObject.self, forPrimaryKey: categoryObjectID) else { return [] }
+
+        return category.events.where { $0.deletedAt == nil && $0.archivedAt == nil }
+            .sorted(by: \.index)
+            .prefix(maxCount)
+            .map { QuickEventEntity(object: $0) }
+    }
+
     func getEvent(by id: String) async -> EventEntity? {
         guard let object: EventObject = await getEvent(by: id) else { return nil }
         return EventEntity(object: object)

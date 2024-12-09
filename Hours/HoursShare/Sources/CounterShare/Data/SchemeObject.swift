@@ -244,3 +244,39 @@ struct SchemeEntity: Entity {
         return entities
     }
 }
+
+/// Quick
+struct QuickSchemeEntity: QuickEntity {
+    var _id: ObjectId
+
+    var primary: Int
+    var onPrimary: Int
+    var primaryContainer: Int
+    var onPrimaryContainer: Int
+
+    init(scheme: Scheme) {
+        self._id = .generate()
+        self.primary = scheme.primary
+        self.onPrimary = scheme.onPrimary
+        self.primaryContainer = scheme.primaryContainer
+        self.onPrimaryContainer = scheme.onPrimaryContainer
+    }
+
+    // MARK: Entity
+
+    init(object: SchemeObject) {
+        self._id = object._id
+        self.primary = object.primary
+        self.onPrimary = object.onPrimary
+        self.primaryContainer = object.primaryContainer
+        self.onPrimaryContainer = object.onPrimaryContainer
+    }
+
+    init(entity: SchemeEntity) {
+        self._id = entity._id
+        self.primary = entity.primary
+        self.onPrimary = entity.onPrimary
+        self.primaryContainer = entity.primaryContainer
+        self.onPrimaryContainer = entity.onPrimaryContainer
+    }
+}

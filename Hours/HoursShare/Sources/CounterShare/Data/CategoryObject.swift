@@ -232,3 +232,45 @@ public struct CategoryEntity: Entity, HexEntityColors {
 }
 
 extension CategoryEntity: TitleEntity {}
+
+/// Quick
+public struct QuickCategoryEntity: TitleEntity, QuickEntity, QuickHexEntityColors {
+    public var _id: ObjectId = .generate()
+
+    /// 颜色
+    public var hex: QuickHexEntity?
+    /// Icon or Emoji 表情
+    public var icon: String?
+    ///  Emoji 表情
+    public var emoji: String?
+    /// 标签名
+    public var name: String
+
+    public var index: Int = 0
+
+    // MARK: Entity
+
+    public init(object: CategoryObject) {
+        self._id = object._id
+        if let hex = object.hex {
+            self.hex = QuickHexEntity(object: hex)
+        }
+        self.emoji = object.emoji
+        self.icon = object.icon
+        self.name = object.name
+
+        self.index = object.index
+    }
+
+    public init(entity: CategoryEntity) {
+        self._id = entity._id
+        if let hex = entity.hex {
+            self.hex = QuickHexEntity(entity: hex)
+        }
+        self.emoji = entity.emoji
+        self.icon = entity.icon
+        self.name = entity.name
+
+        self.index = entity.index
+    }
+}

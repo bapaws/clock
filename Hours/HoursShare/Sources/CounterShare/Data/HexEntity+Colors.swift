@@ -372,3 +372,35 @@ public extension HexEntity {
     var uiDarkOnInverseSurface: UIColor { UIColor(argb: dark.onInverseSurface) }
     var uiDarkInversePrimary: UIColor { UIColor(argb: dark.inversePrimary) }
 }
+
+// MARK: Quick
+
+public extension QuickHexEntity {
+    var color: Color { Color(rgb: rgb) }
+
+    var primary: Color {
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.primary : self.light.primary) })
+    }
+
+    var onPrimary: Color {
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onPrimary : self.light.onPrimary) })
+    }
+
+    var primaryContainer: Color {
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.primaryContainer : self.light.primaryContainer) })
+    }
+
+    var onPrimaryContainer: Color {
+        Color(UIColor { UIColor(argb: $0.userInterfaceStyle == .dark ? self.dark.onPrimaryContainer : self.light.onPrimaryContainer) })
+    }
+
+    var lightPrimary: Color { Color(argb: light.primary) }
+    var lightOnPrimary: Color { Color(argb: light.onPrimary) }
+    var lightPrimaryContainer: Color { Color(argb: light.primaryContainer) }
+    var lightOnPrimaryContainer: Color { Color(argb: light.onPrimaryContainer) }
+
+    var darkPrimary: Color { Color(argb: dark.primary) }
+    var darkOnPrimary: Color { Color(argb: dark.onPrimary) }
+    var darkPrimaryContainer: Color { Color(argb: dark.primaryContainer) }
+    var darkOnPrimaryContainer: Color { Color(argb: dark.onPrimaryContainer) }
+}

@@ -52,8 +52,8 @@ public extension HexEntityColors {
     var onInverseSurface: Color { hex?.onInverseSurface ?? HexEntity.default.onInverseSurface }
     var inversePrimary: Color { hex?.inversePrimary ?? HexEntity.default.inversePrimary }
 
-
     // MARK: Light
+
     var lightPrimary: Color {
         Color(argb: hex?.light.primary ?? HexEntity.default.light.primary)
     }
@@ -286,5 +286,55 @@ public extension HexEntityColors {
 
     var darkInversePrimary: Color {
         Color(argb: hex?.dark.inversePrimary ?? HexEntity.default.dark.inversePrimary)
+    }
+}
+
+// MARK: QuickHexEntityColors
+
+public protocol QuickHexEntityColors {
+    var hex: QuickHexEntity? { get }
+}
+
+public extension QuickHexEntityColors {
+    var color: Color { hex?.color ?? HexEntity.default.color }
+    var primary: Color { hex?.primary ?? HexEntity.default.primary }
+    var onPrimary: Color { hex?.onPrimary ?? HexEntity.default.onPrimary }
+    var primaryContainer: Color { hex?.primaryContainer ?? HexEntity.default.primaryContainer }
+    var onPrimaryContainer: Color { hex?.onPrimaryContainer ?? HexEntity.default.onPrimaryContainer }
+
+    // MARK: Light
+
+    var lightPrimary: Color {
+        Color(argb: hex?.light.primary ?? HexEntity.default.light.primary)
+    }
+
+    var lightOnPrimary: Color {
+        Color(argb: hex?.light.onPrimary ?? HexEntity.default.light.onPrimary)
+    }
+
+    var lightPrimaryContainer: Color {
+        Color(argb: hex?.light.primaryContainer ?? HexEntity.default.light.primaryContainer)
+    }
+
+    var lightOnPrimaryContainer: Color {
+        Color(argb: hex?.light.onPrimaryContainer ?? HexEntity.default.light.onPrimaryContainer)
+    }
+
+    // MARK: Dark
+
+    var darkPrimary: Color {
+        Color(argb: hex?.dark.primary ?? HexEntity.default.dark.primary)
+    }
+
+    var darkOnPrimary: Color {
+        Color(argb: hex?.dark.onPrimary ?? HexEntity.default.dark.onPrimary)
+    }
+
+    var darkPrimaryContainer: Color {
+        Color(argb: hex?.dark.primaryContainer ?? HexEntity.default.dark.primaryContainer)
+    }
+
+    var darkOnPrimaryContainer: Color {
+        Color(argb: hex?.dark.onPrimaryContainer ?? HexEntity.default.dark.onPrimaryContainer)
     }
 }

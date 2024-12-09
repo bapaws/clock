@@ -18,11 +18,13 @@ struct QuickWidget: Widget {
 
     let ui = UIManager.shared
 
+    let provider = QuickAppIntentProvider()
+
     var body: some WidgetConfiguration {
         AppIntentConfiguration(
             kind: kind,
             intent: QuickConfigurationIntent.self,
-            provider: QuickProvider()
+            provider: provider
         ) { entry in
             QuickEntryView(entry: entry)
                 .environmentObject(ui)

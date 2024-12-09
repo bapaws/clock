@@ -12,36 +12,31 @@ import SwiftUI
 import SwiftUIX
 import WidgetKit
 
-@available(iOSApplicationExtension 17.0, *)
+@available(iOS 17.0, *)
 struct QuickEntryView: View {
-    var entry: QuickTimelineEntry
-    var quickCategory: QuickCategoryEntity {
-        entry.category
-    }
+    let entry: QuickTimelineEntry
 
     private let categoryItemSize: CGSize
-    private let spacing: CGFloat
     private let dimension: CGFloat
     init(entry: QuickTimelineEntry) {
         self.entry = entry
-        self.categoryItemSize = entry.category.categoryItemSize
-        self.spacing = entry.category.eventSpacing
-        self.dimension = entry.category.dimension
+        self.categoryItemSize = entry.categoryItemSize
+        self.dimension = entry.dimension
     }
 
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
             VStack(alignment: .leading, spacing: 0) {
-                ForEach(0 ..< quickCategory.categories.count, id: \.self) { index in
-                    let category = quickCategory.categories[index]
-                    let intent = QuickSelectCategoryAppIntent(categoryID: category.id, family: quickCategory.family)
+                ForEach(0 ..< entry.categories.count, id: \.self) { index in
+                    let category = entry.categories[index]
+                    let intent = QuickSelectCategoryAppIntent(categoryID: category.id, family: entry.family)
                     Button(intent: intent) {
-                        let isSelected = quickCategory.selection?.id == category.id
+                        let isSelected = entry.selection == category.id
 
                         HStack(spacing: 0) {
                             Text(category.title)
                                 .fontWeight(isSelected ? .bold : .regular)
-                                .padding(.vertical, quickCategory.eventPadding)
+                                .padding(.vertical, entry.eventPadding)
                             Spacer()
                             if isSelected {
                                 Capsule()
@@ -59,25 +54,33 @@ struct QuickEntryView: View {
                     .buttonStyle(BorderlessButtonStyle())
                 }
                 // 只有少于最大数量时，才需要填充空间
-                if quickCategory.categories.count < quickCategory.maxCategoryCount {
+                if entry.categories.count < entry.maxCategoryCount {
                     Spacer()
                 }
             }
             .width(categoryItemSize.width)
 
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: spacing) {
-                if let events = (quickCategory.selection ?? quickCategory.categories.first)?.events {
-                    ForEach(0 ..< min(quickCategory.maxEventCount, events.count), id: \.self) { index in
-                        let event = events[index]
-                        if let entity = entry.timingEntities.first(where: { $0.id == event.id }) {
-                            QuickTimingItemView(entity: entity, dimensions: dimension)
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: entry.eventSpacing) {
+                ForEach(0 ..< min(entry.maxEventCount, entry.events.count), id: \.self) { index in
+                    let event = entry.events[index]
+                    if let entity = entry.timingEntities.first(where: { $0.id == event.id }) {
+                        if entry.family == .systemLarge {
+                            QuickLargeTimingItemView(entity: entity, dimensions: dimension)
                         } else {
-                            QuickEventItemView(
-                                event: event,
-                                padding: quickCategory.eventPadding,
-                                dimension: dimension
-                            )
+                            QuickTimingItemView(entity: entity, dimensions: dimension)
                         }
+                    } else if entry.family == .systemLarge {
+                        QuickLargeEventItemView(
+                            event: event,
+                            padding: entry.eventPadding,
+                            dimension: dimension
+                        )
+                    } else {
+                        QuickEventItemView(
+                            event: event,
+                            padding: entry.eventPadding,
+                            dimension: dimension
+                        )
                     }
                 }
             }
@@ -88,12 +91,13 @@ struct QuickEntryView: View {
     }
 }
 
-#Preview {
-    let categories = CategoryEntity.random(count: 9)
-    let entity = QuickTimelineEntry(categories: categories)
-    if #available(iOSApplicationExtension 17.0, *) {
-        return QuickEntryView(entry: entity)
-    } else {
-        return EmptyView()
-    }
-}
+// #Preview {
+//    let categories = CategoryEntity.random(count: 9)
+//    let quickCategoryEntity = QuickCategoryEntity(categories: categories, events: categories.first!.events)
+//    let entity = QuickTimelineEntry(category: quickCategoryEntity)
+//    if #available(iOSApplicationExtension 17.0, *) {
+//        QuickEntryView(entry: entity)
+//    } else {
+//        EmptyView()
+//    }
+// }

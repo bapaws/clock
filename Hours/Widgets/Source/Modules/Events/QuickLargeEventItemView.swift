@@ -8,7 +8,7 @@
 import HoursShare
 import SwiftUI
 
-struct QuickEventItemView: View {
+struct QuickLargeEventItemView: View {
     var event: QuickEventEntity
     var padding: CGFloat
     var dimension: CGFloat
@@ -17,26 +17,29 @@ struct QuickEventItemView: View {
 
     var body: some View {
         let label = VStack {
-            Spacer()
-            if let emoji = event.emoji, !emoji.isEmpty {
-                Text(emoji)
-                Spacer()
+            Group {
+                if let emoji = event.emoji, !emoji.isEmpty {
+                    Text(emoji)
+                } else {
+                    Image(systemName: "play.fill")
+                        .foregroundStyle(event.primary)
+                }
             }
+            .padding(padding)
+            .frame(width: dimension, height: dimension, alignment: .center)
+            .widgetAccentable()
+            .background(event.primaryContainer)
+            .modify(if: \.widgetRenderingMode, equals: .accented) {
+                $0.luminanceToAlpha()
+            }
+            .cornerRadius(16)
+
             Text(event.name)
                 .lineLimit(2)
                 .minimumScaleFactor(0.4)
                 .font(.caption2)
                 .foregroundStyle(event.primary)
-            Spacer()
         }
-        .padding(padding)
-        .frame(width: dimension, height: dimension, alignment: .center)
-        .widgetAccentable()
-        .background(event.primaryContainer)
-        .modify(if: \.widgetRenderingMode, equals: .accented) {
-            $0.luminanceToAlpha()
-        }
-        .cornerRadius(16)
 
         if #available(iOSApplicationExtension 17.0, *) {
             Button(intent: QuickStartTimerAppIntent(eventID: event.id)) {

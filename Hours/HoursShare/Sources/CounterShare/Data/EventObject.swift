@@ -247,3 +247,34 @@ extension EventEntity: TitleEntity {
     var minutes: Int { self.time.minute }
     var seconds: Int { self.time.second }
 }
+
+public struct QuickEventEntity: QuickEntity, QuickHexEntityColors {
+    public var _id: ObjectId = .generate()
+    /// 名称
+    public var name: String
+
+    /// Emoji
+    public var emoji: String?
+    /// 颜色
+    public var hex: QuickHexEntity?
+
+    // MARK: Entity
+
+    public init(object: EventObject) {
+        self._id = object._id
+        self.emoji = object.emoji
+        self.name = object.name
+        if let hex = object.hex {
+            self.hex = QuickHexEntity(object: hex)
+        }
+    }
+
+    public init(entity: EventEntity) {
+        self._id = entity._id
+        self.emoji = entity.emoji
+        self.name = entity.name
+        if let hex = entity.hex {
+            self.hex = QuickHexEntity(entity: hex)
+        }
+    }
+}

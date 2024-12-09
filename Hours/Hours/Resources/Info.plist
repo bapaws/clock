@@ -10,9 +10,7 @@
 			<key>CFBundleURLName</key>
 			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>BapawsHours</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>

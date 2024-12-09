@@ -104,6 +104,9 @@
 		88C2DE942C09C6A7002CEC16 /* StatisticsNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2DE912C09C6A7002CEC16 /* StatisticsNumberView.swift */; };
 		88C2DE952C09C6A7002CEC16 /* StatisticsTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2DE922C09C6A7002CEC16 /* StatisticsTimeView.swift */; };
 		88C2DE9F2C09CB3D002CEC16 /* StatisticsDayHeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2DE9E2C09CB3D002CEC16 /* StatisticsDayHeatMapView.swift */; };
+		88CB33B02D0715EC000C4452 /* QuickLargeEventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB33AF2D0715EC000C4452 /* QuickLargeEventItemView.swift */; };
+		88CB33B22D072A87000C4452 /* QuickLargeTimingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB33B12D072A87000C4452 /* QuickLargeTimingItemView.swift */; };
+		88CB33B42D0731D9000C4452 /* QuickTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB33B32D0731D9000C4452 /* QuickTimelineEntry.swift */; };
 		88CB58B82BEE5B4F000A2BF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58B62BEE5B4F000A2BF7 /* AppDelegate.swift */; };
 		88CB58B92BEE5B4F000A2BF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58B72BEE5B4F000A2BF7 /* SceneDelegate.swift */; };
 		88CB58BF2BEE60A0000A2BF7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB58BE2BEE60A0000A2BF7 /* MainViewController.swift */; };
@@ -144,7 +147,7 @@
 		88D50FD92B9764490065C4AA /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D50FD82B9764490065C4AA /* CategoryPickerView.swift */; };
 		88D53AEA2C09636E003C02DC /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 88D53AE92C09636E003C02DC /* ComposableArchitecture */; };
 		88D5C63C2C109EBB00B8E9AE /* QuickWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63B2C109EBB00B8E9AE /* QuickWidget.swift */; };
-		88D5C63E2C109F0000B8E9AE /* QuickProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63D2C109F0000B8E9AE /* QuickProvider.swift */; };
+		88D5C63E2C109F0000B8E9AE /* QuickAppIntentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C63D2C109F0000B8E9AE /* QuickAppIntentProvider.swift */; };
 		88D5C6452C10A4C600B8E9AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88D5C6432C10A4C600B8E9AE /* Localizable.strings */; };
 		88D5D2982C59E10D00495A53 /* RGBPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2972C59E10D00495A53 /* RGBPicker.swift */; };
 		88D5D29A2C5A672F00495A53 /* EventsHomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5D2992C5A672F00495A53 /* EventsHomeEmptyView.swift */; };
@@ -343,6 +346,9 @@
 		88C2DE912C09C6A7002CEC16 /* StatisticsNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsNumberView.swift; sourceTree = "<group>"; };
 		88C2DE922C09C6A7002CEC16 /* StatisticsTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTimeView.swift; sourceTree = "<group>"; };
 		88C2DE9E2C09CB3D002CEC16 /* StatisticsDayHeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDayHeatMapView.swift; sourceTree = "<group>"; };
+		88CB33AF2D0715EC000C4452 /* QuickLargeEventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLargeEventItemView.swift; sourceTree = "<group>"; };
+		88CB33B12D072A87000C4452 /* QuickLargeTimingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLargeTimingItemView.swift; sourceTree = "<group>"; };
+		88CB33B32D0731D9000C4452 /* QuickTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimelineEntry.swift; sourceTree = "<group>"; };
 		88CB58B62BEE5B4F000A2BF7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88CB58B72BEE5B4F000A2BF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		88CB58BE2BEE60A0000A2BF7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -380,7 +386,7 @@
 		88D454B32BA8675900584FAD /* SettingsRecordSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRecordSection.swift; sourceTree = "<group>"; };
 		88D50FD82B9764490065C4AA /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		88D5C63B2C109EBB00B8E9AE /* QuickWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWidget.swift; sourceTree = "<group>"; };
-		88D5C63D2C109F0000B8E9AE /* QuickProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickProvider.swift; sourceTree = "<group>"; };
+		88D5C63D2C109F0000B8E9AE /* QuickAppIntentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAppIntentProvider.swift; sourceTree = "<group>"; };
 		88D5C6442C10A4C600B8E9AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88D5C6462C10A4CB00B8E9AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		88D5D2972C59E10D00495A53 /* RGBPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBPicker.swift; sourceTree = "<group>"; };
@@ -894,6 +900,15 @@
 			path = Day;
 			sourceTree = "<group>";
 		};
+		88CB33B52D07333F000C4452 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				88CB33B32D0731D9000C4452 /* QuickTimelineEntry.swift */,
+				88D5C63D2C109F0000B8E9AE /* QuickAppIntentProvider.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		88CB58BC2BEE6097000A2BF7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -1128,12 +1143,14 @@
 		88D5C63A2C109D5900B8E9AE /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				88CB33B52D07333F000C4452 /* Models */,
 				88FA90CC2C12A04C006607B1 /* AppIntents */,
 				88D5C63B2C109EBB00B8E9AE /* QuickWidget.swift */,
-				88D5C63D2C109F0000B8E9AE /* QuickProvider.swift */,
 				886CF1062C11F35F009B5A29 /* QuickEntryView.swift */,
 				88FA3C042C3E760B009C4273 /* QuickEventItemView.swift */,
+				88CB33AF2D0715EC000C4452 /* QuickLargeEventItemView.swift */,
 				88FA3C0A2C3E7A9F009C4273 /* QuickTimingItemView.swift */,
+				88CB33B12D072A87000C4452 /* QuickLargeTimingItemView.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -1486,6 +1503,8 @@
 			files = (
 				887CEC792BFDECD800E56AB5 /* TimerView.swift in Sources */,
 				88D5C63C2C109EBB00B8E9AE /* QuickWidget.swift in Sources */,
+				88CB33B02D0715EC000C4452 /* QuickLargeEventItemView.swift in Sources */,
+				88CB33B22D072A87000C4452 /* QuickLargeTimingItemView.swift in Sources */,
 				8816F6472C7F282E00A69FF4 /* QuickConfigurationIntent.swift in Sources */,
 				886CF1032C11D818009B5A29 /* QuickSelectCategoryAppIntent.swift in Sources */,
 				886CF1112C11F849009B5A29 /* QuickStopTimerAppIntent.swift in Sources */,
@@ -1495,11 +1514,12 @@
 				88EEF8052C4679DA004E8247 /* XCAssets.swift in Sources */,
 				88FA3C052C3E760B009C4273 /* QuickEventItemView.swift in Sources */,
 				88FA90C52C12946F006607B1 /* AppManager.swift in Sources */,
+				88CB33B42D0731D9000C4452 /* QuickTimelineEntry.swift in Sources */,
 				88FA90C92C12994E006607B1 /* QuickStartTimerAppIntent.swift in Sources */,
 				887CEC5B2BFDE8F900E56AB5 /* WidgetsBundle.swift in Sources */,
 				886CF1012C11D60E009B5A29 /* Storage.swift in Sources */,
 				88FA3C0B2C3E7A9F009C4273 /* QuickTimingItemView.swift in Sources */,
-				88D5C63E2C109F0000B8E9AE /* QuickProvider.swift in Sources */,
+				88D5C63E2C109F0000B8E9AE /* QuickAppIntentProvider.swift in Sources */,
 				886CF1072C11F35F009B5A29 /* QuickEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1904,7 +1924,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.10;
+				MARKETING_VERSION = 1.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1942,7 +1962,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.10;
+				MARKETING_VERSION = 1.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

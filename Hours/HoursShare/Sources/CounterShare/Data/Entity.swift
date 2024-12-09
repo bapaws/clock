@@ -33,3 +33,16 @@ public extension Entity {
         return String(UnicodeScalar(randomValue)!)
     }
 }
+
+// MARK: Quick
+
+public protocol QuickEntity: Identifiable, Equatable, Codable, Hashable {
+    associatedtype Object = RealmSwift.Object
+    var _id: ObjectId { get }
+
+    init(object: Object)
+}
+
+public extension QuickEntity {
+    var id: String { _id.stringValue }
+}

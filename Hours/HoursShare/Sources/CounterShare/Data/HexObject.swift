@@ -262,3 +262,58 @@ public extension HexEntity {
         return nil
     }
 }
+
+public struct QuickHexEntity: QuickEntity {
+    public let _id: ObjectId
+
+    public private(set) var rgb: Int
+    var light: QuickSchemeEntity
+    var dark: QuickSchemeEntity
+
+    public init(rgb: Int) {
+        self._id = .generate()
+        self.rgb = rgb
+        self.light = QuickSchemeEntity(scheme: Scheme.light(argb: rgb))
+        self.dark = QuickSchemeEntity(scheme: Scheme.dark(argb: rgb))
+    }
+
+    // MARK: Entity
+
+    public init(object: HexObject) {
+        self._id = object._id
+        self.rgb = object.rgb
+        if let light = object.light {
+            self.light = QuickSchemeEntity(object: light)
+        } else {
+#if DEBUG
+            /// 1.7.7 之前的版本中，存在数据关联错误的问题，颜色数据最明显
+            /// 非 DEBUG 模式下，用下面的代码可以直接修复问题
+            self.light = QuickHexEntity.default.light
+#else
+            self.light = QuickSchemeEntity(scheme: Scheme.light(argb: object.rgb))
+#endif
+        }
+        if let dark = object.dark {
+            self.dark = QuickSchemeEntity(object: dark)
+        } else {
+#if DEBUG
+            self.dark = QuickHexEntity.default.dark
+#else
+            self.dark = QuickHexEntity(scheme: Scheme.dark(argb: object.rgb))
+#endif
+        }
+    }
+
+    public init(entity: HexEntity) {
+        self._id = entity._id
+        self.rgb = entity.rgb
+        self.light = QuickSchemeEntity(entity: entity.light)
+        self.dark = QuickSchemeEntity(entity: entity.dark)
+    }
+
+    public static let `default` = QuickHexEntity(rgb: 0xFF000000)
+
+    public var red: CGFloat { CGFloat(rgb >> 16 & 0xFF) / 255 }
+    public var green: CGFloat { CGFloat(rgb >> 8 & 0xFF) / 255 }
+    public var blue: CGFloat { CGFloat(rgb & 0xFF) / 255 }
+}

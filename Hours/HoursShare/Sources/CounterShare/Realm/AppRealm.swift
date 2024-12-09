@@ -69,6 +69,10 @@ public actor AppRealm {
         }
     }
 
+    public func close() {
+        _realm = nil
+    }
+
     // MARK: HEX
 
     public lazy var hexs: [HexEntity] = []
