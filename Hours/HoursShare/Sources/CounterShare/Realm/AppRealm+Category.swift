@@ -53,19 +53,31 @@ public extension AppRealm {
 
         var entities = [CategoryEntity]()
         for category in categories {
-            var entity = CategoryEntity(object: category, isLinkedObject: true)
-            if isContainsEvents {
-                let events = category.events.where { $0.deletedAt == nil }
-                entity.eventTotalCount = events.count
-                entity.events = events
-                    .where { $0.archivedAt == nil }
-                    .sorted(by: \.index)
-                    .map { EventEntity(object: $0, isLinkedObject: true) }
-            }
+            let entity = getCategoryEntity(object: category, isContainsEvents: isContainsEvents)
             entities.append(entity)
         }
 
         return entities
+    }
+
+    private func getCategoryEntity(object: CategoryObject, isContainsEvents: Bool = true) -> CategoryEntity {
+        var entity = CategoryEntity(object: object, isLinkedObject: true)
+        guard isContainsEvents else { return entity }
+
+        let allEvents = object.events.where { $0.deletedAt == nil }
+        entity.eventTotalCount = allEvents.count
+
+        let events = allEvents.where { $0.archivedAt == nil }.sorted(by: \.index)
+        var entities = [EventEntity]()
+        var eventIDs = Set<ObjectId>()
+        for event in events {
+            if eventIDs.contains(event._id) { continue }
+
+            eventIDs.insert(event._id)
+            entities.append(EventEntity(object: event, isLinkedObject: true))
+        }
+        entity.events = entities
+        return entity
     }
 
     /// 在小组件上使用，降低内存消耗

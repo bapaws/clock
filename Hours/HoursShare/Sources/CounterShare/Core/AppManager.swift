@@ -25,6 +25,9 @@ open class AppManager: ClockShare.AppBaseManager {
     @AppStorage(Storage.Key.minimumRecordedTime, store: Storage.default.store)
     public var minimumRecordedTime: TimeInterval = 0
 
+    @AppStorage(Storage.Key.limitMaximumDuration, store: Storage.default.store)
+    public var limitMaximumDuration: Bool = true
+
     /// 最长记录时间，单位小时
     @AppStorage(Storage.Key.maximumRecordedTime, store: Storage.default.store)
     public var maximumRecordedTime: TimeInterval = 6 * 60 * 60

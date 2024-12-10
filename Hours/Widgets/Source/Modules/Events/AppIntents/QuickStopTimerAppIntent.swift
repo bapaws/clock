@@ -19,6 +19,8 @@ struct QuickStopTimerAppIntent: AppIntent, LiveActivityIntent {
     @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
     static var isDiscoverable: Bool { return false }
 
+    var app: AppManager { AppManager.shared }
+
     @Parameter(title: "EventID")
     var eventID: String
 
@@ -42,7 +44,7 @@ struct QuickStopTimerAppIntent: AppIntent, LiveActivityIntent {
                 return
             }
 
-            let milliseconds = min(time.milliseconds, Int(AppManager.shared.maximumRecordedTime * 1000))
+            let milliseconds = app.limitMaximumDuration ? min(time.milliseconds, Int(app.maximumRecordedTime * 1000)) : time.milliseconds
             var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
             newRecord.calendarEventIdentifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
             await AppRealm.shared.writeRecord(newRecord, addTo: event)

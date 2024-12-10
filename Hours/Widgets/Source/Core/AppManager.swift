@@ -22,6 +22,8 @@ public class AppManager: HoursShare.AppManager {
 
 public extension TimingEntity {
     var timerInterval: ClosedRange<Date> {
-        time.initialDate ... date.addingTimeInterval(AppManager.shared.maximumRecordedTime)
+        let app = AppManager.shared
+        let timeInterval = app.limitMaximumDuration ? app.maximumRecordedTime : 3 * 24 * 3600
+        return time.initialDate ... date.addingTimeInterval(timeInterval)
     }
 }
