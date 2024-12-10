@@ -467,6 +467,13 @@ public extension AppManager {
 
 public extension TimingEntity {
     var timerInterval: ClosedRange<Date> {
-        time.initialDate ... date.addingTimeInterval(AppManager.shared.maximumRecordedTime)
+        let app = AppManager.shared
+#if DEBUG
+        let timeInterval = app.limitMaximumDuration ? app.maximumRecordedTime : 2 * 60
+#else
+        // 没有限制时，最大时长为 3 天，超过暂停
+        let timeInterval = app.limitMaximumDuration ? app.maximumRecordedTime : 3 * 24 * 3600
+#endif
+        return time.initialDate ... date.addingTimeInterval(timeInterval)
     }
 }

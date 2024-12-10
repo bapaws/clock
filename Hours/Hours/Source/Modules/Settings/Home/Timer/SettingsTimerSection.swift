@@ -16,6 +16,7 @@ struct SettingsTimerSection: View {
     @EnvironmentObject var app: AppManager
 
     @State var isMute: Bool = AppManager.shared.isMute
+    @State var isMaximumRecordedTime: Bool = true
 
     var isShowed: Binding<Bool> {
         Binding(get: { timer.hourStyle == .big }, set: { newValue in timer.hourStyle = newValue ? .big : .none })
@@ -35,7 +36,10 @@ struct SettingsTimerSection: View {
 
                 SettingsStepperCell(title: L10n.minimumRecordedTime + " (s)", value: app.$minimumRecordedTime, minimumValue: 0, maximumValue: 300, stepValue: 30)
 
-                SettingsStepperCell(title: L10n.maximumRecordedTime + " (h)", value: maximumRecordedTime, minimumValue: 1, maximumValue: 24, stepValue: 1)
+                SettingsToggleCell(title: L10n.limitMaximumDuration, isOn: app.$limitMaximumDuration.animation())
+                if app.limitMaximumDuration {
+                    SettingsStepperCell(title: L10n.maximumRecordedTime + " (h)", value: maximumRecordedTime, minimumValue: 1, maximumValue: nil, stepValue: 1)
+                }
 
                 SettingsSection(title: L10n.sound) {
                     SettingsToggleCell(title: L10n.mute, isOn: $isMute)

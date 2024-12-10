@@ -236,6 +236,7 @@
 "TimingMode" = "计时模式";
 "MinimumRecordedTime" = "最短记录时长";
 "MaximumRecordedTime" = "最长记录时长";
+"LimitMaximumDuration" = "限制最大时长";
 
 "SyncRecordsToCalendar" = "记录同步到日历";
 

@@ -87,7 +87,7 @@ struct TimerFeature {
                     guard time.milliseconds > Int(app.minimumRecordedTime * 1000) else { return }
                     guard let event = await AppRealm.shared.getEvent(by: entity.id) else { return }
 
-                    let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
+                    let milliseconds = app.limitMaximumDuration ? min(time.milliseconds, Int(app.maximumRecordedTime * 1000)) : time.milliseconds
                     var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
                     // 同步到日历应用
                     let eventIdendtifier = await app.syncToCalendar(for: event, record: newRecord)

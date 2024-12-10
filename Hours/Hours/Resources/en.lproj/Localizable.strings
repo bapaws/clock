@@ -234,8 +234,9 @@
 "General" = "General";
 
 "TimingMode" = "Timing Mode";
-"MinimumRecordedTime" = "Minimum Recorded Time";
-"MaximumRecordedTime" = "Maximum Recorded Time";
+"MinimumRecordedTime" = "Minimum Duration";
+"MaximumRecordedTime" = "Maximum Duration";
+"LimitMaximumDuration" = "Limit Maximum Duration";
 
 "SyncRecordsToCalendar" = "Sync records to Calendar";
 

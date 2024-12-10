@@ -203,6 +203,8 @@
 "TimingMode" = "計時モード";
 "MinimumRecordedTime" = "最短記録時間";
 "MaximumRecordedTime" = "最長記録時間";
+"LimitMaximumDuration" = "制限最大期間";
+
 "SyncRecordsToCalendar" = "記録をカレンダーに同期";
 
 // MARK: iCloud

@@ -14,7 +14,7 @@ struct SettingsStepperCell: View {
 
     @Binding var value: Double
     public var minimumValue: Double = 0.0
-    public var maximumValue: Double = 1.0
+    public var maximumValue: Double? = 1.0
     var stepValue: Double = 1
 
     var isPro: Bool = false

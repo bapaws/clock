@@ -239,6 +239,8 @@ internal enum L10n {
   internal static let lightMode = L10n.tr("Localizable", "LightMode", fallback: "Light Mode")
   /// Free Trial
   internal static let limitedTimeFree = L10n.tr("Localizable", "LimitedTimeFree", fallback: "Free Trial")
+  /// Limit Maximum Duration
+  internal static let limitMaximumDuration = L10n.tr("Localizable", "LimitMaximumDuration", fallback: "Limit Maximum Duration")
   /// Loading...
   internal static let loading = L10n.tr("Localizable", "Loading", fallback: "Loading...")
   /// Long Break Duration
@@ -247,12 +249,12 @@ internal enum L10n {
   internal static let manual = L10n.tr("Localizable", "Manual", fallback: "Manual")
   /// Math
   internal static let math = L10n.tr("Localizable", "Math", fallback: "Math")
-  /// Maximum Recorded Time
-  internal static let maximumRecordedTime = L10n.tr("Localizable", "MaximumRecordedTime", fallback: "Maximum Recorded Time")
+  /// Maximum Duration
+  internal static let maximumRecordedTime = L10n.tr("Localizable", "MaximumRecordedTime", fallback: "Maximum Duration")
   /// Midday Nap
   internal static let middayNap = L10n.tr("Localizable", "MiddayNap", fallback: "Midday Nap")
-  /// Minimum Recorded Time
-  internal static let minimumRecordedTime = L10n.tr("Localizable", "MinimumRecordedTime", fallback: "Minimum Recorded Time")
+  /// Minimum Duration
+  internal static let minimumRecordedTime = L10n.tr("Localizable", "MinimumRecordedTime", fallback: "Minimum Duration")
   /// min
   internal static let minutes = L10n.tr("Localizable", "Minutes", fallback: "min")
   /// Use Device Setting

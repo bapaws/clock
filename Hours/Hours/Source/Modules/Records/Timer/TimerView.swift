@@ -84,7 +84,7 @@ struct TimerView: View {
                 store.send(.startTimer)
             }
             .onChange(of: store.entity.time.seconds) { newValue in
-                if newValue >= Int(app.maximumRecordedTime) {
+                if app.limitMaximumDuration, newValue >= Int(app.maximumRecordedTime) {
                     store.send(.onStopped)
                 } else {
                     AppManager.shared.playTimer()

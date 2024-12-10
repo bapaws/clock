@@ -57,7 +57,7 @@ struct TimingEventsFeature {
                     #endif
                     for entity in entities {
                         let time = entity.time
-                        if Int(time.initialDate.distance(to: now) * 1000) > maximumRecordedMilliseconds {
+                        if app.limitMaximumDuration, Int(time.initialDate.distance(to: now) * 1000) > maximumRecordedMilliseconds {
                             // 结束超时的计时
                             await send(.stopTimer(entity))
                         } else {
@@ -96,7 +96,7 @@ struct TimingEventsFeature {
                         return
                     }
 
-                    let milliseconds = min(time.milliseconds, Int(app.maximumRecordedTime * 1000))
+                    let milliseconds = app.limitMaximumDuration ? min(time.milliseconds, Int(app.maximumRecordedTime * 1000)) : time.milliseconds
                     var newRecord = RecordEntity(creationMode: .timer, startAt: time.initialDate, milliseconds: milliseconds, endAt: time.date)
                     // 同步到日历应用
                     let eventIdendtifier = await app.syncToCalendar(for: event, record: newRecord)
