@@ -40,6 +40,7 @@ public class Storage {
         public static let timingMode = "timingMode"
         public static let minimumRecordedTime = "minimumRecordedTime"
         public static let maximumRecordedTime = "maximumRecordedTime"
+        public static let limitMaximumDuration = "limitMaximumDuration"
 
         public static let isICloudSync = "isICloudSync"
 

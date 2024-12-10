@@ -18,7 +18,7 @@ public struct ValueStepper: View {
     @Binding var value: Double
 
     public var minimumValue: Double = 0.0
-    public var maximumValue: Double = 1.0
+    public var maximumValue: Double? = 1.0
     public var enableManualEditing: Bool = false
     public var stepValue: Double = 0.1
     public var formatter = NumberFormatter()
@@ -33,7 +33,7 @@ public struct ValueStepper: View {
     public init(
         value: Binding<Double>,
         minimumValue: Double = 0.0,
-        maximumValue: Double = 1.0,
+        maximumValue: Double? = 1.0,
         enableManualEditing: Bool = false,
         stepValue: Double = 0.1,
         formatter: NumberFormatter = NumberFormatter(),
@@ -64,7 +64,7 @@ public struct ValueStepper: View {
                     self.value = minimumValue
                     // 动画提醒超过界限
                     createAttempts += 1
-                } else if value > maximumValue {
+                } else if let maximumValue, value > maximumValue {
                     self.value = maximumValue
                     // 动画提醒超过界限
                     createAttempts += 1
@@ -83,7 +83,7 @@ public struct ValueStepper: View {
                     value = minimumValue
                     // 动画提醒超过界限
                     createAttempts += 1
-                } else if newValue > maximumValue {
+                } else if let maximumValue, newValue > maximumValue {
                     value = maximumValue
                     // 动画提醒超过界限
                     createAttempts += 1
@@ -109,7 +109,7 @@ public struct ValueStepper: View {
                     value = minimumValue
                     // 动画提醒超过界限
                     createAttempts += 1
-                } else if newValue > maximumValue {
+                } else if let maximumValue, newValue > maximumValue {
                     value = maximumValue
                     // 动画提醒超过界限
                     createAttempts += 1
