@@ -14,7 +14,7 @@ import WidgetKit
 
 @available(iOS 17.0, *)
 struct QuickMediumWidget: Widget {
-    let kind: String = WidgetsKind.Quick.large
+    let kind: String = WidgetsKind.Quick.medium
 
     let ui = UIManager.shared
 

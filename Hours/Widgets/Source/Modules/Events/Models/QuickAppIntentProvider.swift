@@ -17,11 +17,11 @@ struct QuickAppIntentProvider: AppIntentTimelineProvider {
         let defaults = CategoryEntity.defaults.prefix(context.family.quickMaxCategoryCount)
 
         var entry = QuickTimelineEntry(context: context)
-//        entry.categories = defaults.map { QuickCategoryEntity(entity: $0) }
-//        entry.selection = defaults.first?.id
-//        if let events = defaults.first?.events {
-//            entry.events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
-//        }
+        var categories = defaults.map { QuickCategoryEntity(entity: $0) }
+        if let events = defaults.first?.events {
+            categories[0].events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
+        }
+        entry.widget = QuickWidgetEntity(categories: categories)
         return entry
     }
 
@@ -29,11 +29,11 @@ struct QuickAppIntentProvider: AppIntentTimelineProvider {
         let defaults = CategoryEntity.defaults.prefix(context.family.quickMaxCategoryCount)
 
         var entry = QuickTimelineEntry(context: context)
-//        entry.categories = defaults.map { QuickCategoryEntity(entity: $0) }
-//        entry.selection = defaults.first?.id
-//        if let events = defaults.first?.events {
-//            entry.events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
-//        }
+        var categories = defaults.map { QuickCategoryEntity(entity: $0) }
+        if let events = defaults.first?.events {
+            categories[0].events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
+        }
+        entry.widget = QuickWidgetEntity(categories: categories)
         return entry
     }
 
@@ -75,11 +75,11 @@ struct QuickLargeAppIntentProvider: AppIntentTimelineProvider {
         let defaults = CategoryEntity.defaults.prefix(context.family.quickMaxCategoryCount)
 
         var entry = QuickTimelineEntry(context: context)
-//        entry.categories = defaults.map { QuickCategoryEntity(entity: $0) }
-//        entry.selection = defaults.first?.id
-//        if let events = defaults.first?.events {
-//            entry.events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
-//        }
+        var categories = defaults.map { QuickCategoryEntity(entity: $0) }
+        if let events = defaults.first?.events {
+            categories[0].events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
+        }
+        entry.widget = QuickWidgetEntity(categories: categories)
         return entry
     }
 
@@ -87,11 +87,11 @@ struct QuickLargeAppIntentProvider: AppIntentTimelineProvider {
         let defaults = CategoryEntity.defaults.prefix(context.family.quickMaxCategoryCount)
 
         var entry = QuickTimelineEntry(context: context)
-//        entry.categories = defaults.map { QuickCategoryEntity(entity: $0) }
-//        entry.selection = defaults.first?.id
-//        if let events = defaults.first?.events {
-//            entry.events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
-//        }
+        var categories = defaults.map { QuickCategoryEntity(entity: $0) }
+        if let events = defaults.first?.events {
+            categories[0].events = Array(events.map { QuickEventEntity(entity: $0) }.prefix(context.family.quickMaxEventCount))
+        }
+        entry.widget = QuickWidgetEntity(categories: categories)
         return entry
     }
 

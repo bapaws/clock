@@ -47,6 +47,6 @@ public class Toast {
         hudView.label.text = msg
         hudView.label.numberOfLines = 0
         hudView.margin = 16
-        hudView.hide(animated: true, afterDelay: 3)
+        hudView.hide(animated: true, afterDelay: 2)
     }
 }

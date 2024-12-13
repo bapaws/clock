@@ -144,6 +144,8 @@ struct SettingsWidgetFeature {
 }
 
 struct SettingsWidgetView: View {
+    @Binding var isPaywallPresented: Bool
+
     @Perception.Bindable var store: StoreOf<SettingsWidgetFeature>
 
     var columnCount = UIDevice.current.userInterfaceIdiom == .phone ? 1 : 2
@@ -161,7 +163,11 @@ struct SettingsWidgetView: View {
                         }
                     }
                     Button {
-                        store.send(.onNew)
+                        if ProManager.default.isPro {
+                            store.send(.onNew)
+                            return
+                        }
+                        isPaywallPresented = true
                     } label: {
                         Label(L10n.new, systemImage: .plus)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 44)
@@ -205,7 +211,7 @@ struct SettingsWidgetView: View {
                                     Button {
                                         store.send(.onEdit(widget.id))
                                     } label: {
-                                        Image(systemName: "folder.badge.plus")
+                                        Image(systemName: "pencil")
                                             .padding(.horizontal)
                                             .padding(.vertical, .small)
                                     }
@@ -230,6 +236,9 @@ struct SettingsWidgetView: View {
                                 .background(ui.secondaryBackground)
                                 .cornerRadius(24)
                                 .padding(.bottom)
+                            }
+                            .onTapGesture {
+                                store.send(.onEdit(widget.id))
                             }
                         }
                     }

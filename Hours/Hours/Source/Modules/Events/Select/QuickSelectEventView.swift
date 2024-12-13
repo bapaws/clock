@@ -67,6 +67,9 @@ struct QuickSelectEventFeature {
                 if let eventIDs = state.selectedEventIDs[category.id] {
                     if eventIDs.contains(entity.id) {
                         state.selectedEventIDs[category.id]?.remove(entity.id)
+                        if state.selectedEventIDs[category.id]?.isEmpty ?? true {
+                            state.selectedEventIDs[category.id] = nil
+                        }
                     } else if eventIDs.count < state.maxEventCount {
                         state.selectedEventIDs[category.id]?.insert(entity.id)
                     } else {

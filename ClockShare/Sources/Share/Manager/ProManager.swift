@@ -44,7 +44,7 @@ open class ProManager: NSObject {
 
     public var isPro: Bool {
         #if DEBUG
-        true
+        false
         #else
         purchasedProduct != nil
         #endif

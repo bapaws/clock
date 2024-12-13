@@ -14,6 +14,8 @@ struct SettingsWidgetTabView: View {
 
     @Environment(\.dismiss) private var dismiss
 
+    @Binding var isPaywallPresented: Bool
+
     var body: some View {
         WithPerceptionTracking {
             NavigationStack {
@@ -31,10 +33,10 @@ struct SettingsWidgetTabView: View {
                     }
 
                     TabView(selection: $store.pageIndex.animation()) {
-                        SettingsWidgetView(store: store.scope(state: \.medium, action: \.medium))
+                        SettingsWidgetView(isPaywallPresented: $isPaywallPresented, store: store.scope(state: \.medium, action: \.medium))
                             .tag(SettingsWidgetTabFeature.State.PageIndex.medium)
 
-                        SettingsWidgetView(store: store.scope(state: \.large, action: \.large))
+                        SettingsWidgetView(isPaywallPresented: $isPaywallPresented, store: store.scope(state: \.large, action: \.large))
                             .tag(SettingsWidgetTabFeature.State.PageIndex.large)
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
@@ -52,6 +54,6 @@ struct SettingsWidgetTabView: View {
     }
 }
 
-#Preview {
-    SettingsWidgetTabView(store: .init(initialState: .init(), reducer: { SettingsWidgetTabFeature() }))
-}
+// #Preview {
+//    SettingsWidgetTabView(store: .init(initialState: .init(), reducer: { SettingsWidgetTabFeature() }))
+// }

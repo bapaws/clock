@@ -139,7 +139,7 @@ struct SettingsHomeView: View {
                 ActivityListView(store: $0)
             }
             .sheet(item: $store.scope(state: \.widget, action: \.widget)) {
-                SettingsWidgetTabView(store: $0)
+                SettingsWidgetTabView(store: $0, isPaywallPresented: $isPaywallPresented)
             }
         }
     }
@@ -151,6 +151,7 @@ struct SettingsHomeView: View {
                     if ProManager.default.isLifetime { return }
                     isPaywallPresented = true
                 }
+
                 SettingsSection(title: L10n.widget) {
                     SettingsNavigateCell(title: L10n.widget) {
                         store.send(.onWidgetTapped)
