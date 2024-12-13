@@ -25,69 +25,78 @@ struct QuickEntryView: View {
     }
 
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(0 ..< entry.categories.count, id: \.self) { index in
-                    let category = entry.categories[index]
-                    let intent = QuickSelectCategoryAppIntent(categoryID: category.id, family: entry.family)
-                    Button(intent: intent) {
-                        let isSelected = entry.selection == category.id
+        if entry.widget == nil || (entry.categories?.isEmpty ?? true) {
+            Text(L10n.noSelectedInfo)
+                .foregroundStyle(ui.secondaryLabel)
+                .multilineTextAlignment(.center)
+                .padding()
+        } else {
+            HStack(alignment: .top, spacing: 8) {
+                VStack(alignment: .leading, spacing: 0) {
+                    let categories = entry.categories ?? []
+                    ForEach(0 ..< categories.count, id: \.self) { index in
+                        let category = categories[index]
+                        let intent = QuickSelectCategoryAppIntent(widgetID: entry.widget!.id, categoryID: category.id, family: entry.family)
+                        Button(intent: intent) {
+                            let isSelected = entry.widget?.selectedCategoryID == category.id
 
-                        HStack(spacing: 0) {
-                            Text(category.title)
-                                .fontWeight(isSelected ? .bold : .regular)
-                                .padding(.vertical, entry.eventPadding)
-                            Spacer()
-                            if isSelected {
-                                Capsule()
-                                    .fill(category.primary)
-                                    .frame(width: 2, height: 18)
+                            HStack(spacing: 0) {
+                                Text(category.title)
+                                    .fontWeight(isSelected ? .bold : .regular)
+                                    .padding(.vertical, entry.eventPadding)
+                                Spacer()
+                                if isSelected {
+                                    Capsule()
+                                        .fill(category.primary)
+                                        .frame(width: 2, height: 18)
+                                }
                             }
+                            .widgetAccentable(isSelected)
+                            .font(isSelected ? .footnote : .caption2)
+                            .foregroundStyle(isSelected ? category.primary : ui.secondaryLabel)
+                            .minimumScaleFactor(0.2)
+                            .lineLimit(1)
+                            .frame(categoryItemSize)
                         }
-                        .widgetAccentable(isSelected)
-                        .font(isSelected ? .footnote : .caption2)
-                        .foregroundStyle(isSelected ? category.primary : ui.secondaryLabel)
-                        .minimumScaleFactor(0.2)
-                        .lineLimit(1)
-                        .frame(categoryItemSize)
+                        .buttonStyle(BorderlessButtonStyle())
                     }
-                    .buttonStyle(BorderlessButtonStyle())
+                    // 只有少于最大数量时，才需要填充空间
+                    if categories.count < entry.maxCategoryCount {
+                        Spacer()
+                    }
                 }
-                // 只有少于最大数量时，才需要填充空间
-                if entry.categories.count < entry.maxCategoryCount {
-                    Spacer()
-                }
-            }
-            .width(categoryItemSize.width)
+                .width(categoryItemSize.width)
 
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: entry.eventSpacing) {
-                ForEach(0 ..< min(entry.maxEventCount, entry.events.count), id: \.self) { index in
-                    let event = entry.events[index]
-                    if let entity = entry.timingEntities.first(where: { $0.id == event.id }) {
-                        if entry.family == .systemLarge {
-                            QuickLargeTimingItemView(entity: entity, dimensions: dimension)
+                let selectedEvents = entry.selectedEvents ?? []
+                LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: entry.eventSpacing) {
+                    ForEach(0 ..< min(entry.maxEventCount, selectedEvents.count), id: \.self) { index in
+                        let event = selectedEvents[index]
+                        if let entity = entry.timingEntities.first(where: { $0.id == event.id }) {
+                            if entry.family == .systemLarge {
+                                QuickLargeTimingItemView(entity: entity, dimensions: dimension)
+                            } else {
+                                QuickTimingItemView(entity: entity, dimensions: dimension)
+                            }
+                        } else if entry.family == .systemLarge {
+                            QuickLargeEventItemView(
+                                event: event,
+                                padding: entry.eventPadding,
+                                dimension: dimension
+                            )
                         } else {
-                            QuickTimingItemView(entity: entity, dimensions: dimension)
+                            QuickEventItemView(
+                                event: event,
+                                padding: entry.eventPadding,
+                                dimension: dimension
+                            )
                         }
-                    } else if entry.family == .systemLarge {
-                        QuickLargeEventItemView(
-                            event: event,
-                            padding: entry.eventPadding,
-                            dimension: dimension
-                        )
-                    } else {
-                        QuickEventItemView(
-                            event: event,
-                            padding: entry.eventPadding,
-                            dimension: dimension
-                        )
                     }
                 }
+                .width(entry.displaySize.width - entry.horizontalPadding * 2 - categoryItemSize.width - 8)
             }
-            .width(entry.displaySize.width - entry.horizontalPadding * 2 - categoryItemSize.width - 8)
+            .padding(.vertical, entry.verticalPadding)
+            .padding(.horizontal, entry.horizontalPadding)
         }
-        .padding(.vertical, entry.verticalPadding)
-        .padding(.horizontal, entry.horizontalPadding)
     }
 }
 

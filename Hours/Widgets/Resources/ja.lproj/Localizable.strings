@@ -47,3 +47,7 @@
 
 "Select Categories" = "分類を選択する";
 "QuickPreviewHint" = "長押しでカテゴリを選択";
+
+"Select Widget" = "ウィジェットを選択";
+"Widget" = "ウィジェット";
+"NoSelectedInfo" = "長押ししてカテゴリを選択します \n カテゴリがない場合は、[Hours] -> [設定] -> [ウィジェット] -> [+ 追加]";

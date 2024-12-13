@@ -18,6 +18,8 @@ public actor AppRealm {
 
     private var syncEngine: SyncEngine?
 
+    var widgetToken: NotificationToken?
+
     // MARK: Realm
 
     public let schemaVersion: UInt64 = 15
@@ -51,14 +53,23 @@ public actor AppRealm {
 
                 let config = Realm.Configuration(
                     fileURL: fileURL,
-                    schemaVersion: schemaVersion
-                ) { migration, oldSchemaVersion in
-                    if oldSchemaVersion <= 8 {
-                        migration.enumerateObjects(ofType: SchemeObject.className()) { _, newObject in
-                            newObject?["_id"] = ObjectId.generate()
+//                    readOnly: true,
+                    schemaVersion: schemaVersion,
+                    migrationBlock: { migration, oldSchemaVersion in
+                        if oldSchemaVersion <= 8 {
+                            migration.enumerateObjects(ofType: SchemeObject.className()) { _, newObject in
+                                newObject?["_id"] = ObjectId.generate()
+                            }
                         }
+                    },
+                    shouldCompactOnLaunch: { totalBytes, usedBytes in
+                        // totalBytes refers to the size of the file on disk in bytes (data + free space)
+                        // usedBytes refers to the number of bytes used by data in the file
+                        // Compact if the file is over 100MB in size and less than 50% 'used'
+                        let oneHundredMB = 15 * 1024 * 1024
+                        return (totalBytes > oneHundredMB) && (Double(usedBytes) / Double(totalBytes)) < 0.5
                     }
-                }
+                )
                 Realm.Configuration.defaultConfiguration = config
                 _realm = try await Realm(configuration: config, actor: self)
             } catch {
@@ -70,6 +81,8 @@ public actor AppRealm {
     }
 
     public func close() {
+        widgetToken?.invalidate()
+        _realm?.invalidate()
         _realm = nil
     }
 

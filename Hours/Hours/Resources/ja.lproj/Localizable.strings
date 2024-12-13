@@ -19,6 +19,8 @@
 "Continue" = "続ける";
 "Loading" = "読み込み中...";
 "OK" = "はい";
+"New" = "追加";
+"Default" = "デフォルト";
 
 // MARK: Onboarding
 
@@ -246,6 +248,14 @@
 "Rate" = "評価する";
 "Upgrade" = "アップデートを確認";
 "About" = "について";
+
+// MARK: Widget
+
+"Widget" = "ウィジェット";
+"Medium" = "中";
+"Large" = "大";
+"SelectEventsWarning" = "最大 %@ イベントを選択";
+"SelectCategoriesWarning" = "最大 %@ カテゴリを選択します";
 
 // MARK: Clock
 

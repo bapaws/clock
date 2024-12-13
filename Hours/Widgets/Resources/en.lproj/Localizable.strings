@@ -47,3 +47,7 @@
 
 "Select Categories" = "Select Categories";
 "QuickPreviewHint" = "Long press to select categories";
+
+"Select Widget" = "Select Widget";
+"Widget" = "Widget";
+"NoSelectedInfo" = "Long press to select the category \n If there is no category, please open [Hours] -> [Settings] -> [Widget] -> [+ New]";

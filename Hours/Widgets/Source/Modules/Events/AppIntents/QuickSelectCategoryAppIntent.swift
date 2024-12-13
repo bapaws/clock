@@ -19,7 +19,10 @@ struct QuickSelectCategoryAppIntent: AppIntent {
     @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
     static var isDiscoverable: Bool { return false }
 
-    @Parameter(title: "CategoryID")
+    @Parameter(title: "widgetID")
+    var widgetID: String
+
+    @Parameter(title: "categoryID")
     var categoryID: String
 
     @Parameter(title: "familyRawValue")
@@ -27,7 +30,8 @@ struct QuickSelectCategoryAppIntent: AppIntent {
 
     init() {}
 
-    init(categoryID: String, family: WidgetFamily) {
+    init(widgetID: String, categoryID: String, family: WidgetFamily) {
+        self.widgetID = widgetID
         self.categoryID = categoryID
         self.familyRawValue = family.rawValue
     }
@@ -37,13 +41,19 @@ struct QuickSelectCategoryAppIntent: AppIntent {
 
         switch family {
         case .systemMedium:
-            Storage.default.mediumWidgetSelectedCategoryID = categoryID
+            if var widgets = Storage.default.quickMediumWidgets, let index = widgets.firstIndex(where: { $0.id == widgetID }) {
+                widgets[index].selectedCategoryID = categoryID
+                Storage.default.quickMediumWidgets = widgets
+            }
         case .systemLarge:
-            Storage.default.largeWidgetSelectedCategoryID = categoryID
+            if var widgets = Storage.default.quickLargeWidgets, let index = widgets.firstIndex(where: { $0.id == widgetID }) {
+                widgets[index].selectedCategoryID = categoryID
+                Storage.default.quickLargeWidgets = widgets
+            }
         default:
             break
         }
-        
+
         return .result()
     }
 }

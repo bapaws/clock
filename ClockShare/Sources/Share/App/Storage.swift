@@ -68,6 +68,11 @@ public class Storage {
             public static let shortBreakMinutes = "pomodoro.shortBreakMinutes"
             public static let longBreakMinutes = "pomodoro.longBreakMinutes"
         }
+
+        // MARK: Widget
+
+        public static let quickMediumWidgets = "quickMediumWidgets"
+        public static let quickLargeWidgets = "quickLargeWidgets"
     }
 
     public let store = UserDefaults(suiteName: Storage.groupIdentifier) ?? UserDefaults.standard

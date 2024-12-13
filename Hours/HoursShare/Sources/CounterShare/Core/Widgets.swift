@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WidgetKit
 
 public enum WidgetsKind {
     public static let scheme = "BapawsHours://bapaws.com"
@@ -19,6 +20,24 @@ public enum WidgetsKind {
 
         public static var all: [String] {
             [large, medium]
+        }
+    }
+}
+
+public extension WidgetFamily {
+    var quickMaxCategoryCount: Int {
+        switch self {
+        case .systemMedium: 4
+        case .systemLarge: 8
+        default: fatalError("Not support")
+        }
+    }
+
+    var quickMaxEventCount: Int {
+        switch self {
+        case .systemMedium: 6
+        case .systemLarge: 9
+        default: fatalError("Not support")
         }
     }
 }

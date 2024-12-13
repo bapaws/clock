@@ -38,6 +38,7 @@ import UIKit
 //        #endif
 
         Task {
+            await AppRealm.shared.setupDefaultWidget()
             if AppManager.shared.isICloudSync {
                 await AppRealm.shared.setupSyncCloud()
             }

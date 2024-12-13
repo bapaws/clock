@@ -13,7 +13,7 @@ import SwiftUIX
 import WidgetKit
 
 @available(iOS 17.0, *)
-struct QuickWidget: Widget {
+struct QuickMediumWidget: Widget {
     let kind: String = WidgetsKind.Quick.large
 
     let ui = UIManager.shared
@@ -23,7 +23,7 @@ struct QuickWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(
             kind: kind,
-            intent: QuickConfigurationIntent.self,
+            intent: QuickMediumConfigurationIntent.self,
             provider: provider
         ) { entry in
             QuickEntryView(entry: entry)
@@ -35,7 +35,36 @@ struct QuickWidget: Widget {
         }
         .disableContentMarginsIfNeeded()
         .configurationDisplayName(L10n.quickTiming)
-        .supportedFamilies([.systemMedium, .systemLarge])
+        .supportedFamilies([.systemMedium])
+    }
+}
+
+// MARK: -
+
+@available(iOS 17.0, *)
+struct QuickLargeWidget: Widget {
+    let kind: String = WidgetsKind.Quick.large
+
+    let ui = UIManager.shared
+
+    let provider = QuickLargeAppIntentProvider()
+
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(
+            kind: kind,
+            intent: QuickLargeConfigurationIntent.self,
+            provider: provider
+        ) { entry in
+            QuickEntryView(entry: entry)
+                .environmentObject(ui)
+                .containerBackground(ui.background)
+                .onAppear {
+                    UIManager.shared.setupColors()
+                }
+        }
+        .disableContentMarginsIfNeeded()
+        .configurationDisplayName(L10n.quickTiming)
+        .supportedFamilies([.systemLarge])
     }
 }
 

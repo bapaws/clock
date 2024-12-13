@@ -26,6 +26,8 @@ internal enum L10n {
   internal static let cyan = L10n.tr("Localizable", "Cyan", fallback: "Cyan")
   /// d
   internal static let days = L10n.tr("Localizable", "Days", fallback: "d")
+  /// Default
+  internal static let `default` = L10n.tr("Localizable", "Default", fallback: "Default")
   /// Dota2
   internal static let dota2 = L10n.tr("Localizable", "Dota2", fallback: "Dota2")
   /// English

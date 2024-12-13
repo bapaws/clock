@@ -225,6 +225,8 @@ internal enum L10n {
   internal static let importRecords = L10n.tr("Localizable", "ImportRecords", fallback: "Import Records")
   /// Interval
   internal static let interval = L10n.tr("Localizable", "Interval", fallback: "Interval")
+  /// Large
+  internal static let large = L10n.tr("Localizable", "Large", fallback: "Large")
   /// Last 7 Days
   internal static let last7Days = L10n.tr("Localizable", "Last7Days", fallback: "Last 7 Days")
   /// Leave
@@ -251,6 +253,8 @@ internal enum L10n {
   internal static let math = L10n.tr("Localizable", "Math", fallback: "Math")
   /// Maximum Duration
   internal static let maximumRecordedTime = L10n.tr("Localizable", "MaximumRecordedTime", fallback: "Maximum Duration")
+  /// Medium
+  internal static let medium = L10n.tr("Localizable", "Medium", fallback: "Medium")
   /// Midday Nap
   internal static let middayNap = L10n.tr("Localizable", "MiddayNap", fallback: "Midday Nap")
   /// Minimum Duration
@@ -269,6 +273,8 @@ internal enum L10n {
   internal static let mute = L10n.tr("Localizable", "Mute", fallback: "Mute")
   /// Mokugyo
   internal static let muyu = L10n.tr("Localizable", "Muyu", fallback: "Mokugyo")
+  /// New
+  internal static let new = L10n.tr("Localizable", "New", fallback: "New")
   /// New Category
   internal static let newCategory = L10n.tr("Localizable", "NewCategory", fallback: "New Category")
   /// New Event
@@ -357,12 +363,20 @@ internal enum L10n {
   internal static let seconds = L10n.tr("Localizable", "Seconds", fallback: "s")
   /// Select All
   internal static let selectAll = L10n.tr("Localizable", "Select All", fallback: "Select All")
+  /// Select up to %@ categories
+  internal static func selectCategoriesWarning(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "SelectCategoriesWarning", String(describing: p1), fallback: "Select up to %@ categories")
+  }
   /// Select Category
   internal static let selectCategory = L10n.tr("Localizable", "SelectCategory", fallback: "Select Category")
   /// Select Emoji
   internal static let selectEmoji = L10n.tr("Localizable", "SelectEmoji", fallback: "Select Emoji")
   /// Select Event
   internal static let selectEvent = L10n.tr("Localizable", "SelectEvent", fallback: "Select Event")
+  /// Select up to %@ events
+  internal static func selectEventsWarning(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "SelectEventsWarning", String(describing: p1), fallback: "Select up to %@ events")
+  }
   /// Send an email
   internal static let sendEmail = L10n.tr("Localizable", "SendEmail", fallback: "Send an email")
   /// Settings
@@ -499,6 +513,8 @@ internal enum L10n {
   internal static let welcomeText = L10n.tr("Localizable", "WelcomeText", fallback: "An app that helps you better manage your time and improve your productivity.")
   /// Welcome To
   internal static let welcomeTo = L10n.tr("Localizable", "WelcomeTo", fallback: "Welcome To")
+  /// Widget
+  internal static let widget = L10n.tr("Localizable", "Widget", fallback: "Widget")
   /// Work
   internal static let work = L10n.tr("Localizable", "Work", fallback: "Work")
   /// X

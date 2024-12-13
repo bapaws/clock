@@ -248,6 +248,8 @@ public struct QuickCategoryEntity: TitleEntity, QuickEntity, QuickHexEntityColor
 
     public var index: Int = 0
 
+    public var events: [QuickEventEntity] = []
+
     // MARK: Entity
 
     public init(object: CategoryObject) {
@@ -260,6 +262,7 @@ public struct QuickCategoryEntity: TitleEntity, QuickEntity, QuickHexEntityColor
         self.name = object.name
 
         self.index = object.index
+//        self.events = object.events.map { QuickEventEntity(object: $0) }
     }
 
     public init(entity: CategoryEntity) {
@@ -272,5 +275,6 @@ public struct QuickCategoryEntity: TitleEntity, QuickEntity, QuickHexEntityColor
         self.name = entity.name
 
         self.index = entity.index
+//        self.events = entity.events.map { QuickEventEntity(entity: $0) }
     }
 }

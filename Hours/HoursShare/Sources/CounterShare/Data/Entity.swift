@@ -36,7 +36,7 @@ public extension Entity {
 
 // MARK: Quick
 
-public protocol QuickEntity: Identifiable, Equatable, Codable, Hashable {
+public protocol QuickEntity: Identifiable, Equatable, Codable, Hashable, Sendable {
     associatedtype Object = RealmSwift.Object
     var _id: ObjectId { get }
 

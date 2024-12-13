@@ -80,4 +80,48 @@ public extension Storage {
             return try? JSONDecoder().decode([TimingEntity].self, from: data)
         }
     }
+
+//    var quickMediumWidgets: [[QuickCategoryEntity]]? {
+//        set {
+//            guard let value = try? JSONEncoder().encode(newValue) else { return }
+//            store.set(value, forKey: Key.quickMediumWidgets)
+//        }
+//        get {
+//            guard let data = store.data(forKey: Key.quickMediumWidgets) else { return nil }
+//            return try? JSONDecoder().decode([[QuickCategoryEntity]].self, from: data)
+//        }
+//    }
+//
+//    var quickLargeWidgets: [[QuickCategoryEntity]]? {
+//        set {
+//            guard let value = try? JSONEncoder().encode(newValue) else { return }
+//            store.set(value, forKey: Key.quickLargeWidgets)
+//        }
+//        get {
+//            guard let data = store.data(forKey: Key.quickLargeWidgets) else { return nil }
+//            return try? JSONDecoder().decode([[QuickCategoryEntity]].self, from: data)
+//        }
+//    }
+
+    var quickMediumWidgets: [QuickWidgetEntity]? {
+        set {
+            guard let value = try? JSONEncoder().encode(newValue) else { return }
+            store.set(value, forKey: Key.quickMediumWidgets)
+        }
+        get {
+            guard let data = store.data(forKey: Key.quickMediumWidgets) else { return nil }
+            return try? JSONDecoder().decode([QuickWidgetEntity].self, from: data)
+        }
+    }
+
+    var quickLargeWidgets: [QuickWidgetEntity]? {
+        set {
+            guard let value = try? JSONEncoder().encode(newValue) else { return }
+            store.set(value, forKey: Key.quickLargeWidgets)
+        }
+        get {
+            guard let data = store.data(forKey: Key.quickLargeWidgets) else { return nil }
+            return try? JSONDecoder().decode([QuickWidgetEntity].self, from: data)
+        }
+    }
 }

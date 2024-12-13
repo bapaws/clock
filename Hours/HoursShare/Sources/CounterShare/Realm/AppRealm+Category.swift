@@ -83,11 +83,13 @@ public extension AppRealm {
     /// 在小组件上使用，降低内存消耗
     func getQuickUnarchivedCategories(count: Int) async -> [QuickCategoryEntity] {
         let realm = await realm
-        return realm.objects(CategoryObject.self)
+        let entities: [QuickCategoryEntity] = realm.objects(CategoryObject.self)
             .where { $0.archivedAt == nil && $0.deletedAt == nil && $0.events.count > 0 }
             .sorted(by: \.index)
             .prefix(count)
             .map { QuickCategoryEntity(object: $0) }
+        close()
+        return entities
     }
 
     /// 在小组件上使用，降低内存消耗

@@ -81,6 +81,10 @@
 		8888F7692BEF73BB00E5E646 /* ArchivedEventsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8888F7682BEF73BB00E5E646 /* ArchivedEventsItemView.swift */; };
 		8888F7722BEF882400E5E646 /* EventsHomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8888F7712BEF882400E5E646 /* EventsHomeHeader.swift */; };
 		889011222C476F770075970C /* CalendarEventsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889011212C476F770075970C /* CalendarEventsFeature.swift */; };
+		889271A22D08783F0046ACA0 /* SettingsWidgetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889271A12D0878360046ACA0 /* SettingsWidgetTabView.swift */; };
+		889271A42D0878480046ACA0 /* SettingsWidgetTabFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889271A32D0878430046ACA0 /* SettingsWidgetTabFeature.swift */; };
+		889271A62D087CF70046ACA0 /* SettingsWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889271A52D087CF70046ACA0 /* SettingsWidgetView.swift */; };
+		889271A72D087D6C0046ACA0 /* QuickTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB33B32D0731D9000C4452 /* QuickTimelineEntry.swift */; };
 		88A9B6592BA150C100385800 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B6582BA150C100385800 /* TitleView.swift */; };
 		88A9B6712BA1E12F00385800 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 88A9B6702BA1E12F00385800 /* Collections */; };
 		88AEDE182CD2379800564184 /* QuickConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickConfigurationIntent.swift */; };
@@ -94,6 +98,11 @@
 		88BABAFA2C47FB5600E3B93A /* EventsHomeListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BABAF92C47FB5600E3B93A /* EventsHomeListFeature.swift */; };
 		88BABAFC2C47FB6000E3B93A /* EventsHomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BABAFB2C47FB6000E3B93A /* EventsHomeListView.swift */; };
 		88BCA9C52C47672C0019F0F6 /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCA9C42C47672C0019F0F6 /* CalendarEventsView.swift */; };
+		88C234002D091A8100DBA789 /* QuickEventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C233FD2D091A8100DBA789 /* QuickEventItemView.swift */; };
+		88C234012D091A8100DBA789 /* QuickLargeEventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C233FE2D091A8100DBA789 /* QuickLargeEventItemView.swift */; };
+		88C234022D091A8100DBA789 /* QuickLargeTimingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C233FF2D091A8100DBA789 /* QuickLargeTimingItemView.swift */; };
+		88C234042D091AA100DBA789 /* QuickEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C234032D091AA100DBA789 /* QuickEntryView.swift */; };
+		88C234062D098E9600DBA789 /* QuickSelectEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C234052D098E9600DBA789 /* QuickSelectEventView.swift */; };
 		88C2DE752C097745002CEC16 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2DE742C097745002CEC16 /* StatisticsView.swift */; };
 		88C2DE7A2C097F93002CEC16 /* StatisticsDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2DE792C097F93002CEC16 /* StatisticsDayView.swift */; };
 		88C2DE7D2C097FD0002CEC16 /* StatisticsDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2DE7C2C097FD0002CEC16 /* StatisticsDay.swift */; };
@@ -325,6 +334,9 @@
 		8888F7682BEF73BB00E5E646 /* ArchivedEventsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedEventsItemView.swift; sourceTree = "<group>"; };
 		8888F7712BEF882400E5E646 /* EventsHomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeHeader.swift; sourceTree = "<group>"; };
 		889011212C476F770075970C /* CalendarEventsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsFeature.swift; sourceTree = "<group>"; };
+		889271A12D0878360046ACA0 /* SettingsWidgetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWidgetTabView.swift; sourceTree = "<group>"; };
+		889271A32D0878430046ACA0 /* SettingsWidgetTabFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWidgetTabFeature.swift; sourceTree = "<group>"; };
+		889271A52D087CF70046ACA0 /* SettingsWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWidgetView.swift; sourceTree = "<group>"; };
 		88A9B6582BA150C100385800 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		88B8DA9C2BF1B0A800249EAE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		88B8DAA12BF1B44C00249EAE /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +348,11 @@
 		88BABAF92C47FB5600E3B93A /* EventsHomeListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeListFeature.swift; sourceTree = "<group>"; };
 		88BABAFB2C47FB6000E3B93A /* EventsHomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHomeListView.swift; sourceTree = "<group>"; };
 		88BCA9C42C47672C0019F0F6 /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
+		88C233FD2D091A8100DBA789 /* QuickEventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickEventItemView.swift; sourceTree = "<group>"; };
+		88C233FE2D091A8100DBA789 /* QuickLargeEventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLargeEventItemView.swift; sourceTree = "<group>"; };
+		88C233FF2D091A8100DBA789 /* QuickLargeTimingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLargeTimingItemView.swift; sourceTree = "<group>"; };
+		88C234032D091AA100DBA789 /* QuickEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickEntryView.swift; sourceTree = "<group>"; };
+		88C234052D098E9600DBA789 /* QuickSelectEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSelectEventView.swift; sourceTree = "<group>"; };
 		88C2DE742C097745002CEC16 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		88C2DE792C097F93002CEC16 /* StatisticsDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDayView.swift; sourceTree = "<group>"; };
 		88C2DE7C2C097FD0002CEC16 /* StatisticsDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDay.swift; sourceTree = "<group>"; };
@@ -631,6 +648,7 @@
 			isa = PBXGroup;
 			children = (
 				882B82C72BF0A9D500B0365A /* SelectEventView.swift */,
+				88C234052D098E9600DBA789 /* QuickSelectEventView.swift */,
 				882B82DA2BF0B60C00B0365A /* SelectCategoryView.swift */,
 			);
 			path = Select;
@@ -810,6 +828,20 @@
 				88FA3C002C3E6AA4009C4273 /* TimingEntityView.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		889271A02D0878100046ACA0 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				889271A32D0878430046ACA0 /* SettingsWidgetTabFeature.swift */,
+				889271A12D0878360046ACA0 /* SettingsWidgetTabView.swift */,
+				889271A52D087CF70046ACA0 /* SettingsWidgetView.swift */,
+				88C233FD2D091A8100DBA789 /* QuickEventItemView.swift */,
+				88C233FE2D091A8100DBA789 /* QuickLargeEventItemView.swift */,
+				88C233FF2D091A8100DBA789 /* QuickLargeTimingItemView.swift */,
+				88C234032D091AA100DBA789 /* QuickEntryView.swift */,
+			);
+			path = Widget;
 			sourceTree = "<group>";
 		};
 		88B8DA9B2BF1AAE500249EAE /* Onboarding */ = {
@@ -1052,6 +1084,7 @@
 		88D23AF42B94A35C00E33DE5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				889271A02D0878100046ACA0 /* Widget */,
 				88D23B0F2B94A35C00E33DE5 /* About */,
 				886798572BEA5FED00E55B2C /* Feedback */,
 				88D454A22BA82D2300584FAD /* Paywall */,
@@ -1546,6 +1579,7 @@
 				8803C37D2C637103000F0E6F /* ItunesLookupResult.swift in Sources */,
 				88FBAE812C0D6EBF00C45F29 /* StatisticsWeekHeatMapView.swift in Sources */,
 				8827A5742BEC854E0010FC4C /* AppShortcutsProvider.swift in Sources */,
+				889271A22D08783F0046ACA0 /* SettingsWidgetTabView.swift in Sources */,
 				88F482932C0C59DE00211368 /* StatisticsPageBar.swift in Sources */,
 				88D23B122B94A35C00E33DE5 /* SettingsNavigateCell.swift in Sources */,
 				88F357E72C1F2A5800DD106A /* CalendarHeaderView.swift in Sources */,
@@ -1577,6 +1611,7 @@
 				88FA90B82C1291DE006607B1 /* AppManager.swift in Sources */,
 				88DE84802C6DFA06000C72B3 /* AppStoreVersionClient.swift in Sources */,
 				88F357DA2C1F0AB400DD106A /* MainFeature.swift in Sources */,
+				88C234062D098E9600DBA789 /* QuickSelectEventView.swift in Sources */,
 				88C2DE942C09C6A7002CEC16 /* StatisticsNumberView.swift in Sources */,
 				88D23B112B94A35C00E33DE5 /* SettingsToggleCell.swift in Sources */,
 				880805582C68B5A100CC8271 /* MessageClient.swift in Sources */,
@@ -1615,6 +1650,7 @@
 				8803C3792C632676000F0E6F /* MessageItemView.swift in Sources */,
 				88059EA82B9F4F6500C8BF9E /* NewRecordTimeView.swift in Sources */,
 				8801DCB62B9FE437003DE039 /* NewEventView.swift in Sources */,
+				889271A62D087CF70046ACA0 /* SettingsWidgetView.swift in Sources */,
 				88F357ED2C1F2F4C00DD106A /* CalendarHeaderPageView.swift in Sources */,
 				88C2DE9F2C09CB3D002CEC16 /* StatisticsDayHeatMapView.swift in Sources */,
 				882B82DB2BF0B60C00B0365A /* SelectCategoryView.swift in Sources */,
@@ -1634,6 +1670,7 @@
 				8827A5772BEC85BE0010FC4C /* NewRecordAppIntent.swift in Sources */,
 				88E18FC42C79966500470AC6 /* TimelineTimeIntervalView.swift in Sources */,
 				88FB7B1D2C7ACE1000E2C06C /* TimeRangeView.swift in Sources */,
+				889271A42D0878480046ACA0 /* SettingsWidgetTabFeature.swift in Sources */,
 				88F357CA2C1E8C0700DD106A /* NewRecordFeature.swift in Sources */,
 				88FBAE912C0E09E400C45F29 /* StatisticsYearHeatMapView.swift in Sources */,
 				88B8DAAC2BF24CF900249EAE /* OnboardingAppScreenTimeView.swift in Sources */,
@@ -1645,6 +1682,7 @@
 				88F19CB02C40C643003C5DC1 /* EventsHomeOtherCategoriesView.swift in Sources */,
 				88D23ABE2B949D9700E33DE5 /* CounterApp.swift in Sources */,
 				88F4828F2C0BFD6F00211368 /* StatisticsDailyRatioView.swift in Sources */,
+				88C234042D091AA100DBA789 /* QuickEntryView.swift in Sources */,
 				88F19CBA2C41735B003C5DC1 /* ListRow.swift in Sources */,
 				880805562C68B51600CC8271 /* MessageView.swift in Sources */,
 				88F1A3582C787ED800FA86BF /* TimelineView.swift in Sources */,
@@ -1653,6 +1691,7 @@
 				88FBAE792C0D58D000C45F29 /* StatisticsOverallDay.swift in Sources */,
 				88C2DE952C09C6A7002CEC16 /* StatisticsTimeView.swift in Sources */,
 				88F482972C0C68A400211368 /* StatisticsTimeDistributionLineView.swift in Sources */,
+				889271A72D087D6C0046ACA0 /* QuickTimelineEntry.swift in Sources */,
 				8867985A2BEA602500E55B2C /* FeedbackView.swift in Sources */,
 				8802CBBA2BAAE51100F0091E /* PaywallPackageItemView.swift in Sources */,
 				88CB58B82BEE5B4F000A2BF7 /* AppDelegate.swift in Sources */,
@@ -1661,6 +1700,9 @@
 				88CF10562C3D74C600A98DA4 /* TimingEventsView.swift in Sources */,
 				88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */,
 				88FBAE772C0D58BC00C45F29 /* StatisticsTimeDistribution.swift in Sources */,
+				88C234002D091A8100DBA789 /* QuickEventItemView.swift in Sources */,
+				88C234012D091A8100DBA789 /* QuickLargeEventItemView.swift in Sources */,
+				88C234022D091A8100DBA789 /* QuickLargeTimingItemView.swift in Sources */,
 				8888F7722BEF882400E5E646 /* EventsHomeHeader.swift in Sources */,
 				88D23B222B94A35C00E33DE5 /* SplashView.swift in Sources */,
 				88D454A62BA839FF00584FAD /* SettingsPaywallView.swift in Sources */,
@@ -1735,7 +1777,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1764,7 +1806,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1924,7 +1966,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1962,7 +2004,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bapaws.Hours;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

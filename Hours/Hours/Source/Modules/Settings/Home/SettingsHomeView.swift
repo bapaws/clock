@@ -28,6 +28,7 @@ struct GeneralSettingsFeature {
         var isFeedbackPresented = false
 
         @Presents var activityList: ActivityListFeature.State?
+        @Presents var widget: SettingsWidgetTabFeature.State?
     }
 
     enum Action: BindableAction {
@@ -45,6 +46,9 @@ struct GeneralSettingsFeature {
 
         case onActivityListTapped
         case activityList(PresentationAction<ActivityListFeature.Action>)
+
+        case onWidgetTapped
+        case widget(PresentationAction<SettingsWidgetTabFeature.Action>)
     }
 
     var body: some Reducer<State, Action> {
@@ -52,6 +56,10 @@ struct GeneralSettingsFeature {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                return .none
+
+            case .onWidgetTapped:
+                state.widget = .init()
                 return .none
 
             case .onDarkModeTapped:
@@ -82,6 +90,9 @@ struct GeneralSettingsFeature {
         }
         .ifLet(\.$activityList, action: \.activityList) {
             ActivityListFeature()
+        }
+        .ifLet(\.$widget, action: \.widget) {
+            SettingsWidgetTabFeature()
         }
     }
 }
@@ -127,6 +138,9 @@ struct SettingsHomeView: View {
             .sheet(item: $store.scope(state: \.activityList, action: \.activityList)) {
                 ActivityListView(store: $0)
             }
+            .sheet(item: $store.scope(state: \.widget, action: \.widget)) {
+                SettingsWidgetTabView(store: $0)
+            }
         }
     }
 
@@ -137,6 +151,12 @@ struct SettingsHomeView: View {
                     if ProManager.default.isLifetime { return }
                     isPaywallPresented = true
                 }
+                SettingsSection(title: L10n.widget) {
+                    SettingsNavigateCell(title: L10n.widget) {
+                        store.send(.onWidgetTapped)
+                    }
+                }
+
                 SettingsRecordSection(isPaywallPresented: $isPaywallPresented)
 
                 // MARK: Appearance

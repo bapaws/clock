@@ -7,6 +7,7 @@
 
 import ClockShare
 import Foundation
+import HoursShare
 
 extension Storage.Key {
     static let messageNotShowAgain = "messageNotShowAgain"

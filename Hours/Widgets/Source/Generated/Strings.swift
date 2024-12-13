@@ -32,6 +32,9 @@ internal enum L10n {
   internal static let middayNap = L10n.tr("Localizable", "MiddayNap", fallback: "Midday Nap")
   /// Music
   internal static let music = L10n.tr("Localizable", "Music", fallback: "Music")
+  /// Long press to select the category 
+  ///  If there is no category, please open [Hours] -> [Settings] -> [Widget] -> [+ New]
+  internal static let noSelectedInfo = L10n.tr("Localizable", "NoSelectedInfo", fallback: "Long press to select the category \n If there is no category, please open [Hours] -> [Settings] -> [Widget] -> [+ New]")
   /// Personal Grooming
   internal static let personalGrooming = L10n.tr("Localizable", "PersonalGrooming", fallback: "Personal Grooming")
   /// Long press to select categories
@@ -45,6 +48,10 @@ internal enum L10n {
   internal static let reading = L10n.tr("Localizable", "Reading", fallback: "Reading")
   /// Running
   internal static let running = L10n.tr("Localizable", "Running", fallback: "Running")
+  /// Select Categories
+  internal static let selectCategories = L10n.tr("Localizable", "Select Categories", fallback: "Select Categories")
+  /// Select Widget
+  internal static let selectWidget = L10n.tr("Localizable", "Select Widget", fallback: "Select Widget")
   /// Shopping
   internal static let shopping = L10n.tr("Localizable", "Shopping", fallback: "Shopping")
   /// Sleep
@@ -59,6 +66,8 @@ internal enum L10n {
   internal static let travel = L10n.tr("Localizable", "Travel", fallback: "Travel")
   /// Video
   internal static let video = L10n.tr("Localizable", "Video", fallback: "Video")
+  /// Widget
+  internal static let widget = L10n.tr("Localizable", "Widget", fallback: "Widget")
   /// Work
   internal static let work = L10n.tr("Localizable", "Work", fallback: "Work")
 }

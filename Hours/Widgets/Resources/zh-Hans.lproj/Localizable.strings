@@ -47,3 +47,7 @@
 
 "Select Categories" = "选择分类";
 "QuickPreviewHint" = "长按可选择分类";
+
+"Select Widget" = "选择小组件";
+"Widget" = "小组件";
+"NoSelectedInfo" = "长按可以选择分类\n如果没有分类，请打开 [时间记录] -> [设置] -> [小组件] -> [+ 新建]";

@@ -19,6 +19,8 @@
 "Continue" = "继续";
 "Loading" = "加载中...";
 "OK" = "好的";
+"New" = "新建";
+"Default" = "默认";
 
 // MARK: Onboarding
 
@@ -281,6 +283,14 @@
 "Rate" = "鼓励一下";
 "Upgrade" = "检查更新";
 "About" = "关于";
+
+// MARK: Widget
+
+"Widget" = "小组件";
+"Medium" = "中号";
+"Large" = "大号";
+"SelectEventsWarning" = "最多选择 %@ 种事件";
+"SelectCategoriesWarning" = "最多选择 %@ 种分类";
 
 // MARK: Clock
 

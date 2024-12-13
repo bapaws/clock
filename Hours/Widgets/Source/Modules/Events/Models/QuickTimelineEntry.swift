@@ -11,25 +11,7 @@ import HoursShare
 import RealmSwift
 import WidgetKit
 
-extension WidgetFamily {
-    var quickMaxCategoryCount: Int {
-        switch self {
-        case .systemMedium: 4
-        case .systemLarge: 8
-        default: fatalError("Not support")
-        }
-    }
-
-    var quickMaxEventCount: Int {
-        switch self {
-        case .systemMedium: 6
-        case .systemLarge: 9
-        default: fatalError("Not support")
-        }
-    }
-}
-
-struct QuickTimelineEntry: TimelineEntry {
+struct QuickTimelineEntry: TimelineEntry, Equatable {
     var date: Date = .now
 
     public let family: WidgetFamily
@@ -37,23 +19,14 @@ struct QuickTimelineEntry: TimelineEntry {
     public let displaySize: CGSize
 
     var timingEntities: [TimingEntity] = []
+    var widget: QuickWidgetEntity?
 
-    var selection: String?
-    var categories: [QuickCategoryEntity] = []
-    var events: [QuickEventEntity] = []
-
-    init(
-        selection: String? = nil,
-        categories: [QuickCategoryEntity],
-        events: [QuickEventEntity]
-    ) {
-        self.family = .systemLarge
-        self.isPreview = true
-        self.displaySize = CGSize(width: 100, height: 200)
-
-        self.selection = selection ?? categories.first?._id.stringValue
-        self.categories = categories
-        self.events = events
+    init(family: WidgetFamily, isPreview: Bool = true, displaySize: CGSize, timingEntities: [TimingEntity] = [], widget: QuickWidgetEntity?) {
+        self.family = family
+        self.isPreview = isPreview
+        self.displaySize = displaySize
+        self.timingEntities = timingEntities
+        self.widget = widget
     }
 
     init(context: TimelineProviderContext) {
@@ -61,6 +34,9 @@ struct QuickTimelineEntry: TimelineEntry {
         self.isPreview = context.isPreview
         self.displaySize = context.displaySize
     }
+
+    public var categories: [QuickCategoryEntity]? { widget?.categories }
+    public var selectedEvents: [QuickEventEntity]? { widget?.selectedEvents }
 }
 
 extension QuickTimelineEntry {
@@ -85,10 +61,8 @@ extension QuickTimelineEntry {
 
     var eventPadding: CGFloat {
         switch family {
-        case .systemMedium:
-            4
-        case .systemLarge:
-            6
+        case .systemMedium: 4
+        case .systemLarge: 6
         default:
             fatalError("Not support")
         }

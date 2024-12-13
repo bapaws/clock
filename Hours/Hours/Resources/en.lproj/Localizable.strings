@@ -19,6 +19,8 @@
 "Continue" = "Continue";
 "Loading" = "Loading...";
 "OK" = "OK";
+"New" = "New";
+"Default" = "Default";
 
 // MARK: Onboarding
 
@@ -281,6 +283,14 @@
 "Rate" = "Rate Our App";
 "Upgrade" = "Upgrade";
 "About" = "About";
+
+// MARK: Widget
+
+"Widget" = "Widget";
+"Medium" = "Medium";
+"Large" = "Large";
+"SelectEventsWarning" = "Select up to %@ events";
+"SelectCategoriesWarning" = "Select up to %@ categories";
 
 // MARK: Clock
 
