@@ -35,7 +35,7 @@ class ProManager: ClockShare.ProManager, ObservableObject {
         Purchases.logLevel = .error
         #endif
         Purchases.configure(
-            withAPIKey: "appl_sgCmJGKWPQGNeTsZLKcZPihgddB",
+            withAPIKey: "appl_sgCmJGKWPQGNeTsZLKcZPihgddB"
 //            appUserID: AppIdentifier.shared.anonymous
         )
 
