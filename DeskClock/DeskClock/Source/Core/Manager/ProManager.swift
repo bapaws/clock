@@ -29,12 +29,14 @@ class ProManager: ClockShare.ProManager, ObservableObject {
     }
 
     public static func setup() {
+        Purchases.proxyURL = URL(string: "https://api.rc-backup.com/")!
+
         #if DEBUG
         Purchases.logLevel = .error
         #endif
         Purchases.configure(
             withAPIKey: "appl_sgCmJGKWPQGNeTsZLKcZPihgddB",
-            appUserID: AppIdentifier.shared.anonymous
+//            appUserID: AppIdentifier.shared.anonymous
         )
 
         // 先信赖本地存储，后面验证
