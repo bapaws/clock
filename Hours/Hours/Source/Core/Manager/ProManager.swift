@@ -36,6 +36,8 @@ class ProManager: ClockShare.ProManager, ObservableObject {
     }
 
     public static func setup() {
+        Purchases.proxyURL = URL(string: "https://api.rc-backup.com/")!
+
         #if DEBUG
         Purchases.logLevel = .error
         #endif
