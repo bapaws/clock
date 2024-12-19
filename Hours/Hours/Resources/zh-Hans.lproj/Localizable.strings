@@ -153,7 +153,7 @@
 
 "StartTime" = "开始时间";
 "EndTime" = "结束时间";
-"Note" = "备注";
+"Notes" = "备注";
 
 // MARK: Archived Events
 

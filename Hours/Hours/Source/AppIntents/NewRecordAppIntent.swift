@@ -21,10 +21,14 @@ struct NewRecordAppIntent: AppIntent {
     @Parameter(title: "EndTime")
     var endAt: Date
 
+    @Parameter(title: "Notes", inputOptions: .init(multiline: true))
+    var notes: String?
+
     @MainActor func perform() async throws -> some IntentResult {
         guard let event = await AppRealm.shared.getEvent(by: eventID) else { return .result() }
 
         var newRecord = RecordEntity(creationMode: .shortcut, startAt: startAt, endAt: endAt)
+        newRecord.notes = notes
         let identifier = await AppManager.shared.syncToCalendar(for: event, record: newRecord)
         newRecord.calendarEventIdentifier = identifier
         await AppRealm.shared.writeRecord(newRecord, addTo: event)

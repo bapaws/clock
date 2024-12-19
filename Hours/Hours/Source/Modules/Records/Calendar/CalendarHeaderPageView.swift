@@ -21,7 +21,7 @@ struct CalendarHeaderPageFeature {
         var isDatePickerPresented: Bool = false
 
         var currentDate: Date {
-            set { home.date = newValue }
+            set { $home.withLock { $0.date = newValue } }
             get { home.date }
         }
 

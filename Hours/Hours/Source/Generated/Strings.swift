@@ -281,8 +281,8 @@ internal enum L10n {
   internal static let newEvent = L10n.tr("Localizable", "NewEvent", fallback: "New Event")
   /// New Record
   internal static let newRecord = L10n.tr("Localizable", "NewRecord", fallback: "New Record")
-  /// Note
-  internal static let note = L10n.tr("Localizable", "Note", fallback: "Note")
+  /// Notes
+  internal static let notes = L10n.tr("Localizable", "Notes", fallback: "Notes")
   /// Not Interested
   internal static let notInterested = L10n.tr("Localizable", "NotInterested", fallback: "Not Interested")
   /// OK

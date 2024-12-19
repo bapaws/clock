@@ -136,7 +136,7 @@
 "EditRecord" = "記録編集";
 "StartTime" = "開始時間";
 "EndTime" = "終了時間";
-"Note" = "備考";
+"Notes" = "備考";
 
 // MARK: Archived Events
 

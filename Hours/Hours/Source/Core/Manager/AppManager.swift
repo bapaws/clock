@@ -239,7 +239,7 @@ public extension AppManager {
             return
         }
 
-        let from = Storage.default.lastSyncWorkoutDate?.addingTimeInterval(-12 * 3600) ?? initialDate
+        var from = Storage.default.lastSyncWorkoutDate ?? initialDate
         let to = Date()
 
         if from.distance(to: to) < 30 {
@@ -247,8 +247,13 @@ public extension AppManager {
             return
         }
         Storage.default.lastSyncWorkoutDate = to
+        from = from.addingTimeInterval(-12 * 3600)
 
-        syncWorkout(from: from, to: to, completionHandler: completionHandler)
+        isSyncingWorkout = true
+        syncWorkout(from: from, to: to) { [weak self] in
+            self?.isSyncingWorkout = false
+            completionHandler?()
+        }
     }
 
     private func syncWorkout(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
@@ -281,11 +286,17 @@ public extension AppManager {
 
             for workout in workouts {
                 let id = workout.uuid.uuidString
-                guard await !AppRealm.shared.containsRecord(where: { $0.healthSampleUUIDString == id }) else { continue }
+                if await AppRealm.shared.containsRecord(where: { $0.healthSampleUUIDString == id }) { continue }
 
                 let eventID = workout.workoutActivityType.id
                 let name = workout.workoutActivityType.name
                 let emoji = workout.workoutActivityType.emoji
+
+                if await AppRealm.shared.containsRecord(where: {
+                    $0.event.name == name && $0.event.emoji == emoji && $0.startAt == workout.startDate && $0.endAt == workout.startDate
+                }) {
+                    continue
+                }
 
                 var newRecord = RecordEntity(creationMode: .health, startAt: workout.startDate, endAt: workout.endDate)
                 newRecord.healthSampleUUIDString = id
@@ -336,7 +347,7 @@ public extension AppManager {
             return
         }
 
-        let from = Storage.default.lastSyncSleepDate?.addingTimeInterval(-3 * 24 * 3600) ?? initialDate
+        var from = Storage.default.lastSyncSleepDate ?? initialDate
         let to = Date()
 
         if from.distance(to: to) < 30 {
@@ -344,8 +355,15 @@ public extension AppManager {
             return
         }
         Storage.default.lastSyncSleepDate = to
+        from = from.addingTimeInterval(-3 * 24 * 3600)
 
-        syncSleep(from: from, to: to, completionHandler: completionHandler)
+        // 开始同步数据
+        isSyncingSleep = true
+        syncSleep(from: from, to: to) { [weak self] in
+            // 数据同步结束
+            self?.isSyncingSleep = false
+            completionHandler?()
+        }
     }
 
     private func syncSleep(from: Date, to: Date, completionHandler: (() -> Void)? = nil) {
@@ -353,13 +371,9 @@ public extension AppManager {
             completionHandler?()
             return
         }
-        // 开始同步数据
-        isSyncingSleep = true
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, error in
-            // 数据同步结束
-            self?.isSyncingSleep = false
 
             guard error == nil, let items = samples as? [HKCategorySample], !items.isEmpty else {
                 completionHandler?()

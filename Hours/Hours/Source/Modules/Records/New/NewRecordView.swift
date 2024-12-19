@@ -72,7 +72,7 @@ struct NewRecordView: View {
                         isEndTimePresented = true
                     }
 
-                    TextField(L10n.note, text: $store.notes, axis: .vertical)
+                    TextField(L10n.notes, text: $store.notes, axis: .vertical)
                         .lineLimit(5 ... 10)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 16).fill(ui.secondaryBackground))

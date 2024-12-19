@@ -44,8 +44,21 @@ struct RecordsHomeCurrentState: Equatable {
     }
 }
 
-extension PersistenceReaderKey where Self == InMemoryKey<RecordsHomeCurrentState> {
-    static var recordsHomeCurrentState: Self {
-        inMemory("recordsHomeCurrentState")
-    }
+// extension PersistenceReaderKey where Self == InMemoryKey<RecordsHomeCurrentState> {
+//    static var recordsHomeCurrentState: Self {
+//        inMemory("recordsHomeCurrentState")
+//    }
+// }
+
+// extension SharedReaderKey {
+//  public static func recordsHomeCurrentState<Value>(/*...*/) -> Self
+//  where Self == CustomPersistence<Value> {
+//    CustomPersistence(/* ... */)
+//  }
+// }
+
+extension SharedReaderKey where Self == InMemoryKey<RecordsHomeCurrentState> {
+  static var recordsHomeCurrentState: Self {
+    inMemory("recordsHomeCurrentState")
+  }
 }
