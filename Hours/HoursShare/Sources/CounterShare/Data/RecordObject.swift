@@ -152,6 +152,9 @@ public struct RecordEntity: Entity {
     public var calendarEventIdentifier: String?
 
     public var healthSampleUUIDString: String?
+
+    /// Realm 版本 16
+    public var healthSampleUUIDStrings: Set<String> = []
     public var sleepSampleUUIDStrings: Set<String> = []
 
     public var time: TimeLength

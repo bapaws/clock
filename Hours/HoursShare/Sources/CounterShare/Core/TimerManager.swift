@@ -100,7 +100,7 @@ public class TimerManager: ObservableObject {
         timingEntities.removeAll { $0.id == entity.id }
 
         if reloadTimelines {
-            WidgetCenter.shared.reloadTimelines(ofKind: WidgetsKind.Quick.large)
+            WidgetCenter.shared.reloadAllTimelines()
         }
 
         if #available(iOS 16.1, *) {

@@ -50,8 +50,10 @@ struct QuickStopTimerAppIntent: AppIntent, LiveActivityIntent {
             await AppRealm.shared.writeRecord(newRecord, addTo: event)
         }
 
-        NotificationCenter.default.post(name: TimerManager.shared.timerStop, object: nil)
-        TimerManager.shared.stop(of: entity, reloadTimelines: false)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: TimerManager.shared.timerStop, object: nil)
+        }
+        TimerManager.shared.stop(of: entity)
 
         return .result()
     }

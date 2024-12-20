@@ -13,30 +13,38 @@ public extension AppRealm {
     func setupDefaultWidget() async {
         let realm = await realm
         widgetToken = realm.objects(CategoryObject.self).observe { change in
+            var reload = false
             switch change {
             case let .initial(categories):
                 if Storage.default.quickLargeWidgets == nil {
-                    let entity = QuickWidgetEntity(
-                        _id: try! ObjectId(string: QuickWidgetEntity.defaultID),
-                        title: L10n.default,
-                        index: 0,
-                        categories: self.getQuickCategories(categories: categories, family: WidgetFamily.systemLarge)
-                    )
-                    Storage.default.quickLargeWidgets = [entity]
+                    let quickCategories = self.getQuickCategories(categories: categories, family: WidgetFamily.systemLarge)
+                    if !quickCategories.isEmpty {
+                        let entity = QuickWidgetEntity(
+                            _id: try! ObjectId(string: QuickWidgetEntity.defaultID),
+                            title: L10n.default,
+                            index: 0,
+                            categories: quickCategories
+                        )
+                        Storage.default.quickLargeWidgets = [entity]
 
-                    WidgetCenter.shared.reloadAllTimelines()
+                        reload = true
+                    }
                 }
                 if Storage.default.quickMediumWidgets == nil {
-                    let entity = QuickWidgetEntity(
-                        _id: try! ObjectId(string: QuickWidgetEntity.defaultID),
-                        title: L10n.default,
-                        index: 0,
-                        categories: self.getQuickCategories(categories: categories, family: WidgetFamily.systemMedium)
-                    )
-                    Storage.default.quickMediumWidgets = [entity]
+                    let quickCategories = self.getQuickCategories(categories: categories, family: WidgetFamily.systemMedium)
+                    if !quickCategories.isEmpty {
+                        let entity = QuickWidgetEntity(
+                            _id: try! ObjectId(string: QuickWidgetEntity.defaultID),
+                            title: L10n.default,
+                            index: 0,
+                            categories: quickCategories
+                        )
+                        Storage.default.quickLargeWidgets = [entity]
 
-                    WidgetCenter.shared.reloadAllTimelines()
+                        reload = true
+                    }
                 }
+
             case let .update(categories, deletions: deletions, insertions: insertions, modifications: modifications):
                 debugPrint(categories, deletions, insertions, modifications)
                 if let quickMediumWidgets = Storage.default.quickLargeWidgets {
@@ -47,6 +55,10 @@ public extension AppRealm {
                 }
             case let .error(err):
                 debugPrint(err)
+            }
+            // 刷新小组件
+            if reload {
+                WidgetCenter.shared.reloadAllTimelines()
             }
         }
     }
