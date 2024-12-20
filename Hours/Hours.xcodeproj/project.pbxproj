@@ -44,8 +44,6 @@
 		88201AB62B94B58C00D4D187 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 88201AB52B94B58C00D4D187 /* PopupView */; };
 		88201ABD2B94B65000D4D187 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88201ABF2B94B65000D4D187 /* Localizable.strings */; };
 		88201AC72B94B8DB00D4D187 /* SoundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88201AC62B94B8DB00D4D187 /* SoundType.swift */; };
-		88228E082D13B2FA002B0C40 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88228E072D13B2FA002B0C40 /* RealmSwift */; };
-		88228E0A2D13B3D2002B0C40 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88228E092D13B3D2002B0C40 /* RealmSwift */; };
 		8827A56A2BEC63550010FC4C /* AppDidOpenAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A5692BEC63550010FC4C /* AppDidOpenAppIntent.swift */; };
 		8827A56C2BEC6E600010FC4C /* AppDidCloseAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A56B2BEC6E600010FC4C /* AppDidCloseAppIntent.swift */; };
 		8827A5742BEC854E0010FC4C /* AppShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827A5732BEC854E0010FC4C /* AppShortcutsProvider.swift */; };
@@ -58,8 +56,6 @@
 		882D01672BBCF4400058D834 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D01662BBCF4400058D834 /* EventDetailView.swift */; };
 		88393E642B9DDE13007F2F18 /* RecordsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88393E632B9DDE13007F2F18 /* RecordsHomeView.swift */; };
 		8843A6402C7777D7008C5295 /* NewRecordEndAtPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843A63F2C7777D7008C5295 /* NewRecordEndAtPickerView.swift */; };
-		885372682D145A0200E5F19F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 88228E072D13B2FA002B0C40 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		8853726A2D145A0B00E5F19F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 88228E092D13B3D2002B0C40 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		885FF83F2C183FDD00F4796E /* QuickStartTimerAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CF0F52C11BB7C009B5A29 /* QuickStartTimerAppIntent.swift */; };
 		8863CEDB2B9A09B3000BA47D /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8863CEDA2B9A09B3000BA47D /* Charts.framework */; };
 		8867985A2BEA602500E55B2C /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886798592BEA602500E55B2C /* FeedbackView.swift */; };
@@ -87,6 +83,10 @@
 		889271A42D0878480046ACA0 /* SettingsWidgetTabFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889271A32D0878430046ACA0 /* SettingsWidgetTabFeature.swift */; };
 		889271A62D087CF70046ACA0 /* SettingsWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889271A52D087CF70046ACA0 /* SettingsWidgetView.swift */; };
 		889271A72D087D6C0046ACA0 /* QuickTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB33B32D0731D9000C4452 /* QuickTimelineEntry.swift */; };
+		889F12FD2D14FF5F00DA804D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 889F12FC2D14FF5F00DA804D /* Realm */; };
+		889F12FF2D14FF7100DA804D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 889F12FE2D14FF7100DA804D /* Realm */; };
+		889F13012D15000F00DA804D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 889F13002D15000F00DA804D /* RealmSwift */; };
+		889F13032D15001900DA804D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 889F13022D15001900DA804D /* RealmSwift */; };
 		88A9B6592BA150C100385800 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A9B6582BA150C100385800 /* TitleView.swift */; };
 		88A9B6712BA1E12F00385800 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 88A9B6702BA1E12F00385800 /* Collections */; };
 		88AEDE182CD2379800564184 /* QuickConfigurationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816F6452C7F282E00A69FF4 /* QuickConfigurationIntent.swift */; };
@@ -244,7 +244,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8853726A2D145A0B00E5F19F /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +254,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				885372682D145A0200E5F19F /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,8 +497,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88228E0A2D13B3D2002B0C40 /* RealmSwift in Frameworks */,
+				889F12FD2D14FF5F00DA804D /* Realm in Frameworks */,
 				887CEC702BFDE9F600E56AB5 /* ClockShare in Frameworks */,
+				889F13012D15000F00DA804D /* RealmSwift in Frameworks */,
 				887CEC582BFDE8F900E56AB5 /* SwiftUI.framework in Frameworks */,
 				887CEC722BFDE9F600E56AB5 /* HoursShare in Frameworks */,
 				887CEC562BFDE8F900E56AB5 /* WidgetKit.framework in Frameworks */,
@@ -518,12 +517,13 @@
 				88D53AEA2C09636E003C02DC /* ComposableArchitecture in Frameworks */,
 				88D23AD12B949F1000E33DE5 /* ReceiptParser in Frameworks */,
 				88A9B6712BA1E12F00385800 /* Collections in Frameworks */,
+				889F12FF2D14FF7100DA804D /* Realm in Frameworks */,
 				88201AB62B94B58C00D4D187 /* PopupView in Frameworks */,
 				880B1F532BCAC35D00519C4C /* SwiftUIIntrospect in Frameworks */,
 				8863CEDB2B9A09B3000BA47D /* Charts.framework in Frameworks */,
 				8800967B2BF59972008AC521 /* ScalingHeaderScrollView in Frameworks */,
 				882B82DF2BF0B68A00B0365A /* Flow in Frameworks */,
-				88228E082D13B2FA002B0C40 /* RealmSwift in Frameworks */,
+				889F13032D15001900DA804D /* RealmSwift in Frameworks */,
 				88D6EB1D2C24246D00970397 /* SwiftUIPager in Frameworks */,
 				8888F7632BEF047700E5E646 /* MCEmojiPicker in Frameworks */,
 				88ECC6932C524859002FF861 /* IceCream in Frameworks */,
@@ -1423,7 +1423,8 @@
 				887CEC6F2BFDE9F600E56AB5 /* ClockShare */,
 				887CEC712BFDE9F600E56AB5 /* HoursShare */,
 				88FCD4BA2C1DC875007F1D29 /* OrderedCollections */,
-				88228E092D13B3D2002B0C40 /* RealmSwift */,
+				889F12FC2D14FF5F00DA804D /* Realm */,
+				889F13002D15000F00DA804D /* RealmSwift */,
 			);
 			productName = WidgetsExtension;
 			productReference = 887CEC542BFDE8F900E56AB5 /* WidgetsExtension.appex */;
@@ -1462,7 +1463,8 @@
 				88D53AE92C09636E003C02DC /* ComposableArchitecture */,
 				88D6EB1C2C24246D00970397 /* SwiftUIPager */,
 				88ECC6922C524859002FF861 /* IceCream */,
-				88228E072D13B2FA002B0C40 /* RealmSwift */,
+				889F12FE2D14FF7100DA804D /* Realm */,
+				889F13022D15001900DA804D /* RealmSwift */,
 			);
 			productName = Counter;
 			productReference = 88D23ABA2B949D9700E33DE5 /* Hours.app */;
@@ -2185,16 +2187,6 @@
 			package = 88201AB42B94B58C00D4D187 /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = PopupView;
 		};
-		88228E072D13B2FA002B0C40 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 88228E042D13B2FA002B0C40 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-		88228E092D13B3D2002B0C40 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 88228E042D13B2FA002B0C40 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		882B82DE2BF0B68A00B0365A /* Flow */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 882B82DD2BF0B68A00B0365A /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */;
@@ -2212,6 +2204,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8888F7612BEF047700E5E646 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */;
 			productName = MCEmojiPicker;
+		};
+		889F12FC2D14FF5F00DA804D /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88228E042D13B2FA002B0C40 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		889F12FE2D14FF7100DA804D /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88228E042D13B2FA002B0C40 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		889F13002D15000F00DA804D /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88228E042D13B2FA002B0C40 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		889F13022D15001900DA804D /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88228E042D13B2FA002B0C40 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		88A9B6702BA1E12F00385800 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;

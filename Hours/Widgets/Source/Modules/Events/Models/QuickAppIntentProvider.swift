@@ -48,12 +48,12 @@ struct QuickAppIntentProvider: AppIntentTimelineProvider {
         } else {
             /// Realm 这个坑数据库，打开一个 Realm 的实例，直接把内存从 8MB -> 28MB
             /// 升级情况下，最坏的情况，会导致小组件超过内存直接崩溃
-            await AppRealm.shared.setupDefaultWidget()
-            await AppRealm.shared.close()
-
-            if let widget = Storage.default.quickMediumWidgets?.first {
-                entry.widget = widget
-            }
+//            await AppRealm.shared.setupDefaultWidget()
+//            await AppRealm.shared.close()
+//
+//            if let widget = Storage.default.quickMediumWidgets?.first {
+//                entry.widget = widget
+//            }
         }
 
         if let entities = Storage.default.currentTimingEntities {
