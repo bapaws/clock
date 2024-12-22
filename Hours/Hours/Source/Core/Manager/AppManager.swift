@@ -293,7 +293,10 @@ public extension AppManager {
                 let emoji = workout.workoutActivityType.emoji
 
                 if await AppRealm.shared.containsRecord(where: {
-                    $0.event.name == name && $0.event.emoji == emoji && $0.startAt == workout.startDate && $0.endAt == workout.startDate
+                    $0.events.name == name &&
+                        $0.events.emoji == emoji &&
+                        $0.startAt == workout.startDate &&
+                        $0.endAt == workout.endDate
                 }) {
                     continue
                 }
