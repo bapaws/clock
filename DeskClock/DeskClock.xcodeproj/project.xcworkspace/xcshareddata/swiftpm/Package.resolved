@@ -122,8 +122,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/malcommac/SwiftDate.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e"
+        "revision" : "5d943224c3bb173e6ecf27295611615eba90c80e",
+        "version" : "7.0.0"
       }
     },
     {
@@ -140,8 +140,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftUIX/SwiftUIX",
       "state" : {
-        "revision" : "a5a22a1aaca885c229f475af049d75a6d9144de8",
-        "version" : "0.1.9"
+        "revision" : "e984fd2e08140ad5a95d084be38fe02b774bc15d",
+        "version" : "0.2.3"
       }
     },
     {
